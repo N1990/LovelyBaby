@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="5dip"
+    android:orientation="vertical"
+    android:padding="10dip">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_community_time_third_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="2015-07-20 12:00"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tv_community_praise_third_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="1.3万"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="12sp" />
+
+        <ImageView
+            android:id="@+id/iv_community_praise_third_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dip"
+            android:layout_toLeftOf="@+id/tv_community_praise_third_item"
+            android:background="@mipmap/btn_community_praise_normal" />
+
+    </RelativeLayout>
+
+    <HorizontalScrollView
+        android:id="@+id/hsv_community_users_third_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dip"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:id="@+id/ll_community_users_third_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="5dip"
+            android:paddingTop="5dip">
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/iv_community_header_spot_01"
+                android:layout_width="50dip"
+                android:layout_height="50dip"
+                android:layout_marginRight="3dip"
+                app:actualImageScaleType="centerCrop"
+                app:fadeDuration="200"
+                app:placeholderImage="@color/placeholder"
+                app:roundAsCircle="true"
+                app:roundingBorderColor="@android:color/white"
+                app:roundingBorderWidth="1dp" />
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/iv_community_header_spot_02"
+                android:layout_width="50dip"
+                android:layout_height="50dip"
+                android:layout_marginRight="3dip"
+                app:actualImageScaleType="centerCrop"
+                app:fadeDuration="200"
+                app:placeholderImage="@color/placeholder"
+                app:roundAsCircle="true"
+                app:roundingBorderColor="@android:color/white"
+                app:roundingBorderWidth="1dp" />
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/iv_community_header_spot_03"
+                android:layout_width="50dip"
+                android:layout_height="50dip"
+                android:layout_marginRight="3dip"
+                app:actualImageScaleType="centerCrop"
+                app:fadeDuration="200"
+                app:placeholderImage="@color/placeholder"
+                app:roundAsCircle="true"
+                app:roundingBorderColor="@android:color/white"
+                app:roundingBorderWidth="1dp" />
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/iv_community_header_spot_04"
+                android:layout_width="50dip"
+                android:layout_height="50dip"
+                android:layout_marginRight="3dip"
+                app:actualImageScaleType="centerCrop"
+                app:fadeDuration="200"
+                app:placeholderImage="@color/placeholder"
+                app:roundAsCircle="true"
+                app:roundingBorderColor="@android:color/white"
+                app:roundingBorderWidth="1dp" />
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/iv_community_header_spot_05"
+                android:layout_width="50dip"
+                android:layout_height="50dip"
+                android:layout_marginRight="3dip"
+                app:actualImageScaleType="centerCrop"
+                app:fadeDuration="200"
+                app:placeholderImage="@color/placeholder"
+                app:roundAsCircle="true"
+                app:roundingBorderColor="@android:color/white"
+                app:roundingBorderWidth="1dp" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dip"
+        android:text="评论"
+        android:textColor="@android:color/black"
+        android:textSize="16sp" />
+    <!--<View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginTop="5dip"
+        android:layout_marginBottom="5dip"
+        android:background="@android:color/darker_gray"/>-->
+
+
+</LinearLayout>

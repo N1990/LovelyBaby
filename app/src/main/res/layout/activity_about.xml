@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+    <include
+        layout="@layout/custom_actionbar"/>
+
+
+    <ImageView
+        android:id="@+id/iv_about"
+        android:layout_width="100dip"
+        android:layout_height="100dip"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/tl_main_actionbar"
+        android:layout_marginTop="30dip"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/tv_about_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dip"
+        android:layout_below="@+id/iv_about"
+        android:text="萌宝派测试版"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/txt_middle"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_about_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/tv_about_title"
+        android:layout_margin="30dip"
+        android:lineSpacingExtra="5dip"
+        android:shadowColor="@android:color/darker_gray"
+        android:text="       萌宝派，为每一位父母送上最新鲜热辣的育儿资讯，预告最丰富有趣的亲子活动，解答所有棘手或细碎的孕、育问题。萌宝派，最酷、最炫、最好用的掌上育儿宝典，期待你的加入！"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/txt_normal" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="15dip">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dip"
+        android:gravity="center_horizontal"
+        android:text="上海至臻文化传媒股份有限公司"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/txt_normal" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dip"
+        android:gravity="center_horizontal"
+        android:text="Shanghai Tops Media Communication Co.,Ltd."
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/txt_normal" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dip"
+        android:gravity="center_horizontal"
+        android:text="Copyright 2015 All Rights Reserved"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="@dimen/txt_small" />
+
+    <TextView
+        android:id="@+id/tv_about"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:gravity="center_horizontal"
+        android:text="服务条款与协议"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="@dimen/txt_small" />
+    </LinearLayout>
+
+
+</RelativeLayout>

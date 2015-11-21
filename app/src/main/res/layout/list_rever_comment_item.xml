@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:id="@+id/ll_rever_comment_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dip"
+        android:layout_marginTop="15dip"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_rever_comment_name_item"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1.0"
+            android:text=""
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/iv_rever_comment_delete_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginLeft="@dimen/global_padding"
+            android:background="@mipmap/btn_community_comment_del_bg"
+            android:scaleType="centerCrop" />
+
+    </LinearLayout>
+
+</LinearLayout>

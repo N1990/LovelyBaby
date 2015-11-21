@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="wrap_content"
+    android:layout_height="40dp"
+    android:gravity="center_vertical"
+    android:padding="10dip">
+
+    <ImageView
+        android:id="@+id/iv_popwindow_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tv_popwindow_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dip"
+        android:textColor="@android:color/white"
+        android:text="分享"/>
+    <View
+        android:id="@+id/v_popwindow_divider"
+        android:layout_width="1px"
+        android:layout_height="match_parent"
+        android:layout_marginRight="5dip"
+        android:layout_marginLeft="5dip"
+        android:background="#888888"
+        android:visibility="gone"/>
+
+</LinearLayout>

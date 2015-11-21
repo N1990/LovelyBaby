@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/global_padding">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:padding="@dimen/half_global_padding"
+        android:layout_marginLeft="5dip"
+        android:layout_marginRight="5dip"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/et_phone"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:singleLine="true"
+            android:background="@null"
+            android:textColor="@android:color/black"
+            android:textColorHint="@android:color/darker_gray"
+            android:textSize="@dimen/txt_normal"/>
+        <ImageView
+            android:id="@+id/iv_phone_clear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/btn_edit_delete"
+            android:visibility="gone"/>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@android:color/darker_gray"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_marginTop="8dip"
+        android:padding="@dimen/half_global_padding"
+        android:layout_marginLeft="5dip"
+        android:layout_marginRight="5dip"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/et_verify"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:singleLine="true"
+            android:background="@null"
+            android:textColor="@android:color/black"
+            android:textColorHint="@android:color/darker_gray"
+            android:textSize="@dimen/txt_normal"/>
+        <TextView
+            android:id="@+id/tv_verify"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/primaryColor"
+            android:layout_marginLeft="10dip"
+            android:text="获取验证码"/>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@android:color/darker_gray"/>
+
+
+
+
+</LinearLayout>

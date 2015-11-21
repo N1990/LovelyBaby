@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/half_global_padding"
+        android:layout_marginTop="5dip"
+        android:layout_marginLeft="5dip"
+        android:layout_marginRight="5dip"
+        android:elevation="3dip"
+        android:background="@drawable/btn_white_radio_bg">
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/iv_header_accept_order"
+            android:layout_width="60dp"
+            android:layout_height="60dip"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dip"
+            fresco:actualImageScaleType="centerCrop"
+            fresco:roundingBorderColor="@android:color/white"
+            fresco:roundingBorderWidth="1dp"
+            fresco:roundAsCircle="true"
+            fresco:placeholderImage="@color/placeholder"
+            />
+        <TextView
+            android:id="@+id/tv_title_accept_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:layout_alignTop="@+id/iv_header_accept_order"
+            android:layout_toRightOf="@+id/iv_header_accept_order"
+            android:layout_toLeftOf="@+id/tv_status_accept_order"
+            android:textColor="@android:color/black"
+            android:text="活动标题"/>
+        <TextView
+            android:id="@+id/tv_status_accept_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="5dip"
+            android:layout_alignTop="@+id/iv_header_accept_order"
+            android:text="状态"/>
+
+        <TextView
+            android:id="@+id/tv_number_accept_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:layout_toRightOf="@+id/iv_header_accept_order"
+            android:layout_below="@+id/tv_title_accept_order"
+            android:layout_marginTop="5dip"
+            android:textColor="@android:color/black"
+            android:text="订单号：000xxxxxxxxxxx"/>
+
+
+        <TextView
+            android:id="@+id/tv_time_accept_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:layout_toRightOf="@+id/iv_header_accept_order"
+            android:layout_below="@+id/tv_number_accept_order"
+            android:layout_marginTop="5dip"
+            android:textColor="@android:color/black"
+            android:text="订单时间：2015-9-15 13:56"/>
+
+
+    </RelativeLayout>
+
+</LinearLayout>

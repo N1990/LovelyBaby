@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@android:color/white"
+        android:padding="@dimen/global_padding">
+
+        <TextView
+            android:id="@+id/tv_pay_way_title_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/txt_middle"
+            android:text="订单名称：xxxxxx"/>
+
+        <TextView
+            android:id="@+id/tv_pay_way_price_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="10dip"
+            android:layout_marginBottom="15dip"
+            android:textSize="@dimen/txt_middle"
+            android:text="订单金额：xxx"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dip"
+        android:background="@android:color/white"
+        android:padding="@dimen/global_padding">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/txt_middle"
+            android:text="还需支付："/>
+
+        <TextView
+            android:id="@+id/tv_pay_way_leave_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/txt_middle"
+            android:textColor="@color/primaryColorDark"
+            android:text="0.02元"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@android:color/darker_gray"/>
+
+</LinearLayout>

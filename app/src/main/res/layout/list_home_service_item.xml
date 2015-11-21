@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ll_home_service_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="5dip"
+    android:background="@drawable/btn_white_radio_bg"
+    android:elevation="3dip"
+    android:orientation="vertical"
+    android:padding="5dip">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/iv_home_service_item"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        fresco:actualImageScaleType="centerCrop"
+        fresco:placeholderImage="@color/placeholder" />
+
+        <ImageView
+            android:id="@+id/iv_home_service_tag_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_title_home_service_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dip"
+        android:layout_marginRight="5dip"
+        android:layout_marginTop="@dimen/half_global_padding"
+        android:text=""
+        android:textColor="@color/primaryColor" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dip"
+        android:layout_marginRight="5dip"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1.0"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="费用"
+                android:textColor="@color/dimgray"
+                android:textSize="@dimen/txt_small" />
+
+            <TextView
+                android:id="@+id/tv_price_home_service_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:gravity="center_vertical"
+                android:text=""
+                android:textColor="@color/primaryColor"
+                android:textSize="@dimen/txt_small" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_join_home_service_item"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1.0"
+            android:gravity="center"
+            android:text="参加人数"
+            android:textColor="@color/dimgray"
+            android:textSize="@dimen/txt_small" />
+
+        <LinearLayout
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1.0"
+            android:gravity="center_vertical|right"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:background="@mipmap/btn_city_normal" />
+
+            <TextView
+                android:id="@+id/tv_city_home_service_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/dimgray"
+                android:textSize="@dimen/txt_small" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
+

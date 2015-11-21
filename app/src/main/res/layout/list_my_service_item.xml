@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_white_radio_bg"
+        android:padding="@dimen/half_global_padding"
+        android:layout_marginRight="5dip"
+        android:layout_marginLeft="5dip"
+        android:layout_marginTop="5dip"
+        android:elevation="3dip">
+        <TextView
+            android:id="@+id/tv_my_service_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textColor="@android:color/black"
+            android:text="服务标题"/>
+        <!--<TextView
+            android:id="@+id/tv_my_service_accept_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_my_service_title"
+            android:layout_marginTop="5dip"
+            android:textColor="@android:color/black"
+            android:text="已接单10"/>-->
+
+        <ImageView
+            android:id="@+id/iv_my_service_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/btn_right_anchor_bg"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"/>
+
+        <TextView
+            android:id="@+id/tv_my_service_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/iv_my_service_right"
+            android:layout_centerVertical="true"
+            android:textColor="@android:color/black"
+            android:text="服务状态"
+            />
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tl_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
+    tools:context="com.cmbb.smartkids.activity.SplashActivity">
+
+
+    <include layout="@layout/custom_actionbar" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/splah_bg"/>
+
+    <!--<android.support.v7.widget.AppCompatEditText
+        android:id="@+id/ace_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tl_main_actionbar"
+        android:layout_marginLeft="20dip"
+        android:layout_marginRight="20dip"
+        android:layout_marginTop="40dip"
+        android:hint="服务器地址" />
+
+    <android.support.v7.widget.AppCompatEditText
+        android:id="@+id/ace_address_publich"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ace_address"
+        android:layout_marginLeft="20dip"
+        android:layout_marginRight="20dip"
+        android:layout_marginTop="40dip"
+        android:hint="话题发布地址" />
+
+
+    <TextView
+        android:id="@+id/tv_change"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ace_address_publich"
+        android:layout_marginLeft="20dip"
+        android:layout_marginRight="20dip"
+        android:layout_marginTop="40dip"
+        android:background="@drawable/btn_login_selector"
+        android:gravity="center"
+        android:padding="@dimen/global_padding"
+        android:text="修改服务器地址"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/txt_middle" />-->
+
+</RelativeLayout>

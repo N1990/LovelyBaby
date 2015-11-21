@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="距离结束"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:id="@+id/textView77"
+        android:textColor="@android:color/darker_gray"
+        android:layout_above="@+id/view4"/>
+
+    <TextView
+        android:id="@+id/tv_day_decade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:layout_marginLeft="10dp"
+        android:text="3天"
+        android:layout_gravity="center"
+        android:padding="5dp"
+        android:gravity="center"
+        android:background="@drawable/btn_white_radio_bg" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text=":"
+        android:textColor="@android:color/black"
+        android:layout_gravity="center"
+        android:background="@null"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp" />
+
+    <TextView
+        android:id="@+id/tv_hour_decade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:textColor="@android:color/black"
+        android:text="02"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="@drawable/btn_white_radio_bg" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text=":"
+        android:textColor="@android:color/black"
+        android:layout_gravity="center"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp" />
+
+    <TextView
+        android:id="@+id/tv_min_decade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:textColor="@android:color/black"
+        android:text="34"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="@drawable/btn_white_radio_bg" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView6"
+        android:text=":"
+        android:background="@null"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textColor="@android:color/black"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="02"
+        android:id="@+id/tv_second_decade"
+        android:textColor="@android:color/black"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="@drawable/btn_white_radio_bg" />
+
+</LinearLayout>

@@ -59,6 +59,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentTop="true"
+                android:layout_marginTop="@dimen/global_padding"
                 android:background="@drawable/btn_primary_color_radio_bg"
                 android:text="畅聊天地"
                 android:textColor="@android:color/white"
@@ -105,9 +106,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dip"
-            android:lines="2"
             android:ellipsize="end"
             android:lineSpacingExtra="1.5dp"
+            android:lines="2"
             android:text="内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容"
             android:textColor="@android:color/darker_gray"
             android:textSize="@dimen/txt_normal" />

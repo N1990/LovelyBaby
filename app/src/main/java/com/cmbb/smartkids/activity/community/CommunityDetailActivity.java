@@ -194,7 +194,11 @@ public class CommunityDetailActivity extends BaseActivity implements CustomListe
                 if (cacheReplay != null && cacheDetail != null) {
                     hideWaitDialog();
 
-                    ShareUtils.setShareContent(cacheDetail.getData().getTitle(), cacheDetail.getData().getContents(), Constants.Share.getTopicShareUrl(cacheDetail.getData().getId()), cacheDetail.getData().getTopicImgList().get(0).getImg());
+                    if (cacheDetail.getData().getTopicImgList().size() != 0) {
+                        ShareUtils.setShareContent(cacheDetail.getData().getTitle(), cacheDetail.getData().getContents(), Constants.Share.getTopicShareUrl(cacheDetail.getData().getId()), cacheDetail.getData().getTopicImgList().get(0).getImg());
+                    } else {
+                        ShareUtils.setShareContent(cacheDetail.getData().getTitle(), cacheDetail.getData().getContents(), Constants.Share.getTopicShareUrl(cacheDetail.getData().getId()), R.mipmap.ic_launcher);
+                    }
                     setPopTitle(cacheDetail.getData().getUserBasicInfo().getIsLoginUser());
                     baseFragment = CommentFirstFragment.newInstance(cacheDetail, cacheReplay);
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();

@@ -63,8 +63,8 @@ public class NetRequest {
     private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
     // private final static String BASE_URL = "http://192.168.100.181:8097/cgi"; // 事务请求服务器
     //开发环境
-    public static String BASE_URL = "http://192.168.100.156:8081/wine-rest/cgi";
-    public static String BASE_URL_PIC = "http://192.168.100.156:8081/wine-rest/";
+    public static String BASE_URL = "http://192.168.100.174:8081/wine-rest/cgi";
+    public static String BASE_URL_PIC = "http://192.168.100.174:8081/wine-rest/";
     //public static String BASE_URL = "http://121.41.61.142:82/wine-rest/cgi";
     //生产环境
 //    private final static String BASE_URL = "http://mengbaopai.smart-kids.com:8081/wine-rest/cgi";

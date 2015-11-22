@@ -30,6 +30,7 @@ import com.cmbb.smartkids.base.BaseFragment;
 import com.cmbb.smartkids.base.Constants;
 import com.cmbb.smartkids.base.CustomListener;
 import com.cmbb.smartkids.network.NetRequest;
+import com.cmbb.smartkids.utils.log.Log;
 import com.javon.loadmorerecyclerview.LoadMoreRecyclerView;
 
 import java.util.ArrayList;
@@ -89,7 +90,7 @@ public class CommunityFragment extends BaseFragment {
             actionbar.setDisplayHomeAsUpEnabled(false);
             actionbar.setDisplayShowTitleEnabled(false);
         } catch (Exception e) {
-            com.cmbb.smartkids.utils.log.Log.i(TAG, "actionbar is null");
+            Log.i(TAG, "actionbar is null");
         }
     }
 
@@ -237,7 +238,7 @@ public class CommunityFragment extends BaseFragment {
      */
     private void handleTopicListRequest() {
         HashMap<String, String> params = new HashMap<>();
-        if(!TextUtils.isEmpty(topAdapter.getSelectData().getValue())){
+        if (!TextUtils.isEmpty(topAdapter.getSelectData().getValue())) {
             params.put("topicType", topAdapter.getSelectData().getValue());
         }
         params.put("pageNo", String.valueOf(pager));

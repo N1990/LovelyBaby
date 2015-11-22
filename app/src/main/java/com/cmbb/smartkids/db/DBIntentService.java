@@ -1,11 +1,7 @@
 package com.cmbb.smartkids.db;
 
 import android.app.IntentService;
-import android.content.ContentValues;
 import android.content.Intent;
-import android.text.TextUtils;
-
-import com.cmbb.smartkids.utils.log.Log;
 
 
 public class DBIntentService extends IntentService {

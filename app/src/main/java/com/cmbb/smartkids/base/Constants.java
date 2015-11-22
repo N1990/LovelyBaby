@@ -55,7 +55,7 @@ public class Constants {
         public static final String FORGEST_PWD_REQUEST = "smart/forgetPWD"; //忘记密码
         public static final String LOGIN_REQUEST = "smart/login"; //登录
         public static final String USER_INFO_REQUEST = "smart/personal/getPersonal"; //获取用户信息
-        public static final String APPLY_POPMAN_REQUEST = "smart/eredar/apply"; //达人申请
+        public static final String APPLY_POPMAN_REQUEST = "smart/system/getAuthDicList"; //达人申请
         public static final String CARE_LIST_REQUEST = "smart/attention/getList"; // 关注列表
         public static final String MODIFY_USER_INFO = "smart/personal/updatePersonal"; // 修改用户信息
         public static final String CHANGE_USER_ACCOUNT = "smart/logout"; // 切换账号
@@ -96,6 +96,7 @@ public class Constants {
     public static final class Community {
         public static final String TOPIC_PUBLISH = "smart/topic/publish"; // 话题发布
         public static final String TOPIC_TYPE = "smart/system/dictList"; // 话题类型
+        public static final String TOPIC_PUBLISH_TYPE = "smart/system/getAuthDicList"; // 发布话题类型
         public static final String TOPIC_DETIAL = "smart/topic/detial"; // 话题详情
         public static final String TOPIC_REPLAY = "smart/topic/replyList"; //
         public static final String TOPIC_LIST = "smart/topic/getPage"; // 话题列表
@@ -109,6 +110,5 @@ public class Constants {
         public static final String TOPIC_DELETEREPLY = "smart/topic/deleteReply"; // 举报话题
 
     }
-
 
 }

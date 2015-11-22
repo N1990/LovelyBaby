@@ -1,10 +1,6 @@
 package com.cmbb.smartkids.activity.login;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -19,7 +15,7 @@ import com.cmbb.smartkids.base.Constants;
 import com.cmbb.smartkids.network.NetRequest;
 import com.cmbb.smartkids.utils.CustomWatcher;
 import com.cmbb.smartkids.utils.MyTimeCount;
-import com.cmbb.smartkids.utils.log.Tools;
+import com.cmbb.smartkids.utils.Tools;
 
 import java.util.HashMap;
 

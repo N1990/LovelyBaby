@@ -10,13 +10,13 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.cmbb.smartkids.R;
-import com.cmbb.smartkids.base.BaseApplication;
-import com.cmbb.smartkids.db.DBContent;
 import com.cmbb.smartkids.activity.home.HomeActivity;
+import com.cmbb.smartkids.activity.login.model.UserAssistModel;
 import com.cmbb.smartkids.activity.login.model.UserRootModel;
 import com.cmbb.smartkids.base.BaseActivity;
-import com.cmbb.smartkids.activity.login.model.UserAssistModel;
+import com.cmbb.smartkids.base.BaseApplication;
 import com.cmbb.smartkids.base.Constants;
+import com.cmbb.smartkids.db.DBContent;
 import com.cmbb.smartkids.network.NetRequest;
 import com.cmbb.smartkids.utils.CustomWatcher;
 import com.cmbb.smartkids.utils.SPCache;

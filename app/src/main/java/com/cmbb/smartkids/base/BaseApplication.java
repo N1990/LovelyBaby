@@ -18,7 +18,6 @@ import com.alibaba.sdk.android.media.MediaService;
 import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.utils.SPCache;
 import com.cmbb.smartkids.utils.log.Log;
-import com.cmbb.smartkids.utils.log.LogWrapper;
 import com.facebook.stetho.Stetho;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.message.PushAgent;
@@ -83,7 +82,7 @@ public class BaseApplication extends Application {
      * 初始化 日志
      */
     private void initLog() {
-        Log.setLogNode(new LogWrapper());
+        Log.init(true);
     }
 
     /**

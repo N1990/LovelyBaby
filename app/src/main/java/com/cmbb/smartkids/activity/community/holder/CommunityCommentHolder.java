@@ -24,9 +24,9 @@ import com.cmbb.smartkids.activity.community.adapter.CommunityDetailAdapter;
 import com.cmbb.smartkids.activity.community.model.CommunityReplayModel;
 import com.cmbb.smartkids.base.BaseApplication;
 import com.cmbb.smartkids.utils.FrescoTool;
-import com.cmbb.smartkids.utils.JTimeTransform;
-import com.cmbb.smartkids.utils.RecentDateFormat;
 import com.cmbb.smartkids.utils.TDevice;
+import com.cmbb.smartkids.utils.date.JTimeTransform;
+import com.cmbb.smartkids.utils.date.RecentDateFormat;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.ArrayList;

@@ -23,7 +23,6 @@ import com.cmbb.smartkids.network.NetRequest;
 import com.cmbb.smartkids.utils.CustomWatcher;
 import com.cmbb.smartkids.utils.SPCache;
 import com.cmbb.smartkids.utils.TDevice;
-import com.cmbb.smartkids.utils.log.Log;
 import com.cmbb.smartkids.widget.wheelview.LocationSelectorDialogBuilder;
 
 import java.util.HashMap;

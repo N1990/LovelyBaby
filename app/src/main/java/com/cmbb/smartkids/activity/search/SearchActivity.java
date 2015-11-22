@@ -1,6 +1,5 @@
 package com.cmbb.smartkids.activity.search;
 
-import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,9 +22,7 @@ import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.activity.community.CommunityDetailActivity;
 import com.cmbb.smartkids.activity.community.model.TopicListModel;
 import com.cmbb.smartkids.activity.community.model.TopicTypeModel;
-import com.cmbb.smartkids.activity.serve.model.ServiceListModel;
 import com.cmbb.smartkids.activity.user.UserCenterActivity;
-import com.cmbb.smartkids.activity.user.model.FriendListModel;
 import com.cmbb.smartkids.base.BaseActivity;
 import com.cmbb.smartkids.base.BaseApplication;
 import com.cmbb.smartkids.base.Constants;

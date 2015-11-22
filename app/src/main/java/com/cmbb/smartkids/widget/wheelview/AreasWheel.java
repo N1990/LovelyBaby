@@ -5,7 +5,6 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 
-
 import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.model.AddressModel;
 import com.cmbb.smartkids.utils.Tools;

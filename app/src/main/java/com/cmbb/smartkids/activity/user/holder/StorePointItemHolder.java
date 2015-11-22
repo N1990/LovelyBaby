@@ -7,8 +7,8 @@ import android.widget.TextView;
 import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.activity.user.adapter.StorePointAdapter;
 import com.cmbb.smartkids.activity.user.model.StorePointModel;
-import com.cmbb.smartkids.utils.JTimeTransform;
-import com.cmbb.smartkids.utils.RecentDateFormat;
+import com.cmbb.smartkids.utils.date.JTimeTransform;
+import com.cmbb.smartkids.utils.date.RecentDateFormat;
 
 /**
  * 项目名称：LovelyBaby

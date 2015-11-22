@@ -1,11 +1,6 @@
 package com.cmbb.smartkids.activity.order;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -14,17 +9,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cmbb.smartkids.R;
-import com.cmbb.smartkids.activity.login.CountTimeService;
-import com.cmbb.smartkids.activity.login.ForgetPwdActivity;
-import com.cmbb.smartkids.activity.login.RegisterActivity;
 import com.cmbb.smartkids.activity.login.model.SecurityCodeModel;
 import com.cmbb.smartkids.base.BaseActivity;
-import com.cmbb.smartkids.base.BaseApplication;
 import com.cmbb.smartkids.base.Constants;
 import com.cmbb.smartkids.network.NetRequest;
 import com.cmbb.smartkids.utils.CustomWatcher;
 import com.cmbb.smartkids.utils.MyTimeCount;
-import com.cmbb.smartkids.utils.log.Tools;
+import com.cmbb.smartkids.utils.Tools;
 
 import java.util.HashMap;
 

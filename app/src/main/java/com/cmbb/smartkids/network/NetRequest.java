@@ -21,8 +21,8 @@ import com.cmbb.smartkids.db.DBHelper;
 import com.cmbb.smartkids.utils.SPCache;
 import com.cmbb.smartkids.utils.TDevice;
 import com.cmbb.smartkids.utils.Tools;
+import com.cmbb.smartkids.utils.Utils;
 import com.cmbb.smartkids.utils.log.Log;
-import com.cmbb.smartkids.utils.log.Utils;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.imagepipeline.backends.okhttp.OkHttpImagePipelineConfigFactory;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
@@ -61,13 +61,11 @@ public class NetRequest {
     private static Gson gson;
     private static final MediaType MEDIA_TYPE_PNG = MediaType.parse("image/png");
     private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
-    // private final static String BASE_URL = "http://192.168.100.181:8097/cgi"; // 事务请求服务器
     //开发环境
-    public static String BASE_URL = "http://192.168.100.174:8081/wine-rest/cgi";
-    public static String BASE_URL_PIC = "http://192.168.100.174:8081/wine-rest/";
-    //public static String BASE_URL = "http://121.41.61.142:82/wine-rest/cgi";
+    public static String BASE_URL = "http://192.168.100.113:8081/wine-rest/cgi";
+    public static String BASE_URL_PIC = "http://192.168.100.113:8081/wine-rest/";
     //生产环境
-//    private final static String BASE_URL = "http://mengbaopai.smart-kids.com:8081/wine-rest/cgi";
+    //public static String BASE_URL = "http://121.41.61.142:82/wine-rest/cgi";
     private final static String BASE_IMAGE_URL = "";//保存图片服务器
 
     static {
@@ -121,7 +119,7 @@ public class NetRequest {
                 netHandler.sendMessage(errorMessage);
             } else {
                 String json = Tools.map2json(url, token, params);
-                Log.e("Netrequest", "request = " + json);
+                Log.json("RequestParams", json);
                 if (json == null) {
                     Message errorMessage = new Message();
                     errorMessage.what = 2;
@@ -130,7 +128,6 @@ public class NetRequest {
                 } else {
                     RequestBody body = RequestBody.create(JSON, json);
                     Log.e("ServerUrl", "BASE_URL = " + BASE_URL);
-
                     Request request = new Request.Builder().url(BASE_URL).post(body).tag(url).build();
                     httpClient.newCall(request).enqueue(new Callback() {
                         @Override
@@ -141,13 +138,14 @@ public class NetRequest {
                         @Override
                         public void onResponse(Response response) throws IOException {
                             String responseStr = response.body().string();
-                            Log.e("NetResponse", "Response = " + responseStr);
+                            Log.json("Response", responseStr);
                             if (response.isSuccessful()) {  // && 服务端定义的验证码
                                 try {
                                     JSONObject object = new JSONObject(responseStr);
                                     JSONObject errJson = object.optJSONObject("error");
                                     int codeStatus = object.optInt("statusCode");
-                                    Log.e("err", "err = " + errJson);
+                                    if (errJson != null)
+                                        Log.json("err", errJson.toString());
                                     if (null == errJson) {
                                         if (codeStatus >= 200 && codeStatus < 300) {
                                             JSONObject data = object.optJSONObject("response");
@@ -159,7 +157,7 @@ public class NetRequest {
                                             try {
                                                 obj = gson.fromJson(data.toString(), srcClass);
                                             } catch (Exception e) {
-                                                Log.e("GSON", "err = " + e.toString());
+                                                Log.e("GSON", e.toString());
                                                 e.printStackTrace();
                                             }
                                             // 主线程
@@ -171,17 +169,6 @@ public class NetRequest {
                                             message.obj = bundle;
                                             netHandler.sendMessage(message);
                                         }
-                                        /*else if (codeStatus == 403) {
-                                            // 403错误信息
-                                            String error = errJson.optString("errorInfo");
-                                            if (!TextUtils.isEmpty(error)) {
-                                                Message errorMessage = new Message();
-                                                errorMessage.what = 4;
-                                                errorMessage.obj = error;
-                                                netHandler.sendMessage(errorMessage);
-                                            }
-                                        }*/
-
                                     } else {
                                         int errorCode = errJson.optInt("errorCode");
                                         String errorInfo = errJson.optString("errorInfo");
@@ -252,7 +239,7 @@ public class NetRequest {
                 netHandler.sendMessage(errorMessage);
             } else {
                 String json = Utils.map2json(url, token, params);
-                Log.e("Netrequest", "request = " + json);
+                Log.json("RequestParams", json);
                 if (json == null) {
                     Message errorMessage = new Message();
                     errorMessage.what = 2;
@@ -272,13 +259,15 @@ public class NetRequest {
                         @Override
                         public void onResponse(Response response) throws IOException {
                             String responseStr = response.body().string();
-                            Log.e("NetResponse", "Response = " + responseStr);
+                            Log.json("Response", responseStr);
                             if (response.isSuccessful()) {  // && 服务端定义的验证码
                                 try {
                                     JSONObject object = new JSONObject(responseStr);
                                     JSONObject errJson = object.optJSONObject("error");
                                     int codeStatus = object.optInt("statusCode");
-                                    Log.e("err", "err = " + errJson);
+                                    if (errJson != null)
+                                        Log.json("err", errJson.toString());
+
                                     if (null == errJson) {
                                         if (codeStatus >= 200 && codeStatus < 300) {
                                             JSONObject data = object.optJSONObject("response");
@@ -288,7 +277,7 @@ public class NetRequest {
                                             try {
                                                 obj = gson.fromJson(data.toString(), srcClass);
                                             } catch (Exception e) {
-                                                Log.e("GSON", "err = " + e.toString());
+                                                Log.e("GSON", e.toString());
                                                 e.printStackTrace();
                                             }
                                             // 主线程
@@ -300,17 +289,6 @@ public class NetRequest {
                                             message.obj = bundle;
                                             netHandler.sendMessage(message);
                                         }
-                                        /*else if (codeStatus == 403) {
-                                            // 403错误信息
-                                            String error = errJson.optString("errorInfo");
-                                            if (!TextUtils.isEmpty(error)) {
-                                                Message errorMessage = new Message();
-                                                errorMessage.what = 4;
-                                                errorMessage.obj = error;
-                                                netHandler.sendMessage(errorMessage);
-                                            }
-                                        }*/
-
                                     } else {
                                         int errorCode = errJson.optInt("errorCode");
                                         String errorInfo = errJson.optString("errorInfo");
@@ -402,13 +380,14 @@ public class NetRequest {
             @Override
             public void onResponse(Response response) throws IOException {
                 String responseStr = response.body().string();
-                Log.e("NetResponse", "Response = " + responseStr);
+                Log.json("Response", responseStr);
+
                 if (response.isSuccessful()) {  // && 服务端定义的验证码
                     try {
                         JSONObject object = new JSONObject(responseStr);
                         JSONObject errJson = object.optJSONObject("error");
                         int codeStatus = object.optInt("statusCode");
-                        Log.e("err", "err = " + errJson);
+                        Log.e("err", errJson);
                         if (null == errJson) {
                             if (codeStatus >= 200 && codeStatus < 300) {
                                 JSONObject data = object.optJSONObject("response");
@@ -418,7 +397,7 @@ public class NetRequest {
                                 try {
                                     obj = gson.fromJson(data.toString(), srcClass);
                                 } catch (Exception e) {
-                                    Log.e("GSON", "err = " + e.toString());
+                                    Log.e("GSON", e.toString());
                                     e.printStackTrace();
                                 }
                                 // 主线程
@@ -430,17 +409,6 @@ public class NetRequest {
                                 message.obj = bundle;
                                 netHandler.sendMessage(message);
                             }
-                                        /*else if (codeStatus == 403) {
-                                            // 403错误信息
-                                            String error = errJson.optString("errorInfo");
-                                            if (!TextUtils.isEmpty(error)) {
-                                                Message errorMessage = new Message();
-                                                errorMessage.what = 4;
-                                                errorMessage.obj = error;
-                                                netHandler.sendMessage(errorMessage);
-                                            }
-                                        }*/
-
                         } else {
                             int errorCode = errJson.optInt("errorCode");
                             String errorInfo = errJson.optString("errorInfo");

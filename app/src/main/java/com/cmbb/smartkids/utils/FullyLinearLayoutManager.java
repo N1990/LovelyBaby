@@ -6,8 +6,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.cmbb.smartkids.utils.log.Log;
-
 /**
  * 项目名称：LovelyBaby
  * 类描述：
@@ -36,11 +34,6 @@ public class FullyLinearLayoutManager extends LinearLayoutManager {
         final int widthSize = View.MeasureSpec.getSize(widthSpec);
         final int heightSize = View.MeasureSpec.getSize(heightSpec);
 
-        Log.i(TAG, "onMeasure called. \nwidthMode " + widthMode
-                + " \nheightMode " + heightSpec
-                + " \nwidthSize " + widthSize
-                + " \nheightSize " + heightSize
-                + " \ngetItemCount() " + getItemCount());
 
         int width = 0;
         int height = 0;

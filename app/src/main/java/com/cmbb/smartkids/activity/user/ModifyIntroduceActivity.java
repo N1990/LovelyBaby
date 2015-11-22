@@ -2,7 +2,6 @@ package com.cmbb.smartkids.activity.user;
 
 import android.content.ContentValues;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -12,14 +11,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.cmbb.smartkids.R;
-import com.cmbb.smartkids.activity.login.model.SecurityCodeModel;
 import com.cmbb.smartkids.activity.user.model.ModifyUserModel;
 import com.cmbb.smartkids.base.BaseActivity;
 import com.cmbb.smartkids.base.BaseApplication;
 import com.cmbb.smartkids.base.Constants;
 import com.cmbb.smartkids.db.DBContent;
 import com.cmbb.smartkids.network.NetRequest;
-import com.cmbb.smartkids.utils.log.Log;
 
 import java.util.HashMap;
 

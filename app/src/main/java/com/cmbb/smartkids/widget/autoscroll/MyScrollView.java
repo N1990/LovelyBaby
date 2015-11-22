@@ -6,8 +6,6 @@ import android.view.MotionEvent;
 import android.view.ViewConfiguration;
 import android.widget.ScrollView;
 
-import com.cmbb.smartkids.utils.log.Log;
-
 /**
  * 项目名称：LovelyBaby
  * 类描述：

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
+
 import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.activity.home.HomeActivity;
 import com.cmbb.smartkids.base.BaseActivity;

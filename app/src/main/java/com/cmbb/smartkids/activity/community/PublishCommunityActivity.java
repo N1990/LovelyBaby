@@ -289,7 +289,7 @@ public class PublishCommunityActivity extends BaseActivity {
         HashMap<String, String> params = new HashMap<>();
         params.put("typeCode", "topicType");
         showWaitDialog();
-        NetRequest.postRequest(Constants.Community.TOPIC_TYPE, BaseApplication.token, params, TopicTypeModel.class, new NetRequest.NetHandler(this, new NetRequest.NetResponseListener() {
+        NetRequest.postRequest(Constants.Community.TOPIC_PUBLISH_TYPE, BaseApplication.token, params, TopicTypeModel.class, new NetRequest.NetHandler(this, new NetRequest.NetResponseListener() {
             @Override
             public void onSuccessListener(Object object, String msg) {
                 hideWaitDialog();

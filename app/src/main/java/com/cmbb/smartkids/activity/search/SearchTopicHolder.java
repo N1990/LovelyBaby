@@ -8,7 +8,6 @@ import android.widget.TextView;
 
 import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.activity.community.model.TopicListModel;
-import com.cmbb.smartkids.activity.home.adapter.CommunityAdapter;
 import com.cmbb.smartkids.utils.FrescoTool;
 import com.cmbb.smartkids.utils.TDevice;
 import com.cmbb.smartkids.utils.Tools;

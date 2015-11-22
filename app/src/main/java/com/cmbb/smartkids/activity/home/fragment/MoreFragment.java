@@ -1,7 +1,6 @@
 package com.cmbb.smartkids.activity.home.fragment;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -13,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.cmbb.smartkids.R;
@@ -21,7 +19,6 @@ import com.cmbb.smartkids.activity.home.adapter.MoreAdapter;
 import com.cmbb.smartkids.activity.more.AboutActivity;
 import com.cmbb.smartkids.activity.more.GrownValusActivity;
 import com.cmbb.smartkids.activity.more.SuggestActivity;
-import com.cmbb.smartkids.activity.order.EvaluateListActivity;
 import com.cmbb.smartkids.base.BaseFragment;
 import com.cmbb.smartkids.base.CustomListener;
 import com.cmbb.smartkids.utils.log.Log;

@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.IBinder;
 
 import com.cmbb.smartkids.base.Constants;
-import com.cmbb.smartkids.utils.log.Log;
 
 import java.util.Timer;
 import java.util.TimerTask;

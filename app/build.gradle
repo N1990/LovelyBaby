@@ -76,14 +76,14 @@ android {
         }
     }
 
-    /*signingConfigs {
+    signingConfigs {
         debug {
-            storeFile file("smartkids")
+            storeFile file("/Users/niesen918/AndroidStudioProjects/key/smartkids")
             storePassword "ns101288"
             keyAlias "smartkids"
             keyPassword "ns101288"
         }
-    }*/
+    }
 
 }
 /*compile 'com.android.support:multidex:1.0.0'*/

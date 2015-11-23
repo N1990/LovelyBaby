@@ -37,4 +37,4 @@
         android:scaleType="center"
         android:src="@drawable/com_taobao_tae_sdk_web_view_title_bar_close" />
 
-</RelativeLayout><!-- From: file:/Users/niesen918/AndroidStudioProjects/LovelyBaby/OneSDK/res/layout/com_taobao_tae_sdk_web_view_title_bar.xml --><!-- From: file:/Users/niesen918/AndroidStudioProjects/LovelyBaby/OneSDK/build/intermediates/bundles/debug/res/layout/com_taobao_tae_sdk_web_view_title_bar.xml -->
+</RelativeLayout>

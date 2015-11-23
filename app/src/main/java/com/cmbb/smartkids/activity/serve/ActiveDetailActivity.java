@@ -258,7 +258,7 @@ public class ActiveDetailActivity extends BaseActivity {
         tvContact.setText(realData.getServicePhone());
         isCollected = realData.getIsCollect() == 1 ? true : false;
         ivCollect.setBackgroundResource(isCollected ? R.mipmap.btn_collect_pressed : R.mipmap.btn_collect_normal);
-        isOrder = realData.getIsReserve() == 1 ? true : false;
+        isOrder = realData.getIsReserve() == 0 ? true : false;
         ivOrder.setBackgroundResource(isOrder ? R.mipmap.btn_order_pressed : R.mipmap.btn_order_normal);
         if (isOrder)
             findViewById(R.id.ll_active_detail_order).setEnabled(false);

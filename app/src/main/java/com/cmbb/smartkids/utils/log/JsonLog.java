@@ -36,7 +36,7 @@ public class JsonLog extends BaseLog {
         message = headString + LINE_SEPARATOR + message;
         String[] lines = message.split(LINE_SEPARATOR);
         for (String line : lines) {
-            Log.d(tag, "║ " + line);
+            Log.e(tag, "║ " + line);
         }
         printLine(tag, false);
     }

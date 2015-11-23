@@ -4,19 +4,21 @@
     xmlns:fresco="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="10dip">
+    android:orientation="vertical">
 
     <View
         android:id="@+id/v_community_comment_divider_item"
         android:layout_width="match_parent"
         android:layout_height="1px"
+        android:layout_marginLeft="@dimen/global_padding"
+        android:layout_marginRight="@dimen/global_padding"
         android:background="@android:color/darker_gray" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dip">
+        android:layout_marginTop="10dip"
+        android:padding="10dp">
 
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/iv_community_comment_item"
@@ -177,169 +179,6 @@
                     android:background="@mipmap/btn_community_comment_del_bg"
                     android:scaleType="centerCrop" />
             </LinearLayout>
-
-
-            <!-- <LinearLayout
-                 android:id="@+id/ll_community_comment_item_one"
-                 android:layout_width="match_parent"
-                 android:layout_height="wrap_content"
-                 android:orientation="horizontal">
-
-                 <TextView
-                     android:id="@+id/tv_community_comment_rever_name_item_one"
-                     android:layout_width="wrap_content"
-                     android:layout_height="wrap_content"
-                     android:text="萌宝派萌宝"
-                     android:textColor="@android:color/holo_blue_dark"
-                     android:visibility="visible"/>
-
-
-                 <uk.co.deanwild.flowtextview.FlowTextView
-                     android:id="@+id/ftv_community_comment_item_one"
-                     android:layout_width="fill_parent"
-                     android:layout_height="wrap_content"
-                     >
-
-                     <ImageView
-                         android:id="@+id/iv_community_comment_preview_item_one"
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:layout_toLeftOf="@+id/tv_community_comment_rever_time_item_one"
-                         android:background="@android:drawable/ic_menu_add"
-                         android:scaleType="centerCrop" />
-
-                     <TextView
-                         android:id="@+id/tv_community_comment_rever_time_item_one"
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:layout_marginLeft="15dip"
-                         android:layout_toLeftOf="@+id/iv_community_comment_delete_item_one"
-                         android:text="10-26"
-                         android:visibility="visible"
-                         android:textColor="@android:color/darker_gray"
-                         android:textSize="10sp" />
-
-                     <ImageView
-                         android:id="@+id/iv_community_comment_delete_item_one"
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:layout_marginLeft="60dip"
-                         android:background="@android:drawable/ic_menu_add"
-                         android:layout_alignParentEnd="true"
-                         android:scaleType="centerCrop" />
-                 </uk.co.deanwild.flowtextview.FlowTextView>
-             </LinearLayout>
-
-
-             <LinearLayout
-                 android:id="@+id/ll_community_comment_item_two"
-                 android:layout_width="match_parent"
-                 android:layout_height="wrap_content"
-                 android:layout_below="@+id/ll_community_comment_item_one"
-                 android:layout_marginTop="10dip"
-                 android:orientation="horizontal">
-
-                 <TextView
-                     android:id="@+id/tv_community_comment_rever_name_item_two"
-                     android:layout_width="wrap_content"
-                     android:layout_height="wrap_content"
-                     android:text="萌宝派萌宝"
-                     android:textColor="@android:color/holo_blue_dark"
-                     android:visibility="visible"/>
-
-
-                 <uk.co.deanwild.flowtextview.FlowTextView
-                     android:id="@+id/ftv_community_comment_item_two"
-                     android:layout_width="fill_parent"
-                     android:layout_height="wrap_content">
-
-                     <ImageView
-                         android:id="@+id/iv_community_comment_preview_item_two"
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:layout_marginLeft="15dip"
-                         android:background="@android:drawable/ic_menu_add"
-                         android:scaleType="centerCrop" />
-
-
-                     <TextView
-                         android:id="@+id/tv_community_comment_rever_time_item_two"
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:layout_marginLeft="15dip"
-                         android:layout_toRightOf="@+id/iv_community_comment_preview_item_two"
-                         android:text="10-26"
-                         android:textColor="@android:color/darker_gray"
-                         android:textSize="10sp"
-                         android:visibility="visible"/>
-
-                     <ImageView
-                         android:id="@+id/iv_community_comment_delete_item_two"
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:layout_marginLeft="60dip"
-                         android:layout_toRightOf="@+id/tv_community_comment_rever_time_item_two"
-                         android:background="@android:drawable/ic_menu_add"
-                         android:scaleType="centerCrop" />
-                 </uk.co.deanwild.flowtextview.FlowTextView>
-             </LinearLayout>-->
-
-
-            <!--<LinearLayout
-                android:id="@+id/ll_community_comment_item_third"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/ll_community_comment_item_two"
-                android:layout_marginTop="10dip"
-                android:orientation="horizontal"
-                android:visibility="gone">
-
-                <TextView
-                    android:id="@+id/tv_community_comment_rever_name_item_three"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="萌宝派萌宝"
-                    android:textColor="@android:color/holo_blue_dark" />
-
-
-                <uk.co.deanwild.flowtextview.FlowTextView
-                    android:id="@+id/ftv_community_comment_item_three"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dip"
-                    android:text="ddddddddddddddddddddddddd"
-                    android:textColor="@android:color/black"
-                    android:textSize="16sp"
-                    android:textStyle="bold">
-
-                    <ImageView
-                        android:id="@+id/iv_community_comment_preview_item_three"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dip"
-                        android:background="@android:drawable/ic_menu_add"
-                        android:scaleType="centerCrop" />
-
-                    <TextView
-                        android:id="@+id/tv_community_comment_rever_time_item_three"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dip"
-                        android:layout_toRightOf="@+id/iv_community_comment_preview_item_three"
-                        android:text="10-26"
-                        android:textColor="@android:color/darker_gray"
-                        android:textSize="10sp" />
-
-                    <ImageView
-                        android:id="@+id/iv_community_comment_delete_item_three"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="60dip"
-                        android:layout_toRightOf="@+id/tv_community_comment_rever_time_item_three"
-                        android:background="@android:drawable/ic_menu_add"
-                        android:scaleType="centerCrop" />
-                </uk.co.deanwild.flowtextview.FlowTextView>
-            </LinearLayout>-->
 
 
             <TextView

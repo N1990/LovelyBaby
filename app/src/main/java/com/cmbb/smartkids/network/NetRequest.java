@@ -62,11 +62,11 @@ public class NetRequest {
     private static final MediaType MEDIA_TYPE_PNG = MediaType.parse("image/png");
     private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
     //开发环境
-    public static String BASE_URL = "http://192.168.100.113:8081/wine-rest/cgi";
-    public static String BASE_URL_PIC = "http://192.168.100.113:8081/wine-rest/";
+//    public static String BASE_URL = "http://192.168.100.174:8081/wine-rest/cgi";
+//    public static String BASE_URL_PIC = "http://192.168.100.174:8081/wine-rest/";
     //生产环境
-    //public static String BASE_URL = "http://121.41.61.142:82/wine-rest/cgi";
-    private final static String BASE_IMAGE_URL = "";//保存图片服务器
+    public static String BASE_URL = "http://120.26.88.135:8090/wine-rest/cgi";
+    public static String BASE_URL_PIC = "http://120.26.88.135:8090/wine-rest/";
 
     static {
         int cacheSize = 20 * 1024 * 1024;
@@ -149,7 +149,7 @@ public class NetRequest {
                                     if (null == errJson) {
                                         if (codeStatus >= 200 && codeStatus < 300) {
                                             JSONObject data = object.optJSONObject("response");
-                                            if (TextUtils.isEmpty(data.toString()) || data == null)
+                                            if (data == null || TextUtils.isEmpty(data.toString()))
                                                 return;
                                             String msg = data.optString("msg");
                                             // 服务端定义正确的返回码

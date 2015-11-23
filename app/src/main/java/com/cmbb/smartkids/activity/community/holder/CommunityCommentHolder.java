@@ -41,7 +41,7 @@ public class CommunityCommentHolder extends RecyclerView.ViewHolder implements V
     private CommunityDetailAdapter adapter;
     private CommentAdapter adapter1;
     private int position;
-    private View root, vDivider;
+    private View root;
     private SimpleDraweeView header, ivContent;
     private ImageView ivComment, ivMore, ivReverPreOne, ivReverPreTwo, ivReverDelOne, ivReverDelTwo;
     private TextView tvName, tvTime, tvIdentify, tvContent, tvMore, tvReverTimeOne, tvReverTimeTwo, tvReverNameOne, tvReverNameTwo;
@@ -69,7 +69,6 @@ public class CommunityCommentHolder extends RecyclerView.ViewHolder implements V
         ivReverDelTwo = (ImageView) itemView.findViewById(R.id.iv_community_comment_delete_item_two);
         tvReverNameOne = (TextView) itemView.findViewById(R.id.tv_community_comment_rever_name_item_one);
         tvReverNameTwo = (TextView) itemView.findViewById(R.id.tv_community_comment_rever_name_item_two);
-        vDivider = itemView.findViewById(R.id.v_community_comment_divider_item);
         root.setOnClickListener(this);
     }
 
@@ -85,7 +84,11 @@ public class CommunityCommentHolder extends RecyclerView.ViewHolder implements V
         this.adapter = adapter;
         this.position = position;
 
-        FrescoTool.loadImage(header, data.getData().getRows().get(position).getUserBasicInfo().getUserSmallImg(), data.getData().getRows().get(position).getUserBasicInfo().getUserSmallWidth() + "", data.getData().getRows().get(position).getUserBasicInfo().getUserSmallHeight() + "");
+        if (!TextUtils.isEmpty(data.getData().getRows().get(position).getUserBasicInfo().getUserSmallImg())) {
+            FrescoTool.loadImage(header, data.getData().getRows().get(position).getUserBasicInfo().getUserSmallImg(), data.getData().getRows().get(position).getUserBasicInfo().getUserSmallWidth() + "", data.getData().getRows().get(position).getUserBasicInfo().getUserSmallHeight() + "");
+        } else {
+            header.setImageURI(null);
+        }
         tvName.setTag(data.getData().getRows().get(position).getUserBasicInfo().getUserId());
         tvName.setText(data.getData().getRows().get(position).getUserBasicInfo().getUserNike());
         tvIdentify.setText(data.getData().getRows().get(position).getUserBasicInfo().getUserRole().get(0).getEredarName());

@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/Users/niesen918/AndroidStudioProjects/LovelyBaby/OneSDK/build/intermediates/bundles/debug/res/values/values.xml -->
-    <eat-comment/>
     <string name="alisdk_message_10000_action">请检查对应名称模块的库文件是否包含在当前开发应用的依赖库里面</string>
     <string name="alisdk_message_10000_message">JS Bridge 载入器未找到名称为 {0} 的模块</string>
     <string name="alisdk_message_10000_name">JS_BRIDGE_MODULE_NOT_FOUND</string>

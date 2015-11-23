@@ -1,28 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:paddingLeft="@dimen/global_padding"
-    android:paddingRight="@dimen/global_padding"
-    android:paddingTop="@dimen/half_global_padding"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_community_item_header"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:layout_marginTop="5dp"
+    android:background="@drawable/community_header_search_bg"
+    android:elevation="5dp">
 
-    <RelativeLayout
-        android:id="@+id/rl_community_item_header"
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/community_header_search_bg">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:textColor="@android:color/darker_gray"
-            android:drawableLeft="@mipmap/btn_community_search_bg"
-            android:paddingTop="3dip"
-            android:paddingBottom="3dip"
-            android:drawablePadding="5dip"
-            android:text="搜索"
-            android:gravity="center"/>
-    </RelativeLayout>
+        android:layout_centerInParent="true"
+        android:drawableLeft="@mipmap/btn_community_search_bg"
+        android:drawablePadding="5dip"
+        android:gravity="center"
+        android:paddingBottom="3dip"
+        android:paddingTop="3dip"
+        android:text="搜索"
+        android:textColor="@android:color/darker_gray" />
+</RelativeLayout>
 
-
-</LinearLayout>

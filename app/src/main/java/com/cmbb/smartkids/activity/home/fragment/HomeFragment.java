@@ -72,7 +72,7 @@ public class HomeFragment extends BaseFragment {
     }
 
     private ActionBar actionbar;
-    private TextView tvTitle;
+    private TextView tvTitle, tvRight;
     private ImageView ivRight, ivLeft;
 
     /**
@@ -83,11 +83,15 @@ public class HomeFragment extends BaseFragment {
             Toolbar v = (Toolbar) getView().findViewById(R.id.tl_main_actionbar);
             tvTitle = (TextView) v.findViewById(R.id.tv_main_toolbar);
             tvTitle.setText("首页");
+            tvRight = (TextView) v.findViewById(R.id.tv_main_toolbar_right);
+            tvRight.setText("签到");
+            tvRight.setVisibility(View.VISIBLE);
+            tvRight.setOnClickListener(this);
             ivLeft = (ImageView) v.findViewById(R.id.iv_main_toolbar_left);
-            ivRight = (ImageView) v.findViewById(R.id.iv_main_toolbar_right);
+            /*ivRight = (ImageView) v.findViewById(R.id.iv_main_toolbar_right);
             ivRight.setVisibility(View.VISIBLE);
             ivRight.setBackgroundResource(R.mipmap.btn_sign_bg);
-            ivRight.setOnClickListener(this);
+            ivRight.setOnClickListener(this);*/
             ((AppCompatActivity) getActivity()).setSupportActionBar(v);
             actionbar = ((AppCompatActivity) getActivity()).getSupportActionBar();
             actionbar.setDisplayHomeAsUpEnabled(false);
@@ -294,7 +298,7 @@ public class HomeFragment extends BaseFragment {
             @Override
             public void onSuccessListener(Object object, String msg) {
                 hideWaitDialog();
-                //showShortToast(msg);
+                showShortToast(msg);
             }
 
             @Override

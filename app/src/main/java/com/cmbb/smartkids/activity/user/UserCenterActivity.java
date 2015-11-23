@@ -1,7 +1,6 @@
 package com.cmbb.smartkids.activity.user;
 
 import android.animation.ObjectAnimator;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
@@ -158,7 +157,9 @@ public class UserCenterActivity extends BaseActivity implements AppBarLayout.OnO
                     tvFan.setText("Fans(" + userModel.getFans() + ")");
                     rb.setRating(userModel.getUserLevel());
 
-                    ObjectAnimator animator = new ObjectAnimator().ofInt(pb, "progress", 20);
+                    pb.setMax(20000);
+                    tvGroup.setText("当前成长值:" + userModel.getGrowthCount());
+                    ObjectAnimator animator = new ObjectAnimator().ofInt(pb, "progress", userModel.getGrowthCount());
                     animator.setDuration(500);
                     animator.setInterpolator(new DecelerateInterpolator());
                     animator.start();
@@ -268,7 +269,7 @@ public class UserCenterActivity extends BaseActivity implements AppBarLayout.OnO
                         serviceFra.lmrv.mSwipeRefreshLayout.setEnabled(true);
                         break;
                     case 1:
-                         communityFra.lmrv.mSwipeRefreshLayout.setEnabled(true);
+                        communityFra.lmrv.mSwipeRefreshLayout.setEnabled(true);
                         break;
                     case 2:
                         evaluateFra.lmrv.mSwipeRefreshLayout.setEnabled(true);
@@ -280,7 +281,7 @@ public class UserCenterActivity extends BaseActivity implements AppBarLayout.OnO
                         serviceFra.lmrv.mSwipeRefreshLayout.setEnabled(false);
                         break;
                     case 1:
-                         communityFra.lmrv.mSwipeRefreshLayout.setEnabled(false);
+                        communityFra.lmrv.mSwipeRefreshLayout.setEnabled(false);
                         break;
                     case 2:
                         evaluateFra.lmrv.mSwipeRefreshLayout.setEnabled(false);

@@ -57,7 +57,11 @@ public class CommunityHolder extends RecyclerView.ViewHolder implements View.OnC
         this.root.setOnClickListener(this);
         if (data == null) return;
         this.root.setTag(data);
-        FrescoTool.loadImage(ivHeader, data.getUserBasicInfo().getUserSmallImg(), data.getUserBasicInfo().getUserSmallWidth() + "", data.getUserBasicInfo().getUserSmallHeight() + "");
+        if (!TextUtils.isEmpty(data.getUserBasicInfo().getUserSmallImg())) {
+            FrescoTool.loadImage(ivHeader, data.getUserBasicInfo().getUserSmallImg(), data.getUserBasicInfo().getUserSmallWidth() + "", data.getUserBasicInfo().getUserSmallHeight() + "");
+        } else {
+            ivHeader.setImageURI(null);
+        }
         if (!TextUtils.isEmpty(data.getUserBasicInfo().getUserNike())) {
             tvName.setText(data.getUserBasicInfo().getUserNike());
         } else {
@@ -76,7 +80,12 @@ public class CommunityHolder extends RecyclerView.ViewHolder implements View.OnC
             ivTag2.setVisibility(View.GONE);
         }
         tvTitle.setText(data.getTitle());
-        tvContent.setText(data.getContents());
+        if (TextUtils.isEmpty(data.getContents())) {
+            tvContent.setVisibility(View.GONE);
+        } else {
+            tvContent.setVisibility(View.VISIBLE);
+            tvContent.setText(data.getContents());
+        }
         if (data.getTopicImgList() != null && data.getTopicImgList().size() >= 3) {
             iv1.setVisibility(View.VISIBLE);
             iv2.setVisibility(View.VISIBLE);
@@ -107,8 +116,8 @@ public class CommunityHolder extends RecyclerView.ViewHolder implements View.OnC
         } else {
             tvTime.setVisibility(View.GONE);
         }
-        tvPerssion.setText(data.getReplys() + "");
-        tvPre.setText(data.getBrowseNumber() + "");
+        tvPerssion.setText(data.getBrowseNumber() + "");
+        tvPre.setText(data.getReplys() + "");
     }
 
     @Override

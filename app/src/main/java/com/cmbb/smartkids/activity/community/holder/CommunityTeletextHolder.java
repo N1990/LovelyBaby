@@ -1,6 +1,7 @@
 package com.cmbb.smartkids.activity.community.holder;
 
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
@@ -48,7 +49,12 @@ public class CommunityTeletextHolder extends RecyclerView.ViewHolder implements 
         this.iv.setOnClickListener(this);
 
         FrescoTool.loadImage(iv, data.getData().getTopicImgList().get(position).getImg(), data.getData().getTopicImgList().get(position).getImgWidth() + "", data.getData().getTopicImgList().get(position).getImgHeight() + "");
-        tv.setText(data.getData().getTopicImgList().get(position).getContents());
+        if (TextUtils.isEmpty(data.getData().getTopicImgList().get(position).getContents())) {
+            tv.setVisibility(View.GONE);
+        } else {
+            tv.setVisibility(View.VISIBLE);
+            tv.setText(data.getData().getTopicImgList().get(position).getContents());
+        }
         root.setOnClickListener(this);
     }
 

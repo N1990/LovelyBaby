@@ -1,7 +1,6 @@
 package com.cmbb.smartkids.activity.more;
 
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.cmbb.smartkids.R;
@@ -15,7 +14,6 @@ public class GrownValusActivity extends BaseActivity {
     protected void init(Bundle savedInstanceState) {
         setTitle(getString(R.string.title_activity_grown_complain));
         ((SimpleDraweeView) findViewById(R.id.sdv)).setImageURI(Uri.parse("res://com.cmbb.smartkids/" + R.mipmap.grown_value_bg));
-
     }
 
     @Override

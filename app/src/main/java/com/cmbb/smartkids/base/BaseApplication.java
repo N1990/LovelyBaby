@@ -52,7 +52,7 @@ public class BaseApplication extends Application {
         initAlibabaSDK();
         initLog();
         initSharePreference();
-        //initStetho();
+        initStetho();
         initUmengAnalytics();
         //初始化umeng推送
         initPushAgent();

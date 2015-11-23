@@ -1,6 +1,7 @@
 package com.cmbb.smartkids.activity.community.holder;
 
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
@@ -11,6 +12,8 @@ import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.activity.community.adapter.CommunityDetailAdapter;
 import com.cmbb.smartkids.activity.community.model.CommunityDetailModel;
 import com.cmbb.smartkids.utils.FrescoTool;
+import com.cmbb.smartkids.utils.date.JTimeTransform;
+import com.cmbb.smartkids.utils.date.RecentDateFormat;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 
@@ -58,7 +61,7 @@ public class CommunityPreuserHolder extends RecyclerView.ViewHolder implements V
         }
         ivPraise.setTag(data);
         ivPraise.setOnClickListener(this);
-        tvTime.setText(data.getData().getPublishDate());
+        tvTime.setText(new JTimeTransform(data.getData().getPublishDate()).toString(new RecentDateFormat()));
         tvPraise.setText(data.getData().getSpots() + "");
         switch (data.getData().getSpotList().size()) {
             case 0:
@@ -73,7 +76,11 @@ public class CommunityPreuserHolder extends RecyclerView.ViewHolder implements V
                 spot05.setVisibility(View.GONE);
                 spot01.setTag(data.getData().getSpotList().get(0).getId());
                 spot01.setOnClickListener(this);
-                FrescoTool.loadImage(spot01, data.getData().getSpotList().get(0).getUserSmallImg(), data.getData().getSpotList().get(0).getUserSmallWidth() + "", data.getData().getSpotList().get(0).getUserSmallHeight() + "");
+                if (!TextUtils.isEmpty(data.getData().getSpotList().get(0).getUserSmallImg())) {
+                    FrescoTool.loadImage(spot01, data.getData().getSpotList().get(0).getUserSmallImg(), data.getData().getSpotList().get(0).getUserSmallWidth() + "", data.getData().getSpotList().get(0).getUserSmallHeight() + "");
+                } else {
+                    spot01.setImageURI(null);
+                }
                 break;
             case 2:
                 llContainer.setVisibility(View.VISIBLE);
@@ -86,8 +93,16 @@ public class CommunityPreuserHolder extends RecyclerView.ViewHolder implements V
                 spot02.setTag(data.getData().getSpotList().get(1).getCreateUserId());
                 spot01.setOnClickListener(this);
                 spot02.setOnClickListener(this);
-                FrescoTool.loadImage(spot01, data.getData().getSpotList().get(0).getUserSmallImg(), data.getData().getSpotList().get(0).getUserSmallWidth() + "", data.getData().getSpotList().get(0).getUserSmallHeight() + "");
-                FrescoTool.loadImage(spot02, data.getData().getSpotList().get(1).getUserSmallImg(), data.getData().getSpotList().get(1).getUserSmallWidth() + "", data.getData().getSpotList().get(1).getUserSmallHeight() + "");
+                if (!TextUtils.isEmpty(data.getData().getSpotList().get(0).getUserSmallImg())) {
+                    FrescoTool.loadImage(spot01, data.getData().getSpotList().get(0).getUserSmallImg(), data.getData().getSpotList().get(0).getUserSmallWidth() + "", data.getData().getSpotList().get(0).getUserSmallHeight() + "");
+                } else {
+                    spot01.setImageURI(null);
+                }
+                if (!TextUtils.isEmpty(data.getData().getSpotList().get(1).getUserSmallImg())) {
+                    FrescoTool.loadImage(spot02, data.getData().getSpotList().get(1).getUserSmallImg(), data.getData().getSpotList().get(1).getUserSmallWidth() + "", data.getData().getSpotList().get(1).getUserSmallHeight() + "");
+                } else {
+                    spot02.setImageURI(null);
+                }
                 break;
             case 3:
                 llContainer.setVisibility(View.VISIBLE);
@@ -102,9 +117,21 @@ public class CommunityPreuserHolder extends RecyclerView.ViewHolder implements V
                 spot01.setOnClickListener(this);
                 spot02.setOnClickListener(this);
                 spot03.setOnClickListener(this);
-                FrescoTool.loadImage(spot01, data.getData().getSpotList().get(0).getUserSmallImg(), data.getData().getSpotList().get(0).getUserSmallWidth() + "", data.getData().getSpotList().get(0).getUserSmallHeight() + "");
-                FrescoTool.loadImage(spot02, data.getData().getSpotList().get(1).getUserSmallImg(), data.getData().getSpotList().get(1).getUserSmallWidth() + "", data.getData().getSpotList().get(1).getUserSmallHeight() + "");
-                FrescoTool.loadImage(spot03, data.getData().getSpotList().get(2).getUserSmallImg(), data.getData().getSpotList().get(2).getUserSmallWidth() + "", data.getData().getSpotList().get(2).getUserSmallHeight() + "");
+                if (!TextUtils.isEmpty(data.getData().getSpotList().get(0).getUserSmallImg())) {
+                    FrescoTool.loadImage(spot01, data.getData().getSpotList().get(0).getUserSmallImg(), data.getData().getSpotList().get(0).getUserSmallWidth() + "", data.getData().getSpotList().get(0).getUserSmallHeight() + "");
+                } else {
+                    spot01.setImageURI(null);
+                }
+                if (!TextUtils.isEmpty(data.getData().getSpotList().get(1).getUserSmallImg())) {
+                    FrescoTool.loadImage(spot02, data.getData().getSpotList().get(1).getUserSmallImg(), data.getData().getSpotList().get(1).getUserSmallWidth() + "", data.getData().getSpotList().get(1).getUserSmallHeight() + "");
+                } else {
+                    spot02.setImageURI(null);
+                }
+                if (!TextUtils.isEmpty(data.getData().getSpotList().get(2).getUserSmallImg())) {
+                    FrescoTool.loadImage(spot03, data.getData().getSpotList().get(2).getUserSmallImg(), data.getData().getSpotList().get(2).getUserSmallWidth() + "", data.getData().getSpotList().get(2).getUserSmallHeight() + "");
+                } else {
+                    spot03.setImageURI(null);
+                }
                 break;
             case 4:
                 llContainer.setVisibility(View.VISIBLE);
@@ -121,10 +148,26 @@ public class CommunityPreuserHolder extends RecyclerView.ViewHolder implements V
                 spot02.setOnClickListener(this);
                 spot03.setOnClickListener(this);
                 spot04.setOnClickListener(this);
-                FrescoTool.loadImage(spot01, data.getData().getSpotList().get(0).getUserSmallImg(), data.getData().getSpotList().get(0).getUserSmallWidth() + "", data.getData().getSpotList().get(0).getUserSmallHeight() + "");
-                FrescoTool.loadImage(spot02, data.getData().getSpotList().get(1).getUserSmallImg(), data.getData().getSpotList().get(1).getUserSmallWidth() + "", data.getData().getSpotList().get(1).getUserSmallHeight() + "");
-                FrescoTool.loadImage(spot03, data.getData().getSpotList().get(2).getUserSmallImg(), data.getData().getSpotList().get(2).getUserSmallWidth() + "", data.getData().getSpotList().get(2).getUserSmallHeight() + "");
-                FrescoTool.loadImage(spot04, data.getData().getSpotList().get(3).getUserSmallImg(), data.getData().getSpotList().get(3).getUserSmallWidth() + "", data.getData().getSpotList().get(3).getUserSmallHeight() + "");
+                if (!TextUtils.isEmpty(data.getData().getSpotList().get(0).getUserSmallImg())) {
+                    FrescoTool.loadImage(spot01, data.getData().getSpotList().get(0).getUserSmallImg(), data.getData().getSpotList().get(0).getUserSmallWidth() + "", data.getData().getSpotList().get(0).getUserSmallHeight() + "");
+                } else {
+                    spot01.setImageURI(null);
+                }
+                if (!TextUtils.isEmpty(data.getData().getSpotList().get(1).getUserSmallImg())) {
+                    FrescoTool.loadImage(spot02, data.getData().getSpotList().get(1).getUserSmallImg(), data.getData().getSpotList().get(1).getUserSmallWidth() + "", data.getData().getSpotList().get(1).getUserSmallHeight() + "");
+                } else {
+                    spot02.setImageURI(null);
+                }
+                if (!TextUtils.isEmpty(data.getData().getSpotList().get(2).getUserSmallImg())) {
+                    FrescoTool.loadImage(spot03, data.getData().getSpotList().get(2).getUserSmallImg(), data.getData().getSpotList().get(2).getUserSmallWidth() + "", data.getData().getSpotList().get(2).getUserSmallHeight() + "");
+                } else {
+                    spot03.setImageURI(null);
+                }
+                if (!TextUtils.isEmpty(data.getData().getSpotList().get(3).getUserSmallImg())) {
+                    FrescoTool.loadImage(spot04, data.getData().getSpotList().get(3).getUserSmallImg(), data.getData().getSpotList().get(3).getUserSmallWidth() + "", data.getData().getSpotList().get(3).getUserSmallHeight() + "");
+                } else {
+                    spot04.setImageURI(null);
+                }
                 break;
             case 5:
                 llContainer.setVisibility(View.VISIBLE);
@@ -143,11 +186,31 @@ public class CommunityPreuserHolder extends RecyclerView.ViewHolder implements V
                 spot03.setOnClickListener(this);
                 spot04.setOnClickListener(this);
                 spot05.setOnClickListener(this);
-                FrescoTool.loadImage(spot01, data.getData().getSpotList().get(0).getUserSmallImg(), data.getData().getSpotList().get(0).getUserSmallWidth() + "", data.getData().getSpotList().get(0).getUserSmallHeight() + "");
-                FrescoTool.loadImage(spot02, data.getData().getSpotList().get(1).getUserSmallImg(), data.getData().getSpotList().get(1).getUserSmallWidth() + "", data.getData().getSpotList().get(1).getUserSmallHeight() + "");
-                FrescoTool.loadImage(spot03, data.getData().getSpotList().get(2).getUserSmallImg(), data.getData().getSpotList().get(2).getUserSmallWidth() + "", data.getData().getSpotList().get(2).getUserSmallHeight() + "");
-                FrescoTool.loadImage(spot04, data.getData().getSpotList().get(3).getUserSmallImg(), data.getData().getSpotList().get(3).getUserSmallWidth() + "", data.getData().getSpotList().get(3).getUserSmallHeight() + "");
-                FrescoTool.loadImage(spot05, data.getData().getSpotList().get(4).getUserSmallImg(), data.getData().getSpotList().get(4).getUserSmallWidth() + "", data.getData().getSpotList().get(4).getUserSmallHeight() + "");
+                if (!TextUtils.isEmpty(data.getData().getSpotList().get(0).getUserSmallImg())) {
+                    FrescoTool.loadImage(spot01, data.getData().getSpotList().get(0).getUserSmallImg(), data.getData().getSpotList().get(0).getUserSmallWidth() + "", data.getData().getSpotList().get(0).getUserSmallHeight() + "");
+                } else {
+                    spot01.setImageURI(null);
+                }
+                if (!TextUtils.isEmpty(data.getData().getSpotList().get(1).getUserSmallImg())) {
+                    FrescoTool.loadImage(spot02, data.getData().getSpotList().get(1).getUserSmallImg(), data.getData().getSpotList().get(1).getUserSmallWidth() + "", data.getData().getSpotList().get(1).getUserSmallHeight() + "");
+                } else {
+                    spot02.setImageURI(null);
+                }
+                if (!TextUtils.isEmpty(data.getData().getSpotList().get(2).getUserSmallImg())) {
+                    FrescoTool.loadImage(spot03, data.getData().getSpotList().get(2).getUserSmallImg(), data.getData().getSpotList().get(2).getUserSmallWidth() + "", data.getData().getSpotList().get(2).getUserSmallHeight() + "");
+                } else {
+                    spot03.setImageURI(null);
+                }
+                if (!TextUtils.isEmpty(data.getData().getSpotList().get(3).getUserSmallImg())) {
+                    FrescoTool.loadImage(spot04, data.getData().getSpotList().get(3).getUserSmallImg(), data.getData().getSpotList().get(3).getUserSmallWidth() + "", data.getData().getSpotList().get(3).getUserSmallHeight() + "");
+                } else {
+                    spot04.setImageURI(null);
+                }
+                if (!TextUtils.isEmpty(data.getData().getSpotList().get(4).getUserSmallImg())) {
+                    FrescoTool.loadImage(spot05, data.getData().getSpotList().get(4).getUserSmallImg(), data.getData().getSpotList().get(4).getUserSmallWidth() + "", data.getData().getSpotList().get(4).getUserSmallHeight() + "");
+                } else {
+                    spot05.setImageURI(null);
+                }
                 break;
         }
 

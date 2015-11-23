@@ -1,19 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/Users/niesen918/AndroidStudioProjects/LovelyBaby/OneSDK/res/values/alisdk_system_messages.xml -->
-    <eat-comment/>
     <string name="alisdk_message_10000_action">请检查对应名称模块的库文件是否包含在当前开发应用的依赖库里面</string>
     <string name="alisdk_message_10000_message">JS Bridge 载入器未找到名称为 {0} 的模块</string>
     <string name="alisdk_message_10000_name">JS_BRIDGE_MODULE_NOT_FOUND</string>
     <string name="alisdk_message_10000_type">E</string>
-    <!-- From: file:/Users/niesen918/AndroidStudioProjects/LovelyBaby/OneSDK/res/values/alisdk_kernel_messages.xml -->
-    <eat-comment/>
     <string name="alisdk_message_10002_action">请使用默认的 androiddebugkey 对当前开发应用签名或在应用初始化之前调用 AlibabaSDK.turnOnDebug(), 运行程序查看 logcat 输出以获取更多错误细节，并采取对应操作</string>
     <string name="alisdk_message_10002_message">SDK 初始化出错，错误信息为 {0}</string>
     <string name="alisdk_message_10002_name">INIT_EXCEPTION</string>
     <string name="alisdk_message_10002_type">E</string>
-    <!-- From: file:/Users/niesen918/AndroidStudioProjects/LovelyBaby/OneSDK/res/values/alisdk_system_messages.xml -->
-    <eat-comment/>
     <string name="alisdk_message_10003_action"/>
     <string name="alisdk_message_10003_message">当前操作已经取消</string>
     <string name="alisdk_message_10003_name">USER_CANCEL</string>
@@ -26,20 +20,14 @@
     <string name="alisdk_message_10005_message">消息解密发生错误，错误消息为 {0}</string>
     <string name="alisdk_message_10005_name">RSA_DECRYPT_EXCEPTION</string>
     <string name="alisdk_message_10005_type">E</string>
-    <!-- From: file:/Users/niesen918/AndroidStudioProjects/LovelyBaby/OneSDK/res/values/alisdk_kernel_messages.xml -->
-    <eat-comment/>
     <string name="alisdk_message_10010_action">请使用默认的 androiddebugkey 对当前开发应用签名或在应用初始化之前调用 AlibabaSDK.turnOnDebug(), 运行程序查看 logcat 输出以获取更多错误细节，并采取对应操作</string>
     <string name="alisdk_message_10010_message">发生错误，消息为 {0}, 请使用 LogCat 查看更多细节</string>
     <string name="alisdk_message_10010_name">GENERIC_SYSTEM_ERROR</string>
     <string name="alisdk_message_10010_type">E</string>
-    <!-- From: file:/Users/niesen918/AndroidStudioProjects/LovelyBaby/OneSDK/res/values/alisdk_system_messages.xml -->
-    <eat-comment/>
     <string name="alisdk_message_10011_action"/>
     <string name="alisdk_message_10011_message">当前用户未登录</string>
     <string name="alisdk_message_10011_name">USER_ALREADY_LOGOUT</string>
     <string name="alisdk_message_10011_type">W</string>
-    <!-- From: file:/Users/niesen918/AndroidStudioProjects/LovelyBaby/OneSDK/res/values/alisdk_kernel_messages.xml -->
-    <eat-comment/>
     <string name="alisdk_message_10012_action">请在使用 SDK 业务功能之前确保已经调用 AlibabaSDK.asyncInit 方法并接收到初始化成功的回调</string>
     <string name="alisdk_message_10012_message">SDK 尚未被初始化</string>
     <string name="alisdk_message_10012_name">SDK_NOT_INIT</string>
@@ -48,13 +36,9 @@
     <string name="alisdk_message_10014_message">当前网络不可用</string>
     <string name="alisdk_message_10014_name">NETWORK_NOT_AVAILABLE</string>
     <string name="alisdk_message_10014_type">E</string>
-    <!-- From: file:/Users/niesen918/AndroidStudioProjects/LovelyBaby/OneSDK/res/values/alisdk_securityguard_messages.xml -->
-    <eat-comment/>
     <string name="alisdk_message_10016_action">请在开发环境中运行应用，检查 logcat 输出的异常信息</string>
     <string name="alisdk_message_10016_message">安全模块初始化失败，错误消息为 {0}</string>
     <string name="alisdk_message_10016_type">E</string>
-    <!-- From: file:/Users/niesen918/AndroidStudioProjects/LovelyBaby/OneSDK/res/values/alisdk_kernel_messages.xml -->
-    <eat-comment/>
     <string name="alisdk_message_10022_action">请使用默认的 androiddebugkey 对当前开发应用签名或在应用初始化之前调用 AlibabaSDK.turnOnDebug(), 运行程序查看 logcat 输出以获取更多错误细节，并采取对应操作</string>
     <string name="alisdk_message_10022_message">SDK 组件 {0} 启动出错，错误消息为 {1}</string>
     <string name="alisdk_message_10022_name">PLUGIN_INIT_FAILED</string>
@@ -63,14 +47,10 @@
     <string name="alisdk_message_100_message">操作成功</string>
     <string name="alisdk_message_100_name">ACTION_SUCCESS</string>
     <string name="alisdk_message_100_type">I</string>
-    <!-- From: file:/Users/niesen918/AndroidStudioProjects/LovelyBaby/OneSDK/res/values/alisdk_system_messages.xml -->
-    <eat-comment/>
     <string name="alisdk_message_101_action">请稍后重试当前操作，若仍然出错，请反馈至论坛，技术支持或 Android SDK 开发咨询群</string>
     <string name="alisdk_message_101_message">会话刷新出错，错误消息为 {0}</string>
     <string name="alisdk_message_101_name">REFRESH_SID_EXCEPTION</string>
     <string name="alisdk_message_101_type">W</string>
-    <!-- From: file:/Users/niesen918/AndroidStudioProjects/LovelyBaby/OneSDK/res/values/alisdk_kernel_messages.xml -->
-    <eat-comment/>
     <string name="alisdk_message_12_action">请检查所依赖的 SDK 项目，或若是手动拷贝 SDK 至当前开发应用所在项目，请检查是否漏拷文件</string>
     <string name="alisdk_message_12_message">在目录 {0} 未找到文件 {1}</string>
     <string name="alisdk_message_12_name">RESOURCE_NOT_FOUND</string>
@@ -103,14 +83,10 @@
     <string name="alisdk_message_2_message">检索消息时发生如下错误 {0}</string>
     <string name="alisdk_message_2_name">MESSAGE_UNKNOWN_ERROR</string>
     <string name="alisdk_message_2_type">E</string>
-    <!-- From: file:/Users/niesen918/AndroidStudioProjects/LovelyBaby/OneSDK/res/values/alisdk_security_messages.xml -->
-    <eat-comment/>
     <string name="alisdk_message_651_action">请使用相关工具 (e.g.taobao.openiid.get API) 对原始参数进行加密</string>
     <string name="alisdk_message_651_message">未能使用当前应用的信息对参数进行解密</string>
     <string name="alisdk_message_651_name">INVALID_OPEN_ITEM_ID</string>
     <string name="alisdk_message_651_type">E</string>
-    <!-- From: file:/Users/niesen918/AndroidStudioProjects/LovelyBaby/OneSDK/res/values/alisdk_securityguard_messages.xml -->
-    <eat-comment/>
     <string name="alisdk_message_701_action">1. 使用同一个 Keystore 签名的 Apk 在 SDK 下载页面重新下载 SDK \n
         2. 调用 AlibabaSDK.setEnvirnoment 指定当前运行环境会导致 SDK 检索特定的图片，例如设置了 AlibabaSDK.setEnvirnoment(Environment.TEST), SDK 会检索 yw_1222_test.jpg，若您是应用开发方，请去除相关代码，此环境设置主要是针对 SDK 组件提供方开发调试使用。\n
         3. 调用 AlibabaSDK.setSecGuardImagePostfix 会导致 SDK 检索指定后缀的图片，例如设置了 AlibabaSDK.setSecGuardImagePostfix("abc"), SDK 会检索 yw_1222_abc.jpg, 请检查代码中是否有相关调用，若有请做调整，确保当前使用图片与 APK 签名一致。</string>
@@ -131,8 +107,6 @@
     <string name="alisdk_message_705_action">请到百川官方网站重新下载 SDK 并使用其包含最新的图片文件</string>
     <string name="alisdk_message_705_message">当前使用的 res\\drawable\\yw_1222{0}.jpg 与 SDK 中 securityguard***.jar 版本不匹配</string>
     <string name="alisdk_message_705_type">E</string>
-    <!-- From: file:/Users/niesen918/AndroidStudioProjects/LovelyBaby/OneSDK/res/values/alisdk_system_messages.xml -->
-    <eat-comment/>
     <string name="alisdk_message_951_action">如当前应用使用 ProGuard 混淆代码，请检查 SDK 中相关类在 -keep 列表中</string>
     <string name="alisdk_message_951_message">JS Bridge 载入器在类 {0} 未找到方法 {1}</string>
     <string name="alisdk_message_951_name">JS_BRIDGE_METHOD_NOT_FOUND</string>
@@ -141,15 +115,9 @@
     <string name="alisdk_message_952_message">JS Bridge 载入器在类 {0} 中的方法 {1} 上未找到含有 BridgeMethod 标识</string>
     <string name="alisdk_message_952_name">JS_BRIDGE_ANNOTATION_NOT_PRESENT</string>
     <string name="alisdk_message_952_type">E</string>
-    <!-- From: file:/Users/niesen918/AndroidStudioProjects/LovelyBaby/OneSDK/res/values/com_taobao_tae_sdk_strings.xml -->
-    <eat-comment/>
     <string name="com_taobao_tae_sdk_alert_message">您离开太久了，请重新操作</string>
-    <!-- From: file:/Users/niesen918/AndroidStudioProjects/LovelyBaby/OneSDK/res/values/alisdk_ui_messages.xml -->
-    <eat-comment/>
     <string name="com_taobao_tae_sdk_back_message">返回</string>
     <string name="com_taobao_tae_sdk_close_message">返回</string>
-    <!-- From: file:/Users/niesen918/AndroidStudioProjects/LovelyBaby/OneSDK/res/values/com_taobao_tae_sdk_strings.xml -->
-    <eat-comment/>
     <string name="com_taobao_tae_sdk_loading_progress_message">加载中</string>
     <string name="com_taobao_tae_sdk_network_not_available_message">网络无法连接</string>
     <string name="com_taobao_tae_sdk_system_exception">系统异常</string>

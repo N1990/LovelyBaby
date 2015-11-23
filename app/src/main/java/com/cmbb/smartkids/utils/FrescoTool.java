@@ -40,15 +40,6 @@ public class FrescoTool {
             simpleDraweeView.setImageResource(R.color.placeholder);
             return;
         }
-        /*if (TextUtils.isEmpty(width)) {
-            Log.e(TAG, "width is null");
-            return;
-        }
-
-        if (TextUtils.isEmpty(height)) {
-            Log.e(TAG, "height is null");
-            return;
-        }*/
 
         float w = Float.parseFloat(width);
         float h = Float.parseFloat(height);
@@ -94,7 +85,6 @@ public class FrescoTool {
                 .setOldController(simpleDraweeView.getController())
                 .build();
         simpleDraweeView.setController(controller);
-        /*simpleDraweeView.setImageURI(uri);*/
     }
 
     /**
@@ -118,7 +108,6 @@ public class FrescoTool {
                 .setOldController(simpleDraweeView.getController())
                 .build();
         simpleDraweeView.setController(controller);
-        /*simpleDraweeView.setImageURI(uri);*/
     }
 
     /**
@@ -142,7 +131,6 @@ public class FrescoTool {
                 .setOldController(simpleDraweeView.getController())
                 .build();
         simpleDraweeView.setController(controller);
-        /*simpleDraweeView.setImageURI(uri);*/
     }
 
 
@@ -167,6 +155,5 @@ public class FrescoTool {
                 .build();
         simpleDraweeView.setController(controller);
 
-       /* simpleDraweeView.setImageURI(uri);*/
     }
 }

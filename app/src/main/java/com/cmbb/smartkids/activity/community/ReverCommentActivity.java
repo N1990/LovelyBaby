@@ -61,7 +61,7 @@ public class ReverCommentActivity extends BaseActivity {
     protected void init(Bundle savedInstanceState) {
         setTitle(getString(R.string.title_activity_rever_comment));
         initView();
-        initData(); // 模拟数据
+        initData();
         addListener();
     }
 

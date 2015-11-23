@@ -1,6 +1,7 @@
 package com.cmbb.smartkids.activity.community.holder;
 
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -41,9 +42,18 @@ public class CommunityHeaderHolder extends RecyclerView.ViewHolder implements Vi
         this.adapter = adapter;
 
         // 设置数据
-        FrescoTool.loadImage(ivHeader, data.getData().getUserBasicInfo().getUserSmallImg(), data.getData().getUserBasicInfo().getUserSmallWidth() + "", data.getData().getUserBasicInfo().getUserSmallHeight() + "");
+        if (!TextUtils.isEmpty(data.getData().getUserBasicInfo().getUserSmallImg())) {
+            FrescoTool.loadImage(ivHeader, data.getData().getUserBasicInfo().getUserSmallImg(), data.getData().getUserBasicInfo().getUserSmallWidth() + "", data.getData().getUserBasicInfo().getUserSmallHeight() + "");
+        } else {
+            ivHeader.setImageURI(null);
+        }
         tvName.setText(data.getData().getUserBasicInfo().getUserNike());
-        tvContent.setText(data.getData().getContents());
+        if (TextUtils.isEmpty(data.getData().getContents())) {
+            tvContent.setVisibility(View.GONE);
+        } else {
+            tvContent.setVisibility(View.VISIBLE);
+            tvContent.setText(data.getData().getContents());
+        }
         tvTile.setText(data.getData().getTitle());
         tvUserIdentify.setText(data.getData().getUserBasicInfo().getUserRole().get(0).getEredarName());
         tvCommunityTopic.setText(data.getData().getTopicType());

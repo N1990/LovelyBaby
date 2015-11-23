@@ -2,200 +2,191 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:elevation="3dp"
-    android:orientation="vertical">
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:background="@drawable/btn_white_radio_bg"
+    android:elevation="5dp"
+    android:orientation="vertical"
+    android:padding="@dimen/global_padding">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/iv_community_user_header_item"
+            android:layout_width="50dip"
+            android:layout_height="50dip"
+            app:actualImageScaleType="centerCrop"
+            app:fadeDuration="200"
+            app:placeholderImage="@color/placeholder"
+            app:roundAsCircle="true"
+            app:roundingBorderColor="@android:color/white"
+            app:roundingBorderWidth="1dp" />
+
+        <TextView
+            android:id="@+id/tv_community_user_nickname_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/iv_community_user_header_item"
+            android:layout_marginLeft="10dip"
+            android:layout_toRightOf="@+id/iv_community_user_header_item"
+            android:padding="5dip"
+            android:text="昵称"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/tv_community_user_identity_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/iv_community_user_header_item"
+            android:layout_marginLeft="10dip"
+            android:layout_toRightOf="@+id/iv_community_user_header_item"
+            android:padding="5dip"
+            android:text="身份"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/tv_community_tag_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="@dimen/global_padding"
+            android:background="@drawable/btn_primary_color_radio_bg"
+            android:text="畅聊天地"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/txt_small" />
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/half_global_padding"
-        android:layout_marginRight="@dimen/half_global_padding"
-        android:layout_marginTop="@dimen/half_global_padding"
-        android:background="@drawable/btn_white_radio_bg"
-        android:orientation="vertical"
-        android:padding="@dimen/global_padding">
+        android:layout_marginTop="10dip"
+        android:orientation="horizontal">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <com.facebook.drawee.view.SimpleDraweeView
-                android:id="@+id/iv_community_user_header_item"
-                android:layout_width="50dip"
-                android:layout_height="50dip"
-                app:actualImageScaleType="centerCrop"
-                app:fadeDuration="200"
-                app:placeholderImage="@color/placeholder"
-                app:roundAsCircle="true"
-                app:roundingBorderColor="@android:color/white"
-                app:roundingBorderWidth="1dp" />
-
-            <TextView
-                android:id="@+id/tv_community_user_nickname_item"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/iv_community_user_header_item"
-                android:layout_marginLeft="10dip"
-                android:layout_toRightOf="@+id/iv_community_user_header_item"
-                android:padding="5dip"
-                android:text="昵称"
-                android:textColor="@android:color/black" />
-
-            <TextView
-                android:id="@+id/tv_community_user_identity_item"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/iv_community_user_header_item"
-                android:layout_marginLeft="10dip"
-                android:layout_toRightOf="@+id/iv_community_user_header_item"
-                android:padding="5dip"
-                android:text="身份"
-                android:textColor="@android:color/black" />
-
-            <TextView
-                android:id="@+id/tv_community_tag_item"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="@dimen/global_padding"
-                android:background="@drawable/btn_primary_color_radio_bg"
-                android:text="畅聊天地"
-                android:textColor="@android:color/white"
-                android:textSize="@dimen/txt_small" />
-        </RelativeLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dip"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/iv_community_title_item_one"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="5dip"
-                android:background="@mipmap/btn_top_bg"
-                android:visibility="gone" />
-
-            <ImageView
-                android:id="@+id/iv_community_title_item_two"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="5dip"
-                android:background="@mipmap/btn_quality_bg"
-                android:visibility="gone" />
-
-            <TextView
-                android:id="@+id/tv_community_title_item"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:ellipsize="end"
-                android:singleLine="true"
-                android:text="标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题"
-                android:textColor="@android:color/black"
-                android:textSize="@dimen/txt_middle"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/tv_community_content_item"
+        <ImageView
+            android:id="@+id/iv_community_title_item_one"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dip"
+            android:layout_marginRight="5dip"
+            android:background="@mipmap/btn_top_bg"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/iv_community_title_item_two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dip"
+            android:background="@mipmap/btn_quality_bg"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tv_community_title_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:ellipsize="end"
-            android:lineSpacingExtra="1.5dp"
-            android:lines="2"
-            android:text="内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容"
-            android:textColor="@android:color/darker_gray"
-            android:textSize="@dimen/txt_normal" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dip"
-            android:orientation="horizontal">
-
-            <com.facebook.drawee.view.SimpleDraweeView
-                android:id="@+id/iv_community_content_first_item"
-                android:layout_width="0dip"
-                android:layout_height="100dip"
-                android:layout_marginRight="10dip"
-                android:layout_weight="1.0"
-                app:actualImageScaleType="centerCrop"
-                app:fadeDuration="200"
-                app:placeholderImage="@color/placeholder" />
-
-            <com.facebook.drawee.view.SimpleDraweeView
-                android:id="@+id/iv_community_content_second_item"
-                android:layout_width="0dip"
-                android:layout_height="100dip"
-                android:layout_marginRight="10dip"
-                android:layout_weight="1.0"
-                app:actualImageScaleType="centerCrop"
-                app:fadeDuration="200"
-                app:placeholderImage="@color/placeholder" />
-
-            <com.facebook.drawee.view.SimpleDraweeView
-                android:id="@+id/iv_community_content_third_item"
-                android:layout_width="0dip"
-                android:layout_height="100dip"
-                android:layout_weight="1.0"
-                app:actualImageScaleType="centerCrop"
-                app:fadeDuration="200"
-                app:placeholderImage="@color/placeholder" />
-        </LinearLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="3dip">
-            <!--  <TextView
-                  android:id="@+id/tv_community_praise_item"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_marginRight="15dip"
-                  android:gravity="center"
-                  android:textColor="@android:color/darker_gray"
-                  android:drawableLeft="@mipmap/btn_praise_normal"
-                  android:text="1000"/>-->
-
-            <TextView
-                android:id="@+id/tv_community_time_item"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:gravity="center_vertical"
-                android:text="2015-10-19 12:30"
-                android:textColor="@android:color/darker_gray" />
-
-            <TextView
-                android:id="@+id/tv_community_care_item"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="15dip"
-                android:layout_toLeftOf="@+id/tv_community_comment_item"
-                android:drawableLeft="@mipmap/btn_my_care_bg"
-                android:gravity="center_vertical"
-                android:text="1000"
-                android:textColor="@android:color/darker_gray" />
-
-            <TextView
-                android:id="@+id/tv_community_comment_item"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="5dip"
-                android:drawableLeft="@mipmap/btn_my_comment_bg"
-                android:gravity="center_vertical"
-                android:text="1000"
-                android:textColor="@android:color/darker_gray" />
-        </RelativeLayout>
+            android:singleLine="true"
+            android:text="标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/txt_middle"
+            android:textStyle="bold" />
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/tv_community_content_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dip"
+        android:ellipsize="end"
+        android:lineSpacingExtra="1.5dp"
+        android:lines="2"
+        android:text="内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="@dimen/txt_normal" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dip"
+        android:orientation="horizontal">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/iv_community_content_first_item"
+            android:layout_width="0dip"
+            android:layout_height="100dip"
+            android:layout_marginRight="10dip"
+            android:layout_weight="1.0"
+            app:actualImageScaleType="centerCrop"
+            app:fadeDuration="200"
+            app:placeholderImage="@color/placeholder" />
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/iv_community_content_second_item"
+            android:layout_width="0dip"
+            android:layout_height="100dip"
+            android:layout_marginRight="10dip"
+            android:layout_weight="1.0"
+            app:actualImageScaleType="centerCrop"
+            app:fadeDuration="200"
+            app:placeholderImage="@color/placeholder" />
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/iv_community_content_third_item"
+            android:layout_width="0dip"
+            android:layout_height="100dip"
+            android:layout_weight="1.0"
+            app:actualImageScaleType="centerCrop"
+            app:fadeDuration="200"
+            app:placeholderImage="@color/placeholder" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dip">
+        <!--  <TextView
+              android:id="@+id/tv_community_praise_item"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginRight="15dip"
+              android:gravity="center"
+              android:textColor="@android:color/darker_gray"
+              android:drawableLeft="@mipmap/btn_praise_normal"
+              android:text="1000"/>-->
+
+        <TextView
+            android:id="@+id/tv_community_time_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            android:text="2015-10-19 12:30"
+            android:textColor="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/tv_community_care_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dip"
+            android:layout_toLeftOf="@+id/tv_community_comment_item"
+            android:drawableLeft="@mipmap/btn_my_care_bg"
+            android:gravity="center_vertical"
+            android:text="1000"
+            android:textColor="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/tv_community_comment_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dip"
+            android:drawableLeft="@mipmap/btn_my_comment_bg"
+            android:gravity="center_vertical"
+            android:text="1000"
+            android:textColor="@android:color/darker_gray" />
+    </RelativeLayout>
 </LinearLayout>

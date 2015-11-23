@@ -202,6 +202,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:gravity="center"
+                            android:text=""
                             android:textColor="@android:color/black"
                             android:textSize="@dimen/txt_small" />
                     </LinearLayout>
@@ -240,8 +241,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:gravity="center"
                     android:layout_marginRight="48dip"
+                    android:gravity="center"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/txt_large" />
             </android.support.v7.widget.Toolbar>

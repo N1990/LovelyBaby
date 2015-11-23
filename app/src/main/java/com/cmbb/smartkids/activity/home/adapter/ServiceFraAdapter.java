@@ -6,9 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.cmbb.smartkids.R;
-import com.cmbb.smartkids.activity.home.holder.HomeItemHolder;
 import com.cmbb.smartkids.activity.home.holder.ServiceItemHolder;
-import com.cmbb.smartkids.activity.home.model.HomePageRootModel;
 import com.cmbb.smartkids.activity.serve.model.ServiceListModel;
 import com.cmbb.smartkids.base.CustomListener;
 import com.javon.loadmorerecyclerview.BaseRecyclerAdapter;
@@ -31,10 +29,8 @@ public class ServiceFraAdapter extends BaseRecyclerAdapter {
     @Override
     protected void onBindCustomViewHolder(RecyclerView.ViewHolder holder, int position) {
         ServiceListModel.DataEntity.RowsEntity row = (ServiceListModel.DataEntity.RowsEntity) dataList.get(position);
-        ((ServiceItemHolder)holder).setData(row,position, this);
+        ((ServiceItemHolder) holder).setData(row, position, this);
     }
-
-
 
 
     public CustomListener.ItemClickListener getOnItemClick() {

@@ -4,19 +4,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="5dip"
-    android:orientation="vertical"
-    android:padding="10dip">
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="10dip">
 
         <TextView
             android:id="@+id/tv_community_time_third_item"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="2015-07-20 12:00"
+            android:text=""
             android:textColor="@android:color/darker_gray"
             android:textSize="12sp" />
 
@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:text="1.3万"
+            android:text=""
             android:textColor="@android:color/darker_gray"
             android:textSize="12sp" />
 
@@ -45,6 +45,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dip"
+        android:background="@color/backgray"
+        android:paddingLeft="10dip"
+        android:paddingRight="10dip"
         android:scrollbars="none">
 
         <LinearLayout
@@ -120,6 +123,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_marginTop="30dip"
         android:text="评论"
         android:textColor="@android:color/black"

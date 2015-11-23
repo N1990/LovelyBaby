@@ -153,7 +153,6 @@ public class CommunityDetailActivity extends BaseActivity implements CustomListe
         Log.e("TopicId", "Topic ID = " + topicId);
         showWaitDialog();
         handleInitData(null);
-
     }
 
 

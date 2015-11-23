@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -94,6 +95,7 @@ public class CommentListOneFragment extends CommunityBaseFragment {
         prt.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<RecyclerView>() {
             @Override
             public void onPullDownToRefresh(final PullToRefreshBase<RecyclerView> refreshView) {
+                Log.e("Pull", "onPullDownToRefresh");
                 if (mListener != null)
                     mListener.onUpPager(refreshView);
 
@@ -101,6 +103,7 @@ public class CommentListOneFragment extends CommunityBaseFragment {
 
             @Override
             public void onPullUpToRefresh(final PullToRefreshBase<RecyclerView> refreshView) {
+                Log.e("Pull", "onPullUpToRefresh");
                 if (mListener != null)
                     mListener.onDownPager(refreshView);
             }

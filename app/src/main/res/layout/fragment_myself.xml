@@ -183,7 +183,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentRight="true"
                                 android:gravity="center"
-                                android:text="20/100"
+                                android:text=""
                                 android:textSize="@dimen/txt_small" />
                         </LinearLayout>
 
@@ -358,7 +358,7 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@mipmap/btn_my_community_bg"
+                            android:background="@mipmap/btn_community_normal"
                             android:scaleType="center" />
 
                         <TextView
@@ -368,7 +368,7 @@
                             android:layout_marginLeft="5dip"
                             android:layout_weight="1.0"
                             android:padding="5dip"
-                            android:text="我的社区"
+                            android:text="我的话题"
                             android:textColor="@android:color/black" />
 
                         <ImageView

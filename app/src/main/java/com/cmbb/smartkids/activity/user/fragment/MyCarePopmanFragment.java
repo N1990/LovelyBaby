@@ -37,7 +37,7 @@ public class MyCarePopmanFragment extends BaseFragment {
     private MyCareAdapter adapter;
     private int pager = 0;
     private int pagerSize = 10;
-
+    private int cachePager = -1;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -89,7 +89,6 @@ public class MyCarePopmanFragment extends BaseFragment {
 
         @Override
         public void onLoadMore() {
-            adapter.setLoadMore();
             pager++;
             handleRequest(pager, pagerSize);
         }

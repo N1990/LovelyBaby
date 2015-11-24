@@ -20,6 +20,7 @@ import com.javon.loadmorerecyclerview.LoadMoreRecyclerView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * 项目名称：LovelyBaby
@@ -35,6 +36,8 @@ public class EvaluateFragment extends BaseFragment {
     private String isPopman, userId;
     private int pager = 0;
     private int pagerSize = 10;
+    private List<EvaluateListModel.DataEntity.RowsEntity> cacheList = new ArrayList<>();
+    private int cachePager = -1;
 
 
 
@@ -57,7 +60,7 @@ public class EvaluateFragment extends BaseFragment {
         nsv = (NestedScrollView) getView().findViewById(R.id.nsv_self);
         lmrv.setLinearLayout();
         adapter = new MyPerssionAdapter();
-        adapter.setData(new ArrayList<EvaluateListModel.DataEntity.RowsEntity>());
+        adapter.setData(cacheList);
         lmrv.setAdapter(adapter);
     }
 
@@ -112,7 +115,7 @@ public class EvaluateFragment extends BaseFragment {
         }
     };
 
-    private void handleRequest(int pager, int pagerSize){
+    private void handleRequest(final int pager, int pagerSize){
         HashMap<String, String> params = new HashMap<>();
         params.put("pageNo", String.valueOf(pager));
         params.put("numberOfPerPage", String.valueOf(pagerSize));
@@ -125,10 +128,11 @@ public class EvaluateFragment extends BaseFragment {
                 hideWaitDialog();
                 lmrv.setPullLoadMoreCompleted();
                 EvaluateListModel data = (EvaluateListModel) object;
-                if (data != null && data.getData() != null && data.getData().getRows().size() > 0) {
+                if (data != null && data.getData() != null && data.getData().getRows().size() > 0 && cachePager != pager) {
                     lmrv.setVisibility(View.VISIBLE);
                     nsv.setVisibility(View.GONE);
-                    adapter.addData(data.getData().getRows(), lmrv);
+                    cacheList.addAll(data.getData().getRows());
+                    adapter.notifyDataSetChanged();
                 }
                 if (adapter.getDataSize() == 0) {
                     lmrv.setVisibility(View.GONE);
@@ -145,6 +149,12 @@ public class EvaluateFragment extends BaseFragment {
             }
         }));
 
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        cachePager = pager;
     }
 
 

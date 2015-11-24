@@ -61,7 +61,7 @@ public class RecyclerViewOnScroll extends RecyclerView.OnScrollListener {
         /**
          * 无论水平还是垂直
          */
-        if (!mLoadMoreRecyclerView.isRefresh() && mLoadMoreRecyclerView.isHasMore() && (lastVisibleItem == totalItemCount - 1)
+        if (!mLoadMoreRecyclerView.isRefresh() && mLoadMoreRecyclerView.isHasMore() && (lastVisibleItem == totalItemCount - 1) && firstVisibleItem != 0
                 && !mLoadMoreRecyclerView.isLoadMore() && totalItemCount > 0 && newState == RecyclerView.SCROLL_STATE_IDLE) { //(dx > 0 || dy > 0)
             mLoadMoreRecyclerView.loadMore();
         }

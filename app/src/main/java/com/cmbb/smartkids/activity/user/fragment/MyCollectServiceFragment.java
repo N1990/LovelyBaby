@@ -31,7 +31,7 @@ import java.util.HashMap;
  * 创建时间：2015/9/8 11:54
  */
 public class MyCollectServiceFragment extends BaseFragment{
-    private final String TAG = MyServiceFragment.class.getSimpleName();
+    private final String TAG = MyCollectServiceFragment.class.getSimpleName();
     private final int SERVICE_DETAIL_REQUEST = 10009;
     private LoadMoreRecyclerView lmrv;
     private MyServiceAdapter adapter;

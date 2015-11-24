@@ -11,8 +11,6 @@ import com.cmbb.smartkids.activity.user.fragment.MyCareFriendFragment;
 import com.cmbb.smartkids.activity.user.fragment.MyCarePopmanFragment;
 import com.cmbb.smartkids.activity.user.fragment.MyCollectCommunityFragment;
 import com.cmbb.smartkids.activity.user.fragment.MyCollectServiceFragment;
-import com.cmbb.smartkids.activity.user.fragment.MyCommunityFragment;
-import com.cmbb.smartkids.activity.user.fragment.MyServiceFragment;
 import com.cmbb.smartkids.activity.user.fragment.MyServiceMessageFragement;
 import com.cmbb.smartkids.activity.user.fragment.MySystemMessageFragement;
 import com.cmbb.smartkids.base.BaseActivity;
@@ -56,10 +54,9 @@ public class MyListRedirectActivity extends BaseActivity {
             flag = bundle.getString("flag");
         if("service".equals(flag)){
             setTitle("我的服务");
-            myServiceView();
+//            myServiceView();
         }else if("community".equals(flag)){
             setTitle("我的话题");
-            myCommunityView();
         }else if("care".equals(flag)){
             setTitle("我的关注");
             myCareView();
@@ -73,29 +70,7 @@ public class MyListRedirectActivity extends BaseActivity {
 
     }
 
-    private void myServiceView(){
-        Fragment serviceFra = new MyServiceFragment();
-        titles.add("服务");
-        fragments.add(serviceFra);
-        Fragment collectFra = new MyCollectServiceFragment();
-        titles.add("收藏");
-        fragments.add(collectFra);
-        adapter.setData(fragments, titles);
-        vpSlef.setAdapter(adapter);
-        tl.setupWithViewPager(vpSlef);
-    }
 
-    private void myCommunityView(){
-        Fragment communityFra = new MyCommunityFragment();
-        titles.add("我的发布");
-        fragments.add(communityFra);
-        Fragment collectFra = new MyCollectCommunityFragment();
-        titles.add("收藏");
-        fragments.add(collectFra);
-        adapter.setData(fragments, titles);
-        vpSlef.setAdapter(adapter);
-        tl.setupWithViewPager(vpSlef);
-    }
 
     private void myCareView(){
         Fragment friendFra = new MyCareFriendFragment();

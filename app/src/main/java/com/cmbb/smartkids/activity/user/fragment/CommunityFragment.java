@@ -21,6 +21,7 @@ import com.javon.loadmorerecyclerview.LoadMoreRecyclerView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * 项目名称：LovelyBaby
@@ -37,6 +38,8 @@ public class CommunityFragment extends BaseFragment {
     private int pager = 0;
     private int pagerSize = 10;
     private String userId;
+    private List<TopicListModel.DataEntity.RowsEntity> cacheList = new ArrayList<>();
+    private int cachePager = -1;
 
 
     @Override
@@ -59,7 +62,7 @@ public class CommunityFragment extends BaseFragment {
         nsv = (NestedScrollView) getView().findViewById(R.id.nsv_self);
         lmrv.setLinearLayout();
         adapter = new MyCommunityAdapter();
-        adapter.setData(new ArrayList<TopicListModel.DataEntity.RowsEntity>());
+        adapter.setData(cacheList);
         lmrv.setAdapter(adapter);
     }
 
@@ -126,10 +129,11 @@ public class CommunityFragment extends BaseFragment {
                 hideWaitDialog();
                 lmrv.setPullLoadMoreCompleted();
                 TopicListModel data = (TopicListModel) object;
-                if (data != null && data.getData().getRows() != null && data.getData().getRows().size() > 0) {
+                if (data != null && data.getData().getRows() != null && data.getData().getRows().size() > 0 && cachePager != pager) {
                     lmrv.setVisibility(View.VISIBLE);
                     nsv.setVisibility(View.GONE);
-                    adapter.addData(data.getData().getRows(), lmrv);
+                    cacheList.addAll(data.getData().getRows());
+                    adapter.notifyDataSetChanged();
                 }
                 if (adapter.getDataSize() == 0){
                     lmrv.setVisibility(View.GONE);
@@ -158,5 +162,11 @@ public class CommunityFragment extends BaseFragment {
             showWaitsDialog();
             handleCommunityListRequest();
         }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        cachePager = pager;
     }
 }

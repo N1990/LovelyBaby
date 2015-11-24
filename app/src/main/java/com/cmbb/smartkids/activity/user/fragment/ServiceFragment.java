@@ -18,10 +18,12 @@ import com.cmbb.smartkids.base.BaseFragment;
 import com.cmbb.smartkids.base.Constants;
 import com.cmbb.smartkids.base.CustomListener;
 import com.cmbb.smartkids.network.NetRequest;
+import com.cmbb.smartkids.utils.log.Log;
 import com.javon.loadmorerecyclerview.LoadMoreRecyclerView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * 项目名称：LovelyBaby
@@ -37,6 +39,8 @@ public class ServiceFragment extends BaseFragment {
     private int pager = 0;
     private int pagerSize = 5;
     private String userId, isPopman;
+    private List<ServiceListModel.DataEntity.RowsEntity> cacheList = new ArrayList<>();  // 缓存上次加载数据
+    private int cachePager = -1; //缓存上次的pager
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -57,7 +61,7 @@ public class ServiceFragment extends BaseFragment {
         lmrv = (LoadMoreRecyclerView) getView().findViewById(R.id.lmrv_self);
         lmrv.setLinearLayout();
         adapter = new MyServiceAdapter();
-        adapter.setData(new ArrayList<ServiceListModel.DataEntity.RowsEntity>());
+        adapter.setData(cacheList);
         lmrv.setAdapter(adapter);
     }
 
@@ -66,6 +70,8 @@ public class ServiceFragment extends BaseFragment {
         if(getArguments() != null && (bundle = getArguments()) != null){
             userId = bundle.getString("userId");
             isPopman = bundle.getString("isPopman");
+            showWaitsDialog();
+            handleRequest(pager, pagerSize);
         }else{
             showShortToast("传参出错~");
             return;
@@ -83,8 +89,7 @@ public class ServiceFragment extends BaseFragment {
     private LoadMoreRecyclerView.PullLoadMoreListener lmrvListener = new LoadMoreRecyclerView.PullLoadMoreListener() {
         @Override
         public void onInitialize() {
-//            showWaitsDialog();
-            handleRequest(pager, pagerSize);
+
 
         }
 
@@ -102,6 +107,8 @@ public class ServiceFragment extends BaseFragment {
         }
     };
 
+
+
     private CustomListener.ItemClickListener itemClick = new CustomListener.ItemClickListener() {
         @Override
         public void onItemClick(View v, int position, Object object) {
@@ -117,7 +124,7 @@ public class ServiceFragment extends BaseFragment {
         super.onClick(v);
     }
 
-    private void handleRequest(int pager, int pagerSize){
+    private void handleRequest(final int pager, int pagerSize){
         HashMap<String, String> params = new HashMap<>();
         params.put("myCenter", String.valueOf(myCenter));
         params.put("isEredar", String.valueOf(isPopman));
@@ -130,15 +137,18 @@ public class ServiceFragment extends BaseFragment {
                 hideWaitDialog();
                 lmrv.setPullLoadMoreCompleted();
                 ServiceListModel listModel = (ServiceListModel) object;
-                if (listModel != null && listModel.getData() != null && listModel.getData().getRecords() != 0) {
-                    adapter.addData(listModel.getData().getRows(), lmrv);
-                } else {
-                    showShortToast(msg);
+                if (listModel != null && listModel.getData() != null && listModel.getData().getRows().size() > 0 && cachePager != pager) {
+                    lmrv.setVisibility(View.VISIBLE);
+                    getView().findViewById(R.id.nsv_self).setVisibility(View.GONE);
+                    cacheList.addAll(listModel.getData().getRows());
+                    adapter.notifyDataSetChanged();
                 }
-                if (adapter.getDataSize() == 0){
+                Log.e(TAG, "adapter.size1 : " + adapter.getDataSize());
+                if (adapter.getDataSize() == 0) {
                     lmrv.setVisibility(View.GONE);
                     getView().findViewById(R.id.nsv_self).setVisibility(View.VISIBLE);
                 }
+                showShortToast(msg);
             }
 
             @Override
@@ -150,7 +160,9 @@ public class ServiceFragment extends BaseFragment {
         }));
     }
 
-
-
-
+    @Override
+    public void onPause() {
+        super.onPause();
+        cachePager = pager;
+    }
 }

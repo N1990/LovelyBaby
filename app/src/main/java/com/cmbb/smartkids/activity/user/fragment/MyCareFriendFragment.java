@@ -91,7 +91,6 @@ public class MyCareFriendFragment extends BaseFragment{
 
         @Override
         public void onLoadMore() {
-            adapter.setLoadMore();
             pager ++;
             handleRequest(pager, pagerSize);
         }

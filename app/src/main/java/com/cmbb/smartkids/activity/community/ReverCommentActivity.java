@@ -75,7 +75,6 @@ public class ReverCommentActivity extends BaseActivity {
         lmrv = (LoadMoreRecyclerView) findViewById(R.id.rv_comment_rever);
         lmrv.setLinearLayout();
         adapter = new ReverCommentAdapter();
-        //adapter.setData(new ReplayDetailModel(), new ArrayList<ReplayDetailListModel.DataEntity.RowsEntity>());
         lmrv.setAdapter(adapter);
     }
 

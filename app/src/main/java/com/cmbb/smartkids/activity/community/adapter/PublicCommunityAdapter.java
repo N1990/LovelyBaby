@@ -71,7 +71,6 @@ public class PublicCommunityAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     public void removeData(int poisition) {
         if (data != null) {
             this.data.remove(poisition);
-            notifyDataSetChanged();
         }
     }
 

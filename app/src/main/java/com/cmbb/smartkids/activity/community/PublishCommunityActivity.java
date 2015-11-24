@@ -27,12 +27,16 @@ import com.cmbb.smartkids.photopicker.PhotoPickerActivity;
 import com.cmbb.smartkids.photopicker.PhotoViewActivity;
 import com.cmbb.smartkids.photopicker.utils.PhotoPickerIntent;
 import com.cmbb.smartkids.utils.FullyLinearLayoutManager;
+import com.cmbb.smartkids.utils.log.Log;
 import com.cmbb.smartkids.widget.spinner.NiceSpinner;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ *
+ */
 public class PublishCommunityActivity extends BaseActivity {
     private final String TAG = PublishCommunityActivity.class.getSimpleName();
     private final int PIC_REQUEST_CODE = 1001;
@@ -44,7 +48,8 @@ public class PublishCommunityActivity extends BaseActivity {
     private RecyclerView rv;
     private PublicCommunityAdapter adapter;
     private final int picNumber = 10;
-    private ImageModel seleModel = new ImageModel();
+    private int contentRealLen = 0;
+    private String imgDescri = "";
 
     private List<String> topic_type_name = new ArrayList<>();
     private List<String> topic_type_value = new ArrayList<>();
@@ -95,23 +100,6 @@ public class PublishCommunityActivity extends BaseActivity {
         adapter.setOnFootListener(onAddListener);
         adapter.setOnItemDeleteListener(onItemDeleteListener);
         adapter.setOnItemZoomListener(onItemZoomListener);
-        etImgDescri.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                String content = s.toString();
-                adapter.getData().get(adapter.getCurPos()).setContent(content);
-            }
-        });
         ns.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -139,10 +127,37 @@ public class PublishCommunityActivity extends BaseActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                tvLimit.setText((s.length() + 1) + "/150");
-                if (s.length() > 149) {
-                    showShortToast("内容不能超过150字");
+                contentRealLen = s.length();
+                if (contentRealLen <= 450) {
+                    tvLimit.setTextColor(getResources().getColor(android.R.color.darker_gray));
+                    tvLimit.setText(contentRealLen + "/500");
+                } else if (contentRealLen < 500 && contentRealLen > 450) {
+                    tvLimit.setTextColor(getResources().getColor(android.R.color.darker_gray));
+                    tvLimit.setText("还剩余" + (500 - contentRealLen) + "个");
+                } else if (contentRealLen == 500) {
+                    tvLimit.setTextColor(getResources().getColor(android.R.color.darker_gray));
+                    tvLimit.setText("文字已输满");
+                } else {
+                    tvLimit.setTextColor(getResources().getColor(android.R.color.holo_red_light));
+                    tvLimit.setText("超过规定字数" + (contentRealLen - 500) + "个");
                 }
+            }
+        });
+
+        etImgDescri.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                imgDescri  = s.toString();
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
             }
         });
     }
@@ -151,22 +166,26 @@ public class PublishCommunityActivity extends BaseActivity {
 
         @Override
         public void onItemClick(View v, int position, Object object) {
-            //更新上一个选中的对象
-            String content = etImgDescri.getText().toString();
-            if (!TextUtils.isEmpty(content) && adapter.getCurPos() < adapter.getItemCount() - 1) {
-                seleModel.setContent(content);
-                adapter.updateData(adapter.getCurPos(), seleModel);
-            }
 
-            seleModel = (ImageModel) object;
-            if (!TextUtils.isEmpty(seleModel.getContent())) {
-                etImgDescri.setText(seleModel.getContent());
+            ImageModel item = (ImageModel) object;
+            if (!TextUtils.isEmpty(item.getContent())) {
+                etImgDescri.setText(item.getContent());
             } else {
                 etImgDescri.setText("");
             }
             etImgDescri.setVisibility(View.VISIBLE);
+
+            //更新上一个选中的对象
+            if (adapter.getCurPos() < adapter.getItemCount() - 1) {
+                adapter.getData().get(adapter.getCurPos()).setContent(imgDescri);
+//                Log.e(TAG, "selModel Image : " + adapter.getData().get(adapter.getCurPos()).getImgUrl());
+//                Log.e(TAG, " selModel Content : " + adapter.getData().get(adapter.getCurPos()).getContent());
+                adapter.updateData(adapter.getCurPos(), adapter.getData().get(adapter.getCurPos()));
+            }
+
+//            Log.e(TAG, "curPos1 : " + adapter.getCurPos());
+
             adapter.setCurPos(position);
-            adapter.notifyDataSetChanged();
         }
     };
 
@@ -175,11 +194,19 @@ public class PublishCommunityActivity extends BaseActivity {
         @Override
         public void onItemClick(View v, int position, Object object) {
             adapter.removeData(position);
+//            Log.e(TAG, "delete Item : " + position);
             if (adapter.getItemCount() - 1 == 0) {
                 etImgDescri.setVisibility(View.GONE);
                 adapter.setCurPos(0);
                 etImgDescri.setText("");
+            }else if(position == 0){
+                adapter.setCurPos(0);
+                etImgDescri.setText(adapter.getData().get(adapter.getCurPos()).getContent());
+            }else{
+                adapter.setCurPos(position - 1);
+                etImgDescri.setText(adapter.getData().get(adapter.getCurPos()).getContent());
             }
+            adapter.notifyDataSetChanged();
         }
     };
 
@@ -200,7 +227,7 @@ public class PublishCommunityActivity extends BaseActivity {
             for (ImageModel item : data) {
                 imgs.add(item.getImgUrl());
             }
-            PhotoViewActivity.IntentPhotoView(v.getContext(), imgs);
+            PhotoViewActivity.IntentPhotoView(v.getContext(), imgs, position);
 
         }
     };
@@ -218,7 +245,6 @@ public class PublishCommunityActivity extends BaseActivity {
                 }
                 if (adapter.getItemCount() > 1 && adapter.getCurPos() == 0) {
                     etImgDescri.setVisibility(View.VISIBLE);
-                    seleModel.setImgUrl(tempUrls.get(0));
                 }
             }
         }
@@ -252,6 +278,11 @@ public class PublishCommunityActivity extends BaseActivity {
 
         if (TextUtils.isEmpty(title)) {
             showShortToast("请输入标题");
+            return;
+        }
+
+        if(contentRealLen > 500){
+            showShortToast("话题的内容不超过500个字");
             return;
         }
 

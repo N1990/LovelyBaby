@@ -38,7 +38,7 @@ public class PublicItemHolder extends RecyclerView.ViewHolder implements View.On
         this.position = position;
         model.setIsCheck(false);
         ivHandle.setVisibility(View.GONE);
-        if(adapter.getCurPos() == position)
+        if(position == adapter.getCurPos())
             ivHandle.setVisibility(View.VISIBLE);
         FrescoTool.loadLocalImage(sdv, model.getImgUrl());
         ivClear.setOnClickListener(this);

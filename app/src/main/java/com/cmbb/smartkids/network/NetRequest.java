@@ -65,10 +65,10 @@ public class NetRequest {
 //    public static String BASE_URL = "http://192.168.100.174:8081/wine-rest/cgi";
 //    public static String BASE_URL_PIC = "http://192.168.100.174:8081/wine-rest/";
     //生产环境
-//    public static String BASE_URL = "http://120.26.88.135:8090/wine-rest/cgi";
-//    public static String BASE_URL_PIC = "http://120.26.88.135:8090/wine-rest/";
-    public static String BASE_URL = "http://mengbaopai.smart-kids.com:82/wine-rest/cgi";
-    public static String BASE_URL_PIC = "http://mengbaopai.smart-kids.com:82/wine-rest/";
+    public static String BASE_URL = "http://120.26.88.135:8090/wine-rest/cgi";
+    public static String BASE_URL_PIC = "http://120.26.88.135:8090/wine-rest/";
+//    public static String BASE_URL = "http://mengbaopai.smart-kids.com:82/wine-rest/cgi";
+//    public static String BASE_URL_PIC = "http://mengbaopai.smart-kids.com:82/wine-rest/";
 
 
     static {

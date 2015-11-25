@@ -42,7 +42,14 @@ public class Utils {
                         ArrayList temp = (ArrayList) e.getValue();
                         stringBuilder.append(Arrays.toString(temp.toArray()));
                     }else{
-                        stringBuilder.append("\"" + e.getValue() + "\"");
+//                        stringBuilder.append("\"" + e.getValue() + "\"");
+                        String values = null;
+                        if(((String) e.getValue()).contains("\n")){
+                            values = ((String) e.getValue()).replace("\n", "\\n");
+                        }else{
+                            values = (String) e.getValue();
+                        }
+                        stringBuilder.append("\"" + values + "\"");
                     }
                     stringBuilder.append(",");
                 }

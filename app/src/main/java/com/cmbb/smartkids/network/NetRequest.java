@@ -353,8 +353,9 @@ public class NetRequest {
         MultipartBuilder multipartBuilder = new MultipartBuilder();
         multipartBuilder.type(MultipartBuilder.MIXED);
         for (String key : params.keySet()) {
-            multipartBuilder.addFormDataPart(key, params.get(key));
-            Log.e("param", key + " = " + params.get(key));
+            String values = params.get(key);
+            multipartBuilder.addFormDataPart(key, values);
+            Log.e("param", key + " = " + values);
         }
 
         if (imageModels != null && imageModels.size() > 0) {
@@ -362,8 +363,9 @@ public class NetRequest {
                 multipartBuilder.addFormDataPart("topicImgList", "topicImgList", RequestBody.create(MEDIA_TYPE_PNG, new File(imageModels.get(i).getImgUrl())));
                 Log.e("param", "topicImgList" + " = " + imageModels.get(i).getImgUrl());
                 if (!TextUtils.isEmpty(imageModels.get(i).getContent())) {
-                    multipartBuilder.addFormDataPart("imgText" + i, imageModels.get(i).getContent());
-                    Log.e("param", "imgText" + i + " = " + imageModels.get(i).getContent());
+                    String values = imageModels.get(i).getContent();
+                    multipartBuilder.addFormDataPart("imgText" + i, values);
+                    Log.e("param", "imgText" + i + " = " + values);
                 }
             }
         }

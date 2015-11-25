@@ -51,6 +51,8 @@ import java.util.HashMap;
 
 public class CommunityDetailActivity extends BaseActivity implements CustomListener.FragmentInterface {
 
+    private final String TAG = CommunityDetailActivity.class.getSimpleName();
+
     private FrameLayout flContainer;
     private ImageView ivSkip;
     private EditText etRever;

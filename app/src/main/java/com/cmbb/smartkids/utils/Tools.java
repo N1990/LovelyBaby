@@ -136,7 +136,13 @@ public class Tools {
                 for (Iterator it = params.entrySet().iterator(); it.hasNext(); ) {
                     Map.Entry e = (Map.Entry) it.next();
                     stringBuilder.append("\"" + e.getKey() + "\":");
-                    stringBuilder.append("\"" + e.getValue() + "\"");
+                    String values = null;
+                    if(((String) e.getValue()).contains("\n")){
+                        values = ((String) e.getValue()).replace("\n", "\\n");
+                    }else{
+                        values = (String) e.getValue();
+                    }
+                    stringBuilder.append("\"" + values + "\"");
                     stringBuilder.append(",");
                 }
             }

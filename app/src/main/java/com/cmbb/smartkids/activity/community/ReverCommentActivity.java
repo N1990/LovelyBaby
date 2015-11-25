@@ -408,8 +408,9 @@ public class ReverCommentActivity extends BaseActivity {
         if (parentId == -1) return;
         params.put("parentId", parentId + "");
         params.put("replyType", 1 + "");
-        if (!TextUtils.isEmpty(contents))
+        if (!TextUtils.isEmpty(contents)){
             params.put("contents", contents);
+        }
         if (!TextUtils.isEmpty(img))
             params.put("img", img);
         if (!TextUtils.isEmpty(imgWidth))

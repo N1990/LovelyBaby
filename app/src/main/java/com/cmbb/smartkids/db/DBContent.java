@@ -74,5 +74,35 @@ public class DBContent implements BaseColumns {
 
     }
 
+    public static class DBAddress{
+        public static final String TABLE_NAME = "address";
+        public static final String ADDRESS_ID = "address_id";
+        public static final String ADDRESS_TEXT = "area";
+        public static final String CITY_TEXT = "city";
+        public static final String PROVINCE_TEXT = "province";
+
+        public static String SQL = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + "( \n" +
+                _ID + " INTEGER PRIMARY KEY," + "\n" +
+                ADDRESS_ID + INTEGER_TYPE + "\n" +
+                ADDRESS_TEXT + TEXT_TYPE + "\n" +
+                CITY_TEXT + TEXT_TYPE + "\n" +
+                PROVINCE_TEXT + " TEXT " + "\n" +
+                " );";
+        public static final String DELETE_TABLE = "DROP TABLE IF EXISTS ADDRESS";
+
+        public static final String AUTHORITY = "com.cmbb.smartkids.addresslist";
+
+        public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/" + TABLE_NAME);
+
+        public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd." + AUTHORITY;
+
+        public static final String CONTENT_TYPE_ITEM = "vnd.android.cursor.item/vnd." + AUTHORITY;
+
+        public static final int ADDRESSES = 1;
+
+        public static final int ADDRESS = 2;
+
+    }
+
 
 }

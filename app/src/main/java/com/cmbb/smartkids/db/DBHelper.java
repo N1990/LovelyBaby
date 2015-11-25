@@ -23,12 +23,14 @@ public class DBHelper extends SQLiteOpenHelper{
     public void onCreate(SQLiteDatabase db) {
         Log.i(TAG, "DB Create");
         db.execSQL(DBContent.DBUser.SQL);
+        db.execSQL(DBContent.DBAddress.SQL);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         Log.i(TAG, "DB Update");
         db.execSQL(DBContent.DBUser.DELETE_TABLE);
+        db.execSQL(DBContent.DBAddress.DELETE_TABLE);
         onCreate(db);
     }
 
@@ -40,6 +42,7 @@ public class DBHelper extends SQLiteOpenHelper{
     public void delete(SQLiteDatabase db){
         Log.i(TAG, "table delete");
         db.execSQL(DBContent.DBUser.DELETE_TABLE);
+        db.execSQL(DBContent.DBAddress.DELETE_TABLE);
         onCreate(db);
     }
 }

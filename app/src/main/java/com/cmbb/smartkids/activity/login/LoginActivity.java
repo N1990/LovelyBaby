@@ -2,7 +2,9 @@ package com.cmbb.smartkids.activity.login;
 
 import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
@@ -188,6 +190,16 @@ public class LoginActivity extends BaseActivity {
                     LocalBroadcastManager.getInstance(LoginActivity.this).sendBroadcast(intent);
                     //写入数据库
                     ContentValues valus = new ContentValues();
+                    if (user.getDistrict() != 0) {
+                        Uri uri = Uri.withAppendedPath(DBContent.DBAddress.CONTENT_URI, user.getDistrict() + "");
+                        Cursor cursor = getContentResolver().query(uri, null, null, null, null);
+                        com.cmbb.smartkids.utils.log.Log.e("coursor", "cursor size = " + cursor.getCount());
+                        if (cursor.moveToFirst()) {
+                            valus.put(DBContent.DBUser.USER_PROVINCE, cursor.getString(cursor.getColumnIndex(DBContent.DBAddress.PROVINCE_TEXT)));
+                            valus.put(DBContent.DBUser.USER_CITY, cursor.getString(cursor.getColumnIndex(DBContent.DBAddress.CITY_TEXT)));
+                            valus.put(DBContent.DBUser.USER_AREA, cursor.getString(cursor.getColumnIndex(DBContent.DBAddress.ADDRESS_TEXT)));
+                        }
+                    }
                     valus.put(DBContent.DBUser.USER_TOKEN, user.getToken());
                     valus.put(DBContent.DBUser.USER_ID, user.getUserId());
                     valus.put(DBContent.DBUser.USER_HEAD_IMG, user.getUserSmallImg());

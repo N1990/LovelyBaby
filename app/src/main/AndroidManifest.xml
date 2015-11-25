@@ -289,6 +289,12 @@
             android:enabled="true"
             android:exported="false" />
 
+        <provider
+            android:name=".db.AddressProvider"
+            android:authorities="com.cmbb.smartkids.addresslist"
+            android:enabled="true"
+            android:exported="false" />
+
         <service
             android:name=".db.DBIntentService"
             android:exported="false" />

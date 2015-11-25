@@ -1,7 +1,10 @@
 package com.cmbb.smartkids.activity.home.fragment;
 
 import android.animation.ObjectAnimator;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
@@ -38,6 +41,8 @@ import com.cmbb.smartkids.activity.user.model.UserCenterModel;
 import com.cmbb.smartkids.base.BaseApplication;
 import com.cmbb.smartkids.base.BaseFragment;
 import com.cmbb.smartkids.base.Constants;
+import com.cmbb.smartkids.db.AddressProvider;
+import com.cmbb.smartkids.db.DBContent;
 import com.cmbb.smartkids.network.NetRequest;
 import com.cmbb.smartkids.network.image.ImageUpload;
 import com.cmbb.smartkids.photopicker.PhotoPickerActivity;
@@ -210,8 +215,8 @@ public class UserFragment extends BaseFragment {
                 startActivity(new Intent(getActivity(), MyCommunityActivity.class));
                 break;
             case R.id.ll_home_self_gold:
-                if(userModel != null)
-                StorePointActivity.IntentStorePointActivity(getActivity(), userModel.getGoldCount());
+                if (userModel != null)
+                    StorePointActivity.IntentStorePointActivity(getActivity(), userModel.getGoldCount());
                 break;
             case R.id.ll_home_self_apply_popman:
                 startActivityForResult(new Intent(getActivity(), ApplyPopmanActivity.class), HomeActivity.MY_SET_MODIFY);

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/footer_linearlayout"/>
+
+            <LinearLayout
+                android:id="@+id/footer_linearlayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/iv_no_data"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_launcher"
+                    android:layout_marginRight="10dp"
+                    android:visibility="gone"
+                    />
+
+                <android.support.v4.widget.ContentLoadingProgressBar
+                    android:id="@+id/pb_load_more"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:indeterminateDrawable="@drawable/custom_progress_bar_bg"
+                    android:layout_gravity="center_vertical"
+                    android:interpolator="@android:interpolator/cycle"
+                    android:layout_marginRight="10dip"
+                    android:indeterminate="true"/>
+
+                <TextView
+                    android:id="@+id/tv_load_more"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:textColor="@android:color/black"
+                    android:text="正在加载..." />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_try_again"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+        <LinearLayout
+            android:id="@+id/ll_try_again"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:visibility="gone"
+            >
+        <ImageView
+            android:id="@+id/iv_try_again"
+            android:layout_width="20dip"
+            android:layout_height="20dip"
+            android:src="@drawable/ic_launcher"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop" />
+        <TextView
+            android:id="@+id/tv_try_again"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="10dip"
+            android:gravity="center"
+            android:text="网络出错啦~请重新尝试..."/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/ll_recycler_loading"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="gone">
+            <android.support.v4.widget.ContentLoadingProgressBar
+                android:id="@+id/cpb_recycler_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminateDrawable="@drawable/custom_progress_bar_bg"
+                android:layout_gravity="center_vertical"
+                android:interpolator="@android:interpolator/cycle"
+                android:indeterminate="true"
+                />
+            <TextView
+                android:id="@+id/tv_recycler_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
+                android:text="正在加载中..."
+                android:layout_marginLeft="10dip"
+                android:layout_gravity="center_vertical"/>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+
+</LinearLayout>

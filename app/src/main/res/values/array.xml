@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- home service spinner test-->
+    <string-array name="spinner_city" translatable="false">
+        <item>全部</item>
+        <item>北京</item>
+        <item>上海</item>
+        <item>广州</item>
+    </string-array>
+
+    <string-array name="spinner_sort" translatable="false">
+        <item>全部</item>
+        <item>培训</item>
+        <item>上门</item>
+        <item>到店</item>
+    </string-array>
+
+    <string-array name="spinner_status" translatable="false">
+        <item>全部</item>
+        <item>预定</item>
+        <item>开始</item>
+        <item>结束</item>
+    </string-array>
+
+    <string-array name="spinner_search" translatable="false">
+        <item>话题</item>
+        <item>用户</item>
+    </string-array>
+</resources>

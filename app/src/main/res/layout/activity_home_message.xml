@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.cmbb.smartkids.activity.user.HomeMessageActivity">
+
+    <include
+        layout="@layout/custom_actionbar"/>
+
+    <TextView
+        android:id="@+id/tv_home_message_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:layout_marginLeft="@dimen/global_padding"
+        android:layout_marginRight="@dimen/global_padding"
+        android:layout_marginTop="20dp"
+        android:textSize="@dimen/txt_middle"
+        android:lineSpacingExtra="5dip"
+        android:padding="10dip"
+        android:shadowColor="@android:color/darker_gray"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
+        />
+
+</LinearLayout>

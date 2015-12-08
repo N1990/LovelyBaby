@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.cmbb.smartkids.activity.search.SearchActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tl_main_actionbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary">
+
+        <RelativeLayout
+            android:id="@+id/rl_left"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="@dimen/half_global_padding"
+            android:layout_marginTop="10dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toLeftOf="@+id/tv_cancel"
+                android:background="@drawable/shape_search_background">
+
+                <android.support.v7.widget.AppCompatSpinner
+                    android:id="@+id/spinner_search"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:drawSelectorOnTop="true"
+                    android:entries="@array/spinner_search"
+                    android:spinnerMode="dropdown" />
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/et_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toLeftOf="@+id/tv_search"
+                    android:layout_toRightOf="@+id/spinner_search"
+                    android:background="@null"
+                    android:imeOptions="actionSearch|flagNoExtractUi|flagNoFullscreen"
+                    android:singleLine="true" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/tv_search"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center"
+                    android:paddingLeft="@dimen/half_global_padding"
+                    android:paddingRight="@dimen/half_global_padding"
+                    android:text="搜索" />
+
+            </RelativeLayout>
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:gravity="center"
+                android:paddingLeft="@dimen/half_global_padding"
+                android:paddingRight="@dimen/half_global_padding"
+                android:text="取消"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/txt_middle" />
+        </RelativeLayout>
+
+
+    </android.support.v7.widget.Toolbar>
+
+    <com.javon.loadmorerecyclerview.LoadMoreRecyclerView
+        android:id="@+id/lmrl_search"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tl_main_actionbar" />
+
+</RelativeLayout>

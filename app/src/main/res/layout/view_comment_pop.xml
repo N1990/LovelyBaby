@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:layout_width="15dip"
+        android:layout_height="10dip"
+        android:background="@mipmap/btn_anchor_up_bg"
+        android:layout_gravity="right"
+        android:layout_marginRight="15dip"/>
+
+    <ListView
+        android:id="@+id/lv_custom_pop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:cacheColorHint="@android:color/transparent"
+        android:background="@drawable/community_pop_bg"
+        android:divider="#888888"
+        android:dividerHeight="1px"/>
+
+
+
+</LinearLayout>

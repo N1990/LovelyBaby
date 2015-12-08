@@ -27,7 +27,6 @@ public class CommunityHolder extends RecyclerView.ViewHolder implements View.OnC
     private ImageView ivTag1, ivTag2;
     private TextView tvName, tvIdentity, tvTag, tvTitle, tvContent, tvTime, tvPerssion, tvPre;
 
-
     private CommunityAdapter adapter;
     private View root;
     private int position;

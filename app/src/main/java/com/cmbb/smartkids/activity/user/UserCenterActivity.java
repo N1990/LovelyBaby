@@ -164,12 +164,17 @@ public class UserCenterActivity extends BaseActivity implements AppBarLayout.OnO
                     animator.setInterpolator(new DecelerateInterpolator());
                     animator.start();
 
-                    if (userModel.getIsAttention() == 0) {
-                        careFlag = false;
-                        ivCare.setBackgroundResource(R.mipmap.btn_user_care_normal);
+                    if (userModel.getIsLoginUser() == 0) {
+                        ivCare.setVisibility(View.VISIBLE);
+                        if (userModel.getIsAttention() == 0) {
+                            careFlag = false;
+                            ivCare.setBackgroundResource(R.mipmap.btn_user_care_normal);
+                        } else {
+                            careFlag = true;
+                            ivCare.setBackgroundResource(R.mipmap.btn_user_care_pressed);
+                        }
                     } else {
-                        careFlag = true;
-                        ivCare.setBackgroundResource(R.mipmap.btn_user_care_pressed);
+                        ivCare.setVisibility(View.GONE);
                     }
                     Bundle bundle = new Bundle();
                     bundle.putString("userId", String.valueOf(userId));

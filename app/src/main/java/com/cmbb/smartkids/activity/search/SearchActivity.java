@@ -52,7 +52,7 @@ public class SearchActivity extends BaseActivity {
 
     private int pager_topic = 0;
     private int pager_user = 0;
-    private int pagerSize = 5;
+    private int pagerSize = 10;
 
     private int type = 0;//
 
@@ -86,6 +86,7 @@ public class SearchActivity extends BaseActivity {
         adapter_hot = new SearchHotAdapter();
         handleHotRequest();
     }
+
 
     private void addListener() {
         tvCancel.setOnClickListener(this);
@@ -152,28 +153,24 @@ public class SearchActivity extends BaseActivity {
             Log.i(TAG, "onEditorAction ----------- actionId:" + actionId);
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 // 先隐藏键盘
-                ((InputMethodManager) etSearch.getContext().getSystemService(Context.INPUT_METHOD_SERVICE))
-                        .hideSoftInputFromWindow(SearchActivity.this
-                                        .getCurrentFocus()
-                                        .getWindowToken(),
-                                InputMethodManager.HIDE_NOT_ALWAYS);
+                ((InputMethodManager) etSearch.getContext().getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(SearchActivity.this.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 
-                InputMethodManager imm = (InputMethodManager)v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                 lmrlSearch.setLinearLayout();
                 //后续操作
                 search = etSearch.getText().toString();
-                if(TextUtils.isEmpty(search)){
+                if (TextUtils.isEmpty(search)) {
                     showShortToast("请输入您的搜索内容~");
                     return true;
                 }
                 showWaitDialog();
-                if(type == 0){
+                if (type == 0) {
                     pager_topic = 0;
                     adapter_topic.clearData();
                     lmrlSearch.setAdapter(adapter_topic);
                     handleSearchTopic(pager_topic, pagerSize, search);
-                }else{
+                } else {
                     pager_user = 0;
                     lmrlSearch.setAdapter(adapter_user);
                     adapter_user.clearData();
@@ -199,7 +196,7 @@ public class SearchActivity extends BaseActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        if(!TextUtils.isEmpty(search))
+        if (!TextUtils.isEmpty(search))
             etSearch.setText(search);
     }
 
@@ -232,7 +229,7 @@ public class SearchActivity extends BaseActivity {
 
         @Override
         public void afterTextChanged(Editable s) {
-            if(type == 0 && TextUtils.isEmpty(s.toString())){
+            if (type == 0 && TextUtils.isEmpty(s.toString())) {
                 Log.e("watcher", "watcher = " + type);
                 lmrlSearch.setGridRow(3);
                 lmrlSearch.setGridLayout();
@@ -249,7 +246,7 @@ public class SearchActivity extends BaseActivity {
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-            }
+        }
 
 
     };
@@ -311,12 +308,12 @@ public class SearchActivity extends BaseActivity {
             public void onSuccessListener(Object object, String msg) {
                 hideWaitDialog();
                 TopicTypeModel result = (TopicTypeModel) object;
-                if(result != null && result.getData() != null && result.getData().size() > 0){
+                if (result != null && result.getData() != null && result.getData().size() > 0) {
                     lmrlSearch.setHasContent();
                     adapter_hot.setData(result.getData());
                     lmrlSearch.setAdapter(adapter_hot);// 默认Adapter
                 }
-                if(adapter_hot.getDataSize() == 0)
+                if (adapter_hot.getDataSize() == 0)
                     lmrlSearch.setNoContent();
                 showShortToast(msg);
 
@@ -332,11 +329,12 @@ public class SearchActivity extends BaseActivity {
 
     /**
      * 搜索话题
+     *
      * @param pager
      * @param pagerSize
      * @param text
      */
-    private void handleSearchTopic(int pager, int pagerSize, String text){
+    private void handleSearchTopic(int pager, int pagerSize, String text) {
         HashMap<String, String> params = new HashMap<>();
         params.put("pageNo", String.valueOf(pager));
         params.put("numberOfPerPage", String.valueOf(pagerSize));
@@ -368,11 +366,12 @@ public class SearchActivity extends BaseActivity {
 
     /**
      * 搜索用户
+     *
      * @param pager
      * @param pagerSize
      * @param text
      */
-    private void handelSearchUserRequest(int pager, int pagerSize, String text){
+    private void handelSearchUserRequest(int pager, int pagerSize, String text) {
         HashMap<String, String> params = new HashMap<>();
         params.put("pageNo", String.valueOf(pager));
         params.put("numberOfPerPage", String.valueOf(pagerSize));
@@ -383,11 +382,11 @@ public class SearchActivity extends BaseActivity {
                 hideWaitDialog();
                 lmrlSearch.setPullLoadMoreCompleted();
                 SearchUserModel result = (SearchUserModel) object;
-                if(result != null && result.getData() != null && result.getData().getRows() != null){
+                if (result != null && result.getData() != null && result.getData().getRows() != null) {
                     lmrlSearch.setHasContent();
                     adapter_user.addData(result.getData().getRows(), lmrlSearch);
                 }
-                if(adapter_user.getDataSize() == 0)
+                if (adapter_user.getDataSize() == 0)
                     lmrlSearch.setNoContent();
                 showWaitDialog(msg);
             }
@@ -402,7 +401,6 @@ public class SearchActivity extends BaseActivity {
         }));
 
     }
-
 
 
 }

@@ -9,7 +9,7 @@ import android.os.Parcelable;
  * 创建人：javon
  * 创建时间：2015/8/20 15:17
  */
-public class AddressModel implements Parcelable{
+public class AddressModel implements Parcelable {
     public String id;
     public String code;
     public String name;

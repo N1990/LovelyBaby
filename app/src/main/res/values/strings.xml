@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">萌宝直达</string>
+    <string name="app_name" translatable="false">萌宝派</string>
 
     <string name="hello_world" translatable="false">Hello world!</string>
     <string name="action_settings" translatable="false">Settings</string>
@@ -45,7 +45,7 @@
     <string name="title_activity_pay_way" translatable="false">支付订单</string>
     <string name="title_activity_community_detail" translatable="false">话题详情</string>
     <string name="title_activity_rever_comment" translatable="false">评论回复</string>
-    <string name="title_activity_my_community" translatable="false">我的社区</string>
+    <string name="title_activity_my_community" translatable="false">我的话题</string>
     <string name="title_activity_home_message" translatable="false">官方消息</string>
     <string name="title_activity_notify_message" translatable="false">通知消息</string>
     <string name="title_activity_store_point" translatable="false">我的积分</string>

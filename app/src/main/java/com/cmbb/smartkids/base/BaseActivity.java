@@ -72,6 +72,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         init(savedInstanceState);
     }
 
+
     /**
      * 初始化actionbar
      */
@@ -122,7 +123,6 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     protected void setNoBack() {
         try {
             actionbar.setDisplayHomeAsUpEnabled(false);
-
         } catch (NullPointerException e) {
             Log.e("actionbar", "actionbar = " + e);
         }
@@ -232,15 +232,13 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
 
 
     protected void recycleBitmap(ImageView view) {
-        if (view == null)
-            return;
+        if (view == null) return;
         BitmapDrawable bitmapDrawable = (BitmapDrawable) view.getDrawable();
         if (bitmapDrawable != null) {
             view.setImageBitmap(null);
             // 如果图片还未回收，先强制回收该图片
-            if (bitmapDrawable.getBitmap() != null
-                    && !bitmapDrawable.getBitmap().isRecycled()) {
-                //                Log.i(TAG, "图片回收");
+            if (bitmapDrawable.getBitmap() != null && !bitmapDrawable.getBitmap().isRecycled()) {
+                //Log.i(TAG, "图片回收");
                 bitmapDrawable.getBitmap().recycle();
             }
         }

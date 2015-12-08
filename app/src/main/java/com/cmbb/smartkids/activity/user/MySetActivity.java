@@ -1,6 +1,7 @@
 package com.cmbb.smartkids.activity.user;
 
 import android.content.BroadcastReceiver;
+import android.content.ContentProviderOperation;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
@@ -38,6 +39,7 @@ import com.cmbb.smartkids.base.Constants;
 import com.cmbb.smartkids.base.CustomListener;
 import com.cmbb.smartkids.db.DBContent;
 import com.cmbb.smartkids.db.DBHelper;
+import com.cmbb.smartkids.model.DBAddressModel;
 import com.cmbb.smartkids.network.NetRequest;
 import com.cmbb.smartkids.network.image.ImageUpload;
 import com.cmbb.smartkids.photopicker.PhotoPickerActivity;
@@ -51,12 +53,14 @@ import com.cmbb.smartkids.utils.log.Log;
 import com.cmbb.smartkids.widget.wheelview.CustomDialogBuilder;
 import com.cmbb.smartkids.widget.wheelview.LocationSelectorDialogBuilder;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class MySetActivity extends BaseActivity implements LocationSelectorDialogBuilder.OnSaveLocationLister, LoaderManager.LoaderCallbacks<Cursor> {
     private final String TAG = MySetActivity.class.getSimpleName();
@@ -728,11 +732,12 @@ public class MySetActivity extends BaseActivity implements LocationSelectorDialo
             phone = data.getString(data.getColumnIndex(DBContent.DBUser.USER_PHONE));
             if (!TextUtils.isEmpty(phone))
                 tvPhone.setText(phone);
-            String province = data.getString(data.getColumnIndex(DBContent.DBUser.USER_PROVINCE));
+            /*String province = data.getString(data.getColumnIndex(DBContent.DBUser.USER_PROVINCE));
             String city = data.getString(data.getColumnIndex(DBContent.DBUser.USER_CITY));
             String area = data.getString(data.getColumnIndex(DBContent.DBUser.USER_AREA));
             if (!TextUtils.isEmpty(province) && !TextUtils.isEmpty(city) && !TextUtils.isEmpty(area))
-                tvLocal.setText(province + " " + city + " " + area);
+                tvLocal.setText(province + " " + city + " " + area);*/
+            tvLocal.setText(getPCDName(data.getString(data.getColumnIndex(DBContent.DBUser.USER_AREA_ID))));
             address = data.getString(data.getColumnIndex(DBContent.DBUser.USER_ADDRESS));
             if (!TextUtils.isEmpty(address))
                 tvAddress.setText(address);
@@ -780,6 +785,33 @@ public class MySetActivity extends BaseActivity implements LocationSelectorDialo
             });
 
         }
+    }
+
+    /**
+     * 获取省市区中文名字
+     *
+     * @param areaId
+     * @return
+     */
+    private String getPCDName(String areaId) {
+        if (TextUtils.isEmpty(areaId))
+            return "";
+        String tempJson = Tools.getJson(this, "address.json");
+        String json = "{data:" + tempJson + "}";
+        Gson gson = new Gson();
+        DBAddressModel address = gson.fromJson(json, DBAddressModel.class);
+        List<DBAddressModel.DataEntity> data = address.getData();
+        ArrayList<ContentProviderOperation> ops = new ArrayList<>();
+        for (DBAddressModel.DataEntity province : data) {
+            for (DBAddressModel.DataEntity.CitiesEntity city : province.getCities()) {
+                for (DBAddressModel.DataEntity.CitiesEntity.CountiesEntity area : city.getCounties()) {
+                    if (areaId.equals(area.getId())) {
+                        return province.getName() + " " + city.getName() + " " + area.getName();
+                    }
+                }
+            }
+        }
+        return "";
     }
 
 }

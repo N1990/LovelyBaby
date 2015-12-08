@@ -9,13 +9,27 @@
 
     <include layout="@layout/custom_actionbar" />
 
-    <com.facebook.drawee.view.SimpleDraweeView
-        android:id="@+id/sdv"
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        fresco:actualImageScaleType="fitCenter"
-        fresco:fadeDuration="300"
-        fresco:placeholderImage="@color/placeholder"
-        fresco:viewAspectRatio="0.62" />
+        android:layout_height="wrap_content">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/sdv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                fresco:actualImageScaleType="centerCrop"
+                fresco:fadeDuration="300"
+                fresco:placeholderImage="@color/placeholder"
+                fresco:viewAspectRatio="0.5625" />
+
+        </FrameLayout>
+
+    </ScrollView>
 
 </LinearLayout>

@@ -17,6 +17,7 @@ import com.cmbb.smartkids.activity.home.fragment.UserFragment;
 import com.cmbb.smartkids.activity.user.MySetActivity;
 import com.cmbb.smartkids.base.BaseActivity;
 import com.cmbb.smartkids.base.Constants;
+import com.umeng.update.UmengUpdateAgent;
 
 import java.util.List;
 import java.util.Timer;
@@ -40,6 +41,9 @@ public class HomeActivity extends BaseActivity {
 
     @Override
     protected void init(Bundle savedInstanceState) {
+        //关闭wifi
+        UmengUpdateAgent.setUpdateOnlyWifi(false);
+        UmengUpdateAgent.update(this);
         setNoBack();
         initView();
         initData();
@@ -219,6 +223,5 @@ public class HomeActivity extends BaseActivity {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
-
 
 }

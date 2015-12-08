@@ -345,6 +345,8 @@
         <activity android:name=".activity.user.StorePointActivity" />
         <activity android:name=".activity.user.ScoreComplainActivity"/>
         <activity android:name=".activity.more.GrownValusActivity"/>
+        <activity android:name=".PopmanRuleActivity" />
+        <activity android:name=".activity.more.CompanyRule" />
     </application>
 
 </manifest>

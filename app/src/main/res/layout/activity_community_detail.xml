@@ -6,8 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:focusable="true"
-    android:focusableInTouchMode="true"
-    tools:context="com.javon.fragmentpager.MainActivity">
+    android:focusableInTouchMode="true">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/tl_main_actionbar"
@@ -154,6 +153,13 @@
                 android:layout_centerVertical="true"
                 app:actualImageScaleType="focusCrop"
                 app:placeholderImage="@mipmap/btn_community_preview_bg" />
+
+            <ImageView
+                android:id="@+id/tv_speak"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_toRightOf="@+id/iv_community_comment_rever_upload"
+                android:src="@android:drawable/ic_menu_add" />
 
             <TextView
                 android:id="@+id/tv_community_comment_rever_publish"

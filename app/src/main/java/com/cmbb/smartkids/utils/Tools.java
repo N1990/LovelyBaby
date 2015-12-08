@@ -2,10 +2,16 @@ package com.cmbb.smartkids.utils;
 
 import android.app.ActivityManager;
 import android.content.Context;
+import android.support.annotation.RawRes;
 import android.text.TextUtils;
 
+import com.cmbb.smartkids.R;
+import com.cmbb.smartkids.utils.log.Log;
+
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -88,6 +94,19 @@ public class Tools {
         return matcher.matches();
     }
 
+    /**
+     * 身份证正则
+     *
+     * @param id
+     * @return
+     */
+    public static boolean isID(String id) {
+        String match = "^(\\d{15}$|^\\d{18}$|^\\d{17}(\\d|X|x))$";
+        Pattern pattern = Pattern.compile(match);
+        Matcher matcher = pattern.matcher(id.trim());
+        return matcher.matches();
+    }
+
 
     /***
      * 读取本地文件中JSON字符串
@@ -98,8 +117,7 @@ public class Tools {
     public static String getJson(Context context, String fileName) {
         StringBuilder stringBuilder = new StringBuilder();
         try {
-            BufferedReader bf = new BufferedReader(new InputStreamReader(
-                    context.getAssets().open(fileName)));
+            BufferedReader bf = new BufferedReader(new InputStreamReader(context.getAssets().open(fileName)));
             String line;
             while ((line = bf.readLine()) != null) {
                 stringBuilder.append(line);
@@ -137,9 +155,9 @@ public class Tools {
                     Map.Entry e = (Map.Entry) it.next();
                     stringBuilder.append("\"" + e.getKey() + "\":");
                     String values = null;
-                    if(((String) e.getValue()).contains("\n")){
+                    if (((String) e.getValue()).contains("\n")) {
                         values = ((String) e.getValue()).replace("\n", "\\n");
-                    }else{
+                    } else {
                         values = (String) e.getValue();
                     }
                     stringBuilder.append("\"" + values + "\"");
@@ -190,6 +208,38 @@ public class Tools {
         Date date = sdf.parse(data);
         result = sdf2.format(date);
         return result;
+    }
+
+    /**
+     * Raw 获取资源文件
+     *
+     * @param context
+     * @param res
+     * @return
+     */
+    public static String getContentFromRaw(Context context, @RawRes int res) {
+        InputStream in = null;
+        String temp = "";
+        try {
+            in = context.getResources().openRawResource(R.raw.popman_rule);
+            byte[] buff = new byte[1024];// 缓存
+            int rd = 0;
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            while ((rd = in.read(buff)) != -1) {
+                baos.write(buff, 0, rd);
+                temp = new String(baos.toByteArray(), "UTF-8");
+            }
+            baos.close();
+        } catch (Exception e) {
+            Log.e(e);
+        } finally {
+            try {
+                in.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return temp;
+        }
     }
 
 

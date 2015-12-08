@@ -1,5 +1,7 @@
 package com.cmbb.smartkids.base;
 
+import com.cmbb.smartkids.network.NetRequest;
+
 /**
  * 项目名称：LovelyBaby
  * 类描述：
@@ -30,11 +32,11 @@ public class Constants {
         public static final String DESCRIPTOR = "com.cmbb.smartkids";
 
         public static String getTopicShareUrl(int id) {
-            return "http://120.26.88.135:8090/wine-rest/share/share.jsp?id=" + id + "&token=YzQyYTEwZDYtOGZhMi00ODAyLWI0NTYtYTcxMmVkY2FmYzRh";
+            return NetRequest.BASE + "share/share.jsp?id=" + id + "&token=YzQyYTEwZDYtOGZhMi00ODAyLWI0NTYtYTcxMmVkY2FmYzRh";
         }
 
         public static String getServerShareUrl(int id) {
-            return "http://120.26.88.135:8090/wine-rest/share/service.jsp?id=" + id + "&token=YzQyYTEwZDYtOGZhMi00ODAyLWI0NTYtYTcxMmVkY2FmYzRh";
+            return NetRequest.BASE + "share/service.jsp?id=" + id + "&token=YzQyYTEwZDYtOGZhMi00ODAyLWI0NTYtYTcxMmVkY2FmYzRh";
         }
     }
 
@@ -55,7 +57,7 @@ public class Constants {
         public static final String FORGEST_PWD_REQUEST = "smart/forgetPWD"; //忘记密码
         public static final String LOGIN_REQUEST = "smart/login"; //登录
         public static final String USER_INFO_REQUEST = "smart/personal/getPersonal"; //获取用户信息
-        public static final String APPLY_POPMAN_REQUEST = "smart/system/getAuthDicList"; //达人申请
+        public static final String APPLY_POPMAN_REQUEST = "smart/eredar/apply"; //达人申请
         public static final String CARE_LIST_REQUEST = "smart/attention/getList"; // 关注列表
         public static final String MODIFY_USER_INFO = "smart/personal/updatePersonal"; // 修改用户信息
         public static final String CHANGE_USER_ACCOUNT = "smart/logout"; // 切换账号
@@ -85,7 +87,7 @@ public class Constants {
         public static final String MY_COMMUNITY_LIST = "smart/personal/getTopic";// 我的话题列表
         public static final String COLLECT_COMMUNITY_LIST = "smart/personal/getTopicCollect";// 收藏话题
         public static final String SIGN_ARRIVE_REQUEST = "smart/user/sign";// 签到
-        public static final String SMARTS_SORT_REQUEST = "smart/system/dictList";// 各种类型
+        public static final String SMARTS_SORT_REQUEST = "smart/system/getAuthDicList";// 各种类型
         public static final String SEARCH_USER_REQUEST = "smart/user/search";// 搜索用户
         public static final String SERVICE_SORT_REQUEST = "smart/system/getMultipleDict";// 服务列表字典
         public static final String USER_GOLD_LIST = "smart/personal/goldList";// 用户积分

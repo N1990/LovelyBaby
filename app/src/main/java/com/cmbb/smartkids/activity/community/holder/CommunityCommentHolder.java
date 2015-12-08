@@ -213,7 +213,11 @@ public class CommunityCommentHolder extends RecyclerView.ViewHolder implements V
     public void setData(CommunityReplayModel data, CommentAdapter adapter, int position) {
         this.adapter1 = adapter;
         this.position = position;
-        FrescoTool.loadImage(header, data.getData().getRows().get(position).getUserBasicInfo().getUserSmallImg(), data.getData().getRows().get(position).getUserBasicInfo().getUserSmallWidth() + "", data.getData().getRows().get(position).getUserBasicInfo().getUserSmallHeight() + "");
+        if (!TextUtils.isEmpty(data.getData().getRows().get(position).getUserBasicInfo().getUserSmallImg())) {
+            FrescoTool.loadImage(header, data.getData().getRows().get(position).getUserBasicInfo().getUserSmallImg(), data.getData().getRows().get(position).getUserBasicInfo().getUserSmallWidth() + "", data.getData().getRows().get(position).getUserBasicInfo().getUserSmallHeight() + "");
+        } else {
+            header.setImageURI(null);
+        }
         tvName.setTag(data.getData().getRows().get(position).getUserBasicInfo().getUserId());
         tvName.setText(data.getData().getRows().get(position).getUserBasicInfo().getUserNike());
         tvIdentify.setText(data.getData().getRows().get(position).getUserBasicInfo().getUserRole().get(0).getEredarName());
@@ -221,7 +225,6 @@ public class CommunityCommentHolder extends RecyclerView.ViewHolder implements V
         tvTime.setText("第" + data.getData().getRows().get(position).getReplysFloor() + "楼  " + new JTimeTransform(data.getData().getRows().get(position).getCreateDate()).toString(new RecentDateFormat()));
         if (TextUtils.isEmpty(data.getData().getRows().get(position).getImg())) {
             ivContent.setVisibility(View.GONE);
-
         } else {
             ivContent.setVisibility(View.VISIBLE);
             FrescoTool.loadImage(ivContent, data.getData().getRows().get(position).getImg(), TDevice.dip2px(150, BaseApplication.getContext()) + "");
@@ -320,9 +323,12 @@ public class CommunityCommentHolder extends RecyclerView.ViewHolder implements V
 
     @Override
     public void onClick(View v) {
-        if (adapter.getOnEveryListener() != null) {
+        if (adapter != null && null != adapter.getOnEveryListener())
             adapter.getOnEveryListener().onItemClick(v, -1, -1);
-        }
+
+        if (adapter1 != null && adapter1.getOnCommentHeaderListener() != null)
+            adapter1.getOnEveryListener().onItemClick(v, position, position);
+
         switch (v.getId()) {
             case R.id.iv_community_comment_item:
                 if (adapter != null && adapter.getOnCommentHeaderListener() != null)

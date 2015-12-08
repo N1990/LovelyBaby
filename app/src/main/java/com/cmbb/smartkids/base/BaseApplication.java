@@ -6,10 +6,12 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Handler;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.LocalBroadcastManager;
-import android.widget.RemoteViews;
+import android.text.TextUtils;
 import android.widget.Toast;
 
 import com.alibaba.sdk.android.AlibabaSDK;
@@ -19,6 +21,7 @@ import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.utils.SPCache;
 import com.cmbb.smartkids.utils.log.Log;
 import com.facebook.stetho.Stetho;
+import com.iflytek.cloud.SpeechUtility;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.message.PushAgent;
 import com.umeng.message.UTrack;
@@ -41,13 +44,13 @@ public class BaseApplication extends Application {
     public static MediaService mediaService;
     public static String token = "";
 
-
     @Override
     public void onCreate() {
         super.onCreate();
         instance = this;
         context = getApplicationContext();
-
+        //讯飞科大
+        SpeechUtility.createUtility(this, "appid=56600859");
         // 初始化Alibaba资源服务器
         initAlibabaSDK();
         initLog();
@@ -60,18 +63,52 @@ public class BaseApplication extends Application {
         LocalBroadcastManager.getInstance(this).registerReceiver(pushAliasReceiver, new IntentFilter(PUSH_ALIAS_ITENTACTION));
         // 登录状态获取token
         token = SPCache.getString(Constants.TOKEN, "");
+
+        String result = getDeviceInfo(this);
+        Log.e("Test", result);
     }
+
+
+    public static String getDeviceInfo(Context context) {
+        try{
+            org.json.JSONObject json = new org.json.JSONObject();
+            android.telephony.TelephonyManager tm = (android.telephony.TelephonyManager) context
+                    .getSystemService(Context.TELEPHONY_SERVICE);
+
+            String device_id = tm.getDeviceId();
+
+            android.net.wifi.WifiManager wifi = (android.net.wifi.WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+
+            String mac = wifi.getConnectionInfo().getMacAddress();
+            json.put("mac", mac);
+
+            if( TextUtils.isEmpty(device_id) ){
+                device_id = mac;
+            }
+
+            if( TextUtils.isEmpty(device_id) ){
+                device_id = android.provider.Settings.Secure.getString(context.getContentResolver(),android.provider.Settings.Secure.ANDROID_ID);
+            }
+
+            json.put("device_id", device_id);
+
+            return json.toString();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
 
     /**
      * 初始化 stetho
      */
     private void initStetho() {
-        Stetho.initialize(
-                Stetho.newInitializerBuilder(this).enableDumpapp(
-                        Stetho.defaultDumperPluginsProvider(this))
-                        .enableWebKitInspector(Stetho.defaultInspectorModulesProvider(this))
-                        .build());
+        Stetho.initialize(Stetho.newInitializerBuilder(this).enableDumpapp(
+                Stetho.defaultDumperPluginsProvider(this))
+                .enableWebKitInspector(Stetho.defaultInspectorModulesProvider(this))
+                .build());
     }
 
     public static Context getContext() {
@@ -123,6 +160,7 @@ public class BaseApplication extends Application {
                     @Override
                     public void run() {
                         // TODO Auto-generated method stub
+                        Log.e("MEIZU", "message = " + msg);
                         UTrack.getInstance(getApplicationContext()).trackMsgClick(msg);
                         Toast.makeText(context, msg.custom, Toast.LENGTH_LONG).show();
                     }
@@ -130,46 +168,18 @@ public class BaseApplication extends Application {
             }
 
             @Override
-            public Notification getNotification(Context context, UMessage msg) {   //有待修改
-                //            message = {type=0, orderCode=501508892672538789, relationId=90}
-                /*msg.extra.put("read", "0");
-                if(msg.extra.containsKey("type")){
-                    Intent intent = new Intent(getContext(), DBIntentService.class);
-                    switch (Integer.parseInt(msg.extra.get("type"))) {
-                        case 1:
-                            intent.setAction(DBIntentService.ACTION_SYSTEM);
-                            break;
-
-                        case 0:
-                            intent.setAction(DBIntentService.ACTION_SERVICE);
-                            break;
-
-                    }
-                    Log.e("push", "message = " + msg.extra);
-                    String orderCode = "";
-                    if (msg.extra.containsKey("orderCode")) {
-                        orderCode = msg.extra.get("orderCode");
-                        intent.putExtra("orderCode", orderCode);
-                    }
-                    intent.putExtra("read", 0);
-                    intent.putExtra("type", msg.extra.get("type"));
-                    intent.putExtra("relationId", msg.extra.get("relationId"));
-                    intent.putExtra("txt", msg.text);
-                    startService(intent);
-                }*/
+            public Notification getNotification(Context context, UMessage msg) {
                 switch (msg.builder_id) {
                     case 0:
-                        NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
-                        RemoteViews myNotificationView = new RemoteViews(context.getPackageName(), R.layout.view_umeng_notification);
-                        myNotificationView.setTextViewText(R.id.notification_title, msg.title);
-                        myNotificationView.setTextViewText(R.id.notification_text, msg.text);
-                        myNotificationView.setImageViewResource(R.id.notification_large_icon, R.mipmap.ic_launcher);
-                        myNotificationView.setImageViewResource(R.id.notification_small_icon, R.mipmap.ic_launcher);
-                        builder.setContent(myNotificationView);
-                        builder.setAutoCancel(true);
-                        Notification mNotification = builder.build();
-                        //由于Android v4包的bug，在2.3及以下系统，Builder创建出来的Notification，并没有设置RemoteView，故需要添加此代码
-                        mNotification.contentView = myNotificationView;
+                        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context)
+                                .setLargeIcon(getAppIcon())
+                                .setSmallIcon(R.mipmap.ic_launcher)
+                                .setContentTitle(msg.title)
+                                .setCategory(msg.text)
+                                .setContentText(msg.text);
+
+                        mBuilder.setAutoCancel(true);
+                        Notification mNotification = mBuilder.build();
                         return mNotification;
                     default:
                         //默认为0，若填写的builder_id并不存在，也使用默认。
@@ -187,6 +197,7 @@ public class BaseApplication extends Application {
             @Override
             public void dealWithCustomAction(Context context, UMessage msg) {
 //                Toast.makeText(context, "i click :" + msg.custom, Toast.LENGTH_LONG).show();
+                Log.e("MEIZU", "message1 = " + msg.custom);
             }
         };
         mPushAgent.setNotificationClickHandler(notificationClickHandler);
@@ -214,26 +225,6 @@ public class BaseApplication extends Application {
                     }
                 }
             }.start();
-
-            /*mPushAgent.enable(new IUmengRegisterCallback() {
-                @Override
-                public void onRegistered(String registrationId) {
-                    Log.e("Alias", "token:" + registrationId);
-                    new Thread() {
-                        @Override
-                        public void run() {
-                            try {
-                                Log.e("Alias", "Alias 设置参数 ＝ " + intent.getStringExtra("umeng_id"));
-                                Log.e("Alias", "Alias 设置参数 ＝ " + intent.getStringExtra("umeng_type"));
-                                boolean flag = mPushAgent.addAlias(intent.getStringExtra("umeng_id"), intent.getStringExtra("umeng_type"));
-                                Log.e("Alias", "Alias 设置是否成功 ＝ " + flag);
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }.start();
-                }
-            });*/
         }
     };
 
@@ -250,5 +241,13 @@ public class BaseApplication extends Application {
                 Log.e(TAG, "AlibabaSDK onFailure  msg:" + msg + " code:" + code);
             }
         });
+    }
+
+    private Bitmap getAppIcon() {
+        BitmapDrawable bitmapDrawable;
+        Bitmap appIcon;
+        bitmapDrawable = (BitmapDrawable) getContext().getApplicationInfo().loadIcon(getPackageManager());
+        appIcon = bitmapDrawable.getBitmap();
+        return appIcon;
     }
 }

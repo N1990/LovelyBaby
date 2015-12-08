@@ -108,9 +108,11 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/global_padding"
         android:layout_marginRight="@dimen/global_padding"
-        android:lineSpacingExtra="3dip"
+        android:layout_marginTop="@dimen/half_global_padding"
+        android:lineSpacingExtra="3dp"
+        android:lineSpacingMultiplier="1.3"
         android:text=""
-        android:textColor="@android:color/darker_gray"
+        android:textColor="@color/dimgray"
         android:textSize="14sp" />
 
 

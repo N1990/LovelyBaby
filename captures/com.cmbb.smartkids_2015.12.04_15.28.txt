@@ -1,0 +1,117 @@
+TASK com.cmbb.smartkids id=44
+  ACTIVITY com.cmbb.smartkids/.activity.login.LoginActivity 4212c128 pid=12565
+    Local FragmentActivity 4205a868 State:
+      mCreated=truemResumed=true mStopped=false mReallyStopped=false
+      mLoadersStarted=true
+    FragmentManager misc state:
+      mHost=android.support.v4.app.FragmentActivity$HostCallbacks@4255a890
+      mContainer=android.support.v4.app.FragmentActivity$HostCallbacks@4255a890
+      mCurState=5 mStateSaved=false mDestroyed=false
+    View Hierarchy:
+      com.android.internal.policy.impl.PhoneWindow$DecorView{422c59c8 V.E..... ... 0,0-540,960}
+        android.widget.LinearLayout{427db938 V.E..... ... 0,0-540,960}
+          android.view.ViewStub{42049640 G.E..... ... 0,0-0,0 #102030b}
+          android.widget.FrameLayout{427f0f40 V.E..... ... 0,38-540,960}
+            android.support.v7.widget.FitWindowsLinearLayout{4236fad0 V.E..... ... 0,0-540,922 #7f0e0088 app:id/action_bar_root}
+              android.support.v7.widget.ViewStubCompat{423c05c0 G.E..... ... 0,0-0,0 #7f0e0089 app:id/action_mode_bar_stub}
+              android.support.v7.widget.ContentFrameLayout{423cc050 V.ED.... ... 0,0-540,922 #1020002 android:id/content}
+                android.widget.LinearLayout{423f3190 V.E..... ... 0,0-540,922}
+                  android.support.v7.widget.Toolbar{42112880 V.E..... ... 0,0-540,84 #7f0e009d app:id/tl_main_actionbar}
+                    android.support.v7.widget.AppCompatImageView{42035000 G.ED.... ... 0,0-0,0 #7f0e00d5 app:id/iv_main_toolbar_left}
+                    android.support.v7.widget.AppCompatTextView{42302448 V.ED.... ... 243,23-297,60 #7f0e00d6 app:id/tv_main_toolbar}
+                    android.support.v7.widget.AppCompatTextView{42078968 G.ED.... ... 0,0-0,0 #7f0e018b app:id/tv_main_toolbar_right}
+                    android.support.v7.widget.AppCompatImageView{422925c0 G.ED.... ... 0,0-0,0 #7f0e018c app:id/iv_main_toolbar_right}
+                    android.widget.ImageButton{4244cca8 VFED..C. ... 0,0-84,84}
+                    android.support.v7.widget.ActionMenuView{4212dfe8 V.E..... ... 408,0-540,84}
+                      android.support.v7.view.menu.ActionMenuItemView{42451d68 VFED..CL ... 0,6-132,78 #7f0e02eb app:id/tv_login_forget_pwd}
+                  android.widget.LinearLayout{424002f0 V.E..... ... 0,84-540,424}
+                    android.widget.LinearLayout{425130f0 V.E..... ... 15,45-525,97}
+                      android.support.v7.widget.AppCompatImageView{42380aa8 V.ED.... ... 8,8-44,44}
+                      android.support.v7.widget.AppCompatEditText{4253c9b0 VFED..CL F.. 59,11-451,40 #7f0e00fe app:id/et_login_phone}
+                      android.support.v7.widget.AppCompatImageView{423f75b0 I.ED..C. ... 466,8-502,44 #7f0e00ff app:id/iv_login_phone_clear}
+                    android.support.v7.widget.AppCompatImageView{42470918 V.ED.... ... 15,75-525,116}
+                    android.widget.LinearLayout{4255b438 V.E..... ... 15,131-525,183}
+                      android.support.v7.widget.AppCompatImageView{426d33e8 V.ED.... ... 8,8-44,44}
+                      android.support.v7.widget.AppCompatEditText{424274e0 VFED..CL ... 59,11-451,40 #7f0e0100 app:id/et_login_pwd}
+                      android.support.v7.widget.AppCompatImageView{427374a0 I.ED..C. ... 466,8-502,44 #7f0e0101 app:id/iv_login_pwd_clear}
+                    android.support.v7.widget.AppCompatImageView{4275b980 V.ED.... ... 15,161-525,202}
+                    android.support.v7.widget.AppCompatTextView{42023dc8 V.ED..C. ... 45,262-495,325 #7f0e0102 app:id/tv_login_submit}
+                  android.widget.LinearLayout{427371a0 V.E..... ... 0,484-540,922 #7f0e0103 app:id/ll_login_bottom}
+                    android.widget.LinearLayout{4202ec50 V.E..... ... 0,0-540,25}
+                      android.view.View{422dff78 V.ED.... ... 0,12-201,13}
+                      android.support.v7.widget.AppCompatTextView{4249e728 V.ED.... ... 216,0-324,25}
+                      android.view.View{42257cf0 V.ED.... ... 339,12-540,13}
+                    android.widget.LinearLayout{420ebc98 V.E..... ... 0,70-540,175}
+                      android.support.v7.widget.AppCompatImageView{427c3f90 V.ED..C. ... 112,15-187,90 #7f0e0104 app:id/iv_login_wx}
+                      android.support.v7.widget.AppCompatImageView{427dbc58 V.ED..C. ... 232,15-307,90 #7f0e0105 app:id/iv_login_qq}
+                      android.support.v7.widget.AppCompatImageView{42089558 V.ED..C. ... 352,15-427,90 #7f0e0106 app:id/iv_login_sina}
+
+  ACTIVITY com.cmbb.smartkids/.activity.home.HomeActivity 42af7d00 pid=12565
+    Local FragmentActivity 42380410 State:
+      mCreated=truemResumed=false mStopped=true mReallyStopped=true
+      mLoadersStarted=true
+    Active Fragments in 426d1978:
+      #0: HomeFragment{4277a018 #0 id=0x7f0e00f2}
+        mFragmentId=#7f0e00f2 mContainerId=#7f0e00f2 mTag=null
+        mState=2 mIndex=0 mWho=android:fragment:0 mBackStackNesting=0
+        mAdded=true mRemoving=false mResumed=false mFromLayout=false mInLayout=false
+        mHidden=false mDetached=false mMenuVisible=true mHasMenu=false
+        mRetainInstance=false mRetaining=false mUserVisibleHint=true
+        mFragmentManager=FragmentManager{426d1978 in HostCallbacks{420b9250}}
+        mHost=android.support.v4.app.FragmentActivity$HostCallbacks@420b9250
+        mSavedViewState={2131624093=android.support.v7.widget.Toolbar$SavedState@42481388, 2131624149=android.view.AbsSavedState$1@41ccf6b8, 2131624150=android.view.AbsSavedState$1@41ccf6b8, 2131624164=android.view.AbsSavedState$1@41ccf6b8, 2131624331=android.view.AbsSavedState$1@41ccf6b8, 2131624332=android.view.AbsSavedState$1@41ccf6b8, 2131624577=android.view.AbsSavedState$1@41ccf6b8, 2131624578=android.support.v7.widget.RecyclerView$SavedState@424813a0, 2131624579=android.view.AbsSavedState$1@41ccf6b8, 2131624580=android.view.AbsSavedState$1@41ccf6b8, 2131624581=android.widget.ProgressBar$SavedState@424813d0, 2131624582=android.view.AbsSavedState$1@41ccf6b8, 2131624583=android.view.AbsSavedState$1@41ccf6b8, 2131624584=android.view.AbsSavedState$1@41ccf6b8, 2131624585=android.view.AbsSavedState$1@41ccf6b8, 2131624586=android.view.AbsSavedState$1@41ccf6b8, 2131624587=android.view.AbsSavedState$1@41ccf6b8, 2131624588=android.widget.ProgressBar$SavedState@424814f8, 2131624589=android.view.AbsSavedState$1@41ccf6b8}
+        mContainer=android.widget.FrameLayout{4209c6c0 V.E..... ......I. 0,0-540,841 #7f0e00f2 app:id/fl_home_content}
+        mView=android.widget.LinearLayout{420df368 V.E..... ......I. 0,0-540,841}
+        mInnerView=android.widget.LinearLayout{420df368 V.E..... ......I. 0,0-540,841}
+        Child FragmentManager{427d73d0 in HomeFragment{4277a018}}:
+          FragmentManager misc state:
+            mHost=android.support.v4.app.FragmentActivity$HostCallbacks@420b9250
+            mContainer=android.support.v4.app.Fragment$1@42566d38
+            mParent=HomeFragment{4277a018 #0 id=0x7f0e00f2}
+            mCurState=2 mStateSaved=true mDestroyed=false
+    Added Fragments:
+      #0: HomeFragment{4277a018 #0 id=0x7f0e00f2}
+    FragmentManager misc state:
+      mHost=android.support.v4.app.FragmentActivity$HostCallbacks@420b9250
+      mContainer=android.support.v4.app.FragmentActivity$HostCallbacks@420b9250
+      mCurState=2 mStateSaved=true mDestroyed=false
+    View Hierarchy:
+      com.android.internal.policy.impl.PhoneWindow$DecorView{42041948 I.E..... ... 0,0-540,960}
+        android.widget.LinearLayout{42074550 V.E..... ... 0,0-540,960}
+          android.view.ViewStub{4202c7f0 G.E..... ... 0,0-0,0 #102030b}
+          android.widget.FrameLayout{4209b1f0 V.E..... ... 0,38-540,960}
+            android.support.v7.widget.FitWindowsLinearLayout{42090c70 V.E..... ... 0,0-540,922 #7f0e0088 app:id/action_bar_root}
+              android.support.v7.widget.ViewStubCompat{422eea90 G.E..... ... 0,0-0,0 #7f0e0089 app:id/action_mode_bar_stub}
+              android.support.v7.widget.ContentFrameLayout{4207c6f8 V.ED.... ... 0,0-540,922 #1020002 android:id/content}
+                android.widget.RelativeLayout{42047da0 V.E..... ... 0,0-540,922}
+                  android.widget.FrameLayout{4209c6c0 V.E..... ... 0,0-540,841 #7f0e00f2 app:id/fl_home_content}
+                    android.widget.LinearLayout{420df368 V.E..... ... 0,0-540,841}
+                      android.support.v7.widget.Toolbar{42136a18 V.E..... ... 0,0-540,84 #7f0e009d app:id/tl_main_actionbar}
+                        android.support.v7.widget.AppCompatImageView{42053ce0 G.ED.... ... 0,0-0,0 #7f0e00d5 app:id/iv_main_toolbar_left}
+                        android.support.v7.widget.AppCompatTextView{42736640 V.ED.... ... 243,23-297,60 #7f0e00d6 app:id/tv_main_toolbar}
+                        android.support.v7.widget.AppCompatTextView{4212af68 V.ED..C. ... 459,14-525,69 #7f0e018b app:id/tv_main_toolbar_right}
+                        android.support.v7.widget.AppCompatImageView{42055998 G.ED.... ... 0,0-0,0 #7f0e018c app:id/iv_main_toolbar_right}
+                        android.support.v7.widget.ActionMenuView{4202e788 V.E..... ... 540,0-540,84}
+                      com.javon.loadmorerecyclerview.LoadMoreRecyclerView{42035598 V.E..... ... 0,84-540,841 #7f0e00e4 app:id/lmrv_self}
+                        android.widget.LinearLayout{422c52e0 V.E..... ... 0,0-0,0}
+                          android.support.v4.widget.SwipeRefreshLayout{42136d60 V.ED.... ... 0,0-0,0 #7f0e0281 app:id/swipeRefreshLayout}
+                            android.support.v4.widget.CircleImageView{42091248 G.ED.... ... 0,0-0,0}
+                            android.widget.RelativeLayout{420540c0 V.E..... ... 0,0-0,0}
+                              android.support.v7.widget.RecyclerView{42045378 VFED.V.. ... 0,0-0,0 #7f0e0282 app:id/recycler_view}
+                              android.widget.LinearLayout{422e0930 G.E..... ... 0,0-0,0 #7f0e0283 app:id/footer_linearlayout}
+                                android.support.v7.widget.AppCompatImageView{4240d7d8 G.ED.... ... 0,0-0,0 #7f0e0284 app:id/iv_no_data}
+                                android.support.v4.widget.ContentLoadingProgressBar{4208eda0 V.ED.... ... 0,0-0,0 #7f0e0285 app:id/pb_load_more}
+                                android.support.v7.widget.AppCompatTextView{42441a18 V.ED.... ... 0,0-0,0 #7f0e0286 app:id/tv_load_more}
+                          android.widget.RelativeLayout{4205d610 G.E..... ... 0,0-0,0 #7f0e0287 app:id/rl_try_again}
+                            android.widget.LinearLayout{422fafe8 G.E..... ... 0,0-0,0 #7f0e0288 app:id/ll_try_again}
+                              android.support.v7.widget.AppCompatImageView{427dd900 V.ED..C. ... 0,0-0,0 #7f0e0289 app:id/iv_try_again}
+                              android.support.v7.widget.AppCompatTextView{424a5f98 V.ED.... ... 0,0-0,0 #7f0e028a app:id/tv_try_again}
+                            android.widget.LinearLayout{423feef0 G.E..... ... 0,0-0,0 #7f0e028b app:id/ll_recycler_loading}
+                              android.support.v4.widget.ContentLoadingProgressBar{420272c0 G.ED.... ... 0,0-0,0 #7f0e028c app:id/cpb_recycler_progress}
+                              android.support.v7.widget.AppCompatTextView{424e2fe8 V.ED.... ... 0,0-0,0 #7f0e028d app:id/tv_recycler_message}
+                  android.widget.LinearLayout{420d0ff0 V.E..... ... 0,841-540,922 #7f0e00f3 app:id/ll_home_bottom}
+                    android.support.v7.widget.AppCompatTextView{420c6be8 V.ED..C. .S. 0,0-108,81 #7f0e00f4 app:id/tv_home_main}
+                    android.support.v7.widget.AppCompatTextView{42134750 V.ED..C. ... 108,8-216,73 #7f0e00f5 app:id/tv_home_service}
+                    android.support.v7.widget.AppCompatTextView{42428ba8 V.ED..C. ... 216,8-324,73 #7f0e00f6 app:id/tv_home_community}
+                    android.support.v7.widget.AppCompatTextView{42476560 V.ED..C. ... 324,8-432,73 #7f0e00f7 app:id/tv_home_user}
+                    android.support.v7.widget.AppCompatTextView{4255b020 V.ED..C. ... 432,8-540,73 #7f0e00f8 app:id/tv_home_more}

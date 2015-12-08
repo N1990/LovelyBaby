@@ -3,7 +3,6 @@
 package com.cmbb.smartkids.activity.user;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -32,7 +31,6 @@ public class MyMessageActivity extends BaseActivity {
     private int pagerSize = 10;
 
 
-
     @Override
     protected int getLayoutId() {
         return R.layout.activity_my_message;
@@ -44,18 +42,17 @@ public class MyMessageActivity extends BaseActivity {
         addListener();
     }
 
-    private void initView(){
+    private void initView() {
         setTitle(getString(R.string.title_activity_notify_message));
         lmrv = (LoadMoreRecyclerView) findViewById(R.id.lmrv_self);
         lmrv.setLinearLayout();
         adapter = new MyMsgAdapter();
         adapter.setData(new ArrayList<MessageListModel.DataEntity.RowsEntity>());
         lmrv.setAdapter(adapter);
-
     }
 
 
-    private void addListener(){
+    private void addListener() {
         lmrv.setPullLoadMoreListener(lmrvListener);
         lmrv.setInitializeWithoutPb();
         adapter.setOnFooterTryAgain(this);
@@ -78,7 +75,7 @@ public class MyMessageActivity extends BaseActivity {
 
         @Override
         public void onLoadMore() {
-            pager ++;
+            pager++;
             handleRequest(pager, pagerSize);
         }
     };
@@ -91,26 +88,26 @@ public class MyMessageActivity extends BaseActivity {
             String relationId = item.getRelateField();
             String type = item.getModual();
             int isRead = item.getIsRead();
-            if(!TextUtils.isEmpty(relationId)){
-                if(isRead == 1){
-                    if("order".equals(type)){
+            if (!TextUtils.isEmpty(relationId)) {
+                if (isRead == 1) {
+                    if ("order".equals(type)) {
                         Intent order = new Intent(MyMessageActivity.this, OrderDetailActivity.class);
                         order.putExtra("orderCode", relationId);
                         startActivity(order);
-                    }else if("service".equals(type)){
+                    } else if ("service".equals(type)) {
                         Intent service = new Intent(MyMessageActivity.this, ActiveDetailActivity.class);
                         service.putExtra("serviceId", Integer.parseInt(relationId));
                         startActivity(service);
                     }
-                }else{
+                } else {
                     handleMessageRequest(messageId, position, type, relationId, messageId);
                 }
-            }else if("system".equals(type)){
-                if(isRead == 1){
+            } else if ("system".equals(type)) {
+                if (isRead == 1) {
                     Intent system = new Intent(MyMessageActivity.this, HomeMessageActivity.class);
                     system.putExtra("id", messageId);
                     startActivity(system);
-                }else{
+                } else {
                     handleMessageRequest(messageId, position, type, relationId, messageId);
                 }
             }
@@ -121,10 +118,11 @@ public class MyMessageActivity extends BaseActivity {
 
     /**
      * 消息列表
+     *
      * @param pager
      * @param pagerSize
      */
-    private void handleRequest(int pager, int pagerSize){
+    private void handleRequest(int pager, int pagerSize) {
         HashMap<String, String> params = new HashMap<>();
         params.put("pageNo", String.valueOf(pager));
         params.put("numberOfPerPage", String.valueOf(pagerSize));
@@ -156,14 +154,14 @@ public class MyMessageActivity extends BaseActivity {
     }
 
     /**
-     *
      * 消息置为已读
+     *
      * @param id
      * @param position
      * @param type
      * @param relationId
      */
-    private void handleMessageRequest(int id, final int position, final String type, final String relationId, final int messageId){
+    private void handleMessageRequest(int id, final int position, final String type, final String relationId, final int messageId) {
         showWaitDialog();
         HashMap<String, String> params = new HashMap<>();
         params.put("id", id + "");
@@ -174,15 +172,15 @@ public class MyMessageActivity extends BaseActivity {
                 hideWaitDialog();
                 SecurityCodeModel result = (SecurityCodeModel) object;
                 adapter.setRead(position);
-                if("order".equals(type)){
+                if ("order".equals(type)) {
                     Intent order = new Intent(MyMessageActivity.this, OrderDetailActivity.class);
                     order.putExtra("orderCode", relationId);
                     startActivity(order);
-                }else if("service".equals(type)){
+                } else if ("service".equals(type)) {
                     Intent service = new Intent(MyMessageActivity.this, ActiveDetailActivity.class);
                     service.putExtra("serviceId", Integer.parseInt(relationId));
                     startActivity(service);
-                }else if("system".equals(type)){
+                } else if ("system".equals(type)) {
                     Intent system = new Intent(MyMessageActivity.this, HomeMessageActivity.class);
                     system.putExtra("id", messageId);
                     startActivity(system);

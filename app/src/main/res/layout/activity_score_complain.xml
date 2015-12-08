@@ -26,7 +26,7 @@
                 fresco:actualImageScaleType="centerCrop"
                 fresco:fadeDuration="300"
                 fresco:placeholderImage="@color/placeholder"
-                fresco:viewAspectRatio="0.413"/>
+                fresco:viewAspectRatio="0.4129"/>
 
         </FrameLayout>
 

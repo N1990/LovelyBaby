@@ -2,9 +2,7 @@ package com.cmbb.smartkids.activity.login;
 
 import android.content.ContentValues;
 import android.content.Intent;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
@@ -13,13 +11,13 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.cmbb.smartkids.R;
-import com.cmbb.smartkids.base.BaseApplication;
-import com.cmbb.smartkids.db.DBContent;
 import com.cmbb.smartkids.activity.home.HomeActivity;
+import com.cmbb.smartkids.activity.login.model.UserAssistModel;
 import com.cmbb.smartkids.activity.login.model.UserRootModel;
 import com.cmbb.smartkids.base.BaseActivity;
-import com.cmbb.smartkids.activity.login.model.UserAssistModel;
+import com.cmbb.smartkids.base.BaseApplication;
 import com.cmbb.smartkids.base.Constants;
+import com.cmbb.smartkids.db.DBContent;
 import com.cmbb.smartkids.db.DBHelper;
 import com.cmbb.smartkids.network.NetRequest;
 import com.cmbb.smartkids.utils.CustomWatcher;
@@ -114,84 +112,6 @@ public class RegisterActivity extends BaseActivity implements LocationSelectorDi
 
 
     private void handleRequest(String nickeName, String pwd) {
-        /*{
-                "messageId": null,
-                    "requestId": "2d79f323-575d-11e5-909e-1a376e9a916d",
-                    "error": null,
-                    "statusCode": 200,
-                    "cmd": "smart/register",
-                    "response": {
-                "status": 1,
-                        "data": {
-                    "token": "d860ea1fa2b243228eb06a54b8961e04/33ad7e90c3664443b9ae0e721551e05f",
-                            "userId": 8,
-                            "userRole": [
-                    {
-                        "id": 3,
-                            "properties": {
-
-                    },
-                        "userBasicInfo": {
-                        "id": 8,
-                                "properties": {
-
-                        },
-                        "userNike": "niesen918",
-                                "userSex": null,
-                                "userBigImg": null,
-                                "userBigWidth": null,
-                                "userBigHeight": null,
-                                "userSmallImg": null,
-                                "userSmallWidth": null,
-                                "userSmallHeight": null,
-                                "loginAccountType": 0,
-                                "loginTime": "2015-09-10 09:42:21",
-                                "loginAccount": "15201921714",
-                                "loginPassword": "e10adc3949ba59abbe56e057f20f883e",
-                                "loginAccessToken": null,
-                                "loginToken": "d860ea1fa2b243228eb06a54b8961e04",
-                                "isShutup": 0,
-                                "shutupTime": null,
-                                "isBanned": 0,
-                                "userAddress": null,
-                                "userPhone": "15201921714",
-                                "userPhoneVersion": null,
-                                "province": 320000,
-                                "district": 320102,
-                                "userLevel": 1,
-                                "userPresentation": null,
-                                "isRecommoned": null,
-                                "createDate": "2015-09-10 09:42:21",
-                                "createUserId": null,
-                                "updateDate": null,
-                                "updateUserId": null,
-                                "city": null
-                    },
-                        "eredarCode": 0,
-                            "eredarName": "萌宝用户",
-                            "createDate": "2015-09-10 09:42:21",
-                            "createUserId": null,
-                            "updateDate": null,
-                            "updateUserId": null
-                    }
-                    ]
-                },
-                "msg": "登录成功"
-            },
-                "responseTime": "2015-09-10 09:42:21",
-                    "responseTimestamp": 1441849341791,
-                    "duration": 670,
-                    "debugInfo": null,
-                    "clientIp": "192.168.100.115",
-                    "usedCache": false,
-                    "extraInfo": {
-                "consuming": "670毫秒",
-                        "serverName": "192.168.100.135"
-            },
-                "auth": {
-
-            }
-            }*/
         showWaitDialog();
         HashMap<String, String> body = new HashMap<>();
         body.put("loginAccount", getIntent().getStringExtra("phone"));
@@ -228,21 +148,9 @@ public class RegisterActivity extends BaseActivity implements LocationSelectorDi
                     LocalBroadcastManager.getInstance(RegisterActivity.this).sendBroadcast(intent);
                     //写入数据库
                     ContentValues valus = new ContentValues();
-                    if (user.getDistrict() != 0) {
-                        Uri uri = Uri.withAppendedPath(DBContent.DBAddress.CONTENT_URI, user.getDistrict() + "");
-                        Cursor cursor = getContentResolver().query(uri, null, null, null, null);
-                        com.cmbb.smartkids.utils.log.Log.e("coursor", "cursor size = " + cursor.getCount());
-                        if (cursor.moveToFirst()) {
-                            valus.put(DBContent.DBUser.USER_PROVINCE, cursor.getString(cursor.getColumnIndex(DBContent.DBAddress.PROVINCE_TEXT)));
-                            valus.put(DBContent.DBUser.USER_CITY, cursor.getString(cursor.getColumnIndex(DBContent.DBAddress.CITY_TEXT)));
-                            valus.put(DBContent.DBUser.USER_AREA, cursor.getString(cursor.getColumnIndex(DBContent.DBAddress.ADDRESS_TEXT)));
-                        }
-                    }
                     valus.put(DBContent.DBUser.USER_ID, user.getUserId());
                     valus.put(DBContent.DBUser.USER_TOKEN, user.getToken());
                     valus.put(DBContent.DBUser.USER_HEAD_IMG, user.getUserSmallImg());
-                    /*valus.put(DBContent.USER_IMG_WIDTH, Integer.valueOf(user.getUserSmallWidth()));
-                    valus.put(DBContent.USER_IMG_HEIGHT, Integer.valueOf(user.getUserSmallHeight()));*/
                     valus.put(DBContent.DBUser.USER_NICK_NAME, user.getUserNike());
                     valus.put(DBContent.DBUser.USER_MALE, user.getUserSex());
                     valus.put(DBContent.DBUser.USER_PHONE, user.getUserPhone());

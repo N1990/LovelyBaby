@@ -2,8 +2,6 @@ package com.cmbb.smartkids.activity.login;
 
 import android.content.ContentValues;
 import android.content.Intent;
-import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
@@ -91,66 +89,6 @@ public class ForgetPwdActivity extends BaseActivity {
         body.put("model", android.os.Build.MODEL);
         body.put("imei", TDevice.getDeviceId(this));
         body.put("applicationVersion", TDevice.getVersionName());
-        /*{
-                "messageId": null,
-                    "requestId": "bafc68a2-5767-11e5-90d9-1a376e9a916d",
-                    "error": null,
-                    "statusCode": 200,
-                    "cmd": "smart/forgetPWD",
-                    "response": {
-                "status": 0,
-                        "data": {
-                    "recommoned": null,
-                            "userNike": "niesen1990",
-                            "userSex": null,
-                            "userBigImg": null,
-                            "userBigWidth": null,
-                            "userBigHeight": null,
-                            "userSmallImg": null,
-                            "userSmallWidth": null,
-                            "userSmallHeight": null,
-                            "loginAccountType": 0,
-                            "loginTime": "2015-09-10 09:59:07",
-                            "loginAccount": "13818155072",
-                            "token": "33ad7e90c3664443b9ae0e721551e05f",
-                            "isShutup": 0,
-                            "shutupTime": null,
-                            "isBanned": 0,
-                            "userAddress": null,
-                            "userPhone": null,
-                            "userPhoneVersion": null,
-                            "province": 310000,
-                            "district": 310110,
-                            "city": null,
-                            "userLevel": 1,
-                            "userPresentation": null,
-                            "userRole": [
-                    {
-                        "eredarCode": 0,
-                            "eredarName": "萌宝用户",
-                            "createDate": null,
-                            "createUserId": null,
-                            "updateDate": null,
-                            "updateUserId": null
-                    }
-                    ]
-                },
-                "msg": "更新成功"
-            },
-                "responseTime": "2015-09-10 10:57:54",
-                    "responseTimestamp": 1441853874114,
-                    "duration": 612,
-                    "debugInfo": null,
-                    "clientIp": "192.168.100.115",
-                    "usedCache": false,
-                    "extraInfo": {
-                "consuming": "612毫秒",
-                        "serverName": "192.168.100.135"
-            },
-                "auth": {
-
-            }
-            }*/
         NetRequest.postRequest(Constants.ServiceInfo.FORGEST_PWD_REQUEST, "", body, UserAssistModel.class, new NetRequest.NetHandler(this, new NetRequest.NetResponseListener() {
             @Override
             public void onSuccessListener(Object object, String msg) {
@@ -170,21 +108,9 @@ public class ForgetPwdActivity extends BaseActivity {
                     LocalBroadcastManager.getInstance(ForgetPwdActivity.this).sendBroadcast(intent);
                     //更新数据库
                     ContentValues valus = new ContentValues();
-                    if (user.getDistrict() != 0) {
-                        Uri uri = Uri.withAppendedPath(DBContent.DBAddress.CONTENT_URI, user.getDistrict() + "");
-                        Cursor cursor = getContentResolver().query(uri, null, null, null, null);
-                        com.cmbb.smartkids.utils.log.Log.e("coursor", "cursor size = " + cursor.getCount());
-                        if (cursor.moveToFirst()) {
-                            valus.put(DBContent.DBUser.USER_PROVINCE, cursor.getString(cursor.getColumnIndex(DBContent.DBAddress.PROVINCE_TEXT)));
-                            valus.put(DBContent.DBUser.USER_CITY, cursor.getString(cursor.getColumnIndex(DBContent.DBAddress.CITY_TEXT)));
-                            valus.put(DBContent.DBUser.USER_AREA, cursor.getString(cursor.getColumnIndex(DBContent.DBAddress.ADDRESS_TEXT)));
-                        }
-                    }
                     valus.put(DBContent.DBUser.USER_ID, user.getUserId());
                     valus.put(DBContent.DBUser.USER_TOKEN, user.getToken());
                     valus.put(DBContent.DBUser.USER_HEAD_IMG, user.getUserSmallImg());
-                    /*valus.put(DBContent.USER_IMG_WIDTH, Integer.valueOf(user.getUserSmallWidth()));
-                    valus.put(DBContent.USER_IMG_HEIGHT, Integer.valueOf(user.getUserSmallHeight()));*/
                     valus.put(DBContent.DBUser.USER_NICK_NAME, user.getUserNike());
                     valus.put(DBContent.DBUser.USER_MALE, user.getUserSex());
                     valus.put(DBContent.DBUser.USER_PHONE, user.getUserPhone());
@@ -194,11 +120,7 @@ public class ForgetPwdActivity extends BaseActivity {
                     valus.put(DBContent.DBUser.USER_IS_POPMAN, user.getIsEredar());
                     valus.put(DBContent.DBUser.USER_ADDRESS, user.getUserAddress());
                     valus.put(DBContent.DBUser.USER_INTRODUCE, user.getUserPresentation());
-
                     getContentResolver().update(DBContent.DBUser.CONTENT_URI, valus, DBContent.DBUser.USER_ID + " = " + user.getUserId(), null);
-                    //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-
                     startActivity(new Intent(ForgetPwdActivity.this, HomeActivity.class));
                     finish();
                 } else {

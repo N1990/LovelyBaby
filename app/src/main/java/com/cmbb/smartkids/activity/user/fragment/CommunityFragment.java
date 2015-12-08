@@ -68,11 +68,11 @@ public class CommunityFragment extends BaseFragment {
 
     private void initData() {
         Bundle bundle = null;
-        if((bundle = getArguments()) != null){
+        if ((bundle = getArguments()) != null) {
             userId = bundle.getString("userId");
             showWaitsDialog();
             handleCommunityListRequest();
-        }else{
+        } else {
             showShortToast("传参出错~");
             return;
         }
@@ -100,7 +100,7 @@ public class CommunityFragment extends BaseFragment {
 
         @Override
         public void onLoadMore() {
-            pager ++;
+            pager++;
             handleCommunityListRequest();
         }
     };
@@ -135,7 +135,7 @@ public class CommunityFragment extends BaseFragment {
                     cacheList.addAll(data.getData().getRows());
                     adapter.notifyDataSetChanged();
                 }
-                if (adapter.getDataSize() == 0){
+                if (adapter.getDataSize() == 0) {
                     lmrv.setVisibility(View.GONE);
                     nsv.setVisibility(View.VISIBLE);
                 }

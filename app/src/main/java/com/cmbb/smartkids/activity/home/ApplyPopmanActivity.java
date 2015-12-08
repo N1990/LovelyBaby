@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.alibaba.sdk.android.media.upload.UploadListener;
 import com.alibaba.sdk.android.media.upload.UploadTask;
 import com.alibaba.sdk.android.media.utils.FailReason;
+import com.cmbb.smartkids.PopmanRuleActivity;
 import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.activity.home.adapter.PopmanSortAdapter;
 import com.cmbb.smartkids.activity.login.model.SecurityCodeModel;
@@ -58,7 +59,6 @@ public class ApplyPopmanActivity extends BaseActivity implements TextWatcher {
     private EditText etRealName, etIdentity, etPhone, etVerifyCode, etIntroduce;
     private ImageView ivRealNameClear, ivIdentityClear, ivPhoneClear, ivAddPic;
     private NiceSpinner ns;
-    //    private TimerRegister timeRegsiter;
     private int realLen = 0;
     private ArrayList<String> urls = new ArrayList<>();
     private MyTimeCount timeCount;
@@ -79,6 +79,7 @@ public class ApplyPopmanActivity extends BaseActivity implements TextWatcher {
     }
 
     private void initView() {
+        setTitle("达人申请");
         etRealName = (EditText) findViewById(R.id.et_real_name_popman);
         ivRealNameClear = (ImageView) findViewById(R.id.iv_real_name_popman_clear);
         etIdentity = (EditText) findViewById(R.id.et_identity_popman);
@@ -92,9 +93,6 @@ public class ApplyPopmanActivity extends BaseActivity implements TextWatcher {
         tvIntroduce = (TextView) findViewById(R.id.tv_introduce_popman);
         ivAddPic = (ImageView) findViewById(R.id.iv_add_pic_popman);
         llPicContent = (LinearLayout) findViewById(R.id.ll_pic_popman);
-       /* timeRegsiter = new TimerRegister();
-        IntentFilter filter = new IntentFilter(Constants.Broadcast.COUNT_TIME);
-        registerReceiver(timeRegsiter, filter);*/
         adapter = new PopmanSortAdapter(this);
         timeCount = new MyTimeCount(60000, 1000, tvVerifyCode);
         upData = new TeletextModel();
@@ -103,27 +101,7 @@ public class ApplyPopmanActivity extends BaseActivity implements TextWatcher {
     }
 
     private void initData() {
-
-        // 测试数据
-       /* ArrayList<String> sorts = new ArrayList<>(Arrays.asList("达人类型", "健康达人", "美食达人", "旅游达人", "养生达人", "耍宝达人"));
-        ns.attachDataSource(sorts);
-        for(int i = 0; i < 5 ; i ++){
-            TeletextModel.ImgsEntity imgsEntity = new TeletextModel.ImgsEntity();
-            imgsEntity.setFilePath("http://www.image_big.com");
-            imgsEntity.setWidth(126.0);
-            imgsEntity.setHeight(Double.valueOf(362.0));
-            upData.getImageFiles().add(imgsEntity);
-        }
-
-        Gson gson = new Gson();
-        String json = gson.toJson(upData);
-        Log.e(TAG, "JSON : " + json);
-        int index = json.indexOf("[");
-        String realImgs = json.substring(index, json.length() - 1);
-        Log.e(TAG, "imgs JSON : " + realImgs);*/
-        //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         requestPopmanSort();
-
     }
 
     private void addListener() {
@@ -140,7 +118,6 @@ public class ApplyPopmanActivity extends BaseActivity implements TextWatcher {
                 PopmanSortModel.DataEntity data = adapter.getData().get(position);
                 String sortStr = data.getValue();
                 sortValue = Integer.valueOf(sortStr);
-                showShortToast("sort values : " + sortStr);
             }
 
             @Override
@@ -170,7 +147,7 @@ public class ApplyPopmanActivity extends BaseActivity implements TextWatcher {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_notify_popman:
-                showShortToast("读啦读啦~");
+                PopmanRuleActivity.newInstance(this);
                 break;
             case R.id.tv_verify_phone_code_popman:
                 String phone = etPhone.getText().toString();
@@ -182,8 +159,6 @@ public class ApplyPopmanActivity extends BaseActivity implements TextWatcher {
                     showShortToast("请输入正确的手机号码");
                     return;
                 }
-               /* tvVerifyCode.setEnabled(false);
-                startService(new Intent(this, CountTimeService.class));*/
                 handleVeriftRequest(phone);
                 break;
             case R.id.iv_add_pic_popman:
@@ -279,34 +254,8 @@ public class ApplyPopmanActivity extends BaseActivity implements TextWatcher {
 
     @Override
     protected void onDestroy() {
-//        unregisterReceiver(timeRegsiter);
         super.onDestroy();
     }
-
-    /*class TimerRegister extends BroadcastReceiver {
-        int second = 60;
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            second = intent.getIntExtra("second", 60);
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    if (second == 0) {
-                        tvVerifyCode.setText("获取验证码");
-                        tvVerifyCode.setTextColor(getResources().getColor(R.color.primaryColor));
-                        tvVerifyCode.setEnabled(true);
-                    } else {
-                        Log.e(TAG, "还剩:" + second + "s");
-                        tvVerifyCode.setEnabled(false);
-                        tvVerifyCode.setTextColor(Color.GRAY);
-                        tvVerifyCode.setText(second < 10 ? "获取验证码0" + second + "s" : "获取验证码" + second + "s");
-                    }
-                }
-            });
-
-        }
-    }*/
 
 
     private void handleRequest() {
@@ -322,6 +271,10 @@ public class ApplyPopmanActivity extends BaseActivity implements TextWatcher {
         }
         if (TextUtils.isEmpty(identity)) {
             showShortToast("身份证号码不能为空");
+            return;
+        }
+        if (!Tools.isID(identity)) {
+            showShortToast("请输入正确身份证ID");
             return;
         }
         if (TextUtils.isEmpty(phone)) {
@@ -370,7 +323,6 @@ public class ApplyPopmanActivity extends BaseActivity implements TextWatcher {
             @Override
             public void onUploadFailed(UploadTask uploadTask, FailReason failReason) {
                 hideWaitDialog();
-//                showShortToast(failReason.getMessage());
                 Log.e(TAG, failReason.getMessage());
                 ImageUpload.getInstance().cancelAllUpload();
                 showShortToast("申请失败，请重新点击申请~");
@@ -482,7 +434,7 @@ public class ApplyPopmanActivity extends BaseActivity implements TextWatcher {
         showWaitDialog();
         HashMap<String, String> params = new HashMap<>();
         params.put("typeCode", "eredar");
-        NetRequest.postRequest(Constants.ServiceInfo.SMARTS_SORT_REQUEST, "", params, PopmanSortModel.class, new NetRequest.NetHandler(this, new NetRequest.NetResponseListener() {
+        NetRequest.postRequest(Constants.ServiceInfo.SMARTS_SORT_REQUEST, BaseApplication.token, params, PopmanSortModel.class, new NetRequest.NetHandler(this, new NetRequest.NetResponseListener() {
             @Override
             public void onSuccessListener(Object object, String msg) {
                 hideWaitDialog();

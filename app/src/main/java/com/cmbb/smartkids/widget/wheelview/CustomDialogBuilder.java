@@ -23,7 +23,7 @@ import com.cmbb.smartkids.base.CustomListener;
  * 创建人：javon
  * 创建时间：2015/8/20 16:15
  */
-public class CustomDialogBuilder extends Dialog implements View.OnClickListener{
+public class CustomDialogBuilder extends Dialog implements View.OnClickListener {
     private final String TAG = CustomDialogBuilder.class.getSimpleName();
     private LinearLayout llNavigate;
     private View vDivider;
@@ -75,7 +75,7 @@ public class CustomDialogBuilder extends Dialog implements View.OnClickListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         WindowManager.LayoutParams params = getWindow().getAttributes();
-        //设置窗体的宽高来控制Dialog的大小
+        //设置窗体的宽高来控制Dialog的大小x`
         if (windowWidth == 0 || windowHeight == 0) {
             params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
             params.width = ViewGroup.LayoutParams.WRAP_CONTENT;
@@ -83,8 +83,7 @@ public class CustomDialogBuilder extends Dialog implements View.OnClickListener{
             params.width = windowWidth;
             params.height = windowHeight;
         }
-        getWindow().setAttributes(
-                (WindowManager.LayoutParams) params);
+        getWindow().setAttributes((WindowManager.LayoutParams) params);
         getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         setCanceledOnTouchOutside(isCancelable);
     }
@@ -100,8 +99,7 @@ public class CustomDialogBuilder extends Dialog implements View.OnClickListener{
         if (instance == null || ((Activity) context).isFinishing()) {
             synchronized (CustomDialogBuilder.class) {
                 if (instance == null) {
-                    instance = new CustomDialogBuilder(context,
-                            R.style.dialog_untran);
+                    instance = new CustomDialogBuilder(context, R.style.dialog_untran);
                 }
             }
         }
@@ -138,7 +136,7 @@ public class CustomDialogBuilder extends Dialog implements View.OnClickListener{
         });*/
     }
 
-    public void setDialogDismiss(){
+    public void setDialogDismiss() {
         instance = null;
     }
 
@@ -146,22 +144,22 @@ public class CustomDialogBuilder extends Dialog implements View.OnClickListener{
         tvMessage.setVisibility(View.VISIBLE);
     }
 
-    private void ifNeedDivider(){
-        if(tvCancel.getVisibility() == View.VISIBLE && tvComfirm.getVisibility() == View.VISIBLE)
+    private void ifNeedDivider() {
+        if (tvCancel.getVisibility() == View.VISIBLE && tvComfirm.getVisibility() == View.VISIBLE)
             vDivider.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void onClick(View v) {
         dismiss();
-        if(v.getId() == R.id.tv_custom_dialog_cancel && onAbolishListener != null){
+        if (v.getId() == R.id.tv_custom_dialog_cancel && onAbolishListener != null) {
             onAbolishListener.onClick(v);
-        }else if(v.getId() == R.id.tv_custom_dialog_comfirm && onComfirmListener != null){
+        } else if (v.getId() == R.id.tv_custom_dialog_comfirm && onComfirmListener != null) {
             onComfirmListener.onClick(v);
         }
     }
 
-    public CustomDialogBuilder setDialogWindows(int width, int height){
+    public CustomDialogBuilder setDialogWindows(int width, int height) {
         //设置窗体的宽高来控制Dialog的大小
         windowWidth = width;
         windowHeight = height;
@@ -173,7 +171,6 @@ public class CustomDialogBuilder extends Dialog implements View.OnClickListener{
         tvMessage.setVisibility(visibility);
         return this;
     }
-
 
 
     public CustomDialogBuilder withTitle(CharSequence title) {
@@ -236,7 +233,7 @@ public class CustomDialogBuilder extends Dialog implements View.OnClickListener{
         llNavigate.setVisibility(View.VISIBLE);
         tvCancel.setVisibility(View.VISIBLE);
         ifNeedDivider();
-        if(!TextUtils.isEmpty(text))
+        if (!TextUtils.isEmpty(text))
             tvCancel.setText(text);
         this.onAbolishListener = onCancelListener;
         return this;
@@ -247,7 +244,7 @@ public class CustomDialogBuilder extends Dialog implements View.OnClickListener{
         llNavigate.setVisibility(View.VISIBLE);
         tvComfirm.setVisibility(View.VISIBLE);
         ifNeedDivider();
-        if(!TextUtils.isEmpty(text))
+        if (!TextUtils.isEmpty(text))
             tvComfirm.setText(text);
         this.onComfirmListener = onComfirmListener;
         tvComfirm.setText(text);

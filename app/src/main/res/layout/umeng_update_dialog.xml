@@ -33,7 +33,7 @@
                 android:layout_centerInParent="true"
                 android:text="@string/UMUpdateTitle"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="#008bea" />
+                android:textColor="@color/primaryColor" />
             
             <Button
                 android:id="@+id/umeng_update_id_close"
@@ -52,8 +52,8 @@
 
         <View
             android:layout_width="fill_parent"
-            android:layout_height="2px"
-            android:background="#008bea" />
+            android:layout_height="2dp"
+            android:background="@color/primaryColor" />
         <!-- Content -->
 
         <ScrollView

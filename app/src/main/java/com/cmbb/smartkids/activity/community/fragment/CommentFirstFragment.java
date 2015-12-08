@@ -34,9 +34,6 @@ import java.util.HashMap;
 
 public class CommentFirstFragment extends CommunityBaseFragment {
     private final String TAG = CommentFirstFragment.class.getSimpleName();
-    private static final String TOPIC_ID = "topic_id";
-    private static final String PAGER = "pager";
-    private static final String PAGER_SIZE = "pager_size";
 
 
     private PtrRecyclerView prt;
@@ -229,7 +226,9 @@ public class CommentFirstFragment extends CommunityBaseFragment {
             final ArrayList<Integer> more = (ArrayList<Integer>) object;
             switch (more.get(1)) {
                 case 1:// delete
-                    builder = CustomDialogBuilder.getInstance(getActivity()).withTitle("操作")
+                    if (builder != null)
+                        builder.dismiss();
+                    builder = CustomDialogBuilder.getInstance(v.getContext()).withTitle("操作")
                             .withMessage("您确认要删除您的回复吗？")
                             .withComfirmText("确认", new CustomListener.DialogListener() {
                                 @Override
@@ -250,7 +249,9 @@ public class CommentFirstFragment extends CommunityBaseFragment {
 
                     break;
                 case 0:// report
-                    builder = CustomDialogBuilder.getInstance(getActivity()).withTitle("操作")
+                    if (builder != null)
+                        builder.dismiss();
+                    builder = CustomDialogBuilder.getInstance(v.getContext()).withTitle("操作")
                             .withMessage("您确认要举报此回复吗？")
                             .withComfirmText("确认", new CustomListener.DialogListener() {
                                 @Override

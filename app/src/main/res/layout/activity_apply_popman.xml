@@ -29,7 +29,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="请阅读"
+                    android:text="请阅读,提出申请时默认遵守"
                     android:textSize="@dimen/txt_small" />
 
                 <TextView
@@ -233,58 +233,12 @@
                 android:layout_marginTop="-15dip"
                 android:background="@drawable/single_edit_bg" />
 
-            <!--
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dip"
-                            android:orientation="horizontal"
-                            android:padding="@dimen/half_global_padding">
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:background="@mipmap/btn_popnam_bg"
-                                android:scaleType="fitCenter" />
-
-                            <EditText
-                                android:id="@+id/et_sort_popman"
-                                android:layout_width="0dip"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginLeft="10dip"
-                                android:layout_weight="1.0"
-                                android:hint="达人类型"
-                                android:inputType="text"
-                                android:maxLength="20"
-                                android:background="@null"
-                                android:singleLine="true"
-                                android:textSize="@dimen/txt_normal"
-                                android:textColor="@android:color/black"
-                                android:textColorHint="@android:color/darker_gray" />
-
-                            <ImageView
-                                android:id="@+id/iv_sort_popman_clear"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:background="@mipmap/btn_edit_delete"
-                                android:layout_marginLeft="10dip"
-                                android:scaleType="fitCenter"
-                                android:visibility="invisible" />
-                        </LinearLayout>
-                        <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="-15dip"
-                        android:background="@drawable/single_edit_bg"/>-->
             <com.cmbb.smartkids.widget.spinner.NiceSpinner
                 android:id="@+id/ns_sort_popman"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dip"
-                android:gravity="center_vertical|left"
+                android:gravity="center"
                 app:hideLeftDrawable="false"
                 app:leftDrawable="@mipmap/btn_popnam_bg" />
 

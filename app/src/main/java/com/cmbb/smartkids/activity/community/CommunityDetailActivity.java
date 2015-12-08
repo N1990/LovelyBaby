@@ -37,10 +37,15 @@ import com.cmbb.smartkids.network.NetRequest;
 import com.cmbb.smartkids.network.image.ImageUpload;
 import com.cmbb.smartkids.photopicker.PhotoPickerActivity;
 import com.cmbb.smartkids.photopicker.utils.PhotoPickerIntent;
+import com.cmbb.smartkids.utils.JsonParser;
 import com.cmbb.smartkids.utils.ShareUtils;
 import com.cmbb.smartkids.utils.TDevice;
+import com.cmbb.smartkids.utils.XunFeiUtils;
 import com.cmbb.smartkids.widget.popWindows.CommentPop;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.iflytek.cloud.RecognizerResult;
+import com.iflytek.cloud.SpeechError;
+import com.iflytek.cloud.ui.RecognizerDialogListener;
 import com.javon.library.PullToRefreshBase;
 
 import org.json.JSONException;
@@ -48,6 +53,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public class CommunityDetailActivity extends BaseActivity implements CustomListener.FragmentInterface {
 
@@ -61,6 +67,7 @@ public class CommunityDetailActivity extends BaseActivity implements CustomListe
     private RelativeLayout root;
 
     private SimpleDraweeView ivImage;
+    private ImageView tvSpeak;
     private TextView tvSend;
 
     private LinearLayout llSkip;
@@ -112,25 +119,6 @@ public class CommunityDetailActivity extends BaseActivity implements CustomListe
 
     private void initView() {
         root = (RelativeLayout) findViewById(R.id.rl_root);
-        /*root.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                int heightDiff = root.getRootView().getHeight() - root.getHeight();
-                if (heightDiff > keyboardHeight) {
-                    Log.e("Keyboard", keyboardHeight + "  +   " + heightDiff);
-                    etRever.setMinHeight(TDevice.dip2px(100, CommunityDetailActivity.this));
-                    rlBottomRever.setVisibility(View.VISIBLE);
-                    ivSkip.setVisibility(View.GONE);
-                    llSkip.setVisibility(View.GONE);
-                } else {
-                    Log.e("Keyboard", keyboardHeight + "  ---------------- " + heightDiff);
-                    etRever.setMinHeight(TDevice.dip2px(36, CommunityDetailActivity.this));
-                    rlBottomRever.setVisibility(View.GONE);
-                    ivSkip.setVisibility(View.VISIBLE);
-                    llSkip.setVisibility(View.GONE);
-                }
-            }
-        });*/
         flContainer = (FrameLayout) findViewById(R.id.fl_community_container);
         ivSkip = (ImageView) findViewById(R.id.iv_community_skip);
         etRever = (EditText) findViewById(R.id.et_community_rever);
@@ -142,9 +130,9 @@ public class CommunityDetailActivity extends BaseActivity implements CustomListe
         sbSkip = (SeekBar) findViewById(R.id.sb_community_detail_skip);
         ivCollect = (ImageView) findViewById(R.id.iv_community_collect_right);
         ivMore = (ImageView) findViewById(R.id.iv_community_more_right);
-
         ivImage = (SimpleDraweeView) findViewById(R.id.iv_community_comment_rever_upload);
         tvSend = (TextView) findViewById(R.id.tv_community_comment_rever_publish);
+        tvSpeak = (ImageView) findViewById(R.id.tv_speak);
     }
 
     private void initData() {
@@ -171,6 +159,12 @@ public class CommunityDetailActivity extends BaseActivity implements CustomListe
                     } else {
                         ShareUtils.setShareContent(cacheDetail.getData().getTitle(), cacheDetail.getData().getContents(), Constants.Share.getTopicShareUrl(cacheDetail.getData().getId()), R.mipmap.ic_launcher);
                     }
+                    if (cacheDetail.getData().getUserBasicInfo().getIsLoginUser() == 1) {
+                        ivCollect.setVisibility(View.GONE);
+                    } else {
+                        ivCollect.setVisibility(View.VISIBLE);
+                    }
+
                     setPopTitle(cacheDetail.getData().getUserBasicInfo().getIsLoginUser());
                     baseFragment = CommentFirstFragment.newInstance(cacheDetail, cacheReplay);
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -200,6 +194,11 @@ public class CommunityDetailActivity extends BaseActivity implements CustomListe
                     } else {
                         ShareUtils.setShareContent(cacheDetail.getData().getTitle(), cacheDetail.getData().getContents(), Constants.Share.getTopicShareUrl(cacheDetail.getData().getId()), R.mipmap.ic_launcher);
                     }
+                    if (cacheDetail.getData().getUserBasicInfo().getIsLoginUser() == 1) {
+                        ivCollect.setVisibility(View.GONE);
+                    } else {
+                        ivCollect.setVisibility(View.VISIBLE);
+                    }
                     setPopTitle(cacheDetail.getData().getUserBasicInfo().getIsLoginUser());
                     baseFragment = CommentFirstFragment.newInstance(cacheDetail, cacheReplay);
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -219,12 +218,12 @@ public class CommunityDetailActivity extends BaseActivity implements CustomListe
     }
 
     private void addListener() {
+        tvSpeak.setOnClickListener(this);
         ivSkip.setOnClickListener(this);
         ivMore.setOnClickListener(this);
         ivCollect.setOnClickListener(this);
         tvSkip.setOnClickListener(this);
         sbSkip.setOnSeekBarChangeListener(sbListener);
-
 
         tvSend.setOnClickListener(this);
         ivImage.setOnClickListener(this);
@@ -329,16 +328,30 @@ public class CommunityDetailActivity extends BaseActivity implements CustomListe
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.tv_speak:
+                XunFeiUtils.getInstance(this).startVoice(new RecognizerDialogListener() {
+                    @Override
+                    public void onResult(RecognizerResult recognizerResult, boolean b) {
+                        printResult(recognizerResult, etRever);
+                    }
+
+                    @Override
+                    public void onError(SpeechError speechError) {
+
+                    }
+                });
+                break;
             case R.id.iv_community_more_right:
                 if (null != popTitle) {
                     if (popTitle.isShowing()) {
                         popTitle.dismiss();
                     } else {
-                        popTitle.showPop(ivMore, -popTitle.getWidth() - TDevice.dip2px(8, CommunityDetailActivity.this), TDevice.dip2px(8, CommunityDetailActivity.this));
+                        popTitle.showPop(ivMore, -popTitle.getWidth() - TDevice.dip2px(18, CommunityDetailActivity.this), TDevice.dip2px(18, CommunityDetailActivity.this));
                     }
                 }
                 break;
             case R.id.iv_community_collect_right:
+
                 baseFragment.handleCollectionRequest(topicId, baseFragment.resultDetail.getData().getIsCollect(), new NetRequest.NetHandler(this, new NetRequest.NetResponseListener() {
                     @Override
                     public void onSuccessListener(Object object, String message) {
@@ -459,10 +472,8 @@ public class CommunityDetailActivity extends BaseActivity implements CustomListe
             sbSkip.setProgress(progress);
             int showProgress = progress + 1;
             tvSb.setText(showProgress + "/" + total);
-
             // 刷新
             handleInitData(refreshView);
-
         } else {
             upPager(pager, refreshView);
             progress = pager;
@@ -480,7 +491,7 @@ public class CommunityDetailActivity extends BaseActivity implements CustomListe
     /**
      * 设置POP
      *
-     * @param currentUser
+     * @param currentUser int
      */
     private void setPopTitle(int currentUser) {
         switch (currentUser) {
@@ -493,7 +504,6 @@ public class CommunityDetailActivity extends BaseActivity implements CustomListe
                 popTitle.setOnItemListener(onPopItemReportListener);
                 break;
         }
-        ;
     }
 
 
@@ -551,8 +561,7 @@ public class CommunityDetailActivity extends BaseActivity implements CustomListe
                     showShortToast("最后一页啦");
                 }
 
-                if (refreshView != null)
-                    refreshView.onRefreshComplete();
+                if (refreshView != null) refreshView.onRefreshComplete();
             }
 
             @Override
@@ -562,10 +571,14 @@ public class CommunityDetailActivity extends BaseActivity implements CustomListe
                     refreshView.onRefreshComplete();
             }
         }));
-
     }
 
 
+    /**
+     * 设置收藏界面
+     *
+     * @param isCollect int
+     */
     public void setCollectionView(int isCollect) {
         switch (isCollect) {
             case 0:
@@ -590,12 +603,12 @@ public class CommunityDetailActivity extends BaseActivity implements CustomListe
     /**
      * 回复楼主
      *
-     * @param topicId
-     * @param replyType
-     * @param contents
-     * @param img
-     * @param imgWidth
-     * @param imgHeight
+     * @param topicId   话题ID
+     * @param replyType 回复类型
+     * @param contents  回复内容
+     * @param img       图片地址
+     * @param imgWidth  图片宽度
+     * @param imgHeight 图片高度
      */
     private void handleReplayTopRequest(int topicId, int replyType, String contents, String img, String imgWidth, String imgHeight) {
         HashMap<String, String> params = new HashMap<>();
@@ -663,7 +676,7 @@ public class CommunityDetailActivity extends BaseActivity implements CustomListe
     /**
      * 删除评论
      *
-     * @param replyId
+     * @param replyId 删除ID
      */
     public void handleDeleteReplayRequest(int replyId) {
         HashMap<String, String> params = new HashMap<>();
@@ -689,7 +702,7 @@ public class CommunityDetailActivity extends BaseActivity implements CustomListe
     /**
      * 举报
      *
-     * @param replyId
+     * @param replyId 举报ID
      */
     public void handleReportReplayRequest(int replyId) {
         HashMap<String, String> params = new HashMap<>();
@@ -710,6 +723,37 @@ public class CommunityDetailActivity extends BaseActivity implements CustomListe
                 showShortToast(message);
             }
         }));
+    }
+
+    // 用HashMap存储听写结果
+    private HashMap<String, String> mIatResults = new LinkedHashMap<String, String>();
+
+    /**
+     * 语音输出
+     *
+     * @param results     RecognizerResult
+     * @param mResultText EditText对象
+     */
+    private void printResult(RecognizerResult results, TextView mResultText) {
+        String text = JsonParser.parseIatResult(results.getResultString());
+
+        String sn = null;
+        // 读取json结果中的sn字段
+        try {
+            JSONObject resultJson = new JSONObject(results.getResultString());
+            sn = resultJson.optString("sn");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        mIatResults.put(sn, text);
+
+        StringBuffer resultBuffer = new StringBuffer();
+        for (String key : mIatResults.keySet()) {
+            resultBuffer.append(mIatResults.get(key));
+        }
+
+        mResultText.setText(resultBuffer.toString());
     }
 
 

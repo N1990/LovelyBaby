@@ -164,28 +164,29 @@ public class CommentListTwoFragment extends CommunityBaseFragment {
             final ArrayList<Integer> more = (ArrayList<Integer>) object;
             switch (more.get(1)) {
                 case 1:// delete
-                    builder = CustomDialogBuilder.getInstance(getActivity()).withTitle("操作")
+                    if (builder != null)
+                        builder.dismiss();
+                    builder = CustomDialogBuilder.getInstance(v.getContext()).withTitle("操作")
                             .withMessage("您确认要删除您的回复吗？")
                             .withComfirmText("确认", new CustomListener.DialogListener() {
                                 @Override
                                 public void onClick(View v) {
-                                    if (builder != null)
-                                        builder.dismiss();
+                                    if (builder != null) builder.dismiss();
                                     ((CommunityDetailActivity) getActivity()).handleDeleteReplayRequest(more.get(0));
                                 }
                             })
                             .withCancelText("取消", new CustomListener.DialogListener() {
                                 @Override
                                 public void onClick(View v) {
-                                    if (builder != null)
-                                        builder.dismiss();
+                                    if (builder != null) builder.dismiss();
                                 }
                             });
                     builder.show();
-
                     break;
                 case 0:// report
-                    builder = CustomDialogBuilder.getInstance(getActivity()).withTitle("操作")
+                    if (builder != null)
+                        builder.dismiss();
+                    builder = CustomDialogBuilder.getInstance(v.getContext()).withTitle("操作")
                             .withMessage("您确认要举报此回复吗？")
                             .withComfirmText("确认", new CustomListener.DialogListener() {
                                 @Override

@@ -60,6 +60,7 @@ public class AutoScrollAdapter extends PagerAdapter implements View.OnClickListe
         SimpleDraweeView iv = (SimpleDraweeView) LayoutInflater.from(container.getContext()).inflate(R.layout.activity_home_banner_image, null);
         BannerModel.DataEntity img = imgs.get(position);
         iv.setImageURI(Uri.parse(img.getImg()));
+//        FrescoTool.loadImage(iv, img.getImg(), String.valueOf(img.getImgWidth()), String.valueOf(img.getImgHeight()));
         iv.setTag(position);
         iv.setOnClickListener(this);
         container.addView(iv);

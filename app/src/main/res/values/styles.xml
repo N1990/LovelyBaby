@@ -2,6 +2,7 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Base.Theme.Design" />
+
     <style name="AppThemeFullScreen" parent="Base.Theme.Design" />
 
     <style name="Base.Theme.Design" parent="Theme.AppCompat.Light.NoActionBar">

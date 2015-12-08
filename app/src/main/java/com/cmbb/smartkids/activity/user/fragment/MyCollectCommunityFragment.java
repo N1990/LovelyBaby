@@ -10,9 +10,7 @@ import android.view.ViewGroup;
 import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.activity.community.CommunityDetailActivity;
 import com.cmbb.smartkids.activity.community.model.TopicListModel;
-import com.cmbb.smartkids.activity.serve.model.ServiceListModel;
 import com.cmbb.smartkids.activity.user.adapter.MyCommunityAdapter;
-import com.cmbb.smartkids.activity.user.adapter.MyServiceAdapter;
 import com.cmbb.smartkids.base.BaseApplication;
 import com.cmbb.smartkids.base.BaseFragment;
 import com.cmbb.smartkids.base.Constants;
@@ -86,7 +84,7 @@ public class MyCollectCommunityFragment extends BaseFragment {
 
         @Override
         public void onLoadMore() {
-            pager ++;
+            pager++;
             handleCollectCommunityRequest();
         }
     };

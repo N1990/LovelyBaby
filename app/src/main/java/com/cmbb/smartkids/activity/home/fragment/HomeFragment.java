@@ -213,11 +213,10 @@ public class HomeFragment extends BaseFragment {
         bodyHot.put("isRecommoned", "1");
         bodyHot.put("numberOfPerPage", String.valueOf(pagerSize));
         bodyHot.put("pageNo", String.valueOf(pager));
-
         NetRequest.postRequest(Constants.ServiceInfo.HOME_MAIN_HOT_SERVICE, "", bodyHot, HomePageRootModel.class, new NetRequest.NetHandler(getActivity(), new NetRequest.NetResponseListener() {
             @Override
             public void onSuccessListener(Object ob, String msg) {
-                com.cmbb.smartkids.utils.log.Log.i(TAG, "message = " + msg);
+                Log.i(TAG, "message = " + msg);
                 HomePageRootModel object = (HomePageRootModel) ob;
                 if (null != object && object.getData() != null && object.getData().getRecords() != 0) {
                     Log.i(TAG, "HomePageRootModel = " + object.toString());

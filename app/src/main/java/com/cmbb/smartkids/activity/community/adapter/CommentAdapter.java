@@ -77,6 +77,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommunityCommentHolder>
         return onCommentHeaderListener;
     }
 
+
     public void setOnCommentHeaderListener(CustomListener.ItemClickListener onCommentHeaderListener) {
         this.onCommentHeaderListener = onCommentHeaderListener;
     }

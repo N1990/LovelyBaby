@@ -30,8 +30,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 
-/**
- */
 public class CommentListOneFragment extends CommunityBaseFragment {
     private static final String TOPIC_ID = "topic_id";
     private static final String PAGER = "pager";
@@ -127,7 +125,6 @@ public class CommentListOneFragment extends CommunityBaseFragment {
     }
 
 
-
     /**
      * 评论用户头像
      */
@@ -136,7 +133,7 @@ public class CommentListOneFragment extends CommunityBaseFragment {
         public void onItemClick(View v, int position, Object object) {
             int userId = (int) v.getTag();
             Intent intent = new Intent(getActivity(), UserCenterActivity.class);
-            intent.putExtra("userId", userId );
+            intent.putExtra("userId", userId);
             startActivity(intent);
         }
     };
@@ -166,7 +163,9 @@ public class CommentListOneFragment extends CommunityBaseFragment {
             final ArrayList<Integer> more = (ArrayList<Integer>) object;
             switch (more.get(1)) {
                 case 1:// delete
-                    builder = CustomDialogBuilder.getInstance(getActivity()).withTitle("操作")
+                    if (builder != null)
+                        builder.dismiss();
+                    builder = CustomDialogBuilder.getInstance(v.getContext()).withTitle("操作")
                             .withMessage("您确认要删除您的回复吗？")
                             .withComfirmText("确认", new CustomListener.DialogListener() {
                                 @Override
@@ -184,10 +183,11 @@ public class CommentListOneFragment extends CommunityBaseFragment {
                                 }
                             });
                     builder.show();
-
                     break;
                 case 0:// report
-                    builder = CustomDialogBuilder.getInstance(getActivity()).withTitle("操作")
+                    if (builder != null)
+                        builder.dismiss();
+                    builder = CustomDialogBuilder.getInstance(v.getContext()).withTitle("操作")
                             .withMessage("您确认要举报此回复吗？")
                             .withComfirmText("确认", new CustomListener.DialogListener() {
                                 @Override

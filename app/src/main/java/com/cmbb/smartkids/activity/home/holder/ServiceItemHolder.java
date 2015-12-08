@@ -54,8 +54,10 @@ public class ServiceItemHolder extends RecyclerView.ViewHolder implements View.O
         llHomeServiceItem.setOnClickListener(this);
         FrescoTool.loadImage(ivHomeServiceItem, row.getServicesImg(), String.valueOf(TDevice.dip2px(200, ivHomeServiceItem.getContext())));
         tvTitleHomeServiceItem.setText(row.getTitle());
-        double price = Double.valueOf(row.getPrice());
-        tvPriceHomeServiceItem.setText(price != 0 ? row.getPrice() + "元" : "免费");
+        if (!TextUtils.isEmpty(row.getPrice())) {
+            double price = Double.valueOf(row.getPrice());
+            tvPriceHomeServiceItem.setText(price != 0 ? row.getPrice() + "元" : "免费");
+        }
         tvJoinHomeServiceItem.setText("参加人数：" + row.getRealityPeoples() + "/" + row.getPeoples());
         iv.setVisibility(View.VISIBLE);
         int statusValue = row.getStatus();

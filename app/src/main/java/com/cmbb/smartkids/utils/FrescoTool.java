@@ -98,7 +98,7 @@ public class FrescoTool {
             Log.e("FresoTool", "url 不能为空");
             return;
         }
-        Uri uri = Uri.parse(url + "@200w_1o.jpeg");
+        Uri uri = Uri.parse(url + "@100w_1o.jpeg");
         ImageRequest request = ImageRequestBuilder
                 .newBuilderWithSource(uri)
                 .setProgressiveRenderingEnabled(true)

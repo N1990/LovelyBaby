@@ -1,6 +1,7 @@
 package com.cmbb.smartkids.activity.community.holder;
 
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -16,7 +17,7 @@ import com.facebook.drawee.view.SimpleDraweeView;
  * 创建人：javon
  * 创建时间：2015/10/18 17:34
  */
-public class PublicItemHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+public class PublicItemHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     private ImageView ivHandle, ivClear, ivZoom;
     private SimpleDraweeView sdv;
     private View root;
@@ -33,36 +34,39 @@ public class PublicItemHolder extends RecyclerView.ViewHolder implements View.On
 
     }
 
-    public void setData(PublicCommunityAdapter adapter, int position, ImageModel model){
+    public void setData(PublicCommunityAdapter adapter, int position, ImageModel model) {
         this.adapter = adapter;
         this.position = position;
-        model.setIsCheck(false);
-        ivHandle.setVisibility(View.GONE);
-        if(position == adapter.getCurPos())
-            ivHandle.setVisibility(View.VISIBLE);
-        FrescoTool.loadLocalImage(sdv, model.getImgUrl());
-        ivClear.setOnClickListener(this);
-        sdv.setOnClickListener(this);
-        ivZoom.setOnClickListener(this);
-        sdv.setTag(model);
-        ivClear.setTag(model);
+        if (model != null) {
+            model.setIsCheck(false);
+            ivHandle.setVisibility(View.GONE);
+            if (position == adapter.getCurPos())
+                ivHandle.setVisibility(View.VISIBLE);
+            if (!TextUtils.isEmpty(model.getImgUrl()))
+                FrescoTool.loadLocalImage(sdv, model.getImgUrl());
+            ivClear.setOnClickListener(this);
+            sdv.setOnClickListener(this);
+            ivZoom.setOnClickListener(this);
+            sdv.setTag(model);
+            ivClear.setTag(model);
+        }
     }
 
     @Override
     public void onClick(View v) {
         int id = v.getId();
         ImageModel model = (ImageModel) v.getTag();
-        if(id == R.id.iv_public_community_delete_item){
-            if(adapter.getOnItemDeleteListener() != null) {
+        if (id == R.id.iv_public_community_delete_item) {
+            if (adapter.getOnItemDeleteListener() != null) {
                 adapter.getOnItemDeleteListener().onItemClick(v, position, model);
             }
-        }else if(id == R.id.iv_public_community_item){
+        } else if (id == R.id.iv_public_community_item) {
             model.setIsCheck(true);
             ivHandle.setVisibility(View.VISIBLE);
-            if(adapter.getOnItemListener() != null)
+            if (adapter.getOnItemListener() != null)
                 adapter.getOnItemListener().onItemClick(v, position, model);
-        }else if(id == R.id.iv_public_community_zoom_item){
-            if(adapter.getOnItemZoomListener() != null)
+        } else if (id == R.id.iv_public_community_zoom_item) {
+            if (adapter.getOnItemZoomListener() != null)
                 adapter.getOnItemZoomListener().onItemClick(v, position, adapter.getData());
         }
     }

@@ -91,7 +91,7 @@ public class VerifyActivity extends BaseActivity {
         switch (v.getId()) {
             case R.id.tv_verify_phone_code:
 //                startService(new Intent(this, CountTimeService.class));
-                if (tag.equals("register")) {
+                if ("register".equals(tag)) {
                     // 注册验证码
                     HashMap<String, String> body = new HashMap<>();
                     body.put("loginAccount", phone);

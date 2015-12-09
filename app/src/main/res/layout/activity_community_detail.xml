@@ -159,7 +159,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_toRightOf="@+id/iv_community_comment_rever_upload"
-                android:src="@android:drawable/ic_menu_add" />
+                android:src="@mipmap/ic_micro" />
 
             <TextView
                 android:id="@+id/tv_community_comment_rever_publish"

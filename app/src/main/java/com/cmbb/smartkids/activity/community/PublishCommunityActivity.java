@@ -1,12 +1,15 @@
 package com.cmbb.smartkids.activity.community;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -27,9 +30,13 @@ import com.cmbb.smartkids.photopicker.PhotoPickerActivity;
 import com.cmbb.smartkids.photopicker.PhotoViewActivity;
 import com.cmbb.smartkids.photopicker.utils.PhotoPickerIntent;
 import com.cmbb.smartkids.utils.FullyLinearLayoutManager;
-import com.cmbb.smartkids.utils.log.Log;
+import com.cmbb.smartkids.utils.SPCache;
 import com.cmbb.smartkids.widget.spinner.NiceSpinner;
+import com.cmbb.smartkids.widget.wheelview.CustomDialogBuilder;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -72,6 +79,43 @@ public class PublishCommunityActivity extends BaseActivity {
 
     private void initData() {
         handleTopicTypeRequest();
+        // 获取草稿箱内容
+        if (!TextUtils.isEmpty(etTitle.getText().toString().trim())) {
+            SPCache.putString("Publish_Topic_Title", etTitle.getText().toString().trim());
+        }
+
+        if (!TextUtils.isEmpty(etContent.getText().toString())) {
+            SPCache.putString("Publish_Topic_Content", etContent.getText().toString());
+        }
+
+        if (adapter.getData() != null && adapter.getData().size() > 0) {
+            Gson gson = new Gson();
+            String images = gson.toJson(adapter.getData());
+            SPCache.putString("Publish_Topic_Images", images);
+        }
+        String title_cache = SPCache.getString("Publish_Topic_Title", "");
+        String content_cache = SPCache.getString("Publish_Topic_Content", "");
+        String images_cache = SPCache.getString("Publish_Topic_Images", "");
+
+        if (!TextUtils.isEmpty(title_cache)) {
+            etTitle.setText(title_cache);
+        }
+        if (!TextUtils.isEmpty(content_cache)) {
+            etContent.setText(content_cache);
+        }
+        if (!TextUtils.isEmpty(images_cache)) {
+            Gson gson = new Gson();
+            ArrayList<ImageModel> imageModels = gson.fromJson(images_cache, new TypeToken<ArrayList<ImageModel>>() {
+            }.getType());
+            if (imageModels != null && imageModels.size() > 0) {
+                etImgDescri.setVisibility(View.VISIBLE);
+                adapter.setData(imageModels);
+                Log.e("content", "content = " + imageModels.get(0).getContent());
+                if (!TextUtils.isEmpty(imageModels.get(0).getContent())) {
+                    etImgDescri.setText(imageModels.get(0).getContent());
+                }
+            }
+        }
     }
 
     private void initView() {
@@ -147,7 +191,7 @@ public class PublishCommunityActivity extends BaseActivity {
         etImgDescri.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                imgDescri  = s.toString();
+                //imgDescri = s.toString();
             }
 
             @Override
@@ -157,7 +201,8 @@ public class PublishCommunityActivity extends BaseActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                Log.e("position", "position = " + adapter.getCurPos());
+                adapter.getData().get(adapter.getCurPos()).setContent(s.toString());
             }
         });
     }
@@ -166,6 +211,11 @@ public class PublishCommunityActivity extends BaseActivity {
 
         @Override
         public void onItemClick(View v, int position, Object object) {
+            //更新上一个选中的对象
+            if (adapter.getCurPos() < adapter.getItemCount() - 1) {
+                adapter.updateData(adapter.getCurPos(), adapter.getData().get(adapter.getCurPos()));
+            }
+            adapter.setCurPos(position);
 
             ImageModel item = (ImageModel) object;
             if (!TextUtils.isEmpty(item.getContent())) {
@@ -174,18 +224,6 @@ public class PublishCommunityActivity extends BaseActivity {
                 etImgDescri.setText("");
             }
             etImgDescri.setVisibility(View.VISIBLE);
-
-            //更新上一个选中的对象
-            if (adapter.getCurPos() < adapter.getItemCount() - 1) {
-                adapter.getData().get(adapter.getCurPos()).setContent(imgDescri);
-//                Log.e(TAG, "selModel Image : " + adapter.getData().get(adapter.getCurPos()).getImgUrl());
-//                Log.e(TAG, " selModel Content : " + adapter.getData().get(adapter.getCurPos()).getContent());
-                adapter.updateData(adapter.getCurPos(), adapter.getData().get(adapter.getCurPos()));
-            }
-
-//            Log.e(TAG, "curPos1 : " + adapter.getCurPos());
-
-            adapter.setCurPos(position);
         }
     };
 
@@ -194,15 +232,14 @@ public class PublishCommunityActivity extends BaseActivity {
         @Override
         public void onItemClick(View v, int position, Object object) {
             adapter.removeData(position);
-//            Log.e(TAG, "delete Item : " + position);
             if (adapter.getItemCount() - 1 == 0) {
                 etImgDescri.setVisibility(View.GONE);
                 adapter.setCurPos(0);
                 etImgDescri.setText("");
-            }else if(position == 0){
+            } else if (position == 0) {
                 adapter.setCurPos(0);
                 etImgDescri.setText(adapter.getData().get(adapter.getCurPos()).getContent());
-            }else{
+            } else {
                 adapter.setCurPos(position - 1);
                 etImgDescri.setText(adapter.getData().get(adapter.getCurPos()).getContent());
             }
@@ -228,7 +265,6 @@ public class PublishCommunityActivity extends BaseActivity {
                 imgs.add(item.getImgUrl());
             }
             PhotoViewActivity.IntentPhotoView(v.getContext(), imgs, position);
-
         }
     };
 
@@ -256,7 +292,7 @@ public class PublishCommunityActivity extends BaseActivity {
         switch (v.getId()) {
             case R.id.tv_main_toolbar_right:// 提交
                 String title = etTitle.getText().toString().trim();
-                String content = etContent.getText().toString().trim();
+                String content = etContent.getText().toString();
                 handlePublicRequest(title, type_value, content, adapter.getData());
                 break;
         }
@@ -281,7 +317,7 @@ public class PublishCommunityActivity extends BaseActivity {
             return;
         }
 
-        if(contentRealLen > 500){
+        if (contentRealLen > 500) {
             showShortToast("话题的内容不超过500个字");
             return;
         }
@@ -295,6 +331,22 @@ public class PublishCommunityActivity extends BaseActivity {
         params.put("topicType", topicType);
         params.put("contents", contents);
         params.put("token", BaseApplication.token);
+        for (ImageModel model : files) {
+            try {
+                File file_cache = new File(model.getImgUrl());
+                if (!file_cache.exists()) {
+                    SPCache.putString("Publish_Topic_Title", "");
+                    SPCache.putString("Publish_Topic_Content", "");
+                    SPCache.putString("Publish_Topic_Images", "");
+                    SPCache.putString("Publish_Topic_Type_Name", "");
+                    SPCache.putString("Publish_Topic_Type", "");
+                    showShortToast("可能您的图片不存在了！");
+                    return;
+                }
+            } catch (Exception e) {
+
+            }
+        }
         showWaitDialog();
         NetRequest.postRequestWithFiles(Constants.Community.TOPIC_PUBLISH, params, files, ServiceListModel.class, new NetRequest.NetHandler(this, new NetRequest.NetResponseListener() {
             @Override
@@ -302,6 +354,11 @@ public class PublishCommunityActivity extends BaseActivity {
                 hideWaitDialog();
                 showShortToast(msg);
                 setResult(RESULT_OK);
+                SPCache.putString("Publish_Topic_Title", "");
+                SPCache.putString("Publish_Topic_Content", "");
+                SPCache.putString("Publish_Topic_Images", "");
+                SPCache.putString("Publish_Topic_Type_Name", "");
+                SPCache.putString("Publish_Topic_Type", "");
                 finish();
             }
 
@@ -333,6 +390,17 @@ public class PublishCommunityActivity extends BaseActivity {
                     ns.attachDataSource(topic_type_name);
                     // 初始值
                     type_value = topic_type_value.get(0);
+
+                    // 是否保存
+                    String type_cache = SPCache.getString("Publish_Topic_Content", "");
+                    String type_name_cache = SPCache.getString("Publish_Topic_Type_Name", "");
+
+                    if (!TextUtils.isEmpty(type_name_cache)) {
+                        ns.setText(type_name_cache);
+                    }
+                    if (!TextUtils.isEmpty(type_cache)) {
+                        type_value = type_cache;
+                    }
                 }
             }
 
@@ -342,5 +410,59 @@ public class PublishCommunityActivity extends BaseActivity {
                 showShortToast(message);
             }
         }));
+    }
+
+    CustomDialogBuilder builder;
+
+    @Override
+    public void onBackPressed() {
+        //是否保存
+        new AlertDialog.Builder(this)
+                .setTitle("操作")
+                .setMessage("是否保存草稿？")
+                .setPositiveButton("保存", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        if (!TextUtils.isEmpty(etTitle.getText().toString().trim())) {
+                            SPCache.putString("Publish_Topic_Title", etTitle.getText().toString().trim());
+                        }
+
+                        if (!TextUtils.isEmpty(type_value)) {
+                            SPCache.putString("Publish_Topic_Type", type_value);
+                        }
+
+                        if (!TextUtils.isEmpty(ns.getText())) {
+                            SPCache.putString("Publish_Topic_Type_Name", ns.getText().toString());
+                        }
+
+                        if (!TextUtils.isEmpty(etContent.getText().toString())) {
+                            SPCache.putString("Publish_Topic_Content", etContent.getText().toString());
+                        }
+
+                        if (adapter.getData() != null && adapter.getData().size() > 0) {
+                            Gson gson = new Gson();
+                            String images = gson.toJson(adapter.getData());
+                            SPCache.putString("Publish_Topic_Images", images);
+                        }
+
+                        if (builder != null)
+                            builder.dismiss();
+                        showShortToast("保存成功");
+                        finish();
+                    }
+                })
+                .setNegativeButton("放弃", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        SPCache.putString("Publish_Topic_Title", "");
+                        SPCache.putString("Publish_Topic_Content", "");
+                        SPCache.putString("Publish_Topic_Images", "");
+                        SPCache.putString("Publish_Topic_Type_Name", "");
+                        SPCache.putString("Publish_Topic_Type", "");
+                        finish();
+                    }
+                })
+                .show();
     }
 }

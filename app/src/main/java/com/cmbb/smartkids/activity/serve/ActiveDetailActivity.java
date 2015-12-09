@@ -43,12 +43,12 @@ public class ActiveDetailActivity extends BaseActivity {
     private final String TAG = ActiveDetailActivity.class.getSimpleName();
     private final int ORDER_RESULT = 10001;
     private ScrollView nsv;
-    private TextView tvJoinNum, tvUserNick, tvUserIdentity, tvContent, tvFan, tvActiveLocal,
-            tvActiveNumber, tvContact, tvCollect, tvOrder, tvPrice,
-            tvSignStartTime, tvSignEndTime, tvStartTime, tvEndTime, tvTitle;
+    private TextView tvJoinNum, tvUserNick, tvUserIdentity, tvContent, tvActiveLocal,
+            tvContact, tvOrder, tvPrice, tvMore,
+            tvTime, tvTitle, tvPreColle;
     private SimpleDraweeView ivAd, ivUserHeader;
-    private ImageView ivCollect, ivOrder, ivRight;
-    private LinearLayout llFooter, llCollect, llOrder, llContainer;
+    private ImageView ivCollect, ivShare, ivRight;
+    private LinearLayout llOrder;
     private RatingBar rb;
     private CustomDialogBuilder builder;
     private int serviceId;
@@ -56,8 +56,7 @@ public class ActiveDetailActivity extends BaseActivity {
     private List<ActiveDetailModel.DataEntity.UserInfoListEntity> userList;
     private boolean isCollected;  // 是否收藏
     private boolean isOrder;  // 是否预定
-    private boolean fromCollect; //是否从收藏列表进入
-    private ArrayList<String> imgs = new ArrayList<>(); //图片缓存
+//    private ArrayList<String> imgs = new ArrayList<>(); //图片缓存
 
     @Override
     protected int getLayoutId() {
@@ -75,9 +74,10 @@ public class ActiveDetailActivity extends BaseActivity {
         ivAd.setOnClickListener(this);
         tvUserNick.setOnClickListener(this);
         tvContact.setOnClickListener(this);
-        llCollect.setOnClickListener(this);
-        llOrder.setOnClickListener(this);
         ivUserHeader.setOnClickListener(this);
+        ivCollect.setOnClickListener(this);
+        tvMore.setOnClickListener(this);
+        tvOrder.setOnClickListener(this);
     }
 
     private void initData() {
@@ -93,31 +93,29 @@ public class ActiveDetailActivity extends BaseActivity {
 
     private void initView() {
         setTitle("服务详情");
+        ivCollect = (ImageView) findViewById(R.id.iv_active_detail_collect_right);
         nsv = (ScrollView) findViewById(R.id.nsv_active_detail);
         ivAd = (SimpleDraweeView) findViewById(R.id.tv_active_detail_ad);
         tvJoinNum = (TextView) findViewById(R.id.tv_active_detail_num);
+        tvTitle = (TextView) findViewById(R.id.tv_active_detail_title);
+        tvPreColle = (TextView) findViewById(R.id.tv_active_preview_and_collect);
         tvPrice = (TextView) findViewById(R.id.tv_active_detail_price);
         ivUserHeader = (SimpleDraweeView) findViewById(R.id.iv_user_center_header);
         tvUserNick = (TextView) findViewById(R.id.tv_user_center_nickename);
         tvUserIdentity = (TextView) findViewById(R.id.tv_user_center_identity);
-        tvContent = (TextView) findViewById(R.id.tv_active_detail_content);
-        tvTitle = (TextView) findViewById(R.id.tv_active_detail_title);
-        tvFan = (TextView) findViewById(R.id.tv_user_center_fan);
         rb = (RatingBar) findViewById(R.id.rb_user_center_perssion);
-        tvSignStartTime = (TextView) findViewById(R.id.tv_active_detail_sign_start_time);
-        tvStartTime = (TextView) findViewById(R.id.tv_active_detail_start_time);
-        tvActiveLocal = (TextView) findViewById(R.id.tv_active_detail_local);
-        tvActiveNumber = (TextView) findViewById(R.id.tv_active_detail_number);
-        tvContact = (TextView) findViewById(R.id.tv_active_detail_contact);
-        llContainer = (LinearLayout) findViewById(R.id.ll_active_detail_container);
-        llFooter = (LinearLayout) findViewById(R.id.ll_active_detail_footer);
-        llCollect = (LinearLayout) findViewById(R.id.ll_active_detail_collect);
-        ivCollect = (ImageView) findViewById(R.id.iv_active_detail_collect);
         ivRight = (ImageView) findViewById(R.id.iv_user_base_right);
-        tvCollect = (TextView) findViewById(R.id.tv_active_detail_collect);
+
+
+        tvTime = (TextView) findViewById(R.id.tv_active_detail_time);
+        tvActiveLocal = (TextView) findViewById(R.id.tv_active_detail_local);
+        tvContact = (TextView) findViewById(R.id.tv_active_detail_contact);
+        tvContent = (TextView) findViewById(R.id.tv_active_detail_content);
+
         llOrder = (LinearLayout) findViewById(R.id.ll_active_detail_order);
-        ivOrder = (ImageView) findViewById(R.id.iv_active_detail_order);
         tvOrder = (TextView) findViewById(R.id.tv_active_detail_order);
+
+        tvMore = (TextView) findViewById(R.id.tv_active_detail_more);
     }
 
     private void showAlertDialog() {
@@ -190,19 +188,24 @@ public class ActiveDetailActivity extends BaseActivity {
                     startActivity(callPh);
                 }
                 break;
-            case R.id.ll_active_detail_collect:
+            case R.id.iv_active_detail_collect_right:
                 handleCollectRequest(isCollected ? 0 : 1);
                 break;
-            case R.id.ll_active_detail_order:
+            case R.id.tv_active_detail_order:
                 showAlertDialog();
                 break;
-            case R.id.iv_active_detail_item:
-                int position = (int) v.getTag();
-                PhotoViewActivity.IntentPhotoView(v.getContext(), imgs, position + 1);
+            case R.id.tv_active_detail_more:
+                Intent more = new Intent(ActiveDetailActivity.this, ActiveDetailMoreActivity.class);
+                more.putExtra("more", realData);
+                startActivityForResult(more, ORDER_RESULT);
                 break;
-            case R.id.tv_active_detail_ad:
-                PhotoViewActivity.IntentPhotoView(v.getContext(), imgs, 0);
-                break;
+//            case R.id.iv_active_detail_item:
+//                int position = (int) v.getTag();
+//                PhotoViewActivity.IntentPhotoView(v.getContext(), imgs, position + 1);
+//                break;
+//            case R.id.tv_active_detail_ad:
+//                PhotoViewActivity.IntentPhotoView(v.getContext(), imgs, 0);
+//                break;
         }
 
     }
@@ -227,41 +230,38 @@ public class ActiveDetailActivity extends BaseActivity {
 
     private void reflushView() {
         nsv.setVisibility(View.VISIBLE);
-        llFooter.setVisibility(View.VISIBLE);
+        llOrder.setVisibility(View.VISIBLE);
         findViewById(R.id.ll_empty_data).setVisibility(View.GONE);
         FrescoTool.loadImage(ivAd, realData.getServicesImg(), String.valueOf(TDevice.dip2px(200, ivAd.getContext())));
-        imgs.add(realData.getServicesImg());
+//        imgs.add(realData.getServicesImg());
         String time01 = "";
         String time02 = "";
         try {
-            time01 = Tools.DataToString(realData.getApplyStartTime(), "yyyy.MM.dd");
-            time02 = Tools.DataToString(realData.getApplyEndTime(), "MM-dd");
+            time01 = Tools.DataToString(realData.getStartTime(), "MM/dd hh:mm");
+            time02 = Tools.DataToString(realData.getEndTime(), "MM/dd hh:mm");
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        tvSignStartTime.setText("预定时间：" + time01);
-        String time03 = "";
-        String time04 = "";
-        try {
-            time03 = Tools.DataToString(realData.getStartTime(), "yyyy.MM.dd HH:mm");
-            time04 = Tools.DataToString(realData.getEndTime(), "yyyy.MM.dd HH:mm");
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        tvTime.setText( time01 + " - " + time02);
         tvTitle.setText(realData.getTitle());
-        tvStartTime.setText("服务时间：" + time03);
-        tvJoinNum.setText(realData.getRealityPeoples() + "/" + realData.getPeoples());
+        tvPreColle.setText("浏览" + realData.getBrowseNumber() + "次  收藏" + realData.getColletCount() + "次");
+        tvJoinNum.setText("已参加 " + realData.getRealityPeoples() + "/" + realData.getPeoples());
         double price = Double.valueOf(realData.getPrice());
-        tvPrice.setText(price == 0 ? "免费" : realData.getPrice() + "元");
+        tvPrice.setText(price == 0 ? "免费" : "￥" + realData.getPrice());
         tvActiveLocal.setText("服务地点：" + realData.getAddress());
-        tvActiveNumber.setText("服务参加人数：" + realData.getPeoples() + "人");
         tvContact.setText(realData.getServicePhone());
         isCollected = realData.getIsCollect() == 1 ? true : false;
-        ivCollect.setBackgroundResource(isCollected ? R.mipmap.btn_collect_pressed : R.mipmap.btn_collect_normal);
+        ivCollect.setBackgroundResource(isCollected ? R.mipmap.btn_community_collect_pressed : R.mipmap.btn_community_collect_normal);
         isOrder = realData.getIsReserve() == 0 ? true : false;
-        ivOrder.setBackgroundResource(isOrder ? R.mipmap.btn_order_pressed : R.mipmap.btn_order_normal);
-        if (isOrder)
-            findViewById(R.id.ll_active_detail_order).setEnabled(false);
+        if (isOrder){
+            tvOrder.setEnabled(false);
+            tvOrder.setBackgroundResource(R.drawable.btn_service_detail_order_disenable);
+            tvOrder.setText("不可预定");
+        }else{
+            tvOrder.setEnabled(true);
+            tvOrder.setBackgroundResource(R.drawable.btn_service_detail_order_enable);
+            tvOrder.setText("预定");
+        }
         if (realData.getUserInfoList() != null && realData.getUserInfoList().size() > 0) {
             if (realData.getUserInfoList().size() <= 1) {
                 ivRight.setVisibility(View.INVISIBLE);
@@ -273,30 +273,28 @@ public class ActiveDetailActivity extends BaseActivity {
             FrescoTool.loadImage(ivUserHeader, userList.get(0).getUserSmallImg());
             tvUserNick.setText(userList.get(0).getUserNike());
             tvUserIdentity.setText(userList.get(0).getUserRole().get(0).getEredarName());
-            tvFan.setText("Fans(" + userList.get(0).getFans() + ")");
         } else {
             findViewById(R.id.ll_active_detail_userinfo).setVisibility(View.GONE);
         }
-
         tvContent.setText(realData.getContent());
-        if (realData.getServiceImgList() != null) {
-            List<ActiveDetailModel.DataEntity.ServiceImgListEntity> imgsList = realData.getServiceImgList();
-            int postion = 0;
-            for (ActiveDetailModel.DataEntity.ServiceImgListEntity img : imgsList) {
-
-                View child = getLayoutInflater().inflate(R.layout.list_active_detail_item, null);
-                TextView tvContent = (TextView) child.findViewById(R.id.tv_active_detail_item);
-                SimpleDraweeView iv = (SimpleDraweeView) child.findViewById(R.id.iv_active_detail_item);
-                iv.setOnClickListener(this);
-                iv.setTag(postion);
-                tvContent.setTextIsSelectable(true);
-                tvContent.setText(img.getContent());
-                FrescoTool.loadImage(iv, img.getImgPath(), img.getImgWidth() + "", img.getImgHeight() + "");
-                postion++;
-                imgs.add(img.getImgPath());
-                llContainer.addView(child);
-            }
-        }
+//        if (realData.getServiceImgList() != null) {
+//            List<ActiveDetailModel.DataEntity.ServiceImgListEntity> imgsList = realData.getServiceImgList();
+//            int postion = 0;
+//            for (ActiveDetailModel.DataEntity.ServiceImgListEntity img : imgsList) {
+//
+//                View child = getLayoutInflater().inflate(R.layout.list_active_detail_item, null);
+//                TextView tvContent = (TextView) child.findViewById(R.id.tv_active_detail_item);
+//                SimpleDraweeView iv = (SimpleDraweeView) child.findViewById(R.id.iv_active_detail_item);
+//                iv.setOnClickListener(this);
+//                iv.setTag(postion);
+//                tvContent.setTextIsSelectable(true);
+//                tvContent.setText(img.getContent());
+//                FrescoTool.loadImage(iv, img.getImgPath(), img.getImgWidth() + "", img.getImgHeight() + "");
+//                postion++;
+//                imgs.add(img.getImgPath());
+//                llContainer.addView(child);
+//            }
+//        }
     }
 
     @Override
@@ -359,10 +357,9 @@ public class ActiveDetailActivity extends BaseActivity {
                 SecurityCodeModel data = (SecurityCodeModel) object;
                 if (data != null) {
                     isCollected = isCollected ? false : true;
-                    ivCollect.setBackgroundResource(isCollected ? R.mipmap.btn_collect_pressed : R.mipmap.btn_collect_normal);
-                } else {
-                    showShortToast(msg);
+                    ivCollect.setBackgroundResource(isCollected ? R.mipmap.btn_community_collect_pressed : R.mipmap.btn_community_collect_normal);
                 }
+                showShortToast(msg);
             }
 
             @Override
@@ -390,7 +387,7 @@ public class ActiveDetailActivity extends BaseActivity {
                 hideWaitDialog();
                 if (data != null && (orderDetail = data.getData()) != null) {
                     isOrder = true;
-                    ivOrder.setPressed(true);
+                    tvOrder.setEnabled(false);
                     Intent intent = new Intent(ActiveDetailActivity.this, OrderDetailActivity.class);
                     intent.putExtra("orderDetail", orderDetail);
                     intent.putExtra("serviceTitle", realData.getTitle());

@@ -43,7 +43,6 @@ public class ServiceFragment extends BaseFragment {
     private final String TAG = ServiceFragment.class.getSimpleName();
     private LoadMoreRecyclerView lmRc;
     private NiceSpinner citySp, sortSp, statusSp;
-    private List<String> cityData, sortData, statusData;
     private ServiceFraAdapter adapter;
     private int pager = 0;
     private int pagerSize = 5;

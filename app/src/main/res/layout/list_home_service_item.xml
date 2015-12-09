@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
     android:id="@+id/ll_home_service_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dip"
+    android:layout_marginTop="2dip"
+    android:padding="@dimen/half_global_padding"
     android:background="@drawable/btn_white_radio_bg"
-    android:elevation="5dip"
-    android:orientation="vertical">
+    android:elevation="5dip">
 
     <RelativeLayout
-        android:layout_width="match_parent"
+        android:id="@+id/rl_home_service_item"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/iv_home_service_item"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_width="120dp"
+            android:layout_height="72dp"
             fresco:actualImageScaleType="centerCrop"
             fresco:placeholderImage="@color/placeholder" />
 
@@ -30,82 +31,105 @@
             android:visibility="gone" />
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/tv_title_home_service_item"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dip"
-        android:layout_marginRight="5dip"
-        android:layout_marginTop="@dimen/half_global_padding"
-        android:text=""
-        android:textColor="@color/primaryColor" />
+
 
     <LinearLayout
+        android:id="@+id/ll_title_home_service_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dip"
-        android:layout_marginRight="5dip"
+        android:layout_toRightOf="@+id/rl_home_service_item"
         android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="0dip"
+        <TextView
+            android:id="@+id/tv_title_home_service_item"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
             android:layout_weight="1.0"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:text="费用"
-                android:textColor="@color/dimgray"
-                android:textSize="@dimen/txt_small" />
-
-            <TextView
-                android:id="@+id/tv_price_home_service_item"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dip"
-                android:gravity="center_vertical"
-                android:text=""
-                android:textColor="@color/primaryColor"
-                android:textSize="@dimen/txt_small" />
-        </LinearLayout>
+            android:singleLine="true"
+            android:textStyle="bold"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:layout_marginTop="@dimen/half_global_padding"
+            android:text=""
+            android:layout_marginRight="10dp"
+            android:textColor="@android:color/black" />
 
         <TextView
-            android:id="@+id/tv_join_home_service_item"
-            android:layout_width="0dip"
+            android:id="@+id/tv_home_service_tag_item"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@color/primaryColorDark"
+            android:text=""
             android:layout_gravity="center_vertical"
-            android:layout_weight="1.0"
-            android:gravity="center"
-            android:text="参加人数"
-            android:textColor="@color/dimgray"
-            android:textSize="@dimen/txt_small" />
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/txt_small"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"/>
+    </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="0dip"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1.0"
-            android:gravity="center_vertical|right"
-            android:orientation="horizontal">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dip"
-                android:background="@mipmap/btn_city_normal" />
+
+    <LinearLayout
+        android:id="@+id/ll_city_home_service_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dip"
+        android:layout_marginTop="6dp"
+        android:layout_toRightOf="@+id/rl_home_service_item"
+        android:layout_below="@+id/ll_title_home_service_item"
+        android:orientation="horizontal">
+
 
             <TextView
                 android:id="@+id/tv_city_home_service_item"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center_vertical"
                 android:text=""
                 android:textColor="@color/dimgray"
-                android:textSize="@dimen/txt_small" />
+                />
+
+            <TextView
+                android:id="@+id/tv_time_home_service_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
+                android:gravity="center_vertical"
+                android:text=""
+                android:textColor="@color/dimgray" />
         </LinearLayout>
-    </LinearLayout>
-</LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/rl_home_service_item"
+            android:layout_below="@+id/ll_city_home_service_item"
+            android:layout_marginLeft="5dip"
+            android:layout_marginTop="6dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_preview_home_service_item"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:drawableLeft="@mipmap/btn_my_care_bg"
+                android:text=""
+                android:gravity="center_vertical"
+                android:textColor="@color/dimgray"/>
+
+
+            <TextView
+                android:id="@+id/tv_price_home_service_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/primaryColorDark"
+                android:textStyle="bold"
+                android:text=""/>
+
+        </LinearLayout>
+</RelativeLayout>
 

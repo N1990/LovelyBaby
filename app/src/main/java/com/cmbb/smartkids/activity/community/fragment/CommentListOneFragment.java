@@ -206,7 +206,6 @@ public class CommentListOneFragment extends CommunityBaseFragment {
                                 }
                             });
                     builder.show();
-
                     break;
             }
         }

@@ -13,19 +13,22 @@ import java.util.List;
  */
 public class HomePageRootModel implements Parcelable {
 
+
     /**
-     * status : 1
-     * data : {"page":1,"records":5,"rows":[{"id":90,"properties":{},"title":"萌宝派宝爸宝妈群开通啦","startTime":"2015-10-18 05:39:36","endTime":"2015-10-24 05:39:41","applyStartTime":"2015-10-14 05:39:28","applyEndTime":"2015-10-17 05:39:32","peoples":200,"realityPeoples":null,"province":310000,"city":310100,"district":310104,"address":"飞虹路568弄13号","price":0,"type":200,"content":"萌宝派宝爸宝妈群开通啦.....","servicePhone":"13818155072","status":1,"isRecommoned":1,"servicesImg":"http://smart.image.alimmdn.com/system/image/2015-10-13/servicesImgFile_ZWNmMmYwZjgtMTNhOC00YmFjLTgyMjUtNjVlMzQ5YTlkNjVm","imgWidth":1242,"imgHeight":484,"sortNum":5,"isDelete":0,"createDate":"2015-10-13 17:40:25","createUserId":null,"updateDate":null,"updateUserId":null,"provinceText":"上海","cityText":"上海市","districtText":"徐汇区"},{"id":91,"properties":{},"title":"国庆总动员  晒照其祝福","startTime":"2015-10-18 05:45:50","endTime":"2015-10-19 05:45:52","applyStartTime":"2015-10-14 05:45:43","applyEndTime":"2015-10-17 05:45:47","peoples":800,"realityPeoples":null,"province":310000,"city":310100,"district":310101,"address":"飞虹路569弄13号","price":0,"type":200,"content":"国庆总动员  晒照其祝福啦。。。","servicePhone":"13818155072","status":1,"isRecommoned":1,"servicesImg":"http://smart.image.alimmdn.com/system/image/2015-10-13/servicesImgFile_ZjliNjg2ODgtZWY0NS00NWJmLTlmY2MtMWQwYzVkOTZlMDM4","imgWidth":1242,"imgHeight":484,"sortNum":4,"isDelete":0,"createDate":"2015-10-13 17:50:06","createUserId":null,"updateDate":null,"updateUserId":null,"provinceText":"上海","cityText":"上海市","districtText":"黄浦区"}],"total":3,"userdata":null}
+     * page : 1
+     * records : 2
+     * rows : [{"id":277,"properties":{},"title":"界面服务1212","startTime":"2015-12-09 12:00:00","endTime":"2015-12-09 15:00:00","applyStartTime":"2015-12-07 12:00:00","applyEndTime":"2015-12-09 12:00:00","peoples":12,"realityPeoples":1,"province":310000,"city":310100,"district":310101,"address":"123123123","price":"0.01","type":201,"content":"23312","servicePhone":"12121212","status":2,"isRecommoned":1,"servicesImg":"http://smart.image.alimmdn.com/system/image/2015-12-07/servicesImgFile_ZjFiZDc2YzItNmZiMS00NDJiLWEwMmItYWVjMTc1NWI3YWI1","imgWidth":"1024","imgHeight":"768","sortNum":2,"browseNumber":24,"isDelete":0,"createDate":"2015-12-07 12:01:21","createUserId":1,"updateDate":"","updateUserId":12,"provinceText":"","cityText":"上海市","districtText":"","surplusTime":"报名截止时间21小时"}]
+     * total : 1
+     * userdata :
+     */
+
+    private DataEntity data;
+    /**
+     * data : {"page":1,"records":2,"rows":[{"id":277,"properties":{},"title":"界面服务1212","startTime":"2015-12-09 12:00:00","endTime":"2015-12-09 15:00:00","applyStartTime":"2015-12-07 12:00:00","applyEndTime":"2015-12-09 12:00:00","peoples":12,"realityPeoples":1,"province":310000,"city":310100,"district":310101,"address":"123123123","price":"0.01","type":201,"content":"23312","servicePhone":"12121212","status":2,"isRecommoned":1,"servicesImg":"http://smart.image.alimmdn.com/system/image/2015-12-07/servicesImgFile_ZjFiZDc2YzItNmZiMS00NDJiLWEwMmItYWVjMTc1NWI3YWI1","imgWidth":"1024","imgHeight":"768","sortNum":2,"browseNumber":24,"isDelete":0,"createDate":"2015-12-07 12:01:21","createUserId":1,"updateDate":"","updateUserId":12,"provinceText":"","cityText":"上海市","districtText":"","surplusTime":"报名截止时间21小时"}],"total":1,"userdata":""}
      * msg : 数据加载成功
      */
 
-    private int status;
-    private DataEntity data;
     private String msg;
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
 
     public void setData(DataEntity data) {
         this.data = data;
@@ -33,10 +36,6 @@ public class HomePageRootModel implements Parcelable {
 
     public void setMsg(String msg) {
         this.msg = msg;
-    }
-
-    public int getStatus() {
-        return status;
     }
 
     public DataEntity getData() {
@@ -48,18 +47,46 @@ public class HomePageRootModel implements Parcelable {
     }
 
     public static class DataEntity implements Parcelable {
-        /**
-         * page : 1
-         * records : 5
-         * rows : [{"id":90,"properties":{},"title":"萌宝派宝爸宝妈群开通啦","startTime":"2015-10-18 05:39:36","endTime":"2015-10-24 05:39:41","applyStartTime":"2015-10-14 05:39:28","applyEndTime":"2015-10-17 05:39:32","peoples":200,"realityPeoples":null,"province":310000,"city":310100,"district":310104,"address":"飞虹路568弄13号","price":0,"type":200,"content":"萌宝派宝爸宝妈群开通啦.....","servicePhone":"13818155072","status":1,"isRecommoned":1,"servicesImg":"http://smart.image.alimmdn.com/system/image/2015-10-13/servicesImgFile_ZWNmMmYwZjgtMTNhOC00YmFjLTgyMjUtNjVlMzQ5YTlkNjVm","imgWidth":1242,"imgHeight":484,"sortNum":5,"isDelete":0,"createDate":"2015-10-13 17:40:25","createUserId":null,"updateDate":null,"updateUserId":null,"provinceText":"上海","cityText":"上海市","districtText":"徐汇区"},{"id":91,"properties":{},"title":"国庆总动员  晒照其祝福","startTime":"2015-10-18 05:45:50","endTime":"2015-10-19 05:45:52","applyStartTime":"2015-10-14 05:45:43","applyEndTime":"2015-10-17 05:45:47","peoples":800,"realityPeoples":null,"province":310000,"city":310100,"district":310101,"address":"飞虹路569弄13号","price":0,"type":200,"content":"国庆总动员  晒照其祝福啦。。。","servicePhone":"13818155072","status":1,"isRecommoned":1,"servicesImg":"http://smart.image.alimmdn.com/system/image/2015-10-13/servicesImgFile_ZjliNjg2ODgtZWY0NS00NWJmLTlmY2MtMWQwYzVkOTZlMDM4","imgWidth":1242,"imgHeight":484,"sortNum":4,"isDelete":0,"createDate":"2015-10-13 17:50:06","createUserId":null,"updateDate":null,"updateUserId":null,"provinceText":"上海","cityText":"上海市","districtText":"黄浦区"}]
-         * total : 3
-         * userdata : null
-         */
-
         private int page;
         private int records;
         private int total;
         private String userdata;
+        /**
+         * id : 277
+         * properties : {}
+         * title : 界面服务1212
+         * startTime : 2015-12-09 12:00:00
+         * endTime : 2015-12-09 15:00:00
+         * applyStartTime : 2015-12-07 12:00:00
+         * applyEndTime : 2015-12-09 12:00:00
+         * peoples : 12
+         * realityPeoples : 1
+         * province : 310000
+         * city : 310100
+         * district : 310101
+         * address : 123123123
+         * price : 0.01
+         * type : 201
+         * content : 23312
+         * servicePhone : 12121212
+         * status : 2
+         * isRecommoned : 1
+         * servicesImg : http://smart.image.alimmdn.com/system/image/2015-12-07/servicesImgFile_ZjFiZDc2YzItNmZiMS00NDJiLWEwMmItYWVjMTc1NWI3YWI1
+         * imgWidth : 1024
+         * imgHeight : 768
+         * sortNum : 2
+         * browseNumber : 24
+         * isDelete : 0
+         * createDate : 2015-12-07 12:01:21
+         * createUserId : 1
+         * updateDate :
+         * updateUserId : 12
+         * provinceText :
+         * cityText : 上海市
+         * districtText :
+         * surplusTime : 报名截止时间21小时
+         */
+
         private List<RowsEntity> rows;
 
         public void setPage(int page) {
@@ -103,40 +130,6 @@ public class HomePageRootModel implements Parcelable {
         }
 
         public static class RowsEntity implements Parcelable {
-            /**
-             * id : 90
-             * properties : {}
-             * title : 萌宝派宝爸宝妈群开通啦
-             * startTime : 2015-10-18 05:39:36
-             * endTime : 2015-10-24 05:39:41
-             * applyStartTime : 2015-10-14 05:39:28
-             * applyEndTime : 2015-10-17 05:39:32
-             * peoples : 200
-             * realityPeoples : null
-             * province : 310000
-             * city : 310100
-             * district : 310104
-             * address : 飞虹路568弄13号
-             * price : 0.0
-             * type : 200
-             * content : 萌宝派宝爸宝妈群开通啦.....
-             * servicePhone : 13818155072
-             * status : 1
-             * isRecommoned : 1
-             * servicesImg : http://smart.image.alimmdn.com/system/image/2015-10-13/servicesImgFile_ZWNmMmYwZjgtMTNhOC00YmFjLTgyMjUtNjVlMzQ5YTlkNjVm
-             * imgWidth : 1242.0
-             * imgHeight : 484.0
-             * sortNum : 5
-             * isDelete : 0
-             * createDate : 2015-10-13 17:40:25
-             * createUserId : null
-             * updateDate : null
-             * updateUserId : null
-             * provinceText : 上海
-             * cityText : 上海市
-             * districtText : 徐汇区
-             */
-
             private int id;
             private String title;
             private String startTime;
@@ -150,7 +143,7 @@ public class HomePageRootModel implements Parcelable {
             private int district;
             private String address;
             private String price;
-            private String type;
+            private int type;
             private String content;
             private String servicePhone;
             private int status;
@@ -158,15 +151,17 @@ public class HomePageRootModel implements Parcelable {
             private String servicesImg;
             private String imgWidth;
             private String imgHeight;
-            private String sortNum;
+            private int sortNum;
+            private int browseNumber;
             private int isDelete;
             private String createDate;
             private int createUserId;
             private String updateDate;
-            private String updateUserId;
+            private int updateUserId;
             private String provinceText;
             private String cityText;
             private String districtText;
+            private String surplusTime;
 
             public void setId(int id) {
                 this.id = id;
@@ -220,7 +215,7 @@ public class HomePageRootModel implements Parcelable {
                 this.price = price;
             }
 
-            public void setType(String type) {
+            public void setType(int type) {
                 this.type = type;
             }
 
@@ -252,8 +247,12 @@ public class HomePageRootModel implements Parcelable {
                 this.imgHeight = imgHeight;
             }
 
-            public void setSortNum(String sortNum) {
+            public void setSortNum(int sortNum) {
                 this.sortNum = sortNum;
+            }
+
+            public void setBrowseNumber(int browseNumber) {
+                this.browseNumber = browseNumber;
             }
 
             public void setIsDelete(int isDelete) {
@@ -272,7 +271,7 @@ public class HomePageRootModel implements Parcelable {
                 this.updateDate = updateDate;
             }
 
-            public void setUpdateUserId(String updateUserId) {
+            public void setUpdateUserId(int updateUserId) {
                 this.updateUserId = updateUserId;
             }
 
@@ -286,6 +285,10 @@ public class HomePageRootModel implements Parcelable {
 
             public void setDistrictText(String districtText) {
                 this.districtText = districtText;
+            }
+
+            public void setSurplusTime(String surplusTime) {
+                this.surplusTime = surplusTime;
             }
 
             public int getId() {
@@ -340,7 +343,7 @@ public class HomePageRootModel implements Parcelable {
                 return price;
             }
 
-            public String getType() {
+            public int getType() {
                 return type;
             }
 
@@ -372,8 +375,12 @@ public class HomePageRootModel implements Parcelable {
                 return imgHeight;
             }
 
-            public String getSortNum() {
+            public int getSortNum() {
                 return sortNum;
+            }
+
+            public int getBrowseNumber() {
+                return browseNumber;
             }
 
             public int getIsDelete() {
@@ -392,7 +399,7 @@ public class HomePageRootModel implements Parcelable {
                 return updateDate;
             }
 
-            public String getUpdateUserId() {
+            public int getUpdateUserId() {
                 return updateUserId;
             }
 
@@ -406,6 +413,10 @@ public class HomePageRootModel implements Parcelable {
 
             public String getDistrictText() {
                 return districtText;
+            }
+
+            public String getSurplusTime() {
+                return surplusTime;
             }
 
 
@@ -429,7 +440,7 @@ public class HomePageRootModel implements Parcelable {
                 dest.writeInt(this.district);
                 dest.writeString(this.address);
                 dest.writeString(this.price);
-                dest.writeString(this.type);
+                dest.writeInt(this.type);
                 dest.writeString(this.content);
                 dest.writeString(this.servicePhone);
                 dest.writeInt(this.status);
@@ -437,15 +448,17 @@ public class HomePageRootModel implements Parcelable {
                 dest.writeString(this.servicesImg);
                 dest.writeString(this.imgWidth);
                 dest.writeString(this.imgHeight);
-                dest.writeString(this.sortNum);
+                dest.writeInt(this.sortNum);
+                dest.writeInt(this.browseNumber);
                 dest.writeInt(this.isDelete);
                 dest.writeString(this.createDate);
                 dest.writeInt(this.createUserId);
                 dest.writeString(this.updateDate);
-                dest.writeString(this.updateUserId);
+                dest.writeInt(this.updateUserId);
                 dest.writeString(this.provinceText);
                 dest.writeString(this.cityText);
                 dest.writeString(this.districtText);
+                dest.writeString(this.surplusTime);
             }
 
             public RowsEntity() {
@@ -465,7 +478,7 @@ public class HomePageRootModel implements Parcelable {
                 this.district = in.readInt();
                 this.address = in.readString();
                 this.price = in.readString();
-                this.type = in.readString();
+                this.type = in.readInt();
                 this.content = in.readString();
                 this.servicePhone = in.readString();
                 this.status = in.readInt();
@@ -473,18 +486,20 @@ public class HomePageRootModel implements Parcelable {
                 this.servicesImg = in.readString();
                 this.imgWidth = in.readString();
                 this.imgHeight = in.readString();
-                this.sortNum = in.readString();
+                this.sortNum = in.readInt();
+                this.browseNumber = in.readInt();
                 this.isDelete = in.readInt();
                 this.createDate = in.readString();
                 this.createUserId = in.readInt();
                 this.updateDate = in.readString();
-                this.updateUserId = in.readString();
+                this.updateUserId = in.readInt();
                 this.provinceText = in.readString();
                 this.cityText = in.readString();
                 this.districtText = in.readString();
+                this.surplusTime = in.readString();
             }
 
-            public static final Creator<RowsEntity> CREATOR = new Creator<RowsEntity>() {
+            public static final Parcelable.Creator<RowsEntity> CREATOR = new Parcelable.Creator<RowsEntity>() {
                 public RowsEntity createFromParcel(Parcel source) {
                     return new RowsEntity(source);
                 }
@@ -493,7 +508,46 @@ public class HomePageRootModel implements Parcelable {
                     return new RowsEntity[size];
                 }
             };
+
+            @Override
+            public String toString() {
+                return "RowsEntity{" +
+                        "id=" + id +
+                        ", title='" + title + '\'' +
+                        ", startTime='" + startTime + '\'' +
+                        ", endTime='" + endTime + '\'' +
+                        ", applyStartTime='" + applyStartTime + '\'' +
+                        ", applyEndTime='" + applyEndTime + '\'' +
+                        ", peoples=" + peoples +
+                        ", realityPeoples=" + realityPeoples +
+                        ", province=" + province +
+                        ", city=" + city +
+                        ", district=" + district +
+                        ", address='" + address + '\'' +
+                        ", price='" + price + '\'' +
+                        ", type=" + type +
+                        ", content='" + content + '\'' +
+                        ", servicePhone='" + servicePhone + '\'' +
+                        ", status=" + status +
+                        ", isRecommoned=" + isRecommoned +
+                        ", servicesImg='" + servicesImg + '\'' +
+                        ", imgWidth='" + imgWidth + '\'' +
+                        ", imgHeight='" + imgHeight + '\'' +
+                        ", sortNum=" + sortNum +
+                        ", browseNumber=" + browseNumber +
+                        ", isDelete=" + isDelete +
+                        ", createDate='" + createDate + '\'' +
+                        ", createUserId=" + createUserId +
+                        ", updateDate='" + updateDate + '\'' +
+                        ", updateUserId=" + updateUserId +
+                        ", provinceText='" + provinceText + '\'' +
+                        ", cityText='" + cityText + '\'' +
+                        ", districtText='" + districtText + '\'' +
+                        ", surplusTime='" + surplusTime + '\'' +
+                        '}';
+            }
         }
+
 
         @Override
         public int describeContents() {
@@ -520,7 +574,7 @@ public class HomePageRootModel implements Parcelable {
             this.rows = in.createTypedArrayList(RowsEntity.CREATOR);
         }
 
-        public static final Creator<DataEntity> CREATOR = new Creator<DataEntity>() {
+        public static final Parcelable.Creator<DataEntity> CREATOR = new Parcelable.Creator<DataEntity>() {
             public DataEntity createFromParcel(Parcel source) {
                 return new DataEntity(source);
             }
@@ -529,7 +583,19 @@ public class HomePageRootModel implements Parcelable {
                 return new DataEntity[size];
             }
         };
+
+        @Override
+        public String toString() {
+            return "DataEntity{" +
+                    "page=" + page +
+                    ", records=" + records +
+                    ", total=" + total +
+                    ", userdata='" + userdata + '\'' +
+                    ", rows=" + rows +
+                    '}';
+        }
     }
+
 
     @Override
     public int describeContents() {
@@ -538,7 +604,6 @@ public class HomePageRootModel implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(this.status);
         dest.writeParcelable(this.data, 0);
         dest.writeString(this.msg);
     }
@@ -547,12 +612,11 @@ public class HomePageRootModel implements Parcelable {
     }
 
     protected HomePageRootModel(Parcel in) {
-        this.status = in.readInt();
         this.data = in.readParcelable(DataEntity.class.getClassLoader());
         this.msg = in.readString();
     }
 
-    public static final Creator<HomePageRootModel> CREATOR = new Creator<HomePageRootModel>() {
+    public static final Parcelable.Creator<HomePageRootModel> CREATOR = new Parcelable.Creator<HomePageRootModel>() {
         public HomePageRootModel createFromParcel(Parcel source) {
             return new HomePageRootModel(source);
         }
@@ -561,4 +625,12 @@ public class HomePageRootModel implements Parcelable {
             return new HomePageRootModel[size];
         }
     };
+
+    @Override
+    public String toString() {
+        return "HomePageRootModel{" +
+                "data=" + data +
+                ", msg='" + msg + '\'' +
+                '}';
+    }
 }

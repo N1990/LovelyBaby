@@ -100,7 +100,6 @@ public class MyCollectServiceFragment extends BaseFragment{
             ServiceListModel.DataEntity.RowsEntity itemData = (ServiceListModel.DataEntity.RowsEntity) object;
             Intent intent = new Intent(getActivity(), ActiveDetailActivity.class);
             intent.putExtra("serviceId", itemData.getId());
-            intent.putExtra("fromCollect", true);
             startActivityForResult(intent, SERVICE_DETAIL_REQUEST);
         }
     };

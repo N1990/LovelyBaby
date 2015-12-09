@@ -15,7 +15,7 @@
     <string name="title_activity_forget_pwd" translatable="false">忘记密码</string>
     <string name="quit_app" translatable="false">再按一次退出整个应用</string>
     <string name="title_activity_home" translatable="false">首页</string>
-    <string name="title_activity_active" translatable="false">活动详情</string>
+    <string name="title_activity_active" translatable="false"> 服务详情</string>
     <string name="title_activity_apply_popman" translatable="false">达人申请</string>
     <string name="title_fragment_home" translatable="false">首页</string>
     <string name="title_fragment_service" translatable="false">服务</string>

@@ -12,6 +12,7 @@ import com.cmbb.smartkids.activity.user.adapter.MyServiceAdapter;
 import com.cmbb.smartkids.model.ServiceStatus;
 import com.cmbb.smartkids.utils.FrescoTool;
 import com.cmbb.smartkids.utils.TDevice;
+import com.cmbb.smartkids.utils.Tools;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 /**
@@ -24,20 +25,20 @@ public class MyServiceHolder extends RecyclerView.ViewHolder implements View.OnC
     private MyServiceAdapter adapter;
     private View item;
     private SimpleDraweeView ivBg;
-    private TextView tvTitle, tvPrice, tvJoin, tvCity;
-    private ImageView iv;
+    private TextView tvTitle, tvPrice, tvPreview, tvCity, tvTime, tvTag;
     private int position;
 
 
     public MyServiceHolder(View itemView) {
         super(itemView);
         this.item = itemView;
-        iv = (ImageView) itemView.findViewById(R.id.iv_home_service_tag_item);
+        tvTag = (TextView) itemView.findViewById(R.id.tv_home_service_tag_item);
         ivBg = (SimpleDraweeView) itemView.findViewById(R.id.iv_home_service_item);
         tvTitle = (TextView) itemView.findViewById(R.id.tv_title_home_service_item);
         tvPrice = (TextView) itemView.findViewById(R.id.tv_price_home_service_item);
-        tvJoin = (TextView) itemView.findViewById(R.id.tv_join_home_service_item);
+        tvPreview = (TextView) itemView.findViewById(R.id.tv_preview_home_service_item);
         tvCity = (TextView) itemView.findViewById(R.id.tv_city_home_service_item);
+        tvTime = (TextView) itemView.findViewById(R.id.tv_time_home_service_item);
     }
 
     public void setData(MyServiceAdapter adapter, int position, ServiceListModel.DataEntity.RowsEntity itemData) {
@@ -46,30 +47,36 @@ public class MyServiceHolder extends RecyclerView.ViewHolder implements View.OnC
         FrescoTool.loadImage(ivBg, itemData.getServicesImg(), String.valueOf(TDevice.dip2px(200, ivBg.getContext())));
         tvTitle.setText(itemData.getTitle());
         double price = Double.valueOf(itemData.getPrice());
-        tvPrice.setText(price != 0 ? price + "元" : "免费");
-        tvJoin.setText("参加人数：" + itemData.getRealityPeoples() + "/" + itemData.getPeoples());
-        if (TextUtils.isEmpty(itemData.getCityText()))
-            tvCity.setVisibility(View.GONE);
-        tvCity.setText(String.valueOf(itemData.getCityText()));
-        iv.setVisibility(View.VISIBLE);
+        tvPrice.setText(price != 0 ? "￥" + price : "免费");
+        tvPreview.setText(itemData.getBrowseNumber() + "");
+        tvTag.setVisibility(View.VISIBLE);
         int statusValue = itemData.getStatus();
         ServiceStatus status = ServiceStatus.getStatusByValue(statusValue);
         switch (status) {
             case WEI_KAI_SHI:
-                iv.setVisibility(View.GONE);
+                tvTag.setVisibility(View.GONE);
                 break;
             case YI_KAI_SHI:
-                iv.setImageResource(R.mipmap.ic_order_start_bg);
+                tvTag.setText("已开始");
                 break;
             case YU_DING_ZHONG:
-                iv.setImageResource(R.mipmap.ic_order_reserving_bg);
+                tvTag.setText("招募中");
                 break;
-//            case YI_YU_DING:
-//                iv.setImageResource(R.mipmap.ic_order_reserved_bg);
-//                break;
             case YI_JIE_SHU:
-                iv.setImageResource(R.mipmap.ic_order_overtime_bg);
+                tvTag.setText("已过期");
                 break;
+        }
+
+        tvCity.setVisibility(View.VISIBLE);
+        if (TextUtils.isEmpty(itemData.getCityText()))
+            tvCity.setVisibility(View.GONE);
+        tvCity.setText(itemData.getCityText());
+        try {
+            String applyStartTime = Tools.DataToString(itemData.getApplyStartTime(), "MM/dd");
+            String applyEndTime = Tools.DataToString(itemData.getApplyStartTime(), "MM/dd");
+            tvTime.setText(applyStartTime + "-" + applyEndTime);
+        }catch (Exception e){
+            e.printStackTrace();
         }
         itemView.setTag(itemData);
         itemView.setOnClickListener(this);

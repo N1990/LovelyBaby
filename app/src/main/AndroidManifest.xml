@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.cmbb.smartkids">
 
-
     <!-- umeng-analytics -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -30,6 +29,7 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <!-- 支付宝 -->
     <application
         android:name=".base.BaseApplication"
@@ -59,6 +59,7 @@
             android:name="com.umeng.update.UpdateDialogActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <!-- umeng-update -->
+
 
         <!-- 友盟推送manifest必备 -->
         <receiver
@@ -288,7 +289,6 @@
             android:authorities="com.cmbb.smartkids.useraccount"
             android:enabled="true"
             android:exported="false" />
-
         <provider
             android:name=".db.AddressProvider"
             android:authorities="com.cmbb.smartkids.addresslist"
@@ -349,6 +349,7 @@
         <activity android:name=".activity.more.CompanyRule" />
         <activity android:name=".activity.message.MessageActivity" />
         <activity android:name=".activity.message.OfficialMessageActivity" />
+        <activity android:name=".activity.serve.ActiveDetailMoreActivity"></activity>
     </application>
 
 </manifest>

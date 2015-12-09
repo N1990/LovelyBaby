@@ -1,8 +1,12 @@
 package com.cmbb.smartkids.activity.home.holder;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
+import android.text.SpannableString;
+import android.text.Spanned;
 import android.text.TextUtils;
+import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,6 +19,9 @@ import com.cmbb.smartkids.utils.FrescoTool;
 import com.cmbb.smartkids.utils.TDevice;
 import com.facebook.drawee.view.SimpleDraweeView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 项目名称：LovelyBaby
  * 类描述：
@@ -26,7 +33,7 @@ public class HomeItemHolder extends RecyclerView.ViewHolder implements View.OnCl
     private View root;
     private SimpleDraweeView iv;
     private ImageView ivTag;
-    private TextView tvTitle, tvPrice, tvCity, tvJoin;
+    private TextView tvTitle, tvTime, tvCity;
     private Context context;
     private HomeFraAdapter adapter;
     private int position;
@@ -38,9 +45,8 @@ public class HomeItemHolder extends RecyclerView.ViewHolder implements View.OnCl
         this.root = itemView;
         iv = (SimpleDraweeView) itemView.findViewById(R.id.iv_home_fra_item);
         tvTitle = (TextView) itemView.findViewById(R.id.tv_home_fra_title_item);
-        tvPrice = (TextView) itemView.findViewById(R.id.tv_home_fra_price_item);
+        tvTime = (TextView) itemView.findViewById(R.id.tv_home_fra_start_time);
         tvCity = (TextView) itemView.findViewById(R.id.tv_home_fra_city_item);
-        tvJoin = (TextView) itemView.findViewById(R.id.tv_join_home_service_item);
         ivTag = (ImageView) itemView.findViewById(R.id.iv_home_fra_tag_item);
     }
 
@@ -51,10 +57,23 @@ public class HomeItemHolder extends RecyclerView.ViewHolder implements View.OnCl
         if (TextUtils.isEmpty(row.getCityText()))
             tvCity.setVisibility(View.GONE);
         tvCity.setText(row.getCityText());
-        double price = Double.valueOf(row.getPrice());
-        tvPrice.setText(price != 0 ? row.getPrice() + "元" : "免费");
-        tvJoin.setText("参加人数：" + row.getRealityPeoples() + "/" + row.getPeoples());
-        FrescoTool.loadImage(iv, row.getServicesImg(), String.valueOf(TDevice.dip2px(200, context)));
+        String startTime = row.getSurplusTime();
+        SpannableString ss = new SpannableString(startTime);
+        if(TextUtils.isEmpty(startTime)){
+            tvTime.setVisibility(View.GONE);
+        }else{
+            tvTime.setVisibility(View.VISIBLE);
+            for (int i = 0; i < ss.length(); i++){
+                char temp = startTime.charAt(i);
+                if(temp >= 48 && temp <= 57){ //判断是否是数字
+                    ss.setSpan(new ForegroundColorSpan(Color.RED), i, i + 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                }else{
+                    ss.setSpan(new ForegroundColorSpan(Color.WHITE), i, i + 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                }
+            }
+            tvTime.setText(ss);
+        }
+        FrescoTool.loadImage(iv, row.getServicesImg(), 1.67f);
         ivTag.setVisibility(View.VISIBLE);
         int statusValue = row.getStatus();
         ServiceStatus status = ServiceStatus.getStatusByValue(statusValue);

@@ -3,6 +3,7 @@ package com.cmbb.smartkids.activity.home.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,40 +16,46 @@ public class ActiveDetailModel implements Parcelable {
 
 
     /**
-     * id : 219
-     * title : 测试二
-     * startTime : 2015-12-01 10:30:00
-     * endTime : 2015-12-02 10:30:00
-     * applyStartTime : 2015-11-11 10:30:00
-     * applyEndTime : 2015-11-30 10:30:00
-     * peoples : 1212
-     * realityPeoples : 3
-     * province : 120000
-     * provinceText : 天津
-     * city : 120100
-     * cityText : 天津市
-     * district : 120101
-     * districtText : 和平区
-     * address : 111
+     * id : 278
+     * title : 新业务测试1
+     * startTime : 2015-12-10 11:12:00
+     * endTime : 2015-12-10 11:12:00
+     * applyStartTime : 2015-12-08 18:50:00
+     * applyEndTime : 2015-12-10 11:12:00
+     * peoples : 122
+     * timeLeft :
+     * collectCount : 4
+     * realityPeoples : 2
+     * province : 110000
+     * provinceText : 北京
+     * city : 110100
+     * cityText : 北京市
+     * district : 110102
+     * districtText : 西城区
+     * address : 11111111
      * price : 0.01
-     * type : 203
-     * content : 首页显示菊花
-     * servicePhone : 1212
+     * type : 202
+     * content : xxxxxx
+     * servicePhone : 121212
      * status : 2
-     * isRecommoned : 0
-     * servicesImg : http://smart.image.alimmdn.com/system/image/2015-11-09/servicesImgFile_MjdlODkzMGItZjQzYi00NzRjLWI3OWYtZWQ4OTgyNDE3MmVl
-     * imgWidth :
-     * imgHeight :
-     * sortNum : 0
+     * isRecommoned : 1
+     * servicesImg : http://smart.image.alimmdn.com/system/image/2015-12-09/servicesImgFile_ZjQwMmY3ZjQtZjQ1ZC00YzRhLThmMWYtZGUyYzU1MGNkNjJj
+     * imgWidth : 1024
+     * imgHeight : 768
+     * sortNum : 2
+     * browseNumber : 2
      * isCollect : 0
-     * isReserve : 0
-     * userInfoList : [{"userId":3,"recommoned":2,"userNike":"N.Sun","userSex":1,"userBirthday":"","backgroundImg":"http://smart.image.alimmdn.com/app/test/2015-11-5/image_6c56349ebf1b429fb02d8c3ad7fbcea5","userBigImg":"","userBigWidth":"","userBigHeight":"","userSmallImg":"http://smart.image.alimmdn.com/app/test/2015-10-20/image_513d5c3863024f6aa35c41d2cae7a8dd","userSmallWidth":"","userSmallHeight":"","loginAccountType":0,"loginTime":"2015-11-11 10:50:06","loginAccount":"13818155072","token":"","isShutup":0,"shutupTime":"","isBanned":0,"userAddress":"而头疼","userPhone":"13818155072","userPhoneVersion":"","province":310000,"provinceText":"","district":310110,"districtText":"","city":310100,"cityText":"","userLevel":1,"userPresentation":"Perfect Is Shit ","backImgWidth":"","backImgHeight":"","goldCount":2,"integralCount":2,"attentionCount":3,"userRole":[{"eredarCode":100,"eredarName":"美术达人"}],"fans":8,"isAttention":0,"isEredar":0},{"userId":30,"recommoned":2,"userNike":"潘晶晶","userSex":1,"userBirthday":"","backgroundImg":"http://smart.image.alimmdn.com/app/test/2015-10-15/ECDBA90D-DCC3-4EB4-8AEC-A6A65FF5A280","userBigImg":"","userBigWidth":"","userBigHeight":"","userSmallImg":"http://smart.image.alimmdn.com/app/test/2015-10-15/DB3ED9CE-3728-4ED4-A6A1-B4FEB0FBA7FD","userSmallWidth":"","userSmallHeight":"","loginAccountType":0,"loginTime":"2015-10-15 13:54:01","loginAccount":"15000284627","token":"","isShutup":0,"shutupTime":"","isBanned":0,"userAddress":"","userPhone":"15000284627","userPhoneVersion":"","province":310000,"provinceText":"","district":310101,"districtText":"","city":310100,"cityText":"","userLevel":2,"userPresentation":"毕业于上海交大医学院营养专业，国家高级营养师、临床执业营养师，擅长孕妇、产后、婴幼儿及各类慢性病的营养指导和配餐，有丰富的实践经验，曾任慢性病、孕产妇及婴幼儿营养讲座主讲，社区健康报营养主编以及婴幼儿营养书籍的撰写。","backImgWidth":750,"backImgHeight":753,"goldCount":2,"integralCount":3,"attentionCount":2,"userRole":[{"eredarCode":100,"eredarName":"营养达人"}],"fans":0,"isAttention":0,"isEredar":0}]
-     * serviceImgList : [{"content":"企鹅","imgHeight":"","imgWidth":"","imgPath":"http://smart.image.alimmdn.com/system/image/2015-11-09/imageFile_OWQwNmJiMDQtODdlMy00MTA3LWI3YzMtYWRlMDc3OWRhZGQx"},{"content":"郁金香","imgHeight":"","imgWidth":"","imgPath":"http://smart.image.alimmdn.com/system/image/2015-11-09/imageFile_ZjQ3ZTQ5NWYtNjM0NS00ODVlLWJkODktMmVhNjE4MWJhYTVi"}]
+     * colletCount : 0
+     * isReserve : 1
+     * surplusTime :
+     * userInfoList : [{"userId":61,"uid":121151,"recommoned":2,"userNike":"宗为昀","userSex":1,"userBirthday":"","backgroundImg":"http://smart.image.alimmdn.com/app/test/%24%7Byear%7D-%24%7Bmonth%7D-%24%7Bday%7D/0EED2580-F8D5-40B1-9280-5231A6A4B7AB","userBigImg":"","userBigWidth":"","userBigHeight":"","userSmallImg":"http://smart.image.alimmdn.com/app/test/%24%7Byear%7D-%24%7Bmonth%7D-%24%7Bday%7D/FF26AFF0-B3E0-472D-9EC9-ED82C73EF5EC","userSmallWidth":"750","userSmallHeight":"750","loginAccountType":0,"loginTime":"2015-10-30 10:17:19","loginAccount":"13671549695","token":"","isShutup":0,"shutupTime":"","isBanned":0,"userAddress":"","userPhone":"13671549695","userPhoneVersion":"","province":310000,"provinceText":"","district":310104,"districtText":"","city":310100,"cityText":"","userLevel":1,"userPresentation":"推廣小兒推拿理念給每個家庭，教導家長正確的育兒理念，並培訓家長小兒推拿手法，讓家長可以親手護衛孩子的健康，同時也提供定點的小兒和成人的保健調理服務，成為每個家庭的守護天使","backImgWidth":"750","backImgHeight":"502","goldCount":12,"growthCount":23,"fans":0,"attentionCount":9,"isSign":0,"isAttention":0,"isEredar":0,"isLoginUser":0,"userRole":[{"eredarCode":104,"eredarName":"小儿推拿达人"}]}]
+     * serviceImgList : [{"content":"","imgHeight":"768","imgWidth":"1024","imgPath":"http://smart.image.alimmdn.com/system/image/2015-12-08/imageFile_YjFhZmI4YzQtNWIzMC00YTk1LWEzYjQtZWIwMDY1NWRjMmM2"}]
+     * eventList :
      */
 
     private DataEntity data;
     /**
-     * data : {"id":219,"title":"测试二","startTime":"2015-12-01 10:30:00","endTime":"2015-12-02 10:30:00","applyStartTime":"2015-11-11 10:30:00","applyEndTime":"2015-11-30 10:30:00","peoples":1212,"realityPeoples":3,"province":120000,"provinceText":"天津","city":120100,"cityText":"天津市","district":120101,"districtText":"和平区","address":"111","price":0.01,"type":203,"content":"首页显示菊花","servicePhone":"1212","status":2,"isRecommoned":0,"servicesImg":"http://smart.image.alimmdn.com/system/image/2015-11-09/servicesImgFile_MjdlODkzMGItZjQzYi00NzRjLWI3OWYtZWQ4OTgyNDE3MmVl","imgWidth":"","imgHeight":"","sortNum":0,"isCollect":0,"isReserve":0,"userInfoList":[{"userId":3,"recommoned":2,"userNike":"N.Sun","userSex":1,"userBirthday":"","backgroundImg":"http://smart.image.alimmdn.com/app/test/2015-11-5/image_6c56349ebf1b429fb02d8c3ad7fbcea5","userBigImg":"","userBigWidth":"","userBigHeight":"","userSmallImg":"http://smart.image.alimmdn.com/app/test/2015-10-20/image_513d5c3863024f6aa35c41d2cae7a8dd","userSmallWidth":"","userSmallHeight":"","loginAccountType":0,"loginTime":"2015-11-11 10:50:06","loginAccount":"13818155072","token":"","isShutup":0,"shutupTime":"","isBanned":0,"userAddress":"而头疼","userPhone":"13818155072","userPhoneVersion":"","province":310000,"provinceText":"","district":310110,"districtText":"","city":310100,"cityText":"","userLevel":1,"userPresentation":"Perfect Is Shit ","backImgWidth":"","backImgHeight":"","goldCount":2,"integralCount":2,"attentionCount":3,"userRole":[{"eredarCode":100,"eredarName":"美术达人"}],"fans":8,"isAttention":0,"isEredar":0},{"userId":30,"recommoned":2,"userNike":"潘晶晶","userSex":1,"userBirthday":"","backgroundImg":"http://smart.image.alimmdn.com/app/test/2015-10-15/ECDBA90D-DCC3-4EB4-8AEC-A6A65FF5A280","userBigImg":"","userBigWidth":"","userBigHeight":"","userSmallImg":"http://smart.image.alimmdn.com/app/test/2015-10-15/DB3ED9CE-3728-4ED4-A6A1-B4FEB0FBA7FD","userSmallWidth":"","userSmallHeight":"","loginAccountType":0,"loginTime":"2015-10-15 13:54:01","loginAccount":"15000284627","token":"","isShutup":0,"shutupTime":"","isBanned":0,"userAddress":"","userPhone":"15000284627","userPhoneVersion":"","province":310000,"provinceText":"","district":310101,"districtText":"","city":310100,"cityText":"","userLevel":2,"userPresentation":"毕业于上海交大医学院营养专业，国家高级营养师、临床执业营养师，擅长孕妇、产后、婴幼儿及各类慢性病的营养指导和配餐，有丰富的实践经验，曾任慢性病、孕产妇及婴幼儿营养讲座主讲，社区健康报营养主编以及婴幼儿营养书籍的撰写。","backImgWidth":750,"backImgHeight":753,"goldCount":2,"integralCount":3,"attentionCount":2,"userRole":[{"eredarCode":100,"eredarName":"营养达人"}],"fans":0,"isAttention":0,"isEredar":0}],"serviceImgList":[{"content":"企鹅","imgHeight":"","imgWidth":"","imgPath":"http://smart.image.alimmdn.com/system/image/2015-11-09/imageFile_OWQwNmJiMDQtODdlMy00MTA3LWI3YzMtYWRlMDc3OWRhZGQx"},{"content":"郁金香","imgHeight":"","imgWidth":"","imgPath":"http://smart.image.alimmdn.com/system/image/2015-11-09/imageFile_ZjQ3ZTQ5NWYtNjM0NS00ODVlLWJkODktMmVhNjE4MWJhYTVi"}]}
+     * data : {"id":278,"title":"新业务测试1","startTime":"2015-12-10 11:12:00","endTime":"2015-12-10 11:12:00","applyStartTime":"2015-12-08 18:50:00","applyEndTime":"2015-12-10 11:12:00","peoples":122,"timeLeft":"","collectCount":4,"realityPeoples":2,"province":110000,"provinceText":"北京","city":110100,"cityText":"北京市","district":110102,"districtText":"西城区","address":"11111111","price":"0.01","type":202,"content":"xxxxxx","servicePhone":"121212","status":2,"isRecommoned":1,"servicesImg":"http://smart.image.alimmdn.com/system/image/2015-12-09/servicesImgFile_ZjQwMmY3ZjQtZjQ1ZC00YzRhLThmMWYtZGUyYzU1MGNkNjJj","imgWidth":"1024","imgHeight":"768","sortNum":2,"browseNumber":2,"isCollect":0,"colletCount":0,"isReserve":1,"surplusTime":"","userInfoList":[{"userId":61,"uid":121151,"recommoned":2,"userNike":"宗为昀","userSex":1,"userBirthday":"","backgroundImg":"http://smart.image.alimmdn.com/app/test/%24%7Byear%7D-%24%7Bmonth%7D-%24%7Bday%7D/0EED2580-F8D5-40B1-9280-5231A6A4B7AB","userBigImg":"","userBigWidth":"","userBigHeight":"","userSmallImg":"http://smart.image.alimmdn.com/app/test/%24%7Byear%7D-%24%7Bmonth%7D-%24%7Bday%7D/FF26AFF0-B3E0-472D-9EC9-ED82C73EF5EC","userSmallWidth":"750","userSmallHeight":"750","loginAccountType":0,"loginTime":"2015-10-30 10:17:19","loginAccount":"13671549695","token":"","isShutup":0,"shutupTime":"","isBanned":0,"userAddress":"","userPhone":"13671549695","userPhoneVersion":"","province":310000,"provinceText":"","district":310104,"districtText":"","city":310100,"cityText":"","userLevel":1,"userPresentation":"推廣小兒推拿理念給每個家庭，教導家長正確的育兒理念，並培訓家長小兒推拿手法，讓家長可以親手護衛孩子的健康，同時也提供定點的小兒和成人的保健調理服務，成為每個家庭的守護天使","backImgWidth":"750","backImgHeight":"502","goldCount":12,"growthCount":23,"fans":0,"attentionCount":9,"isSign":0,"isAttention":0,"isEredar":0,"isLoginUser":0,"userRole":[{"eredarCode":104,"eredarName":"小儿推拿达人"}]}],"serviceImgList":[{"content":"","imgHeight":"768","imgWidth":"1024","imgPath":"http://smart.image.alimmdn.com/system/image/2015-12-08/imageFile_YjFhZmI4YzQtNWIzMC00YTk1LWEzYjQtZWIwMDY1NWRjMmM2"}],"eventList":""}
      * msg : 数据加载成功
      */
 
@@ -78,6 +85,8 @@ public class ActiveDetailModel implements Parcelable {
         private String applyStartTime;
         private String applyEndTime;
         private int peoples;
+        private String timeLeft;
+        private int collectCount;
         private int realityPeoples;
         private int province;
         private String provinceText;
@@ -96,56 +105,63 @@ public class ActiveDetailModel implements Parcelable {
         private String imgWidth;
         private String imgHeight;
         private int sortNum;
+        private int browseNumber;
         private int isCollect;
+        private int colletCount;
         private int isReserve;
+        private String surplusTime;
+        private String eventList;
         /**
-         * userId : 3
+         * userId : 61
+         * uid : 121151
          * recommoned : 2
-         * userNike : N.Sun
+         * userNike : 宗为昀
          * userSex : 1
          * userBirthday :
-         * backgroundImg : http://smart.image.alimmdn.com/app/test/2015-11-5/image_6c56349ebf1b429fb02d8c3ad7fbcea5
+         * backgroundImg : http://smart.image.alimmdn.com/app/test/%24%7Byear%7D-%24%7Bmonth%7D-%24%7Bday%7D/0EED2580-F8D5-40B1-9280-5231A6A4B7AB
          * userBigImg :
          * userBigWidth :
          * userBigHeight :
-         * userSmallImg : http://smart.image.alimmdn.com/app/test/2015-10-20/image_513d5c3863024f6aa35c41d2cae7a8dd
-         * userSmallWidth :
-         * userSmallHeight :
+         * userSmallImg : http://smart.image.alimmdn.com/app/test/%24%7Byear%7D-%24%7Bmonth%7D-%24%7Bday%7D/FF26AFF0-B3E0-472D-9EC9-ED82C73EF5EC
+         * userSmallWidth : 750
+         * userSmallHeight : 750
          * loginAccountType : 0
-         * loginTime : 2015-11-11 10:50:06
-         * loginAccount : 13818155072
+         * loginTime : 2015-10-30 10:17:19
+         * loginAccount : 13671549695
          * token :
          * isShutup : 0
          * shutupTime :
          * isBanned : 0
-         * userAddress : 而头疼
-         * userPhone : 13818155072
+         * userAddress :
+         * userPhone : 13671549695
          * userPhoneVersion :
          * province : 310000
          * provinceText :
-         * district : 310110
+         * district : 310104
          * districtText :
          * city : 310100
          * cityText :
          * userLevel : 1
-         * userPresentation : Perfect Is Shit
-         * backImgWidth :
-         * backImgHeight :
-         * goldCount : 2
-         * integralCount : 2
-         * attentionCount : 3
-         * userRole : [{"eredarCode":100,"eredarName":"美术达人"}]
-         * fans : 8
+         * userPresentation : 推廣小兒推拿理念給每個家庭，教導家長正確的育兒理念，並培訓家長小兒推拿手法，讓家長可以親手護衛孩子的健康，同時也提供定點的小兒和成人的保健調理服務，成為每個家庭的守護天使
+         * backImgWidth : 750
+         * backImgHeight : 502
+         * goldCount : 12
+         * growthCount : 23
+         * fans : 0
+         * attentionCount : 9
+         * isSign : 0
          * isAttention : 0
          * isEredar : 0
+         * isLoginUser : 0
+         * userRole : [{"eredarCode":104,"eredarName":"小儿推拿达人"}]
          */
 
         private List<UserInfoListEntity> userInfoList;
         /**
-         * content : 企鹅
-         * imgHeight :
-         * imgWidth :
-         * imgPath : http://smart.image.alimmdn.com/system/image/2015-11-09/imageFile_OWQwNmJiMDQtODdlMy00MTA3LWI3YzMtYWRlMDc3OWRhZGQx
+         * content :
+         * imgHeight : 768
+         * imgWidth : 1024
+         * imgPath : http://smart.image.alimmdn.com/system/image/2015-12-08/imageFile_YjFhZmI4YzQtNWIzMC00YTk1LWEzYjQtZWIwMDY1NWRjMmM2
          */
 
         private List<ServiceImgListEntity> serviceImgList;
@@ -176,6 +192,14 @@ public class ActiveDetailModel implements Parcelable {
 
         public void setPeoples(int peoples) {
             this.peoples = peoples;
+        }
+
+        public void setTimeLeft(String timeLeft) {
+            this.timeLeft = timeLeft;
+        }
+
+        public void setCollectCount(int collectCount) {
+            this.collectCount = collectCount;
         }
 
         public void setRealityPeoples(int realityPeoples) {
@@ -250,12 +274,28 @@ public class ActiveDetailModel implements Parcelable {
             this.sortNum = sortNum;
         }
 
+        public void setBrowseNumber(int browseNumber) {
+            this.browseNumber = browseNumber;
+        }
+
         public void setIsCollect(int isCollect) {
             this.isCollect = isCollect;
         }
 
+        public void setColletCount(int colletCount) {
+            this.colletCount = colletCount;
+        }
+
         public void setIsReserve(int isReserve) {
             this.isReserve = isReserve;
+        }
+
+        public void setSurplusTime(String surplusTime) {
+            this.surplusTime = surplusTime;
+        }
+
+        public void setEventList(String eventList) {
+            this.eventList = eventList;
         }
 
         public void setUserInfoList(List<UserInfoListEntity> userInfoList) {
@@ -292,6 +332,14 @@ public class ActiveDetailModel implements Parcelable {
 
         public int getPeoples() {
             return peoples;
+        }
+
+        public String getTimeLeft() {
+            return timeLeft;
+        }
+
+        public int getCollectCount() {
+            return collectCount;
         }
 
         public int getRealityPeoples() {
@@ -366,12 +414,28 @@ public class ActiveDetailModel implements Parcelable {
             return sortNum;
         }
 
+        public int getBrowseNumber() {
+            return browseNumber;
+        }
+
         public int getIsCollect() {
             return isCollect;
         }
 
+        public int getColletCount() {
+            return colletCount;
+        }
+
         public int getIsReserve() {
             return isReserve;
+        }
+
+        public String getSurplusTime() {
+            return surplusTime;
+        }
+
+        public String getEventList() {
+            return eventList;
         }
 
         public List<UserInfoListEntity> getUserInfoList() {
@@ -384,6 +448,7 @@ public class ActiveDetailModel implements Parcelable {
 
         public static class UserInfoListEntity implements Parcelable {
             private int userId;
+            private int uid;
             private int recommoned;
             private String userNike;
             private int userSex;
@@ -416,20 +481,26 @@ public class ActiveDetailModel implements Parcelable {
             private String backImgWidth;
             private String backImgHeight;
             private int goldCount;
-            private int integralCount;
-            private int attentionCount;
+            private int growthCount;
             private int fans;
+            private int attentionCount;
+            private int isSign;
             private int isAttention;
             private int isEredar;
+            private int isLoginUser;
             /**
-             * eredarCode : 100
-             * eredarName : 美术达人
+             * eredarCode : 104
+             * eredarName : 小儿推拿达人
              */
 
             private List<UserRoleEntity> userRole;
 
             public void setUserId(int userId) {
                 this.userId = userId;
+            }
+
+            public void setUid(int uid) {
+                this.uid = uid;
             }
 
             public void setRecommoned(int recommoned) {
@@ -560,16 +631,20 @@ public class ActiveDetailModel implements Parcelable {
                 this.goldCount = goldCount;
             }
 
-            public void setIntegralCount(int integralCount) {
-                this.integralCount = integralCount;
+            public void setGrowthCount(int growthCount) {
+                this.growthCount = growthCount;
+            }
+
+            public void setFans(int fans) {
+                this.fans = fans;
             }
 
             public void setAttentionCount(int attentionCount) {
                 this.attentionCount = attentionCount;
             }
 
-            public void setFans(int fans) {
-                this.fans = fans;
+            public void setIsSign(int isSign) {
+                this.isSign = isSign;
             }
 
             public void setIsAttention(int isAttention) {
@@ -580,12 +655,20 @@ public class ActiveDetailModel implements Parcelable {
                 this.isEredar = isEredar;
             }
 
+            public void setIsLoginUser(int isLoginUser) {
+                this.isLoginUser = isLoginUser;
+            }
+
             public void setUserRole(List<UserRoleEntity> userRole) {
                 this.userRole = userRole;
             }
 
             public int getUserId() {
                 return userId;
+            }
+
+            public int getUid() {
+                return uid;
             }
 
             public int getRecommoned() {
@@ -716,16 +799,20 @@ public class ActiveDetailModel implements Parcelable {
                 return goldCount;
             }
 
-            public int getIntegralCount() {
-                return integralCount;
+            public int getGrowthCount() {
+                return growthCount;
+            }
+
+            public int getFans() {
+                return fans;
             }
 
             public int getAttentionCount() {
                 return attentionCount;
             }
 
-            public int getFans() {
-                return fans;
+            public int getIsSign() {
+                return isSign;
             }
 
             public int getIsAttention() {
@@ -734,6 +821,10 @@ public class ActiveDetailModel implements Parcelable {
 
             public int getIsEredar() {
                 return isEredar;
+            }
+
+            public int getIsLoginUser() {
+                return isLoginUser;
             }
 
             public List<UserRoleEntity> getUserRole() {
@@ -780,7 +871,7 @@ public class ActiveDetailModel implements Parcelable {
                     this.eredarName = in.readString();
                 }
 
-                public static final Parcelable.Creator<UserRoleEntity> CREATOR = new Parcelable.Creator<UserRoleEntity>() {
+                public static final Creator<UserRoleEntity> CREATOR = new Creator<UserRoleEntity>() {
                     public UserRoleEntity createFromParcel(Parcel source) {
                         return new UserRoleEntity(source);
                     }
@@ -789,7 +880,16 @@ public class ActiveDetailModel implements Parcelable {
                         return new UserRoleEntity[size];
                     }
                 };
+
+                @Override
+                public String toString() {
+                    return "UserRoleEntity{" +
+                            "eredarCode=" + eredarCode +
+                            ", eredarName='" + eredarName + '\'' +
+                            '}';
+                }
             }
+
 
             @Override
             public int describeContents() {
@@ -799,6 +899,7 @@ public class ActiveDetailModel implements Parcelable {
             @Override
             public void writeToParcel(Parcel dest, int flags) {
                 dest.writeInt(this.userId);
+                dest.writeInt(this.uid);
                 dest.writeInt(this.recommoned);
                 dest.writeString(this.userNike);
                 dest.writeInt(this.userSex);
@@ -831,11 +932,13 @@ public class ActiveDetailModel implements Parcelable {
                 dest.writeString(this.backImgWidth);
                 dest.writeString(this.backImgHeight);
                 dest.writeInt(this.goldCount);
-                dest.writeInt(this.integralCount);
-                dest.writeInt(this.attentionCount);
+                dest.writeInt(this.growthCount);
                 dest.writeInt(this.fans);
+                dest.writeInt(this.attentionCount);
+                dest.writeInt(this.isSign);
                 dest.writeInt(this.isAttention);
                 dest.writeInt(this.isEredar);
+                dest.writeInt(this.isLoginUser);
                 dest.writeTypedList(userRole);
             }
 
@@ -844,6 +947,7 @@ public class ActiveDetailModel implements Parcelable {
 
             protected UserInfoListEntity(Parcel in) {
                 this.userId = in.readInt();
+                this.uid = in.readInt();
                 this.recommoned = in.readInt();
                 this.userNike = in.readString();
                 this.userSex = in.readInt();
@@ -876,15 +980,17 @@ public class ActiveDetailModel implements Parcelable {
                 this.backImgWidth = in.readString();
                 this.backImgHeight = in.readString();
                 this.goldCount = in.readInt();
-                this.integralCount = in.readInt();
-                this.attentionCount = in.readInt();
+                this.growthCount = in.readInt();
                 this.fans = in.readInt();
+                this.attentionCount = in.readInt();
+                this.isSign = in.readInt();
                 this.isAttention = in.readInt();
                 this.isEredar = in.readInt();
+                this.isLoginUser = in.readInt();
                 this.userRole = in.createTypedArrayList(UserRoleEntity.CREATOR);
             }
 
-            public static final Parcelable.Creator<UserInfoListEntity> CREATOR = new Parcelable.Creator<UserInfoListEntity>() {
+            public static final Creator<UserInfoListEntity> CREATOR = new Creator<UserInfoListEntity>() {
                 public UserInfoListEntity createFromParcel(Parcel source) {
                     return new UserInfoListEntity(source);
                 }
@@ -893,6 +999,54 @@ public class ActiveDetailModel implements Parcelable {
                     return new UserInfoListEntity[size];
                 }
             };
+
+            @Override
+            public String toString() {
+                return "UserInfoListEntity{" +
+                        "userId=" + userId +
+                        ", uid=" + uid +
+                        ", recommoned=" + recommoned +
+                        ", userNike='" + userNike + '\'' +
+                        ", userSex=" + userSex +
+                        ", userBirthday='" + userBirthday + '\'' +
+                        ", backgroundImg='" + backgroundImg + '\'' +
+                        ", userBigImg='" + userBigImg + '\'' +
+                        ", userBigWidth='" + userBigWidth + '\'' +
+                        ", userBigHeight='" + userBigHeight + '\'' +
+                        ", userSmallImg='" + userSmallImg + '\'' +
+                        ", userSmallWidth='" + userSmallWidth + '\'' +
+                        ", userSmallHeight='" + userSmallHeight + '\'' +
+                        ", loginAccountType=" + loginAccountType +
+                        ", loginTime='" + loginTime + '\'' +
+                        ", loginAccount='" + loginAccount + '\'' +
+                        ", token='" + token + '\'' +
+                        ", isShutup=" + isShutup +
+                        ", shutupTime='" + shutupTime + '\'' +
+                        ", isBanned=" + isBanned +
+                        ", userAddress='" + userAddress + '\'' +
+                        ", userPhone='" + userPhone + '\'' +
+                        ", userPhoneVersion='" + userPhoneVersion + '\'' +
+                        ", province=" + province +
+                        ", provinceText='" + provinceText + '\'' +
+                        ", district=" + district +
+                        ", districtText='" + districtText + '\'' +
+                        ", city=" + city +
+                        ", cityText='" + cityText + '\'' +
+                        ", userLevel=" + userLevel +
+                        ", userPresentation='" + userPresentation + '\'' +
+                        ", backImgWidth='" + backImgWidth + '\'' +
+                        ", backImgHeight='" + backImgHeight + '\'' +
+                        ", goldCount=" + goldCount +
+                        ", growthCount=" + growthCount +
+                        ", fans=" + fans +
+                        ", attentionCount=" + attentionCount +
+                        ", isSign=" + isSign +
+                        ", isAttention=" + isAttention +
+                        ", isEredar=" + isEredar +
+                        ", isLoginUser=" + isLoginUser +
+                        ", userRole=" + userRole +
+                        '}';
+            }
         }
 
         public static class ServiceImgListEntity implements Parcelable {
@@ -933,6 +1087,7 @@ public class ActiveDetailModel implements Parcelable {
                 return imgPath;
             }
 
+
             @Override
             public int describeContents() {
                 return 0;
@@ -965,6 +1120,16 @@ public class ActiveDetailModel implements Parcelable {
                     return new ServiceImgListEntity[size];
                 }
             };
+
+            @Override
+            public String toString() {
+                return "ServiceImgListEntity{" +
+                        "content='" + content + '\'' +
+                        ", imgHeight='" + imgHeight + '\'' +
+                        ", imgWidth='" + imgWidth + '\'' +
+                        ", imgPath='" + imgPath + '\'' +
+                        '}';
+            }
         }
 
         @Override
@@ -981,6 +1146,8 @@ public class ActiveDetailModel implements Parcelable {
             dest.writeString(this.applyStartTime);
             dest.writeString(this.applyEndTime);
             dest.writeInt(this.peoples);
+            dest.writeString(this.timeLeft);
+            dest.writeInt(this.collectCount);
             dest.writeInt(this.realityPeoples);
             dest.writeInt(this.province);
             dest.writeString(this.provinceText);
@@ -999,10 +1166,14 @@ public class ActiveDetailModel implements Parcelable {
             dest.writeString(this.imgWidth);
             dest.writeString(this.imgHeight);
             dest.writeInt(this.sortNum);
+            dest.writeInt(this.browseNumber);
             dest.writeInt(this.isCollect);
+            dest.writeInt(this.colletCount);
             dest.writeInt(this.isReserve);
-            dest.writeTypedList(userInfoList);
-            dest.writeTypedList(serviceImgList);
+            dest.writeString(this.surplusTime);
+            dest.writeString(this.eventList);
+            dest.writeTypedList(this.userInfoList);
+            dest.writeTypedList(this.serviceImgList);
         }
 
         public DataEntity() {
@@ -1016,6 +1187,8 @@ public class ActiveDetailModel implements Parcelable {
             this.applyStartTime = in.readString();
             this.applyEndTime = in.readString();
             this.peoples = in.readInt();
+            this.timeLeft = in.readString();
+            this.collectCount = in.readInt();
             this.realityPeoples = in.readInt();
             this.province = in.readInt();
             this.provinceText = in.readString();
@@ -1034,9 +1207,15 @@ public class ActiveDetailModel implements Parcelable {
             this.imgWidth = in.readString();
             this.imgHeight = in.readString();
             this.sortNum = in.readInt();
+            this.browseNumber = in.readInt();
             this.isCollect = in.readInt();
+            this.colletCount = in.readInt();
             this.isReserve = in.readInt();
+            this.surplusTime = in.readString();
+            this.eventList = in.readString();
             this.userInfoList = in.createTypedArrayList(UserInfoListEntity.CREATOR);
+//            this.userInfoList = new ArrayList<UserInfoListEntity>();
+//            in.readList(this.userInfoList, List.class.getClassLoader());
             this.serviceImgList = in.createTypedArrayList(ServiceImgListEntity.CREATOR);
         }
 
@@ -1049,7 +1228,49 @@ public class ActiveDetailModel implements Parcelable {
                 return new DataEntity[size];
             }
         };
+
+        @Override
+        public String toString() {
+            return "DataEntity{" +
+                    "id=" + id +
+                    ", title='" + title + '\'' +
+                    ", startTime='" + startTime + '\'' +
+                    ", endTime='" + endTime + '\'' +
+                    ", applyStartTime='" + applyStartTime + '\'' +
+                    ", applyEndTime='" + applyEndTime + '\'' +
+                    ", peoples=" + peoples +
+                    ", timeLeft='" + timeLeft + '\'' +
+                    ", collectCount=" + collectCount +
+                    ", realityPeoples=" + realityPeoples +
+                    ", province=" + province +
+                    ", provinceText='" + provinceText + '\'' +
+                    ", city=" + city +
+                    ", cityText='" + cityText + '\'' +
+                    ", district=" + district +
+                    ", districtText='" + districtText + '\'' +
+                    ", address='" + address + '\'' +
+                    ", price='" + price + '\'' +
+                    ", type=" + type +
+                    ", content='" + content + '\'' +
+                    ", servicePhone='" + servicePhone + '\'' +
+                    ", status=" + status +
+                    ", isRecommoned=" + isRecommoned +
+                    ", servicesImg='" + servicesImg + '\'' +
+                    ", imgWidth='" + imgWidth + '\'' +
+                    ", imgHeight='" + imgHeight + '\'' +
+                    ", sortNum=" + sortNum +
+                    ", browseNumber=" + browseNumber +
+                    ", isCollect=" + isCollect +
+                    ", colletCount=" + colletCount +
+                    ", isReserve=" + isReserve +
+                    ", surplusTime='" + surplusTime + '\'' +
+                    ", eventList='" + eventList + '\'' +
+                    ", userInfoList=" + userInfoList +
+                    ", serviceImgList=" + serviceImgList +
+                    '}';
+        }
     }
+
 
     @Override
     public int describeContents() {
@@ -1079,4 +1300,12 @@ public class ActiveDetailModel implements Parcelable {
             return new ActiveDetailModel[size];
         }
     };
+
+    @Override
+    public String toString() {
+        return "ActiveDetailModel{" +
+                "data=" + data +
+                ", msg='" + msg + '\'' +
+                '}';
+    }
 }

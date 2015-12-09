@@ -258,7 +258,6 @@ public class CommentFirstFragment extends CommunityBaseFragment {
                                 public void onClick(View v) {
                                     if (builder != null)
                                         builder.dismiss();
-
                                     ((CommunityDetailActivity) getActivity()).handleReportReplayRequest(more.get(0));
                                 }
                             })
@@ -270,7 +269,6 @@ public class CommentFirstFragment extends CommunityBaseFragment {
                                 }
                             });
                     builder.show();
-
                     break;
             }
         }

@@ -184,10 +184,8 @@ public class MyMessageActivity extends BaseActivity {
                     Intent system = new Intent(MyMessageActivity.this, HomeMessageActivity.class);
                     system.putExtra("id", messageId);
                     startActivity(system);
-
                 }
                 showShortToast(msg);
-
             }
 
             @Override

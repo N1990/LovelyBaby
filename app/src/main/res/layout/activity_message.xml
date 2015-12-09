@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/custom_actionbar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/message_official"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:padding="@dimen/global_padding">
+
+                <ImageView
+                    android:id="@+id/tv_local"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@mipmap/ic_official" />
+
+                <TextView
+                    android:id="@+id/official_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignRight="@+id/tv_local"
+                    android:background="@drawable/shape_message_tip"
+                    android:gravity="center"
+                    android:text="10"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/txt_micro" />
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/global_padding"
+                    android:layout_marginTop="@dimen/half_global_padding"
+                    android:layout_toRightOf="@+id/tv_local"
+                    android:text="官方消息"
+                    android:textSize="@dimen/txt_normal"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/tv_local"
+                    android:layout_marginBottom="@dimen/half_global_padding"
+                    android:layout_marginLeft="@dimen/global_padding"
+                    android:layout_toRightOf="@+id/tv_local"
+                    android:text="萌宝服务有礼相送，送什么自己猜"
+                    android:textColor="@color/darkgray" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginLeft="@dimen/activity_vertical_margin"
+                android:background="@color/dimgray" />
+
+            <RelativeLayout
+                android:id="@+id/message_order"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:padding="@dimen/global_padding">
+
+                <ImageView
+                    android:id="@+id/iv_order"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@mipmap/ic_order" />
+
+                <TextView
+                    android:id="@+id/order_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignRight="@+id/iv_order"
+                    android:background="@drawable/shape_message_tip"
+                    android:gravity="center"
+                    android:text="3"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/txt_micro" />
+
+
+                <TextView
+                    android:id="@+id/tv_order"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/global_padding"
+                    android:layout_marginTop="@dimen/half_global_padding"
+                    android:layout_toRightOf="@+id/iv_order"
+                    android:text="订单动态"
+                    android:textSize="@dimen/txt_normal"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/iv_order"
+                    android:layout_marginBottom="@dimen/half_global_padding"
+                    android:layout_marginLeft="@dimen/global_padding"
+                    android:layout_toRightOf="@+id/iv_order"
+                    android:text="萌宝活动，即将开幕..."
+                    android:textColor="@color/darkgray" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginLeft="@dimen/activity_vertical_margin"
+                android:background="@color/dimgray" />
+
+            <RelativeLayout
+                android:id="@+id/message_replay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:padding="@dimen/global_padding">
+
+                <ImageView
+                    android:id="@+id/iv_replay"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@mipmap/ic_replay" />
+
+                <TextView
+                    android:id="@+id/replay_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignRight="@+id/iv_replay"
+                    android:background="@drawable/shape_message_tip"
+                    android:gravity="center"
+                    android:text="6"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/txt_micro" />
+
+                <TextView
+                    android:id="@+id/tv_replay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/global_padding"
+                    android:layout_marginTop="@dimen/half_global_padding"
+                    android:layout_toRightOf="@+id/iv_replay"
+                    android:text="回复提醒"
+                    android:textSize="@dimen/txt_normal"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/iv_replay"
+                    android:layout_marginBottom="@dimen/half_global_padding"
+                    android:layout_marginLeft="@dimen/global_padding"
+                    android:layout_toRightOf="@+id/iv_replay"
+                    android:text="您没有新的回复消息"
+                    android:textColor="@color/darkgray" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginLeft="@dimen/activity_vertical_margin"
+                android:background="@color/dimgray" />
+
+            <RelativeLayout
+                android:id="@+id/message_server"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:padding="@dimen/global_padding">
+
+                <ImageView
+                    android:id="@+id/iv_server"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@mipmap/ic_server" />
+
+                <TextView
+                    android:id="@+id/server_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignRight="@+id/iv_server"
+                    android:background="@drawable/shape_message_tip"
+                    android:gravity="center"
+                    android:text="20"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/txt_micro" />
+
+                <TextView
+                    android:id="@+id/tv_server"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/global_padding"
+                    android:layout_marginTop="@dimen/half_global_padding"
+                    android:layout_toRightOf="@+id/iv_server"
+                    android:text="关注服务"
+                    android:textSize="@dimen/txt_normal"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/iv_server"
+                    android:layout_marginBottom="@dimen/half_global_padding"
+                    android:layout_marginLeft="@dimen/global_padding"
+                    android:layout_toRightOf="@+id/iv_server"
+                    android:text="您没有新的服务消息"
+                    android:textColor="@color/darkgray" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginLeft="@dimen/activity_vertical_margin"
+                android:background="@color/dimgray" />
+
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

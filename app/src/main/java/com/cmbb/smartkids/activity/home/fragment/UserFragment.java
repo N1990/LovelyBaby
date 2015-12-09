@@ -1,10 +1,7 @@
 package com.cmbb.smartkids.activity.home.fragment;
 
 import android.animation.ObjectAnimator;
-import android.content.ContentValues;
 import android.content.Intent;
-import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
@@ -41,8 +38,6 @@ import com.cmbb.smartkids.activity.user.model.UserCenterModel;
 import com.cmbb.smartkids.base.BaseApplication;
 import com.cmbb.smartkids.base.BaseFragment;
 import com.cmbb.smartkids.base.Constants;
-import com.cmbb.smartkids.db.AddressProvider;
-import com.cmbb.smartkids.db.DBContent;
 import com.cmbb.smartkids.network.NetRequest;
 import com.cmbb.smartkids.network.image.ImageUpload;
 import com.cmbb.smartkids.photopicker.PhotoPickerActivity;
@@ -172,6 +167,7 @@ public class UserFragment extends BaseFragment {
 //                message.putExtra("flag", "message");
 //                startActivity(message);
                 startActivity(new Intent(getActivity(), MyMessageActivity.class));
+//                MessageActivity.newInstance(this);
                 break;
             case R.id.iv_home_myself:
                 PhotoPickerIntent intent = new PhotoPickerIntent(getActivity());

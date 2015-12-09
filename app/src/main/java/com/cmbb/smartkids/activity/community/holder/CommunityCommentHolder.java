@@ -304,7 +304,10 @@ public class CommunityCommentHolder extends RecyclerView.ViewHolder implements V
         ivContent.setOnClickListener(this);
         ivComment.setTag(data.getData().getRows().get(position).getId());
         ivComment.setOnClickListener(this);
-        ivMore.setTag(data.getData().getRows().get(position).getId());
+        ArrayList<Integer> more = new ArrayList<>();
+        more.add(data.getData().getRows().get(position).getId());
+        more.add(data.getData().getRows().get(position).getUserBasicInfo().getIsLoginUser());
+        ivMore.setTag(more);
         ivMore.setOnClickListener(this);
         if (data.getData().getRows().get(position).getChildCount() == 0) {
             tvMore.setVisibility(View.GONE);

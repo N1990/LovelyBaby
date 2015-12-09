@@ -169,7 +169,7 @@ public class CommunityDetailActivity extends BaseActivity implements CustomListe
                     baseFragment = CommentFirstFragment.newInstance(cacheDetail, cacheReplay);
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                     transaction.replace(R.id.fl_community_container, baseFragment);
-                    transaction.commit();
+                    transaction.commitAllowingStateLoss();
                     if (refreshView != null) {
                         refreshView.onRefreshComplete();
                     }
@@ -203,7 +203,7 @@ public class CommunityDetailActivity extends BaseActivity implements CustomListe
                     baseFragment = CommentFirstFragment.newInstance(cacheDetail, cacheReplay);
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                     transaction.replace(R.id.fl_community_container, baseFragment);
-                    transaction.commit();
+                    transaction.commitAllowingStateLoss();
                     if (refreshView != null) {
                         refreshView.onRefreshComplete();
                     }
@@ -518,7 +518,7 @@ public class CommunityDetailActivity extends BaseActivity implements CustomListe
             baseFragment = CommentFirstFragment.newInstance(cacheDetail, cacheReplay);
             transaction.setCustomAnimations(R.anim.slide_in_from_top, R.anim.slide_out_to_bottom);
             transaction.replace(R.id.fl_community_container, baseFragment);
-            transaction.commit();
+            transaction.commitAllowingStateLoss();
         } else {
             handleTopicReplayRequest(topicId, pager, pageSize, new NetRequest.NetHandler(this, new NetRequest.NetResponseListener() {
                 @Override
@@ -527,7 +527,7 @@ public class CommunityDetailActivity extends BaseActivity implements CustomListe
                     baseFragment = CommentListTwoFragment.newInstance((Parcelable) object);
                     transaction.setCustomAnimations(R.anim.slide_in_from_top, R.anim.slide_out_to_bottom);
                     transaction.replace(R.id.fl_community_container, baseFragment);
-                    transaction.commit();
+                    transaction.commitAllowingStateLoss();
                     if (refreshView != null)
                         refreshView.onRefreshComplete();
                 }
@@ -556,7 +556,7 @@ public class CommunityDetailActivity extends BaseActivity implements CustomListe
                     baseFragment = CommentListOneFragment.newInstance((Parcelable) object);
                     transaction.setCustomAnimations(R.anim.slide_in_from_bottom, R.anim.slide_out_to_top);
                     transaction.replace(R.id.fl_community_container, baseFragment);
-                    transaction.commit();
+                    transaction.commitAllowingStateLoss();
                 } else {
                     showShortToast("最后一页啦");
                 }

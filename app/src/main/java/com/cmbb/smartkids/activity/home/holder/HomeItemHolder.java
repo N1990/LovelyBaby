@@ -16,7 +16,11 @@ import com.cmbb.smartkids.activity.home.adapter.HomeFraAdapter;
 import com.cmbb.smartkids.activity.home.model.HomePageRootModel;
 import com.cmbb.smartkids.model.ServiceStatus;
 import com.cmbb.smartkids.utils.FrescoTool;
+import com.cmbb.smartkids.utils.TDevice;
 import com.facebook.drawee.view.SimpleDraweeView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 项目名称：LovelyBaby
@@ -54,16 +58,17 @@ public class HomeItemHolder extends RecyclerView.ViewHolder implements View.OnCl
             tvCity.setVisibility(View.GONE);
         tvCity.setText(row.getCityText());
         String startTime = row.getSurplusTime();
+//        List<Integer> intTemp = new ArrayList<>();
         SpannableString ss = new SpannableString(startTime);
-        if (TextUtils.isEmpty(startTime)) {
+        if(TextUtils.isEmpty(startTime)){
             tvTime.setVisibility(View.GONE);
-        } else {
+        }else{
             tvTime.setVisibility(View.VISIBLE);
-            for (int i = 0; i < ss.length(); i++) {
+            for (int i = 0; i < ss.length(); i++){
                 char temp = startTime.charAt(i);
-                if (temp >= 48 && temp <= 57) { //判断是否是数字
+                if(temp >= 48 && temp <= 57){ //判断是否是数字
                     ss.setSpan(new ForegroundColorSpan(Color.RED), i, i + 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                } else {
+                }else{
                     ss.setSpan(new ForegroundColorSpan(Color.WHITE), i, i + 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                 }
             }

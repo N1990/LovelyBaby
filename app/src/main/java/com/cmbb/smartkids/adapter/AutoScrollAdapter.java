@@ -1,7 +1,6 @@
 package com.cmbb.smartkids.adapter;
 
 import android.content.Context;
-import android.net.Uri;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +9,7 @@ import android.view.ViewGroup;
 import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.activity.home.adapter.HomeFraAdapter;
 import com.cmbb.smartkids.activity.home.model.BannerModel;
+import com.cmbb.smartkids.utils.FrescoTool;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.ArrayList;
@@ -59,8 +59,8 @@ public class AutoScrollAdapter extends PagerAdapter implements View.OnClickListe
     public Object instantiateItem(ViewGroup container, int position) {
         SimpleDraweeView iv = (SimpleDraweeView) LayoutInflater.from(container.getContext()).inflate(R.layout.activity_home_banner_image, null);
         BannerModel.DataEntity img = imgs.get(position);
-        iv.setImageURI(Uri.parse(img.getImg()));
-//        FrescoTool.loadImage(iv, img.getImg(), String.valueOf(img.getImgWidth()), String.valueOf(img.getImgHeight()));
+//        iv.setImageURI(Uri.parse(img.getImg()));
+        FrescoTool.loadImage(iv, img.getImg(), String.valueOf(img.getImgWidth()), String.valueOf(img.getImgHeight()));
         iv.setTag(position);
         iv.setOnClickListener(this);
         container.addView(iv);

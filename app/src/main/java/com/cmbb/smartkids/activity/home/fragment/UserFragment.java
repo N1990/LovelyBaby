@@ -25,6 +25,7 @@ import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.activity.home.ApplyPopmanActivity;
 import com.cmbb.smartkids.activity.home.HomeActivity;
 import com.cmbb.smartkids.activity.login.model.SecurityCodeModel;
+import com.cmbb.smartkids.activity.message.MessageActivity;
 import com.cmbb.smartkids.activity.order.MyOrderListActivity;
 import com.cmbb.smartkids.activity.serve.ServiceListActivity;
 import com.cmbb.smartkids.activity.user.MyCommunityActivity;
@@ -166,8 +167,8 @@ public class UserFragment extends BaseFragment {
 //                Intent message = new Intent(getActivity(), MyListRedirectActivity.class);
 //                message.putExtra("flag", "message");
 //                startActivity(message);
-                startActivity(new Intent(getActivity(), MyMessageActivity.class));
-//                MessageActivity.newInstance(this);
+//                startActivity(new Intent(getActivity(), MyMessageActivity.class));
+                MessageActivity.newInstance(this);
                 break;
             case R.id.iv_home_myself:
                 PhotoPickerIntent intent = new PhotoPickerIntent(getActivity());

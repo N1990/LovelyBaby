@@ -349,7 +349,8 @@
         <activity android:name=".activity.more.CompanyRule" />
         <activity android:name=".activity.message.MessageActivity" />
         <activity android:name=".activity.message.OfficialMessageActivity" />
-        <activity android:name=".activity.serve.ActiveDetailMoreActivity"></activity>
+        <activity android:name=".activity.serve.ActiveDetailMoreActivity" />
+        <activity android:name=".activity.message.MessageListActivity"></activity>
     </application>
 
 </manifest>

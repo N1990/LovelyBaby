@@ -142,6 +142,7 @@ public class HomeFragment extends BaseFragment {
             // 热门
             HashMap<String, String> bodyHot = new HashMap<>();
             bodyHot.put("isRecommoned", "1");
+            bodyHot.put("sortType", "home");
             bodyHot.put("numberOfPerPage", String.valueOf(pagerSize));
             bodyHot.put("pageNo", String.valueOf(pager));
             NetRequest.postRequest(Constants.ServiceInfo.HOME_MAIN_HOT_SERVICE, "", bodyHot, HomePageRootModel.class, new NetRequest.NetHandler(getActivity(), new NetRequest.NetResponseListener() {
@@ -211,6 +212,7 @@ public class HomeFragment extends BaseFragment {
         // 热门
         HashMap<String, String> bodyHot = new HashMap<>();
         bodyHot.put("isRecommoned", "1");
+        bodyHot.put("sortType", "home");
         bodyHot.put("numberOfPerPage", String.valueOf(pagerSize));
         bodyHot.put("pageNo", String.valueOf(pager));
         NetRequest.postRequest(Constants.ServiceInfo.HOME_MAIN_HOT_SERVICE, "", bodyHot, HomePageRootModel.class, new NetRequest.NetHandler(getActivity(), new NetRequest.NetResponseListener() {

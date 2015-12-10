@@ -44,13 +44,16 @@ public class MessageActivity extends BaseActivity {
         super.onClick(v);
         switch (v.getId()) {
             case R.id.message_official:
-                OfficialMessageActivity.newInstance(this);
+                MessageListActivity.newInstance(MessageActivity.this, 1);
                 break;
             case R.id.message_order:
+                MessageListActivity.newInstance(MessageActivity.this, 2);
                 break;
             case R.id.message_replay:
+                MessageListActivity.newInstance(MessageActivity.this, 3);
                 break;
             case R.id.message_server:
+                MessageListActivity.newInstance(MessageActivity.this, 4);
                 break;
         }
     }

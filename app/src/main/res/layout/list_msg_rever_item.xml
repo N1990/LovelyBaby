@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="1px"
+    android:background="@drawable/btn_white_radio_bg"
+    android:paddingTop="@dimen/half_global_padding"
+    android:paddingRight="@dimen/half_global_padding"
+    android:paddingLeft="@dimen/half_global_padding">
+
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/iv_msg_revere_item"
+        android:layout_width="50dip"
+        android:layout_height="50dip"
+        android:layout_marginTop="3dip"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:layout_marginBottom="10dp"
+        fresco:actualImageScaleType="centerCrop"
+        android:layout_centerVertical="true"
+        fresco:fadeDuration="300"
+        fresco:placeholderImage="@color/placeholder"
+        fresco:roundAsCircle="true"
+        fresco:roundingBorderColor="@android:color/white"
+        fresco:roundingBorderWidth="1dp" />
+
+
+    <TextView
+        android:id="@+id/tv_content_msg_rever_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dip"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="8dp"
+        android:lineSpacingExtra="1.5dp"
+        android:layout_toLeftOf="@+id/iv_msg_right_item"
+        android:layout_toRightOf="@+id/iv_msg_revere_item"
+        android:gravity="center_vertical"
+        android:text="萌宝派下线服务你看看你的烦恼多个软件开发商老妇女师范生免费奶粉"
+        android:textColor="@color/dimgray" />
+
+    <ImageView
+        android:id="@+id/iv_msg_right_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:src="@mipmap/btn_right_anchor_bg" />
+    <View
+        android:id="@+id/v_msg_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/darker_gray"/>
+
+
+</RelativeLayout>
+

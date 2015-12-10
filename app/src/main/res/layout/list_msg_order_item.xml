@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="1px"
+    android:background="@drawable/btn_white_radio_bg"
+    android:paddingTop="@dimen/half_global_padding"
+    android:paddingRight="@dimen/half_global_padding"
+    android:paddingLeft="@dimen/half_global_padding">
+
+
+    <TextView
+        android:id="@+id/tv_title_msg_order_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@mipmap/btn_message_order_bg"
+        android:drawablePadding="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/iv_msg_right_item"
+        android:ellipsize="end"
+        android:textSize="@dimen/txt_middle"
+        android:gravity="center_vertical"
+        android:singleLine="true"
+        android:text="萌宝派下线服务"
+        android:textColor="@android:color/black"
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:id="@+id/tv_content_msg_order_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dip"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="@dimen/half_global_padding"
+        android:layout_marginBottom="@dimen/half_global_padding"
+        android:layout_below="@+id/tv_title_msg_order_item"
+        android:layout_alignParentLeft="true"
+        android:lineSpacingExtra="1.5dp"
+        android:layout_toLeftOf="@+id/iv_msg_right_item"
+        android:gravity="center_vertical"
+        android:text="萌宝派下线服务"
+        android:textColor="@color/dimgray" />
+
+    <ImageView
+        android:id="@+id/iv_msg_right_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:src="@mipmap/btn_right_anchor_bg"/>
+    <View
+        android:id="@+id/v_msg_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/darker_gray"/>
+
+
+</RelativeLayout>
+

@@ -18,7 +18,7 @@ import com.javon.loadmorerecyclerview.BaseRecyclerAdapter;
  * 创建人：javon
  * 创建时间：2015/10/16 14:10
  */
-public class MyMsgAdapter extends BaseRecyclerAdapter{
+public class MyMsgAdapter extends BaseRecyclerAdapter {
     private final String TAG = MyMsgAdapter.class.getSimpleName();
     private CustomListener.ItemClickListener onItemListener;
 
@@ -41,10 +41,8 @@ public class MyMsgAdapter extends BaseRecyclerAdapter{
         ((MyMessageHolder) holder).setData(this, (MessageListModel.DataEntity.RowsEntity) dataList.get(position), position);
     }
 
-    public void setRead(int position){
+    public void setRead(int position) {
         ((MessageListModel.DataEntity.RowsEntity) dataList.get(position)).setIsRead(1);
         notifyDataSetChanged();
     }
-
-
 }

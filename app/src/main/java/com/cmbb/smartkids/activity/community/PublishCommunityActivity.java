@@ -202,7 +202,11 @@ public class PublishCommunityActivity extends BaseActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 Log.e("position", "position = " + adapter.getCurPos());
-                adapter.getData().get(adapter.getCurPos()).setContent(s.toString());
+                try {
+                    adapter.getData().get(adapter.getCurPos()).setContent(s.toString());
+                } catch (IndexOutOfBoundsException e) {
+
+                }
             }
         });
     }
@@ -392,7 +396,7 @@ public class PublishCommunityActivity extends BaseActivity {
                     type_value = topic_type_value.get(0);
 
                     // 是否保存
-                    String type_cache = SPCache.getString("Publish_Topic_Content", "");
+                    String type_cache = SPCache.getString("Publish_Topic_Type", "");
                     String type_name_cache = SPCache.getString("Publish_Topic_Type_Name", "");
 
                     if (!TextUtils.isEmpty(type_name_cache)) {

@@ -154,7 +154,6 @@ public class SearchActivity extends BaseActivity {
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 // 先隐藏键盘
                 ((InputMethodManager) etSearch.getContext().getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(SearchActivity.this.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-
                 InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                 lmrlSearch.setLinearLayout();
@@ -254,8 +253,6 @@ public class SearchActivity extends BaseActivity {
     private LoadMoreRecyclerView.PullLoadMoreListener lmrvListener = new LoadMoreRecyclerView.PullLoadMoreListener() {
         @Override
         public void onInitialize() {
-
-
         }
 
         @Override
@@ -277,7 +274,6 @@ public class SearchActivity extends BaseActivity {
 
         @Override
         public void onLoadMore() {
-
             switch (type) {
                 case 0:
                     pager_topic++;
@@ -287,7 +283,6 @@ public class SearchActivity extends BaseActivity {
                     pager_user++;
                     handelSearchUserRequest(pager_user, pagerSize, search);
                     break;
-
             }
         }
     };
@@ -316,7 +311,6 @@ public class SearchActivity extends BaseActivity {
                 if (adapter_hot.getDataSize() == 0)
                     lmrlSearch.setNoContent();
                 showShortToast(msg);
-
             }
 
             @Override
@@ -351,7 +345,6 @@ public class SearchActivity extends BaseActivity {
                 }
                 if (adapter_topic.getDataSize() == 0)
                     lmrlSearch.setNoContent();
-
             }
 
             @Override
@@ -382,7 +375,7 @@ public class SearchActivity extends BaseActivity {
                 hideWaitDialog();
                 lmrlSearch.setPullLoadMoreCompleted();
                 SearchUserModel result = (SearchUserModel) object;
-                if (result != null && result.getData() != null && result.getData().getRows() != null) {
+                if (result != null && result.getData() != null && result.getData().getRows() != null && result.getData().getRows().size() > 0) {
                     lmrlSearch.setHasContent();
                     adapter_user.addData(result.getData().getRows(), lmrlSearch);
                 }
@@ -396,11 +389,7 @@ public class SearchActivity extends BaseActivity {
                 hideWaitDialog();
                 lmrlSearch.setPullLoadMoreCompleted();
                 showShortToast(message);
-
             }
         }));
-
     }
-
-
 }

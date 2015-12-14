@@ -30,7 +30,6 @@ import com.cmbb.smartkids.activity.order.MyOrderListActivity;
 import com.cmbb.smartkids.activity.serve.ServiceListActivity;
 import com.cmbb.smartkids.activity.user.MyCommunityActivity;
 import com.cmbb.smartkids.activity.user.MyListRedirectActivity;
-import com.cmbb.smartkids.activity.user.MyMessageActivity;
 import com.cmbb.smartkids.activity.user.MyServiceOrderActivity;
 import com.cmbb.smartkids.activity.user.MySetActivity;
 import com.cmbb.smartkids.activity.user.PerssionListActivity;
@@ -164,10 +163,6 @@ public class UserFragment extends BaseFragment {
                 break;
             // 信息
             case R.id.iv_main_toolbar_right:
-//                Intent message = new Intent(getActivity(), MyListRedirectActivity.class);
-//                message.putExtra("flag", "message");
-//                startActivity(message);
-//                startActivity(new Intent(getActivity(), MyMessageActivity.class));
                 MessageActivity.newInstance(this);
                 break;
             case R.id.iv_home_myself:
@@ -217,7 +212,6 @@ public class UserFragment extends BaseFragment {
                 break;
             case R.id.ll_home_self_apply_popman:
                 startActivityForResult(new Intent(getActivity(), ApplyPopmanActivity.class), HomeActivity.MY_SET_MODIFY);
-//                showShortToast("申请达人功能暂未开放");
                 break;
         }
     }
@@ -290,7 +284,6 @@ public class UserFragment extends BaseFragment {
             myPopman.setVisibility(View.VISIBLE);
         } else {
             getView().findViewById(R.id.v_home_self_apply_popman).setVisibility(View.GONE);
-
             myPopman.setVisibility(View.GONE);
         }
         // 模拟进度条动画
@@ -332,9 +325,9 @@ public class UserFragment extends BaseFragment {
     /**
      * 更改背景图片
      *
-     * @param path
-     * @param width
-     * @param height
+     * @param path   String
+     * @param width  String
+     * @param height String
      */
     private void handleUpdateRequest(final String path, final String width, final String height) {
         Log.e("path", "path = " + path);

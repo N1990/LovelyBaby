@@ -39,7 +39,6 @@
             android:layout_marginTop="5dip"
             android:src="@mipmap/btn_delete_pic_bg" />
 
-
         <ImageView
             android:id="@+id/iv_public_community_zoom_item"
             android:layout_width="wrap_content"
@@ -49,7 +48,6 @@
             android:layout_marginBottom="25dip"
             android:layout_marginRight="10dip"
             android:src="@mipmap/btn_zoom_pic_bg" />
+
     </RelativeLayout>
-
-
 </LinearLayout>

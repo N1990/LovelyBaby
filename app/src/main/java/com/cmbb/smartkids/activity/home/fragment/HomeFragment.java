@@ -88,16 +88,12 @@ public class HomeFragment extends BaseFragment {
             tvRight.setVisibility(View.VISIBLE);
             tvRight.setOnClickListener(this);
             ivLeft = (ImageView) v.findViewById(R.id.iv_main_toolbar_left);
-            /*ivRight = (ImageView) v.findViewById(R.id.iv_main_toolbar_right);
-            ivRight.setVisibility(View.VISIBLE);
-            ivRight.setBackgroundResource(R.mipmap.btn_sign_bg);
-            ivRight.setOnClickListener(this);*/
             ((AppCompatActivity) getActivity()).setSupportActionBar(v);
             actionbar = ((AppCompatActivity) getActivity()).getSupportActionBar();
             actionbar.setDisplayHomeAsUpEnabled(false);
             actionbar.setDisplayShowTitleEnabled(false);
         } catch (Exception e) {
-            com.cmbb.smartkids.utils.log.Log.i(TAG, "actionbar is null");
+            Log.i(TAG, "actionbar is null");
         }
     }
 
@@ -148,7 +144,7 @@ public class HomeFragment extends BaseFragment {
             NetRequest.postRequest(Constants.ServiceInfo.HOME_MAIN_HOT_SERVICE, "", bodyHot, HomePageRootModel.class, new NetRequest.NetHandler(getActivity(), new NetRequest.NetResponseListener() {
                 @Override
                 public void onSuccessListener(Object ob, String msg) {
-                    com.cmbb.smartkids.utils.log.Log.i(TAG, "message = " + msg);
+                    Log.i(TAG, "message = " + msg);
                     HomePageRootModel object = (HomePageRootModel) ob;
                     if (null != object && object.getData() != null && object.getData().getRecords() != 0) {
                         Log.i(TAG, "HomePageRootModel = " + object.toString());
@@ -270,7 +266,6 @@ public class HomeFragment extends BaseFragment {
                 } else {
                     hideWaitDialog();
                     lmrc.setPullLoadMoreCompleted();
-                    //showShortToast(msg);
                 }
             }
 

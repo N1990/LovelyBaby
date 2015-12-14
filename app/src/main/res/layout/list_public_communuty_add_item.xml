@@ -13,13 +13,10 @@
             android:id="@+id/iv_public_community_add_item"
             android:layout_width="80dip"
             android:layout_height="80dip"
-            android:layout_centerInParent="true"
-            android:background="@mipmap/btn_add_pic_bg"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="15dip"/>
-
+            android:layout_centerInParent="true"
+            android:layout_marginTop="15dip"
+            android:background="@mipmap/btn_add_pic_bg" />
     </RelativeLayout>
-
-
 
 </LinearLayout>

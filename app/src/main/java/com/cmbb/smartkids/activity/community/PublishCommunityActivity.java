@@ -394,7 +394,6 @@ public class PublishCommunityActivity extends BaseActivity {
                     ns.attachDataSource(topic_type_name);
                     // 初始值
                     type_value = topic_type_value.get(0);
-
                     // 是否保存
                     String type_cache = SPCache.getString("Publish_Topic_Type", "");
                     String type_name_cache = SPCache.getString("Publish_Topic_Type_Name", "");

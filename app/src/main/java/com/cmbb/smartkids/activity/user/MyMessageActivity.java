@@ -140,8 +140,6 @@ public class MyMessageActivity extends BaseActivity {
                     lmrv.setNoContent();
                 }
                 showShortToast(msg);
-
-
             }
 
             @Override

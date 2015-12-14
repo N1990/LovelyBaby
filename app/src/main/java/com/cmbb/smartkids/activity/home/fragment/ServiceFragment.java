@@ -29,9 +29,7 @@ import com.cmbb.smartkids.widget.spinner.NiceSpinner;
 import com.javon.loadmorerecyclerview.LoadMoreRecyclerView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * 项目名称：LovelyBaby
@@ -67,7 +65,6 @@ public class ServiceFragment extends BaseFragment {
         initData();
         addListener();
     }
-
 
 
     private ActionBar actionbar;
@@ -206,6 +203,7 @@ public class ServiceFragment extends BaseFragment {
 
     /**
      * 服务列表
+     *
      * @param pager
      * @param pagerSize
      */
@@ -250,7 +248,7 @@ public class ServiceFragment extends BaseFragment {
     /**
      * 服务列表字典
      */
-    private void handleServiceSort(){
+    private void handleServiceSort() {
         showWaitsDialog();
         HashMap<String, String> params = new HashMap<>();
         params.put("typeCode", "serviceCity,services,serviceStatus");
@@ -258,7 +256,7 @@ public class ServiceFragment extends BaseFragment {
             @Override
             public void onSuccessListener(Object object, String msg) {
                 ServiceSortModel result = (ServiceSortModel) object;
-                if(result != null && result.getData() != null){
+                if (result != null && result.getData() != null) {
                     ServiceSortModel.DataEntity.ServiceCityEntity allCity = new ServiceSortModel.DataEntity.ServiceCityEntity();
                     allCity.setName("全部");
                     allCity.setValue("0");

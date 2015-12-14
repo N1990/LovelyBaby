@@ -200,6 +200,4 @@ public class PublicCommunityAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                 adapter.getOnFootListener().onClick(v);
         }
     }
-
-
 }

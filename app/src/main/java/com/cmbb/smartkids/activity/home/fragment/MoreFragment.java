@@ -84,14 +84,11 @@ public class MoreFragment extends BaseFragment implements CustomListener.ItemCli
     public void onItemClick(View v, int position, Object object) {
         if (position == 0) {
             startActivity(new Intent(getActivity(), SuggestActivity.class));
-        }
-        else if(position == 1){
+        } else if (position == 1) {
             startActivity(new Intent(getActivity(), GrownValusActivity.class));
-        }
-        else if(position == 2){
+        } else if (position == 2) {
             startActivity(new Intent(getActivity(), AboutActivity.class));
-        }
-        else if(position == 3){
+        } else if (position == 3) {
 
         }
     }

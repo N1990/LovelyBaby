@@ -178,7 +178,7 @@ public class FrescoTool {
         AbstractDraweeController controller = Fresco.newDraweeControllerBuilder()
                 .setImageRequest(request)
                 .setOldController(simpleDraweeView.getController())
-                .build();
+        .build();
         simpleDraweeView.setController(controller);
 
     }

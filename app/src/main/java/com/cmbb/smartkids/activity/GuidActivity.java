@@ -29,6 +29,7 @@ public class GuidActivity extends BaseActivity {
     private CirclePageIndicator cpiGuid;
     private boolean skipFlag;
     private LinearLayout ll_bottom;
+    private int i = 10;
 
     @Override
     protected int getLayoutId() {

@@ -71,7 +71,37 @@ public class FrescoTool {
     public static void loadImage(SimpleDraweeView simpleDraweeView, String url, float ratio) {
         if (TextUtils.isEmpty(url)) {
             Log.e(TAG, "url is null");
+            simpleDraweeView.setAspectRatio(ratio);
             simpleDraweeView.setImageResource(R.color.placeholder);
+            return;
+        }
+        simpleDraweeView.setAspectRatio(ratio);
+        Uri uri = Uri.parse(url + "@" + TDevice.getScreenWidth(BaseApplication.getContext()) + "w_1o.jpeg");
+        Log.e("Image", "Image = " + uri.toString());
+        ImageRequest request = ImageRequestBuilder
+                .newBuilderWithSource(uri)
+                .setProgressiveRenderingEnabled(true)
+                .build();
+        DraweeController controller = Fresco.newDraweeControllerBuilder()
+                .setImageRequest(request)
+                .setOldController(simpleDraweeView.getController())
+                .build();
+        simpleDraweeView.setController(controller);
+    }
+
+    /**
+     * 按照宽高比例加载图片
+     *
+     * @param simpleDraweeView Fresco控件
+     * @param url              图片地址
+     * @param ratio            图片比例
+     * @param resid            默认图片
+     */
+    public static void loadImage(SimpleDraweeView simpleDraweeView, String url, float ratio, int resid) {
+        if (TextUtils.isEmpty(url)) {
+            Log.e(TAG, "url is null");
+            simpleDraweeView.setAspectRatio(ratio);
+            simpleDraweeView.setImageResource(resid);
             return;
         }
         simpleDraweeView.setAspectRatio(ratio);

@@ -346,7 +346,8 @@ public class CommunityDetailActivity extends BaseActivity implements CustomListe
                     if (popTitle.isShowing()) {
                         popTitle.dismiss();
                     } else {
-                        popTitle.showPop(ivMore, -popTitle.getWidth() - TDevice.dip2px(18, CommunityDetailActivity.this), TDevice.dip2px(18, CommunityDetailActivity.this));
+                        // -popTitle.getWidth() - TDevice.dip2px(18, CommunityDetailActivity.this)
+                        popTitle.showPop(ivMore, -popTitle.getWidth() - TDevice.dip2px(18, CommunityDetailActivity.this) , TDevice.dip2px(18, CommunityDetailActivity.this));
                     }
                 }
                 break;

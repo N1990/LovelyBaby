@@ -1,9 +1,13 @@
 package com.cmbb.smartkids.activity.serve;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.Spanned;
 import android.text.TextUtils;
+import android.text.style.ForegroundColorSpan;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,7 +30,6 @@ import com.cmbb.smartkids.base.BaseApplication;
 import com.cmbb.smartkids.base.Constants;
 import com.cmbb.smartkids.base.CustomListener;
 import com.cmbb.smartkids.network.NetRequest;
-import com.cmbb.smartkids.photopicker.PhotoViewActivity;
 import com.cmbb.smartkids.utils.FrescoTool;
 import com.cmbb.smartkids.utils.ShareUtils;
 import com.cmbb.smartkids.utils.TDevice;
@@ -45,7 +48,7 @@ public class ActiveDetailActivity extends BaseActivity {
     private ScrollView nsv;
     private TextView tvJoinNum, tvUserNick, tvUserIdentity, tvContent, tvActiveLocal,
             tvContact, tvOrder, tvPrice, tvMore,
-            tvTime, tvTitle, tvPreColle;
+            tvTime, tvTitle, tvPreColle, tvEndTime;
     private SimpleDraweeView ivAd, ivUserHeader;
     private ImageView ivCollect, ivShare, ivRight;
     private LinearLayout llOrder;
@@ -96,6 +99,7 @@ public class ActiveDetailActivity extends BaseActivity {
         ivCollect = (ImageView) findViewById(R.id.iv_active_detail_collect_right);
         nsv = (ScrollView) findViewById(R.id.nsv_active_detail);
         ivAd = (SimpleDraweeView) findViewById(R.id.tv_active_detail_ad);
+        tvEndTime = (TextView) findViewById(R.id.tv_active_detail_emdtime);
         tvJoinNum = (TextView) findViewById(R.id.tv_active_detail_num);
         tvTitle = (TextView) findViewById(R.id.tv_active_detail_title);
         tvPreColle = (TextView) findViewById(R.id.tv_active_preview_and_collect);
@@ -105,8 +109,6 @@ public class ActiveDetailActivity extends BaseActivity {
         tvUserIdentity = (TextView) findViewById(R.id.tv_user_center_identity);
         rb = (RatingBar) findViewById(R.id.rb_user_center_perssion);
         ivRight = (ImageView) findViewById(R.id.iv_user_base_right);
-
-
         tvTime = (TextView) findViewById(R.id.tv_active_detail_time);
         tvActiveLocal = (TextView) findViewById(R.id.tv_active_detail_local);
         tvContact = (TextView) findViewById(R.id.tv_active_detail_contact);
@@ -232,17 +234,34 @@ public class ActiveDetailActivity extends BaseActivity {
         nsv.setVisibility(View.VISIBLE);
         llOrder.setVisibility(View.VISIBLE);
         findViewById(R.id.ll_empty_data).setVisibility(View.GONE);
-        FrescoTool.loadImage(ivAd, realData.getServicesImg(), String.valueOf(TDevice.dip2px(200, ivAd.getContext())));
+//        FrescoTool.loadImage(ivAd, realData.getServicesImg(), String.valueOf(TDevice.dip2px(200, ivAd.getContext())));
+        FrescoTool.loadImage(ivAd, realData.getServicesImg(), 1.67f);
 //        imgs.add(realData.getServicesImg());
         String time01 = "";
-        String time02 = "";
+//        String time02 = "";
         try {
-            time01 = Tools.DataToString(realData.getStartTime(), "MM/dd hh:mm");
-            time02 = Tools.DataToString(realData.getEndTime(), "MM/dd hh:mm");
+            time01 = Tools.DataToString(realData.getStartTime(), "yy/MM/dd hh:mm");
+//            time02 = Tools.DataToString(realData.getEndTime(), "MM/dd hh:mm");
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        tvTime.setText( time01 + " - " + time02);
+        tvTime.setText(time01);
+        String startTime = realData.getSurplusTime();
+        SpannableString ss = new SpannableString(startTime);
+        if(TextUtils.isEmpty(startTime)){
+            tvEndTime.setVisibility(View.GONE);
+        }else{
+            tvEndTime.setVisibility(View.VISIBLE);
+            for (int i = 0; i < ss.length(); i++){
+                char temp = startTime.charAt(i);
+                if(temp >= 48 && temp <= 57){ //判断是否是数字
+                    ss.setSpan(new ForegroundColorSpan(Color.RED), i, i + 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                }else{
+                    ss.setSpan(new ForegroundColorSpan(Color.WHITE), i, i + 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                }
+            }
+            tvEndTime.setText(ss);
+        }
         tvTitle.setText(realData.getTitle());
         tvPreColle.setText("浏览" + realData.getBrowseNumber() + "次  收藏" + realData.getColletCount() + "次");
         tvJoinNum.setText("已参加 " + realData.getRealityPeoples() + "/" + realData.getPeoples());

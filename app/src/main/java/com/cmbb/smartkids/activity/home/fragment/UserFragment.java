@@ -266,7 +266,7 @@ public class UserFragment extends BaseFragment {
     private void reflushView(UserCenterModel.DataEntity userModel) {
         //Fresco
         FrescoTool.loadImage(ivUserHeader, userModel.getUserSmallImg());
-        FrescoTool.loadImage(ivMyself, userModel.getBackgroundImg(), TDevice.dip2px(180, getActivity()) + "");
+        FrescoTool.loadImage(ivMyself, userModel.getBackgroundImg(), 1.67f, R.mipmap.btn_user_background_bg);
 
         if (!TextUtils.isEmpty(userModel.getUserNike())) {
             tvNickname.setVisibility(View.VISIBLE);

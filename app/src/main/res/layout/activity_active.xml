@@ -57,36 +57,10 @@
 
     </android.support.v7.widget.Toolbar>
 
-
-
-        <LinearLayout
-            android:id="@+id/ll_active_detail_order"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/white"
-            android:layout_alignParentBottom="true"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:visibility="gone">
-
-            <TextView
-                android:id="@+id/tv_active_detail_order"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/global_padding"
-                android:layout_margin="@dimen/half_global_padding"
-                android:background="@drawable/btn_service_detail_order_enable"
-                android:gravity="center"
-                android:text="预定"
-                android:textStyle="bold"
-                android:textColor="@android:color/white" />
-        </LinearLayout>
-
     <ScrollView
         android:id="@+id/nsv_active_detail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/ll_active_detail_order"
         android:layout_below="@+id/tl_main_actionbar"
         android:fitsSystemWindows="true"
         android:visibility="gone">
@@ -96,20 +70,33 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
             <com.facebook.drawee.view.SimpleDraweeView
                 android:id="@+id/tv_active_detail_ad"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="wrap_content"
                 android:fitsSystemWindows="true"
                 app:actualImageScaleType="centerCrop"
                 app:fadeDuration="300"
                 app:placeholderImage="@color/placeholder" />
 
+                <TextView
+                    android:id="@+id/tv_active_detail_emdtime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:gravity="right|bottom"
+                    android:background="@drawable/btn_mask_bg"
+                    android:padding="10dp" />
+            </RelativeLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/white"
-                android:layout_alignParentBottom="true"
                 android:orientation="vertical">
 
                 <TextView
@@ -144,7 +131,9 @@
                         android:layout_weight="1.0"
                         android:textSize="@dimen/txt_middle"
                         android:textIsSelectable="true"
-                        android:text="duhshfhsdfisdfhdsfhdifhidhgidhighdifghifdhgidgidfigfdihgh"
+                        android:singleLine="true"
+                        android:ellipsize="end"
+                        android:maxLength="16"
                         android:textColor="@android:color/black"/>
 
                     <TextView
@@ -286,6 +275,8 @@
                     android:drawableLeft="@mipmap/service_detail_local_bg"
                     android:drawablePadding="10dp"
                     android:gravity="center_vertical"
+                    android:maxLines="2"
+                    android:ellipsize="end"
                     android:text="浦东新区展览馆"
                     android:textIsSelectable="true" />
 
@@ -316,7 +307,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:background="@android:color/white"
-                android:layout_marginBottom="50dp"
                 android:orientation="vertical">
 
 
@@ -354,17 +344,40 @@
                     android:textSize="@dimen/txt_middle"/>
             </LinearLayout>
 
-
-
-
-<!--
             <LinearLayout
-                android:id="@+id/ll_active_detail_container"
+                android:id="@+id/ll_active_detail_order"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dip"
-                android:orientation="vertical"
-                android:padding="5dip" />-->
+                android:background="@android:color/white"
+                android:layout_marginTop="50dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tv_active_detail_order"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/global_padding"
+                    android:layout_margin="@dimen/half_global_padding"
+                    android:background="@drawable/btn_service_detail_order_enable"
+                    android:gravity="center"
+                    android:text="预定"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white" />
+            </LinearLayout>
+
+
+
+
+            <!--
+                        <LinearLayout
+                            android:id="@+id/ll_active_detail_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dip"
+                            android:orientation="vertical"
+                            android:padding="5dip" />-->
         </LinearLayout>
     </ScrollView>
 

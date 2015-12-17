@@ -1,24 +1,19 @@
 package com.cmbb.smartkids.activity.message;
 
-import android.content.Context;
 import android.content.Intent;
-import android.support.v4.widget.NestedScrollView;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.TextUtils;
+import android.support.v4.widget.NestedScrollView;
+import android.util.Log;
 import android.view.View;
 
 import com.cmbb.smartkids.R;
-import com.cmbb.smartkids.activity.login.model.SecurityCodeModel;
+import com.cmbb.smartkids.activity.community.CommunityDetailActivity;
 import com.cmbb.smartkids.activity.message.adapter.MsgOfficalAdapter;
 import com.cmbb.smartkids.activity.message.adapter.MsgOrderAdapter;
 import com.cmbb.smartkids.activity.message.adapter.MsgReverAdapter;
 import com.cmbb.smartkids.activity.message.adapter.MsgServiceAdapter;
-import com.cmbb.smartkids.activity.order.OrderDetailActivity;
-import com.cmbb.smartkids.activity.serve.ActiveDetailActivity;
-import com.cmbb.smartkids.activity.user.HomeMessageActivity;
-import com.cmbb.smartkids.activity.user.adapter.MyMsgAdapter;
-import com.cmbb.smartkids.activity.user.model.MessageListModel;
+import com.cmbb.smartkids.activity.message.model.MessageCountModel;
+import com.cmbb.smartkids.activity.message.model.MessageListModel;
 import com.cmbb.smartkids.base.BaseActivity;
 import com.cmbb.smartkids.base.BaseApplication;
 import com.cmbb.smartkids.base.Constants;
@@ -39,7 +34,8 @@ public class MessageListActivity extends BaseActivity {
     private MsgServiceAdapter serviceAdapter;
     private int pager = 0;
     private int pagerSize = 10;
-    private int tag = -1; // 1 官方消息  2 订单状态   3 回复提醒  4 关注服务
+
+    private MessageCountModel.DataEntity dataEntity;//获取的参数
 
     @Override
     protected int getLayoutId() {
@@ -61,29 +57,37 @@ public class MessageListActivity extends BaseActivity {
 
     private void initData() {
         Bundle bundle = null;
-        if(getIntent() != null && (bundle = getIntent().getExtras()) != null){
-            tag = bundle.getInt("tag", -1);
+        if (getIntent() != null && (bundle = getIntent().getExtras()) != null) {
+            dataEntity = bundle.getParcelable("DataEntity");
         }
-        if(tag == 1){
-            reflushOfficalView();
-        }else if(tag == 2){
-           reflushOrderView();
-        }else if(tag == 3){
-            reflushReverView();
-        }else if(tag == 4){
-            reflushServiceView();
-        }else{
-            setTitle("消  息");
-            lmrv.setVisibility(View.GONE);
-            nsvEmpty.setVisibility(View.VISIBLE);
-            showShortToast("传参数出错~");
+        if (dataEntity == null) return;
+        Log.e("DataEntity", "DataEntity = " + dataEntity.getModual());
+        switch (dataEntity.getModual()) {
+            case "system":
+                reflushOfficalView();
+                break;
+            case "order":
+                reflushOrderView();
+                break;
+            case "topic":
+                reflushReverView();
+                break;
+            case "service":
+                reflushServiceView();
+                break;
+            default:
+                setTitle("消  息");
+                lmrv.setVisibility(View.GONE);
+                nsvEmpty.setVisibility(View.VISIBLE);
+                showShortToast("传参数出错~");
+                break;
         }
     }
 
     /**
      * 官方消息列表
      */
-    private void reflushOfficalView(){
+    private void reflushOfficalView() {
         setTitle("官方消息");
         officalAdapter = new MsgOfficalAdapter();
         officalAdapter.setData(new ArrayList<String>());
@@ -98,7 +102,7 @@ public class MessageListActivity extends BaseActivity {
     /**
      * 订单消息列表
      */
-    private void reflushOrderView(){
+    private void reflushOrderView() {
         setTitle("订单动态");
         orderAdapter = new MsgOrderAdapter();
         orderAdapter.setData(new ArrayList<String>());
@@ -113,7 +117,7 @@ public class MessageListActivity extends BaseActivity {
     /**
      * 回复提醒列表
      */
-    private void reflushReverView(){
+    private void reflushReverView() {
         setTitle("回复提醒");
         reverAdapter = new MsgReverAdapter();
         reverAdapter.setData(new ArrayList<String>());
@@ -128,7 +132,7 @@ public class MessageListActivity extends BaseActivity {
     /**
      * 服务消息列表
      */
-    private void reflushServiceView(){
+    private void reflushServiceView() {
         setTitle("关注服务");
         serviceAdapter = new MsgServiceAdapter();
         serviceAdapter.setData(new ArrayList<String>());
@@ -140,114 +144,111 @@ public class MessageListActivity extends BaseActivity {
     }
 
 
-
-
     private CustomListener.ItemClickListener onItemListener = new CustomListener.ItemClickListener() {
         @Override
         public void onItemClick(View v, int position, Object object) {
-            switch (tag){
-                case 1:
-                    showShortToast("官方消息" + position);
+
+            Log.e("Message", "Message = " + dataEntity.getModual());
+
+            switch (dataEntity.getModual()) {
+                case "system":
+                    OfficialMessageActivity.newInstance(MessageListActivity.this);
                     break;
-                case 2:
-                    showShortToast("订单动态" + position);
+                case "order":
+//                    handleOrderRequest(pager, pagerSize);
                     break;
-                case 3:
-                    showShortToast("回复提醒" + position);
+                case "topic":
+                    CommunityDetailActivity.newInstance(MessageListActivity.this, dataEntity.getId());
                     break;
-                case 4:
-                    showShortToast("关注服务" + position);
+                case "service":
+//                    handleServiceRequest(pager, pagerSize);
                     break;
             }
         }
     };
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     private LoadMoreRecyclerView.PullLoadMoreListener lmrvListener = new LoadMoreRecyclerView.PullLoadMoreListener() {
         @Override
         public void onInitialize() {
-//            showWaitDialog();
-            handleRequest(pager, pagerSize);
-            lmrv.setPullLoadMoreCompleted();
+            pager = 0;
+            handleEmptyMessageRequest(dataEntity.getId() + "");
+            switch (dataEntity.getModual()) {
+                case "system":
+                    officalAdapter.clearData();
+                    handleSystemRequest(pager, pagerSize);
+                    break;
+                case "order":
+                    orderAdapter.clearData();
+                    handleOrderRequest(pager, pagerSize);
+                    break;
+                case "topic":
+                    reverAdapter.clearData();
+                    handleTopicRequest(pager, pagerSize);
+                    break;
+                case "service":
+                    serviceAdapter.clearData();
+                    handleServiceRequest(pager, pagerSize);
+                    break;
+            }
         }
 
         @Override
         public void onRefresh() {
-//            adapter.clearData();
             pager = 0;
-            handleRequest(pager, pagerSize);
-            lmrv.setPullLoadMoreCompleted();
+            switch (dataEntity.getModual()) {
+                case "system":
+                    officalAdapter.clearData();
+                    handleSystemRequest(pager, pagerSize);
+                    break;
+                case "order":
+                    orderAdapter.clearData();
+                    handleOrderRequest(pager, pagerSize);
+                    break;
+                case "topic":
+                    reverAdapter.clearData();
+                    handleTopicRequest(pager, pagerSize);
+                    break;
+                case "service":
+                    serviceAdapter.clearData();
+                    handleServiceRequest(pager, pagerSize);
+                    break;
+            }
         }
 
         @Override
         public void onLoadMore() {
             pager++;
-            handleRequest(pager, pagerSize);
-            lmrv.setPullLoadMoreCompleted();
+            switch (dataEntity.getModual()) {
+                case "system":
+                    handleSystemRequest(pager, pagerSize);
+                    break;
+                case "order":
+                    handleOrderRequest(pager, pagerSize);
+                    break;
+                case "topic":
+                    handleTopicRequest(pager, pagerSize);
+                    break;
+                case "service":
+                    handleServiceRequest(pager, pagerSize);
+                    break;
+            }
         }
     };
 
 
-    /*private CustomListener.ItemClickListener onItemListener = new CustomListener.ItemClickListener() {
-        @Override
-        public void onItemClick(View v, int position, Object object) {
-            MessageListModel.DataEntity.RowsEntity item = (MessageListModel.DataEntity.RowsEntity) object;
-            int messageId = item.getId();
-            String relationId = item.getRelateField();
-            String type = item.getModual();
-            int isRead = item.getIsRead();
-            if (!TextUtils.isEmpty(relationId)) {
-                if (isRead == 1) {
-                    if ("order".equals(type)) {
-                        Intent order = new Intent(MessageListActivity.this, OrderDetailActivity.class);
-                        order.putExtra("orderCode", relationId);
-                        startActivity(order);
-                    } else if ("service".equals(type)) {
-                        Intent service = new Intent(MessageListActivity.this, ActiveDetailActivity.class);
-                        service.putExtra("serviceId", Integer.parseInt(relationId));
-                        startActivity(service);
-                    }
-                } else {
-                    handleMessageRequest(messageId, position, type, relationId, messageId);
-                }
-            } else if ("system".equals(type)) {
-                if (isRead == 1) {
-                    Intent system = new Intent(MessageListActivity.this, HomeMessageActivity.class);
-                    system.putExtra("id", messageId);
-                    startActivity(system);
-                } else {
-                    handleMessageRequest(messageId, position, type, relationId, messageId);
-                }
-            }
-
-        }
-    };*/
-
-
     /**
-     * 消息列表
+     * 系统消息列表
      *
      * @param pager
      * @param pagerSize
      */
-    private void handleRequest(int pager, int pagerSize) {
+    private void handleSystemRequest(int pager, int pagerSize) {
         HashMap<String, String> params = new HashMap<>();
+        params.put("modual", dataEntity.getModual());
         params.put("pageNo", String.valueOf(pager));
         params.put("numberOfPerPage", String.valueOf(pagerSize));
-       /* NetRequest.postRequest(Constants.ServiceInfo.MESSAGE_LIST_REQUEST, BaseApplication.token, params, MessageListModel.class, new NetRequest.NetHandler(this, new NetRequest.NetResponseListener() {
+        NetRequest.postRequest(Constants.ServiceInfo.MESSAGE_GET_PAGE, BaseApplication.token, params, MessageListModel.class, new NetRequest.NetHandler(this, new NetRequest.NetResponseListener() {
             @Override
             public void onSuccessListener(Object object, String msg) {
                 hideWaitDialog();
@@ -255,14 +256,11 @@ public class MessageListActivity extends BaseActivity {
                 MessageListModel result = (MessageListModel) object;
                 if (result.getData() != null && result.getData().getRows() != null && result.getData().getRows().size() > 0) {
                     lmrv.setHasContent();
-//                    adapter.addData(result.getData().getRows(), lmrv);
+                    officalAdapter.addData(result.getData().getRows(), lmrv);
                 }
-              *//*  if (adapter.getDataSize() == 0) {
+                if (officalAdapter.getDataSize() == 0) {
                     lmrv.setNoContent();
-                }*//*
-                showShortToast(msg);
-
-
+                }
             }
 
             @Override
@@ -271,42 +269,138 @@ public class MessageListActivity extends BaseActivity {
                 lmrv.setPullLoadMoreCompleted();
                 showShortToast(message);
             }
-        }));*/
+        }));
     }
 
     /**
-     * 消息置为已读
+     * 订单消息列表
      *
-     * @param id
-     * @param position
-     * @param type
-     * @param relationId
+     * @param pager
+     * @param pagerSize
      */
-    private void handleMessageRequest(int id, final int position, final String type, final String relationId, final int messageId) {
-        showWaitDialog();
+    private void handleOrderRequest(int pager, int pagerSize) {
         HashMap<String, String> params = new HashMap<>();
-        params.put("id", id + "");
-        params.put("isRead", "1");
-        NetRequest.postRequest(Constants.ServiceInfo.MESSAGE_REEAD_REQUEST, BaseApplication.token, params, SecurityCodeModel.class, new NetRequest.NetHandler(this, new NetRequest.NetResponseListener() {
+        params.put("modual", dataEntity.getModual());
+        params.put("pageNo", String.valueOf(pager));
+        params.put("numberOfPerPage", String.valueOf(pagerSize));
+        NetRequest.postRequest(Constants.ServiceInfo.MESSAGE_GET_PAGE, BaseApplication.token, params, MessageListModel.class, new NetRequest.NetHandler(this, new NetRequest.NetResponseListener() {
             @Override
             public void onSuccessListener(Object object, String msg) {
                 hideWaitDialog();
-                SecurityCodeModel result = (SecurityCodeModel) object;
-//                adapter.setRead(position);
-                if ("order".equals(type)) {
-                    Intent order = new Intent(MessageListActivity.this, OrderDetailActivity.class);
-                    order.putExtra("orderCode", relationId);
-                    startActivity(order);
-                } else if ("service".equals(type)) {
-                    Intent service = new Intent(MessageListActivity.this, ActiveDetailActivity.class);
-                    service.putExtra("serviceId", Integer.parseInt(relationId));
-                    startActivity(service);
-                } else if ("system".equals(type)) {
-                    Intent system = new Intent(MessageListActivity.this, HomeMessageActivity.class);
-                    system.putExtra("id", messageId);
-                    startActivity(system);
+                lmrv.setPullLoadMoreCompleted();
+                MessageListModel result = (MessageListModel) object;
+                if (result.getData() != null && result.getData().getRows() != null && result.getData().getRows().size() > 0) {
+                    lmrv.setHasContent();
+                    orderAdapter.addData(result.getData().getRows(), lmrv);
                 }
-                showShortToast(msg);
+                if (orderAdapter.getDataSize() == 0) {
+                    lmrv.setNoContent();
+                }
+            }
+
+            @Override
+            public void onErrorListener(String message) {
+                hideWaitDialog();
+                lmrv.setPullLoadMoreCompleted();
+                showShortToast(message);
+            }
+        }));
+    }
+
+    /**
+     * 话题消息列表
+     *
+     * @param pager
+     * @param pagerSize
+     */
+    private void handleTopicRequest(int pager, int pagerSize) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("modual", dataEntity.getModual());
+        params.put("pageNo", String.valueOf(pager));
+        params.put("numberOfPerPage", String.valueOf(pagerSize));
+        NetRequest.postRequest(Constants.ServiceInfo.MESSAGE_GET_PAGE, BaseApplication.token, params, MessageListModel.class, new NetRequest.NetHandler(this, new NetRequest.NetResponseListener() {
+            @Override
+            public void onSuccessListener(Object object, String msg) {
+                hideWaitDialog();
+                lmrv.setPullLoadMoreCompleted();
+                MessageListModel result = (MessageListModel) object;
+                if (result.getData() != null && result.getData().getRows() != null && result.getData().getRows().size() > 0) {
+                    lmrv.setHasContent();
+                    reverAdapter.addData(result.getData().getRows(), lmrv);
+                }
+                if (reverAdapter.getDataSize() == 0) {
+                    lmrv.setNoContent();
+                }
+            }
+
+            @Override
+            public void onErrorListener(String message) {
+                hideWaitDialog();
+                lmrv.setPullLoadMoreCompleted();
+                showShortToast(message);
+            }
+        }));
+    }
+
+    /**
+     * 服务消息列表
+     *
+     * @param pager
+     * @param pagerSize
+     */
+    private void handleServiceRequest(int pager, int pagerSize) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("modual", dataEntity.getModual());
+        params.put("pageNo", String.valueOf(pager));
+        params.put("numberOfPerPage", String.valueOf(pagerSize));
+        NetRequest.postRequest(Constants.ServiceInfo.MESSAGE_GET_PAGE, BaseApplication.token, params, MessageListModel.class, new NetRequest.NetHandler(this, new NetRequest.NetResponseListener() {
+            @Override
+            public void onSuccessListener(Object object, String msg) {
+                hideWaitDialog();
+                lmrv.setPullLoadMoreCompleted();
+                MessageListModel result = (MessageListModel) object;
+                if (result.getData() != null && result.getData().getRows() != null && result.getData().getRows().size() > 0) {
+                    lmrv.setHasContent();
+                    serviceAdapter.addData(result.getData().getRows(), lmrv);
+                }
+                if (serviceAdapter.getDataSize() == 0) {
+                    lmrv.setNoContent();
+                }
+            }
+
+            @Override
+            public void onErrorListener(String message) {
+                hideWaitDialog();
+                lmrv.setPullLoadMoreCompleted();
+                showShortToast(message);
+            }
+        }));
+    }
+
+
+    /**
+     * @param context    Context
+     * @param dataEntity MessageCountModel.DataEntity
+     */
+    public static void newInstance(BaseActivity context, MessageCountModel.DataEntity dataEntity) {
+        Intent intent = new Intent(context, MessageListActivity.class);
+        intent.putExtra("DataEntity", dataEntity);
+        context.startActivityForResult(intent, 10);
+    }
+
+
+    /**
+     * 至空消息
+     *
+     * @param id 消息ID
+     */
+    private void handleEmptyMessageRequest(String id) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("id", id);
+        NetRequest.postRequest(Constants.ServiceInfo.MESSAGE_SET_MESSAGE_TYPE, BaseApplication.token, params, MessageCountModel.class, new NetRequest.NetHandler(this, new NetRequest.NetResponseListener() {
+            @Override
+            public void onSuccessListener(Object object, String msg) {
+                hideWaitDialog();
             }
 
             @Override
@@ -317,17 +411,9 @@ public class MessageListActivity extends BaseActivity {
         }));
     }
 
-
-    /**
-     * @param context
-     * @param tag
-     * tag : 1 官方消息  2 订单状态   3 回复提醒  4 关注服务
-     */
-    public static void newInstance(Context context, int tag){
-        Intent intent = new Intent(context, MessageListActivity.class);
-        intent.putExtra("tag", tag);
-        context.startActivity(intent);
+    @Override
+    public void onBackPressed() {
+        setResult(100);
+        super.onBackPressed();
     }
-
-
 }

@@ -37,7 +37,8 @@
                     android:gravity="center"
                     android:text="10"
                     android:textColor="@android:color/white"
-                    android:textSize="@dimen/txt_micro" />
+                    android:textSize="@dimen/txt_micro"
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/tv_title"
@@ -51,6 +52,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/tv_system_content"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@+id/tv_local"
@@ -90,7 +92,8 @@
                     android:gravity="center"
                     android:text="3"
                     android:textColor="@android:color/white"
-                    android:textSize="@dimen/txt_micro" />
+                    android:textSize="@dimen/txt_micro"
+                    android:visibility="gone" />
 
 
                 <TextView
@@ -105,6 +108,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/tv_order_content"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@+id/iv_order"
@@ -143,7 +147,8 @@
                     android:gravity="center"
                     android:text="6"
                     android:textColor="@android:color/white"
-                    android:textSize="@dimen/txt_micro" />
+                    android:textSize="@dimen/txt_micro"
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/tv_replay"
@@ -157,6 +162,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/tv_topic_content"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@+id/iv_replay"
@@ -196,7 +202,8 @@
                     android:gravity="center"
                     android:text="20"
                     android:textColor="@android:color/white"
-                    android:textSize="@dimen/txt_micro" />
+                    android:textSize="@dimen/txt_micro"
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/tv_server"
@@ -210,6 +217,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/tv_service_content"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@+id/iv_server"

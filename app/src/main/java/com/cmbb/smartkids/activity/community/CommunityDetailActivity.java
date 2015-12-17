@@ -1,5 +1,6 @@
 package com.cmbb.smartkids.activity.community;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -346,8 +347,7 @@ public class CommunityDetailActivity extends BaseActivity implements CustomListe
                     if (popTitle.isShowing()) {
                         popTitle.dismiss();
                     } else {
-                        // -popTitle.getWidth() - TDevice.dip2px(18, CommunityDetailActivity.this)
-                        popTitle.showPop(ivMore, -popTitle.getWidth() - TDevice.dip2px(18, CommunityDetailActivity.this) , TDevice.dip2px(18, CommunityDetailActivity.this));
+                        popTitle.showPop(ivMore, -popTitle.getWidth() - TDevice.dip2px(18, CommunityDetailActivity.this), TDevice.dip2px(18, CommunityDetailActivity.this));
                     }
                 }
                 break;
@@ -798,6 +798,12 @@ public class CommunityDetailActivity extends BaseActivity implements CustomListe
 
     public void clearFocus() {
         etRever.clearFocus();
+    }
+
+    public static void newInstance(Context context, int id) {
+        Intent intent = new Intent(context, CommunityDetailActivity.class);
+        intent.putExtra("id", id);
+        context.startActivity(intent);
     }
 
 }

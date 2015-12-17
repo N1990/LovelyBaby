@@ -92,6 +92,10 @@ public class Constants {
         public static final String SERVICE_SORT_REQUEST = "smart/system/getMultipleDict";// 服务列表字典
         public static final String USER_GOLD_LIST = "smart/personal/goldList";// 用户积分
 
+        public static final String MESSAGE_GET_TYPE = "smart/message/getType";// 消息未读数
+        public static final String MESSAGE_SET_MESSAGE_TYPE = "smart/message/setMessageType";// 至空消息
+        public static final String MESSAGE_GET_PAGE = "smart/message/getPage";// 消息列表
+
 
     }
 

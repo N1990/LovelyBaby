@@ -18,7 +18,6 @@ import android.widget.TextView;
 import com.alibaba.sdk.android.media.upload.UploadListener;
 import com.alibaba.sdk.android.media.upload.UploadTask;
 import com.alibaba.sdk.android.media.utils.FailReason;
-import com.cmbb.smartkids.PopmanRuleActivity;
 import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.activity.home.adapter.PopmanSortAdapter;
 import com.cmbb.smartkids.activity.login.model.SecurityCodeModel;

@@ -147,9 +147,7 @@ public class MessageListActivity extends BaseActivity {
     private CustomListener.ItemClickListener onItemListener = new CustomListener.ItemClickListener() {
         @Override
         public void onItemClick(View v, int position, Object object) {
-
             Log.e("Message", "Message = " + dataEntity.getModual());
-
             switch (dataEntity.getModual()) {
                 case "system":
                     OfficialMessageActivity.newInstance(MessageListActivity.this);

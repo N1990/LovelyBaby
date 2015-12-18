@@ -1,10 +1,11 @@
-package com.cmbb.smartkids;
+package com.cmbb.smartkids.activity.home;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.base.BaseActivity;
 import com.cmbb.smartkids.utils.Tools;
 

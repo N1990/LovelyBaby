@@ -16,6 +16,7 @@ import com.cmbb.smartkids.activity.diary.model.BabyDiaryListModel;
 import com.cmbb.smartkids.utils.FrescoTool;
 import com.cmbb.smartkids.utils.TDevice;
 import com.cmbb.smartkids.utils.Tools;
+import com.cmbb.smartkids.utils.log.Log;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 /**
@@ -48,12 +49,14 @@ public class BabyDiaryListHolder extends RecyclerView.ViewHolder implements View
             tvToday.setVisibility(View.VISIBLE);
         }
         try{
-            String todayDate = Tools.DataToString(System.currentTimeMillis() + "", "今天MM月dd日");
+            String todayDate = Tools.DateToString(System.currentTimeMillis(), "今天MM月dd日");
             String publisDate = Tools.DataToString(data.getDiaryDate(), "yyyy年MM月dd日");
+            Log.e("BabyDiaryListHolder", todayDate);
+            Log.e("BabyDiaryListHolder", publisDate);
             tvPublishDate.setText(publisDate);
             SpannableString ss = new SpannableString(todayDate);
             ss.setSpan(new ForegroundColorSpan(Color.RED), 0, 2, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-//            ss.setSpan(new ScaleXSpan(1.66f), 0, 2, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            ss.setSpan(new ScaleXSpan(1.03f), 0, 2, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             tvToday.setText(ss);
         }catch (Exception e){
             e.printStackTrace();

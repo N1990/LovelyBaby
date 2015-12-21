@@ -52,9 +52,9 @@ public class BabyListHolder extends RecyclerView.ViewHolder implements View.OnCl
         FrescoTool.loadImage(sdvHeader, data.getBabyImg());
         tvName.setText(data.getBabyNike());
         if (Integer.parseInt(data.getBabySex()) == 1){
-            tvName.setCompoundDrawables(tvName.getContext().getResources().getDrawable(R.mipmap.btn_male_boy_bg), null, null, null);
+            tvName.setCompoundDrawablesWithIntrinsicBounds(tvName.getContext().getResources().getDrawable(R.mipmap.btn_male_boy_bg), null, null, null);
         }else{
-            tvName.setCompoundDrawables(tvName.getContext().getResources().getDrawable(R.mipmap.btn_male_girl_bg), null, null, null);
+            tvName.setCompoundDrawablesWithIntrinsicBounds(tvName.getContext().getResources().getDrawable(R.mipmap.btn_male_girl_bg), null, null, null);
         }
         tvAge.setText(data.getAge());
         tvRecord.setText(data.getDiaryCount() > 999 ? "999+" : data.getDiaryCount() + "");

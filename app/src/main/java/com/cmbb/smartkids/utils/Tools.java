@@ -211,6 +211,18 @@ public class Tools {
     }
 
     /**
+     * @param time
+     * @param format
+     * @return
+     */
+    public static String DateToString(long time, String format){
+        String result = "";
+        SimpleDateFormat sdf = new SimpleDateFormat(format);
+        result = sdf.format(time);
+        return result;
+    }
+
+    /**
      * Raw 获取资源文件
      *
      * @param context

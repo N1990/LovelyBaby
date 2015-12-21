@@ -97,6 +97,15 @@ public class Constants {
         public static final String MESSAGE_GET_PAGE = "smart/message/getPage";// 消息列表
 
 
+
+
+        public static final String BABY_LIST = "smart/personal/getBabyPage";// 宝宝列表
+        public static final String CREATE_BABY = "smart/babydiary/createBaby";// 创建宝宝
+        public static final String BABY_DIARY_LIST = "smart/babydiary/getDiaryPage";// 宝宝日记列表
+        public static final String BABY_DELETE = "smart/babydiary/deleteBaby";// 删除宝宝
+        public static final String DELETE_BABY_DIARY = "smart/babydiary/deleteDiary";// 删除宝宝日记
+        public static final String BABY_DIARY_DETAIL = "smart/babydiary/getDiaryDetial";// 宝宝日记详情
+        public static final String PUBLISH_BABY_DIARY = "smart/babydiary/publish";// 发布宝宝日记
     }
 
     public static final class Community {
@@ -114,7 +123,7 @@ public class Constants {
         public static final String TOPIC_REPORTREPLY = "smart/topic/reportReply"; // 举报话题
         public static final String TOPIC_REPLYTOPIC = "smart/topic/replyTopic"; // 举报话题
         public static final String TOPIC_DELETEREPLY = "smart/topic/deleteReply"; // 举报话题
-
     }
+
 
 }

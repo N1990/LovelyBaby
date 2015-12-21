@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/global_padding">
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/sdv_baby_diary_item"
+            android:layout_width="50dip"
+            android:layout_height="50dip"
+            android:layout_marginRight="15dip"
+            fresco:actualImageScaleType="centerCrop"
+            fresco:fadeDuration="300"
+            fresco:placeholderImage="@color/placeholder"
+            fresco:roundAsCircle="true"
+            fresco:roundingBorderColor="@android:color/white"
+            fresco:roundingBorderWidth="1dp" />
+        <TextView
+            android:id="@+id/tv_nickname_baby_diary_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:layout_toRightOf="@+id/sdv_baby_diary_item"
+            android:layout_toLeftOf="@+id/tv_record_baby_diary_item"
+            android:drawableLeft="@mipmap/btn_male_boy_bg"
+            android:drawablePadding="5dp"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:textSize="@dimen/txt_middle"
+            android:gravity="center_vertical"
+            android:text="LEO"/>
+
+        <TextView
+            android:id="@+id/tv_age_baby_diary_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/dimgray"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/sdv_baby_diary_item"
+            android:layout_toLeftOf="@+id/tv_record_baby_diary_item"
+            android:layout_below="@+id/tv_nickname_baby_diary_item"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:text="LEO"/>
+        
+        <TextView
+            android:id="@+id/tv_record_baby_diary_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:drawableLeft="@mipmap/btn_diary_count_bg"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:textColor="@color/dimgray"
+            android:text="13"/>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@android:color/darker_gray"/>
+
+</LinearLayout>

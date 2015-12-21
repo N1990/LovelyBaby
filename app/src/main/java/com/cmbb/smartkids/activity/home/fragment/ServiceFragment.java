@@ -95,7 +95,7 @@ public class ServiceFragment extends BaseFragment {
         lmRc = (LoadMoreRecyclerView) getView().findViewById(R.id.plmrc_home_service);
         lmRc.setLinearLayout();
         adapter = new ServiceFraAdapter();
-        adapter.setData(new ArrayList<String>()); // 模拟数据
+        adapter.setData(new ArrayList<ServiceListModel.DataEntity.RowsEntity>());
         lmRc.setAdapter(adapter);
         citySp = (NiceSpinner) getView().findViewById(R.id.spinner_home_service_city);
         sortSp = (NiceSpinner) getView().findViewById(R.id.spinner_home_service_sort);

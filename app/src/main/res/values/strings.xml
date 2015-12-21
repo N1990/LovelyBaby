@@ -51,6 +51,11 @@
     <string name="title_activity_store_point" translatable="false">我的积分</string>
     <string name="title_activity_score_complain" translatable="false">积分说明</string>
     <string name="title_activity_grown_complain" translatable="false">成长值说明</string>
+    <string name="title_activity_my_baby_diary" translatable="false">宝宝日记</string>
+    <string name="title_activity_baby_material" translatable="false">宝宝资料</string>
+    <string name="title_activity_baby_name" translatable="false">姓名</string>
+    <string name="title_activity_baby_diary_detail" translatable="false">日记详情</string>
+    <string name="title_activity_publish_baby_diary" translatable="false">创建日记</string>
 
 
     <!-- menu tip-->

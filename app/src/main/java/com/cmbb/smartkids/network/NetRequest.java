@@ -62,13 +62,13 @@ public class NetRequest {
     private static final MediaType MEDIA_TYPE_PNG = MediaType.parse("image/png");
     private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
     //开发环境
-    public static String BASE = "http://192.168.100.129:8081/wine-rest/";
+    public static String BASE = "http://192.168.100.64:8081/wine-rest/";
 //    public static String BASE_URL_PIC = "http://192.168.100.174:8081/wine-rest/";
     //生产环境
 //    public static String BASE = "http://120.26.88.135:8090/wine-rest/";
 //    public static String BASE_URL = BASE + "cgi";
 
-    //    public static String BASE = "http://mengbaopai.smart-kids.com:82/wine-rest/";
+//    public static String BASE = "http://mengbaopai.smart-kids.com:82/wine-rest/";
     public static String BASE_URL = BASE + "cgi";
 
 
@@ -348,8 +348,10 @@ public class NetRequest {
      * @param imageModels
      * @param srcClass
      * @param netHandler
+     * @param filekey
+     * @param textKey
      */
-    public static <T extends Parcelable> void postRequestWithFiles(String url, Map<String, String> params, List<ImageModel> imageModels, final Class<T> srcClass, final NetHandler netHandler) {
+    public static <T extends Parcelable> void postRequestWithFiles(String url, Map<String, String> params, String filekey, String textKey, List<ImageModel> imageModels, final Class<T> srcClass, final NetHandler netHandler) {
         MultipartBuilder multipartBuilder = new MultipartBuilder();
         multipartBuilder.type(MultipartBuilder.MIXED);
         for (String key : params.keySet()) {
@@ -360,12 +362,12 @@ public class NetRequest {
 
         if (imageModels != null && imageModels.size() > 0) {
             for (int i = 0; i < imageModels.size(); i++) {
-                multipartBuilder.addFormDataPart("topicImgList", "topicImgList", RequestBody.create(MEDIA_TYPE_PNG, new File(imageModels.get(i).getImgUrl())));
-                Log.e("param", "topicImgList" + " = " + imageModels.get(i).getImgUrl());
+                multipartBuilder.addFormDataPart(filekey, filekey, RequestBody.create(MEDIA_TYPE_PNG, new File(imageModels.get(i).getImgUrl())));
+                Log.e("param", filekey + " = " + imageModels.get(i).getImgUrl());
                 if (!TextUtils.isEmpty(imageModels.get(i).getContent())) {
                     String values = imageModels.get(i).getContent();
-                    multipartBuilder.addFormDataPart("imgText" + i, values);
-                    Log.e("param", "imgText" + i + " = " + values);
+                    multipartBuilder.addFormDataPart(textKey + i, values);
+                    Log.e("param", textKey + i + " = " + values);
                 }
             }
         }

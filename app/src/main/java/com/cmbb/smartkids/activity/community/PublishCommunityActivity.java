@@ -352,7 +352,7 @@ public class PublishCommunityActivity extends BaseActivity {
             }
         }
         showWaitDialog();
-        NetRequest.postRequestWithFiles(Constants.Community.TOPIC_PUBLISH, params, files, ServiceListModel.class, new NetRequest.NetHandler(this, new NetRequest.NetResponseListener() {
+        NetRequest.postRequestWithFiles(Constants.Community.TOPIC_PUBLISH, params, "topicImgList", "imgText", files, ServiceListModel.class, new NetRequest.NetHandler(this, new NetRequest.NetResponseListener() {
             @Override
             public void onSuccessListener(Object object, String msg) {
                 hideWaitDialog();

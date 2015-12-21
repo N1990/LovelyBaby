@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
+import android.view.WindowManager;
 
 import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.activity.home.HomeActivity;
@@ -20,6 +21,8 @@ public class SplashActivity extends BaseActivity {
     @Override
     protected void init(Bundle savedInstanceState) {
         // 启动Push
+        needActionBar = false;
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         mPushAgent.enable(mRegisterCallback);
         PushAgent.getInstance(this).setMergeNotificaiton(false); //接收多条信息
         new Handler().postDelayed(new Runnable() {

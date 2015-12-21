@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/half_global_padding"
+    android:background="@android:color/white">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/sdv_baby_diary_detail_item"
+        android:layout_width="50dip"
+        android:layout_height="50dip"
+        android:layout_marginRight="15dip"
+        fresco:actualImageScaleType="centerCrop"
+        fresco:fadeDuration="300"
+        fresco:placeholderImage="@color/placeholder"
+        fresco:roundAsCircle="true"
+        fresco:roundingBorderColor="@android:color/white"
+        fresco:roundingBorderWidth="1dp" />
+    <TextView
+        android:id="@+id/tv_nickname_baby_diary_detail_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@+id/sdv_baby_diary_detail_item"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:text="LEO"/>
+
+    <TextView
+        android:id="@+id/tv_age_baby_diary_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/dimgray"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@+id/sdv_baby_diary_detail_item"
+        android:layout_below="@+id/tv_nickname_baby_diary_detail_item"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:text="宝宝2岁10个月"/>
+
+
+
+
+
+</RelativeLayout>

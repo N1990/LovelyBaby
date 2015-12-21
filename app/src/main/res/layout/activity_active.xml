@@ -26,6 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:gravity="center_vertical"
             android:textColor="@android:color/white"
             android:textSize="@dimen/txt_large" />
 
@@ -360,7 +361,7 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/global_padding"
                     android:layout_margin="@dimen/half_global_padding"
-                    android:background="@drawable/btn_service_detail_order_enable"
+                    android:background="@drawable/btn_login_selector"
                     android:gravity="center"
                     android:text="预定"
                     android:textStyle="bold"

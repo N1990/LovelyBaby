@@ -35,7 +35,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     protected boolean needActionBar = true; //是否需要actionbar
     protected boolean isVisiable;
     private WaitDialog dialog;
-    private TextView tvTitle, tvRight;
+    protected TextView tvTitle, tvRight;
     private ImageView ivRight, ivLeft;
     public static PushAgent mPushAgent;
 
@@ -106,6 +106,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     protected void setBarRightImg(int resId) {
         ivRight.setVisibility(View.VISIBLE);
         ivRight.setBackgroundResource(resId);
+        ivRight.setOnClickListener(this);
     }
 
     protected void setBarLeftImg(int resId) {

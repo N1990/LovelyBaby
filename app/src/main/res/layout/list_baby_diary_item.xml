@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/half_global_padding"
+    android:paddingRight="@dimen/half_global_padding">
+
+    <RelativeLayout
+        android:layout_width="25dp"
+        android:layout_height="170dp">
+        <ImageView
+            android:layout_width="5dp"
+            android:layout_height="5dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/btn_red_spoint_bg"/>
+        <ImageView
+            android:id="@+id/iv_header_tag_baby_diary_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/btn_baby_diary_calendar"/>
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/iv_header_tag_baby_diary_item"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="-5dp"
+            android:background="@color/primaryColorDark"/>
+
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.0"
+        android:orientation="vertical"
+        android:layout_marginLeft="5dp">
+
+        <TextView
+            android:id="@+id/tv_today_baby_diary_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="7dp"
+            android:textSize="@dimen/txt_small"
+            android:text="今天12月19日"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/white"
+            android:padding="@dimen/half_global_padding"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_date_baby_diary_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/dimgray"
+                android:textSize="@dimen/txt_small"
+                android:text="2015年12月11日"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/sdv_baby_diary_one_item"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginRight="5dip"
+                fresco:actualImageScaleType="centerCrop"
+                fresco:fadeDuration="300"
+                fresco:placeholderImage="@color/placeholder" />
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/sdv_baby_diary_two_item"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginRight="5dip"
+                fresco:actualImageScaleType="centerCrop"
+                fresco:fadeDuration="300"
+                fresco:placeholderImage="@color/placeholder"
+                android:visibility="gone"/>
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/sdv_baby_diary_three_item"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginRight="5dip"
+                fresco:actualImageScaleType="centerCrop"
+                fresco:fadeDuration="300"
+                fresco:placeholderImage="@color/placeholder"
+                android:visibility="gone"/>
+
+
+        </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

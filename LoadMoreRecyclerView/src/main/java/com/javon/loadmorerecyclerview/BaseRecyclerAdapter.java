@@ -52,7 +52,7 @@ public abstract class BaseRecyclerAdapter extends RecyclerView.Adapter<RecyclerV
                 this.dataList = dataList;
             }
             notifyDataSetChanged();
-        } else if ((dataList == null || dataList.size() == 0) && this.dataList.size() == 0) {
+        } else if ((dataList == null || dataList.size() == 0) && this.dataList.size() != 0) {
             view.setHasMore(false);
             setNoData();
         } else if (dataList == null) {

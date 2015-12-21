@@ -350,7 +350,14 @@
         <activity android:name=".activity.message.MessageActivity" />
         <activity android:name=".activity.message.OfficialMessageActivity" />
         <activity android:name=".activity.serve.ActiveDetailMoreActivity" />
-        <activity android:name=".activity.message.MessageListActivity"></activity>
+        <activity android:name=".activity.message.MessageListActivity" />
+        <activity android:name=".activity.diary.DiaryChooseModelActivity" />
+        <activity android:name=".activity.diary.MyBabyListActivity" />
+        <activity android:name=".activity.diary.AddBabyActivity" />
+        <activity android:name=".activity.diary.ModifyBabyNameActivity" />
+        <activity android:name=".activity.diary.BabyDiaryListActivity" />
+        <activity android:name=".activity.diary.BabyDiaryDetailActivity" />
+        <activity android:name=".activity.diary.PublishBabyDiaryActivity"></activity>
     </application>
 
 </manifest>

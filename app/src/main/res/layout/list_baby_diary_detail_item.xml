@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:padding="@dimen/half_global_padding">
+
+    <TextView
+        android:id="@+id/tv_baby_diary_detail_content_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lineSpacingExtra="5dip"
+        android:padding="10dip"
+        android:shadowColor="@android:color/darker_gray"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
+        android:textColor="@android:color/black" />
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/iv_baby_diary_detail_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dip"
+        fresco:actualImageScaleType="centerCrop"
+        fresco:fadeDuration="300" />
+
+</LinearLayout>

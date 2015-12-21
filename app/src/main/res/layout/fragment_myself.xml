@@ -421,6 +421,41 @@
                         android:background="@android:color/darker_gray" />
 
                     <LinearLayout
+                        android:id="@+id/ll_home_self_baby_diary"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="5dip">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@mipmap/btn_apply_popman_bg"
+                            android:scaleType="center" />
+
+                        <TextView
+                            android:id="@+id/tv_home_self_baby_diary"
+                            android:layout_width="0dip"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dip"
+                            android:layout_weight="1.0"
+                            android:padding="5dip"
+                            android:text="我的宝宝"
+                            android:textColor="@android:color/black" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@mipmap/btn_right_anchor_bg"
+                            android:scaleType="centerCrop" />
+                    </LinearLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:background="@android:color/darker_gray" />
+
+                    <LinearLayout
                         android:id="@+id/ll_home_self_apply_popman"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -450,6 +485,8 @@
                             android:background="@mipmap/btn_right_anchor_bg"
                             android:scaleType="centerCrop" />
                     </LinearLayout>
+
+
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>

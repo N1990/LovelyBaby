@@ -22,6 +22,7 @@ import com.alibaba.sdk.android.media.upload.UploadListener;
 import com.alibaba.sdk.android.media.upload.UploadTask;
 import com.alibaba.sdk.android.media.utils.FailReason;
 import com.cmbb.smartkids.R;
+import com.cmbb.smartkids.activity.diary.MyBabyListActivity;
 import com.cmbb.smartkids.activity.home.ApplyPopmanActivity;
 import com.cmbb.smartkids.activity.home.HomeActivity;
 import com.cmbb.smartkids.activity.login.model.SecurityCodeModel;
@@ -44,7 +45,6 @@ import com.cmbb.smartkids.photopicker.PhotoPickerActivity;
 import com.cmbb.smartkids.photopicker.utils.PhotoPickerIntent;
 import com.cmbb.smartkids.utils.FrescoTool;
 import com.cmbb.smartkids.utils.SPCache;
-import com.cmbb.smartkids.utils.TDevice;
 import com.cmbb.smartkids.utils.log.Log;
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -66,7 +66,7 @@ public class UserFragment extends BaseFragment {
     private SimpleDraweeView ivMyself;
     private SimpleDraweeView ivUserHeader;
     private TextView tvFan, tvNickname, tvIdentity, tvProgress, myCollection, myCare, myPerssion;
-    private LinearLayout myOrder, myAccept, myGold, myCommunity, myPopman;
+    private LinearLayout myOrder, myAccept, myGold, myCommunity, myPopman, myBabyDiary;
     private ProgressBar pb;
     private RatingBar rb;
     private FloatingActionButton fab;
@@ -106,6 +106,7 @@ public class UserFragment extends BaseFragment {
         myGold = (LinearLayout) view.findViewById(R.id.ll_home_self_gold);
         myCommunity = (LinearLayout) view.findViewById(R.id.ll_home_self_community);
         myPopman = (LinearLayout) view.findViewById(R.id.ll_home_self_apply_popman);
+        myBabyDiary = (LinearLayout) view.findViewById(R.id.ll_home_self_baby_diary);
     }
 
     private ActionBar actionbar;
@@ -147,6 +148,7 @@ public class UserFragment extends BaseFragment {
         myGold.setOnClickListener(this);
         myCommunity.setOnClickListener(this);
         myPopman.setOnClickListener(this);
+        myBabyDiary.setOnClickListener(this);
         ivLeft.setOnClickListener(this);
         ivRight.setOnClickListener(this);
     }
@@ -212,6 +214,9 @@ public class UserFragment extends BaseFragment {
                 break;
             case R.id.ll_home_self_apply_popman:
                 startActivityForResult(new Intent(getActivity(), ApplyPopmanActivity.class), HomeActivity.MY_SET_MODIFY);
+                break;
+            case R.id.ll_home_self_baby_diary:
+                startActivity(new Intent(getActivity(), MyBabyListActivity.class));
                 break;
         }
     }

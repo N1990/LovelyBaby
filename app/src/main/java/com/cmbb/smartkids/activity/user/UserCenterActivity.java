@@ -20,6 +20,7 @@ import android.widget.TextView;
 import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.activity.login.model.SecurityCodeModel;
 import com.cmbb.smartkids.activity.user.adapter.UserCenterAdapter;
+import com.cmbb.smartkids.activity.user.fragment.BabyListFragment;
 import com.cmbb.smartkids.activity.user.fragment.CommunityFragment;
 import com.cmbb.smartkids.activity.user.fragment.EvaluateFragment;
 import com.cmbb.smartkids.activity.user.fragment.ServiceFragment;
@@ -54,6 +55,7 @@ public class UserCenterActivity extends BaseActivity implements AppBarLayout.OnO
     private ServiceFragment serviceFra;
     private CommunityFragment communityFra;
     private EvaluateFragment evaluateFra;
+    private BabyListFragment diaryFra;
 
     @Override
     protected int getLayoutId() {
@@ -95,6 +97,7 @@ public class UserCenterActivity extends BaseActivity implements AppBarLayout.OnO
         serviceFra = new ServiceFragment();
         communityFra = new CommunityFragment();
         evaluateFra = new EvaluateFragment();
+        diaryFra = new BabyListFragment();
     }
 
     private void initData() {
@@ -181,6 +184,7 @@ public class UserCenterActivity extends BaseActivity implements AppBarLayout.OnO
                     bundle.putString("isPopman", String.valueOf(userModel.getIsEredar()));
                     serviceFra.setArguments(bundle);
                     communityFra.setArguments(bundle);
+                    diaryFra.setArguments(bundle);
                     if (userModel.getIsEredar() != 0) {
                         evaluateFra.setArguments(bundle);
                         if (!TextUtils.isEmpty(userModel.getUserPresentation())) {
@@ -203,6 +207,8 @@ public class UserCenterActivity extends BaseActivity implements AppBarLayout.OnO
                         titles.add("话题");
                         fragments.add(communityFra);
                     }
+                    titles.add("TA的宝宝呢");
+                    fragments.add(diaryFra);
                     adapter.setData(fragments, titles);
                     vp.setAdapter(adapter);
                     tl.setTabMode(TabLayout.MODE_FIXED);

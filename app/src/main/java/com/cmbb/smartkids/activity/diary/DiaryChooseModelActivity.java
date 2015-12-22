@@ -43,15 +43,15 @@ public class DiaryChooseModelActivity extends BaseActivity {
             switch (privacy){
                 case 2:
                     rbAll.setChecked(true);
-                    rbAll.setCompoundDrawablesWithIntrinsicBounds(null, null, DiaryChooseModelActivity.this.getResources().getDrawable(R.drawable.checkbox_marked), null);
+                    rbAll.setCompoundDrawablesWithIntrinsicBounds(null, null, DiaryChooseModelActivity.this.getResources().getDrawable(R.mipmap.btn_red_checked_bg), null);
                     break;
                 case 1:
                     rbCare.setChecked(true);
-                    rbCare.setCompoundDrawablesWithIntrinsicBounds(null, null, DiaryChooseModelActivity.this.getResources().getDrawable(R.drawable.checkbox_marked), null);
+                    rbCare.setCompoundDrawablesWithIntrinsicBounds(null, null, DiaryChooseModelActivity.this.getResources().getDrawable(R.mipmap.btn_red_checked_bg), null);
                     break;
                 case 0:
                     rbSelf.setChecked(true);
-                    rbSelf.setCompoundDrawablesWithIntrinsicBounds(null, null, DiaryChooseModelActivity.this.getResources().getDrawable(R.drawable.checkbox_marked), null);
+                    rbSelf.setCompoundDrawablesWithIntrinsicBounds(null, null, DiaryChooseModelActivity.this.getResources().getDrawable(R.mipmap.btn_red_checked_bg), null);
                     break;
             }
         }
@@ -65,17 +65,17 @@ public class DiaryChooseModelActivity extends BaseActivity {
                 refreshRadioButtom();
                 switch (checkedId){
                     case R.id.rb_diary_all_preview:
-                        rbAll.setCompoundDrawablesWithIntrinsicBounds(null, null, DiaryChooseModelActivity.this.getResources().getDrawable(R.drawable.checkbox_marked), null);
+                        rbAll.setCompoundDrawablesWithIntrinsicBounds(null, null, DiaryChooseModelActivity.this.getResources().getDrawable(R.mipmap.btn_red_checked_bg), null);
                         intent.putExtra("privacy_value", 2);
                         intent.putExtra("privacy_name", rbAll.getText().toString());
                         break;
                     case R.id.rb_diary_care_preview:
-                        rbCare.setCompoundDrawablesWithIntrinsicBounds(null, null, DiaryChooseModelActivity.this.getResources().getDrawable(R.drawable.checkbox_marked), null);
+                        rbCare.setCompoundDrawablesWithIntrinsicBounds(null, null, DiaryChooseModelActivity.this.getResources().getDrawable(R.mipmap.btn_red_checked_bg), null);
                         intent.putExtra("privacy_value", 1);
                         intent.putExtra("privacy_name", rbCare.getText().toString());
                         break;
                     case R.id.rb_diary_self_preview:
-                        rbSelf.setCompoundDrawablesWithIntrinsicBounds(null, null, DiaryChooseModelActivity.this.getResources().getDrawable(R.drawable.checkbox_marked), null);
+                        rbSelf.setCompoundDrawablesWithIntrinsicBounds(null, null, DiaryChooseModelActivity.this.getResources().getDrawable(R.mipmap.btn_red_checked_bg), null);
                         intent.putExtra("privacy_value", 0);
                         intent.putExtra("privacy_name", rbSelf.getText().toString());
                         break;

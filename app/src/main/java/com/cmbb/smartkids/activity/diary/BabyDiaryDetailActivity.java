@@ -77,7 +77,7 @@ public class BabyDiaryDetailActivity extends BaseActivity {
 
     @Override
     public void onClick(View v) {
-        handleDeleteRequest();
+        showAlertDialog();
     }
 
     private void showAlertDialog() {

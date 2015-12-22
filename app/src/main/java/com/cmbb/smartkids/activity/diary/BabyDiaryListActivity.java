@@ -156,6 +156,7 @@ public class BabyDiaryListActivity extends BaseActivity {
         } else if(requestCode == PUBLISH_BABY_DIARY && resultCode == RESULT_OK){
             adapter.clearData();
             pager = 0;
+            isModify = true;
             handleRequest(pager, pagerSize);
         } else{
             super.onActivityResult(requestCode, resultCode, data);

@@ -51,8 +51,6 @@ public class BabyDiaryListHolder extends RecyclerView.ViewHolder implements View
         try{
             String todayDate = Tools.DateToString(System.currentTimeMillis(), "今天MM月dd日");
             String publisDate = Tools.DataToString(data.getDiaryDate(), "yyyy年MM月dd日");
-            Log.e("BabyDiaryListHolder", todayDate);
-            Log.e("BabyDiaryListHolder", publisDate);
             tvPublishDate.setText(publisDate);
             SpannableString ss = new SpannableString(todayDate);
             ss.setSpan(new ForegroundColorSpan(Color.RED), 0, 2, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);

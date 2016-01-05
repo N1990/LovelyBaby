@@ -59,10 +59,10 @@ public class HomeItemHolder extends RecyclerView.ViewHolder implements View.OnCl
         tvCity.setText(row.getCityText());
         String startTime = row.getSurplusTime();
 //        List<Integer> intTemp = new ArrayList<>();
-        SpannableString ss = new SpannableString(startTime);
         if(TextUtils.isEmpty(startTime)){
             tvTime.setVisibility(View.GONE);
         }else{
+            SpannableString ss = new SpannableString(startTime);
             tvTime.setVisibility(View.VISIBLE);
             for (int i = 0; i < ss.length(); i++){
                 char temp = startTime.charAt(i);

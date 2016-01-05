@@ -8,6 +8,7 @@ import android.widget.Toast;
 import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.base.Constants;
 import com.cmbb.smartkids.mengbottomsheets.BottomSheet;
+import com.cmbb.smartkids.utils.log.Log;
 import com.umeng.scrshot.adapter.UMAppAdapter;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.bean.SocializeEntity;
@@ -49,8 +50,8 @@ import java.util.List;
  */
 public class ShareUtils {
     private static Activity activity;
-    private static final UMSocialService mController = UMServiceFactory.getUMSocialService(Constants.Share.DESCRIPTOR);
-    private static final UMShakeService mShakeController = UMShakeServiceFactory.getShakeService(Constants.Share.DESCRIPTOR);
+    public  static final UMSocialService mController = UMServiceFactory.getUMSocialService(Constants.Share.DESCRIPTOR);
+    public static final UMShakeService mShakeController = UMShakeServiceFactory.getShakeService(Constants.Share.DESCRIPTOR);
 
     /**
      * @param activity1
@@ -102,6 +103,8 @@ public class ShareUtils {
      * 根据不同的平台设置不同的分享内容</br>
      */
     public static void setShareContent(String titile, String content, String url, String imgUrl) {
+
+        Log.e("share", "share = " + url);
 
         // 配置SSO
         WeiXinShareContent weixinContent = new WeiXinShareContent();

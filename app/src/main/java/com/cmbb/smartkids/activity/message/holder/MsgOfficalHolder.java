@@ -14,7 +14,7 @@ import com.facebook.drawee.view.SimpleDraweeView;
 /**
  * Created by javon on 15/12/10.
  */
-public class MsgOfficalHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+public class MsgOfficalHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     private SimpleDraweeView ivHeader;
     private TextView tvTitle, tvContent;
     private View vDivider;
@@ -29,8 +29,10 @@ public class MsgOfficalHolder extends RecyclerView.ViewHolder implements View.On
         vDivider = itemView.findViewById(R.id.v_msg_divider);
     }
 
-    public void setData(MsgOfficalAdapter adapter, MessageListModel.DataEntity.RowsEntity data){
+    public void setData(MsgOfficalAdapter adapter, MessageListModel.DataEntity.RowsEntity data) {
         this.adapter = adapter;
+        itemView.setTag(data);
+        itemView.setOnClickListener(this);
         tvContent.setText(data.getContents());
         tvTitle.setText(data.getTitle());
         if (!TextUtils.isEmpty(data.getImg()))
@@ -39,7 +41,7 @@ public class MsgOfficalHolder extends RecyclerView.ViewHolder implements View.On
 
     @Override
     public void onClick(View v) {
-        if(adapter.getOnItemListener() != null)
+        if (adapter.getOnItemListener() != null)
             adapter.getOnItemListener().onItemClick(v, position, v.getTag());
     }
 }

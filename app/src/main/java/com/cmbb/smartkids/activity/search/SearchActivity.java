@@ -43,7 +43,7 @@ public class SearchActivity extends BaseActivity {
     private AppCompatSpinner spinnerSearch;
     private EditText etSearch;
     private AppCompatTextView tvSearch;
-    private AppCompatTextView tvCancel;
+    private AppCompatTextView btnSearch;
     private LoadMoreRecyclerView lmrlSearch;
     private SearchTopicAdapter adapter_topic;
     private SearchUserAdapter adapter_user;
@@ -75,7 +75,7 @@ public class SearchActivity extends BaseActivity {
         spinnerSearch = (AppCompatSpinner) findViewById(R.id.spinner_search);
         etSearch = (EditText) findViewById(R.id.et_search);
         tvSearch = (AppCompatTextView) findViewById(R.id.tv_search);
-        tvCancel = (AppCompatTextView) findViewById(R.id.tv_cancel);
+        btnSearch = (AppCompatTextView) findViewById(R.id.btn_search);
         lmrlSearch = (LoadMoreRecyclerView) findViewById(R.id.lmrl_search);
         lmrlSearch.setPullLoadMoreListener(lmrvListener);
         lmrlSearch.setCanRefresh(false);
@@ -89,7 +89,7 @@ public class SearchActivity extends BaseActivity {
 
 
     private void addListener() {
-        tvCancel.setOnClickListener(this);
+        btnSearch.setOnClickListener(this);
         spinnerSearch.setOnItemSelectedListener(itemSelectedListener);
         etSearch.addTextChangedListener(textWatcher);
         adapter_hot.setOnItemListener(onHotItemListener);
@@ -186,8 +186,31 @@ public class SearchActivity extends BaseActivity {
     public void onClick(View v) {
         super.onClick(v);
         switch (v.getId()) {
-            case R.id.tv_cancel:
-                onBackPressed();
+            case R.id.btn_search:
+                // 先隐藏键盘
+                ((InputMethodManager) etSearch.getContext().getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(SearchActivity.this.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                lmrlSearch.setLinearLayout();
+                //后续操作
+                search = etSearch.getText().toString();
+                if (TextUtils.isEmpty(search)) {
+                    showShortToast("请输入您的搜索内容~");
+                    return;
+                }
+                showWaitDialog();
+                if (type == 0) {
+                    pager_topic = 0;
+                    adapter_topic.clearData();
+                    lmrlSearch.setAdapter(adapter_topic);
+                    handleSearchTopic(pager_topic, pagerSize, search);
+                } else {
+                    pager_user = 0;
+                    lmrlSearch.setAdapter(adapter_user);
+                    adapter_user.clearData();
+                    handelSearchUserRequest(pager_user, pagerSize, search);
+                }
+                showShortToast("开始搜索...");
                 break;
         }
     }

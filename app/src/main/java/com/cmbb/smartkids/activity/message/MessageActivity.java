@@ -2,6 +2,7 @@ package com.cmbb.smartkids.activity.message;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.content.LocalBroadcastManager;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -73,6 +74,7 @@ public class MessageActivity extends BaseActivity {
             public void onSuccessListener(Object object, String msg) {
                 hideWaitDialog();
                 if (object != null) {
+                    LocalBroadcastManager.getInstance(MessageActivity.this).sendBroadcast(new Intent(Constants.INTENT_ACTION_MESSAGE_CANCEL));
                     messageCountModel = (MessageCountModel) object;
                     if (messageCountModel.getData().get(0).getNoticeCount() == 0) {
                         officialCount.setVisibility(View.GONE);

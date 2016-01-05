@@ -14,18 +14,7 @@ import java.util.List;
 public class MessageCountModel implements Parcelable {
 
 
-    /**
-     * data : [{"noticeContent":"","id":49081,"modual":"system","noticeCount":0}]
-     * msg : 数据加载成功
-     */
-
     private String msg;
-    /**
-     * noticeContent :
-     * id : 49081
-     * modual : system
-     * noticeCount : 0
-     */
 
     private List<DataEntity> data;
 

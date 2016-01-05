@@ -11,9 +11,12 @@ import com.cmbb.smartkids.network.NetRequest;
 public class Constants {
     public final static String TOKEN = "token";
     public final static String USER_ID = "userId";
-    public static String packageName = "com.cmbb.smartkids";
-    public static final String INTENT_ACTION_EXIT_APP = packageName + ".intent.action.exitapp";
+    public final static String PACKAGE_NAME = "com.cmbb.smartkids";
+    public final static String INTENT_ACTION_EXIT_APP = PACKAGE_NAME + ".intent.action.exitapp";
     public final static int CANCEL_WAIT_DIALOG = 10001;
+
+    public final static String INTENT_ACTION_MESSAGE_RECEIVE = PACKAGE_NAME + ".message.receive";
+    public final static String INTENT_ACTION_MESSAGE_CANCEL = PACKAGE_NAME + ".message.cancel";
 
     public static class SharePreference {
         public static final String SCREEN_WIDTH = "screen_width";
@@ -32,11 +35,11 @@ public class Constants {
         public static final String DESCRIPTOR = "com.cmbb.smartkids";
 
         public static String getTopicShareUrl(int id) {
-            return NetRequest.BASE + "share/share.jsp?id=" + id + "&token=YzQyYTEwZDYtOGZhMi00ODAyLWI0NTYtYTcxMmVkY2FmYzRh";
+            return NetRequest.BASE + "share/share.jsp?id=" + id;
         }
 
         public static String getServerShareUrl(int id) {
-            return NetRequest.BASE + "share/service.jsp?id=" + id + "&token=YzQyYTEwZDYtOGZhMi00ODAyLWI0NTYtYTcxMmVkY2FmYzRh";
+            return NetRequest.BASE + "share/service.jsp?id=" + id;
         }
     }
 
@@ -77,7 +80,6 @@ public class Constants {
         public static final String EVALUATE_LIST_REQUEST = "smart/personal/getEredarEvaluate"; //评价列表
         public static final String FEEDBACK_SUGGEST_REQUEST = "smart/feedback/opinion";//意见反馈
 
-
         public static final String PAY_WAY_LIST = "smart/services/payOrder"; //获取支付列表
         public static final String APPLY_REFUND_REQUEST = "smart/services/applyrefund";//申请退款
         public static final String MESSAGE_LIST_REQUEST = "smart/message/getPage";// 消息列表
@@ -95,9 +97,6 @@ public class Constants {
         public static final String MESSAGE_GET_TYPE = "smart/message/getType";// 消息未读数
         public static final String MESSAGE_SET_MESSAGE_TYPE = "smart/message/setMessageType";// 至空消息
         public static final String MESSAGE_GET_PAGE = "smart/message/getPage";// 消息列表
-
-
-
 
         public static final String BABY_LIST = "smart/personal/getBabyPage";// 宝宝列表
         public static final String CREATE_BABY = "smart/babydiary/createBaby";// 创建宝宝

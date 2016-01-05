@@ -83,7 +83,7 @@ public class MyBabyListActivity extends BaseActivity {
             sheet = new BottomSheet.Builder(MyBabyListActivity.this).title("删除宝宝").sheet(R.menu.menu_longlist_bs).listener(new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    handleDeleteRequest(item.getId()+"", position);
+                    handleDeleteRequest(item.getId() + "", position);
                 }
             }).limit(R.integer.bs_initial_list_row).build();
             sheet.show();
@@ -92,15 +92,15 @@ public class MyBabyListActivity extends BaseActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode == BABY_HANDLER && resultCode == RESULT_OK){
+        if (requestCode == BABY_HANDLER && resultCode == RESULT_OK) {
             handleRequest();
-        } else{
+        } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
 
     }
 
-    private void handleRequest(){
+    private void handleRequest() {
         showWaitDialog();
         HashMap<String, String> params = new HashMap<>();
         params.put("myCenter", "1");
@@ -109,7 +109,7 @@ public class MyBabyListActivity extends BaseActivity {
             public void onSuccessListener(Object object, String msg) {
                 hideWaitDialog();
                 BabyListModel data = (BabyListModel) object;
-                if(data.getData() != null && data.getData().getRows() != null)
+                if (data.getData() != null && data.getData().getRows() != null)
                     adapter.setData(data.getData().getRows());
                 showShortToast(msg);
             }
@@ -122,10 +122,10 @@ public class MyBabyListActivity extends BaseActivity {
         }));
     }
 
-    private void handleDeleteRequest(String babyId, final int position){
+    private void handleDeleteRequest(String babyId, final int position) {
         showWaitDialog();
         HashMap<String, String> params = new HashMap<>();
-        params.put("id",babyId);
+        params.put("id", babyId);
         params.put("isDelete", "1");
         NetRequest.postRequest(Constants.ServiceInfo.BABY_DELETE, BaseApplication.token, params, SecurityCodeModel.class, new NetRequest.NetHandler(this, new NetRequest.NetResponseListener() {
             @Override

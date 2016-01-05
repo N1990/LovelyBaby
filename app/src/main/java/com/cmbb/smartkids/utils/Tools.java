@@ -215,7 +215,7 @@ public class Tools {
      * @param format
      * @return
      */
-    public static String DateToString(long time, String format){
+    public static String DateToString(long time, String format) {
         String result = "";
         SimpleDateFormat sdf = new SimpleDateFormat(format);
         result = sdf.format(time);

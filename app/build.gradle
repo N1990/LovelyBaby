@@ -8,8 +8,8 @@ android {
         applicationId "com.cmbb.smartkids"
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 301
-        versionName "3.0.1"
+        versionCode 302
+        versionName "3.0.2"
     }
     buildTypes {
         release {
@@ -52,6 +52,9 @@ android {
         Lenovo {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Lenovo"]
         }
+        SmartKids {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "SmartKids"]
+        }
     }
 
     sourceSets {
@@ -78,8 +81,8 @@ android {
 
     signingConfigs {
         debug {
-            storeFile file("/Users/javon/Documents/mengbao/smartkids")
-//            storeFile file("/Users/niesen918/AndroidStudioProjects/key/smartkids")
+//            storeFile file("/Users/javon/Documents/mengbao/smartkids")
+            storeFile file("/Users/niesen918/AndroidStudioProjects/key/smartkids")
             storePassword "ns101288"
             keyAlias "smartkids"
             keyPassword "ns101288"

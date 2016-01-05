@@ -101,7 +101,6 @@ public class FrescoTool {
         if (TextUtils.isEmpty(url)) {
             Log.e(TAG, "url is null");
             simpleDraweeView.setAspectRatio(ratio);
-            simpleDraweeView.setImageResource(resid);
             return;
         }
         simpleDraweeView.setAspectRatio(ratio);
@@ -109,6 +108,7 @@ public class FrescoTool {
         Log.e("Image", "Image = " + uri.toString());
         ImageRequest request = ImageRequestBuilder
                 .newBuilderWithSource(uri)
+                .setLocalThumbnailPreviewsEnabled(true)
                 .setProgressiveRenderingEnabled(true)
                 .build();
         DraweeController controller = Fresco.newDraweeControllerBuilder()

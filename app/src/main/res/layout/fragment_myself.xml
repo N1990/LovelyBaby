@@ -46,14 +46,30 @@
                 android:textSize="@dimen/txt_small"
                 android:visibility="gone" />
 
-            <ImageView
-                android:id="@+id/iv_main_toolbar_right"
+            <FrameLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:layout_marginRight="10dp"
-                android:gravity="center"
-                android:src="@drawable/ic_action_email" />
+                android:layout_gravity="right">
+
+                <ImageView
+                    android:id="@+id/iv_main_toolbar_right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/global_padding"
+                    android:src="@drawable/ic_action_email" />
+
+                <ImageView
+                    android:id="@+id/iv_message_tag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:src="@drawable/shape_message_tag_blue"
+                    android:visibility="gone" />
+
+            </FrameLayout>
         </android.support.v7.widget.Toolbar>
 
 
@@ -71,7 +87,7 @@
                 <com.facebook.drawee.view.SimpleDraweeView
                     android:id="@+id/iv_home_myself"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="180dp"
                     android:layout_below="@+id/tl_main_actionbar"
                     app:actualImageScaleType="centerCrop"
                     app:fadeDuration="300"
@@ -234,13 +250,11 @@
                             android:text="我的关注"
                             android:textColor="@android:color/black" />
 
-
                         <View
                             android:layout_width="1px"
                             android:layout_height="20dip"
                             android:layout_gravity="center_vertical"
                             android:background="@android:color/darker_gray" />
-
 
                         <TextView
                             android:id="@+id/tv_home_myself_perssion"
@@ -251,7 +265,6 @@
                             android:gravity="center"
                             android:text="我的评价"
                             android:textColor="@android:color/black" />
-
 
                     </LinearLayout>
 
@@ -379,42 +392,6 @@
                     </LinearLayout>
 
                     <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1px"
-                        android:background="@android:color/darker_gray" />
-
-                    <LinearLayout
-                        android:id="@+id/ll_home_self_gold"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal"
-                        android:padding="5dip">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@mipmap/btn_my_gold_bg"
-                            android:scaleType="center" />
-
-                        <TextView
-                            android:id="@+id/tv_home_self_gold"
-                            android:layout_width="0dip"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dip"
-                            android:layout_weight="1.0"
-                            android:padding="5dip"
-                            android:text="我的积分"
-                            android:textColor="@android:color/black" />
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@mipmap/btn_right_anchor_bg"
-                            android:scaleType="centerCrop" />
-                    </LinearLayout>
-
-                    <View
                         android:id="@+id/v_home_self_apply_popman"
                         android:layout_width="match_parent"
                         android:layout_height="1px"
@@ -450,6 +427,97 @@
                             android:background="@mipmap/btn_right_anchor_bg"
                             android:scaleType="centerCrop" />
                     </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:background="@android:color/darker_gray" />
+
+                    <LinearLayout
+                        android:id="@+id/ll_home_self_gold"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="5dip">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@mipmap/btn_my_gold_bg"
+                            android:scaleType="center" />
+
+                        <TextView
+                            android:id="@+id/tv_home_self_gold"
+                            android:layout_width="0dip"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dip"
+                            android:layout_weight="1.0"
+                            android:padding="5dip"
+                            android:text="我的积分"
+                            android:textColor="@android:color/black" />
+
+                        <TextView
+                            android:id="@+id/tv_home_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dip"
+                            android:padding="5dip"
+                            android:text=""
+                            android:textColor="@color/primaryColor" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@mipmap/btn_right_anchor_bg"
+                            android:scaleType="centerCrop" />
+                    </LinearLayout>
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:background="@android:color/darker_gray" />
+
+                    <LinearLayout
+                        android:id="@+id/ll_home_self_uid"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="5dip">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@mipmap/btn_my_uid_bg"
+                            android:scaleType="center" />
+
+                        <TextView
+                            android:layout_width="0dip"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dip"
+                            android:layout_weight="1.0"
+                            android:padding="5dip"
+                            android:text="萌宝UID"
+                            android:textColor="@android:color/black" />
+
+                        <TextView
+                            android:id="@+id/tv_home_uid"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dip"
+                            android:padding="5dip"
+                            android:text=""
+                            android:textColor="@color/primaryColor" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@mipmap/btn_right_anchor_bg"
+                            android:scaleType="centerCrop" />
+                    </LinearLayout>
+
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1px"

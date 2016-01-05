@@ -43,7 +43,7 @@
                 android:id="@+id/iv_community_collect_right"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
+                android:layout_marginRight="16dp"
                 android:background="@mipmap/btn_community_collect_normal"
                 android:gravity="center"
                 android:textColor="@android:color/white"

@@ -1,5 +1,7 @@
 package com.cmbb.smartkids.activity.community.fragment;
 
+import android.support.v4.app.Fragment;
+
 import com.cmbb.smartkids.activity.community.adapter.CommentAdapter;
 import com.cmbb.smartkids.activity.community.adapter.CommunityDetailAdapter;
 import com.cmbb.smartkids.activity.community.model.CommunityDetailModel;
@@ -9,6 +11,7 @@ import com.cmbb.smartkids.base.BaseFragment;
 import com.cmbb.smartkids.base.Constants;
 import com.cmbb.smartkids.network.NetRequest;
 
+import java.lang.reflect.Field;
 import java.util.HashMap;
 
 /**
@@ -62,6 +65,38 @@ public class CommunityBaseFragment extends BaseFragment {
         }
         if (adapterNext != null) {
             adapterNext.updateData(communityReplayModel);
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        try {
+            Field childFragmentManager = Fragment.class.getDeclaredField("mChildFragmentManager");
+            childFragmentManager.setAccessible(true);
+            childFragmentManager.set(this, null);
+
+        } catch (NoSuchFieldException e) {
+            throw new RuntimeException(e);
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void onDestroyView() {
+// TODO Auto-generated method stub
+        super.onDestroyView();
+        try {
+            Field childFragmentManager = Fragment.class.getDeclaredField("mChildFragmentManager");
+            childFragmentManager.setAccessible(true);
+            childFragmentManager.set(this, null);
+
+
+        } catch (NoSuchFieldException e) {
+            throw new RuntimeException(e);
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
         }
     }
 }

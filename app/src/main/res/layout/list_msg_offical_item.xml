@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/btn_white_radio_bg"
-    android:orientation="vertical"
-  >
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -38,7 +37,7 @@
             android:ellipsize="end"
             android:gravity="center_vertical"
             android:singleLine="true"
-            android:text="萌宝派下线服务"
+            android:text=""
             android:textColor="@android:color/black"
             android:textSize="@dimen/txt_middle"
             android:textStyle="bold" />
@@ -57,7 +56,7 @@
             android:ellipsize="end"
             android:gravity="center_vertical"
             android:singleLine="true"
-            android:text="萌宝派下线服务"
+            android:text=""
             android:textColor="@color/dimgray" />
 
         <ImageView
@@ -74,8 +73,7 @@
         android:id="@+id/v_msg_divider"
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:background="@android:color/darker_gray"/>
-
+        android:background="@android:color/darker_gray" />
 
 </LinearLayout>
 

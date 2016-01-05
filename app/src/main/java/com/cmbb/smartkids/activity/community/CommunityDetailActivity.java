@@ -48,6 +48,7 @@ import com.iflytek.cloud.RecognizerResult;
 import com.iflytek.cloud.SpeechError;
 import com.iflytek.cloud.ui.RecognizerDialogListener;
 import com.javon.library.PullToRefreshBase;
+import com.umeng.socialize.sso.UMSsoHandler;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -81,7 +82,6 @@ public class CommunityDetailActivity extends BaseActivity implements CustomListe
     private int topicId;
     public int total;
     private String from;
-
 
     //分页
     private int pager = 0;
@@ -154,7 +154,6 @@ public class CommunityDetailActivity extends BaseActivity implements CustomListe
                 cacheDetail = (CommunityDetailModel) object;
                 if (cacheReplay != null && cacheDetail != null) {
                     hideWaitDialog();
-
                     if (cacheDetail.getData().getTopicImgList().size() != 0) {
                         ShareUtils.setShareContent(cacheDetail.getData().getTitle(), cacheDetail.getData().getContents(), Constants.Share.getTopicShareUrl(cacheDetail.getData().getId()), cacheDetail.getData().getTopicImgList().get(0).getImg());
                     } else {
@@ -189,7 +188,6 @@ public class CommunityDetailActivity extends BaseActivity implements CustomListe
                 cacheReplay = (CommunityReplayModel) object;
                 if (cacheReplay != null && cacheDetail != null) {
                     hideWaitDialog();
-
                     if (cacheDetail.getData().getTopicImgList().size() != 0) {
                         ShareUtils.setShareContent(cacheDetail.getData().getTitle(), cacheDetail.getData().getContents(), Constants.Share.getTopicShareUrl(cacheDetail.getData().getId()), cacheDetail.getData().getTopicImgList().get(0).getImg());
                     } else {
@@ -202,6 +200,7 @@ public class CommunityDetailActivity extends BaseActivity implements CustomListe
                     }
                     setPopTitle(cacheDetail.getData().getUserBasicInfo().getIsLoginUser());
                     baseFragment = CommentFirstFragment.newInstance(cacheDetail, cacheReplay);
+
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                     transaction.replace(R.id.fl_community_container, baseFragment);
                     transaction.commitAllowingStateLoss();
@@ -322,6 +321,8 @@ public class CommunityDetailActivity extends BaseActivity implements CustomListe
 
     @Override
     protected void onDestroy() {
+        NetRequest.httpClient.cancel(Constants.Community.TOPIC_REPLAY);
+        NetRequest.httpClient.cancel(Constants.Community.TOPIC_DETIAL);
         super.onDestroy();
     }
 
@@ -649,7 +650,6 @@ public class CommunityDetailActivity extends BaseActivity implements CustomListe
      * 刷新当前页面
      */
     private void handleRefreshCurrentPage() {
-
         handleTopicReplayRequest(topicId, pager, pageSize, new NetRequest.NetHandler(this, new NetRequest.NetResponseListener() {
             @Override
             public void onSuccessListener(Object object, String msg) {
@@ -778,6 +778,11 @@ public class CommunityDetailActivity extends BaseActivity implements CustomListe
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        UMSsoHandler ssoHandler = ShareUtils.mController.getConfig().getSsoHandler(requestCode);
+        if (ssoHandler != null) {
+            ssoHandler.authorizeCallBack(requestCode, resultCode, data);
+        }
+
         if (resultCode == -1 && requestCode == PIC_REQUEST_CODE) {
             if (data != null) {
                 tempImages = data.getStringArrayListExtra(PhotoPickerActivity.KEY_SELECTED_PHOTOS);

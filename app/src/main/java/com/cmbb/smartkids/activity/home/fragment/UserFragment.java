@@ -1,9 +1,14 @@
 package com.cmbb.smartkids.activity.home.fragment;
 
 import android.animation.ObjectAnimator;
+import android.content.BroadcastReceiver;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -45,6 +50,7 @@ import com.cmbb.smartkids.photopicker.PhotoPickerActivity;
 import com.cmbb.smartkids.photopicker.utils.PhotoPickerIntent;
 import com.cmbb.smartkids.utils.FrescoTool;
 import com.cmbb.smartkids.utils.SPCache;
+import com.cmbb.smartkids.utils.TDevice;
 import com.cmbb.smartkids.utils.log.Log;
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -65,8 +71,9 @@ public class UserFragment extends BaseFragment {
     private final int PIC_REQUEST_CODE = 1001;
     private SimpleDraweeView ivMyself;
     private SimpleDraweeView ivUserHeader;
-    private TextView tvFan, tvNickname, tvIdentity, tvProgress, myCollection, myCare, myPerssion;
-    private LinearLayout myOrder, myAccept, myGold, myCommunity, myPopman, myBabyDiary;
+    private ImageView ivMessageTag;
+    private TextView tvFan, tvNickname, tvIdentity, tvProgress, myCollection, myCare, myPerssion, myUid, myCount;
+    private LinearLayout myOrder, myAccept, myGold, myCommunity, myPopman, myBabyDiary, myUID;
     private ProgressBar pb;
     private RatingBar rb;
     private FloatingActionButton fab;
@@ -74,8 +81,7 @@ public class UserFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_myself, null);
-        return root;
+        return inflater.inflate(R.layout.fragment_myself, null);
     }
 
     @Override
@@ -96,17 +102,21 @@ public class UserFragment extends BaseFragment {
         tvProgress = (TextView) view.findViewById(R.id.tv_myself_progress);
         rb = (RatingBar) view.findViewById(R.id.rb_home_myself_perssion);
         pb = (ProgressBar) view.findViewById(R.id.pb_home_myself_grow);
+        ivMessageTag = (ImageView) view.findViewById(R.id.iv_message_tag);
 
         fab = (FloatingActionButton) view.findViewById(R.id.fab);
+        myUid = (TextView) view.findViewById(R.id.tv_home_uid);
         myCollection = (TextView) view.findViewById(R.id.tv_home_myself_collect);
         myCare = (TextView) view.findViewById(R.id.tv_home_myself_care);
         myPerssion = (TextView) view.findViewById(R.id.tv_home_myself_perssion);
         myOrder = (LinearLayout) view.findViewById(R.id.ll_home_self_order);
+        myUID = (LinearLayout) view.findViewById(R.id.ll_home_self_uid);
         myAccept = (LinearLayout) view.findViewById(R.id.ll_home_self_order_accept);
         myGold = (LinearLayout) view.findViewById(R.id.ll_home_self_gold);
         myCommunity = (LinearLayout) view.findViewById(R.id.ll_home_self_community);
         myPopman = (LinearLayout) view.findViewById(R.id.ll_home_self_apply_popman);
         myBabyDiary = (LinearLayout) view.findViewById(R.id.ll_home_self_baby_diary);
+        myCount = (TextView) view.findViewById(R.id.tv_home_count);
     }
 
     private ActionBar actionbar;
@@ -151,6 +161,7 @@ public class UserFragment extends BaseFragment {
         myBabyDiary.setOnClickListener(this);
         ivLeft.setOnClickListener(this);
         ivRight.setOnClickListener(this);
+        myUID.setOnClickListener(this);
     }
 
     public static final int MY_SET_MODIFY = 2001;
@@ -218,8 +229,44 @@ public class UserFragment extends BaseFragment {
             case R.id.ll_home_self_baby_diary:
                 startActivity(new Intent(getActivity(), MyBabyListActivity.class));
                 break;
+            case R.id.ll_home_self_uid:
+                ClipboardManager cmb = (ClipboardManager) getActivity().getSystemService(getActivity().CLIPBOARD_SERVICE);
+                cmb.setText(myUid.getText());
+                showShortToast("萌宝UID已经复制到剪切板");
+                break;
         }
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        LocalBroadcastManager.getInstance(getActivity()).registerReceiver(messageReceiveTagReceiver, new IntentFilter(Constants.INTENT_ACTION_MESSAGE_RECEIVE));
+        LocalBroadcastManager.getInstance(getActivity()).registerReceiver(messageCancelTagReceiver, new IntentFilter(Constants.INTENT_ACTION_MESSAGE_CANCEL));
+    }
+
+    @Override
+    public void onDestroy() {
+        LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(messageReceiveTagReceiver);
+        LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(messageCancelTagReceiver);
+        super.onDestroy();
+    }
+
+    // 收到消息 现实消息提醒
+    BroadcastReceiver messageReceiveTagReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            ivMessageTag.setVisibility(View.VISIBLE);
+        }
+    };
+
+    // 关系消息 影藏消息提醒
+    BroadcastReceiver messageCancelTagReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            ivMessageTag.setVisibility(View.GONE);
+        }
+    };
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -271,7 +318,8 @@ public class UserFragment extends BaseFragment {
     private void reflushView(UserCenterModel.DataEntity userModel) {
         //Fresco
         FrescoTool.loadImage(ivUserHeader, userModel.getUserSmallImg());
-        FrescoTool.loadImage(ivMyself, userModel.getBackgroundImg(), 1.67f, R.mipmap.btn_user_background_bg);
+//        FrescoTool.loadImage(ivMyself, userModel.getBackgroundImg(), 1.67f, R.mipmap.btn_user_background_bg);
+        FrescoTool.loadImage(ivMyself, userModel.getBackgroundImg(), String.valueOf(TDevice.dip2px(180, getContext())));
 
         if (!TextUtils.isEmpty(userModel.getUserNike())) {
             tvNickname.setVisibility(View.VISIBLE);
@@ -281,6 +329,8 @@ public class UserFragment extends BaseFragment {
         tvIdentity.setText(userModel.getUserRole().get(0).getEredarName());
         rb.setRating(userModel.getUserLevel());
         tvFan.setText("Fans(" + userModel.getFans() + ")");
+        myUid.setText(userModel.getUid() + "");
+        myCount.setText(userModel.getGoldCount() + "");
         if (userModel.getIsEredar() == 0) {
             getView().findViewById(R.id.ll_home_self_order_accept).setVisibility(View.GONE);
             getView().findViewById(R.id.v_home_self_order_accept).setVisibility(View.GONE);
@@ -293,9 +343,9 @@ public class UserFragment extends BaseFragment {
         }
         // 模拟进度条动画
         pb.setMax(20000);
-        int grownth = userModel.getGrowthCount();
-        tvProgress.setText("当前成长值:" + grownth);
-        ObjectAnimator animation = ObjectAnimator.ofInt(pb, "progress", grownth);
+        int growth = userModel.getGrowthCount();
+        tvProgress.setText("当前成长值:" + growth);
+        ObjectAnimator animation = ObjectAnimator.ofInt(pb, "progress", growth);
         animation.setDuration(500); // 0.5 second
         animation.setInterpolator(new DecelerateInterpolator());
         animation.start();

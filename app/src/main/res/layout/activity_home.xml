@@ -76,5 +76,4 @@
             android:textColor="@color/txt_black_to_primary_selector" />
     </LinearLayout>
 
-
 </RelativeLayout>

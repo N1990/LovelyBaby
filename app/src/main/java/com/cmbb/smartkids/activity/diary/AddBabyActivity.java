@@ -1,13 +1,10 @@
 package com.cmbb.smartkids.activity.diary;
 
-import android.app.Application;
 import android.content.Intent;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
@@ -19,7 +16,6 @@ import com.alibaba.sdk.android.media.utils.FailReason;
 import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.activity.diary.model.BabyInfoModel;
 import com.cmbb.smartkids.activity.diary.model.BabyListModel;
-import com.cmbb.smartkids.activity.login.model.SecurityCodeModel;
 import com.cmbb.smartkids.base.BaseActivity;
 import com.cmbb.smartkids.base.BaseApplication;
 import com.cmbb.smartkids.base.Constants;
@@ -42,7 +38,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class AddBabyActivity extends BaseActivity implements DateTimeSelectorDialogBuilder.OnSaveListener{
+public class AddBabyActivity extends BaseActivity implements DateTimeSelectorDialogBuilder.OnSaveListener {
     private final String TAG = AddBabyActivity.class.getSimpleName();
     private final int MODIFY_BABY_HEADER = 11110;
     private final int MODIFY_BABY_NAME = 11111;
@@ -52,7 +48,7 @@ public class AddBabyActivity extends BaseActivity implements DateTimeSelectorDia
     private CustomDialogBuilder builder = null;
     private int male = 0; // 1 男 2 女
     private DateTimeSelectorDialogBuilder timeBuilder;
-    private  ArrayList<String> tempUrls; // 宝宝头像参数
+    private ArrayList<String> tempUrls; // 宝宝头像参数
     private String url, width, height;
     private BabyListModel.DataEntity.RowsEntity babyInfo;
 
@@ -63,7 +59,7 @@ public class AddBabyActivity extends BaseActivity implements DateTimeSelectorDia
     }
 
     @Override
-      protected void init(Bundle savedInstanceState) {
+    protected void init(Bundle savedInstanceState) {
         setTitle(getString(R.string.title_activity_baby_material));
         initView();
         initDate();
@@ -83,21 +79,21 @@ public class AddBabyActivity extends BaseActivity implements DateTimeSelectorDia
     }
 
     private void initDate() {
-        if(getIntent() != null){
+        if (getIntent() != null) {
             babyInfo = getIntent().getParcelableExtra("baby_info");
-            if(babyInfo != null){
+            if (babyInfo != null) {
                 FrescoTool.loadImage(sdvHeader, babyInfo.getBabyImg());
                 tempUrls = new ArrayList<>();
                 url = babyInfo.getBabyImg();
                 width = babyInfo.getBabyImgWidth();
                 height = babyInfo.getBabyImgheigth();
                 tvName.setText(babyInfo.getBabyNike());
-                if(Integer.parseInt(babyInfo.getBabySex()) == 1){
+                if (Integer.parseInt(babyInfo.getBabySex()) == 1) {
                     male = 1;
                     tvSex.setText("男");
                     tvSex.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.mipmap.btn_male_boy_bg), null, null, null);
                     tvSex.setTag(babyInfo.getBabySex());
-                }else{
+                } else {
                     male = 2;
                     tvSex.setText("女");
                     tvSex.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.mipmap.btn_male_girl_bg), null, null, null);
@@ -106,7 +102,7 @@ public class AddBabyActivity extends BaseActivity implements DateTimeSelectorDia
                 try {
                     String birthday = Tools.DataToString(babyInfo.getBabyBirthday(), "yyyy-MM-dd");
                     tvBirth.setText(birthday);
-                }catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
@@ -124,7 +120,7 @@ public class AddBabyActivity extends BaseActivity implements DateTimeSelectorDia
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.rl_addbaby_header:
                 PhotoPickerIntent intent = new PhotoPickerIntent(this);
                 intent.setPhotoCount(1);
@@ -138,7 +134,7 @@ public class AddBabyActivity extends BaseActivity implements DateTimeSelectorDia
                 break;
             case R.id.rl_addbaby_birthday:
                 if (timeBuilder == null) {
-                    timeBuilder = DateTimeSelectorDialogBuilder.getInstance(this, System.currentTimeMillis()+"");
+                    timeBuilder = DateTimeSelectorDialogBuilder.getInstance(this, System.currentTimeMillis() + "");
                     timeBuilder.setOnSaveListener(this);
                 }
                 timeBuilder.show();
@@ -150,15 +146,15 @@ public class AddBabyActivity extends BaseActivity implements DateTimeSelectorDia
                 String babyName = tvName.getText().toString();
                 String birthday = tvBirth.getText().toString();
                 String sex = tvSex.getText().toString();
-                if(TextUtils.isEmpty(babyName)){
+                if (TextUtils.isEmpty(babyName)) {
                     showShortToast("请输入您的宝宝名字");
                     return;
                 }
-                if(TextUtils.isEmpty(birthday)){
+                if (TextUtils.isEmpty(birthday)) {
                     showShortToast("请选择您宝宝的生日");
                     return;
                 }
-                if(TextUtils.isEmpty(sex)){
+                if (TextUtils.isEmpty(sex)) {
                     showShortToast("请选择您宝宝的性别");
                     return;
                 }
@@ -169,10 +165,10 @@ public class AddBabyActivity extends BaseActivity implements DateTimeSelectorDia
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(MODIFY_BABY_NAME == requestCode && resultCode == RESULT_OK){
+        if (MODIFY_BABY_NAME == requestCode && resultCode == RESULT_OK) {
             String name = data.getStringExtra("baby_name");
             tvName.setText(name);
-        }else if(MODIFY_BABY_HEADER == requestCode && resultCode == RESULT_OK){
+        } else if (MODIFY_BABY_HEADER == requestCode && resultCode == RESULT_OK) {
             if (data != null) {
                 tempUrls = data.getStringArrayListExtra(PhotoPickerActivity.KEY_SELECTED_PHOTOS);
                 Log.e(TAG, "pic path:" + tempUrls.get(0));
@@ -192,7 +188,7 @@ public class AddBabyActivity extends BaseActivity implements DateTimeSelectorDia
     }
 
 
-    private void showChooseMaleDialog(){
+    private void showChooseMaleDialog() {
         View view = getLayoutInflater().inflate(R.layout.view_sex_selected, null);
         RadioGroup rg = (RadioGroup) view.findViewById(R.id.rg_sex);
         if (male == 2) {
@@ -210,21 +206,21 @@ public class AddBabyActivity extends BaseActivity implements DateTimeSelectorDia
                     @Override
                     public void onClick(View v) {
                         Object obj = tvSex.getTag();
-                        if(obj != null)
-                            male = Integer.parseInt((String)obj);
+                        if (obj != null)
+                            male = Integer.parseInt((String) obj);
                         builder.dismiss();
                     }
                 }).withComfirmText("确定", new CustomListener.DialogListener() {
             @Override
             public void onClick(View v) {
-                if(male == 1){
+                if (male == 1) {
                     tvSex.setText("男");
                     tvSex.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.mipmap.btn_male_boy_bg), null, null, null);
-                }else{
+                } else {
                     tvSex.setText("女");
                     tvSex.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.mipmap.btn_male_girl_bg), null, null, null);
                 }
-               tvSex.setTag(male+"");
+                tvSex.setTag(male + "");
             }
         });
         builder.show();
@@ -243,17 +239,17 @@ public class AddBabyActivity extends BaseActivity implements DateTimeSelectorDia
 
     @Override
     public void onSaveSelectedDate(String selectedDate) {
-        if(!TextUtils.isEmpty(selectedDate))
+        if (!TextUtils.isEmpty(selectedDate))
             tvBirth.setText(selectedDate);
     }
 
-    private void verifyHeaderUrl(final String name, final String birthday, final String male){
-        if(tempUrls == null){
+    private void verifyHeaderUrl(final String name, final String birthday, final String male) {
+        if (tempUrls == null) {
             showShortToast("请选择您宝宝的头像");
             return;
         }
         showWaitDialog();
-        if(tempUrls.size() != 0){
+        if (tempUrls.size() != 0) {
             ImageUpload.getInstance().uploadImages(AddBabyActivity.this, tempUrls, new UploadListener() {
                 @Override
                 public void onUploading(UploadTask uploadTask) {
@@ -276,10 +272,10 @@ public class AddBabyActivity extends BaseActivity implements DateTimeSelectorDia
                         Log.e(TAG, "url : " + url + ", width : " + width + ", height : " + height);
                         Log.i("uploadTask", "uploadTask = " + tempUrls.size());
                         Log.i(TAG, "uploadTask = " + uploadTask.getResult().message);
-                        if(TextUtils.isEmpty(url)){
+                        if (TextUtils.isEmpty(url)) {
                             showShortToast("头像验证失败");
                             throw new NullPointerException();
-                        }else{
+                        } else {
                             handleRequest(url, width, height, name, male, birthday);
                         }
                     } catch (JSONException e) {
@@ -292,18 +288,17 @@ public class AddBabyActivity extends BaseActivity implements DateTimeSelectorDia
                     hideWaitDialog();
                 }
             });
-        }else{
+        } else {
             handleRequest(url, width, height, name, male, birthday);
         }
 
     }
 
 
-
-    private void handleRequest(String headerImg, String width, String height, String name, String male, final String birthday){
+    private void handleRequest(String headerImg, String width, String height, String name, String male, final String birthday) {
         HashMap<String, String> params = new HashMap<>();
-        if(babyInfo != null)
-        params.put("id", String.valueOf(babyInfo.getId()));
+        if (babyInfo != null)
+            params.put("id", String.valueOf(babyInfo.getId()));
         params.put("babyNike", name);
         params.put("babySex", male);
         params.put("babyBirthday", birthday);
@@ -315,10 +310,10 @@ public class AddBabyActivity extends BaseActivity implements DateTimeSelectorDia
             public void onSuccessListener(Object object, String msg) {
                 hideWaitDialog();
                 BabyInfoModel data = (BabyInfoModel) object;
-                if(babyInfo == null){
+                if (babyInfo == null) {
                     setResult(RESULT_OK);
                     finish();
-                }else{
+                } else {
                     Intent intent = getIntent();
                     babyInfo.setBabyImg(data.getData().getBabyImg());
                     babyInfo.setBabyImgWidth(data.getData().getBabyImgWidth());
@@ -341,7 +336,6 @@ public class AddBabyActivity extends BaseActivity implements DateTimeSelectorDia
             }
         }));
     }
-
 
 
 }

@@ -3,26 +3,29 @@ package com.cmbb.smartkids.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.view.WindowManager;
 
 import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.activity.home.HomeActivity;
-import com.cmbb.smartkids.base.BaseActivity;
 import com.cmbb.smartkids.base.Constants;
 import com.cmbb.smartkids.utils.SPCache;
 import com.cmbb.smartkids.utils.log.Log;
+import com.umeng.analytics.MobclickAgent;
 import com.umeng.message.IUmengRegisterCallback;
 import com.umeng.message.PushAgent;
 
-public class SplashActivity extends BaseActivity {
+public class SplashActivity extends AppCompatActivity {
 
+    public PushAgent mPushAgent;
 
     @Override
-    protected void init(Bundle savedInstanceState) {
-        // 启动Push
-        needActionBar = false;
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_splash);
+        mPushAgent = PushAgent.getInstance(this);
+        mPushAgent.onAppStart();
         mPushAgent.enable(mRegisterCallback);
         PushAgent.getInstance(this).setMergeNotificaiton(false); //接收多条信息
         new Handler().postDelayed(new Runnable() {
@@ -43,20 +46,18 @@ public class SplashActivity extends BaseActivity {
     }
 
 
-
-
-
     @Override
-    public void onDestroy() {
-        super.onDestroy();
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
     }
 
-
     @Override
-
-    protected int getLayoutId() {
-        return R.layout.activity_splash;
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
+
 
     // 友盟推送注册器
     private IUmengRegisterCallback mRegisterCallback = new IUmengRegisterCallback() {
@@ -66,6 +67,5 @@ public class SplashActivity extends BaseActivity {
             Log.e("mRegisterCallback", "token:" + mPushAgent.getRegistrationId());
         }
     };
-
 
 }

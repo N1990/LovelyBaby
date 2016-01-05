@@ -36,6 +36,7 @@ import com.cmbb.smartkids.utils.TDevice;
 import com.cmbb.smartkids.utils.Tools;
 import com.cmbb.smartkids.widget.wheelview.CustomDialogBuilder;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.umeng.socialize.sso.UMSsoHandler;
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -248,15 +249,15 @@ public class ActiveDetailActivity extends BaseActivity {
         tvTime.setText(time01);
         String startTime = realData.getSurplusTime();
         SpannableString ss = new SpannableString(startTime);
-        if(TextUtils.isEmpty(startTime)){
+        if (TextUtils.isEmpty(startTime)) {
             tvEndTime.setVisibility(View.GONE);
-        }else{
+        } else {
             tvEndTime.setVisibility(View.VISIBLE);
-            for (int i = 0; i < ss.length(); i++){
+            for (int i = 0; i < ss.length(); i++) {
                 char temp = startTime.charAt(i);
-                if(temp >= 48 && temp <= 57){ //判断是否是数字
+                if (temp >= 48 && temp <= 57) { //判断是否是数字
                     ss.setSpan(new ForegroundColorSpan(Color.RED), i, i + 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                }else{
+                } else {
                     ss.setSpan(new ForegroundColorSpan(Color.WHITE), i, i + 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                 }
             }
@@ -272,11 +273,11 @@ public class ActiveDetailActivity extends BaseActivity {
         isCollected = realData.getIsCollect() == 1 ? true : false;
         ivCollect.setBackgroundResource(isCollected ? R.mipmap.btn_community_collect_pressed : R.mipmap.btn_community_collect_normal);
         isOrder = realData.getIsReserve() == 0 ? true : false;
-        if (isOrder){
+        if (isOrder) {
             tvOrder.setEnabled(false);
             tvOrder.setBackgroundResource(R.drawable.btn_service_detail_order_disenable);
             tvOrder.setText("不可预定");
-        }else{
+        } else {
             tvOrder.setEnabled(true);
             tvOrder.setBackgroundResource(R.drawable.btn_login_selector);
             tvOrder.setText("预定");
@@ -318,6 +319,10 @@ public class ActiveDetailActivity extends BaseActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        UMSsoHandler ssoHandler = ShareUtils.mController.getConfig().getSsoHandler(requestCode);
+        if (ssoHandler != null) {
+            ssoHandler.authorizeCallBack(requestCode, resultCode, data);
+        }
         if (requestCode == ORDER_RESULT && resultCode == RESULT_OK) {
             showWaitDialog();
             handleRequest();

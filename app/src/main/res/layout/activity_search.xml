@@ -23,7 +23,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_toLeftOf="@+id/tv_cancel"
+                android:layout_toLeftOf="@+id/btn_search"
                 android:background="@drawable/shape_search_background">
 
                 <android.support.v7.widget.AppCompatSpinner
@@ -52,19 +52,19 @@
                     android:gravity="center"
                     android:paddingLeft="@dimen/half_global_padding"
                     android:paddingRight="@dimen/half_global_padding"
-                    android:text="搜索" />
+                    android:text="" />
 
             </RelativeLayout>
 
             <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/tv_cancel"
+                android:id="@+id/btn_search"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
                 android:gravity="center"
                 android:paddingLeft="@dimen/half_global_padding"
                 android:paddingRight="@dimen/half_global_padding"
-                android:text="取消"
+                android:text="搜索"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/txt_middle" />
         </RelativeLayout>

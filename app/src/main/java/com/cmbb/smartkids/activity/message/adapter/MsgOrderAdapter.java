@@ -6,8 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.cmbb.smartkids.R;
-import com.cmbb.smartkids.activity.message.holder.MsgOfficalHolder;
 import com.cmbb.smartkids.activity.message.holder.MsgOrderHolder;
+import com.cmbb.smartkids.activity.message.model.MessageListModel;
 import com.cmbb.smartkids.base.CustomListener;
 import com.javon.loadmorerecyclerview.BaseRecyclerAdapter;
 
@@ -33,11 +33,6 @@ public class MsgOrderAdapter extends BaseRecyclerAdapter {
 
     @Override
     protected void onBindCustomViewHolder(RecyclerView.ViewHolder holder, int position) {
-        ((MsgOrderHolder) holder).setData(this, position);
-    }
-
-    @Override
-    public int getItemCount() {
-        return 5;
+        ((MsgOrderHolder) holder).setData(this, (MessageListModel.DataEntity.RowsEntity) (dataList.get(position)));
     }
 }

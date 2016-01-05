@@ -1,7 +1,6 @@
 package com.cmbb.smartkids.activity.user;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 
@@ -40,7 +39,6 @@ public class PerssionListActivity extends BaseActivity {
     }
 
 
-
     private void initView() {
         setTitle(getString(R.string.title_activity_perssion_list));
         lmrv = (LoadMoreRecyclerView) findViewById(R.id.lmrv_self);
@@ -52,9 +50,9 @@ public class PerssionListActivity extends BaseActivity {
 
     private void initData() {
         Bundle bundle = null;
-        if(getIntent() != null && (bundle = getIntent().getExtras()) != null){
+        if (getIntent() != null && (bundle = getIntent().getExtras()) != null) {
             isPopman = bundle.getInt("isPop");
-        }else{
+        } else {
             showShortToast("传参出错~");
             return;
         }
@@ -84,7 +82,7 @@ public class PerssionListActivity extends BaseActivity {
 
         @Override
         public void onLoadMore() {
-            pager ++;
+            pager++;
             handleRequest(pager, pagerSize);
 
         }
@@ -106,8 +104,7 @@ public class PerssionListActivity extends BaseActivity {
     }
 
 
-
-    private void handleRequest(int pager, int pagerSize){
+    private void handleRequest(int pager, int pagerSize) {
         HashMap<String, String> params = new HashMap<>();
         params.put("pageNo", String.valueOf(pager));
         params.put("numberOfPerPage", String.valueOf(pagerSize));
@@ -119,11 +116,11 @@ public class PerssionListActivity extends BaseActivity {
                 hideWaitDialog();
                 lmrv.setPullLoadMoreCompleted();
                 EvaluateListModel data = (EvaluateListModel) object;
-                if(data != null && data.getData() != null && data.getData().getRows().size() > 0){
+                if (data != null && data.getData() != null && data.getData().getRows().size() > 0) {
                     lmrv.setHasContent();
                     adapter.addData(data.getData().getRows(), lmrv);
                 }
-                if(adapter.getDataSize() == 0) {
+                if (adapter.getDataSize() == 0) {
                     lmrv.setNoContent();
                 }
                 showShortToast(msg);
@@ -138,7 +135,6 @@ public class PerssionListActivity extends BaseActivity {
         }));
 
     }
-
 
 
 }

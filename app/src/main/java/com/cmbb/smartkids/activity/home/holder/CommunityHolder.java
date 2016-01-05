@@ -89,20 +89,20 @@ public class CommunityHolder extends RecyclerView.ViewHolder implements View.OnC
             iv1.setVisibility(View.VISIBLE);
             iv2.setVisibility(View.VISIBLE);
             iv3.setVisibility(View.VISIBLE);
-            FrescoTool.loadImage(iv1, data.getTopicImgList().get(0).getImg(), TDevice.dip2px(120, iv1.getContext()) + "");
-            FrescoTool.loadImage(iv2, data.getTopicImgList().get(1).getImg(), TDevice.dip2px(120, iv2.getContext()) + "");
-            FrescoTool.loadImage(iv3, data.getTopicImgList().get(2).getImg(), TDevice.dip2px(120, iv3.getContext()) + "");
+            FrescoTool.loadImage(iv1, data.getTopicImgList().get(0).getImg(), TDevice.dip2px(50, iv1.getContext()) + "");
+            FrescoTool.loadImage(iv2, data.getTopicImgList().get(1).getImg(), TDevice.dip2px(50, iv2.getContext()) + "");
+            FrescoTool.loadImage(iv3, data.getTopicImgList().get(2).getImg(), TDevice.dip2px(50, iv3.getContext()) + "");
         } else if (data.getTopicImgList() != null && data.getTopicImgList().size() == 2) {
             iv1.setVisibility(View.VISIBLE);
             iv2.setVisibility(View.VISIBLE);
             iv3.setVisibility(View.INVISIBLE);
-            FrescoTool.loadImage(iv1, data.getTopicImgList().get(0).getImg(), TDevice.dip2px(120, iv1.getContext()) + "");
-            FrescoTool.loadImage(iv2, data.getTopicImgList().get(1).getImg(), TDevice.dip2px(120, iv2.getContext()) + "");
+            FrescoTool.loadImage(iv1, data.getTopicImgList().get(0).getImg(), TDevice.dip2px(50, iv1.getContext()) + "");
+            FrescoTool.loadImage(iv2, data.getTopicImgList().get(1).getImg(), TDevice.dip2px(50, iv2.getContext()) + "");
         } else if (data.getTopicImgList() != null && data.getTopicImgList().size() == 1) {
             iv1.setVisibility(View.VISIBLE);
             iv2.setVisibility(View.INVISIBLE);
             iv3.setVisibility(View.INVISIBLE);
-            FrescoTool.loadImage(iv1, data.getTopicImgList().get(0).getImg(), TDevice.dip2px(120, iv1.getContext()) + "");
+            FrescoTool.loadImage(iv1, data.getTopicImgList().get(0).getImg(), TDevice.dip2px(50, iv1.getContext()) + "");
         } else if (data.getTopicImgList() != null && data.getTopicImgList().size() == 0) {
             iv1.setVisibility(View.GONE);
             iv2.setVisibility(View.GONE);

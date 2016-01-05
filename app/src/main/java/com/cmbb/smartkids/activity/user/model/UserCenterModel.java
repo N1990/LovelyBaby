@@ -85,6 +85,7 @@ public class UserCenterModel implements Parcelable {
     public static class DataEntity implements Parcelable {
         private int userId;
         private int recommoned;
+        private int uid;
         private String userNike;
         private int userSex;
         private String userBirthday;
@@ -168,6 +169,14 @@ public class UserCenterModel implements Parcelable {
 
         public void setUserSmallImg(String userSmallImg) {
             this.userSmallImg = userSmallImg;
+        }
+
+        public int getUid() {
+            return uid;
+        }
+
+        public void setUid(int uid) {
+            this.uid = uid;
         }
 
         public void setUserSmallWidth(String userSmallWidth) {
@@ -518,6 +527,7 @@ public class UserCenterModel implements Parcelable {
         @Override
         public void writeToParcel(Parcel dest, int flags) {
             dest.writeInt(this.userId);
+            dest.writeInt(this.uid);
             dest.writeInt(this.recommoned);
             dest.writeString(this.userNike);
             dest.writeInt(this.userSex);
@@ -565,6 +575,7 @@ public class UserCenterModel implements Parcelable {
 
         protected DataEntity(Parcel in) {
             this.userId = in.readInt();
+            this.uid = in.readInt();
             this.recommoned = in.readInt();
             this.userNike = in.readString();
             this.userSex = in.readInt();

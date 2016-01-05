@@ -47,6 +47,8 @@ public class CommentFirstFragment extends CommunityBaseFragment {
     }
 
 
+
+
     public static CommentFirstFragment newInstance(CommunityDetailModel resultDetail, CommunityReplayModel resultReplay) {
         CommentFirstFragment fragment = new CommentFirstFragment();
         Bundle args = new Bundle();

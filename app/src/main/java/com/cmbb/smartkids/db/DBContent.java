@@ -13,7 +13,7 @@ public class DBContent implements BaseColumns {
     public static final String DB_NAME = "smarts.db";
     public static final String INTEGER_TYPE = " INTEGER,";
     public static final String TEXT_TYPE = " TEXT,";
-    public static int VERSION = 301;
+    public static int VERSION = 302;
 
 
     public static class DBUser {
@@ -74,7 +74,7 @@ public class DBContent implements BaseColumns {
 
     }
 
-    public static class DBAddress{
+    public static class DBAddress {
         public static final String TABLE_NAME = "address";
         public static final String ADDRESS_ID = "address_id";
         public static final String ADDRESS_TEXT = "area";

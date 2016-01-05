@@ -6,22 +6,22 @@
     <item
         android:id="@+id/btn_share_wx"
         android:icon="@mipmap/btn_wechat_bg"
-        android:title="微信"/>
+        android:title="微信" />
     <item
         android:id="@+id/btn_share_wxcircle"
         android:icon="@mipmap/btn_friendcircle_bg"
-        android:title="朋友圈"/>
+        android:title="朋友圈" />
     <item
         android:id="@+id/btn_share_qq"
         android:icon="@mipmap/btn_qq_bg"
-        android:title="QQ"/>
+        android:title="QQ" />
     <item
         android:id="@+id/btn_share_qzone"
         android:icon="@mipmap/btn_qzone_bg"
-        android:title="Qzone"/>
+        android:title="Qzone" />
 
     <item
         android:id="@+id/btn_share_sina"
         android:icon="@mipmap/btn_sina_bg"
-        android:title="新浪"/>
+        android:title="微博" />
 </menu>

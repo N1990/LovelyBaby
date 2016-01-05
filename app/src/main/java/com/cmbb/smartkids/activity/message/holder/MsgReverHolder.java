@@ -34,7 +34,7 @@ public class MsgReverHolder extends RecyclerView.ViewHolder implements View.OnCl
 
     public void setData(MsgReverAdapter adapter, MessageListModel.DataEntity.RowsEntity data) {
         this.adapter = adapter;
-        itemView.setTag(position);
+        itemView.setTag(data);
         itemView.setOnClickListener(this);
         tvContent.setText(data.getContents());
         tvTitle.setText(data.getTitle());

@@ -52,7 +52,7 @@ public class PhotoGridAdapter extends SelectableAdapter<PhotoGridAdapter.PhotoVi
         inflater = LayoutInflater.from(mContext);
         displaymetrics = new DisplayMetrics();
         ((Activity) mContext).getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
-        itemWidth = displaymetrics.widthPixels / 3;
+        itemWidth = displaymetrics.widthPixels / 10;
     }
 
 

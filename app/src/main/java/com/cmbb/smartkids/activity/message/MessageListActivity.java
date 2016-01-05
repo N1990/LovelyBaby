@@ -3,7 +3,6 @@ package com.cmbb.smartkids.activity.message;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.NestedScrollView;
-import android.util.Log;
 import android.view.View;
 
 import com.cmbb.smartkids.R;
@@ -14,6 +13,7 @@ import com.cmbb.smartkids.activity.message.adapter.MsgReverAdapter;
 import com.cmbb.smartkids.activity.message.adapter.MsgServiceAdapter;
 import com.cmbb.smartkids.activity.message.model.MessageCountModel;
 import com.cmbb.smartkids.activity.message.model.MessageListModel;
+import com.cmbb.smartkids.activity.order.OrderDetailActivity;
 import com.cmbb.smartkids.base.BaseActivity;
 import com.cmbb.smartkids.base.BaseApplication;
 import com.cmbb.smartkids.base.Constants;
@@ -61,7 +61,6 @@ public class MessageListActivity extends BaseActivity {
             dataEntity = bundle.getParcelable("DataEntity");
         }
         if (dataEntity == null) return;
-        Log.e("DataEntity", "DataEntity = " + dataEntity.getModual());
         switch (dataEntity.getModual()) {
             case "system":
                 reflushOfficalView();
@@ -147,16 +146,15 @@ public class MessageListActivity extends BaseActivity {
     private CustomListener.ItemClickListener onItemListener = new CustomListener.ItemClickListener() {
         @Override
         public void onItemClick(View v, int position, Object object) {
-            Log.e("Message", "Message = " + dataEntity.getModual());
             switch (dataEntity.getModual()) {
                 case "system":
-                    OfficialMessageActivity.newInstance(MessageListActivity.this);
+                    OfficialMessageActivity.newInstance(MessageListActivity.this, ((MessageListModel.DataEntity.RowsEntity) object).getContents());
                     break;
                 case "order":
-//                    handleOrderRequest(pager, pagerSize);
+                    OrderDetailActivity.newInstance(MessageListActivity.this, ((MessageListModel.DataEntity.RowsEntity) object).getRelateField());
                     break;
                 case "topic":
-                    CommunityDetailActivity.newInstance(MessageListActivity.this, dataEntity.getId());
+                    CommunityDetailActivity.newInstance(MessageListActivity.this, Integer.valueOf(((MessageListModel.DataEntity.RowsEntity) object).getRelateField()));
                     break;
                 case "service":
 //                    handleServiceRequest(pager, pagerSize);
@@ -308,8 +306,8 @@ public class MessageListActivity extends BaseActivity {
     /**
      * 话题消息列表
      *
-     * @param pager
-     * @param pagerSize
+     * @param pager     页码
+     * @param pagerSize 页面加载数量
      */
     private void handleTopicRequest(int pager, int pagerSize) {
         HashMap<String, String> params = new HashMap<>();

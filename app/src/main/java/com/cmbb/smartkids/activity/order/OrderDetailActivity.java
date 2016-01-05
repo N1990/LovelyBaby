@@ -1,5 +1,6 @@
 package com.cmbb.smartkids.activity.order;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -124,7 +125,7 @@ public class OrderDetailActivity extends BaseActivity {
         int id = v.getId();
         if (id == R.id.tv_order_detail_handle) {
             if (flag) {
-                if(TextUtils.isEmpty(phone)){
+                if (TextUtils.isEmpty(phone)) {
                     showShortToast("请修改手机号码");
                     return;
                 }
@@ -133,7 +134,7 @@ public class OrderDetailActivity extends BaseActivity {
                 Object object = v.getTag();
                 OrderStatus status = null;
                 String orderCode = "";
-                String orderTitle ="";
+                String orderTitle = "";
                 double price = 0;
                 if (object instanceof OrderDetailModel.DataEntity) {
                     int statusFlag = ((OrderDetailModel.DataEntity) object).getStatus();
@@ -159,7 +160,7 @@ public class OrderDetailActivity extends BaseActivity {
         } else if (id == R.id.tv_order_detail_modify_phone) {
             Intent modify = new Intent(OrderDetailActivity.this, OrderModifyPhoneActivity.class);
             startActivityForResult(modify, MODIFY_ORDER_PHONE);
-        }else if(id == R.id.tv_order_detail_gohome){
+        } else if (id == R.id.tv_order_detail_gohome) {
             Intent intent = new Intent(OrderDetailActivity.this, HomeActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -216,13 +217,13 @@ public class OrderDetailActivity extends BaseActivity {
     }
 
 
-    private void showRefundDialog(final String orderCode){
+    private void showRefundDialog(final String orderCode) {
         builder = CustomDialogBuilder.getInstance(this).withTitle("申请退款")
                 .withMessage("您确认要申请退款吗？退款之后您需重新预订此服务...")
                 .withComfirmText("确认", new CustomListener.DialogListener() {
                     @Override
                     public void onClick(View v) {
-                        if(builder != null)
+                        if (builder != null)
                             builder.dismiss();
                         handleApplyRefund(orderCode);
                     }
@@ -230,7 +231,7 @@ public class OrderDetailActivity extends BaseActivity {
                 .withCancelText("取消", new CustomListener.DialogListener() {
                     @Override
                     public void onClick(View v) {
-                        if(builder != null)
+                        if (builder != null)
                             builder.dismiss();
                     }
                 });
@@ -245,7 +246,7 @@ public class OrderDetailActivity extends BaseActivity {
                     @Override
                     public void onClick(View v) {
                         if (builder != null)
-                        handleCancelRequest(orderCode);
+                            handleCancelRequest(orderCode);
                     }
                 })
                 .withCancelText("取消", new CustomListener.DialogListener() {
@@ -279,7 +280,7 @@ public class OrderDetailActivity extends BaseActivity {
         } else if (requestCode == MODIFY_ORDER_PHONE && resultCode == RESULT_OK) {
             phone = data.getStringExtra("phone");
             tvPhone.setText("手机号：" + phone);
-        }else {
+        } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
@@ -304,9 +305,9 @@ public class OrderDetailActivity extends BaseActivity {
         }
         tvName.setText("用户名：" + data.getUserNike());
         phone = data.getPhone();
-        if(TextUtils.isEmpty(phone)){
+        if (TextUtils.isEmpty(phone)) {
             tvPhone.setText("手机号：");
-        }else{
+        } else {
             tvPhone.setText("手机号：" + phone);
         }
         tvActiveLocal.setText("服务地址：" + serviceAddress);
@@ -335,7 +336,7 @@ public class OrderDetailActivity extends BaseActivity {
         findViewById(R.id.cv_order_detail_content).setVisibility(View.VISIBLE);
         findViewById(R.id.ll_empty_data).setVisibility(View.GONE);
         llNumber.setVisibility(View.VISIBLE);
-        if(data.getServiceInfo() != null)
+        if (data.getServiceInfo() != null)
             ivBg.setTag(data.getServiceInfo().getId());
         OrderDetailModel.DataEntity.ServiceInfoEntity sData = data.getServiceInfo();
         FrescoTool.loadImage(ivBg, sData.getServicesImg(), sData.getImgWidth(), sData.getImgHeight());
@@ -353,34 +354,33 @@ public class OrderDetailActivity extends BaseActivity {
         }
         tvName.setText("用户名：" + data.getUserNike());
         phone = data.getPhone();
-        if(TextUtils.isEmpty(phone)){
+        if (TextUtils.isEmpty(phone)) {
             tvPhone.setText("手机号：");
-        }else{
+        } else {
             tvPhone.setText("手机号：" + phone);
         }
         tvActiveLocal.setText("活动地址：" + sData.getAddress());
         tvActivePrice.setText(Double.valueOf(data.getPrice()) == 0 ? "金额：" + "0元" : "金额：" + data.getPrice() + "元");
         if (orderResult) {
             OrderStatus status = OrderStatus.getStatusByValue(data.getStatus());
-            if(status == OrderStatus.WEI_ZHI_FU){
+            if (status == OrderStatus.WEI_ZHI_FU) {
                 llStatus.setVisibility(View.GONE);
                 tvHandle.setVisibility(View.VISIBLE);
                 tvHandle.setText("立即支付");
                 tvHandle.setTag(data);
                 tvGoHome.setVisibility(View.GONE);
-            }else{
+            } else {
                 llStatus.setVisibility(View.VISIBLE);
                 tvGoHome.setVisibility(View.VISIBLE);
                 tvGoHome.setText("返回首页");
                 tvHandle.setVisibility(View.GONE);
             }
-        } else if(flag){
+        } else if (flag) {
             llStatus.setVisibility(View.GONE);
             tvHandle.setVisibility(View.VISIBLE);
             tvHandle.setText("提交订单");
             tvGoHome.setVisibility(View.GONE);
-        }
-        else {
+        } else {
             reflushBottomView(data);
         }
     }
@@ -568,7 +568,7 @@ public class OrderDetailActivity extends BaseActivity {
      * @param orderCode
      */
     private void handleCancelRequest(String orderCode) {
-        if(builder != null)
+        if (builder != null)
             builder.setDialogDismiss();
         showWaitDialog();
         HashMap<String, String> params = new HashMap<>();
@@ -598,9 +598,10 @@ public class OrderDetailActivity extends BaseActivity {
 
     /**
      * 申请退款
+     *
      * @param orderCode
      */
-    private void handleApplyRefund(String orderCode){
+    private void handleApplyRefund(String orderCode) {
         showWaitDialog();
         HashMap<String, String> params = new HashMap<>();
         params.put("orderCode", orderCode);
@@ -609,10 +610,10 @@ public class OrderDetailActivity extends BaseActivity {
             public void onSuccessListener(Object object, String msg) {
                 hideWaitDialog();
                 RefundModel result = (RefundModel) object;
-                if(result != null){
+                if (result != null) {
                     setResult(RESULT_OK);
                     finish();
-                }else{
+                } else {
                     showShortToast("退款中...");
 //                    showShortToast(msg);
                 }
@@ -624,6 +625,18 @@ public class OrderDetailActivity extends BaseActivity {
                 showShortToast(message);
             }
         }));
+    }
+
+    /**
+     * 启动入口
+     *
+     * @param context   Context
+     * @param orderCode 订单号
+     */
+    public static void newInstance(Context context, String orderCode) {
+        Intent intent = new Intent(context, OrderDetailActivity.class);
+        intent.putExtra("orderCode", orderCode);
+        context.startActivity(intent);
     }
 
 }

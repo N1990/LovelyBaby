@@ -56,20 +56,20 @@ import java.util.concurrent.TimeUnit;
  */
 public class NetRequest {
 
-    private static OkHttpClient httpClient;
+    public static OkHttpClient httpClient;
     private static final int maxStale = 60 * 60 * 24 * 7; //
     private static Gson gson;
     private static final MediaType MEDIA_TYPE_PNG = MediaType.parse("image/png");
     private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
     //开发环境
-    public static String BASE = "http://192.168.100.64:8081/wine-rest/";
+//    public static final String BASE = "http://192.168.100.63:8081/wine-rest/";
 //    public static String BASE_URL_PIC = "http://192.168.100.174:8081/wine-rest/";
     //生产环境
-//    public static String BASE = "http://120.26.88.135:8090/wine-rest/";
+//    public static final String BASE = "http://120.26.88.135:8090/wine-rest/";
 //    public static String BASE_URL = BASE + "cgi";
 
-//    public static String BASE = "http://mengbaopai.smart-kids.com:82/wine-rest/";
-    public static String BASE_URL = BASE + "cgi";
+    public static final String BASE = "http://mengbaopai.smart-kids.com:82/wine-rest/";
+    public static final String BASE_URL = BASE + "cgi";
 
 
     static {
@@ -89,7 +89,7 @@ public class NetRequest {
         Fresco.initialize(BaseApplication.getContext(), config);
         try {
             if (Environment.isExternalStorageEmulated()) {
-                File cacheFile = new File(Environment.getExternalStorageDirectory(), Constants.packageName);
+                File cacheFile = new File(Environment.getExternalStorageDirectory(), Constants.PACKAGE_NAME);
                 httpClient.setCache(new Cache(cacheFile, cacheSize));
             } else {
                 File cacheFile = new File(BaseApplication.getContext().getCacheDir(), "network");
@@ -104,9 +104,9 @@ public class NetRequest {
     /**
      * post网络请求
      *
-     * @param url
-     * @param params
-     * @param srcClass
+     * @param url      URL地址
+     * @param params   参数
+     * @param srcClass T
      */
     public static <T extends Parcelable> void postRequest(String url, String token, Map<String, String> params, final Class<T> srcClass, final NetHandler netHandler) {
         // 处理网络请求

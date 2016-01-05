@@ -88,7 +88,6 @@ public class HomeFragment extends BaseFragment {
             tvRight.setVisibility(View.VISIBLE);
             tvRight.setOnClickListener(this);
             ivLeft = (ImageView) v.findViewById(R.id.iv_main_toolbar_left);
-            ((AppCompatActivity) getActivity()).setSupportActionBar(v);
             actionbar = ((AppCompatActivity) getActivity()).getSupportActionBar();
             actionbar.setDisplayHomeAsUpEnabled(false);
             actionbar.setDisplayShowTitleEnabled(false);

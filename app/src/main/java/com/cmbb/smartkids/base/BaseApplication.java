@@ -12,7 +12,6 @@ import android.os.Handler;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
-import android.widget.Toast;
 
 import com.alibaba.sdk.android.AlibabaSDK;
 import com.alibaba.sdk.android.callback.InitResultCallback;
@@ -70,7 +69,7 @@ public class BaseApplication extends Application {
 
 
     public static String getDeviceInfo(Context context) {
-        try{
+        try {
             org.json.JSONObject json = new org.json.JSONObject();
             android.telephony.TelephonyManager tm = (android.telephony.TelephonyManager) context
                     .getSystemService(Context.TELEPHONY_SERVICE);
@@ -82,23 +81,22 @@ public class BaseApplication extends Application {
             String mac = wifi.getConnectionInfo().getMacAddress();
             json.put("mac", mac);
 
-            if( TextUtils.isEmpty(device_id) ){
+            if (TextUtils.isEmpty(device_id)) {
                 device_id = mac;
             }
 
-            if( TextUtils.isEmpty(device_id) ){
-                device_id = android.provider.Settings.Secure.getString(context.getContentResolver(),android.provider.Settings.Secure.ANDROID_ID);
+            if (TextUtils.isEmpty(device_id)) {
+                device_id = android.provider.Settings.Secure.getString(context.getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
             }
 
             json.put("device_id", device_id);
 
             return json.toString();
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
-
 
 
     /**
@@ -162,13 +160,14 @@ public class BaseApplication extends Application {
                         // TODO Auto-generated method stub
                         Log.e("MEIZU", "message = " + msg);
                         UTrack.getInstance(getApplicationContext()).trackMsgClick(msg);
-                        Toast.makeText(context, msg.custom, Toast.LENGTH_LONG).show();
+                        LocalBroadcastManager.getInstance(getContext()).sendBroadcast(new Intent(Constants.INTENT_ACTION_MESSAGE_RECEIVE));
                     }
                 });
             }
 
             @Override
             public Notification getNotification(Context context, UMessage msg) {
+                LocalBroadcastManager.getInstance(getContext()).sendBroadcast(new Intent(Constants.INTENT_ACTION_MESSAGE_RECEIVE));
                 switch (msg.builder_id) {
                     case 0:
                         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context)

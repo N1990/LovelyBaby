@@ -94,13 +94,10 @@ public class ActiveAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if(holder instanceof ActiveHeaderHolder){
-            Log.e("activeAdapter", "i come here0");
             ((ActiveHeaderHolder) holder).setData(title, content);
         }else if(holder instanceof ActiveFooterHolder){
-            Log.e("activeAdapter", "i come here1");
             ((ActiveFooterHolder) holder).setData(isOrder, this);
         }else{
-            Log.e("activeAdapter", "i come here2");
             ((ActiveHolder) holder).setData(data.get(position - 1), this, position - 1);
         }
     }

@@ -410,8 +410,6 @@ public class ActiveDetailActivity extends BaseActivity {
                 ServiceOrderModel.DataEntity orderDetail = null;
                 hideWaitDialog();
                 if (data != null && (orderDetail = data.getData()) != null) {
-                    isOrder = true;
-                    tvOrder.setEnabled(false);
                     Intent intent = new Intent(ActiveDetailActivity.this, OrderDetailActivity.class);
                     intent.putExtra("orderDetail", orderDetail);
                     intent.putExtra("serviceTitle", realData.getTitle());

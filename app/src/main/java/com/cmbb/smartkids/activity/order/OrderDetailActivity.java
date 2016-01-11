@@ -505,11 +505,7 @@ public class OrderDetailActivity extends BaseActivity {
             public void onSuccessListener(Object object, String msg) {
                 ServiceOrderModel result = (ServiceOrderModel) object;
                 String tip = "";
-//                Intent intent = new Intent(OrderDetailActivity.this, OrderResultActivity.class);
                 if (result != null && result.getData() != null) {
-//                    intent.putExtra("flag", true);
-//                    intent.putExtra("orderCode", result.getData().getOrderCode());
-//                    intent.putExtra("tip", "订单提交成功~");
                     flag = false;
                     orderResult = true;
                     tip = "订单提交成功~";
@@ -517,12 +513,9 @@ public class OrderDetailActivity extends BaseActivity {
                     handleOrderRequest(result.getData().getOrderCode());
                 } else {
                     hideWaitDialog();
-//                    intent.putExtra("flag", false);
-//                    intent.putExtra("tip", "订单提交失败~");
                     tip = "订单提交失败~";
                     showShortToast(tip);
                 }
-//                startActivityForResult(intent, ORDER_RESULT);
             }
 
             @Override

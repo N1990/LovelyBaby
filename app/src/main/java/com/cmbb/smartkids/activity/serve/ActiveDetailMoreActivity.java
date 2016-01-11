@@ -136,6 +136,7 @@ public class ActiveDetailMoreActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == ORDER_RESULT && resultCode == RESULT_OK) {
+            adapter.setIsOrder(true);
             result = true;
         } else {
             super.onActivityResult(requestCode, resultCode, data);
@@ -159,7 +160,6 @@ public class ActiveDetailMoreActivity extends BaseActivity {
                 ServiceOrderModel.DataEntity orderDetail = null;
                 hideWaitDialog();
                 if (data != null && (orderDetail = data.getData()) != null) {
-                    adapter.setIsOrder(true);
                     Intent intent = new Intent(ActiveDetailMoreActivity.this, OrderDetailActivity.class);
                     intent.putExtra("orderDetail", orderDetail);
                     intent.putExtra("serviceTitle", dataEntity.getTitle());

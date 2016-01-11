@@ -69,13 +69,13 @@ public class FrescoTool {
      * @param ratio            图片比例
      */
     public static void loadImage(SimpleDraweeView simpleDraweeView, String url, float ratio) {
+        simpleDraweeView.setMinimumWidth(TDevice.getScreenWidth(BaseApplication.getContext()));
+        simpleDraweeView.setAspectRatio(ratio);
         if (TextUtils.isEmpty(url)) {
             Log.e(TAG, "url is null");
-            simpleDraweeView.setAspectRatio(ratio);
             simpleDraweeView.setImageResource(R.color.placeholder);
             return;
         }
-        simpleDraweeView.setAspectRatio(ratio);
         Uri uri = Uri.parse(url + "@" + TDevice.getScreenWidth(BaseApplication.getContext()) + "w_1o.jpeg");
         Log.e("Image", "Image = " + uri.toString());
         ImageRequest request = ImageRequestBuilder

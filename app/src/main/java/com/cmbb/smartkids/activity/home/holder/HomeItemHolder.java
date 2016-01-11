@@ -67,8 +67,8 @@ public class HomeItemHolder extends RecyclerView.ViewHolder implements View.OnCl
                 } else {
                     ss.setSpan(new ForegroundColorSpan(Color.WHITE), i, i + 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                 }
+                tvTime.setText(ss);
             }
-            tvTime.setText(ss);
         }
         FrescoTool.loadImage(iv, row.getServicesImg(), 1.67f);
         ivTag.setVisibility(View.VISIBLE);
@@ -94,10 +94,10 @@ public class HomeItemHolder extends RecyclerView.ViewHolder implements View.OnCl
     }
 
 
-    @Override
-    public void onClick(View v) {
-        HomePageRootModel.DataEntity.RowsEntity active = (HomePageRootModel.DataEntity.RowsEntity) v.getTag();
-        if (adapter.getOnItemClick() != null)
-            adapter.getOnItemClick().onItemClick(v, position, active);
-    }
+        @Override
+        public void onClick(View v) {
+            HomePageRootModel.DataEntity.RowsEntity active = (HomePageRootModel.DataEntity.RowsEntity) v.getTag();
+            if (adapter.getOnItemClick() != null)
+                adapter.getOnItemClick().onItemClick(v, position, active);
+        }
 }

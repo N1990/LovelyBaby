@@ -50,8 +50,8 @@ import java.util.List;
  */
 public class ShareUtils {
     private static Activity activity;
-    public  static final UMSocialService mController = UMServiceFactory.getUMSocialService(Constants.Share.DESCRIPTOR);
-    public static final UMShakeService mShakeController = UMShakeServiceFactory.getShakeService(Constants.Share.DESCRIPTOR);
+    public static final UMSocialService mController = UMServiceFactory.getUMSocialService(Constants.Share.DESCRIPTOR);
+    private static final UMShakeService mShakeController = UMShakeServiceFactory.getShakeService(Constants.Share.DESCRIPTOR);
 
     /**
      * @param activity1
@@ -103,9 +103,7 @@ public class ShareUtils {
      * 根据不同的平台设置不同的分享内容</br>
      */
     public static void setShareContent(String titile, String content, String url, String imgUrl) {
-
-        Log.e("share", "share = " + url);
-
+        Log.e("ShareUtils", "title :" + titile +", content :" + content + ", url :" + url + ", imgUrl: " + imgUrl);
         // 配置SSO
         WeiXinShareContent weixinContent = new WeiXinShareContent();
         weixinContent.setTitle(titile);

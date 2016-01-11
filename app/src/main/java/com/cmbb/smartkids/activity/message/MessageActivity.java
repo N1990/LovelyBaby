@@ -59,7 +59,6 @@ public class MessageActivity extends BaseActivity {
         messageReplay.setOnClickListener(this);
         messageServer.setOnClickListener(this);
         handleMessageCount(true);
-
     }
 
     /**

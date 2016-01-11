@@ -68,7 +68,6 @@ public class HomeFraAdapter extends BaseRecyclerAdapter {
         } else {
             return super.getItemViewType(position);
         }
-
     }
 
     @Override
@@ -137,6 +136,4 @@ public class HomeFraAdapter extends BaseRecyclerAdapter {
     public void setOnItemClick(CustomListener.ItemClickListener onItemClick) {
         this.onItemClick = onItemClick;
     }
-
-
 }

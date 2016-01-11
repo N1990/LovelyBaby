@@ -56,9 +56,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@+id/tv_local"
-                    android:layout_marginBottom="@dimen/half_global_padding"
+                    android:layout_below="@+id/tv_title"
                     android:layout_marginLeft="@dimen/global_padding"
+                    android:layout_marginTop="@dimen/half_global_padding"
                     android:layout_toRightOf="@+id/tv_local"
+                    android:lines="1"
                     android:text="萌宝服务有礼相送，送什么自己猜"
                     android:textColor="@color/darkgray" />
 
@@ -68,7 +70,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:layout_marginLeft="@dimen/activity_vertical_margin"
-                android:background="@color/dimgray" />
+                android:background="@color/darkgray" />
 
             <RelativeLayout
                 android:id="@+id/message_order"
@@ -112,9 +114,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@+id/iv_order"
-                    android:layout_marginBottom="@dimen/half_global_padding"
+                    android:layout_below="@+id/tv_order"
                     android:layout_marginLeft="@dimen/global_padding"
+                    android:layout_marginTop="@dimen/half_global_padding"
                     android:layout_toRightOf="@+id/iv_order"
+                    android:lines="1"
                     android:text="萌宝活动，即将开幕..."
                     android:textColor="@color/darkgray" />
             </RelativeLayout>
@@ -123,7 +127,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:layout_marginLeft="@dimen/activity_vertical_margin"
-                android:background="@color/dimgray" />
+                android:background="@color/darkgray" />
 
             <RelativeLayout
                 android:id="@+id/message_replay"
@@ -166,9 +170,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@+id/iv_replay"
-                    android:layout_marginBottom="@dimen/half_global_padding"
+                    android:layout_below="@+id/tv_replay"
                     android:layout_marginLeft="@dimen/global_padding"
+                    android:layout_marginTop="@dimen/half_global_padding"
                     android:layout_toRightOf="@+id/iv_replay"
+                    android:lines="1"
                     android:text="您没有新的回复消息"
                     android:textColor="@color/darkgray" />
 
@@ -178,7 +184,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:layout_marginLeft="@dimen/activity_vertical_margin"
-                android:background="@color/dimgray" />
+                android:background="@color/darkgray" />
 
             <RelativeLayout
                 android:id="@+id/message_server"
@@ -221,9 +227,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@+id/iv_server"
-                    android:layout_marginBottom="@dimen/half_global_padding"
+                    android:layout_below="@+id/tv_server"
                     android:layout_marginLeft="@dimen/global_padding"
+                    android:layout_marginTop="@dimen/half_global_padding"
                     android:layout_toRightOf="@+id/iv_server"
+                    android:lines="1"
                     android:text="您没有新的服务消息"
                     android:textColor="@color/darkgray" />
 
@@ -233,7 +241,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:layout_marginLeft="@dimen/activity_vertical_margin"
-                android:background="@color/dimgray" />
+                android:background="@color/darkgray" />
 
         </LinearLayout>
 

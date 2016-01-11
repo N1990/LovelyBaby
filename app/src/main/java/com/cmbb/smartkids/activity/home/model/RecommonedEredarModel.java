@@ -11,40 +11,6 @@ import android.os.Parcelable;
  */
 public class RecommonedEredarModel implements Parcelable {
 
-    /**
-     * userId : 3
-     * properties : {}
-     * userNike : N.Sun
-     * userSex : null
-     * userBigImg : null
-     * userBigWidth : null
-     * userBigHeight : null
-     * userSmallImg : null
-     * userSmallWidth : null
-     * userSmallHeight : null
-     * loginAccountType : 0
-     * loginTime : 2015-09-10 15:49:36
-     * loginAccount : 13818155072
-     * loginPassword : e10adc3949ba59abbe56e057f20f883e
-     * loginAccessToken : null
-     * loginToken : d7f94e6388f84eecb9e1d1497cb36559
-     * isShutup : 0
-     * shutupTime : null
-     * isBanned : 0
-     * userAddress : null
-     * userPhone : 13818155072
-     * userPhoneVersion : null
-     * province : 310000
-     * district : 310115
-     * city : null
-     * userLevel : 1
-     * userPresentation : null
-     * isRecommoned : 1
-     * createDate : 2015-09-10 15:38:05
-     * createUserId : null
-     * updateDate : null
-     * updateUserId : null
-     */
 
     private int userId;
     private String userNike;

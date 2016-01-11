@@ -37,7 +37,7 @@
             android:gravity="center_vertical"
             android:lineSpacingExtra="1.5dp"
             android:maxLines="1"
-            android:text="萌宝派下线服务你看看你的烦恼多个软件开发商老妇女师范生免费奶粉"
+            android:text="title"
             android:textColor="@color/dimgray" />
 
 
@@ -54,7 +54,7 @@
             android:gravity="center_vertical"
             android:lineSpacingExtra="1.5dp"
             android:maxLines="1"
-            android:text="萌宝派下线服务你看看你的烦恼多个软件开发商老妇女师范生免费奶粉"
+            android:text="content"
             android:textColor="@color/dimgray" />
 
         <ImageView

@@ -353,7 +353,6 @@ public class CommunityDetailActivity extends BaseActivity implements CustomListe
                 }
                 break;
             case R.id.iv_community_collect_right:
-
                 baseFragment.handleCollectionRequest(topicId, baseFragment.resultDetail.getData().getIsCollect(), new NetRequest.NetHandler(this, new NetRequest.NetResponseListener() {
                     @Override
                     public void onSuccessListener(Object object, String message) {
@@ -737,7 +736,6 @@ public class CommunityDetailActivity extends BaseActivity implements CustomListe
      */
     private void printResult(RecognizerResult results, TextView mResultText) {
         String text = JsonParser.parseIatResult(results.getResultString());
-
         String sn = null;
         // 读取json结果中的sn字段
         try {
@@ -746,14 +744,11 @@ public class CommunityDetailActivity extends BaseActivity implements CustomListe
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
         mIatResults.put(sn, text);
-
         StringBuffer resultBuffer = new StringBuffer();
         for (String key : mIatResults.keySet()) {
             resultBuffer.append(mIatResults.get(key));
         }
-
         mResultText.setText(resultBuffer.toString());
     }
 
@@ -782,7 +777,6 @@ public class CommunityDetailActivity extends BaseActivity implements CustomListe
         if (ssoHandler != null) {
             ssoHandler.authorizeCallBack(requestCode, resultCode, data);
         }
-
         if (resultCode == -1 && requestCode == PIC_REQUEST_CODE) {
             if (data != null) {
                 tempImages = data.getStringArrayListExtra(PhotoPickerActivity.KEY_SELECTED_PHOTOS);

@@ -135,7 +135,6 @@
             </RelativeLayout>
 
 
-
             <RelativeLayout
                 android:id="@+id/rl_my_set_user_address"
                 android:layout_width="match_parent"
@@ -206,6 +205,7 @@
                     android:background="@mipmap/btn_right_anchor_bg"
                     android:scaleType="centerCrop" />
             </RelativeLayout>
+
             <RelativeLayout
                 android:id="@+id/rl_my_set_user_local"
                 android:layout_width="match_parent"

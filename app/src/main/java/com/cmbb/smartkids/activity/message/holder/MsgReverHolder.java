@@ -28,7 +28,6 @@ public class MsgReverHolder extends RecyclerView.ViewHolder implements View.OnCl
         tvContent = (TextView) itemView.findViewById(R.id.tv_content_msg_rever_item);
         tvTitle = (TextView) itemView.findViewById(R.id.tv_title_msg_rever_item);
         vDivider = itemView.findViewById(R.id.v_msg_divider);
-
     }
 
 

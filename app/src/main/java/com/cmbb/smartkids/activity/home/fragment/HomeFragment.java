@@ -40,6 +40,7 @@ import java.util.List;
  * 创建时间：2015/8/24 10:44
  */
 public class HomeFragment extends BaseFragment {
+
     private final String TAG = HomeFragment.class.getSimpleName();
     private LoadMoreRecyclerView lmrc;
     private HomeFraAdapter adapter;

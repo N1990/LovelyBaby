@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dip"
+        android:layout_marginRight="5dip"
+        android:layout_marginTop="5dip"
+        android:background="@drawable/btn_white_radio_bg"
+        android:elevation="3dip"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/iv_perssion_header"
+                android:layout_width="60dip"
+                android:layout_height="60dip"
+                android:layout_marginRight="10dip"
+                fresco:actualImageScaleType="centerCrop"
+                fresco:fadeDuration="300"
+                fresco:placeholderImage="@color/placeholder"
+                fresco:roundAsCircle="true"
+                fresco:roundingBorderColor="@android:color/white"
+                fresco:roundingBorderWidth="1dp" />
+
+            <TextView
+                android:id="@+id/tv_perssion_nickname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/iv_perssion_header"
+                android:layout_toRightOf="@+id/iv_perssion_header"
+                android:text="昵称"
+                android:textColor="@android:color/black" />
+
+            <TextView
+                android:id="@+id/tv_perssion_identity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/iv_perssion_header"
+                android:layout_toRightOf="@+id/iv_perssion_header"
+                android:text="身份"
+                android:textColor="@android:color/black" />
+
+        </RelativeLayout>
+
+        <RadioGroup
+            android:id="@+id/rp_perssion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip"
+            android:orientation="horizontal">
+
+
+            <RadioButton
+                android:id="@+id/rb_perssion_recommend"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:drawableBottom="@drawable/btn_evaluate_recommend_selector"
+                android:button="@null"
+                android:gravity="center"
+                android:text="强力推荐"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/txt_small" />
+            <View
+                android:layout_width="2px"
+                android:layout_height="30dip"
+                android:layout_gravity="center_vertical"
+                android:background="@android:color/darker_gray"/>
+
+            <RadioButton
+                android:id="@+id/rb_perssion_very_satisfaction"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:drawableBottom="@drawable/btn_evaluate_great_selector"
+                android:button="@null"
+                android:gravity="center"
+                android:text="非常满意"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/txt_small" />
+            <View
+                android:layout_width="2px"
+                android:layout_height="30dip"
+                android:layout_gravity="center_vertical"
+                android:background="@android:color/darker_gray"/>
+
+            <RadioButton
+                android:id="@+id/rb_perssion_satisfaction"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:drawableBottom="@drawable/btn_evaluate_good_selector"
+                android:button="@null"
+                android:gravity="center"
+                android:text="满意"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/txt_small" />
+            <View
+                android:layout_width="2px"
+                android:layout_height="30dip"
+                android:layout_gravity="center_vertical"
+                android:background="@android:color/darker_gray"/>
+
+            <RadioButton
+                android:id="@+id/rb_perssion_common"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:drawableBottom="@drawable/btn_evaluate_normal_selector"
+                android:button="@null"
+                android:gravity="center"
+                android:text="一般"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/txt_small" />
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+</FrameLayout>

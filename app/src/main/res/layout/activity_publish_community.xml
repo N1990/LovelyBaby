@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    tools:context="com.cmbb.smartkids.activity.community.PublishCommunityActivity">
+
+    <include layout="@layout/custom_actionbar" />
+
+
+    <com.cmbb.smartkids.widget.autoscroll.MyScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/half_global_padding">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dip"
+                android:layout_marginTop="20dip"
+                android:background="@drawable/btn_white_radio_bg"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="10dip">
+
+                <EditText
+                    android:id="@+id/et_public_community_title"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:background="@null"
+                    android:hint="请输入标题，不能超过20个字"
+                    android:maxLength="20"
+                    android:singleLine="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_normal" />
+
+                <ImageView
+                    android:id="@+id/iv_public_community_title_clear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@mipmap/btn_edit_delete"
+                    android:padding="5dip" />
+            </LinearLayout>
+
+
+            <com.cmbb.smartkids.widget.spinner.NiceSpinner
+                android:id="@+id/nv_public_community"
+                android:layout_width="match_parent"
+                android:layout_height="40dip"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:gravity="center_vertical"
+                app:hideLeftDrawable="true" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dip">
+
+                <EditText
+                    android:id="@+id/et_public_community_cotent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btn_white_radio_bg"
+                    android:lineSpacingExtra="1.5dp"
+                    android:gravity="start"
+                    android:hint="请输入1-500个字"
+                    android:minHeight="150dip"
+                    android:padding="@dimen/half_global_padding"
+                    android:textColor="@android:color/black"
+                    android:textColorHint="@android:color/darker_gray"
+                    android:textSize="@dimen/txt_normal" />
+
+                <TextView
+                    android:id="@+id/tv_public_community_content_limit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/et_public_community_cotent"
+                    android:layout_margin="2dip"
+                    android:text="0/500"
+                    android:textColor="@android:color/darker_gray" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dip">
+
+                <EditText
+                    android:id="@+id/et_public_community_img_describle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="138dip"
+                    android:background="@drawable/edit_gray_radio_bg"
+                    android:gravity="top"
+                    android:hint="请输入图片说明，不能超过150个字"
+                    android:maxLength="150"
+                    android:minHeight="80dip"
+                    android:padding="10dip"
+                    android:textColor="@android:color/black"
+                    android:textColorHint="@android:color/darker_gray"
+                    android:textSize="@dimen/txt_normal"
+                    android:visibility="gone" />
+
+                <HorizontalScrollView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none">
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rv_public_community_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dip"
+                        android:scrollbars="none" />
+                </HorizontalScrollView>
+
+            </RelativeLayout>
+        </LinearLayout>
+    </com.cmbb.smartkids.widget.autoscroll.MyScrollView>
+
+
+</LinearLayout>

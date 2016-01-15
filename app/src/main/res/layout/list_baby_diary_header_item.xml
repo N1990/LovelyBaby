@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp">
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/iv_baby_diary_bg_header_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            fresco:actualImageScaleType="centerCrop"
+            fresco:fadeDuration="300"
+             />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/iv_baby_diary_header_item"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                fresco:actualImageScaleType="centerCrop"
+                fresco:fadeDuration="300"
+                fresco:placeholderImage="@color/placeholder"
+                fresco:roundAsCircle="true"
+                fresco:roundingBorderColor="@android:color/transparent"
+                fresco:roundingBorderWidth="5dp" />
+
+            <TextView
+                android:id="@+id/tv_baby_diary_birthday_header_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:layout_marginTop="15dp"
+                android:textColor="@android:color/white"
+                android:drawableLeft="@mipmap/btn_baby_birthday"
+                android:drawablePadding="5dp"
+                android:text="00年11月12日"
+                />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/tv_baby_diary_publish_header_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/global_padding"
+        android:layout_margin="@dimen/half_global_padding"
+        android:background="@drawable/et_shape_radio_white_bg"
+        android:textColor="@color/dimgray"
+        android:drawableRight="@mipmap/btn_publish_baby_diary"
+        android:text="记录点什么吧"/>
+
+
+
+</LinearLayout>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tl_community_actionbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <TextView
+            android:id="@+id/tv_community_toolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@android:color/white"
+            android:drawablePadding="5dip"
+            android:gravity="center"
+            android:drawableRight="@mipmap/btn_community_achor_dowm_bg"
+            android:textSize="@dimen/txt_large" />
+
+        <ImageView
+            android:id="@+id/iv_community_toolbar_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginRight="10dp"
+            android:padding="15dp"
+            android:background="@mipmap/btn_community_publish_bg"
+            android:gravity="center"
+            android:visibility="visible" />
+    </android.support.v7.widget.Toolbar>
+
+
+    <RelativeLayout
+        android:id="@+id/rl_all_community_topic_tag"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/tv_community_topic_tag"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/darker_gray"
+            android:textColor="@android:color/black"
+            android:padding="5dip"
+            android:text="话题列表"
+            />
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_all_community_topic"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tv_community_topic_tag"
+        android:padding="@dimen/half_global_padding"
+        />
+
+    </RelativeLayout>
+
+
+
+
+
+
+
+
+
+
+    <com.javon.loadmorerecyclerview.LoadMoreRecyclerView
+        android:id="@+id/lmrv_home_community"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nsv_home_community"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="240dip"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_home_community_no_data"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableTop="@mipmap/btn_service_normal"
+                android:gravity="center"
+                android:text="暂无任何社区的内容"
+                android:textSize="@dimen/txt_middle" />
+
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/global_padding">
+
+        <ImageView
+            android:id="@+id/iv_pay_way_item"
+            android:layout_width="50dip"
+            android:layout_height="50dip"
+            android:background="@color/placeholder"/>
+
+        <TextView
+            android:id="@+id/tv_pay_way_name_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:layout_toRightOf="@+id/iv_pay_way_item"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dip"
+            android:text="支付宝"/>
+
+        <RadioButton
+            android:id="@+id/rb_pay_way_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            />
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/v_pay_way_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@android:color/darker_gray"/>
+
+</LinearLayout>

@@ -1,0 +1,132 @@
+Activity Resolver Table:
+  Schemes:
+      tencent1104000906:
+        42b427d0 com.cmbb.smartkids/com.tencent.tauth.AuthActivity filter 42c10740
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          Scheme: "tencent1104000906"
+
+  Non-Data Actions:
+      android.intent.action.MAIN:
+        42972938 com.cmbb.smartkids/.activity.SplashActivity filter 42c00a90
+          Action: "android.intent.action.MAIN"
+          Category: "android.intent.category.LAUNCHER"
+
+Receiver Resolver Table:
+  Schemes:
+      package:
+        42b90298 com.cmbb.smartkids/com.umeng.message.SystemReceiver filter 42c71968
+          Action: "android.intent.action.PACKAGE_REMOVED"
+          Scheme: "package"
+
+  Non-Data Actions:
+      com.cmbb.smartkids.intent.action.COMMAND:
+        42b67280 com.cmbb.smartkids/com.umeng.message.RegistrationReceiver filter 42c599a0
+          Action: "com.cmbb.smartkids.intent.action.COMMAND"
+      android.net.conn.CONNECTIVITY_CHANGE:
+        42b90298 com.cmbb.smartkids/com.umeng.message.SystemReceiver filter 42c733a8
+          Action: "android.net.conn.CONNECTIVITY_CHANGE"
+      org.agoo.android.intent.action.ELECTION_RESULT_V4:
+        42b6e198 com.cmbb.smartkids/com.umeng.message.ElectionReceiver filter 42c64b10
+          Action: "org.agoo.android.intent.action.ELECTION_RESULT_V4"
+          Category: "umeng"
+      com.alibaba.sdk.android.hotpatch.action.HOT_PATCH:
+        42945990 com.cmbb.smartkids/com.alibaba.sdk.android.hotpatch.HotPatchBroadcastReceiver filter 42bf93b8
+          Action: "com.alibaba.sdk.android.hotpatch.action.HOT_PATCH"
+      org.agoo.android.intent.action.RECEIVE:
+        42b8a900 com.cmbb.smartkids/com.umeng.message.MessageReceiver filter 42c69450
+          Action: "org.agoo.android.intent.action.RECEIVE"
+      android.intent.action.BOOT_COMPLETED:
+        42b90298 com.cmbb.smartkids/com.umeng.message.SystemReceiver filter 42c767f0
+          Action: "android.intent.action.BOOT_COMPLETED"
+        42b62348 com.cmbb.smartkids/com.umeng.message.UmengMessageBootReceiver filter 42c3dac8
+          Action: "android.intent.action.BOOT_COMPLETED"
+
+Service Resolver Table:
+  Non-Data Actions:
+      com.umeng.message.unregistercallback.action:
+        42b51480 com.cmbb.smartkids/com.umeng.message.UmengMessageCallbackHandlerService filter 42c28b80
+          Action: "com.umeng.message.unregistercallback.action"
+      org.agoo.android.intent.action.PING_V4:
+        42b577f8 com.cmbb.smartkids/com.umeng.message.UmengService filter 42c36078
+          Action: "org.agoo.android.intent.action.PING_V4"
+          Category: "umeng"
+      org.android.agoo.client.ElectionReceiverService:
+        42b52150 com.cmbb.smartkids/com.umeng.message.UmengMessageIntentReceiverService filter 42c2a170
+          Action: "org.android.agoo.client.ElectionReceiverService"
+      com.umeng.message.autoupdate.handler.action:
+        42b51480 com.cmbb.smartkids/com.umeng.message.UmengMessageCallbackHandlerService filter 42c1ef68
+          Action: "com.umeng.message.autoupdate.handler.action"
+      com.umeng.messge.registercallback.action:
+        42b51480 com.cmbb.smartkids/com.umeng.message.UmengMessageCallbackHandlerService filter 42c299f0
+          Action: "com.umeng.messge.registercallback.action"
+      com.umeng.message.message.handler.action:
+        42b51480 com.cmbb.smartkids/com.umeng.message.UmengMessageCallbackHandlerService filter 42c274e8
+          Action: "com.umeng.message.message.handler.action"
+      com.cmbb.smartkids.intent.action.COCKROACH:
+        42b577f8 com.cmbb.smartkids/com.umeng.message.UmengService filter 42c384e0
+          Action: "com.cmbb.smartkids.intent.action.COCKROACH"
+      com.cmbb.smartkids.intent.action.START:
+        42b577f8 com.cmbb.smartkids/com.umeng.message.UmengService filter 42c39650
+          Action: "com.cmbb.smartkids.intent.action.START"
+      org.android.agoo.client.MessageReceiverService:
+        42b52150 com.cmbb.smartkids/com.umeng.message.UmengMessageIntentReceiverService filter 42c2aa10
+          Action: "org.android.agoo.client.MessageReceiverService"
+
+Registered ContentProviders:
+  com.cmbb.smartkids/.db.AddressProvider:
+    Provider{42d48cc0 com.cmbb.smartkids/.db.AddressProvider}
+  com.cmbb.smartkids/.db.UserProvider:
+    Provider{42d58b88 com.cmbb.smartkids/.db.UserProvider}
+
+ContentProvider Authorities:
+  [com.cmbb.smartkids.addresslist]:
+    Provider{42d48cc0 com.cmbb.smartkids/.db.AddressProvider}
+      applicationInfo=ApplicationInfo{42ef4da8 com.cmbb.smartkids}
+  [com.cmbb.smartkids.useraccount]:
+    Provider{42d58b88 com.cmbb.smartkids/.db.UserProvider}
+      applicationInfo=ApplicationInfo{42ef4da8 com.cmbb.smartkids}
+
+Key Set Manager:
+  [com.cmbb.smartkids]
+      Signing KeySets: 1
+
+Packages:
+  Package [com.cmbb.smartkids] (42a5be10):
+    userId=10104 gids=[3003, 1028, 1015, 3002]
+    pkg=Package{42e642b8 com.cmbb.smartkids}
+    codePath=/data/app/com.cmbb.smartkids-2.apk
+    resourcePath=/data/app/com.cmbb.smartkids-2.apk
+    nativeLibraryPath=/data/app-lib/com.cmbb.smartkids-2
+    versionCode=300 targetSdk=23
+    versionName=3.0.0
+    applicationInfo=ApplicationInfo{42ef4da8 com.cmbb.smartkids}
+    flags=[ DEBUGGABLE HAS_CODE ALLOW_CLEAR_USER_DATA ALLOW_BACKUP ]
+    dataDir=/data/data/com.cmbb.smartkids
+    supportsScreens=[small, medium, large, xlarge, resizeable, anyDensity]
+    timeStamp=2015-12-04 07:27:50
+    firstInstallTime=2015-11-30 06:32:31
+    lastUpdateTime=2015-12-04 07:27:53
+    signatures=PackageSignatures{42070b40 [42a5afb8]}
+    permissionsFixed=true haveGids=true installStatus=1
+    pkgFlags=[ DEBUGGABLE HAS_CODE ALLOW_CLEAR_USER_DATA ALLOW_BACKUP ]
+    User 0:  installed=true blocked=false stopped=false notLaunched=false enabled=0
+      enabledComponents:
+      com.umeng.message.ElectionReceiver
+    grantedPermissions:
+      android.permission.READ_EXTERNAL_STORAGE
+      android.permission.GET_TASKS
+      android.permission.WRITE_EXTERNAL_STORAGE
+      android.permission.ACCESS_WIFI_STATE
+      android.permission.READ_PHONE_STATE
+      android.permission.RECEIVE_BOOT_COMPLETED
+      android.permission.BLUETOOTH
+      android.permission.WRITE_SETTINGS
+      android.permission.INTERNET
+      android.permission.ACCESS_FINE_LOCATION
+      android.permission.VIBRATE
+      android.permission.CHANGE_NETWORK_STATE
+      android.permission.RECORD_AUDIO
+      android.permission.WAKE_LOCK
+      android.permission.ACCESS_NETWORK_STATE

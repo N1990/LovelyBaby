@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="3dip"
+    android:background="@drawable/btn_white_radio_bg"
+    android:elevation="5dp">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/iv_home_fra_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        fresco:actualImageScaleType="centerCrop"
+        fresco:fadeDuration="300"
+        fresco:placeholderImage="@color/placeholder" />
+
+    <ImageView
+        android:id="@+id/iv_home_fra_tag_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:scaleType="centerCrop"
+        android:visibility="gone" />
+
+
+    <TextView
+        android:id="@+id/tv_home_fra_city_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="-15dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/ic_home_service_location_mask_bg"
+        android:drawableLeft="@mipmap/home_service_location_bg"
+        android:gravity="center_vertical"
+        android:paddingBottom="3dp"
+        android:paddingLeft="15dip"
+        android:paddingRight="20dip"
+        android:paddingTop="3dp"
+        android:text=""
+        android:textColor="@android:color/white"
+        android:textStyle="bold" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/btn_mask_bg"
+        android:padding="@dimen/half_global_padding">
+
+        <TextView
+            android:id="@+id/tv_home_fra_title_item"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:ellipsize="end"
+            android:padding="@dimen/half_global_padding"
+            android:singleLine="true"
+            android:text=""
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/txt_middle"
+            android:textStyle="bold" />
+
+
+        <TextView
+            android:id="@+id/tv_home_fra_start_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:padding="@dimen/half_global_padding"
+            android:text=""
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+</RelativeLayout>
+

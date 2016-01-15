@@ -1,0 +1,66 @@
+<resources>
+    <string name="app_name" translatable="false">萌宝派</string>
+
+    <string name="hello_world" translatable="false">Hello world!</string>
+    <string name="action_settings" translatable="false">Settings</string>
+    <string name="progress_loading" translatable="false">正在加载...</string>
+    <!--网络请求-->
+    <string name="is_netwrok" translatable="false">请检查网络连接，稍后再试...</string>
+    <string name="url_error" translatable="false">url不能出错</string>
+    <string name="params_error" translatable="false">参数传递出错</string>
+    <string name="title_activity_test" translatable="false">TestActivity</string>
+    <string name="title_activity_login" translatable="false">登录</string>
+    <string name="title_activity_register" translatable="false">注册</string>
+    <string name="title_activity_verify" translatable="false">验证手机号</string>
+    <string name="title_activity_forget_pwd" translatable="false">忘记密码</string>
+    <string name="quit_app" translatable="false">再按一次退出整个应用</string>
+    <string name="title_activity_home" translatable="false">首页</string>
+    <string name="title_activity_active" translatable="false"> 服务详情</string>
+    <string name="title_activity_apply_popman" translatable="false">达人申请</string>
+    <string name="title_fragment_home" translatable="false">首页</string>
+    <string name="title_fragment_service" translatable="false">服务</string>
+    <string name="title_fragment_community" translatable="false">社区</string>
+    <string name="title_fragment_user" translatable="false">我的</string>
+    <string name="title_fragment_more" translatable="false">更多</string>
+    <string name="title_activity_suggest" translatable="false">意见反馈</string>
+    <string name="title_activity_order_result" translatable="false">订单</string>
+    <string name="title_activity_order_detail" translatable="false">订单详情</string>
+    <string name="title_activity_my_set" translatable="false">我的</string>
+    <string name="title_activity_cancel_order_result" translatable="false">取消订单</string>
+    <string name="title_activity_my_order_list" translatable="false">我的订单</string>
+    <string name="title_activity_user_center" translatable="false">个人主页</string>
+    <string name="title_activity_service_list" translatable="false">服务</string>
+    <string name="title_activity_perssion_list" translatable="false">我的评价</string>
+    <string name="title_activity_my_service" translatable="false">我的服务</string>
+    <string name="title_activity_my_accept" translatable="false">我的接单</string>
+    <string name="title_activity_modify_introduce" translatable="false">修改介绍</string>
+    <string name="title_activity_my_service_order" translatable="false">我的服务</string>
+    <string name="title_activity_evaluate" translatable="false">立即评价</string>
+    <string name="title_activity_verify_order" translatable="false">验证订单</string>
+    <string name="title_activity_about" translatable="false">关于萌宝派</string>
+    <string name="title_activity_popman" translatable="false">达人</string>
+    <string name="title_activity_modify_phone" translatable="false">修改手机号</string>
+    <string name="title_activity_accept_order" translatable="false">我的接单</string>
+    <string name="title_activity_public_community" translatable="false">创建话题</string>
+    <string name="title_activity_pay_way" translatable="false">支付订单</string>
+    <string name="title_activity_community_detail" translatable="false">话题详情</string>
+    <string name="title_activity_rever_comment" translatable="false">评论回复</string>
+    <string name="title_activity_my_community" translatable="false">我的话题</string>
+    <string name="title_activity_home_message" translatable="false">官方消息</string>
+    <string name="title_activity_notify_message" translatable="false">通知消息</string>
+    <string name="title_activity_store_point" translatable="false">我的积分</string>
+    <string name="title_activity_score_complain" translatable="false">积分说明</string>
+    <string name="title_activity_grown_complain" translatable="false">成长值说明</string>
+    <string name="title_activity_my_baby_diary" translatable="false">宝宝日记</string>
+    <string name="title_activity_baby_material" translatable="false">宝宝资料</string>
+    <string name="title_activity_baby_name" translatable="false">姓名</string>
+    <string name="title_activity_baby_diary_detail" translatable="false">日记详情</string>
+    <string name="title_activity_publish_baby_diary" translatable="false">创建日记</string>
+
+
+    <!-- menu tip-->
+    <string name="menu_submit" translatable="false">提交</string>
+    <string name="system_error" translatable="false">服务器异常</string>
+    <string name="title_activity_splash">Splash</string>
+
+</resources>

@@ -36,7 +36,7 @@ public class ImageUpload {
     }
 
     private ImageUpload() {
-        SERVICE = Executors.newFixedThreadPool(5);
+        SERVICE = Executors.newFixedThreadPool(3);
         returnBody = new HashMap<>();
         returnBody.put("returnBody", "${width}_${height}");
         // 测试数据 test 目录
@@ -54,22 +54,27 @@ public class ImageUpload {
             return;
         }
         _taskIds.clear();
+        Log.e("ImageUpload", "images.size() = " + images.size());
         for (int i = 0; i < images.size(); i++) {
             SERVICE.submit(new ComRunnable(i) {
                 @Override
                 public void run() {
                     //byte[] data = BitmapUtils.getSmallBitmapBytes(images.get(index), 720, 1280, 90);
                     File file = new File(images.get(index));
+                    Log.e("ImageUpload", "images.size() = " + file.getAbsolutePath());
                     if (file.exists()) {
+                        Log.e("ImageUpload", "file.exists()");
                         if (-1 == index) {
                             Toast.makeText(context, "图片处理失败", Toast.LENGTH_LONG).show();
                         } else {
+                            Log.e("ImageUpload", "UploadOptions");
                             UploadOptions options = new UploadOptions.Builder()
                                     .tag(String.valueOf(SystemClock.elapsedRealtime()))
                                     .policyMap(returnBody)
                                     .dir("app/test/${year}-${month}-${day}")
                                     .aliases("image_" + StringUtils.getUUID()).build();
                             String mTaskId = BaseApplication.mediaService.upload(file, "smart", options, uploadListener);
+                            Log.e("ImageUpload", "mTaskId = " + mTaskId);
                             _taskIds.add(mTaskId);
                         }
                     }

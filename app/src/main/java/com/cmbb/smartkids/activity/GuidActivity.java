@@ -38,7 +38,7 @@ public class GuidActivity extends BaseActivity {
     }
 
     @Override
-    protected void init(Bundle savedInstanceState) { 
+    protected void init(Bundle savedInstanceState) {
         initView();
         addListener();
     }

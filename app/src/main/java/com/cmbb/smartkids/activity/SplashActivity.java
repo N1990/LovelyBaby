@@ -1,6 +1,7 @@
 package com.cmbb.smartkids.activity;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -23,6 +24,7 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_splash);
         mPushAgent = PushAgent.getInstance(this);
         mPushAgent.onAppStart();
@@ -47,7 +49,7 @@ public class SplashActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onResume() {
+    protected void onResume() { 
         super.onResume();
         MobclickAgent.onResume(this);
     }

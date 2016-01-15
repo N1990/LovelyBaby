@@ -62,7 +62,6 @@ public class BaseApplication extends Application {
         LocalBroadcastManager.getInstance(this).registerReceiver(pushAliasReceiver, new IntentFilter(PUSH_ALIAS_ITENTACTION));
         // 登录状态获取token
         token = SPCache.getString(Constants.TOKEN, "");
-
         String result = getDeviceInfo(this);
         Log.e("Test", result);
     }

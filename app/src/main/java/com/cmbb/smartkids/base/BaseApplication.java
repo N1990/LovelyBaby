@@ -1,6 +1,5 @@
 package com.cmbb.smartkids.base;
 
-import android.app.Application;
 import android.app.Notification;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -9,6 +8,7 @@ import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Handler;
+import android.support.multidex.MultiDexApplication;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
@@ -34,7 +34,7 @@ import com.umeng.message.entity.UMessage;
  * 创建人：javon
  * 创建时间：2015/8/10 13:07
  */
-public class BaseApplication extends Application {
+public class BaseApplication extends MultiDexApplication {
     private static final String TAG = BaseApplication.class.getSimpleName();
     private static BaseApplication instance;
     private static Context context;

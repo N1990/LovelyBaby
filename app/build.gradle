@@ -89,8 +89,8 @@ android {
 
     signingConfigs {
         debug {
-            storeFile file("/Users/javon/Documents/mengbao/smartkids")
-//            storeFile file("/Users/niesen918/AndroidStudioProjects/key/smartkids")
+//            storeFile file("/Users/javon/Documents/mengbao/smartkids")
+            storeFile file("/Users/niesen918/AndroidStudioProjects/key/smartkids")
             storePassword "ns101288"
             keyAlias "smartkids"
             keyPassword "ns101288"
@@ -101,6 +101,7 @@ android {
 /*compile 'com.android.support:multidex:1.0.0'*/
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:multidex:1.0.1'
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.facebook.stetho:stetho:1.2.0'
     compile 'com.google.code.gson:gson:2.4'

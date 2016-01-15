@@ -2,375 +2,375 @@
 <items version="2" >
 
     <item
-        jar="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/libs/SocialSDK_QQZone_3.jar"
+        jar="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/exploded-aar/LovelyBaby/MengBottomSheets/unspecified/jars/classes.jar"
         jumboMode="false"
         revision="23.0.2"
-        sha1="931ab461b91c2a2fd5c697e7f622cdca8c2b3ac5">
-        <dex dex="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/SocialSDK_QQZone_3_3d063ed308ce38fc443220b2abfd1f22715c6c70.jar" />
+        sha1="45d190f97ba09882ed0697005514f50230580640">
+        <dex dex="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/LovelyBaby-MengBottomSheets-unspecified_2411280c674c8879b06f1ec67ccf7cc8a80a7bb8.jar" />
     </item>
     <item
-        jar="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/exploded-aar/LovelyBaby/OneSDK/unspecified/jars/libs/alisdk-security-7.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="0319f2478b33391e83b89ba9ab62182328c9c4a6">
-        <dex dex="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/alisdk-security-7_b92c8f12c1dd129ba08b6828bc5f5751a2cf11a6.jar" />
-    </item>
-    <item
-        jar="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/exploded-aar/LovelyBaby/OneSDK/unspecified/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="734c54eaccda43f6a4b7b1d7bccb260417acd3ef">
-        <dex dex="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/LovelyBaby-OneSDK-unspecified_41719119a22cddc2768b03a19e733ebcaa413ce7.jar" />
-    </item>
-    <item
-        jar="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/exploded-aar/LovelyBaby/PRTRecyclerView/unspecified/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="ae5d6375366cc137cf5de0bcfb72673fa0335a84">
-        <dex dex="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/LovelyBaby-PRTRecyclerView-unspecified_3376b2115d9b744df838af6517bf1c42b4536214.jar" />
-    </item>
-    <item
-        jar="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/exploded-aar/LovelyBaby/OneSDK/unspecified/jars/libs/mediaservice-4.0.4.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="44d59c7e8ae4913f71d9323cd092ea5d7f14846e">
-        <dex dex="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/mediaservice-4.0.4_01f2acbb1a434b00e9a7275affad6ab375843151.jar" />
-    </item>
-    <item
-        jar="/Users/javon/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-android/1.1.4/129874135e6081269ace2312092031558865de12/bolts-android-1.1.4.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="129874135e6081269ace2312092031558865de12">
-        <dex dex="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/bolts-android-1.1.4_66dd6b7b140789a857219a83e6ce41cdc0a89ba6.jar" />
-    </item>
-    <item
-        jar="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/libs/SocialSDK_scrshot.jar"
+        jar="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/libs/SocialSDK_scrshot.jar"
         jumboMode="false"
         revision="23.0.2"
         sha1="4dc6f6adcfa03644f08ffa15890b40a650aa62ba">
-        <dex dex="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/SocialSDK_scrshot_9e7916606010a70fd11d561dec9ec7184fc4c316.jar" />
+        <dex dex="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/SocialSDK_scrshot_7fdc513c2c207570b4979bc6e9f449c7adff8882.jar" />
     </item>
     <item
-        jar="/Users/javon/.gradle/caches/modules-2/files-2.1/com.facebook.stetho/stetho/1.2.0/1d6cdb8ce8185b8b23213fad48a83987fb6d2d67/stetho-1.2.0.jar"
+        jar="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/exploded-aar/LovelyBaby/MengPhotoPicker/unspecified/jars/classes.jar"
         jumboMode="false"
         revision="23.0.2"
-        sha1="1d6cdb8ce8185b8b23213fad48a83987fb6d2d67">
-        <dex dex="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/stetho-1.2.0_1813d0f8892742fbf15187a012a854d74ab354f8.jar" />
+        sha1="9db9f27778807df47b5c0277a68fa44492dc3679">
+        <dex dex="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/LovelyBaby-MengPhotoPicker-unspecified_0e87a72e2a9173c8511a61caef603ea5b60c648d.jar" />
     </item>
     <item
-        jar="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/exploded-aar/LovelyBaby/OneSDK/unspecified/jars/libs/securityguard-3.1.18.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="b88e5e3c8fc53321b45e60924e249472f0f81ebe">
-        <dex dex="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/securityguard-3.1.18_9716e559cd97b42825aba82a335bf44ce9dc58bd.jar" />
-    </item>
-    <item
-        jar="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="5c5699834e9722f1c288fea2de82725d078ba127">
-        <dex dex="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/com.android.support-appcompat-v7-23.1.1_6d24b78f6cc41fc41ec1e173fb4213e87adb7fd9.jar" />
-    </item>
-    <item
-        jar="/Users/javon/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.1.1/support-annotations-23.1.1.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="8d680ba5a623724d1fb0e81c36a790f023a6cede">
-        <dex dex="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/support-annotations-23.1.1_baa3fdc9a4c2034fd94d3cb57f6652843d60e35d.jar" />
-    </item>
-    <item
-        jar="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-okhttp/0.8.1/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="0d5d69b03cb7d68b81543f6483ed04ccb0e2235b">
-        <dex dex="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/com.facebook.fresco-imagepipeline-okhttp-0.8.1_85f9e9cffa859ebe08788b3f15205b04c71b80c6.jar" />
-    </item>
-    <item
-        jar="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/libs/SocialSDK_shake.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="674b96fd9638c3e1255218dd69f23ad3a6210227">
-        <dex dex="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/SocialSDK_shake_3c4b7634e3e74cd183e5df879e9d46476f4731a4.jar" />
-    </item>
-    <item
-        jar="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.1.1/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="09c5e804bc67fc0580360043dff067df574a60d4">
-        <dex dex="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/com.android.support-recyclerview-v7-23.1.1_10d4ed795408551ea4b83b8c903e7591c9f05847.jar" />
-    </item>
-    <item
-        jar="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/libs/SocialSDK_WeiXin_2.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="b651be701cb256e3972e7c5a07119f26bb7b44a4">
-        <dex dex="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/SocialSDK_WeiXin_2_eb956d0ae5c8e009c1410253cf998b78d1af1123.jar" />
-    </item>
-    <item
-        jar="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/libs/SocialSDK_QQZone_1.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="c184c69f43b1fe46390f7123717c65bd844bccb6">
-        <dex dex="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/SocialSDK_QQZone_1_7a41b37b4ea235bdf249802184fc00f88c39eb77.jar" />
-    </item>
-    <item
-        jar="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/exploded-aar/com.facebook.fresco/fbcore/0.8.1/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="4af24c040b21980e0a80a505816c648e36705bd9">
-        <dex dex="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/com.facebook.fresco-fbcore-0.8.1_20939ba16b6d673e95c0decfeb3655b6912de236.jar" />
-    </item>
-    <item
-        jar="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/libs/Msc.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="6490d46678cc51ecd56be6bf2ab741ea940c61b8">
-        <dex dex="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/Msc_56581f4f9bf4492ab8f0be58c154ff2a8a19bb6a.jar" />
-    </item>
-    <item
-        jar="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/exploded-aar/LovelyBaby/OneSDK/unspecified/jars/libs/sdk-legacy-support-1.8.1.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="84cbe904f97ca57c91345bfb9dc9ce022fd9105f">
-        <dex dex="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/sdk-legacy-support-1.8.1_0a625ea597e18bde1d15a2e3df3093c808a093f1.jar" />
-    </item>
-    <item
-        jar="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/exploded-aar/LovelyBaby/OneSDK/unspecified/jars/libs/alisdk-ui-3.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="34a5eb88d47bd61d477a0845b6ed5addb61b6b2e">
-        <dex dex="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/alisdk-ui-3_fc7d52aaf1b8e0d31c92896a2bb08d9202da0ad5.jar" />
-    </item>
-    <item
-        jar="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/libs/SocialSDK_Sina.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="a6eee0ece63ba5e74411057d09eda1a5a01ca940">
-        <dex dex="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/SocialSDK_Sina_ba1af71d3214412e33e4eb112e44fd929a6d0d3c.jar" />
-    </item>
-    <item
-        jar="/Users/javon/.gradle/caches/modules-2/files-2.1/commons-cli/commons-cli/1.2/2bf96b7aa8b611c177d329452af1dc933e14501c/commons-cli-1.2.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="2bf96b7aa8b611c177d329452af1dc933e14501c">
-        <dex dex="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/commons-cli-1.2_7f3d0c0c07d436a4bcc750dcb515740efb772b5d.jar" />
-    </item>
-    <item
-        jar="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appindexing/8.1.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="4477ea44f5ec5ad064022a22691732d7638ff197">
-        <dex dex="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/com.google.android.gms-play-services-appindexing-8.1.0_701010e24dffc88908a27c167ad34f8a2dffb1ce.jar" />
-    </item>
-    <item
-        jar="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/exploded-aar/LovelyBaby/LoadMoreRecyclerView/unspecified/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="a2a84100847265d7b3f896508b47912252b8c70f">
-        <dex dex="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/LovelyBaby-LoadMoreRecyclerView-unspecified_3aa4d4b27691f7549137cc468ae866db3f93dfc1.jar" />
-    </item>
-    <item
-        jar="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/libs/SocialSDK_QQZone_2.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="4a69b33758dcba3ef519cbd4b6c8af5f41603c4f">
-        <dex dex="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/SocialSDK_QQZone_2_7d7f138fd5c175b96de3d45a5208249cbaab52f3.jar" />
-    </item>
-    <item
-        jar="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/exploded-aar/LovelyBaby/OneSDK/unspecified/jars/libs/alisdk-ut-5.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="a7514308f0c36a0833ed5ef166e5e416f4d2cfc6">
-        <dex dex="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/alisdk-ut-5_043a38e29e3a97a5315fca28a36965ad6b97524a.jar" />
-    </item>
-    <item
-        jar="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/libs/Sunflower.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="241127ee9f88f1d3a03c4a698abebf6564845d3f">
-        <dex dex="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/Sunflower_df28de67b86983f3bef9e105439ad59af9d89b54.jar" />
-    </item>
-    <item
-        jar="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/0.8.1/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="3836ecca4e31e18ea8fbae8e822d49777b0db4f7">
-        <dex dex="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/com.facebook.fresco-imagepipeline-0.8.1_016957357c3889fcf998ca3573802be73514700a.jar" />
-    </item>
-    <item
-        jar="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/libs/httpmime-4.1.3.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="e70d34d98f7f7f3b2b92105b9f2fe2a7a7184461">
-        <dex dex="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/httpmime-4.1.3_9ed4f14e3c3b96becc2d7da454ffe6d159c07715.jar" />
-    </item>
-    <item
-        jar="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/exploded-aar/LovelyBaby/OneSDK/unspecified/jars/libs/alisdk-kernel-1.8.1.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="b5c9d43f665b6b0b44f9b839c92300e4639e47d1">
-        <dex dex="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/alisdk-kernel-1.8.1_eddde0eb0fd71718fd6602c0a9349e18014a5485.jar" />
-    </item>
-    <item
-        jar="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/exploded-aar/LovelyBaby/MengPhotoPicker/unspecified/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="482d096eef79a4ed436bd7389b8f02f39db82100">
-        <dex dex="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/LovelyBaby-MengPhotoPicker-unspecified_172471569b6f420cb7794816c3f25aeb17e6b1ff.jar" />
-    </item>
-    <item
-        jar="/Users/javon/.gradle/caches/modules-2/files-2.1/com.umeng.analytics/analytics/5.5.3/5d503ec571e2e98d972209afa203f94d11882c15/analytics-5.5.3.jar"
+        jar="/Users/niesen918/.gradle/caches/modules-2/files-2.1/com.umeng.analytics/analytics/5.5.3/5d503ec571e2e98d972209afa203f94d11882c15/analytics-5.5.3.jar"
         jumboMode="false"
         revision="23.0.2"
         sha1="5d503ec571e2e98d972209afa203f94d11882c15">
-        <dex dex="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/analytics-5.5.3_c561b93098aa634d9803c74c629321490e94df8b.jar" />
+        <dex dex="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/analytics-5.5.3_9862355cc2f82d1fdd589d48f17d66e8e98c566a.jar" />
     </item>
     <item
-        jar="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/exploded-aar/LovelyBaby/OneSDK/unspecified/jars/libs/alisdk-rpc-3.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="8fdc5022ac0a542e180dd182ceb0e6ad94638663">
-        <dex dex="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/alisdk-rpc-3_690e8e338d54c8e51937207f37b486d1c996119b.jar" />
-    </item>
-    <item
-        jar="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/libs/SocialSDK_WeiXin_1.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="47f4993168154fa73377d7470b9f6887d48a8023">
-        <dex dex="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/SocialSDK_WeiXin_1_81aaa064a198c34a9755915d75801b6c365ec573.jar" />
-    </item>
-    <item
-        jar="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/exploded-aar/com.facebook.fresco/drawee/0.8.1/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="845a5b3a624946b2068963ba656c117fc453701c">
-        <dex dex="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/com.facebook.fresco-drawee-0.8.1_18213a0fbdd00ddf398a0482d4599fc7174b1f8b.jar" />
-    </item>
-    <item
-        jar="/Users/javon/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/2.0.1/516c03b21d50a644d538de0f0369c620989cd8f0/jsr305-2.0.1.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="516c03b21d50a644d538de0f0369c620989cd8f0">
-        <dex dex="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/jsr305-2.0.1_5bd3f75172c552417a1ecfbcf601f811c016868a.jar" />
-    </item>
-    <item
-        jar="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/libs/com.umeng.message.lib_v2.5.0.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="2d8a42376d6bba18d751e3fa4f4f83f079031ba0">
-        <dex dex="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/com.umeng.message.lib_v2.5.0_23c40e97e91421813d1d975f0ec0b6bfe829bd27.jar" />
-    </item>
-    <item
-        jar="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/libs/alipaySDK-20151014.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="9ab493c0f7a15797cda937737d8924528f3cab02">
-        <dex dex="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/alipaySDK-20151014_58ed7d7349ad1ed039e69f5bc98d63306fa91bed.jar" />
-    </item>
-    <item
-        jar="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/8.1.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="d0dda274b703dd9c5bb056867649d22b4171ae7d">
-        <dex dex="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/com.google.android.gms-play-services-basement-8.1.0_64a253002701e9a417757a56eff0a16449a0429f.jar" />
-    </item>
-    <item
-        jar="/Users/javon/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.4/695b63d702f505b9b916e02272e3b6381bade7f/gson-2.4.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="0695b63d702f505b9b916e02272e3b6381bade7f">
-        <dex dex="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/gson-2.4_66d0008db8742edf26a8a3bc2e396d02875aec35.jar" />
-    </item>
-    <item
-        jar="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/exploded-aar/LovelyBaby/OneSDK/unspecified/jars/libs/alisdk-hotpatch-3.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="eb7d4f93deefc781af2b77e0bef84029e7211a85">
-        <dex dex="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/alisdk-hotpatch-3_4f22634a64288abecea599927e14b0b20ff338c4.jar" />
-    </item>
-    <item
-        jar="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/libs/umeng-update-v2.6.0.1.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="7bfeea30c4995f90a4374ce4177772a4579f2797">
-        <dex dex="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/umeng-update-v2.6.0.1_2cd8fd15e71d83c3935d8f96d75129c758f83160.jar" />
-    </item>
-    <item
-        jar="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/libs/umeng_social_sdk.jar"
+        jar="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/libs/umeng_social_sdk.jar"
         jumboMode="false"
         revision="23.0.2"
         sha1="4688dc44ccef22b7f057301ee6abbe187a8d35ea">
-        <dex dex="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/umeng_social_sdk_57768e9fbd9d4a2119770a1058d2dcda40b668fa.jar" />
+        <dex dex="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/umeng_social_sdk_0d77b0e3dc54090dfb05635703ad1b30a74d7f85.jar" />
     </item>
     <item
-        jar="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/exploded-aar/LovelyBaby/MengBottomSheets/unspecified/jars/classes.jar"
+        jar="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/exploded-aar/LovelyBaby/OneSDK/unspecified/jars/libs/alisdk-rpc-3.jar"
         jumboMode="false"
         revision="23.0.2"
-        sha1="2e3bae8bf3b8fe6e967c10184ed25dc6da8ba79c">
-        <dex dex="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/LovelyBaby-MengBottomSheets-unspecified_e9312dc8121d1e2124aa2411a7abfec8d61ebf71.jar" />
+        sha1="90812fd2988f0fab1bb70c2fdab6f2deef213ca3">
+        <dex dex="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/alisdk-rpc-3_5c9f27a94d97f706b53ed74bf7e80b87ec5e3026.jar" />
     </item>
     <item
-        jar="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/classes.jar"
+        jar="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/exploded-aar/LovelyBaby/PRTRecyclerView/unspecified/jars/classes.jar"
         jumboMode="false"
         revision="23.0.2"
-        sha1="6cbc7773921fcfedbe55657578f0cbfe614778dc">
-        <dex dex="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/com.android.support-support-v4-23.1.1_21342c0677dd1c97443cb2ab2b570b76423dccfc.jar" />
+        sha1="59c1422826e6555c633be38377b3df64050c0381">
+        <dex dex="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/LovelyBaby-PRTRecyclerView-unspecified_138bd22c975a2acea6e4adda50217a69cf129110.jar" />
     </item>
     <item
-        jar="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/libs/internal_impl-23.1.1.jar"
+        jar="/Users/niesen918/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.4/695b63d702f505b9b916e02272e3b6381bade7f/gson-2.4.jar"
         jumboMode="false"
         revision="23.0.2"
-        sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
-        <dex dex="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/internal_impl-23.1.1_c224dfe4608f081ed29b2c475e9d28c927dba1d7.jar" />
+        sha1="0695b63d702f505b9b916e02272e3b6381bade7f">
+        <dex dex="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/gson-2.4_4349593d49358738d142ba644a45d5b50c311f0a.jar" />
     </item>
     <item
-        jar="/Users/javon/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.4.0/5b72bf48563ea8410e650de14aa33ff69a3e8c35/okio-1.4.0.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="5b72bf48563ea8410e650de14aa33ff69a3e8c35">
-        <dex dex="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/okio-1.4.0_5a2d739fe749e820538e3d28c948ab418d435097.jar" />
-    </item>
-    <item
-        jar="/Users/javon/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp/okhttp/2.4.0/40340c0748190fe897baf7bffbc1b282734294e5/okhttp-2.4.0.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="40340c0748190fe897baf7bffbc1b282734294e5">
-        <dex dex="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/okhttp-2.4.0_538590cad1f15b84897ecfc9d93d4b5cd0d39546.jar" />
-    </item>
-    <item
-        jar="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/exploded-aar/com.android.support/design/23.1.1/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="379471b2bd17d9737c050345c08e8c7d16589784">
-        <dex dex="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/com.android.support-design-23.1.1_f6f58d332be3e3620926183d5ece6ae3b96757c5.jar" />
-    </item>
-    <item
-        jar="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/exploded-aar/com.facebook.fresco/fresco/0.8.1/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="9178570a3a28c95fabd3bc746cd68efe99ad2b47">
-        <dex dex="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/com.facebook.fresco-fresco-0.8.1_dbb08b5c913eb5ef1751271fab82c60ecd8ebddb.jar" />
-    </item>
-    <item
-        jar="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/23.1.1/jars/classes.jar"
+        jar="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/23.1.1/jars/classes.jar"
         jumboMode="false"
         revision="23.0.2"
         sha1="5e412e954a24c5310a459c09870e4e2081aceb03">
-        <dex dex="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/com.android.support-cardview-v7-23.1.1_3560221d94ca01e9443a67c1649fe14e553d7f9b.jar" />
+        <dex dex="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/com.android.support-cardview-v7-23.1.1_3d741c02a5fb3bdc2db8111e2ce08af1228f9511.jar" />
     </item>
     <item
-        jar="/Users/javon/.gradle/caches/modules-2/files-2.1/com.nineoldandroids/library/2.4.0/e9b63380f3a242dbdbf103a2355ad7e43bad17cb/library-2.4.0.jar"
+        jar="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/exploded-aar/LovelyBaby/OneSDK/unspecified/jars/libs/alisdk-ut-5.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="e746fb126e9744c09ee52ae3cb27b892317404b7">
+        <dex dex="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/alisdk-ut-5_a8318d474a9471fb92414aa1b7a3bddc285979ce.jar" />
+    </item>
+    <item
+        jar="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/libs/Sunflower.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="241127ee9f88f1d3a03c4a698abebf6564845d3f">
+        <dex dex="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/Sunflower_bb3fb5edab2f1b2375bd98e243b1c7f24dd01918.jar" />
+    </item>
+    <item
+        jar="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/exploded-aar/LovelyBaby/OneSDK/unspecified/jars/libs/alisdk-security-7.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="f1b3f96ee7331efc6eb01cd7b510d07666c69472">
+        <dex dex="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/alisdk-security-7_5bd69dc1646704681a6ec87d08a9c6a73f157460.jar" />
+    </item>
+    <item
+        jar="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/libs/httpmime-4.1.3.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="e70d34d98f7f7f3b2b92105b9f2fe2a7a7184461">
+        <dex dex="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/httpmime-4.1.3_531571b8a34574b91466aabd0224bc31f24c7e52.jar" />
+    </item>
+    <item
+        jar="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/libs/SocialSDK_WeiXin_2.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="b651be701cb256e3972e7c5a07119f26bb7b44a4">
+        <dex dex="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/SocialSDK_WeiXin_2_25cc36a32256ec8344dcd3ae9bb56b45066ccf8b.jar" />
+    </item>
+    <item
+        jar="/Users/niesen918/.gradle/caches/modules-2/files-2.1/com.nineoldandroids/library/2.4.0/e9b63380f3a242dbdbf103a2355ad7e43bad17cb/library-2.4.0.jar"
         jumboMode="false"
         revision="23.0.2"
         sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
-        <dex dex="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/library-2.4.0_4000b81e97e69f32d9dea89e2b675744655430b1.jar" />
+        <dex dex="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/library-2.4.0_2951b833950c6dfe7b6730c43c7b9afe8bbb3cfa.jar" />
     </item>
     <item
-        jar="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/exploded-aar/LovelyBaby/OneSDK/unspecified/jars/libs/alisdk-system-13.jar"
+        jar="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/8.1.0/jars/classes.jar"
         jumboMode="false"
         revision="23.0.2"
-        sha1="ae42a6fb108d3e55dd26cf707d489eb8d42f26ef">
-        <dex dex="/Users/javon/AndroidProjects/android-master/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/alisdk-system-13_5045738953e34a86f7d815fd1b6b48ef055a3a78.jar" />
+        sha1="d0dda274b703dd9c5bb056867649d22b4171ae7d">
+        <dex dex="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/com.google.android.gms-play-services-basement-8.1.0_7b4e548585b614031fd2b448271de56321132d91.jar" />
+    </item>
+    <item
+        jar="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/exploded-aar/LovelyBaby/OneSDK/unspecified/jars/libs/alisdk-ui-3.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="fcefefc082c7495d6bf947d4c8e1fb2eb0ea295a">
+        <dex dex="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/alisdk-ui-3_e002023b8d4915eb13ac03328a728384161d4795.jar" />
+    </item>
+    <item
+        jar="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/exploded-aar/com.facebook.fresco/fbcore/0.8.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="4af24c040b21980e0a80a505816c648e36705bd9">
+        <dex dex="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/com.facebook.fresco-fbcore-0.8.1_1346e721bafe67bb2a604c332a92ca10a4e47511.jar" />
+    </item>
+    <item
+        jar="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/exploded-aar/com.facebook.fresco/drawee/0.8.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="845a5b3a624946b2068963ba656c117fc453701c">
+        <dex dex="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/com.facebook.fresco-drawee-0.8.1_6ac4cc270de9130c95078802822c265773494773.jar" />
+    </item>
+    <item
+        jar="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/libs/SocialSDK_QQZone_2.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="4a69b33758dcba3ef519cbd4b6c8af5f41603c4f">
+        <dex dex="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/SocialSDK_QQZone_2_b12e36c2f69af9bf383ace362c9c39fe14117610.jar" />
+    </item>
+    <item
+        jar="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/0.8.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="3836ecca4e31e18ea8fbae8e822d49777b0db4f7">
+        <dex dex="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/com.facebook.fresco-imagepipeline-0.8.1_9739091e2cfec6695ffc74bd88b487af5eded752.jar" />
+    </item>
+    <item
+        jar="/Users/niesen918/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/2.0.1/516c03b21d50a644d538de0f0369c620989cd8f0/jsr305-2.0.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="516c03b21d50a644d538de0f0369c620989cd8f0">
+        <dex dex="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/jsr305-2.0.1_782be9103db5aab5d703846e2738a6074be85bab.jar" />
+    </item>
+    <item
+        jar="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/exploded-aar/LovelyBaby/OneSDK/unspecified/jars/libs/securityguard-3.1.18.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="12bfd79c5fdfa1bbb41af03e3ca1a4c9de9f970c">
+        <dex dex="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/securityguard-3.1.18_9e33461bc25a8a284f83b0b3280a59e657449b3a.jar" />
+    </item>
+    <item
+        jar="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/exploded-aar/LovelyBaby/OneSDK/unspecified/jars/libs/alisdk-kernel-1.8.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="6c12eb8810cf19934f61ea75d1dcbccce6aff660">
+        <dex dex="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/alisdk-kernel-1.8.1_c5ef93b156e6b000b54bd8285f856e0575e5aedf.jar" />
+    </item>
+    <item
+        jar="/Users/niesen918/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp/okhttp/2.4.0/40340c0748190fe897baf7bffbc1b282734294e5/okhttp-2.4.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="40340c0748190fe897baf7bffbc1b282734294e5">
+        <dex dex="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/okhttp-2.4.0_79a8809c2e256958a91464f807e9a5781e3e94f0.jar" />
+    </item>
+    <item
+        jar="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/libs/alipaySDK-20151014.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="9ab493c0f7a15797cda937737d8924528f3cab02">
+        <dex dex="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/alipaySDK-20151014_2480b86913fcb3cd49d80fb706f0247139b9f40e.jar" />
+    </item>
+    <item
+        jar="/Users/niesen918/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.4.0/5b72bf48563ea8410e650de14aa33ff69a3e8c35/okio-1.4.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="5b72bf48563ea8410e650de14aa33ff69a3e8c35">
+        <dex dex="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/okio-1.4.0_e11c16a77e56975fa75cb8fb3594688372af7d1d.jar" />
+    </item>
+    <item
+        jar="/Users/niesen918/.gradle/caches/modules-2/files-2.1/commons-cli/commons-cli/1.2/2bf96b7aa8b611c177d329452af1dc933e14501c/commons-cli-1.2.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="2bf96b7aa8b611c177d329452af1dc933e14501c">
+        <dex dex="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/commons-cli-1.2_6c923de6fb7a8ff35e195fffa9505f09fee82042.jar" />
+    </item>
+    <item
+        jar="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/exploded-aar/LovelyBaby/OneSDK/unspecified/jars/libs/mediaservice-4.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="c0c1d00a5918d3bafa5d134e8f4000a5511b0043">
+        <dex dex="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/mediaservice-4.1_941fc18a1aa4c78eef5fda5e71147c5b64a29d35.jar" />
+    </item>
+    <item
+        jar="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/libs/umeng-update-v2.6.0.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="7bfeea30c4995f90a4374ce4177772a4579f2797">
+        <dex dex="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/umeng-update-v2.6.0.1_6bc89fb77ca92e2dd53944135a5adaad8c4c3898.jar" />
+    </item>
+    <item
+        jar="/Users/niesen918/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-android/1.1.4/129874135e6081269ace2312092031558865de12/bolts-android-1.1.4.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="129874135e6081269ace2312092031558865de12">
+        <dex dex="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/bolts-android-1.1.4_377268fc67d56b31a627319532da61f60b2418b9.jar" />
+    </item>
+    <item
+        jar="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/libs/SocialSDK_WeiXin_1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="47f4993168154fa73377d7470b9f6887d48a8023">
+        <dex dex="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/SocialSDK_WeiXin_1_bb1ff0e388f8c0537d7a21b92eed85896371d247.jar" />
+    </item>
+    <item
+        jar="/Users/niesen918/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.1.1/support-annotations-23.1.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="8d680ba5a623724d1fb0e81c36a790f023a6cede">
+        <dex dex="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/support-annotations-23.1.1_84072365107e375399e7140242694557c2786455.jar" />
+    </item>
+    <item
+        jar="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/libs/Msc.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="6490d46678cc51ecd56be6bf2ab741ea940c61b8">
+        <dex dex="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/Msc_6f7d61c02bffea76cbf75719663ec741e24aa94c.jar" />
+    </item>
+    <item
+        jar="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="09c5e804bc67fc0580360043dff067df574a60d4">
+        <dex dex="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/com.android.support-recyclerview-v7-23.1.1_a9740fd374ae404a725c0062d8e163e7c5c16343.jar" />
+    </item>
+    <item
+        jar="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/libs/SocialSDK_shake.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="674b96fd9638c3e1255218dd69f23ad3a6210227">
+        <dex dex="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/SocialSDK_shake_ba9cef534c82a36dc7e35265dbebace2e8b82395.jar" />
+    </item>
+    <item
+        jar="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-okhttp/0.8.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="0d5d69b03cb7d68b81543f6483ed04ccb0e2235b">
+        <dex dex="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/com.facebook.fresco-imagepipeline-okhttp-0.8.1_7e7dce79573c6a8faeae7a9c4624868c324f1d0b.jar" />
+    </item>
+    <item
+        jar="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/exploded-aar/LovelyBaby/OneSDK/unspecified/jars/libs/alisdk-hotpatch-3.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="f29a54fdbc605ecd5364246d86f8277cf67f7627">
+        <dex dex="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/alisdk-hotpatch-3_82c12945dc537e9a4effb7ebd8c6b7f9acc9a1f4.jar" />
+    </item>
+    <item
+        jar="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/libs/internal_impl-23.1.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
+        <dex dex="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/internal_impl-23.1.1_78318d7426b7d13410de7e362ea51d11f48e1b93.jar" />
+    </item>
+    <item
+        jar="/Users/niesen918/.gradle/caches/modules-2/files-2.1/com.facebook.stetho/stetho/1.2.0/1d6cdb8ce8185b8b23213fad48a83987fb6d2d67/stetho-1.2.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="1d6cdb8ce8185b8b23213fad48a83987fb6d2d67">
+        <dex dex="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/stetho-1.2.0_9d62d029edee1ecb6d20a57f43bde200f9bfdc2d.jar" />
+    </item>
+    <item
+        jar="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/libs/SocialSDK_QQZone_3.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="931ab461b91c2a2fd5c697e7f622cdca8c2b3ac5">
+        <dex dex="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/SocialSDK_QQZone_3_c3935bc1811c20f4e336f1cefb22c5f033c75ad9.jar" />
+    </item>
+    <item
+        jar="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/libs/SocialSDK_Sina.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="a6eee0ece63ba5e74411057d09eda1a5a01ca940">
+        <dex dex="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/SocialSDK_Sina_5db6b03273153e55e9a1d18d4cbc44a6dc7f22e6.jar" />
+    </item>
+    <item
+        jar="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appindexing/8.1.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="4477ea44f5ec5ad064022a22691732d7638ff197">
+        <dex dex="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/com.google.android.gms-play-services-appindexing-8.1.0_7aee6d5eae527fb196989d5179197c72c495282e.jar" />
+    </item>
+    <item
+        jar="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/exploded-aar/LovelyBaby/OneSDK/unspecified/jars/libs/alisdk-system-13.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="fdbcee2fd19b42145dcaaf2f0f46c9f36e07782b">
+        <dex dex="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/alisdk-system-13_23ce7f3ae90276a6e1b3faf92f4efd57c7a7ef12.jar" />
+    </item>
+    <item
+        jar="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/exploded-aar/com.facebook.fresco/fresco/0.8.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="9178570a3a28c95fabd3bc746cd68efe99ad2b47">
+        <dex dex="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/com.facebook.fresco-fresco-0.8.1_fb75cceb9fa3c5cee54dece958978700bba118f9.jar" />
+    </item>
+    <item
+        jar="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/exploded-aar/com.android.support/design/23.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="379471b2bd17d9737c050345c08e8c7d16589784">
+        <dex dex="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/com.android.support-design-23.1.1_353ebb214920ec205acaca974c8f080b6851d094.jar" />
+    </item>
+    <item
+        jar="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/libs/com.umeng.message.lib_v2.5.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="2d8a42376d6bba18d751e3fa4f4f83f079031ba0">
+        <dex dex="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/com.umeng.message.lib_v2.5.0_cf712a5bfb08dd4308765a879f1c28beb0c0c097.jar" />
+    </item>
+    <item
+        jar="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/exploded-aar/LovelyBaby/OneSDK/unspecified/jars/libs/sdk-legacy-support-1.8.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="3f40f165121aad337ee806b035cb8a45f3cd4e26">
+        <dex dex="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/sdk-legacy-support-1.8.1_a1609a74edb1d7499bf15919fe71a87f30f719d9.jar" />
+    </item>
+    <item
+        jar="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="5c5699834e9722f1c288fea2de82725d078ba127">
+        <dex dex="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/com.android.support-appcompat-v7-23.1.1_653834a8a2b8d2f36a0f0a7e5178beea57d24ab6.jar" />
+    </item>
+    <item
+        jar="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/libs/SocialSDK_QQZone_1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="c184c69f43b1fe46390f7123717c65bd844bccb6">
+        <dex dex="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/SocialSDK_QQZone_1_72dfd998c2310083dc93a0d720ee98f192d9d82a.jar" />
+    </item>
+    <item
+        jar="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/exploded-aar/LovelyBaby/OneSDK/unspecified/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="205e806c89e702f39bf190a19d3b123a804f43e4">
+        <dex dex="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/LovelyBaby-OneSDK-unspecified_6bcbc24946474868160e93a18305861cdf35a36e.jar" />
+    </item>
+    <item
+        jar="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="6cbc7773921fcfedbe55657578f0cbfe614778dc">
+        <dex dex="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/com.android.support-support-v4-23.1.1_156ef0dcdb4d028d72bc9e84f1adcfe26342c95d.jar" />
+    </item>
+    <item
+        jar="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/exploded-aar/LovelyBaby/LoadMoreRecyclerView/unspecified/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="7092edf2094af33adc782a01cce08f044f1fdfec">
+        <dex dex="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/pre-dexed/HuaWei/debug/LovelyBaby-LoadMoreRecyclerView-unspecified_97bd8205782baedfaa00cba46f6ff9f687c43b16.jar" />
     </item>
 
 </items>

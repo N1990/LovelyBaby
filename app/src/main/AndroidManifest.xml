@@ -294,9 +294,10 @@
             android:authorities="com.cmbb.smartkids.addresslist"
             android:enabled="true"
             android:exported="false" />
-
-        <service
-            android:name=".db.DBIntentService"
+        <provider
+            android:name=".db.TopicProvider"
+            android:authorities="com.cmbb.smartkids.topiclist"
+            android:enabled="true"
             android:exported="false" />
 
         <activity android:name=".activity.order.OrderModifyPhoneActivity" />
@@ -358,7 +359,20 @@
         <activity android:name=".activity.diary.ModifyBabyNameActivity" />
         <activity android:name=".activity.diary.BabyDiaryListActivity" />
         <activity android:name=".activity.diary.BabyDiaryDetailActivity" />
-        <activity android:name=".activity.diary.PublishBabyDiaryActivity"></activity>
+        <activity android:name=".activity.diary.PublishBabyDiaryActivity" />
+        <activity android:name=".activity.user.MyDraftsActivity" />
+        <!--
+             ATTENTION: This was auto-generated to add Google Play services to your project for
+             App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
+        -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <activity android:name=".activity.user.DraftsDetailActivity" />
+        <activity android:name=".activity.user.DeliveryAddressListActivity" />
+        <activity android:name=".activity.user.DeliveryAddressDetailActivity" />
+        <activity android:name=".activity.user.DeliveryAddressModifyActivity"></activity>
     </application>
 
 </manifest>

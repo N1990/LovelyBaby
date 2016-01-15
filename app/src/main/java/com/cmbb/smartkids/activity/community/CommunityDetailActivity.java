@@ -323,6 +323,8 @@ public class CommunityDetailActivity extends BaseActivity implements CustomListe
     protected void onDestroy() {
         NetRequest.httpClient.cancel(Constants.Community.TOPIC_REPLAY);
         NetRequest.httpClient.cancel(Constants.Community.TOPIC_DETIAL);
+        baseFragment.resultDetail = null;
+        baseFragment.resultReplay = null;
         super.onDestroy();
     }
 

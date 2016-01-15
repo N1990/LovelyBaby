@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.NestedScrollView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +35,7 @@ import java.util.List;
 public class ServiceFragment extends BaseFragment {
     private final String TAG = ServiceFragment.class.getSimpleName();
     public LoadMoreRecyclerView lmrv;
+    private NestedScrollView nsv;
     private MyServiceAdapter adapter;
     private int myCenter = 0;
     private int pager = 0;
@@ -58,6 +60,7 @@ public class ServiceFragment extends BaseFragment {
 
 
     private void initView() {
+        nsv = (NestedScrollView) getView().findViewById(R.id.nsv_self);
         lmrv = (LoadMoreRecyclerView) getView().findViewById(R.id.lmrv_self);
         lmrv.setLinearLayout();
         adapter = new MyServiceAdapter();
@@ -139,14 +142,14 @@ public class ServiceFragment extends BaseFragment {
                 ServiceListModel listModel = (ServiceListModel) object;
                 if (listModel != null && listModel.getData() != null && listModel.getData().getRows().size() > 0 && cachePager != pager) {
                     lmrv.setVisibility(View.VISIBLE);
-                    getView().findViewById(R.id.nsv_self).setVisibility(View.GONE);
+                    nsv.setVisibility(View.GONE);
                     cacheList.addAll(listModel.getData().getRows());
                     adapter.notifyDataSetChanged();
                 }
                 Log.e(TAG, "adapter.size1 : " + adapter.getDataSize());
                 if (adapter.getDataSize() == 0) {
                     lmrv.setVisibility(View.GONE);
-                    getView().findViewById(R.id.nsv_self).setVisibility(View.VISIBLE);
+                    nsv.setVisibility(View.VISIBLE);
                 }
                 showShortToast(msg);
             }

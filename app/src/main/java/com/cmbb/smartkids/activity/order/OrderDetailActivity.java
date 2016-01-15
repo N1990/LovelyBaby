@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.cmbb.smartkids.R;
@@ -16,6 +18,7 @@ import com.cmbb.smartkids.activity.order.model.OrderDetailModel;
 import com.cmbb.smartkids.activity.order.model.RefundModel;
 import com.cmbb.smartkids.activity.serve.ActiveDetailActivity;
 import com.cmbb.smartkids.activity.serve.model.ServiceOrderModel;
+import com.cmbb.smartkids.activity.user.DeliveryAddressListActivity;
 import com.cmbb.smartkids.base.BaseActivity;
 import com.cmbb.smartkids.base.BaseApplication;
 import com.cmbb.smartkids.base.Constants;
@@ -37,9 +40,11 @@ public class OrderDetailActivity extends BaseActivity {
     private final int HANDLER_ORDER_REQUEST = 11116;
     private final int MODIFY_ORDER_PHONE = 11119;
     private TextView tvTitle, tvCity, tvPrice, tvTime, tvName, tvPhone, tvNumber,
-            tvActiveTime, tvActiveLocal, tvActivePrice, tvStatus, tvHandle, tvModify, tvGoHome;
+            tvActiveTime, tvActiveLocal, tvActivePrice, tvStatus, tvHandle, tvGoHome;
+    private ImageView ivModifyPhone, ivChooseDelivery;
     private SimpleDraweeView ivBg;
-    private LinearLayout llStatus, llNumber;
+    private RelativeLayout rlStatus, rlNumber;
+    private View vNumberDivider;
     //    private CollapsingToolbarLayout ctl;
     private boolean flag;
     private ServiceOrderModel.DataEntity data;
@@ -76,12 +81,14 @@ public class OrderDetailActivity extends BaseActivity {
         tvActiveTime = (TextView) findViewById(R.id.tv_order_detail_active_time);
         tvActiveLocal = (TextView) findViewById(R.id.tv_order_detail_active_local);
         tvActivePrice = (TextView) findViewById(R.id.tv_order_detail_active_price);
-        llNumber = (LinearLayout) findViewById(R.id.ll_order_detail_number);
-        llStatus = (LinearLayout) findViewById(R.id.ll_order_detail_status);
+        rlNumber = (RelativeLayout) findViewById(R.id.ll_order_detail_number);
+        rlStatus = (RelativeLayout) findViewById(R.id.ll_order_detail_status);
+        vNumberDivider = findViewById(R.id.v_order_detail_number_divider);
         tvStatus = (TextView) findViewById(R.id.tv_order_detail_status);
         tvHandle = (TextView) findViewById(R.id.tv_order_detail_handle);
-        tvModify = (TextView) findViewById(R.id.tv_order_detail_modify_phone);
         tvGoHome = (TextView) findViewById(R.id.tv_order_detail_gohome);
+        ivModifyPhone = (ImageView) findViewById(R.id.iv_order_detail_modify_phone);
+        ivChooseDelivery = (ImageView) findViewById(R.id.iv_order_detail_delivery_address);
     }
 
     private void initData() {
@@ -116,7 +123,8 @@ public class OrderDetailActivity extends BaseActivity {
 
     private void addListener() {
         tvHandle.setOnClickListener(this);
-        tvModify.setOnClickListener(this);
+        ivModifyPhone.setOnClickListener(this);
+        ivChooseDelivery.setOnClickListener(this);
         tvGoHome.setOnClickListener(this);
     }
 
@@ -157,7 +165,7 @@ public class OrderDetailActivity extends BaseActivity {
             Intent intent = new Intent(OrderDetailActivity.this, ActiveDetailActivity.class);
             intent.putExtra("serviceId", serviceId);
             startActivity(intent);
-        } else if (id == R.id.tv_order_detail_modify_phone) {
+        } else if (id == R.id.iv_order_detail_modify_phone) {
             Intent modify = new Intent(OrderDetailActivity.this, OrderModifyPhoneActivity.class);
             startActivityForResult(modify, MODIFY_ORDER_PHONE);
         } else if (id == R.id.tv_order_detail_gohome) {
@@ -166,6 +174,9 @@ public class OrderDetailActivity extends BaseActivity {
             intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
             startActivity(intent);
             finish();
+        }else if(id == R.id.iv_order_detail_delivery_address){
+            showShortToast("选择配送地址");
+//            DeliveryAddressListActivity.skipFromActivity(OrderDetailActivity.this, "check");
         }
     }
 
@@ -183,22 +194,18 @@ public class OrderDetailActivity extends BaseActivity {
                 pay.putExtra("order_price", String.valueOf(price));
                 pay.putExtra("orderCode", orderCode);
                 startActivityForResult(pay, HANDLER_ORDER_REQUEST);
-//                showShortToast("立即支付功能尚未开通...");
                 break;
             case YI_ZHI_FU:
                 if (price != 0) {
                     showRefundDialog(orderCode);
-//                    showShortToast("申请退款功能尚未开通...");
                 } else {
                     showCustomDialog(orderCode);
                 }
                 break;
             case YI_GUO_QI:
                 showRefundDialog(orderCode);
-//                showShortToast("申请退款功能尚未开通...");
                 break;
             case YI_CAN_JIA:
-//                startActivityForResult(new Intent(OrderDetailActivity.this, EvaluateListActivity.class), HANDLER_ORDER_REQUEST);
                 showShortToast("评价功能尚未开通...");
                 break;
             case YI_PING_JIA:
@@ -279,7 +286,7 @@ public class OrderDetailActivity extends BaseActivity {
             handleOrderRequest(orderCode);
         } else if (requestCode == MODIFY_ORDER_PHONE && resultCode == RESULT_OK) {
             phone = data.getStringExtra("phone");
-            tvPhone.setText("手机号：" + phone);
+            tvPhone.setText(phone);
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
@@ -296,33 +303,34 @@ public class OrderDetailActivity extends BaseActivity {
         if (TextUtils.isEmpty(serviceCity))
             tvCity.setVisibility(View.GONE);
         tvCity.setText(serviceCity);
-        tvPrice.setText(Double.valueOf(data.getServicePrice()) == 0 ? "免费" : data.getServicePrice() + "元");
+        tvPrice.setText(Double.valueOf(data.getServicePrice()) == 0 ? "免费" : "￥" + data.getServicePrice());
         try {
-            tvTime.setText("订单时间：" + Tools.DataToString(data.getOrderDate(), "yyyy.MM.dd HH:mm"));
-            tvActiveTime.setText("服务时间：" + Tools.DataToString(serviceTime, "yyyy.MM.dd HH:mm"));
+            tvTime.setText( Tools.DataToString(data.getOrderDate(), "yyyy.MM.dd HH:mm"));
+            tvActiveTime.setText(Tools.DataToString(serviceTime, "yyyy.MM.dd HH:mm"));
         } catch (Exception e) {
             e.printStackTrace();
         }
-        tvName.setText("用户名：" + data.getUserNike());
+        tvName.setText(data.getUserNike());
         phone = data.getPhone();
         if (TextUtils.isEmpty(phone)) {
-            tvPhone.setText("手机号：");
+            tvPhone.setText("");
         } else {
-            tvPhone.setText("手机号：" + phone);
+            tvPhone.setText(phone);
         }
-        tvActiveLocal.setText("服务地址：" + serviceAddress);
-        tvActivePrice.setText(data.getPrice() == null || Double.valueOf(data.getPrice()) == 0 ? "金额：" + "0元" : "金额：" + data.getPrice() + "元");
+        tvActiveLocal.setText(serviceAddress);
+        tvActivePrice.setText(data.getPrice() == null || Double.valueOf(data.getPrice()) == 0 ? "￥" + "0.00" : "￥" + data.getPrice());
         if (flag) {
-            llStatus.setVisibility(View.GONE);
+            rlStatus.setVisibility(View.GONE);
             tvHandle.setText("提交订单");
         } else {
             if (!TextUtils.isEmpty(data.getStatus())) {
                 reflushBottomView(data);
             } else {
                 Log.e(TAG, "订单状态为空");
-                llStatus.setVisibility(View.GONE);
+                rlStatus.setVisibility(View.GONE);
                 tvHandle.setVisibility(View.GONE);
-                tvModify.setVisibility(View.GONE);
+                ivModifyPhone.setVisibility(View.GONE);
+                ivChooseDelivery.setVisibility(View.GONE);
             }
         }
     }
@@ -335,48 +343,49 @@ public class OrderDetailActivity extends BaseActivity {
     private void reflushView(OrderDetailModel.DataEntity data) {
         findViewById(R.id.cv_order_detail_content).setVisibility(View.VISIBLE);
         findViewById(R.id.ll_empty_data).setVisibility(View.GONE);
-        llNumber.setVisibility(View.VISIBLE);
+        rlNumber.setVisibility(View.VISIBLE);
+        vNumberDivider.setVisibility(View.VISIBLE);
         if (data.getServiceInfo() != null)
             ivBg.setTag(data.getServiceInfo().getId());
         OrderDetailModel.DataEntity.ServiceInfoEntity sData = data.getServiceInfo();
         FrescoTool.loadImage(ivBg, sData.getServicesImg(), sData.getImgWidth(), sData.getImgHeight());
-        tvNumber.setText("订单号：" + data.getOrderCode());
+        tvNumber.setText(data.getOrderCode());
         tvTitle.setText(sData.getTitle());
         if (TextUtils.isEmpty(sData.getCityText()))
             tvCity.setVisibility(View.GONE);
         tvCity.setText(sData.getCityText());
-        tvPrice.setText(Double.valueOf(data.getServicePrice()) == 0 ? "免费" : data.getServicePrice() + "元");
+        tvPrice.setText(Double.valueOf(data.getServicePrice()) == 0 ? "免费" : "￥" + data.getServicePrice());
         try {
-            tvTime.setText("订单时间：" + Tools.DataToString(data.getOrderDate(), "yyyy.MM.dd HH:mm"));
-            tvActiveTime.setText("服务时间：" + Tools.DataToString(sData.getStartTime(), "yyyy.MM.dd HH:mm"));
+            tvTime.setText(Tools.DataToString(data.getOrderDate(), "yyyy.MM.dd HH:mm"));
+            tvActiveTime.setText(Tools.DataToString(sData.getStartTime(), "yyyy.MM.dd HH:mm"));
         } catch (Exception e) {
             e.printStackTrace();
         }
-        tvName.setText("用户名：" + data.getUserNike());
+        tvName.setText(data.getUserNike());
         phone = data.getPhone();
         if (TextUtils.isEmpty(phone)) {
-            tvPhone.setText("手机号：");
+            tvPhone.setText("");
         } else {
-            tvPhone.setText("手机号：" + phone);
+            tvPhone.setText(phone);
         }
-        tvActiveLocal.setText("活动地址：" + sData.getAddress());
-        tvActivePrice.setText(Double.valueOf(data.getPrice()) == 0 ? "金额：" + "0元" : "金额：" + data.getPrice() + "元");
+        tvActiveLocal.setText(sData.getAddress());
+        tvActivePrice.setText(Double.valueOf(data.getPrice()) == 0 ? "￥" + "0.00" : "￥" + data.getPrice());
         if (orderResult) {
             OrderStatus status = OrderStatus.getStatusByValue(data.getStatus());
             if (status == OrderStatus.WEI_ZHI_FU) {
-                llStatus.setVisibility(View.GONE);
+                rlStatus.setVisibility(View.GONE);
                 tvHandle.setVisibility(View.VISIBLE);
                 tvHandle.setText("立即支付");
                 tvHandle.setTag(data);
                 tvGoHome.setVisibility(View.GONE);
             } else {
-                llStatus.setVisibility(View.VISIBLE);
+                rlStatus.setVisibility(View.VISIBLE);
                 tvGoHome.setVisibility(View.VISIBLE);
                 tvGoHome.setText("返回首页");
                 tvHandle.setVisibility(View.GONE);
             }
         } else if (flag) {
-            llStatus.setVisibility(View.GONE);
+            rlStatus.setVisibility(View.GONE);
             tvHandle.setVisibility(View.VISIBLE);
             tvHandle.setText("提交订单");
             tvGoHome.setVisibility(View.GONE);
@@ -391,17 +400,18 @@ public class OrderDetailActivity extends BaseActivity {
      * @param data
      */
     private void reflushBottomView(OrderDetailModel.DataEntity data) {
-        tvModify.setVisibility(View.GONE);
+        ivModifyPhone.setVisibility(View.GONE);
+        ivChooseDelivery.setVisibility(View.GONE);
         OrderStatus status = OrderStatus.getStatusByValue(data.getStatus());
         tvHandle.setTag(data);
         switch (status) {
             case WEI_ZHI_FU:
-                llStatus.setVisibility(View.VISIBLE);
+                rlStatus.setVisibility(View.VISIBLE);
                 tvStatus.setText("订单状态：" + status.toString());
                 tvHandle.setText("立即支付");
                 break;
             case YI_ZHI_FU:
-                llStatus.setVisibility(View.VISIBLE);
+                rlStatus.setVisibility(View.VISIBLE);
                 tvStatus.setText("订单状态：" + status.toString());
                 double price = Double.valueOf(data.getPrice());
                 if (price != 0) {
@@ -411,12 +421,12 @@ public class OrderDetailActivity extends BaseActivity {
                 }
                 break;
             case YI_GUO_QI:
-                llStatus.setVisibility(View.VISIBLE);
+                rlStatus.setVisibility(View.VISIBLE);
                 tvStatus.setText("订单状态：" + status.toString());
                 tvHandle.setText("申请退款");
                 break;
             case YI_CAN_JIA:
-                llStatus.setVisibility(View.VISIBLE);
+                rlStatus.setVisibility(View.VISIBLE);
                 tvStatus.setText("订单状态：" + status.toString());
                 tvHandle.setText("立即评价");
                 break;
@@ -424,7 +434,7 @@ public class OrderDetailActivity extends BaseActivity {
             case YI_TUI_KUAN:
             case YI_QU_XIAO:
             case TUI_KUAN_ZHONG:
-                llStatus.setVisibility(View.GONE);
+                rlStatus.setVisibility(View.GONE);
                 tvHandle.setVisibility(View.GONE);
                 break;
 
@@ -437,17 +447,18 @@ public class OrderDetailActivity extends BaseActivity {
      * @param data
      */
     private void reflushBottomView(ServiceOrderModel.DataEntity data) {
-        tvModify.setVisibility(View.GONE);
+        ivModifyPhone.setVisibility(View.GONE);
+        ivChooseDelivery.setVisibility(View.GONE);
         OrderStatus status = OrderStatus.getStatusByValue(Integer.valueOf(data.getStatus()));
         tvHandle.setTag(data);
         switch (status) {
             case WEI_ZHI_FU:
-                llStatus.setVisibility(View.VISIBLE);
+                rlStatus.setVisibility(View.VISIBLE);
                 tvStatus.setText("订单状态：" + status.toString());
                 tvHandle.setText("立即支付");
                 break;
             case YI_ZHI_FU:
-                llStatus.setVisibility(View.VISIBLE);
+                rlStatus.setVisibility(View.VISIBLE);
                 tvStatus.setText("订单状态：" + status.toString());
                 double price = Double.valueOf(data.getPrice());
                 if (price != 0) {
@@ -457,12 +468,12 @@ public class OrderDetailActivity extends BaseActivity {
                 }
                 break;
             case YI_GUO_QI:
-                llStatus.setVisibility(View.VISIBLE);
+                rlStatus.setVisibility(View.VISIBLE);
                 tvStatus.setText("订单状态：" + status.toString());
                 tvHandle.setText("申请退款");
                 break;
             case YI_CAN_JIA:
-                llStatus.setVisibility(View.VISIBLE);
+                rlStatus.setVisibility(View.VISIBLE);
                 tvStatus.setText("订单状态：" + status.toString());
                 tvHandle.setText("立即评价");
                 break;
@@ -470,9 +481,9 @@ public class OrderDetailActivity extends BaseActivity {
             case YI_TUI_KUAN:
             case YI_QU_XIAO:
             case TUI_KUAN_ZHONG:
-                llStatus.setVisibility(View.VISIBLE);
+                rlStatus.setVisibility(View.VISIBLE);
                 tvStatus.setText("订单状态：" + status.toString());
-//                llStatus.setVisibility(View.GONE);
+//                rlStatus.setVisibility(View.GONE);
                 tvHandle.setVisibility(View.GONE);
                 break;
 

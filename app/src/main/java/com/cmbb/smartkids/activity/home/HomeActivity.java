@@ -146,7 +146,7 @@ public class HomeActivity extends BaseActivity {
                     fraTransaction.add(R.id.fl_home_content, homeFra);
                 }
                 fraTransaction.show(homeFra);
-                fraTransaction.commit();
+                fraTransaction.commitAllowingStateLoss();
                 tvMain.setSelected(true);
                 break;
             case 1:
@@ -156,7 +156,7 @@ public class HomeActivity extends BaseActivity {
                     fraTransaction.add(R.id.fl_home_content, activeFra);
                 }
                 fraTransaction.show(activeFra);
-                fraTransaction.commit();
+                fraTransaction.commitAllowingStateLoss();
                 tvService.setSelected(true);
                 break;
             case 2:
@@ -166,7 +166,7 @@ public class HomeActivity extends BaseActivity {
                     fraTransaction.add(R.id.fl_home_content, cityFra);
                 }
                 fraTransaction.show(cityFra);
-                fraTransaction.commit();
+                fraTransaction.commitAllowingStateLoss();
                 tvCommunity.setSelected(true);
                 break;
             case 3:
@@ -176,7 +176,7 @@ public class HomeActivity extends BaseActivity {
                     fraTransaction.add(R.id.fl_home_content, userFra);
                 }
                 fraTransaction.show(userFra);
-                fraTransaction.commit();
+                fraTransaction.commitAllowingStateLoss();
                 tvUser.setSelected(true);
                 break;
             case 4:
@@ -186,7 +186,7 @@ public class HomeActivity extends BaseActivity {
                     fraTransaction.add(R.id.fl_home_content, moreFra);
                 }
                 fraTransaction.show(moreFra);
-                fraTransaction.commit();
+                fraTransaction.commitAllowingStateLoss();
                 tvMore.setSelected(true);
                 break;
         }

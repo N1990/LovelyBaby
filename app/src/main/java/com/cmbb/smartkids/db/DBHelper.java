@@ -24,6 +24,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(DBContent.DBUser.SQL);
         db.execSQL(DBContent.DBAddress.SQL);
+        db.execSQL(DBContent.DBTopic.SQL);
     }
 
     @Override
@@ -43,6 +44,5 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(DBContent.DBAddress.DELETE_TABLE);
         onCreate(db);
     }
-
 
 }

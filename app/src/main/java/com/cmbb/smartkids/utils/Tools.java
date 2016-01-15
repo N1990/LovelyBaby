@@ -155,7 +155,7 @@ public class Tools {
                     Map.Entry e = (Map.Entry) it.next();
                     stringBuilder.append("\"" + e.getKey() + "\":");
                     String values = null;
-                    if (((String) e.getValue()).contains("\n")) {
+                    if ("\n".contains((String) e.getValue())) {
                         values = ((String) e.getValue()).replace("\n", "\\n");
                     } else {
                         values = (String) e.getValue();

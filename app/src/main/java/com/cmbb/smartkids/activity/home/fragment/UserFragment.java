@@ -35,6 +35,7 @@ import com.cmbb.smartkids.activity.message.MessageActivity;
 import com.cmbb.smartkids.activity.order.MyOrderListActivity;
 import com.cmbb.smartkids.activity.serve.ServiceListActivity;
 import com.cmbb.smartkids.activity.user.MyCommunityActivity;
+import com.cmbb.smartkids.activity.user.MyDraftsActivity;
 import com.cmbb.smartkids.activity.user.MyListRedirectActivity;
 import com.cmbb.smartkids.activity.user.MyServiceOrderActivity;
 import com.cmbb.smartkids.activity.user.MySetActivity;
@@ -73,7 +74,7 @@ public class UserFragment extends BaseFragment {
     private SimpleDraweeView ivUserHeader;
     private ImageView ivMessageTag;
     private TextView tvFan, tvNickname, tvIdentity, tvProgress, myCollection, myCare, myPerssion, myUid, myCount;
-    private LinearLayout myOrder, myAccept, myGold, myCommunity, myPopman, myBabyDiary, myUID;
+    private LinearLayout myOrder, myAccept, myGold, myCommunity, myPopman, myBabyDiary, myUID, myDrafts;
     private ProgressBar pb;
     private RatingBar rb;
     private FloatingActionButton fab;
@@ -116,6 +117,7 @@ public class UserFragment extends BaseFragment {
         myCommunity = (LinearLayout) view.findViewById(R.id.ll_home_self_community);
         myPopman = (LinearLayout) view.findViewById(R.id.ll_home_self_apply_popman);
         myBabyDiary = (LinearLayout) view.findViewById(R.id.ll_home_self_baby_diary);
+        myDrafts = (LinearLayout) view.findViewById(R.id.ll_home_self_drafts);
         myCount = (TextView) view.findViewById(R.id.tv_home_count);
     }
 
@@ -162,6 +164,7 @@ public class UserFragment extends BaseFragment {
         ivLeft.setOnClickListener(this);
         ivRight.setOnClickListener(this);
         myUID.setOnClickListener(this);
+        myDrafts.setOnClickListener(this);
     }
 
     public static final int MY_SET_MODIFY = 2001;
@@ -233,6 +236,9 @@ public class UserFragment extends BaseFragment {
                 ClipboardManager cmb = (ClipboardManager) getActivity().getSystemService(getActivity().CLIPBOARD_SERVICE);
                 cmb.setText(myUid.getText());
                 showShortToast("萌宝UID已经复制到剪切板");
+                break;
+            case R.id.ll_home_self_drafts:
+                MyDraftsActivity.skipFromFragment(UserFragment.this, userModel.getUserId());
                 break;
         }
     }
@@ -406,5 +412,7 @@ public class UserFragment extends BaseFragment {
             }
         }));
     }
+
+    
 
 }

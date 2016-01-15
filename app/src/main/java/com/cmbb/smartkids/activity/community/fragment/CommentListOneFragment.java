@@ -161,7 +161,7 @@ public class CommentListOneFragment extends CommunityBaseFragment {
         @Override
         public void onItemClick(View v, int position, Object object) {
             final ArrayList<Integer> more = (ArrayList<Integer>) object;
-            switch (more.get(1)) {
+            switch (more.get(1).intValue()) {
                 case 1:// delete
                     if (builder != null)
                         builder.dismiss();
@@ -308,7 +308,9 @@ public class CommentListOneFragment extends CommunityBaseFragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
-        super.onDestroy();
+        if(builder != null)
+            builder.setDialogDismiss();
+//        super.onDestroy();
     }
 
 

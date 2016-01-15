@@ -34,6 +34,7 @@ import com.cmbb.smartkids.utils.FrescoTool;
 import com.cmbb.smartkids.utils.ShareUtils;
 import com.cmbb.smartkids.utils.TDevice;
 import com.cmbb.smartkids.utils.Tools;
+import com.cmbb.smartkids.utils.log.Log;
 import com.cmbb.smartkids.widget.wheelview.CustomDialogBuilder;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.umeng.socialize.sso.UMSsoHandler;
@@ -248,10 +249,10 @@ public class ActiveDetailActivity extends BaseActivity {
         }
         tvTime.setText(time01);
         String startTime = realData.getSurplusTime();
-        SpannableString ss = new SpannableString(startTime);
         if (TextUtils.isEmpty(startTime)) {
             tvEndTime.setVisibility(View.GONE);
         } else {
+            SpannableString ss = new SpannableString(startTime);
             tvEndTime.setVisibility(View.VISIBLE);
             for (int i = 0; i < ss.length(); i++) {
                 char temp = startTime.charAt(i);

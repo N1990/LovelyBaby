@@ -124,6 +124,7 @@ public class MySetActivity extends BaseActivity implements LocationSelectorDialo
         findViewById(R.id.rl_my_set_user_introduce).setOnClickListener(this);
         findViewById(R.id.rl_my_set_user_address).setOnClickListener(this);
         findViewById(R.id.tv_my_set_user_change).setOnClickListener(this);
+        findViewById(R.id.rl_my_set_user_delivery_address).setOnClickListener(this);
     }
 
     private void showAlertDialog(int flag, String tip, View view) {  // 0 改性别 1 改昵称 2 改手机号 3 绑定账号
@@ -339,6 +340,9 @@ public class MySetActivity extends BaseActivity implements LocationSelectorDialo
                         showShortToast(message);
                     }
                 }));
+                break;
+            case R.id.rl_my_set_user_delivery_address:
+                DeliveryAddressListActivity.skipFromActivity(MySetActivity.this, "manager");
                 break;
             case R.id.tv_my_set_user_change:
                 //  注销推送账号

@@ -60,6 +60,7 @@ public class CommunityHeaderHolder extends RecyclerView.ViewHolder implements Vi
 
 
         ivHeader.setTag(data.getData().getUserBasicInfo().getUserId());
+        tvName.setTag(data.getData().getUserBasicInfo().getUserId());
         ivHeader.setOnClickListener(this);
         tvName.setOnClickListener(this);
         root.setOnClickListener(this);

@@ -105,6 +105,12 @@ public class Constants {
         public static final String DELETE_BABY_DIARY = "smart/babydiary/deleteDiary";// 删除宝宝日记
         public static final String BABY_DIARY_DETAIL = "smart/babydiary/getDiaryDetial";// 宝宝日记详情
         public static final String PUBLISH_BABY_DIARY = "smart/babydiary/publish";// 发布宝宝日记
+        public static final String SEARCH_SERVICE_REQUEST = "smart/services/search";// 搜索服务
+        public static final String DELIVERY_ADDRESS_LIST = "smart/userAddress/getPage";// 收货地址列表
+        public static final String MODIFY_DELIVERY_ADDRESS = "smart/userAddress/save";// 新增/修改收货地址
+        public static final String GET_DELIVERY_DETAIL = "smart/userAddress/get";// 获取收货地址
+        public static final String SET_DEFAULT_DELIVERY_ADDRESS = "smart/userAddress/setDefault";// 设置默认地址
+        public static final String DELETE_DELIVERY_ADDRESS = "smart/userAddress/delete";// 删除地址
     }
 
     public static final class Community {

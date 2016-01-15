@@ -22,6 +22,7 @@ import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.activity.community.CommunityDetailActivity;
 import com.cmbb.smartkids.activity.community.model.TopicListModel;
 import com.cmbb.smartkids.activity.community.model.TopicTypeModel;
+import com.cmbb.smartkids.activity.serve.ActiveDetailActivity;
 import com.cmbb.smartkids.activity.user.UserCenterActivity;
 import com.cmbb.smartkids.base.BaseActivity;
 import com.cmbb.smartkids.base.BaseApplication;
@@ -47,11 +48,13 @@ public class SearchActivity extends BaseActivity {
     private LoadMoreRecyclerView lmrlSearch;
     private SearchTopicAdapter adapter_topic;
     private SearchUserAdapter adapter_user;
+    private SearchServiceAdapter adapter_service;
     private SearchHotAdapter adapter_hot;
     private String search; //搜索文本
 
     private int pager_topic = 0;
     private int pager_user = 0;
+    private int pager_service = 0;
     private int pagerSize = 10;
 
     private int type = 0;//
@@ -83,6 +86,8 @@ public class SearchActivity extends BaseActivity {
         adapter_topic.setData(new ArrayList<TopicListModel.DataEntity.RowsEntity>());
         adapter_user = new SearchUserAdapter();
         adapter_user.setData(new ArrayList<SearchUserModel.DataEntity.RowsEntity>());
+        adapter_service = new SearchServiceAdapter();
+        adapter_service.setData(new ArrayList<SearchServiceModel.DataEntity.RowsEntity>());
         adapter_hot = new SearchHotAdapter();
         handleHotRequest();
     }
@@ -95,6 +100,7 @@ public class SearchActivity extends BaseActivity {
         adapter_hot.setOnItemListener(onHotItemListener);
         adapter_topic.setOnItemListener(onTopicItemListener);
         adapter_user.setOnItemListener(onUserItemListener);
+        adapter_service.setOnItemClick(onServiceItemListener);
         etSearch.setOnEditorActionListener(onEditorListener);
     }
 
@@ -146,6 +152,20 @@ public class SearchActivity extends BaseActivity {
         }
     };
 
+    /**
+     * 服务adapter监听事件
+     */
+    private CustomListener.ItemClickListener onServiceItemListener = new CustomListener.ItemClickListener() {
+        @Override
+        public void onItemClick(View v, int position, Object object) {
+            SearchServiceModel.DataEntity.RowsEntity item = (SearchServiceModel.DataEntity.RowsEntity) object;
+            int id = item.getId();
+            Intent intent = new Intent(SearchActivity.this, ActiveDetailActivity.class);
+            intent.putExtra("serviceId", id);
+            startActivity(intent);
+        }
+    };
+
 
     private TextView.OnEditorActionListener onEditorListener = new TextView.OnEditorActionListener() {
         @Override
@@ -169,11 +189,16 @@ public class SearchActivity extends BaseActivity {
                     adapter_topic.clearData();
                     lmrlSearch.setAdapter(adapter_topic);
                     handleSearchTopic(pager_topic, pagerSize, search);
-                } else {
+                } else if(type == 1){
                     pager_user = 0;
-                    lmrlSearch.setAdapter(adapter_user);
                     adapter_user.clearData();
+                    lmrlSearch.setAdapter(adapter_user);
                     handelSearchUserRequest(pager_user, pagerSize, search);
+                }else if(type == 2){
+                    pager_service = 0;
+                    adapter_service.clearData();
+                    lmrlSearch.setAdapter(adapter_service);
+                    handleSearchServiceRequest(pager_service, pagerSize, search);
                 }
                 showShortToast("开始搜索...");
                 return true;
@@ -204,11 +229,16 @@ public class SearchActivity extends BaseActivity {
                     adapter_topic.clearData();
                     lmrlSearch.setAdapter(adapter_topic);
                     handleSearchTopic(pager_topic, pagerSize, search);
-                } else {
+                } else if(type == 1){
                     pager_user = 0;
-                    lmrlSearch.setAdapter(adapter_user);
                     adapter_user.clearData();
+                    lmrlSearch.setAdapter(adapter_user);
                     handelSearchUserRequest(pager_user, pagerSize, search);
+                }else if(type == 2){
+                    pager_service = 0;
+                    adapter_service.clearData();
+                    lmrlSearch.setAdapter(adapter_service);
+                    handleSearchServiceRequest(pager_service, pagerSize, search);
                 }
                 showShortToast("开始搜索...");
                 break;
@@ -226,8 +256,10 @@ public class SearchActivity extends BaseActivity {
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
             Log.e(TAG, "i come here" + position);
+            etSearch.setText("");
             adapter_topic.clearData();
             adapter_user.clearData();
+            adapter_service.clearData();
             adapter_hot.clearData();
             switch (position) {
                 case 0:
@@ -237,7 +269,9 @@ public class SearchActivity extends BaseActivity {
                 case 1:
                     type = 1;
                     break;
-
+                case 2 :
+                    type = 2;
+                    break;
             }
         }
 
@@ -291,6 +325,11 @@ public class SearchActivity extends BaseActivity {
                     adapter_user.clearData();
                     handelSearchUserRequest(pager_user, pagerSize, search);
                     break;
+                case 2 :
+                    pager_service = 0;
+                    adapter_service.clearData();
+                    handleSearchServiceRequest(pager_service, pagerSize, search);
+                    break;
             }
 
         }
@@ -305,6 +344,10 @@ public class SearchActivity extends BaseActivity {
                 case 1:
                     pager_user++;
                     handelSearchUserRequest(pager_user, pagerSize, search);
+                    break;
+                case 2 :
+                    pager_service++;
+                    handleSearchServiceRequest(pager_service, pagerSize, search);
                     break;
             }
         }
@@ -403,6 +446,42 @@ public class SearchActivity extends BaseActivity {
                     adapter_user.addData(result.getData().getRows(), lmrlSearch);
                 }
                 if (adapter_user.getDataSize() == 0)
+                    lmrlSearch.setNoContent();
+                showWaitDialog(msg);
+            }
+
+            @Override
+            public void onErrorListener(String message) {
+                hideWaitDialog();
+                lmrlSearch.setPullLoadMoreCompleted();
+                showShortToast(message);
+            }
+        }));
+    }
+
+    /**
+     * 搜索服务
+     * @param pager
+     * @param pagerSize
+     * @param text
+     */
+    private void handleSearchServiceRequest(int pager, int pagerSize, String text){
+        HashMap<String, String> params = new HashMap<>();
+        params.put("pageNo", String.valueOf(pager));
+        params.put("numberOfPerPage", String.valueOf(pagerSize));
+        params.put("contents", text);
+        NetRequest.postRequest(Constants.ServiceInfo.SEARCH_SERVICE_REQUEST, BaseApplication.token, params, SearchServiceModel.class, new NetRequest.NetHandler(this, new NetRequest.NetResponseListener() {
+
+            @Override
+            public void onSuccessListener(Object object, String msg) {
+                hideWaitDialog();
+                lmrlSearch.setPullLoadMoreCompleted();
+                SearchServiceModel result = (SearchServiceModel) object;
+                if (result != null && result.getData() != null && result.getData().getRows() != null && result.getData().getRows().size() > 0) {
+                    lmrlSearch.setHasContent();
+                    adapter_service.addData(result.getData().getRows(), lmrlSearch);
+                }
+                if (adapter_service.getDataSize() == 0)
                     lmrlSearch.setNoContent();
                 showWaitDialog(msg);
             }

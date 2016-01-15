@@ -25,5 +25,6 @@
     <string-array name="spinner_search" translatable="false">
         <item>话题</item>
         <item>用户</item>
+        <item>服务</item>
     </string-array>
 </resources>

@@ -35,6 +35,7 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -46,7 +47,7 @@ public class AddBabyActivity extends BaseActivity implements DateTimeSelectorDia
     private SimpleDraweeView sdvHeader;
     private TextView tvName, tvBirth, tvSex, tvSave;
     private CustomDialogBuilder builder = null;
-    private int male = 0; // 1 男 2 女
+    private int male = 1; // 1 男 2 女
     private DateTimeSelectorDialogBuilder timeBuilder;
     private ArrayList<String> tempUrls; // 宝宝头像参数
     private String url, width, height;

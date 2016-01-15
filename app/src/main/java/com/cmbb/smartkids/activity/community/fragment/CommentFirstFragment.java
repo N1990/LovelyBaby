@@ -350,7 +350,9 @@ public class CommentFirstFragment extends CommunityBaseFragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
-        super.onDestroy();
+        if(builder != null)
+            builder.setDialogDismiss();
+//        super.onDestroy();
     }
 
 

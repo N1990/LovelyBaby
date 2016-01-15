@@ -104,5 +104,100 @@ public class DBContent implements BaseColumns {
 
     }
 
+    public static class DBTopic {
+        public static final String TABLE_NAME = "topic";
+        public static final String TOPIC_USER_ID = "topic_user_id";
+        public static final String TOPIC_TITLE = "topic_title";
+        public static final String TOPIC_SORT = "topic_sort";
+        public static final String TOPIC_SORT_VALUE = "topic_sort_value";
+        public static final String TOPIC_CONTENT = "topic_content";
+        public static final String TOPIC_TIME = "topic_time";
+        public static final String TOPIC_TELETEXTS = "topic_teletext";
+//        public static final String TOPIC_TEXT = "topic_text";
+
+//        public static final String TOPIC_IMG_2 = "topic_img2";
+//        public static final String TOPIC_TEXT_2 = "topic_text2";
+//
+//        public static final String TOPIC_IMG_3 = "topic_img3";
+//        public static final String TOPIC_TEXT_3 = "topic_text3";
+//
+//        public static final String TOPIC_IMG_4 = "topic_img4";
+//        public static final String TOPIC_TEXT_4 = "topic_text4";
+//
+//        public static final String TOPIC_IMG_5 = "topic_img5";
+//        public static final String TOPIC_TEXT_5 = "topic_text5";
+//
+//        public static final String TOPIC_IMG_6 = "topic_img6";
+//        public static final String TOPIC_TEXT_6 = "topic_text6";
+//
+//        public static final String TOPIC_IMG_7 = "topic_img7";
+//        public static final String TOPIC_TEXT_7 = "topic_text7";
+//
+//        public static final String TOPIC_IMG_8 = "topic_img8";
+//        public static final String TOPIC_TEXT_8 = "topic_text8";
+//
+//        public static final String TOPIC_IMG_9 = "topic_img9";
+//        public static final String TOPIC_TEXT_9 = "topic_text9";
+//
+//        public static final String TOPIC_IMG_10 = "topic_img10";
+//        public static final String TOPIC_TEXT_10= "topic_text10";
+
+
+
+        public static String SQL = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + "( \n" +
+                _ID + " INTEGER PRIMARY KEY," + "\n" +
+                TOPIC_USER_ID + INTEGER_TYPE + "\n" +
+                TOPIC_TITLE + TEXT_TYPE + "\n" +
+                TOPIC_SORT + TEXT_TYPE + "\n" +
+                TOPIC_SORT_VALUE + TEXT_TYPE + "\n" +
+                TOPIC_CONTENT + TEXT_TYPE + "\n" +
+                TOPIC_TIME + TEXT_TYPE + "\n" +
+
+//                TOPIC_IMG_1 + TEXT_TYPE + "\n" +
+//                TOPIC_TEXT_1 + TEXT_TYPE + "\n" +
+//
+//                TOPIC_IMG_2 + TEXT_TYPE + "\n" +
+//                TOPIC_TEXT_2 + TEXT_TYPE + "\n" +
+//
+//                TOPIC_IMG_3 + TEXT_TYPE + "\n" +
+//                TOPIC_TEXT_3 + TEXT_TYPE + "\n" +
+//
+//                TOPIC_IMG_4 + TEXT_TYPE + "\n" +
+//                TOPIC_TEXT_4 + TEXT_TYPE + "\n" +
+//
+//                TOPIC_IMG_5 + TEXT_TYPE + "\n" +
+//                TOPIC_TEXT_5 + TEXT_TYPE + "\n" +
+//
+//                TOPIC_IMG_6 + TEXT_TYPE + "\n" +
+//                TOPIC_TEXT_6 + TEXT_TYPE + "\n" +
+//
+//                TOPIC_IMG_7 + TEXT_TYPE + "\n" +
+//                TOPIC_TEXT_7 + TEXT_TYPE + "\n" +
+//
+//                TOPIC_IMG_8 + TEXT_TYPE + "\n" +
+//                TOPIC_TEXT_8 + TEXT_TYPE + "\n" +
+//
+//                TOPIC_IMG_9 + TEXT_TYPE + "\n" +
+//                TOPIC_TEXT_9 + TEXT_TYPE + "\n" +
+
+//                TOPIC_TELETEXTS + TEXT_TYPE + "\n" +
+                TOPIC_TELETEXTS + " TEXT " + "\n" +
+                " );";
+        public static final String DELETE_TABLE = "DROP TABLE IF EXISTS TOPIC";
+
+        public static final String AUTHORITY = "com.cmbb.smartkids.topiclist";
+
+        public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/" + TABLE_NAME);
+
+        public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd." + AUTHORITY;
+
+        public static final String CONTENT_TYPE_ITEM = "vnd.android.cursor.item/vnd." + AUTHORITY;
+
+        public static final int TOPICS = 1;
+
+        public static final int TOPIC = 2;
+
+    }
+
 
 }

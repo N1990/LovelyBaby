@@ -25,7 +25,7 @@
     <string name="title_activity_suggest" translatable="false">意见反馈</string>
     <string name="title_activity_order_result" translatable="false">订单</string>
     <string name="title_activity_order_detail" translatable="false">订单详情</string>
-    <string name="title_activity_my_set" translatable="false">我的</string>
+    <string name="title_activity_my_set" translatable="false">个人信息</string>
     <string name="title_activity_cancel_order_result" translatable="false">取消订单</string>
     <string name="title_activity_my_order_list" translatable="false">我的订单</string>
     <string name="title_activity_user_center" translatable="false">个人主页</string>
@@ -56,6 +56,8 @@
     <string name="title_activity_baby_name" translatable="false">姓名</string>
     <string name="title_activity_baby_diary_detail" translatable="false">日记详情</string>
     <string name="title_activity_publish_baby_diary" translatable="false">创建日记</string>
+    <string name="title_activity_drafts" translatable="false">草稿箱</string>
+    <string name="title_activity_delivery_address_detail" translatable="false">收货地址详情</string>
 
 
     <!-- menu tip-->

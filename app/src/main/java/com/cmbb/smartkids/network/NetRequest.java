@@ -62,7 +62,7 @@ public class NetRequest {
     private static final MediaType MEDIA_TYPE_PNG = MediaType.parse("image/png");
     private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
     //开发环境
-//    public static final String BASE = "http://192.168.100.64:8081/wine-rest/";
+//    public static final String BASE = "http://192.168.100.94:8081/wine-rest/";
 //    public static String BASE_URL_PIC = "http://192.168.100.174:8081/wine-rest/";
     //生产环境
 //    public static final String BASE = "http://120.26.88.135:8090/wine-rest/";
@@ -132,7 +132,7 @@ public class NetRequest {
                 } else {
                     RequestBody body = RequestBody.create(JSON, json);
                     Log.e("ServerUrl", "BASE_URL = " + BASE_URL);
-                    Request request = new Request.Builder().url(BASE_URL).post(body).tag(url).build();
+                    Request request = new Request.Builder().url(BASE_URL).post(body).tag(BASE_URL).build();
                     httpClient.newCall(request).enqueue(new Callback() {
                         @Override
                         public void onFailure(Request request, IOException e) {
@@ -252,7 +252,7 @@ public class NetRequest {
                     RequestBody body = RequestBody.create(JSON, json);
                     Log.e("ServerUrl", "BASE_URL = " + BASE_URL);
 
-                    Request request = new Request.Builder().url(BASE_URL).post(body).tag(url).build();
+                    Request request = new Request.Builder().url(BASE_URL).post(body).tag(BASE_URL).build();
                     httpClient.newCall(request).enqueue(new Callback() {
                         @Override
                         public void onFailure(Request request, IOException e) {

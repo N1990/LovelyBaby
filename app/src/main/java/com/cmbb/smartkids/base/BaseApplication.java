@@ -133,7 +133,7 @@ public class BaseApplication extends Application {
      * Umeng统计，正式版本置为false
      */
     private void initUmengAnalytics() {
-        MobclickAgent.setDebugMode(true);
+        MobclickAgent.setDebugMode(false);
     }
 
     /**

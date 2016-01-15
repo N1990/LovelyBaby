@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.cmbb.smartkids.activity.user.DeliveryAddressModifyActivity">
+
+    <include layout="@layout/custom_actionbar" />
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white"
+                android:orientation="vertical">
+
+
+              <EditText
+                  android:id="@+id/et_delivery_address_modify_name"
+                  android:layout_width="match_parent"
+                  android:layout_height="48dp"
+                  android:background="@null"
+                  android:paddingLeft="10dp"
+                  android:paddingRight="10dp"
+                  android:singleLine="true"
+                  android:gravity="center_vertical"
+                  android:textColor="@android:color/black"
+                  android:textColorHint="@color/dimgray"
+                  android:hint="收货人姓名"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@android:color/darker_gray"/>
+
+                <EditText
+                    android:id="@+id/et_delivery_address_modify_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@null"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:singleLine="true"
+                    android:gravity="center_vertical"
+                    android:inputType="number"
+                    android:textColor="@android:color/black"
+                    android:textColorHint="@color/dimgray"
+                    android:hint="手机号码"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@android:color/darker_gray"/>
+
+                <EditText
+                    android:id="@+id/et_delivery_address_modify_postcode"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@null"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:singleLine="true"
+                    android:gravity="center_vertical"
+                    android:inputType="number"
+                    android:textColor="@android:color/black"
+                    android:textColorHint="@color/dimgray"
+                    android:hint="邮政编码"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@android:color/darker_gray"/>
+
+                <TextView
+                    android:id="@+id/et_delivery_address_modify_local"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:drawableRight="@mipmap/btn_right_anchor_bg"
+                    android:background="@null"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:textSize="@dimen/txt_large"
+                    android:gravity="center_vertical"
+                    android:textColor="@android:color/black"
+                    android:textColorHint="@color/dimgray"
+                    android:hint="省、市、区"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@android:color/darker_gray"/>
+
+                <EditText
+                    android:id="@+id/et_delivery_address_modify_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="100dp"
+                    android:background="@null"
+                    android:padding="10dp"
+                    android:gravity="left"
+                    android:textColor="@android:color/black"
+                    android:textColorHint="@color/dimgray"
+                    android:hint="详细地址"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_delivery_address_detail_delete"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/btn_login_selector"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/txt_middle"
+                android:text="保 存"/>
+
+
+
+
+
+        </LinearLayout>
+
+
+
+
+
+
+    </android.support.v4.widget.NestedScrollView>
+
+
+
+
+</LinearLayout>

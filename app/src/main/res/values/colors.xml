@@ -7,6 +7,7 @@
     <color name="serviceLocationMask">#3f000000</color>
     <color name="windowBackgroundColor">#fafafa</color>
     <color name="placeholder">#FEE8ED</color>
+    <color name="orange">#FF9800</color>
 
     <!--字体颜色-->
     <!--暗灰色 -->

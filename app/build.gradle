@@ -4,6 +4,7 @@ android {
     compileSdkVersion 23
     buildToolsVersion '23.0.2'
 
+
     defaultConfig {
         applicationId "com.cmbb.smartkids"
         minSdkVersion 14
@@ -88,8 +89,8 @@ android {
 
     signingConfigs {
         debug {
-//            storeFile file("/Users/javon/Documents/mengbao/smartkids")
-            storeFile file("/Users/niesen918/AndroidStudioProjects/key/smartkids")
+            storeFile file("/Users/javon/Documents/mengbao/smartkids")
+//            storeFile file("/Users/niesen918/AndroidStudioProjects/key/smartkids")
             storePassword "ns101288"
             keyAlias "smartkids"
             keyPassword "ns101288"
@@ -128,4 +129,5 @@ dependencies {
     compile project(':LoadMoreRecyclerView')
     compile project(':OneSDK')
     compile project(':PRTRecyclerView')
+    compile 'com.google.android.gms:play-services-appindexing:8.1.0'
 }

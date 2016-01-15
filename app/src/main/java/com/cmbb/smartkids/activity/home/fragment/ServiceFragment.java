@@ -18,6 +18,7 @@ import com.cmbb.smartkids.activity.home.adapter.ServiceFraAdapter;
 import com.cmbb.smartkids.activity.home.adapter.ServiceSortAdapter;
 import com.cmbb.smartkids.activity.home.adapter.ServiceStatusAdapter;
 import com.cmbb.smartkids.activity.home.model.ServiceSortModel;
+import com.cmbb.smartkids.activity.search.SearchActivity;
 import com.cmbb.smartkids.activity.serve.ActiveDetailActivity;
 import com.cmbb.smartkids.activity.serve.model.ServiceListModel;
 import com.cmbb.smartkids.base.BaseApplication;
@@ -81,7 +82,9 @@ public class ServiceFragment extends BaseFragment {
             tvTitle.setText("服务");
             ivLeft = (ImageView) v.findViewById(R.id.iv_main_toolbar_left);
             ivRight = (ImageView) v.findViewById(R.id.iv_main_toolbar_right);
-            ivRight.setVisibility(View.GONE);
+            ivRight.setVisibility(View.VISIBLE);
+            ivRight.setImageResource(R.mipmap.btn_search_bg);
+            ivRight.setOnClickListener(this);
             ((AppCompatActivity) getActivity()).setSupportActionBar(v);
             actionbar = ((AppCompatActivity) getActivity()).getSupportActionBar();
             actionbar.setDisplayHomeAsUpEnabled(false);
@@ -168,6 +171,11 @@ public class ServiceFragment extends BaseFragment {
 
             }
         });
+    }
+
+    @Override
+    public void onClick(View v) {
+        startActivity(new Intent(getActivity(), SearchActivity.class));
     }
 
     private CustomListener.ItemClickListener onItemListener = new CustomListener.ItemClickListener() {

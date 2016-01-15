@@ -153,17 +153,18 @@ public class FrescoTool {
         if (TextUtils.isEmpty(url)) {
             Log.e("FresoTool", "url 不能为空");
             return;
+        }else{
+            Uri uri = Uri.parse(url + "@100w_1o.jpeg");
+            ImageRequest request = ImageRequestBuilder
+                    .newBuilderWithSource(uri)
+                    .setProgressiveRenderingEnabled(true)
+                    .build();
+            AbstractDraweeController controller = Fresco.newDraweeControllerBuilder()
+                    .setImageRequest(request)
+                    .setOldController(simpleDraweeView.getController())
+                    .build();
+            simpleDraweeView.setController(controller);
         }
-        Uri uri = Uri.parse(url + "@100w_1o.jpeg");
-        ImageRequest request = ImageRequestBuilder
-                .newBuilderWithSource(uri)
-                .setProgressiveRenderingEnabled(true)
-                .build();
-        AbstractDraweeController controller = Fresco.newDraweeControllerBuilder()
-                .setImageRequest(request)
-                .setOldController(simpleDraweeView.getController())
-                .build();
-        simpleDraweeView.setController(controller);
     }
 
     /**
@@ -197,19 +198,19 @@ public class FrescoTool {
      * @param fileUrl          本地文件
      */
     public static void loadLocalImage(SimpleDraweeView simpleDraweeView, String fileUrl) {
-        Uri uri = null;
-        if (fileUrl.contains(Environment.getExternalStorageDirectory().toString())) {
-            uri = Uri.parse("file://" + fileUrl);
+        if(TextUtils.isEmpty(fileUrl)){
+            return;
+        }else{
+            Uri uri = Uri.parse("file://" + fileUrl);
+            ImageRequest request = ImageRequestBuilder
+                    .newBuilderWithSource(uri)
+                    .setProgressiveRenderingEnabled(true)
+                    .build();
+            AbstractDraweeController controller = Fresco.newDraweeControllerBuilder()
+                    .setImageRequest(request)
+                    .setOldController(simpleDraweeView.getController())
+                    .build();
+            simpleDraweeView.setController(controller);
         }
-        ImageRequest request = ImageRequestBuilder
-                .newBuilderWithSource(uri)
-                .setProgressiveRenderingEnabled(true)
-                .build();
-        AbstractDraweeController controller = Fresco.newDraweeControllerBuilder()
-                .setImageRequest(request)
-                .setOldController(simpleDraweeView.getController())
-        .build();
-        simpleDraweeView.setController(controller);
-
     }
 }

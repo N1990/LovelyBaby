@@ -23,8 +23,8 @@ import java.util.HashMap;
 public class CommunityBaseFragment extends BaseFragment {
 
 
-    public CommunityDetailModel resultDetail;
-    public CommunityReplayModel resultReplay;
+    public static CommunityDetailModel resultDetail;
+    public static CommunityReplayModel resultReplay;
     public CommunityDetailAdapter adapterFirst;
     public CommentAdapter adapterNext;
 
@@ -83,20 +83,4 @@ public class CommunityBaseFragment extends BaseFragment {
         }
     }
 
-    @Override
-    public void onDestroyView() {
-// TODO Auto-generated method stub
-        super.onDestroyView();
-        try {
-            Field childFragmentManager = Fragment.class.getDeclaredField("mChildFragmentManager");
-            childFragmentManager.setAccessible(true);
-            childFragmentManager.set(this, null);
-
-
-        } catch (NoSuchFieldException e) {
-            throw new RuntimeException(e);
-        } catch (IllegalAccessException e) {
-            throw new RuntimeException(e);
-        }
-    }
 }

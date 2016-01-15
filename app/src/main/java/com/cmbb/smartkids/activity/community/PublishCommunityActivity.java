@@ -1,5 +1,6 @@
 package com.cmbb.smartkids.activity.community;
 
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,12 +26,15 @@ import com.cmbb.smartkids.base.BaseActivity;
 import com.cmbb.smartkids.base.BaseApplication;
 import com.cmbb.smartkids.base.Constants;
 import com.cmbb.smartkids.base.CustomListener;
+import com.cmbb.smartkids.db.DBContent;
 import com.cmbb.smartkids.network.NetRequest;
 import com.cmbb.smartkids.photopicker.PhotoPickerActivity;
 import com.cmbb.smartkids.photopicker.PhotoViewActivity;
 import com.cmbb.smartkids.photopicker.utils.PhotoPickerIntent;
 import com.cmbb.smartkids.utils.FullyLinearLayoutManager;
 import com.cmbb.smartkids.utils.SPCache;
+import com.cmbb.smartkids.utils.Tools;
+import com.cmbb.smartkids.utils.Utils;
 import com.cmbb.smartkids.widget.spinner.NiceSpinner;
 import com.cmbb.smartkids.widget.wheelview.CustomDialogBuilder;
 import com.google.gson.Gson;
@@ -79,43 +83,6 @@ public class PublishCommunityActivity extends BaseActivity {
 
     private void initData() {
         handleTopicTypeRequest();
-        // 获取草稿箱内容
-        if (!TextUtils.isEmpty(etTitle.getText().toString().trim())) {
-            SPCache.putString("Publish_Topic_Title", etTitle.getText().toString().trim());
-        }
-
-        if (!TextUtils.isEmpty(etContent.getText().toString())) {
-            SPCache.putString("Publish_Topic_Content", etContent.getText().toString());
-        }
-
-        if (adapter.getData() != null && adapter.getData().size() > 0) {
-            Gson gson = new Gson();
-            String images = gson.toJson(adapter.getData());
-            SPCache.putString("Publish_Topic_Images", images);
-        }
-        String title_cache = SPCache.getString("Publish_Topic_Title", "");
-        String content_cache = SPCache.getString("Publish_Topic_Content", "");
-        String images_cache = SPCache.getString("Publish_Topic_Images", "");
-
-        if (!TextUtils.isEmpty(title_cache)) {
-            etTitle.setText(title_cache);
-        }
-        if (!TextUtils.isEmpty(content_cache)) {
-            etContent.setText(content_cache);
-        }
-        if (!TextUtils.isEmpty(images_cache)) {
-            Gson gson = new Gson();
-            ArrayList<ImageModel> imageModels = gson.fromJson(images_cache, new TypeToken<ArrayList<ImageModel>>() {
-            }.getType());
-            if (imageModels != null && imageModels.size() > 0) {
-                etImgDescri.setVisibility(View.VISIBLE);
-                adapter.setData(imageModels);
-                Log.e("content", "content = " + imageModels.get(0).getContent());
-                if (!TextUtils.isEmpty(imageModels.get(0).getContent())) {
-                    etImgDescri.setText(imageModels.get(0).getContent());
-                }
-            }
-        }
     }
 
     private void initView() {
@@ -426,28 +393,42 @@ public class PublishCommunityActivity extends BaseActivity {
                 .setPositiveButton("保存", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        ContentValues values = new ContentValues();
+
+                        values.put(DBContent.DBTopic.TOPIC_USER_ID, Integer.parseInt(SPCache.getString(Constants.USER_ID, "-1")));
 
                         if (!TextUtils.isEmpty(etTitle.getText().toString().trim())) {
-                            SPCache.putString("Publish_Topic_Title", etTitle.getText().toString().trim());
+                            values.put(DBContent.DBTopic.TOPIC_TITLE, etTitle.getText().toString().trim());
                         }
 
                         if (!TextUtils.isEmpty(type_value)) {
-                            SPCache.putString("Publish_Topic_Type", type_value);
+                            values.put(DBContent.DBTopic.TOPIC_SORT_VALUE, type_value);
                         }
 
                         if (!TextUtils.isEmpty(ns.getText())) {
-                            SPCache.putString("Publish_Topic_Type_Name", ns.getText().toString());
+                            values.put(DBContent.DBTopic.TOPIC_SORT, ns.getText().toString());
                         }
 
                         if (!TextUtils.isEmpty(etContent.getText().toString())) {
-                            SPCache.putString("Publish_Topic_Content", etContent.getText().toString());
+                            values.put(DBContent.DBTopic.TOPIC_CONTENT, etContent.getText().toString());
                         }
+
+                        try {
+                            long time = System.currentTimeMillis();
+                            String timeStr = Tools.DateToString(time, "yyyy-MM-dd HH:mm");
+                            values.put(DBContent.DBTopic.TOPIC_TIME, timeStr);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        //=======   continue  =========
+
 
                         if (adapter.getData() != null && adapter.getData().size() > 0) {
                             Gson gson = new Gson();
                             String images = gson.toJson(adapter.getData());
-                            SPCache.putString("Publish_Topic_Images", images);
+                            values.put(DBContent.DBTopic.TOPIC_TELETEXTS, images);
                         }
+                        getContentResolver().insert(DBContent.DBTopic.CONTENT_URI, values);
 
                         if (builder != null)
                             builder.dismiss();
@@ -458,11 +439,6 @@ public class PublishCommunityActivity extends BaseActivity {
                 .setNegativeButton("放弃", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        SPCache.putString("Publish_Topic_Title", "");
-                        SPCache.putString("Publish_Topic_Content", "");
-                        SPCache.putString("Publish_Topic_Images", "");
-                        SPCache.putString("Publish_Topic_Type_Name", "");
-                        SPCache.putString("Publish_Topic_Type", "");
                         finish();
                     }
                 })

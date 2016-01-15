@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/global_padding">
+
+    <TextView
+        android:id="@+id/tv_drafts_title_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/iv_drafts_right_achor"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:textColor="@android:color/black"
+        android:text="移山倒海速回答是否受到核辐射的废风点火"
+        />
+
+    <TextView
+        android:id="@+id/tv_drafts_time_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/half_global_padding"
+        android:layout_below="@+id/tv_drafts_title_item"
+        android:gravity="center_vertical"
+        android:textColor="@color/dimgray"
+        android:drawablePadding="@dimen/half_global_padding"
+        android:drawableLeft="@mipmap/service_detail_time_bg"
+        android:text="2015-1-19"/>
+
+
+
+    <ImageView
+        android:id="@+id/iv_drafts_right_achor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:src="@mipmap/btn_right_anchor_bg"/>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@android:color/darker_gray"/>
+
+</LinearLayout>

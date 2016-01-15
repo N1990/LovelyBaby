@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cmbb.smartkids.R;
+import com.cmbb.smartkids.network.NetRequest;
 import com.cmbb.smartkids.utils.ExitBroadcast;
 import com.cmbb.smartkids.utils.TDevice;
 import com.cmbb.smartkids.utils.log.Log;
@@ -216,11 +217,12 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     }
 
     protected void cancelRequest() {
+        NetRequest.httpClient.cancel(NetRequest.BASE_URL);
         finish();
     }
 
     public boolean isWaitShow() {
-        if (dialog.isShowing()) {
+        if (dialog != null && dialog.isShowing()) {
             return true;
         } else {
             return false;

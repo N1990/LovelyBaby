@@ -19,6 +19,7 @@ import com.cmbb.smartkids.activity.order.model.RefundModel;
 import com.cmbb.smartkids.activity.serve.ActiveDetailActivity;
 import com.cmbb.smartkids.activity.serve.model.ServiceOrderModel;
 import com.cmbb.smartkids.activity.user.DeliveryAddressListActivity;
+import com.cmbb.smartkids.activity.user.model.DeliveryAddressListModel;
 import com.cmbb.smartkids.base.BaseActivity;
 import com.cmbb.smartkids.base.BaseApplication;
 import com.cmbb.smartkids.base.Constants;
@@ -39,16 +40,17 @@ public class OrderDetailActivity extends BaseActivity {
     private final int ORDER_RESULT = 10001;
     private final int HANDLER_ORDER_REQUEST = 11116;
     private final int MODIFY_ORDER_PHONE = 11119;
+    private final int MODIFY_ORDER_DELIVERY_ADDRESS = 11117;
     private TextView tvTitle, tvCity, tvPrice, tvTime, tvName, tvPhone, tvNumber,
-            tvActiveTime, tvActiveLocal, tvActivePrice, tvStatus, tvHandle, tvGoHome;
+            tvActiveTime, tvActiveLocal, tvActivePrice, tvStatus, tvHandle, tvGoHome, tvDeliveryAddress;
     private ImageView ivModifyPhone, ivChooseDelivery;
     private SimpleDraweeView ivBg;
-    private RelativeLayout rlStatus, rlNumber;
+    private RelativeLayout rlStatus, rlNumber, rlDeliveryAddress;
     private View vNumberDivider;
     //    private CollapsingToolbarLayout ctl;
     private boolean flag;
     private ServiceOrderModel.DataEntity data;
-    private String serviceTitle, serviceCity, serviceTime, serviceAddress, serviceImg, serviceWidth, serviceHeight;
+//    private String serviceTitle, serviceCity, serviceTime, serviceAddress, serviceImg, serviceWidth, serviceHeight;
     private String orderCode, phone;
     private CustomDialogBuilder builder;
     boolean orderResult;
@@ -89,27 +91,29 @@ public class OrderDetailActivity extends BaseActivity {
         tvGoHome = (TextView) findViewById(R.id.tv_order_detail_gohome);
         ivModifyPhone = (ImageView) findViewById(R.id.iv_order_detail_modify_phone);
         ivChooseDelivery = (ImageView) findViewById(R.id.iv_order_detail_delivery_address);
+        tvDeliveryAddress = (TextView) findViewById(R.id.tv_order_detail_delivery_address);
+        rlDeliveryAddress = (RelativeLayout) findViewById(R.id.rl_order_detail_delivery_address);
     }
 
     private void initData() {
         Bundle bundle = null;
         if (getIntent() != null && (bundle = getIntent().getExtras()) != null) {
             data = bundle.getParcelable("orderDetail");
-            serviceTitle = bundle.getString("serviceTitle");
-            serviceCity = bundle.getString("serviceCity");
-            serviceTime = bundle.getString("serviceTime");
-            serviceAddress = bundle.getString("serviceAddress");
-            serviceImg = bundle.getString("serviceImg");
-            serviceWidth = bundle.getString("serviceWidth");
-            serviceHeight = bundle.getString("serviceHeight");
             flag = bundle.getBoolean("flag", false);
-            orderCode = bundle.getString("orderCode");
+//            serviceTitle = bundle.getString("serviceTitle");
+//            serviceCity = bundle.getString("serviceCity");
+//            serviceTime = bundle.getString("serviceTime");
+//            serviceAddress = bundle.getString("serviceAddress");
+//            serviceImg = bundle.getString("serviceImg");
+//            serviceWidth = bundle.getString("serviceWidth");
+//            serviceHeight = bundle.getString("serviceHeight");
+//            orderCode = bundle.getString("orderCode");
         }
-        if (serviceTitle == null)
-            Log.e(TAG, "service data is null");
+//        if (serviceTitle == null)
+//            Log.e(TAG, "service data is null");
         if (data == null)
             Log.e(TAG, "data is null");
-        if (data != null && serviceTitle != null) {
+        if (data != null) {
             orderCode = data.getOrderCode();
             reflushView();
         } else if (!TextUtils.isEmpty(orderCode)) {
@@ -156,7 +160,7 @@ public class OrderDetailActivity extends BaseActivity {
                     orderCode = ((ServiceOrderModel.DataEntity) object).getOrderCode();
                     String priceStr = ((ServiceOrderModel.DataEntity) object).getPrice();
                     price = Double.valueOf(priceStr);
-                    orderTitle = serviceTitle;
+                    orderTitle = ((ServiceOrderModel.DataEntity) object).getServiceInfo().getTitle();
                 }
                 handleBottomCase(orderTitle, status, orderCode, price);
             }
@@ -174,9 +178,8 @@ public class OrderDetailActivity extends BaseActivity {
             intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
             startActivity(intent);
             finish();
-        }else if(id == R.id.iv_order_detail_delivery_address){
-            showShortToast("选择配送地址");
-//            DeliveryAddressListActivity.skipFromActivity(OrderDetailActivity.this, "check");
+        }else if(id == R.id.iv_order_detail_delivery_address) {
+            DeliveryAddressListActivity.skipFromActivity(OrderDetailActivity.this, MODIFY_ORDER_DELIVERY_ADDRESS);
         }
     }
 
@@ -287,6 +290,10 @@ public class OrderDetailActivity extends BaseActivity {
         } else if (requestCode == MODIFY_ORDER_PHONE && resultCode == RESULT_OK) {
             phone = data.getStringExtra("phone");
             tvPhone.setText(phone);
+        } else if(requestCode == MODIFY_ORDER_DELIVERY_ADDRESS && resultCode == RESULT_OK){
+            DeliveryAddressListModel.DataEntity.RowsEntity local = data.getParcelableExtra("delivery_address");
+            if(local != null)
+                tvDeliveryAddress.setText(local.getProvinceText() + local.getCityText() + local.getDistrict() + local.getAddress());
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
@@ -298,15 +305,22 @@ public class OrderDetailActivity extends BaseActivity {
     private void reflushView() {
         findViewById(R.id.cv_order_detail_content).setVisibility(View.VISIBLE);
         findViewById(R.id.ll_empty_data).setVisibility(View.GONE);
-        FrescoTool.loadImage(ivBg, serviceImg, serviceWidth, serviceHeight);
-        tvTitle.setText(serviceTitle);
-        if (TextUtils.isEmpty(serviceCity))
+//        FrescoTool.loadImage(ivBg, serviceImg, serviceWidth, serviceHeight);
+        FrescoTool.loadImage(ivBg, data.getServiceInfo().getServicesImg(), data.getServiceInfo().getImgWidth(), data.getServiceInfo().getImgHeight());
+//        tvTitle.setText(serviceTitle);
+        tvTitle.setText(data.getServiceInfo().getTitle());
+//        if (TextUtils.isEmpty(serviceCity))
+//            tvCity.setVisibility(View.GONE);
+//        tvCity.setText(serviceCity);
+
+        if (TextUtils.isEmpty(data.getServiceInfo().getCityText()))
             tvCity.setVisibility(View.GONE);
-        tvCity.setText(serviceCity);
+        tvCity.setText(data.getServiceInfo().getCityText());
         tvPrice.setText(Double.valueOf(data.getServicePrice()) == 0 ? "免费" : "￥" + data.getServicePrice());
         try {
             tvTime.setText( Tools.DataToString(data.getOrderDate(), "yyyy.MM.dd HH:mm"));
-            tvActiveTime.setText(Tools.DataToString(serviceTime, "yyyy.MM.dd HH:mm"));
+//            tvActiveTime.setText(Tools.DataToString(serviceTime, "yyyy.MM.dd HH:mm"));
+            tvActiveTime.setText(Tools.DataToString(data.getServiceInfo().getStartTime(), "yyyy.MM.dd HH:mm"));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -317,7 +331,14 @@ public class OrderDetailActivity extends BaseActivity {
         } else {
             tvPhone.setText(phone);
         }
-        tvActiveLocal.setText(serviceAddress);
+//        tvActiveLocal.setText(serviceAddress);
+        tvActiveLocal.setText(data.getServiceInfo().getAddress());
+        if(data.getServiceInfo().getType() == 205){
+            rlDeliveryAddress.setVisibility(View.VISIBLE);
+            tvDeliveryAddress.setText(data.getAddress());
+        }else{
+            rlDeliveryAddress.setVisibility(View.GONE);
+        }
         tvActivePrice.setText(data.getPrice() == null || Double.valueOf(data.getPrice()) == 0 ? "￥" + "0.00" : "￥" + data.getPrice());
         if (flag) {
             rlStatus.setVisibility(View.GONE);
@@ -369,6 +390,12 @@ public class OrderDetailActivity extends BaseActivity {
             tvPhone.setText(phone);
         }
         tvActiveLocal.setText(sData.getAddress());
+        if(data.getServiceInfo() != null && data.getServiceInfo().getType() == 205){
+            rlDeliveryAddress.setVisibility(View.VISIBLE);
+            tvDeliveryAddress.setText(data.getAddress());
+        }else {
+            rlDeliveryAddress.setVisibility(View.GONE);
+        }
         tvActivePrice.setText(Double.valueOf(data.getPrice()) == 0 ? "￥" + "0.00" : "￥" + data.getPrice());
         if (orderResult) {
             OrderStatus status = OrderStatus.getStatusByValue(data.getStatus());

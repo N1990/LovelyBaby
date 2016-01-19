@@ -57,7 +57,6 @@ public class DeliveryAddressDetailActivity extends BaseActivity {
         initView();
         addListener();
         if(getIntent() != null){
-            nvs.setVisibility(View.VISIBLE);
             id = getIntent().getIntExtra("address_id",  -1);
             handleDeliveryAddressDetailRequest();
         }else{
@@ -170,12 +169,13 @@ public class DeliveryAddressDetailActivity extends BaseActivity {
         showWaitDialog();
         Map<String, String> param = new HashMap<String, String>();
         param.put("id", String.valueOf(id));
-        NetRequest.postRequest(Constants.ServiceInfo.DELIVERY_ADDRESS_LIST, BaseApplication.token, param, DeliveryAddressDetailModel.class, new NetRequest.NetHandler(this, new NetRequest.NetResponseListener() {
+        NetRequest.postRequest(Constants.ServiceInfo.GET_DELIVERY_DETAIL, BaseApplication.token, param, DeliveryAddressDetailModel.class, new NetRequest.NetHandler(this, new NetRequest.NetResponseListener() {
             @Override
             public void onSuccessListener(Object object, String msg) {
                 hideWaitDialog();
                 DeliveryAddressDetailModel data = (DeliveryAddressDetailModel) object;
                 if (data != null && data.getData() != null) {
+                    nvs.setVisibility(View.VISIBLE);
                     dataEntity = data.getData();
                     initData();
                 }

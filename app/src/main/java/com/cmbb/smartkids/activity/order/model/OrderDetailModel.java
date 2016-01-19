@@ -13,18 +13,38 @@ public class OrderDetailModel implements Parcelable {
 
 
     /**
-     * status : 1
-     * data : {"orderId":null,"userId":9,"orderCode":"8314430613250874470","orderDate":"2015-09-24 10:23:27","servicePrice":0,"phone":"18221365268","userNike":"666","status":2,"isGold":0,"goldCount":null,"discountPrice":null,"price":0,"payment":null,"isInvoice":0,"invoiceTitle":null,"serviceInfo":{"id":14,"title":"萌宝驾到14！","startTime":"2015-09-22 00:00:00","endTime":"2015-11-30 00:00:00","applyStartTime":"2015-08-01 00:00:00","applyEndTime":"2015-09-10 00:00:00","peoples":32,"realityPeoples":10,"province":120000,"provinceText":null,"city":120100,"cityText":null,"district":120101,"districtText":null,"address":"上海市杨浦区飞虹路568弄13号","price":0,"type":null,"content":"减肥索科洛夫结束了发动机是狂风巨浪的数据分类考试的，附近的索科洛夫经历多少","servicePhone":"13818155072","status":0,"isRecommoned":1,"servicesImg":"http://fuck.image.alimmdn.com/2015-9-18/image_2a3320c26e70426cb07a5afc3fe9bf3c","imgWidth":600,"imgHeight":400,"sortNum":null,"isCollect":null,"isReserve":null,"userInfoList":null,"serviceImgList":null}}
+     * serviceId : 278
+     * orderId : 32
+     * userId : 104312
+     * orderCode : 002786584177090005
+     * orderDate : 2015-12-09 18:53:38
+     * servicePrice : 0.01
+     * phone : 18221365268
+     * userNike : javon
+     * status : 7
+     * isGold : 1
+     * goldCount : 12
+     * discountPrice :
+     * price : 0.01
+     * payment : 1
+     * payDate :
+     * isInvoice : 0
+     * invoiceTitle :
+     * serviceInfo : {"id":278,"title":"新业务测试1","startTime":"2015-12-10 11:12:00","endTime":"2015-12-10 11:12:00","applyStartTime":"2015-12-08 18:50:00","applyEndTime":"2015-12-10 11:12:00","peoples":122,"timeLeft":"","collectCount":12,"realityPeoples":2,"province":110000,"provinceText":"北京","city":110100,"cityText":"北京市","district":110102,"districtText":"西城区","address":"11111111","price":"0.01","type":202,"content":"xxxxxx","servicePhone":"121212","status":3,"isRecommoned":0,"servicesImg":"http://smart.image.alimmdn.com/system/image/2015-12-09/servicesImgFile_ZjQwMmY3ZjQtZjQ1ZC00YzRhLThmMWYtZGUyYzU1MGNkNjJj","imgWidth":"1024","imgHeight":"768","sortNum":0,"browseNumber":17,"isCollect":1,"colletCount":12,"isReserve":12,"surplusTime":"","userInfoList":"","serviceImgList":"","eventList":""}
+     * addressId : 1
+     * receiveName :
+     * receivePhone :
+     * postCode :
+     * address :
+     */
+
+    private DataEntity data;
+    /**
+     * data : {"serviceId":278,"orderId":32,"userId":104312,"orderCode":"002786584177090005","orderDate":"2015-12-09 18:53:38","servicePrice":"0.01","phone":"18221365268","userNike":"javon","status":7,"isGold":1,"goldCount":12,"discountPrice":"","price":"0.01","payment":1,"payDate":"","isInvoice":0,"invoiceTitle":"","serviceInfo":{"id":278,"title":"新业务测试1","startTime":"2015-12-10 11:12:00","endTime":"2015-12-10 11:12:00","applyStartTime":"2015-12-08 18:50:00","applyEndTime":"2015-12-10 11:12:00","peoples":122,"timeLeft":"","collectCount":12,"realityPeoples":2,"province":110000,"provinceText":"北京","city":110100,"cityText":"北京市","district":110102,"districtText":"西城区","address":"11111111","price":"0.01","type":202,"content":"xxxxxx","servicePhone":"121212","status":3,"isRecommoned":0,"servicesImg":"http://smart.image.alimmdn.com/system/image/2015-12-09/servicesImgFile_ZjQwMmY3ZjQtZjQ1ZC00YzRhLThmMWYtZGUyYzU1MGNkNjJj","imgWidth":"1024","imgHeight":"768","sortNum":0,"browseNumber":17,"isCollect":1,"colletCount":12,"isReserve":12,"surplusTime":"","userInfoList":"","serviceImgList":"","eventList":""},"addressId":1,"receiveName":"","receivePhone":"","postCode":"","address":""}
      * msg : 数据加载成功
      */
 
-    private int status;
-    private DataEntity data;
     private String msg;
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
 
     public void setData(DataEntity data) {
         this.data = data;
@@ -32,10 +52,6 @@ public class OrderDetailModel implements Parcelable {
 
     public void setMsg(String msg) {
         this.msg = msg;
-    }
-
-    public int getStatus() {
-        return status;
     }
 
     public DataEntity getData() {
@@ -47,27 +63,8 @@ public class OrderDetailModel implements Parcelable {
     }
 
     public static class DataEntity implements Parcelable {
-        /**
-         * serviceId : 92
-         * orderId : null
-         * userId : 9
-         * orderCode : 8314430613250874470
-         * orderDate : 2015-09-24 10:23:27
-         * servicePrice : 0
-         * phone : 18221365268
-         * userNike : 666
-         * status : 2
-         * isGold : 0
-         * goldCount : null
-         * discountPrice : null
-         * price : 0
-         * payment : null
-         * isInvoice : 0
-         * invoiceTitle : null
-         * serviceInfo : {"id":14,"title":"萌宝驾到14！","startTime":"2015-09-22 00:00:00","endTime":"2015-11-30 00:00:00","applyStartTime":"2015-08-01 00:00:00","applyEndTime":"2015-09-10 00:00:00","peoples":32,"realityPeoples":10,"province":120000,"provinceText":null,"city":120100,"cityText":null,"district":120101,"districtText":null,"address":"上海市杨浦区飞虹路568弄13号","price":0,"type":null,"content":"减肥索科洛夫结束了发动机是狂风巨浪的数据分类考试的，附近的索科洛夫经历多少","servicePhone":"13818155072","status":0,"isRecommoned":1,"servicesImg":"http://fuck.image.alimmdn.com/2015-9-18/image_2a3320c26e70426cb07a5afc3fe9bf3c","imgWidth":600,"imgHeight":400,"sortNum":null,"isCollect":null,"isReserve":null,"userInfoList":null,"serviceImgList":null}
-         */
-        private String serviceId;
-        private String orderId;
+        private int serviceId;
+        private int orderId;
         private int userId;
         private String orderCode;
         private String orderDate;
@@ -76,23 +73,63 @@ public class OrderDetailModel implements Parcelable {
         private String userNike;
         private int status;
         private int isGold;
-        private String goldCount;
+        private int goldCount;
         private String discountPrice;
         private String price;
-        private String payment;
+        private int payment;
+        private String payDate;
         private int isInvoice;
         private String invoiceTitle;
+        /**
+         * id : 278
+         * title : 新业务测试1
+         * startTime : 2015-12-10 11:12:00
+         * endTime : 2015-12-10 11:12:00
+         * applyStartTime : 2015-12-08 18:50:00
+         * applyEndTime : 2015-12-10 11:12:00
+         * peoples : 122
+         * timeLeft :
+         * collectCount : 12
+         * realityPeoples : 2
+         * province : 110000
+         * provinceText : 北京
+         * city : 110100
+         * cityText : 北京市
+         * district : 110102
+         * districtText : 西城区
+         * address : 11111111
+         * price : 0.01
+         * type : 202
+         * content : xxxxxx
+         * servicePhone : 121212
+         * status : 3
+         * isRecommoned : 0
+         * servicesImg : http://smart.image.alimmdn.com/system/image/2015-12-09/servicesImgFile_ZjQwMmY3ZjQtZjQ1ZC00YzRhLThmMWYtZGUyYzU1MGNkNjJj
+         * imgWidth : 1024
+         * imgHeight : 768
+         * sortNum : 0
+         * browseNumber : 17
+         * isCollect : 1
+         * colletCount : 12
+         * isReserve : 12
+         * surplusTime :
+         * userInfoList :
+         * serviceImgList :
+         * eventList :
+         */
+
         private ServiceInfoEntity serviceInfo;
+        private int addressId;
+        private String receiveName;
+        private String receivePhone;
+        private String postCode;
+        private String address;
 
-        public String getServiceId() {
-            return serviceId;
-        }
-
-        public void setServiceId(String serviceId) {
+        public void setServiceId(int serviceId) {
             this.serviceId = serviceId;
         }
 
-        public void setOrderId(String orderId) {
+        public void setOrderId(int orderId) {
             this.orderId = orderId;
         }
 
@@ -128,7 +165,7 @@ public class OrderDetailModel implements Parcelable {
             this.isGold = isGold;
         }
 
-        public void setGoldCount(String goldCount) {
+        public void setGoldCount(int goldCount) {
             this.goldCount = goldCount;
         }
 
@@ -140,8 +177,12 @@ public class OrderDetailModel implements Parcelable {
             this.price = price;
         }
 
-        public void setPayment(String payment) {
+        public void setPayment(int payment) {
             this.payment = payment;
+        }
+
+        public void setPayDate(String payDate) {
+            this.payDate = payDate;
         }
 
         public void setIsInvoice(int isInvoice) {
@@ -156,7 +197,31 @@ public class OrderDetailModel implements Parcelable {
             this.serviceInfo = serviceInfo;
         }
 
-        public String getOrderId() {
+        public void setAddressId(int addressId) {
+            this.addressId = addressId;
+        }
+
+        public void setReceiveName(String receiveName) {
+            this.receiveName = receiveName;
+        }
+
+        public void setReceivePhone(String receivePhone) {
+            this.receivePhone = receivePhone;
+        }
+
+        public void setPostCode(String postCode) {
+            this.postCode = postCode;
+        }
+
+        public void setAddress(String address) {
+            this.address = address;
+        }
+
+        public int getServiceId() {
+            return serviceId;
+        }
+
+        public int getOrderId() {
             return orderId;
         }
 
@@ -192,7 +257,7 @@ public class OrderDetailModel implements Parcelable {
             return isGold;
         }
 
-        public String getGoldCount() {
+        public int getGoldCount() {
             return goldCount;
         }
 
@@ -204,8 +269,12 @@ public class OrderDetailModel implements Parcelable {
             return price;
         }
 
-        public String getPayment() {
+        public int getPayment() {
             return payment;
+        }
+
+        public String getPayDate() {
+            return payDate;
         }
 
         public int getIsInvoice() {
@@ -220,39 +289,27 @@ public class OrderDetailModel implements Parcelable {
             return serviceInfo;
         }
 
-        public static class ServiceInfoEntity implements Parcelable {
-            /**
-             * id : 14
-             * title : 萌宝驾到14！
-             * startTime : 2015-09-22 00:00:00
-             * endTime : 2015-11-30 00:00:00
-             * applyStartTime : 2015-08-01 00:00:00
-             * applyEndTime : 2015-09-10 00:00:00
-             * peoples : 32
-             * realityPeoples : 10
-             * province : 120000
-             * provinceText : null
-             * city : 120100
-             * cityText : null
-             * district : 120101
-             * districtText : null
-             * address : 上海市杨浦区飞虹路568弄13号
-             * price : 0
-             * type : null
-             * content : 减肥索科洛夫结束了发动机是狂风巨浪的数据分类考试的，附近的索科洛夫经历多少
-             * servicePhone : 13818155072
-             * status : 0
-             * isRecommoned : 1
-             * servicesImg : http://fuck.image.alimmdn.com/2015-9-18/image_2a3320c26e70426cb07a5afc3fe9bf3c
-             * imgWidth : 600
-             * imgHeight : 400
-             * sortNum : null
-             * isCollect : null
-             * isReserve : null
-             * userInfoList : null
-             * serviceImgList : null
-             */
+        public int getAddressId() {
+            return addressId;
+        }
 
+        public String getReceiveName() {
+            return receiveName;
+        }
+
+        public String getReceivePhone() {
+            return receivePhone;
+        }
+
+        public String getPostCode() {
+            return postCode;
+        }
+
+        public String getAddress() {
+            return address;
+        }
+
+        public static class ServiceInfoEntity implements Parcelable {
             private int id;
             private String title;
             private String startTime;
@@ -260,6 +317,8 @@ public class OrderDetailModel implements Parcelable {
             private String applyStartTime;
             private String applyEndTime;
             private int peoples;
+            private String timeLeft;
+            private int collectCount;
             private int realityPeoples;
             private int province;
             private String provinceText;
@@ -268,8 +327,8 @@ public class OrderDetailModel implements Parcelable {
             private int district;
             private String districtText;
             private String address;
-            private double price;
-            private String type;
+            private String price;
+            private int type;
             private String content;
             private String servicePhone;
             private int status;
@@ -277,11 +336,15 @@ public class OrderDetailModel implements Parcelable {
             private String servicesImg;
             private String imgWidth;
             private String imgHeight;
-            private String sortNum;
-            private String isCollect;
-            private String isReserve;
+            private int sortNum;
+            private int browseNumber;
+            private int isCollect;
+            private int colletCount;
+            private int isReserve;
+            private String surplusTime;
             private String userInfoList;
             private String serviceImgList;
+            private String eventList;
 
             public void setId(int id) {
                 this.id = id;
@@ -309,6 +372,14 @@ public class OrderDetailModel implements Parcelable {
 
             public void setPeoples(int peoples) {
                 this.peoples = peoples;
+            }
+
+            public void setTimeLeft(String timeLeft) {
+                this.timeLeft = timeLeft;
+            }
+
+            public void setCollectCount(int collectCount) {
+                this.collectCount = collectCount;
             }
 
             public void setRealityPeoples(int realityPeoples) {
@@ -343,11 +414,11 @@ public class OrderDetailModel implements Parcelable {
                 this.address = address;
             }
 
-            public void setPrice(double price) {
+            public void setPrice(String price) {
                 this.price = price;
             }
 
-            public void setType(String type) {
+            public void setType(int type) {
                 this.type = type;
             }
 
@@ -379,16 +450,28 @@ public class OrderDetailModel implements Parcelable {
                 this.imgHeight = imgHeight;
             }
 
-            public void setSortNum(String sortNum) {
+            public void setSortNum(int sortNum) {
                 this.sortNum = sortNum;
             }
 
-            public void setIsCollect(String isCollect) {
+            public void setBrowseNumber(int browseNumber) {
+                this.browseNumber = browseNumber;
+            }
+
+            public void setIsCollect(int isCollect) {
                 this.isCollect = isCollect;
             }
 
-            public void setIsReserve(String isReserve) {
+            public void setColletCount(int colletCount) {
+                this.colletCount = colletCount;
+            }
+
+            public void setIsReserve(int isReserve) {
                 this.isReserve = isReserve;
+            }
+
+            public void setSurplusTime(String surplusTime) {
+                this.surplusTime = surplusTime;
             }
 
             public void setUserInfoList(String userInfoList) {
@@ -397,6 +480,10 @@ public class OrderDetailModel implements Parcelable {
 
             public void setServiceImgList(String serviceImgList) {
                 this.serviceImgList = serviceImgList;
+            }
+
+            public void setEventList(String eventList) {
+                this.eventList = eventList;
             }
 
             public int getId() {
@@ -425,6 +512,14 @@ public class OrderDetailModel implements Parcelable {
 
             public int getPeoples() {
                 return peoples;
+            }
+
+            public String getTimeLeft() {
+                return timeLeft;
+            }
+
+            public int getCollectCount() {
+                return collectCount;
             }
 
             public int getRealityPeoples() {
@@ -459,11 +554,11 @@ public class OrderDetailModel implements Parcelable {
                 return address;
             }
 
-            public double getPrice() {
+            public String getPrice() {
                 return price;
             }
 
-            public String getType() {
+            public int getType() {
                 return type;
             }
 
@@ -495,16 +590,28 @@ public class OrderDetailModel implements Parcelable {
                 return imgHeight;
             }
 
-            public String getSortNum() {
+            public int getSortNum() {
                 return sortNum;
             }
 
-            public String getIsCollect() {
+            public int getBrowseNumber() {
+                return browseNumber;
+            }
+
+            public int getIsCollect() {
                 return isCollect;
             }
 
-            public String getIsReserve() {
+            public int getColletCount() {
+                return colletCount;
+            }
+
+            public int getIsReserve() {
                 return isReserve;
+            }
+
+            public String getSurplusTime() {
+                return surplusTime;
             }
 
             public String getUserInfoList() {
@@ -514,6 +621,11 @@ public class OrderDetailModel implements Parcelable {
             public String getServiceImgList() {
                 return serviceImgList;
             }
+
+            public String getEventList() {
+                return eventList;
+            }
+
 
             @Override
             public int describeContents() {
@@ -529,6 +641,8 @@ public class OrderDetailModel implements Parcelable {
                 dest.writeString(this.applyStartTime);
                 dest.writeString(this.applyEndTime);
                 dest.writeInt(this.peoples);
+                dest.writeString(this.timeLeft);
+                dest.writeInt(this.collectCount);
                 dest.writeInt(this.realityPeoples);
                 dest.writeInt(this.province);
                 dest.writeString(this.provinceText);
@@ -537,8 +651,8 @@ public class OrderDetailModel implements Parcelable {
                 dest.writeInt(this.district);
                 dest.writeString(this.districtText);
                 dest.writeString(this.address);
-                dest.writeDouble(this.price);
-                dest.writeString(this.type);
+                dest.writeString(this.price);
+                dest.writeInt(this.type);
                 dest.writeString(this.content);
                 dest.writeString(this.servicePhone);
                 dest.writeInt(this.status);
@@ -546,11 +660,15 @@ public class OrderDetailModel implements Parcelable {
                 dest.writeString(this.servicesImg);
                 dest.writeString(this.imgWidth);
                 dest.writeString(this.imgHeight);
-                dest.writeString(this.sortNum);
-                dest.writeString(this.isCollect);
-                dest.writeString(this.isReserve);
+                dest.writeInt(this.sortNum);
+                dest.writeInt(this.browseNumber);
+                dest.writeInt(this.isCollect);
+                dest.writeInt(this.colletCount);
+                dest.writeInt(this.isReserve);
+                dest.writeString(this.surplusTime);
                 dest.writeString(this.userInfoList);
                 dest.writeString(this.serviceImgList);
+                dest.writeString(this.eventList);
             }
 
             public ServiceInfoEntity() {
@@ -564,6 +682,8 @@ public class OrderDetailModel implements Parcelable {
                 this.applyStartTime = in.readString();
                 this.applyEndTime = in.readString();
                 this.peoples = in.readInt();
+                this.timeLeft = in.readString();
+                this.collectCount = in.readInt();
                 this.realityPeoples = in.readInt();
                 this.province = in.readInt();
                 this.provinceText = in.readString();
@@ -572,8 +692,8 @@ public class OrderDetailModel implements Parcelable {
                 this.district = in.readInt();
                 this.districtText = in.readString();
                 this.address = in.readString();
-                this.price = in.readDouble();
-                this.type = in.readString();
+                this.price = in.readString();
+                this.type = in.readInt();
                 this.content = in.readString();
                 this.servicePhone = in.readString();
                 this.status = in.readInt();
@@ -581,14 +701,18 @@ public class OrderDetailModel implements Parcelable {
                 this.servicesImg = in.readString();
                 this.imgWidth = in.readString();
                 this.imgHeight = in.readString();
-                this.sortNum = in.readString();
-                this.isCollect = in.readString();
-                this.isReserve = in.readString();
+                this.sortNum = in.readInt();
+                this.browseNumber = in.readInt();
+                this.isCollect = in.readInt();
+                this.colletCount = in.readInt();
+                this.isReserve = in.readInt();
+                this.surplusTime = in.readString();
                 this.userInfoList = in.readString();
                 this.serviceImgList = in.readString();
+                this.eventList = in.readString();
             }
 
-            public static final Parcelable.Creator<ServiceInfoEntity> CREATOR = new Parcelable.Creator<ServiceInfoEntity>() {
+            public static final Creator<ServiceInfoEntity> CREATOR = new Creator<ServiceInfoEntity>() {
                 public ServiceInfoEntity createFromParcel(Parcel source) {
                     return new ServiceInfoEntity(source);
                 }
@@ -597,41 +721,6 @@ public class OrderDetailModel implements Parcelable {
                     return new ServiceInfoEntity[size];
                 }
             };
-
-            @Override
-            public String toString() {
-                return "ServiceInfoEntity{" +
-                        "id=" + id +
-                        ", title='" + title + '\'' +
-                        ", startTime='" + startTime + '\'' +
-                        ", endTime='" + endTime + '\'' +
-                        ", applyStartTime='" + applyStartTime + '\'' +
-                        ", applyEndTime='" + applyEndTime + '\'' +
-                        ", peoples=" + peoples +
-                        ", realityPeoples=" + realityPeoples +
-                        ", province=" + province +
-                        ", provinceText='" + provinceText + '\'' +
-                        ", city=" + city +
-                        ", cityText='" + cityText + '\'' +
-                        ", district=" + district +
-                        ", districtText='" + districtText + '\'' +
-                        ", address='" + address + '\'' +
-                        ", price=" + price +
-                        ", type='" + type + '\'' +
-                        ", content='" + content + '\'' +
-                        ", servicePhone='" + servicePhone + '\'' +
-                        ", status=" + status +
-                        ", isRecommoned=" + isRecommoned +
-                        ", servicesImg='" + servicesImg + '\'' +
-                        ", imgWidth='" + imgWidth + '\'' +
-                        ", imgHeight='" + imgHeight + '\'' +
-                        ", sortNum='" + sortNum + '\'' +
-                        ", isCollect='" + isCollect + '\'' +
-                        ", isReserve='" + isReserve + '\'' +
-                        ", userInfoList='" + userInfoList + '\'' +
-                        ", serviceImgList='" + serviceImgList + '\'' +
-                        '}';
-            }
         }
 
         @Override
@@ -641,8 +730,8 @@ public class OrderDetailModel implements Parcelable {
 
         @Override
         public void writeToParcel(Parcel dest, int flags) {
-            dest.writeString(this.serviceId);
-            dest.writeString(this.orderId);
+            dest.writeInt(this.serviceId);
+            dest.writeInt(this.orderId);
             dest.writeInt(this.userId);
             dest.writeString(this.orderCode);
             dest.writeString(this.orderDate);
@@ -651,21 +740,27 @@ public class OrderDetailModel implements Parcelable {
             dest.writeString(this.userNike);
             dest.writeInt(this.status);
             dest.writeInt(this.isGold);
-            dest.writeString(this.goldCount);
+            dest.writeInt(this.goldCount);
             dest.writeString(this.discountPrice);
             dest.writeString(this.price);
-            dest.writeString(this.payment);
+            dest.writeInt(this.payment);
+            dest.writeString(this.payDate);
             dest.writeInt(this.isInvoice);
             dest.writeString(this.invoiceTitle);
             dest.writeParcelable(this.serviceInfo, 0);
+            dest.writeInt(this.addressId);
+            dest.writeString(this.receiveName);
+            dest.writeString(this.receivePhone);
+            dest.writeString(this.postCode);
+            dest.writeString(this.address);
         }
 
         public DataEntity() {
         }
 
         protected DataEntity(Parcel in) {
-            this.serviceId = in.readString();
-            this.orderId = in.readString();
+            this.serviceId = in.readInt();
+            this.orderId = in.readInt();
             this.userId = in.readInt();
             this.orderCode = in.readString();
             this.orderDate = in.readString();
@@ -674,16 +769,22 @@ public class OrderDetailModel implements Parcelable {
             this.userNike = in.readString();
             this.status = in.readInt();
             this.isGold = in.readInt();
-            this.goldCount = in.readString();
+            this.goldCount = in.readInt();
             this.discountPrice = in.readString();
             this.price = in.readString();
-            this.payment = in.readString();
+            this.payment = in.readInt();
+            this.payDate = in.readString();
             this.isInvoice = in.readInt();
             this.invoiceTitle = in.readString();
             this.serviceInfo = in.readParcelable(ServiceInfoEntity.class.getClassLoader());
+            this.addressId = in.readInt();
+            this.receiveName = in.readString();
+            this.receivePhone = in.readString();
+            this.postCode = in.readString();
+            this.address = in.readString();
         }
 
-        public static final Parcelable.Creator<DataEntity> CREATOR = new Parcelable.Creator<DataEntity>() {
+        public static final Creator<DataEntity> CREATOR = new Creator<DataEntity>() {
             public DataEntity createFromParcel(Parcel source) {
                 return new DataEntity(source);
             }
@@ -692,29 +793,6 @@ public class OrderDetailModel implements Parcelable {
                 return new DataEntity[size];
             }
         };
-
-        @Override
-        public String toString() {
-            return "DataEntity{" +
-                    "orderId='" + serviceId + '\'' +
-                    "orderId='" + orderId + '\'' +
-                    ", userId=" + userId +
-                    ", orderCode='" + orderCode + '\'' +
-                    ", orderDate='" + orderDate + '\'' +
-                    ", servicePrice=" + servicePrice +
-                    ", phone='" + phone + '\'' +
-                    ", userNike='" + userNike + '\'' +
-                    ", status=" + status +
-                    ", isGold=" + isGold +
-                    ", goldCount='" + goldCount + '\'' +
-                    ", discountPrice='" + discountPrice + '\'' +
-                    ", price=" + price +
-                    ", payment='" + payment + '\'' +
-                    ", isInvoice=" + isInvoice +
-                    ", invoiceTitle='" + invoiceTitle + '\'' +
-                    ", serviceInfo=" + serviceInfo +
-                    '}';
-        }
     }
 
     @Override
@@ -724,7 +802,6 @@ public class OrderDetailModel implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(this.status);
         dest.writeParcelable(this.data, 0);
         dest.writeString(this.msg);
     }
@@ -733,12 +810,11 @@ public class OrderDetailModel implements Parcelable {
     }
 
     protected OrderDetailModel(Parcel in) {
-        this.status = in.readInt();
         this.data = in.readParcelable(DataEntity.class.getClassLoader());
         this.msg = in.readString();
     }
 
-    public static final Parcelable.Creator<OrderDetailModel> CREATOR = new Parcelable.Creator<OrderDetailModel>() {
+    public static final Creator<OrderDetailModel> CREATOR = new Creator<OrderDetailModel>() {
         public OrderDetailModel createFromParcel(Parcel source) {
             return new OrderDetailModel(source);
         }
@@ -747,13 +823,4 @@ public class OrderDetailModel implements Parcelable {
             return new OrderDetailModel[size];
         }
     };
-
-    @Override
-    public String toString() {
-        return "OrderDetailModel{" +
-                "status=" + status +
-                ", data=" + data +
-                ", msg='" + msg + '\'' +
-                '}';
-    }
 }

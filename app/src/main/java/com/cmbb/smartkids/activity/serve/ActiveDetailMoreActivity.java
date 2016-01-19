@@ -159,17 +159,17 @@ public class ActiveDetailMoreActivity extends BaseActivity {
                 ServiceOrderModel data = (ServiceOrderModel) object;
                 ServiceOrderModel.DataEntity orderDetail = null;
                 hideWaitDialog();
-                if (data != null && (orderDetail = data.getData()) != null) {
+                if (data != null && (orderDetail = data.getData()) != null && data.getData().getServiceInfo() != null) {
                     Intent intent = new Intent(ActiveDetailMoreActivity.this, OrderDetailActivity.class);
                     intent.putExtra("orderDetail", orderDetail);
-                    intent.putExtra("serviceTitle", dataEntity.getTitle());
-                    intent.putExtra("serviceCity", dataEntity.getCityText() + "");
-                    intent.putExtra("serviceTime", dataEntity.getStartTime());
-                    intent.putExtra("serviceAddress", dataEntity.getAddress());
-                    intent.putExtra("serviceImg", dataEntity.getServicesImg());
-                    intent.putExtra("serviceWidth", dataEntity.getImgWidth());
-                    intent.putExtra("serviceHeight", dataEntity.getImgHeight());
                     intent.putExtra("flag", true);
+//                    intent.putExtra("serviceTitle", dataEntity.getTitle());
+//                    intent.putExtra("serviceCity", dataEntity.getCityText() + "");
+//                    intent.putExtra("serviceTime", dataEntity.getStartTime());
+//                    intent.putExtra("serviceAddress", dataEntity.getAddress());
+//                    intent.putExtra("serviceImg", dataEntity.getServicesImg());
+//                    intent.putExtra("serviceWidth", dataEntity.getImgWidth());
+//                    intent.putExtra("serviceHeight", dataEntity.getImgHeight());
                     startActivityForResult(intent, ORDER_RESULT);
                 } else {
                     showShortToast(msg);

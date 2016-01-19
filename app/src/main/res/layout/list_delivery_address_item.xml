@@ -33,11 +33,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@android:color/black"
+        android:gravity="left"
         android:layout_below="@+id/tv_name_delivery_address_item"
+        android:layout_alignParentLeft="true"
         android:layout_toLeftOf="@+id/iv_delivery_address_item"
         android:layout_marginTop="6dp"
         android:layout_marginRight="10dp"
-        android:text="法赫德是非得失客户看到火凤凰梵蒂冈法规和地方 i 个地方换个 i 电话发给 i 的疯狂恢复到健康和粉红色"/>
+        android:text="法赫德是非得失客户看到火凤凰梵蒂冈法规电脑发呆是女生"/>
 
     <ImageView
         android:id="@+id/iv_delivery_address_item"

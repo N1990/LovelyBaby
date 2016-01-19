@@ -19,13 +19,13 @@ public class DeliveryAddressDetailModel implements Parcelable {
      * receivePhone : 13514541235
      * district : 310110
      * cityText : 上海市
-     * provincteTxt : 上海
+     * provinceText : 上海
      * city : 310000
      */
 
     private DataEntity data;
     /**
-     * data : {"id":1,"isDefault":0,"address":"飞虹路568弄13号","districtText":"杨浦区","province":31,"postCode":"541235","receiveName":"潘小姐","receivePhone":"13514541235","district":310110,"cityText":"上海市","provincteTxt":"上海","city":310000}
+     * data : {"id":1,"isDefault":0,"address":"飞虹路568弄13号","districtText":"杨浦区","province":31,"postCode":"541235","receiveName":"潘小姐","receivePhone":"13514541235","district":310110,"cityText":"上海市","provinceText":"上海","city":310000}
      * msg : 数据加载成功
      */
 
@@ -58,7 +58,7 @@ public class DeliveryAddressDetailModel implements Parcelable {
         private String receivePhone;
         private int district;
         private String cityText;
-        private String provincteTxt;
+        private String provinceText;
         private int city;
 
         public void setId(int id) {
@@ -101,8 +101,8 @@ public class DeliveryAddressDetailModel implements Parcelable {
             this.cityText = cityText;
         }
 
-        public void setProvincteTxt(String provincteTxt) {
-            this.provincteTxt = provincteTxt;
+        public void setProvincteTxt(String provinceText) {
+            this.provinceText = provinceText;
         }
 
         public void setCity(int city) {
@@ -150,7 +150,7 @@ public class DeliveryAddressDetailModel implements Parcelable {
         }
 
         public String getProvincteTxt() {
-            return provincteTxt;
+            return provinceText;
         }
 
         public int getCity() {
@@ -175,7 +175,7 @@ public class DeliveryAddressDetailModel implements Parcelable {
             dest.writeString(this.receivePhone);
             dest.writeInt(this.district);
             dest.writeString(this.cityText);
-            dest.writeString(this.provincteTxt);
+            dest.writeString(this.provinceText);
             dest.writeInt(this.city);
         }
 
@@ -193,7 +193,7 @@ public class DeliveryAddressDetailModel implements Parcelable {
             this.receivePhone = in.readString();
             this.district = in.readInt();
             this.cityText = in.readString();
-            this.provincteTxt = in.readString();
+            this.provinceText = in.readString();
             this.city = in.readInt();
         }
 

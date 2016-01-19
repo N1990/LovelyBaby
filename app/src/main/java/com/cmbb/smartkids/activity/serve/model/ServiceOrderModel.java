@@ -11,19 +11,40 @@ import android.os.Parcelable;
  */
 public class ServiceOrderModel implements Parcelable {
 
+
     /**
+     * serviceId : 332
+     * orderId : 12
+     * userId : 104312
+     * orderCode :
+     * orderDate : 2016-01-18 13:35:35
+     * servicePrice : 0.01
+     * phone : 18221365268
+     * userNike : javon
      * status : 1
-     * data : {"serviceId":14,"userId":9,"orderCode":"1214429771144164066","orderDate":"2015-09-23 10:58:34","servicePrice":0,"phone":"18221365268","userNike":"666","status":null,"isGold":null,"goldCount":null,"discountPrice":null,"price":null,"payment":null,"isInvoice":0,"invoiceTitle":null}
+     * isGold : 2
+     * goldCount : 3
+     * discountPrice :
+     * price : 0.01
+     * payment : 1
+     * payDate :
+     * isInvoice : 0
+     * invoiceTitle :
+     * serviceInfo : {"id":332,"title":"我的发布测试","startTime":"2016-01-25 15:55:00","endTime":"2016-01-25 15:55:00","applyStartTime":"2016-01-14 15:55:00","applyEndTime":"2016-01-25 15:55:00","peoples":10,"timeLeft":"","collectCount":1,"realityPeoples":21,"province":120000,"provinceText":"","city":120100,"cityText":"","district":120101,"districtText":"","address":"啊啊啊啊的撒旦法","price":"0.01","type":201,"content":"阿斯达斯的","servicePhone":"102222010","status":2,"isRecommoned":1,"servicesImg":"http://smart.image.alimmdn.com/system/image/2016-01-14/servicesImgFile_YTYwZjNmYmEtOGQ2ZS00NTM5LTg2ZWQtMWY2OGVhZTM4YTNh","imgWidth":"539","imgHeight":"351","sortNum":2,"browseNumber":11,"isCollect":1,"colletCount":12,"isReserve":1,"surplusTime":"","userInfoList":"","serviceImgList":"","eventList":""}
+     * addressId : 12
+     * receiveName :
+     * receivePhone :
+     * postCode :
+     * address :
+     */
+
+    private DataEntity data;
+    /**
+     * data : {"serviceId":332,"orderId":12,"userId":104312,"orderCode":"","orderDate":"2016-01-18 13:35:35","servicePrice":"0.01","phone":"18221365268","userNike":"javon","status":1,"isGold":2,"goldCount":3,"discountPrice":"","price":"0.01","payment":1,"payDate":"","isInvoice":0,"invoiceTitle":"","serviceInfo":{"id":332,"title":"我的发布测试","startTime":"2016-01-25 15:55:00","endTime":"2016-01-25 15:55:00","applyStartTime":"2016-01-14 15:55:00","applyEndTime":"2016-01-25 15:55:00","peoples":10,"timeLeft":"","collectCount":1,"realityPeoples":21,"province":120000,"provinceText":"","city":120100,"cityText":"","district":120101,"districtText":"","address":"啊啊啊啊的撒旦法","price":"0.01","type":201,"content":"阿斯达斯的","servicePhone":"102222010","status":2,"isRecommoned":1,"servicesImg":"http://smart.image.alimmdn.com/system/image/2016-01-14/servicesImgFile_YTYwZjNmYmEtOGQ2ZS00NTM5LTg2ZWQtMWY2OGVhZTM4YTNh","imgWidth":"539","imgHeight":"351","sortNum":2,"browseNumber":11,"isCollect":1,"colletCount":12,"isReserve":1,"surplusTime":"","userInfoList":"","serviceImgList":"","eventList":""},"addressId":12,"receiveName":"","receivePhone":"","postCode":"","address":""}
      * msg : 操作成功
      */
 
-    private int status;
-    private DataEntity data;
     private String msg;
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
 
     public void setData(DataEntity data) {
         this.data = data;
@@ -31,10 +52,6 @@ public class ServiceOrderModel implements Parcelable {
 
     public void setMsg(String msg) {
         this.msg = msg;
-    }
-
-    public int getStatus() {
-        return status;
     }
 
     public DataEntity getData() {
@@ -46,27 +63,8 @@ public class ServiceOrderModel implements Parcelable {
     }
 
     public static class DataEntity implements Parcelable {
-        /**
-         * serviceId : 14
-         * orderId: null
-         * userId : 9
-         * orderCode : 1214429771144164066
-         * orderDate : 2015-09-23 10:58:34
-         * servicePrice : 0
-         * phone : 18221365268
-         * userNike : 666
-         * status : null
-         * isGold : null
-         * goldCount : null
-         * discountPrice : null
-         * price : null
-         * payment : null
-         * isInvoice : 0
-         * invoiceTitle : null
-         */
-
         private int serviceId;
-        private String orderId;
+        private int orderId;
         private int userId;
         private String orderCode;
         private String orderDate;
@@ -74,16 +72,65 @@ public class ServiceOrderModel implements Parcelable {
         private String phone;
         private String userNike;
         private String status;
-        private String isGold;
-        private String goldCount;
+        private int isGold;
+        private int goldCount;
         private String discountPrice;
         private String price;
-        private String payment;
+        private int payment;
+        private String payDate;
         private int isInvoice;
         private String invoiceTitle;
+        /**
+         * id : 332
+         * title : 我的发布测试
+         * startTime : 2016-01-25 15:55:00
+         * endTime : 2016-01-25 15:55:00
+         * applyStartTime : 2016-01-14 15:55:00
+         * applyEndTime : 2016-01-25 15:55:00
+         * peoples : 10
+         * timeLeft :
+         * collectCount : 1
+         * realityPeoples : 21
+         * province : 120000
+         * provinceText :
+         * city : 120100
+         * cityText :
+         * district : 120101
+         * districtText :
+         * address : 啊啊啊啊的撒旦法
+         * price : 0.01
+         * type : 201
+         * content : 阿斯达斯的
+         * servicePhone : 102222010
+         * status : 2
+         * isRecommoned : 1
+         * servicesImg : http://smart.image.alimmdn.com/system/image/2016-01-14/servicesImgFile_YTYwZjNmYmEtOGQ2ZS00NTM5LTg2ZWQtMWY2OGVhZTM4YTNh
+         * imgWidth : 539
+         * imgHeight : 351
+         * sortNum : 2
+         * browseNumber : 11
+         * isCollect : 1
+         * colletCount : 12
+         * isReserve : 1
+         * surplusTime :
+         * userInfoList :
+         * serviceImgList :
+         * eventList :
+         */
+
+        private ServiceInfoEntity serviceInfo;
+        private int addressId;
+        private String receiveName;
+        private String receivePhone;
+        private String postCode;
+        private String address;
 
         public void setServiceId(int serviceId) {
             this.serviceId = serviceId;
+        }
+
+        public void setOrderId(int orderId) {
+            this.orderId = orderId;
         }
 
         public void setUserId(int userId) {
@@ -114,11 +161,11 @@ public class ServiceOrderModel implements Parcelable {
             this.status = status;
         }
 
-        public void setIsGold(String isGold) {
+        public void setIsGold(int isGold) {
             this.isGold = isGold;
         }
 
-        public void setGoldCount(String goldCount) {
+        public void setGoldCount(int goldCount) {
             this.goldCount = goldCount;
         }
 
@@ -130,8 +177,12 @@ public class ServiceOrderModel implements Parcelable {
             this.price = price;
         }
 
-        public void setPayment(String payment) {
+        public void setPayment(int payment) {
             this.payment = payment;
+        }
+
+        public void setPayDate(String payDate) {
+            this.payDate = payDate;
         }
 
         public void setIsInvoice(int isInvoice) {
@@ -142,8 +193,36 @@ public class ServiceOrderModel implements Parcelable {
             this.invoiceTitle = invoiceTitle;
         }
 
+        public void setServiceInfo(ServiceInfoEntity serviceInfo) {
+            this.serviceInfo = serviceInfo;
+        }
+
+        public void setAddressId(int addressId) {
+            this.addressId = addressId;
+        }
+
+        public void setReceiveName(String receiveName) {
+            this.receiveName = receiveName;
+        }
+
+        public void setReceivePhone(String receivePhone) {
+            this.receivePhone = receivePhone;
+        }
+
+        public void setPostCode(String postCode) {
+            this.postCode = postCode;
+        }
+
+        public void setAddress(String address) {
+            this.address = address;
+        }
+
         public int getServiceId() {
             return serviceId;
+        }
+
+        public int getOrderId() {
+            return orderId;
         }
 
         public int getUserId() {
@@ -174,11 +253,11 @@ public class ServiceOrderModel implements Parcelable {
             return status;
         }
 
-        public String getIsGold() {
+        public int getIsGold() {
             return isGold;
         }
 
-        public String getGoldCount() {
+        public int getGoldCount() {
             return goldCount;
         }
 
@@ -190,8 +269,12 @@ public class ServiceOrderModel implements Parcelable {
             return price;
         }
 
-        public String getPayment() {
+        public int getPayment() {
             return payment;
+        }
+
+        public String getPayDate() {
+            return payDate;
         }
 
         public int getIsInvoice() {
@@ -202,13 +285,444 @@ public class ServiceOrderModel implements Parcelable {
             return invoiceTitle;
         }
 
-        public String getOrderId() {
-            return orderId;
+        public ServiceInfoEntity getServiceInfo() {
+            return serviceInfo;
         }
 
-        public void setOrderId(String orderId) {
-            this.orderId = orderId;
+        public int getAddressId() {
+            return addressId;
         }
+
+        public String getReceiveName() {
+            return receiveName;
+        }
+
+        public String getReceivePhone() {
+            return receivePhone;
+        }
+
+        public String getPostCode() {
+            return postCode;
+        }
+
+        public String getAddress() {
+            return address;
+        }
+
+        public static class ServiceInfoEntity implements Parcelable {
+            private int id;
+            private String title;
+            private String startTime;
+            private String endTime;
+            private String applyStartTime;
+            private String applyEndTime;
+            private int peoples;
+            private String timeLeft;
+            private int collectCount;
+            private int realityPeoples;
+            private int province;
+            private String provinceText;
+            private int city;
+            private String cityText;
+            private int district;
+            private String districtText;
+            private String address;
+            private String price;
+            private int type;
+            private String content;
+            private String servicePhone;
+            private int status;
+            private int isRecommoned;
+            private String servicesImg;
+            private String imgWidth;
+            private String imgHeight;
+            private int sortNum;
+            private int browseNumber;
+            private int isCollect;
+            private int colletCount;
+            private int isReserve;
+            private String surplusTime;
+            private String userInfoList;
+            private String serviceImgList;
+            private String eventList;
+
+            public void setId(int id) {
+                this.id = id;
+            }
+
+            public void setTitle(String title) {
+                this.title = title;
+            }
+
+            public void setStartTime(String startTime) {
+                this.startTime = startTime;
+            }
+
+            public void setEndTime(String endTime) {
+                this.endTime = endTime;
+            }
+
+            public void setApplyStartTime(String applyStartTime) {
+                this.applyStartTime = applyStartTime;
+            }
+
+            public void setApplyEndTime(String applyEndTime) {
+                this.applyEndTime = applyEndTime;
+            }
+
+            public void setPeoples(int peoples) {
+                this.peoples = peoples;
+            }
+
+            public void setTimeLeft(String timeLeft) {
+                this.timeLeft = timeLeft;
+            }
+
+            public void setCollectCount(int collectCount) {
+                this.collectCount = collectCount;
+            }
+
+            public void setRealityPeoples(int realityPeoples) {
+                this.realityPeoples = realityPeoples;
+            }
+
+            public void setProvince(int province) {
+                this.province = province;
+            }
+
+            public void setProvinceText(String provinceText) {
+                this.provinceText = provinceText;
+            }
+
+            public void setCity(int city) {
+                this.city = city;
+            }
+
+            public void setCityText(String cityText) {
+                this.cityText = cityText;
+            }
+
+            public void setDistrict(int district) {
+                this.district = district;
+            }
+
+            public void setDistrictText(String districtText) {
+                this.districtText = districtText;
+            }
+
+            public void setAddress(String address) {
+                this.address = address;
+            }
+
+            public void setPrice(String price) {
+                this.price = price;
+            }
+
+            public void setType(int type) {
+                this.type = type;
+            }
+
+            public void setContent(String content) {
+                this.content = content;
+            }
+
+            public void setServicePhone(String servicePhone) {
+                this.servicePhone = servicePhone;
+            }
+
+            public void setStatus(int status) {
+                this.status = status;
+            }
+
+            public void setIsRecommoned(int isRecommoned) {
+                this.isRecommoned = isRecommoned;
+            }
+
+            public void setServicesImg(String servicesImg) {
+                this.servicesImg = servicesImg;
+            }
+
+            public void setImgWidth(String imgWidth) {
+                this.imgWidth = imgWidth;
+            }
+
+            public void setImgHeight(String imgHeight) {
+                this.imgHeight = imgHeight;
+            }
+
+            public void setSortNum(int sortNum) {
+                this.sortNum = sortNum;
+            }
+
+            public void setBrowseNumber(int browseNumber) {
+                this.browseNumber = browseNumber;
+            }
+
+            public void setIsCollect(int isCollect) {
+                this.isCollect = isCollect;
+            }
+
+            public void setColletCount(int colletCount) {
+                this.colletCount = colletCount;
+            }
+
+            public void setIsReserve(int isReserve) {
+                this.isReserve = isReserve;
+            }
+
+            public void setSurplusTime(String surplusTime) {
+                this.surplusTime = surplusTime;
+            }
+
+            public void setUserInfoList(String userInfoList) {
+                this.userInfoList = userInfoList;
+            }
+
+            public void setServiceImgList(String serviceImgList) {
+                this.serviceImgList = serviceImgList;
+            }
+
+            public void setEventList(String eventList) {
+                this.eventList = eventList;
+            }
+
+            public int getId() {
+                return id;
+            }
+
+            public String getTitle() {
+                return title;
+            }
+
+            public String getStartTime() {
+                return startTime;
+            }
+
+            public String getEndTime() {
+                return endTime;
+            }
+
+            public String getApplyStartTime() {
+                return applyStartTime;
+            }
+
+            public String getApplyEndTime() {
+                return applyEndTime;
+            }
+
+            public int getPeoples() {
+                return peoples;
+            }
+
+            public String getTimeLeft() {
+                return timeLeft;
+            }
+
+            public int getCollectCount() {
+                return collectCount;
+            }
+
+            public int getRealityPeoples() {
+                return realityPeoples;
+            }
+
+            public int getProvince() {
+                return province;
+            }
+
+            public String getProvinceText() {
+                return provinceText;
+            }
+
+            public int getCity() {
+                return city;
+            }
+
+            public String getCityText() {
+                return cityText;
+            }
+
+            public int getDistrict() {
+                return district;
+            }
+
+            public String getDistrictText() {
+                return districtText;
+            }
+
+            public String getAddress() {
+                return address;
+            }
+
+            public String getPrice() {
+                return price;
+            }
+
+            public int getType() {
+                return type;
+            }
+
+            public String getContent() {
+                return content;
+            }
+
+            public String getServicePhone() {
+                return servicePhone;
+            }
+
+            public int getStatus() {
+                return status;
+            }
+
+            public int getIsRecommoned() {
+                return isRecommoned;
+            }
+
+            public String getServicesImg() {
+                return servicesImg;
+            }
+
+            public String getImgWidth() {
+                return imgWidth;
+            }
+
+            public String getImgHeight() {
+                return imgHeight;
+            }
+
+            public int getSortNum() {
+                return sortNum;
+            }
+
+            public int getBrowseNumber() {
+                return browseNumber;
+            }
+
+            public int getIsCollect() {
+                return isCollect;
+            }
+
+            public int getColletCount() {
+                return colletCount;
+            }
+
+            public int getIsReserve() {
+                return isReserve;
+            }
+
+            public String getSurplusTime() {
+                return surplusTime;
+            }
+
+            public String getUserInfoList() {
+                return userInfoList;
+            }
+
+            public String getServiceImgList() {
+                return serviceImgList;
+            }
+
+            public String getEventList() {
+                return eventList;
+            }
+
+
+            @Override
+            public int describeContents() {
+                return 0;
+            }
+
+            @Override
+            public void writeToParcel(Parcel dest, int flags) {
+                dest.writeInt(this.id);
+                dest.writeString(this.title);
+                dest.writeString(this.startTime);
+                dest.writeString(this.endTime);
+                dest.writeString(this.applyStartTime);
+                dest.writeString(this.applyEndTime);
+                dest.writeInt(this.peoples);
+                dest.writeString(this.timeLeft);
+                dest.writeInt(this.collectCount);
+                dest.writeInt(this.realityPeoples);
+                dest.writeInt(this.province);
+                dest.writeString(this.provinceText);
+                dest.writeInt(this.city);
+                dest.writeString(this.cityText);
+                dest.writeInt(this.district);
+                dest.writeString(this.districtText);
+                dest.writeString(this.address);
+                dest.writeString(this.price);
+                dest.writeInt(this.type);
+                dest.writeString(this.content);
+                dest.writeString(this.servicePhone);
+                dest.writeInt(this.status);
+                dest.writeInt(this.isRecommoned);
+                dest.writeString(this.servicesImg);
+                dest.writeString(this.imgWidth);
+                dest.writeString(this.imgHeight);
+                dest.writeInt(this.sortNum);
+                dest.writeInt(this.browseNumber);
+                dest.writeInt(this.isCollect);
+                dest.writeInt(this.colletCount);
+                dest.writeInt(this.isReserve);
+                dest.writeString(this.surplusTime);
+                dest.writeString(this.userInfoList);
+                dest.writeString(this.serviceImgList);
+                dest.writeString(this.eventList);
+            }
+
+            public ServiceInfoEntity() {
+            }
+
+            protected ServiceInfoEntity(Parcel in) {
+                this.id = in.readInt();
+                this.title = in.readString();
+                this.startTime = in.readString();
+                this.endTime = in.readString();
+                this.applyStartTime = in.readString();
+                this.applyEndTime = in.readString();
+                this.peoples = in.readInt();
+                this.timeLeft = in.readString();
+                this.collectCount = in.readInt();
+                this.realityPeoples = in.readInt();
+                this.province = in.readInt();
+                this.provinceText = in.readString();
+                this.city = in.readInt();
+                this.cityText = in.readString();
+                this.district = in.readInt();
+                this.districtText = in.readString();
+                this.address = in.readString();
+                this.price = in.readString();
+                this.type = in.readInt();
+                this.content = in.readString();
+                this.servicePhone = in.readString();
+                this.status = in.readInt();
+                this.isRecommoned = in.readInt();
+                this.servicesImg = in.readString();
+                this.imgWidth = in.readString();
+                this.imgHeight = in.readString();
+                this.sortNum = in.readInt();
+                this.browseNumber = in.readInt();
+                this.isCollect = in.readInt();
+                this.colletCount = in.readInt();
+                this.isReserve = in.readInt();
+                this.surplusTime = in.readString();
+                this.userInfoList = in.readString();
+                this.serviceImgList = in.readString();
+                this.eventList = in.readString();
+            }
+
+            public static final Creator<ServiceInfoEntity> CREATOR = new Creator<ServiceInfoEntity>() {
+                public ServiceInfoEntity createFromParcel(Parcel source) {
+                    return new ServiceInfoEntity(source);
+                }
+
+                public ServiceInfoEntity[] newArray(int size) {
+                    return new ServiceInfoEntity[size];
+                }
+            };
+        }
+
 
         @Override
         public int describeContents() {
@@ -218,7 +732,7 @@ public class ServiceOrderModel implements Parcelable {
         @Override
         public void writeToParcel(Parcel dest, int flags) {
             dest.writeInt(this.serviceId);
-            dest.writeString(this.orderId);
+            dest.writeInt(this.orderId);
             dest.writeInt(this.userId);
             dest.writeString(this.orderCode);
             dest.writeString(this.orderDate);
@@ -226,13 +740,20 @@ public class ServiceOrderModel implements Parcelable {
             dest.writeString(this.phone);
             dest.writeString(this.userNike);
             dest.writeString(this.status);
-            dest.writeString(this.isGold);
-            dest.writeString(this.goldCount);
+            dest.writeInt(this.isGold);
+            dest.writeInt(this.goldCount);
             dest.writeString(this.discountPrice);
             dest.writeString(this.price);
-            dest.writeString(this.payment);
+            dest.writeInt(this.payment);
+            dest.writeString(this.payDate);
             dest.writeInt(this.isInvoice);
             dest.writeString(this.invoiceTitle);
+            dest.writeParcelable(this.serviceInfo, 0);
+            dest.writeInt(this.addressId);
+            dest.writeString(this.receiveName);
+            dest.writeString(this.receivePhone);
+            dest.writeString(this.postCode);
+            dest.writeString(this.address);
         }
 
         public DataEntity() {
@@ -240,7 +761,7 @@ public class ServiceOrderModel implements Parcelable {
 
         protected DataEntity(Parcel in) {
             this.serviceId = in.readInt();
-            this.orderId = in.readString();
+            this.orderId = in.readInt();
             this.userId = in.readInt();
             this.orderCode = in.readString();
             this.orderDate = in.readString();
@@ -248,16 +769,23 @@ public class ServiceOrderModel implements Parcelable {
             this.phone = in.readString();
             this.userNike = in.readString();
             this.status = in.readString();
-            this.isGold = in.readString();
-            this.goldCount = in.readString();
+            this.isGold = in.readInt();
+            this.goldCount = in.readInt();
             this.discountPrice = in.readString();
             this.price = in.readString();
-            this.payment = in.readString();
+            this.payment = in.readInt();
+            this.payDate = in.readString();
             this.isInvoice = in.readInt();
             this.invoiceTitle = in.readString();
+            this.serviceInfo = in.readParcelable(ServiceInfoEntity.class.getClassLoader());
+            this.addressId = in.readInt();
+            this.receiveName = in.readString();
+            this.receivePhone = in.readString();
+            this.postCode = in.readString();
+            this.address = in.readString();
         }
 
-        public static final Parcelable.Creator<DataEntity> CREATOR = new Parcelable.Creator<DataEntity>() {
+        public static final Creator<DataEntity> CREATOR = new Creator<DataEntity>() {
             public DataEntity createFromParcel(Parcel source) {
                 return new DataEntity(source);
             }
@@ -266,29 +794,8 @@ public class ServiceOrderModel implements Parcelable {
                 return new DataEntity[size];
             }
         };
-
-        @Override
-        public String toString() {
-            return "DataEntity{" +
-                    "serviceId=" + serviceId +
-                    ", userId=" + orderId +
-                    ", userId=" + userId +
-                    ", orderCode='" + orderCode + '\'' +
-                    ", orderDate='" + orderDate + '\'' +
-                    ", servicePrice=" + servicePrice +
-                    ", phone='" + phone + '\'' +
-                    ", userNike='" + userNike + '\'' +
-                    ", status='" + status + '\'' +
-                    ", isGold='" + isGold + '\'' +
-                    ", goldCount='" + goldCount + '\'' +
-                    ", discountPrice='" + discountPrice + '\'' +
-                    ", price='" + price + '\'' +
-                    ", payment='" + payment + '\'' +
-                    ", isInvoice=" + isInvoice +
-                    ", invoiceTitle='" + invoiceTitle + '\'' +
-                    '}';
-        }
     }
+
 
     @Override
     public int describeContents() {
@@ -297,7 +804,6 @@ public class ServiceOrderModel implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(this.status);
         dest.writeParcelable(this.data, 0);
         dest.writeString(this.msg);
     }
@@ -306,12 +812,11 @@ public class ServiceOrderModel implements Parcelable {
     }
 
     protected ServiceOrderModel(Parcel in) {
-        this.status = in.readInt();
         this.data = in.readParcelable(DataEntity.class.getClassLoader());
         this.msg = in.readString();
     }
 
-    public static final Parcelable.Creator<ServiceOrderModel> CREATOR = new Parcelable.Creator<ServiceOrderModel>() {
+    public static final Creator<ServiceOrderModel> CREATOR = new Creator<ServiceOrderModel>() {
         public ServiceOrderModel createFromParcel(Parcel source) {
             return new ServiceOrderModel(source);
         }
@@ -320,13 +825,4 @@ public class ServiceOrderModel implements Parcelable {
             return new ServiceOrderModel[size];
         }
     };
-
-    @Override
-    public String toString() {
-        return "ServiceOrderModel{" +
-                "status=" + status +
-                ", data=" + data +
-                ", msg='" + msg + '\'' +
-                '}';
-    }
 }

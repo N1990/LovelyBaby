@@ -361,6 +361,7 @@
         <activity android:name=".activity.diary.BabyDiaryDetailActivity" />
         <activity android:name=".activity.diary.PublishBabyDiaryActivity" />
         <activity android:name=".activity.user.MyDraftsActivity" />
+
         <!--
              ATTENTION: This was auto-generated to add Google Play services to your project for
              App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -372,7 +373,8 @@
         <activity android:name=".activity.user.DraftsDetailActivity" />
         <activity android:name=".activity.user.DeliveryAddressListActivity" />
         <activity android:name=".activity.user.DeliveryAddressDetailActivity" />
-        <activity android:name=".activity.user.DeliveryAddressModifyActivity"></activity>
+        <activity android:name=".activity.user.DeliveryAddressModifyActivity"/>
+        <activity android:name=".activity.user.ManagerDeliveryAddressListActivity" />
     </application>
 
 </manifest>

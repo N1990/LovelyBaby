@@ -58,6 +58,10 @@
     <string name="title_activity_publish_baby_diary" translatable="false">创建日记</string>
     <string name="title_activity_drafts" translatable="false">草稿箱</string>
     <string name="title_activity_delivery_address_detail" translatable="false">收货地址详情</string>
+    <string name="title_activity_delivery_address_add" translatable="false">添加收货地址</string>
+    <string name="title_activity_delivery_address_modify" translatable="false">修改收货地址</string>
+    <string name="title_activity_delivery_address_manager" translatable="false">管理收货地址</string>
+    <string name="title_activity_delivery_address_choose" translatable="false">选择收货地址</string>
 
 
     <!-- menu tip-->

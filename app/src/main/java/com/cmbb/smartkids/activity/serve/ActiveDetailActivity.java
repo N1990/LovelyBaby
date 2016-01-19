@@ -420,6 +420,7 @@ public class ActiveDetailActivity extends BaseActivity {
                     intent.putExtra("serviceImg", realData.getServicesImg());
                     intent.putExtra("serviceWidth", realData.getImgWidth());
                     intent.putExtra("serviceHeight", realData.getImgHeight());
+                    intent.putExtra("service_type", realData.getType());
                     intent.putExtra("flag", true);
                     startActivityForResult(intent, ORDER_RESULT);
                 } else {

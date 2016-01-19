@@ -342,7 +342,7 @@ public class MySetActivity extends BaseActivity implements LocationSelectorDialo
                 }));
                 break;
             case R.id.rl_my_set_user_delivery_address:
-                DeliveryAddressListActivity.skipFromActivity(MySetActivity.this, "manager");
+                ManagerDeliveryAddressListActivity.skipFromActivity(MySetActivity.this);
                 break;
             case R.id.tv_my_set_user_change:
                 //  注销推送账号
@@ -460,12 +460,12 @@ public class MySetActivity extends BaseActivity implements LocationSelectorDialo
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
         if (builder != null) {
             builder.setDialogDismiss();
         }
         if (locationBuilder != null)
             locationBuilder.setDialogDismiss();
+        super.onDestroy();
     }
 
 

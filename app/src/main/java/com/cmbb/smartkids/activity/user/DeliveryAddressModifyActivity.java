@@ -20,13 +20,16 @@ import com.cmbb.smartkids.widget.wheelview.LocationSelectorDialogBuilder;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DeliveryAddressModifyActivity extends BaseActivity {
+public class DeliveryAddressModifyActivity extends BaseActivity implements LocationSelectorDialogBuilder.OnSaveLocationLister{
     private final String TAG = DeliveryAddressModifyActivity.class.getSimpleName();
     private EditText etName, etPhone, etPostCode, etAddress;
     private TextView tvLocal, tvSave;
     private String flag = ""; // modify add
     private DeliveryAddressDetailModel.DataEntity dataEntity;
     private LocationSelectorDialogBuilder locationBuilder;
+    private String provinceId;
+    private String cityId;
+    private String areaId;
 
 
     @Override
@@ -45,7 +48,10 @@ public class DeliveryAddressModifyActivity extends BaseActivity {
             dataEntity = bundle.getParcelable("delivery_address");
         }
         if("modify".equals(flag) && dataEntity != null){
+            setTitle(getString(R.string.title_activity_delivery_address_modify));
             initData();
+        }else{
+            setTitle(getString(R.string.title_activity_delivery_address_add));
         }
     }
 
@@ -55,7 +61,7 @@ public class DeliveryAddressModifyActivity extends BaseActivity {
         etPostCode = (EditText) findViewById(R.id.et_delivery_address_modify_postcode);
         etAddress = (EditText) findViewById(R.id.et_delivery_address_modify_address);
         tvLocal = (TextView) findViewById(R.id.et_delivery_address_modify_local);
-        tvSave = (TextView) findViewById(R.id.tv_delivery_address_detail_delete);
+        tvSave = (TextView) findViewById(R.id.tv_delivery_address_detail_save);
     }
 
     private void initData(){
@@ -77,12 +83,27 @@ public class DeliveryAddressModifyActivity extends BaseActivity {
         if(id == R.id.et_delivery_address_modify_local){
             if (locationBuilder == null) {
                 locationBuilder = LocationSelectorDialogBuilder.getInstance(this);
-//                locationBuilder.setOnSaveLocationLister(this);
+                locationBuilder.setOnSaveLocationLister(this);
             }
             locationBuilder.show();
-        }else if(id == R.id.tv_delivery_address_detail_delete) {
-
+        }else if(id == R.id.tv_delivery_address_detail_save) {
+            handleSaveDeliveryAddress();
         }
+    }
+
+    @Override
+    public void onSaveLocation(String local, String province, String city, String area, String provinceId, String cityId, String areaId) {
+        this.provinceId = provinceId;
+        this.cityId = cityId;
+        this.areaId = areaId;
+        tvLocal.setText(local);
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (locationBuilder != null)
+            locationBuilder.setDialogDismiss();
+        super.onDestroy();
     }
 
     private void handleSaveDeliveryAddress(){
@@ -106,6 +127,10 @@ public class DeliveryAddressModifyActivity extends BaseActivity {
             showShortToast("详细地址不能为空~");
             return;
         }
+        if(TextUtils.isEmpty(provinceId) || TextUtils.isEmpty(cityId) || TextUtils.isEmpty(areaId)){
+            showShortToast("请选择省市区");
+            return;
+        }
 
 
         Map<String, String> param = new HashMap<String, String>();
@@ -115,9 +140,9 @@ public class DeliveryAddressModifyActivity extends BaseActivity {
         param.put("receiveName", name);
         param.put("receivePhone", phone);
         param.put("postCode", postCode);
-//        param.put("province", String.valueOf(id));
-//        param.put("city", String.valueOf(id));
-//        param.put("district", String.valueOf(id));
+        param.put("province", String.valueOf(provinceId));
+        param.put("city", String.valueOf(cityId));
+        param.put("district", String.valueOf(areaId));
         param.put("address", address);
         showWaitDialog();
         NetRequest.postRequest(Constants.ServiceInfo.MODIFY_DELIVERY_ADDRESS, BaseApplication.token, param, DeliveryAddressDetailModel.class, new NetRequest.NetHandler(this, new NetRequest.NetResponseListener() {
@@ -126,8 +151,8 @@ public class DeliveryAddressModifyActivity extends BaseActivity {
                 hideWaitDialog();
                 DeliveryAddressDetailModel data = (DeliveryAddressDetailModel) object;
                 if (data != null && data.getData() != null) {
-                    dataEntity = data.getData();
-                    initData();
+                    setResult(RESULT_OK);
+                    finish();
                 }
                 showShortToast(msg);
             }
@@ -147,11 +172,18 @@ public class DeliveryAddressModifyActivity extends BaseActivity {
         activity.startActivityForResult(intent, requestCode);
     }
 
+    public static void skipFromActivity(Activity activity, String flag, int requestCode){// modify add
+        Intent intent =  new Intent(activity, DeliveryAddressModifyActivity.class);
+        intent.putExtra("modify_flag", flag);
+        activity.startActivityForResult(intent, requestCode);
+    }
+
     public static void skipFromFragment(Fragment fragment, String flag,  int requestCode, DeliveryAddressDetailModel.DataEntity dataEntity){
         Intent intent =  new Intent(fragment.getContext(), DeliveryAddressModifyActivity.class);
         intent.putExtra("modify_flag", flag);
         intent.putExtra("delivery_address", dataEntity);
         fragment.startActivityForResult(intent, requestCode);
     }
+
 
 }

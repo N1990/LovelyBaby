@@ -116,7 +116,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/tv_delivery_address_detail_delete"
+                android:id="@+id/tv_delivery_address_detail_save"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginTop="30dp"

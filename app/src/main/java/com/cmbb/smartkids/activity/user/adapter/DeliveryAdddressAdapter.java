@@ -21,6 +21,7 @@ public class DeliveryAdddressAdapter extends RecyclerView.Adapter<DeliveryAddres
     private CustomListener.ItemClickListener onManagerItemListener;
     private String flag; //manager  check
     private List<DeliveryAddressListModel.DataEntity.RowsEntity> data;
+    private int checkId;
 
     public DeliveryAdddressAdapter(String flag, List<DeliveryAddressListModel.DataEntity.RowsEntity> data){
         this.flag = flag;
@@ -37,6 +38,15 @@ public class DeliveryAdddressAdapter extends RecyclerView.Adapter<DeliveryAddres
         }else{
             this.data = new ArrayList<>();
         }
+        notifyDataSetChanged();
+    }
+
+    public int getCheckId() {
+        return checkId;
+    }
+
+    public void setCheckId(int checkId) {
+        this.checkId = checkId;
         notifyDataSetChanged();
     }
 
@@ -68,7 +78,11 @@ public class DeliveryAdddressAdapter extends RecyclerView.Adapter<DeliveryAddres
 
     @Override
     public void onBindViewHolder(DeliveryAddressHolder holder, int position) {
-        holder.setData(this, data.get(position), position, flag);
+        if("manager".equals(flag)){
+            holder.setData(this, data.get(position), position, flag);
+        }else{
+            holder.setData(this, data.get(position), position, flag, checkId);
+        }
     }
 
     @Override

@@ -48,7 +48,7 @@
                         android:textColor="@android:color/black"
                         android:singleLine="true"
                         android:ellipsize="end"
-                        android:text="张三"/>
+                        android:text=""/>
 
                 </LinearLayout>
 
@@ -79,7 +79,7 @@
                         android:textColor="@android:color/black"
                         android:singleLine="true"
                         android:ellipsize="end"
-                        android:text="13801380138"/>
+                        android:text=""/>
 
                 </LinearLayout>
 
@@ -110,7 +110,7 @@
                         android:textColor="@android:color/black"
                         android:singleLine="true"
                         android:ellipsize="end"
-                        android:text="200092"/>
+                        android:text=""/>
 
                 </LinearLayout>
 
@@ -142,7 +142,7 @@
                         android:textColor="@android:color/black"
                         android:singleLine="true"
                         android:ellipsize="end"
-                        android:text="上海市杨浦区"/>
+                        android:text=""/>
 
                 </LinearLayout>
 
@@ -173,7 +173,7 @@
                         android:textColor="@android:color/black"
                         android:singleLine="true"
                         android:ellipsize="end"
-                        android:text="飞虹路568弄13号"/>
+                        android:text=""/>
 
                 </LinearLayout>
 
@@ -191,7 +191,7 @@
                 android:textSize="@dimen/txt_middle"
                 android:singleLine="true"
                 android:ellipsize="end"
-                android:text="删除收货地址"/>
+                android:text="删除收货地址" />
 
 
             <TextView
@@ -206,7 +206,8 @@
                 android:textSize="@dimen/txt_middle"
                 android:singleLine="true"
                 android:ellipsize="end"
-                android:text="设为默认收货地址"/>
+                android:text="设为默认收货地址"
+                android:visibility="gone"/>
 
 
 

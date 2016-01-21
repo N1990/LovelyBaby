@@ -44,7 +44,7 @@ public class Utils {
                     }else{
 //                        stringBuilder.append("\"" + e.getValue() + "\"");
                         String values = null;
-                        if(((String) e.getValue()).contains("\n")){
+                        if(("\n").contains((String) e.getValue())){
                             values = ((String) e.getValue()).replace("\n", "\\n");
                         }else{
                             values = (String) e.getValue();

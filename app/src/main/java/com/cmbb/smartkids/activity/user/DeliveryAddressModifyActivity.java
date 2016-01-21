@@ -68,6 +68,9 @@ public class DeliveryAddressModifyActivity extends BaseActivity implements Locat
         etName.setText(dataEntity.getReceiveName());
         etPhone.setText(dataEntity.getReceivePhone());
         etPostCode.setText(dataEntity.getPostCode());
+        provinceId = dataEntity.getProvince() + "";
+        cityId = dataEntity.getCity() + "";
+        areaId = dataEntity.getDistrict() + "";
         tvLocal.setText(dataEntity.getProvincteTxt() + dataEntity.getCityText() + dataEntity.getDistrictText());
         etAddress.setText(dataEntity.getAddress());
     }

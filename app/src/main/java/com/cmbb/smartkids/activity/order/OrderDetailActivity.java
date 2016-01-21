@@ -54,6 +54,7 @@ public class OrderDetailActivity extends BaseActivity {
     private String orderCode, phone;
     private CustomDialogBuilder builder;
     boolean orderResult;
+    private int deliveryAddressId;
 
 
     @Override
@@ -179,7 +180,9 @@ public class OrderDetailActivity extends BaseActivity {
             startActivity(intent);
             finish();
         }else if(id == R.id.iv_order_detail_delivery_address) {
-            DeliveryAddressListActivity.skipFromActivity(OrderDetailActivity.this, MODIFY_ORDER_DELIVERY_ADDRESS);
+            deliveryAddressId = (int) v.getTag();
+            Log.e(TAG, "deliveryAddressId00 = " + deliveryAddressId);
+            DeliveryAddressListActivity.skipFromActivity(OrderDetailActivity.this, deliveryAddressId, MODIFY_ORDER_DELIVERY_ADDRESS);
         }
     }
 
@@ -292,8 +295,10 @@ public class OrderDetailActivity extends BaseActivity {
             tvPhone.setText(phone);
         } else if(requestCode == MODIFY_ORDER_DELIVERY_ADDRESS && resultCode == RESULT_OK){
             DeliveryAddressListModel.DataEntity.RowsEntity local = data.getParcelableExtra("delivery_address");
-            if(local != null)
-                tvDeliveryAddress.setText(local.getProvinceText() + local.getCityText() + local.getDistrict() + local.getAddress());
+            if(local != null) {
+                ivChooseDelivery.setTag(local.getId());
+                tvDeliveryAddress.setText(local.getProvinceText() + local.getCityText() + local.getDistrictText() + local.getAddress());
+            }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
@@ -336,6 +341,7 @@ public class OrderDetailActivity extends BaseActivity {
         if(data.getServiceInfo().getType() == 205){
             rlDeliveryAddress.setVisibility(View.VISIBLE);
             tvDeliveryAddress.setText(data.getAddress());
+            ivChooseDelivery.setTag(data.getAddressId());
         }else{
             rlDeliveryAddress.setVisibility(View.GONE);
         }
@@ -393,6 +399,7 @@ public class OrderDetailActivity extends BaseActivity {
         if(data.getServiceInfo() != null && data.getServiceInfo().getType() == 205){
             rlDeliveryAddress.setVisibility(View.VISIBLE);
             tvDeliveryAddress.setText(data.getAddress());
+            ivChooseDelivery.setTag(data.getAddressId());
         }else {
             rlDeliveryAddress.setVisibility(View.GONE);
         }

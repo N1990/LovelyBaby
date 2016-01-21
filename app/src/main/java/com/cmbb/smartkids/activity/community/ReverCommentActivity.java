@@ -217,7 +217,7 @@ public class ReverCommentActivity extends BaseActivity {
                                 @Override
                                 public void onClick(View v) {
                                     if (builder != null)
-                                        builder.dismiss();
+                                        builder.setDialogDismiss();
                                     handleDeleteReplayRequest(data.getData().getId());
                                 }
                             })
@@ -225,7 +225,7 @@ public class ReverCommentActivity extends BaseActivity {
                                 @Override
                                 public void onClick(View v) {
                                     if (builder != null)
-                                        builder.dismiss();
+                                        builder.setDialogDismiss();
                                 }
                             });
                     builder.show();
@@ -238,7 +238,7 @@ public class ReverCommentActivity extends BaseActivity {
                                 @Override
                                 public void onClick(View v) {
                                     if (builder != null)
-                                        builder.dismiss();
+                                        builder.setDialogDismiss();
                                     handleReportReplayRequest(data.getData().getId());
                                 }
                             })
@@ -246,7 +246,7 @@ public class ReverCommentActivity extends BaseActivity {
                                 @Override
                                 public void onClick(View v) {
                                     if (builder != null)
-                                        builder.dismiss();
+                                        builder.setDialogDismiss();
                                 }
                             });
                     builder.show();

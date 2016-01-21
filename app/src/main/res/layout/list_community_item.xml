@@ -120,7 +120,8 @@
             android:layout_weight="1.0"
             app:actualImageScaleType="centerCrop"
             app:fadeDuration="200"
-            app:placeholderImage="@color/placeholder" />
+            app:placeholderImage="@color/placeholder"
+             />
 
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/iv_community_content_second_item"

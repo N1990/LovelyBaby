@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cmbb.smartkids.R;
-import com.cmbb.smartkids.activity.user.adapter.DeliveryAdddressAdapter;
+import com.cmbb.smartkids.activity.user.adapter.DeliveryAddressAdapter;
 import com.cmbb.smartkids.activity.user.model.DeliveryAddressListModel;
 
 /**
@@ -19,7 +19,7 @@ import com.cmbb.smartkids.activity.user.model.DeliveryAddressListModel;
 public class DeliveryAddressHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
     private TextView tvName, tvPhone, tvAddress;
     private ImageView ivCheck;
-    private DeliveryAdddressAdapter adapter;
+    private DeliveryAddressAdapter adapter;
     private int position;
     private String flag;
     private int checkId;
@@ -31,7 +31,7 @@ public class DeliveryAddressHolder extends RecyclerView.ViewHolder implements Vi
         ivCheck = (ImageView) itemView.findViewById(R.id.iv_delivery_address_item);
     }
 
-    public void setData(DeliveryAdddressAdapter adapter, DeliveryAddressListModel.DataEntity.RowsEntity item, int position, String flag){//manager  check
+    public void setData(DeliveryAddressAdapter adapter, DeliveryAddressListModel.DataEntity.RowsEntity item, int position, String flag){//manager  check
         this.adapter = adapter;
         this.position = position;
         this.flag = flag;
@@ -53,23 +53,37 @@ public class DeliveryAddressHolder extends RecyclerView.ViewHolder implements Vi
         itemView.setOnClickListener(this);
     }
 
-    public void setData(DeliveryAdddressAdapter adapter, DeliveryAddressListModel.DataEntity.RowsEntity item, int position, String flag, int checkId){//manager  check
+    public void setData(DeliveryAddressAdapter adapter, DeliveryAddressListModel.DataEntity.RowsEntity item, int position, String flag, int checkId){//manager  check
         this.adapter = adapter;
         this.position = position;
         this.flag = flag;
         tvName.setText(item.getReceiveName());
         tvPhone.setText(item.getReceivePhone());
-        if(item.getIsDefault() == 1 && checkId == -1){
+        if(checkId == item.getId()){
             ivCheck.setVisibility(View.VISIBLE);
-            String address = item.getProvinceText() + item.getCityText() + item.getDistrictText() + item.getAddress();
-            SpannableString ss = new SpannableString("[默认]" + address);
-            ss.setSpan(new ForegroundColorSpan(tvAddress.getContext().getResources().getColor(R.color.orange)), 0, 4, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-            ss.setSpan(new ForegroundColorSpan(Color.BLACK), 4, ss.length() - 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-            tvAddress.setText(ss);
-        } else {
+           this.adapter.setChooseData(item);
+            if(item.getIsDefault() == 1){
+                String address = item.getProvinceText() + item.getCityText() + item.getDistrictText() + item.getAddress();
+                SpannableString ss = new SpannableString("[默认]" + address);
+                ss.setSpan(new ForegroundColorSpan(tvAddress.getContext().getResources().getColor(R.color.orange)), 0, 4, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                ss.setSpan(new ForegroundColorSpan(Color.BLACK), 4, ss.length() - 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                tvAddress.setText(ss);
+            } else {
+                tvAddress.setTextColor(Color.BLACK);
+                tvAddress.setText(item.getProvinceText() + item.getCityText() + item.getDistrictText() + item.getAddress());
+            }
+        }else {
             ivCheck.setVisibility(View.INVISIBLE);
-            tvAddress.setTextColor(Color.BLACK);
-            tvAddress.setText(item.getProvinceText() + item.getCityText() + item.getDistrictText() + item.getAddress());
+            if(item.getIsDefault() == 1){
+                String address = item.getProvinceText() + item.getCityText() + item.getDistrictText() + item.getAddress();
+                SpannableString ss = new SpannableString("[默认]" + address);
+                ss.setSpan(new ForegroundColorSpan(tvAddress.getContext().getResources().getColor(R.color.orange)), 0, 4, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                ss.setSpan(new ForegroundColorSpan(Color.BLACK), 4, ss.length() - 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                tvAddress.setText(ss);
+            } else {
+                tvAddress.setTextColor(Color.BLACK);
+                tvAddress.setText(item.getProvinceText() + item.getCityText() + item.getDistrictText() + item.getAddress());
+            }
         }
         itemView.setTag(item);
         itemView.setOnClickListener(this);

@@ -39,10 +39,10 @@ public class UserCenterActivity extends BaseActivity implements AppBarLayout.OnO
     private final String TAG = UserCenterActivity.class.getSimpleName();
     private SimpleDraweeView ivCenterBg, ivHeader;
     private ImageView ivCare;
-    private TextView tvNickename, tvIdentity, tvFan, tvIntroduction, tvBar, tvGroup;
+    private TextView tvNickename, tvIdentity, tvFan, tvIntroduction, tvBar;// tvGroup
     private AppBarLayout abl;
     private RatingBar rb;
-    private ProgressBar pb;
+//    private ProgressBar pb;
     private TabLayout tl;
     private ViewPager vp;
     private UserCenterAdapter adapter;
@@ -84,8 +84,8 @@ public class UserCenterActivity extends BaseActivity implements AppBarLayout.OnO
         ivHeader = (SimpleDraweeView) findViewById(R.id.iv_user_center_header);
         tvNickename = (TextView) findViewById(R.id.tv_user_center_nickename);
         rb = (RatingBar) findViewById(R.id.rb_user_center_perssion);
-        pb = (ProgressBar) findViewById(R.id.pb_home_myself_grow);
-        tvGroup = (TextView) findViewById(R.id.tv_myself_progress);
+//        pb = (ProgressBar) findViewById(R.id.pb_home_myself_grow);
+//        tvGroup = (TextView) findViewById(R.id.tv_myself_progress);
         tvIdentity = (TextView) findViewById(R.id.tv_user_center_identity);
         tvFan = (TextView) findViewById(R.id.tv_user_center_fan);
         tvIntroduction = (TextView) findViewById(R.id.tv_user_center_introduction);
@@ -160,12 +160,12 @@ public class UserCenterActivity extends BaseActivity implements AppBarLayout.OnO
                     tvFan.setText("Fans(" + userModel.getFans() + ")");
                     rb.setRating(userModel.getUserLevel());
 
-                    pb.setMax(20000);
-                    tvGroup.setText("当前成长值:" + userModel.getGrowthCount());
-                    ObjectAnimator animator = new ObjectAnimator().ofInt(pb, "progress", userModel.getGrowthCount());
-                    animator.setDuration(500);
-                    animator.setInterpolator(new DecelerateInterpolator());
-                    animator.start();
+//                    pb.setMax(20000);
+//                    tvGroup.setText("当前成长值:" + userModel.getGrowthCount());
+//                    ObjectAnimator animator = new ObjectAnimator().ofInt(pb, "progress", userModel.getGrowthCount());
+//                    animator.setDuration(500);
+//                    animator.setInterpolator(new DecelerateInterpolator());
+//                    animator.start();
 
                     if (userModel.getIsLoginUser() == 0) {
                         ivCare.setVisibility(View.VISIBLE);

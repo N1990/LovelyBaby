@@ -10,13 +10,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.cmbb.smartkids.R;
-import com.cmbb.smartkids.activity.user.adapter.DeliveryAdddressAdapter;
+import com.cmbb.smartkids.activity.user.adapter.DeliveryAddressAdapter;
 import com.cmbb.smartkids.activity.user.model.DeliveryAddressListModel;
 import com.cmbb.smartkids.base.BaseActivity;
 import com.cmbb.smartkids.base.BaseApplication;
 import com.cmbb.smartkids.base.Constants;
 import com.cmbb.smartkids.base.CustomListener;
 import com.cmbb.smartkids.network.NetRequest;
+import com.cmbb.smartkids.utils.log.Log;
 
 import java.util.ArrayList;
 
@@ -25,7 +26,8 @@ public class DeliveryAddressListActivity extends BaseActivity {
     private final int DELIVERY_ADDRESS_MANAGER = 1222;
     private NestedScrollView nsv;
     private RecyclerView rv;
-    private DeliveryAdddressAdapter adapter;
+    private DeliveryAddressAdapter adapter;
+    private int deliveryAddressId;
 
     @Override
     protected int getLayoutId() {
@@ -42,16 +44,29 @@ public class DeliveryAddressListActivity extends BaseActivity {
         nsv = (NestedScrollView) findViewById(R.id.nsv_self);
         rv = (RecyclerView) findViewById(R.id.rv_self);
         rv.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new DeliveryAdddressAdapter("check", new ArrayList<DeliveryAddressListModel.DataEntity.RowsEntity>());
+        adapter = new DeliveryAddressAdapter("check", new ArrayList<DeliveryAddressListModel.DataEntity.RowsEntity>());
         rv.setAdapter(adapter);
     }
 
     private void initData() {
+        if(getIntent() != null){
+            deliveryAddressId = getIntent().getIntExtra("delivery_id", 0);
+            Log.e(TAG, "deliveryAddressId0 = " + deliveryAddressId);
+        }
         handleDeliveryAddressListRequest();
         setActionBarRight("管理");
         setTitle(getString(R.string.title_activity_delivery_address_choose));
         adapter.setOnCheckItemListener(onItemCheckListener);
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(adapter.getChooseData() != null){
+            getIntent().putExtra("delivery_address", adapter.getChooseData());
+            setResult(RESULT_OK, getIntent());
+        }
+        finish();
     }
 
     @Override
@@ -64,13 +79,7 @@ public class DeliveryAddressListActivity extends BaseActivity {
         @Override
         public void onItemClick(View v, int position, Object object) {
             DeliveryAddressListModel.DataEntity.RowsEntity item = (DeliveryAddressListModel.DataEntity.RowsEntity) object;
-            for (DeliveryAddressListModel.DataEntity.RowsEntity temp : adapter.getData()) {
-                if (item.getId() == temp.getId()) {
-                    temp.setIsDefault(1);
-                } else {
-                    temp.setIsDefault(0);
-                }
-            }
+            adapter.setCheckId(item.getId());
             getIntent().putExtra("delivery_address", item);
             setResult(RESULT_OK, getIntent());
             finish();
@@ -94,7 +103,8 @@ public class DeliveryAddressListActivity extends BaseActivity {
                 hideWaitDialog();
                 DeliveryAddressListModel data = (DeliveryAddressListModel) object;
                 if (data != null && data.getData() != null) {
-                    adapter.setData(data.getData().getRows());
+                    Log.e(TAG, "deliveryAddressId = " + deliveryAddressId);
+                    adapter.setData(data.getData().getRows(), deliveryAddressId);
                 }
                 showShortToast(msg);
             }
@@ -107,8 +117,9 @@ public class DeliveryAddressListActivity extends BaseActivity {
         }));
     }
 
-    public static void skipFromActivity(Activity activity, int requestCode) {// manager check
+    public static void skipFromActivity(Activity activity, int addressId, int requestCode) {// manager check
         Intent intent = new Intent(activity, DeliveryAddressListActivity.class);
+        intent.putExtra("delivery_id", addressId);
         activity.startActivityForResult(intent, requestCode);
     }
 

@@ -165,34 +165,34 @@ public class CommentListTwoFragment extends CommunityBaseFragment {
             switch (more.get(1)) {
                 case 1:// delete
                     if (builder != null)
-                        builder.dismiss();
+                        builder.setDialogDismiss();
                     builder = CustomDialogBuilder.getInstance(v.getContext()).withTitle("操作")
                             .withMessage("您确认要删除您的回复吗？")
                             .withComfirmText("确认", new CustomListener.DialogListener() {
                                 @Override
                                 public void onClick(View v) {
-                                    if (builder != null) builder.dismiss();
+                                    if (builder != null) builder.setDialogDismiss();
                                     ((CommunityDetailActivity) getActivity()).handleDeleteReplayRequest(more.get(0));
                                 }
                             })
                             .withCancelText("取消", new CustomListener.DialogListener() {
                                 @Override
                                 public void onClick(View v) {
-                                    if (builder != null) builder.dismiss();
+                                    if (builder != null) builder.setDialogDismiss();
                                 }
                             });
                     builder.show();
                     break;
                 case 0:// report
                     if (builder != null)
-                        builder.dismiss();
+                        builder.setDialogDismiss();
                     builder = CustomDialogBuilder.getInstance(v.getContext()).withTitle("操作")
                             .withMessage("您确认要举报此回复吗？")
                             .withComfirmText("确认", new CustomListener.DialogListener() {
                                 @Override
                                 public void onClick(View v) {
                                     if (builder != null)
-                                        builder.dismiss();
+                                        builder.setDialogDismiss();
 
                                     ((CommunityDetailActivity) getActivity()).handleReportReplayRequest(more.get(0));
                                 }
@@ -201,7 +201,7 @@ public class CommentListTwoFragment extends CommunityBaseFragment {
                                 @Override
                                 public void onClick(View v) {
                                     if (builder != null)
-                                        builder.dismiss();
+                                        builder.setDialogDismiss();
                                 }
                             });
                     builder.show();

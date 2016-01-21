@@ -10,7 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.cmbb.smartkids.R;
-import com.cmbb.smartkids.activity.user.adapter.DeliveryAdddressAdapter;
+import com.cmbb.smartkids.activity.user.adapter.DeliveryAddressAdapter;
 import com.cmbb.smartkids.activity.user.model.DeliveryAddressListModel;
 import com.cmbb.smartkids.base.BaseActivity;
 import com.cmbb.smartkids.base.BaseApplication;
@@ -25,7 +25,7 @@ public class ManagerDeliveryAddressListActivity extends BaseActivity {
     private final int DELIVERY_ADDRESS_DETAIL = 1223;
     private NestedScrollView nsv;
     private RecyclerView rv;
-    private DeliveryAdddressAdapter adapter;
+    private DeliveryAddressAdapter adapter;
     private boolean isModify;
 
     @Override
@@ -43,7 +43,7 @@ public class ManagerDeliveryAddressListActivity extends BaseActivity {
         nsv = (NestedScrollView) findViewById(R.id.nsv_self);
         rv = (RecyclerView) findViewById(R.id.rv_self);
         rv.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new DeliveryAdddressAdapter("manager", new ArrayList<DeliveryAddressListModel.DataEntity.RowsEntity>());
+        adapter = new DeliveryAddressAdapter("manager", new ArrayList<DeliveryAddressListModel.DataEntity.RowsEntity>());
         rv.setAdapter(adapter);
     }
 

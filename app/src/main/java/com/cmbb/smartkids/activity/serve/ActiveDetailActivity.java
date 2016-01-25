@@ -277,7 +277,7 @@ public class ActiveDetailActivity extends BaseActivity {
         if (isOrder) {
             tvOrder.setEnabled(false);
             tvOrder.setBackgroundResource(R.drawable.btn_service_detail_order_disenable);
-            tvOrder.setText("不可预定");
+            tvOrder.setText(realData.getReserveText());
         } else {
             tvOrder.setEnabled(true);
             tvOrder.setBackgroundResource(R.drawable.btn_login_selector);

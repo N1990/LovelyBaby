@@ -63,7 +63,7 @@ public class ActiveDetailMoreActivity extends BaseActivity {
             for (ActiveDetailModel.DataEntity.ServiceImgListEntity item : dataEntity.getServiceImgList()){
                 imgs.add(item.getImgPath());
             }
-            adapter.setData(dataEntity.getServiceImgList(), dataEntity.getTitle(), dataEntity.getContent(), dataEntity.getIsReserve() == 1 ? false : true);
+            adapter.setData(dataEntity.getServiceImgList(), dataEntity.getTitle(), dataEntity.getContent(), dataEntity.getReserveText(), dataEntity.getIsReserve() == 1 ? false : true);
             rv.setAdapter(adapter);
         }else {
             showShortToast("传参出错~");

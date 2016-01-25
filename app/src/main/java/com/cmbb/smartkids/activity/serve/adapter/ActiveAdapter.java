@@ -24,16 +24,17 @@ public class ActiveAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     private final int NORMAL = -2;
     private final int FOOTER = -3;
     private List<ActiveDetailModel.DataEntity.ServiceImgListEntity> data;
-    private String title, content;
+    private String title, content, reserve;
     private boolean isOrder;
     private View.OnClickListener onFooterListener;
     private CustomListener.ItemClickListener onItemImgListener;
 
 
-    public void setData(List<ActiveDetailModel.DataEntity.ServiceImgListEntity> data, String title, String content, boolean isOrder){
+    public void setData(List<ActiveDetailModel.DataEntity.ServiceImgListEntity> data, String title, String content, String reserve, boolean isOrder){
         this.title = title;
         this.content  = content;
         this.isOrder = isOrder;
+        this.reserve = reserve;
         if(data != null){
             this.data = data;
         }else{
@@ -96,7 +97,7 @@ public class ActiveAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         if(holder instanceof ActiveHeaderHolder){
             ((ActiveHeaderHolder) holder).setData(title, content);
         }else if(holder instanceof ActiveFooterHolder){
-            ((ActiveFooterHolder) holder).setData(isOrder, this);
+            ((ActiveFooterHolder) holder).setData(isOrder, this, reserve);
         }else{
             ((ActiveHolder) holder).setData(data.get(position - 1), this, position - 1);
         }
@@ -133,12 +134,12 @@ public class ActiveAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             tvOrder = (TextView) itemView.findViewById(R.id.tv_active_detail_order_footer);
         }
 
-        public void setData(boolean isOrder, ActiveAdapter adapter) {
+        public void setData(boolean isOrder, ActiveAdapter adapter, String reserve) {
             this.adapter = adapter;
             if (isOrder) {
                 tvOrder.setEnabled(false);
                 tvOrder.setBackgroundResource(R.drawable.btn_service_detail_order_disenable);
-                tvOrder.setText("不可预定");
+                tvOrder.setText(reserve);
             } else {
                 tvOrder.setEnabled(true);
                 tvOrder.setBackgroundResource(R.drawable.btn_login_selector);

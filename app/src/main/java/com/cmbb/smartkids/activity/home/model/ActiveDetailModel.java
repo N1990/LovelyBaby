@@ -16,46 +16,47 @@ public class ActiveDetailModel implements Parcelable {
 
 
     /**
-     * id : 278
-     * title : 新业务测试1
-     * startTime : 2015-12-10 11:12:00
-     * endTime : 2015-12-10 11:12:00
-     * applyStartTime : 2015-12-08 18:50:00
-     * applyEndTime : 2015-12-10 11:12:00
-     * peoples : 122
+     * id : 333
+     * title : 配送服务测试
+     * startTime : 2016-01-30 16:47:00
+     * endTime : 2016-01-30 16:47:00
+     * applyStartTime : 2016-01-18 16:47:00
+     * applyEndTime : 2016-01-30 16:47:00
+     * peoples : 10
      * timeLeft :
-     * collectCount : 4
-     * realityPeoples : 2
+     * collectCount : 1
+     * realityPeoples : 1
      * province : 110000
      * provinceText : 北京
      * city : 110100
      * cityText : 北京市
-     * district : 110102
-     * districtText : 西城区
-     * address : 11111111
+     * district : 110101
+     * districtText : 东城区
+     * address : 1234546545645
      * price : 0.01
-     * type : 202
-     * content : xxxxxx
-     * servicePhone : 121212
+     * type : 205
+     * content : 阿萨德发射点发艾丝凡
+     * servicePhone : 121222548
      * status : 2
      * isRecommoned : 1
-     * servicesImg : http://smart.image.alimmdn.com/system/image/2015-12-09/servicesImgFile_ZjQwMmY3ZjQtZjQ1ZC00YzRhLThmMWYtZGUyYzU1MGNkNjJj
-     * imgWidth : 1024
-     * imgHeight : 768
-     * sortNum : 2
-     * browseNumber : 2
+     * servicesImg : http://smart.image.alimmdn.com/system/image/2016-01-18/servicesImgFile_ODNmYmM5ZDItMGE4MS00NDI4LWFjZGItNjdiZTQwZDc5Njhh
+     * imgWidth : 542
+     * imgHeight : 408
+     * sortNum : 3
+     * browseNumber : 70
      * isCollect : 0
      * colletCount : 0
-     * isReserve : 1
-     * surplusTime :
-     * userInfoList : [{"userId":61,"uid":121151,"recommoned":2,"userNike":"宗为昀","userSex":1,"userBirthday":"","backgroundImg":"http://smart.image.alimmdn.com/app/test/%24%7Byear%7D-%24%7Bmonth%7D-%24%7Bday%7D/0EED2580-F8D5-40B1-9280-5231A6A4B7AB","userBigImg":"","userBigWidth":"","userBigHeight":"","userSmallImg":"http://smart.image.alimmdn.com/app/test/%24%7Byear%7D-%24%7Bmonth%7D-%24%7Bday%7D/FF26AFF0-B3E0-472D-9EC9-ED82C73EF5EC","userSmallWidth":"750","userSmallHeight":"750","loginAccountType":0,"loginTime":"2015-10-30 10:17:19","loginAccount":"13671549695","token":"","isShutup":0,"shutupTime":"","isBanned":0,"userAddress":"","userPhone":"13671549695","userPhoneVersion":"","province":310000,"provinceText":"","district":310104,"districtText":"","city":310100,"cityText":"","userLevel":1,"userPresentation":"推廣小兒推拿理念給每個家庭，教導家長正確的育兒理念，並培訓家長小兒推拿手法，讓家長可以親手護衛孩子的健康，同時也提供定點的小兒和成人的保健調理服務，成為每個家庭的守護天使","backImgWidth":"750","backImgHeight":"502","goldCount":12,"growthCount":23,"fans":0,"attentionCount":9,"isSign":0,"isAttention":0,"isEredar":0,"isLoginUser":0,"userRole":[{"eredarCode":104,"eredarName":"小儿推拿达人"}]}]
-     * serviceImgList : [{"content":"","imgHeight":"768","imgWidth":"1024","imgPath":"http://smart.image.alimmdn.com/system/image/2015-12-08/imageFile_YjFhZmI4YzQtNWIzMC00YTk1LWEzYjQtZWIwMDY1NWRjMmM2"}]
+     * isReserve : 0
+     * reserveText : 订单已存在，请到我的订单查看详细
+     * surplusTime : 报名截止时间5天
+     * userInfoList : [{"userId":30,"uid":121141,"recommoned":1,"userNike":"潘晶晶","userSex":1,"userBirthday":"","backgroundImg":"http://smart.image.alimmdn.com/app/test/2015-10-15/ECDBA90D-DCC3-4EB4-8AEC-A6A65FF5A280","userBigImg":"","userBigWidth":"","userBigHeight":"","userSmallImg":"http://smart.image.alimmdn.com/app/test/2015-10-15/DB3ED9CE-3728-4ED4-A6A1-B4FEB0FBA7FD","userSmallWidth":"750","userSmallHeight":"753","loginAccountType":0,"loginTime":"2016-01-14 17:50:59","loginAccount":"15000284627","token":"","isShutup":0,"shutupTime":"","isBanned":0,"userAddress":"","userPhone":"15000284627","userPhoneVersion":"","province":310000,"provinceText":"","district":310101,"districtText":"","city":310100,"cityText":"","userLevel":2,"userPresentation":"毕业于上海交大医学院营养专业，国家高级营养师、临床执业营养师，擅长孕妇、产后、婴幼儿及各类慢性病的营养指导和配餐，有丰富的实践经验，曾任慢性病、孕产妇及婴幼儿营养讲座主讲，社区健康报营养主编以及婴幼儿营养书籍的撰写。","backImgWidth":"750","backImgHeight":"753","goldCount":1,"growthCount":2,"fans":5,"attentionCount":1,"isSign":0,"isAttention":0,"isEredar":0,"isLoginUser":0,"userRole":[{"eredarCode":100,"eredarName":"营养达人"}]}]
+     * serviceImgList : [{"content":"","imgHeight":"697","imgWidth":"990","imgPath":"http://smart.image.alimmdn.com/system/image/2016-01-18/imageFile_MWE0YmViODQtOGMyMy00ZWI3LWJlNzUtYjc0N2ViOGZlOTUw"}]
      * eventList :
      */
 
     private DataEntity data;
     /**
-     * data : {"id":278,"title":"新业务测试1","startTime":"2015-12-10 11:12:00","endTime":"2015-12-10 11:12:00","applyStartTime":"2015-12-08 18:50:00","applyEndTime":"2015-12-10 11:12:00","peoples":122,"timeLeft":"","collectCount":4,"realityPeoples":2,"province":110000,"provinceText":"北京","city":110100,"cityText":"北京市","district":110102,"districtText":"西城区","address":"11111111","price":"0.01","type":202,"content":"xxxxxx","servicePhone":"121212","status":2,"isRecommoned":1,"servicesImg":"http://smart.image.alimmdn.com/system/image/2015-12-09/servicesImgFile_ZjQwMmY3ZjQtZjQ1ZC00YzRhLThmMWYtZGUyYzU1MGNkNjJj","imgWidth":"1024","imgHeight":"768","sortNum":2,"browseNumber":2,"isCollect":0,"colletCount":0,"isReserve":1,"surplusTime":"","userInfoList":[{"userId":61,"uid":121151,"recommoned":2,"userNike":"宗为昀","userSex":1,"userBirthday":"","backgroundImg":"http://smart.image.alimmdn.com/app/test/%24%7Byear%7D-%24%7Bmonth%7D-%24%7Bday%7D/0EED2580-F8D5-40B1-9280-5231A6A4B7AB","userBigImg":"","userBigWidth":"","userBigHeight":"","userSmallImg":"http://smart.image.alimmdn.com/app/test/%24%7Byear%7D-%24%7Bmonth%7D-%24%7Bday%7D/FF26AFF0-B3E0-472D-9EC9-ED82C73EF5EC","userSmallWidth":"750","userSmallHeight":"750","loginAccountType":0,"loginTime":"2015-10-30 10:17:19","loginAccount":"13671549695","token":"","isShutup":0,"shutupTime":"","isBanned":0,"userAddress":"","userPhone":"13671549695","userPhoneVersion":"","province":310000,"provinceText":"","district":310104,"districtText":"","city":310100,"cityText":"","userLevel":1,"userPresentation":"推廣小兒推拿理念給每個家庭，教導家長正確的育兒理念，並培訓家長小兒推拿手法，讓家長可以親手護衛孩子的健康，同時也提供定點的小兒和成人的保健調理服務，成為每個家庭的守護天使","backImgWidth":"750","backImgHeight":"502","goldCount":12,"growthCount":23,"fans":0,"attentionCount":9,"isSign":0,"isAttention":0,"isEredar":0,"isLoginUser":0,"userRole":[{"eredarCode":104,"eredarName":"小儿推拿达人"}]}],"serviceImgList":[{"content":"","imgHeight":"768","imgWidth":"1024","imgPath":"http://smart.image.alimmdn.com/system/image/2015-12-08/imageFile_YjFhZmI4YzQtNWIzMC00YTk1LWEzYjQtZWIwMDY1NWRjMmM2"}],"eventList":""}
+     * data : {"id":333,"title":"配送服务测试","startTime":"2016-01-30 16:47:00","endTime":"2016-01-30 16:47:00","applyStartTime":"2016-01-18 16:47:00","applyEndTime":"2016-01-30 16:47:00","peoples":10,"timeLeft":"","collectCount":1,"realityPeoples":1,"province":110000,"provinceText":"北京","city":110100,"cityText":"北京市","district":110101,"districtText":"东城区","address":"1234546545645","price":"0.01","type":205,"content":"阿萨德发射点发艾丝凡","servicePhone":"121222548","status":2,"isRecommoned":1,"servicesImg":"http://smart.image.alimmdn.com/system/image/2016-01-18/servicesImgFile_ODNmYmM5ZDItMGE4MS00NDI4LWFjZGItNjdiZTQwZDc5Njhh","imgWidth":542,"imgHeight":408,"sortNum":3,"browseNumber":70,"isCollect":0,"colletCount":0,"isReserve":0,"reserveText":"订单已存在，请到我的订单查看详细","surplusTime":"报名截止时间5天","userInfoList":[{"userId":30,"uid":121141,"recommoned":1,"userNike":"潘晶晶","userSex":1,"userBirthday":"","backgroundImg":"http://smart.image.alimmdn.com/app/test/2015-10-15/ECDBA90D-DCC3-4EB4-8AEC-A6A65FF5A280","userBigImg":"","userBigWidth":"","userBigHeight":"","userSmallImg":"http://smart.image.alimmdn.com/app/test/2015-10-15/DB3ED9CE-3728-4ED4-A6A1-B4FEB0FBA7FD","userSmallWidth":"750","userSmallHeight":"753","loginAccountType":0,"loginTime":"2016-01-14 17:50:59","loginAccount":"15000284627","token":"","isShutup":0,"shutupTime":"","isBanned":0,"userAddress":"","userPhone":"15000284627","userPhoneVersion":"","province":310000,"provinceText":"","district":310101,"districtText":"","city":310100,"cityText":"","userLevel":2,"userPresentation":"毕业于上海交大医学院营养专业，国家高级营养师、临床执业营养师，擅长孕妇、产后、婴幼儿及各类慢性病的营养指导和配餐，有丰富的实践经验，曾任慢性病、孕产妇及婴幼儿营养讲座主讲，社区健康报营养主编以及婴幼儿营养书籍的撰写。","backImgWidth":"750","backImgHeight":"753","goldCount":1,"growthCount":2,"fans":5,"attentionCount":1,"isSign":0,"isAttention":0,"isEredar":0,"isLoginUser":0,"userRole":[{"eredarCode":100,"eredarName":"营养达人"}]}],"serviceImgList":[{"content":"","imgHeight":"697","imgWidth":"990","imgPath":"http://smart.image.alimmdn.com/system/image/2016-01-18/imageFile_MWE0YmViODQtOGMyMy00ZWI3LWJlNzUtYjc0N2ViOGZlOTUw"}],"eventList":""}
      * msg : 数据加载成功
      */
 
@@ -102,66 +103,67 @@ public class ActiveDetailModel implements Parcelable {
         private int status;
         private int isRecommoned;
         private String servicesImg;
-        private String imgWidth;
-        private String imgHeight;
+        private int imgWidth;
+        private int imgHeight;
         private int sortNum;
         private int browseNumber;
         private int isCollect;
         private int colletCount;
         private int isReserve;
+        private String reserveText;
         private String surplusTime;
         private String eventList;
         /**
-         * userId : 61
-         * uid : 121151
-         * recommoned : 2
-         * userNike : 宗为昀
+         * userId : 30
+         * uid : 121141
+         * recommoned : 1
+         * userNike : 潘晶晶
          * userSex : 1
          * userBirthday :
-         * backgroundImg : http://smart.image.alimmdn.com/app/test/%24%7Byear%7D-%24%7Bmonth%7D-%24%7Bday%7D/0EED2580-F8D5-40B1-9280-5231A6A4B7AB
+         * backgroundImg : http://smart.image.alimmdn.com/app/test/2015-10-15/ECDBA90D-DCC3-4EB4-8AEC-A6A65FF5A280
          * userBigImg :
          * userBigWidth :
          * userBigHeight :
-         * userSmallImg : http://smart.image.alimmdn.com/app/test/%24%7Byear%7D-%24%7Bmonth%7D-%24%7Bday%7D/FF26AFF0-B3E0-472D-9EC9-ED82C73EF5EC
+         * userSmallImg : http://smart.image.alimmdn.com/app/test/2015-10-15/DB3ED9CE-3728-4ED4-A6A1-B4FEB0FBA7FD
          * userSmallWidth : 750
-         * userSmallHeight : 750
+         * userSmallHeight : 753
          * loginAccountType : 0
-         * loginTime : 2015-10-30 10:17:19
-         * loginAccount : 13671549695
+         * loginTime : 2016-01-14 17:50:59
+         * loginAccount : 15000284627
          * token :
          * isShutup : 0
          * shutupTime :
          * isBanned : 0
          * userAddress :
-         * userPhone : 13671549695
+         * userPhone : 15000284627
          * userPhoneVersion :
          * province : 310000
          * provinceText :
-         * district : 310104
+         * district : 310101
          * districtText :
          * city : 310100
          * cityText :
-         * userLevel : 1
-         * userPresentation : 推廣小兒推拿理念給每個家庭，教導家長正確的育兒理念，並培訓家長小兒推拿手法，讓家長可以親手護衛孩子的健康，同時也提供定點的小兒和成人的保健調理服務，成為每個家庭的守護天使
+         * userLevel : 2
+         * userPresentation : 毕业于上海交大医学院营养专业，国家高级营养师、临床执业营养师，擅长孕妇、产后、婴幼儿及各类慢性病的营养指导和配餐，有丰富的实践经验，曾任慢性病、孕产妇及婴幼儿营养讲座主讲，社区健康报营养主编以及婴幼儿营养书籍的撰写。
          * backImgWidth : 750
-         * backImgHeight : 502
-         * goldCount : 12
-         * growthCount : 23
-         * fans : 0
-         * attentionCount : 9
+         * backImgHeight : 753
+         * goldCount : 1
+         * growthCount : 2
+         * fans : 5
+         * attentionCount : 1
          * isSign : 0
          * isAttention : 0
          * isEredar : 0
          * isLoginUser : 0
-         * userRole : [{"eredarCode":104,"eredarName":"小儿推拿达人"}]
+         * userRole : [{"eredarCode":100,"eredarName":"营养达人"}]
          */
 
         private List<UserInfoListEntity> userInfoList;
         /**
          * content :
-         * imgHeight : 768
-         * imgWidth : 1024
-         * imgPath : http://smart.image.alimmdn.com/system/image/2015-12-08/imageFile_YjFhZmI4YzQtNWIzMC00YTk1LWEzYjQtZWIwMDY1NWRjMmM2
+         * imgHeight : 697
+         * imgWidth : 990
+         * imgPath : http://smart.image.alimmdn.com/system/image/2016-01-18/imageFile_MWE0YmViODQtOGMyMy00ZWI3LWJlNzUtYjc0N2ViOGZlOTUw
          */
 
         private List<ServiceImgListEntity> serviceImgList;
@@ -262,11 +264,11 @@ public class ActiveDetailModel implements Parcelable {
             this.servicesImg = servicesImg;
         }
 
-        public void setImgWidth(String imgWidth) {
+        public void setImgWidth(int imgWidth) {
             this.imgWidth = imgWidth;
         }
 
-        public void setImgHeight(String imgHeight) {
+        public void setImgHeight(int imgHeight) {
             this.imgHeight = imgHeight;
         }
 
@@ -288,6 +290,10 @@ public class ActiveDetailModel implements Parcelable {
 
         public void setIsReserve(int isReserve) {
             this.isReserve = isReserve;
+        }
+
+        public void setReserveText(String reserveText) {
+            this.reserveText = reserveText;
         }
 
         public void setSurplusTime(String surplusTime) {
@@ -402,11 +408,11 @@ public class ActiveDetailModel implements Parcelable {
             return servicesImg;
         }
 
-        public String getImgWidth() {
+        public int getImgWidth() {
             return imgWidth;
         }
 
-        public String getImgHeight() {
+        public int getImgHeight() {
             return imgHeight;
         }
 
@@ -428,6 +434,10 @@ public class ActiveDetailModel implements Parcelable {
 
         public int getIsReserve() {
             return isReserve;
+        }
+
+        public String getReserveText() {
+            return reserveText;
         }
 
         public String getSurplusTime() {
@@ -489,8 +499,8 @@ public class ActiveDetailModel implements Parcelable {
             private int isEredar;
             private int isLoginUser;
             /**
-             * eredarCode : 104
-             * eredarName : 小儿推拿达人
+             * eredarCode : 100
+             * eredarName : 营养达人
              */
 
             private List<UserRoleEntity> userRole;
@@ -880,16 +890,7 @@ public class ActiveDetailModel implements Parcelable {
                         return new UserRoleEntity[size];
                     }
                 };
-
-                @Override
-                public String toString() {
-                    return "UserRoleEntity{" +
-                            "eredarCode=" + eredarCode +
-                            ", eredarName='" + eredarName + '\'' +
-                            '}';
-                }
             }
-
 
             @Override
             public int describeContents() {
@@ -999,54 +1000,6 @@ public class ActiveDetailModel implements Parcelable {
                     return new UserInfoListEntity[size];
                 }
             };
-
-            @Override
-            public String toString() {
-                return "UserInfoListEntity{" +
-                        "userId=" + userId +
-                        ", uid=" + uid +
-                        ", recommoned=" + recommoned +
-                        ", userNike='" + userNike + '\'' +
-                        ", userSex=" + userSex +
-                        ", userBirthday='" + userBirthday + '\'' +
-                        ", backgroundImg='" + backgroundImg + '\'' +
-                        ", userBigImg='" + userBigImg + '\'' +
-                        ", userBigWidth='" + userBigWidth + '\'' +
-                        ", userBigHeight='" + userBigHeight + '\'' +
-                        ", userSmallImg='" + userSmallImg + '\'' +
-                        ", userSmallWidth='" + userSmallWidth + '\'' +
-                        ", userSmallHeight='" + userSmallHeight + '\'' +
-                        ", loginAccountType=" + loginAccountType +
-                        ", loginTime='" + loginTime + '\'' +
-                        ", loginAccount='" + loginAccount + '\'' +
-                        ", token='" + token + '\'' +
-                        ", isShutup=" + isShutup +
-                        ", shutupTime='" + shutupTime + '\'' +
-                        ", isBanned=" + isBanned +
-                        ", userAddress='" + userAddress + '\'' +
-                        ", userPhone='" + userPhone + '\'' +
-                        ", userPhoneVersion='" + userPhoneVersion + '\'' +
-                        ", province=" + province +
-                        ", provinceText='" + provinceText + '\'' +
-                        ", district=" + district +
-                        ", districtText='" + districtText + '\'' +
-                        ", city=" + city +
-                        ", cityText='" + cityText + '\'' +
-                        ", userLevel=" + userLevel +
-                        ", userPresentation='" + userPresentation + '\'' +
-                        ", backImgWidth='" + backImgWidth + '\'' +
-                        ", backImgHeight='" + backImgHeight + '\'' +
-                        ", goldCount=" + goldCount +
-                        ", growthCount=" + growthCount +
-                        ", fans=" + fans +
-                        ", attentionCount=" + attentionCount +
-                        ", isSign=" + isSign +
-                        ", isAttention=" + isAttention +
-                        ", isEredar=" + isEredar +
-                        ", isLoginUser=" + isLoginUser +
-                        ", userRole=" + userRole +
-                        '}';
-            }
         }
 
         public static class ServiceImgListEntity implements Parcelable {
@@ -1087,7 +1040,6 @@ public class ActiveDetailModel implements Parcelable {
                 return imgPath;
             }
 
-
             @Override
             public int describeContents() {
                 return 0;
@@ -1111,7 +1063,7 @@ public class ActiveDetailModel implements Parcelable {
                 this.imgPath = in.readString();
             }
 
-            public static final Parcelable.Creator<ServiceImgListEntity> CREATOR = new Parcelable.Creator<ServiceImgListEntity>() {
+            public static final Creator<ServiceImgListEntity> CREATOR = new Creator<ServiceImgListEntity>() {
                 public ServiceImgListEntity createFromParcel(Parcel source) {
                     return new ServiceImgListEntity(source);
                 }
@@ -1120,16 +1072,6 @@ public class ActiveDetailModel implements Parcelable {
                     return new ServiceImgListEntity[size];
                 }
             };
-
-            @Override
-            public String toString() {
-                return "ServiceImgListEntity{" +
-                        "content='" + content + '\'' +
-                        ", imgHeight='" + imgHeight + '\'' +
-                        ", imgWidth='" + imgWidth + '\'' +
-                        ", imgPath='" + imgPath + '\'' +
-                        '}';
-            }
         }
 
         @Override
@@ -1163,17 +1105,18 @@ public class ActiveDetailModel implements Parcelable {
             dest.writeInt(this.status);
             dest.writeInt(this.isRecommoned);
             dest.writeString(this.servicesImg);
-            dest.writeString(this.imgWidth);
-            dest.writeString(this.imgHeight);
+            dest.writeInt(this.imgWidth);
+            dest.writeInt(this.imgHeight);
             dest.writeInt(this.sortNum);
             dest.writeInt(this.browseNumber);
             dest.writeInt(this.isCollect);
             dest.writeInt(this.colletCount);
             dest.writeInt(this.isReserve);
+            dest.writeString(this.reserveText);
             dest.writeString(this.surplusTime);
             dest.writeString(this.eventList);
-            dest.writeTypedList(this.userInfoList);
-            dest.writeTypedList(this.serviceImgList);
+            dest.writeTypedList(userInfoList);
+            dest.writeTypedList(serviceImgList);
         }
 
         public DataEntity() {
@@ -1204,22 +1147,21 @@ public class ActiveDetailModel implements Parcelable {
             this.status = in.readInt();
             this.isRecommoned = in.readInt();
             this.servicesImg = in.readString();
-            this.imgWidth = in.readString();
-            this.imgHeight = in.readString();
+            this.imgWidth = in.readInt();
+            this.imgHeight = in.readInt();
             this.sortNum = in.readInt();
             this.browseNumber = in.readInt();
             this.isCollect = in.readInt();
             this.colletCount = in.readInt();
             this.isReserve = in.readInt();
+            this.reserveText = in.readString();
             this.surplusTime = in.readString();
             this.eventList = in.readString();
             this.userInfoList = in.createTypedArrayList(UserInfoListEntity.CREATOR);
-//            this.userInfoList = new ArrayList<UserInfoListEntity>();
-//            in.readList(this.userInfoList, List.class.getClassLoader());
             this.serviceImgList = in.createTypedArrayList(ServiceImgListEntity.CREATOR);
         }
 
-        public static final Parcelable.Creator<DataEntity> CREATOR = new Parcelable.Creator<DataEntity>() {
+        public static final Creator<DataEntity> CREATOR = new Creator<DataEntity>() {
             public DataEntity createFromParcel(Parcel source) {
                 return new DataEntity(source);
             }
@@ -1228,49 +1170,7 @@ public class ActiveDetailModel implements Parcelable {
                 return new DataEntity[size];
             }
         };
-
-        @Override
-        public String toString() {
-            return "DataEntity{" +
-                    "id=" + id +
-                    ", title='" + title + '\'' +
-                    ", startTime='" + startTime + '\'' +
-                    ", endTime='" + endTime + '\'' +
-                    ", applyStartTime='" + applyStartTime + '\'' +
-                    ", applyEndTime='" + applyEndTime + '\'' +
-                    ", peoples=" + peoples +
-                    ", timeLeft='" + timeLeft + '\'' +
-                    ", collectCount=" + collectCount +
-                    ", realityPeoples=" + realityPeoples +
-                    ", province=" + province +
-                    ", provinceText='" + provinceText + '\'' +
-                    ", city=" + city +
-                    ", cityText='" + cityText + '\'' +
-                    ", district=" + district +
-                    ", districtText='" + districtText + '\'' +
-                    ", address='" + address + '\'' +
-                    ", price='" + price + '\'' +
-                    ", type=" + type +
-                    ", content='" + content + '\'' +
-                    ", servicePhone='" + servicePhone + '\'' +
-                    ", status=" + status +
-                    ", isRecommoned=" + isRecommoned +
-                    ", servicesImg='" + servicesImg + '\'' +
-                    ", imgWidth='" + imgWidth + '\'' +
-                    ", imgHeight='" + imgHeight + '\'' +
-                    ", sortNum=" + sortNum +
-                    ", browseNumber=" + browseNumber +
-                    ", isCollect=" + isCollect +
-                    ", colletCount=" + colletCount +
-                    ", isReserve=" + isReserve +
-                    ", surplusTime='" + surplusTime + '\'' +
-                    ", eventList='" + eventList + '\'' +
-                    ", userInfoList=" + userInfoList +
-                    ", serviceImgList=" + serviceImgList +
-                    '}';
-        }
     }
-
 
     @Override
     public int describeContents() {
@@ -1291,7 +1191,7 @@ public class ActiveDetailModel implements Parcelable {
         this.msg = in.readString();
     }
 
-    public static final Parcelable.Creator<ActiveDetailModel> CREATOR = new Parcelable.Creator<ActiveDetailModel>() {
+    public static final Creator<ActiveDetailModel> CREATOR = new Creator<ActiveDetailModel>() {
         public ActiveDetailModel createFromParcel(Parcel source) {
             return new ActiveDetailModel(source);
         }
@@ -1300,12 +1200,4 @@ public class ActiveDetailModel implements Parcelable {
             return new ActiveDetailModel[size];
         }
     };
-
-    @Override
-    public String toString() {
-        return "ActiveDetailModel{" +
-                "data=" + data +
-                ", msg='" + msg + '\'' +
-                '}';
-    }
 }

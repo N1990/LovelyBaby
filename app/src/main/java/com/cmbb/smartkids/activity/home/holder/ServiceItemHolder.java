@@ -74,7 +74,7 @@ public class ServiceItemHolder extends RecyclerView.ViewHolder implements View.O
                 tvTagHomeServiceItem.setText("已开始");
                 break;
             case YU_DING_ZHONG:
-                tvTagHomeServiceItem.setText("招募中");
+                tvTagHomeServiceItem.setText("报名中");
                 break;
             case YI_JIE_SHU:
                 tvTagHomeServiceItem.setText("已过期");

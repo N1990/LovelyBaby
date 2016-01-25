@@ -60,7 +60,7 @@ public class MyServiceHolder extends RecyclerView.ViewHolder implements View.OnC
                 tvTag.setText("已开始");
                 break;
             case YU_DING_ZHONG:
-                tvTag.setText("招募中");
+                tvTag.setText("报名中");
                 break;
             case YI_JIE_SHU:
                 tvTag.setText("已过期");

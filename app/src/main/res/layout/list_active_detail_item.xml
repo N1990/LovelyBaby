@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dip"
         fresco:actualImageScaleType="centerCrop"
-        fresco:placeholderImage="@color/primaryColor"
+        fresco:placeholderImage="@color/placeholder"
         fresco:fadeDuration="300" />
 
     <TextView

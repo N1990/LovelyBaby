@@ -19,7 +19,7 @@
             android:layout_margin="3dip"
             fresco:actualImageScaleType="centerCrop"
             fresco:fadeDuration="300"
-            fresco:placeholderImage="@color/placeholder"
+            fresco:placeholderImage="@drawable/ic_default_header_bg"
             fresco:roundAsCircle="true"
             fresco:roundingBorderColor="@android:color/white"
             fresco:roundingBorderWidth="1dp" />

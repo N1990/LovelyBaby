@@ -65,7 +65,7 @@
                 android:layout_marginRight="3dip"
                 app:actualImageScaleType="centerCrop"
                 app:fadeDuration="200"
-                app:placeholderImage="@color/placeholder"
+                app:placeholderImage="@drawable/ic_default_header_bg"
                 app:roundAsCircle="true"
                 app:roundingBorderColor="@android:color/white"
                 app:roundingBorderWidth="1dp" />
@@ -77,7 +77,7 @@
                 android:layout_marginRight="3dip"
                 app:actualImageScaleType="centerCrop"
                 app:fadeDuration="200"
-                app:placeholderImage="@color/placeholder"
+                app:placeholderImage="@drawable/ic_default_header_bg"
                 app:roundAsCircle="true"
                 app:roundingBorderColor="@android:color/white"
                 app:roundingBorderWidth="1dp" />
@@ -89,7 +89,7 @@
                 android:layout_marginRight="3dip"
                 app:actualImageScaleType="centerCrop"
                 app:fadeDuration="200"
-                app:placeholderImage="@color/placeholder"
+                app:placeholderImage="@drawable/ic_default_header_bg"
                 app:roundAsCircle="true"
                 app:roundingBorderColor="@android:color/white"
                 app:roundingBorderWidth="1dp" />
@@ -101,7 +101,7 @@
                 android:layout_marginRight="3dip"
                 app:actualImageScaleType="centerCrop"
                 app:fadeDuration="200"
-                app:placeholderImage="@color/placeholder"
+                app:placeholderImage="@drawable/ic_default_header_bg"
                 app:roundAsCircle="true"
                 app:roundingBorderColor="@android:color/white"
                 app:roundingBorderWidth="1dp" />
@@ -113,7 +113,7 @@
                 android:layout_marginRight="3dip"
                 app:actualImageScaleType="centerCrop"
                 app:fadeDuration="200"
-                app:placeholderImage="@color/placeholder"
+                app:placeholderImage="@drawable/ic_default_header_bg"
                 app:roundAsCircle="true"
                 app:roundingBorderColor="@android:color/white"
                 app:roundingBorderWidth="1dp" />

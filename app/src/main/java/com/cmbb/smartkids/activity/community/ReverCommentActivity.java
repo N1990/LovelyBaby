@@ -231,7 +231,8 @@ public class ReverCommentActivity extends BaseActivity {
                     builder.show();
 
                     break;
-                case 0:// report
+                case 0://
+                // report
                     builder = CustomDialogBuilder.getInstance(ReverCommentActivity.this).withTitle("操作")
                             .withMessage("您确认要举报此回复吗？")
                             .withComfirmText("确认", new CustomListener.DialogListener() {

@@ -196,7 +196,6 @@ public class BabyDiaryListActivity extends BaseActivity {
                 if(data.getData() != null && data.getData().getRows() != null && data.getData().getRows().size() != 0){
                     adapter.addData(data.getData().getRows(), lmrv);
                 }
-                Log.e(TAG, "adapter size : " + adapter.getItemCount());
                 showShortToast(msg);
             }
 

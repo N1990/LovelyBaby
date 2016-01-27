@@ -155,9 +155,15 @@ public class Tools {
                     Map.Entry e = (Map.Entry) it.next();
                     stringBuilder.append("\"" + e.getKey() + "\":");
                     String values = null;
-                    if ("\n".contains((String) e.getValue())) {
+                    if (((String) e.getValue()).contains("\n") && ((String) e.getValue()).contains("\"")) {
                         values = ((String) e.getValue()).replace("\n", "\\n");
-                    } else {
+                        values = values.replace("\"", "\\\"");
+                    } else if(((String) e.getValue()).contains("\"")){
+                        values = ((String) e.getValue()).replace("\"", "\\\"");
+                    }else if(((String) e.getValue()).contains("\n") ){
+                        values = ((String) e.getValue()).replace("\n", "\\n");
+                    }
+                    else {
                         values = (String) e.getValue();
                     }
                     stringBuilder.append("\"" + values + "\"");

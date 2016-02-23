@@ -13,46 +13,6 @@ import java.util.List;
  */
 public class UserRootModel implements Parcelable {
 
-
-    /**
-     * userId : 3
-     * recommoned : 1
-     * userNike : N.Sun
-     * userSex : 1
-     * userBirthday :
-     * backgroundImg : http://smart.image.alimmdn.com/app/test/2015-10-21/image_9d71c71e9c3f4fb592b68b7255e69418
-     * userBigImg :
-     * userBigWidth :
-     * userBigHeight :
-     * userSmallImg : http://smart.image.alimmdn.com/app/test/2015-10-20/image_513d5c3863024f6aa35c41d2cae7a8dd
-     * userSmallWidth : 1080.0
-     * userSmallHeight : 960.0
-     * loginAccountType : 0
-     * loginTime : 2015-10-26 19:29:06
-     * loginAccount : 13818155072
-     * token : M2ZjYzUzZjktMGI5Ni00NmM1LWExYTktMmVkNjU5ZmY5YjNh
-     * isShutup : 0
-     * shutupTime :
-     * isBanned : 0
-     * userAddress : 而头疼
-     * userPhone : 13818155072
-     * userPhoneVersion :
-     * province : 310000
-     * district : 310110
-     * city : 310100
-     * userLevel : 1
-     * userPresentation : Perfect Is Shit
-     * backImgWidth : 980.0
-     * backImgHeight : 1225.0
-     * goldCount :
-     * integralCount :
-     * attentionCount :
-     * userRole : [{"eredarCode":102,"eredarName":"健康达人"},{"eredarCode":100,"eredarName":"美术达人"}]
-     * fans : 0
-     * isAttention : 0
-     * isEredar : 1
-     */
-
     private int userId;
     private int recommoned;
     private String userNike;
@@ -88,10 +48,6 @@ public class UserRootModel implements Parcelable {
     private int fans;
     private int isAttention;
     private int isEredar;
-    /**
-     * eredarCode : 102
-     * eredarName : 健康达人
-     */
 
     private List<UserRoleEntity> userRole;
 

@@ -9,8 +9,8 @@ android {
         applicationId "com.cmbb.smartkids"
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 302
-        versionName "3.0.2"
+        versionCode 303
+        versionName "3.0.3"
         multiDexEnabled true
         ndk {
             abiFilters "armeabi", "armeabi-v7a", "x86", "mips"
@@ -60,6 +60,9 @@ android {
         SmartKids {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "SmartKids"]
         }
+        SmartKids3 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "SmartKids3"]
+        }
     }
 
     sourceSets {
@@ -89,8 +92,8 @@ android {
 
     signingConfigs {
         debug {
-            storeFile file("/Users/javon/Documents/mengbao/smartkids")
-//            storeFile file("/Users/niesen918/AndroidStudioProjects/key/smartkids")
+//            storeFile file("/Users/javon/Documents/mengbao/smartkids")
+            storeFile file("/Users/niesen918/AndroidStudioProjects/key/smartkids")
             storePassword "ns101288"
             keyAlias "smartkids"
             keyPassword "ns101288"

@@ -103,7 +103,6 @@ public class LoginActivity extends BaseActivity {
             startActivity(intent);
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -158,8 +157,10 @@ public class LoginActivity extends BaseActivity {
             body.put("loginPassword", pwd);
         } else {
             body.put("openId", uid);
+            Log.e("openId", "uid = " + uid);
             body.put("userNike", userName);
         }
+
         body.put("device", 2 + "");
         body.put("deviceVersion", android.os.Build.VERSION.RELEASE);
         body.put("model", android.os.Build.MODEL);
@@ -231,6 +232,7 @@ public class LoginActivity extends BaseActivity {
             public void onComplete(Bundle bundle, SHARE_MEDIA share_media) {
                 if (bundle != null && !TextUtils.isEmpty(bundle.getString("uid"))) {
                     uid = bundle.getString("uid");
+                    Log.e("bundle", "bundle = " + bundle.toString());
                     mController.getPlatformInfo(LoginActivity.this, media, uMDataListener);
                 } else {
                     showShortToast("授权失败");
@@ -281,5 +283,4 @@ public class LoginActivity extends BaseActivity {
             ssoHandler.authorizeCallBack(requestCode, resultCode, data);
         }
     }
-
 }

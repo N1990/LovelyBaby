@@ -49,12 +49,14 @@ public class SplashActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onResume() { 
+    protected void onResume() {
         super.onResume();
         MobclickAgent.onResume(this);
     }
 
+
     @Override
+
     protected void onPause() {
         super.onPause();
         MobclickAgent.onPause(this);
@@ -63,11 +65,9 @@ public class SplashActivity extends AppCompatActivity {
 
     // 友盟推送注册器
     private IUmengRegisterCallback mRegisterCallback = new IUmengRegisterCallback() {
-
         @Override
         public void onRegistered(String registrationId) {
             Log.e("mRegisterCallback", "token:" + mPushAgent.getRegistrationId());
         }
     };
-
 }

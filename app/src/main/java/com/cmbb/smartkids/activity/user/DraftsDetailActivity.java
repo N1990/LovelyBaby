@@ -44,7 +44,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class DraftsDetailActivity extends BaseActivity implements LoaderManager.LoaderCallbacks<Cursor>{
+public class DraftsDetailActivity extends BaseActivity implements LoaderManager.LoaderCallbacks<Cursor> {
     private final String TAG = DraftsDetailActivity.class.getSimpleName();
     private final int PIC_REQUEST_CODE = 1001;
     private EditText etTitle, etContent;
@@ -59,7 +59,6 @@ public class DraftsDetailActivity extends BaseActivity implements LoaderManager.
 
     private List<String> topic_type_name = new ArrayList<>();
     private List<String> topic_type_value = new ArrayList<>();
-    public static  Cursor cursor;
     private String type_value;
     private String type;
     private int topicId;
@@ -260,8 +259,6 @@ public class DraftsDetailActivity extends BaseActivity implements LoaderManager.
     }
 
 
-
-
     //==============
 
     @Override
@@ -272,9 +269,7 @@ public class DraftsDetailActivity extends BaseActivity implements LoaderManager.
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         // 获取草稿箱内容
-        cursor = data;
-        Log.e("cursor", "cursor2222 = " + data.getCount());
-        if(data != null && data.getCount() > 0 && data.moveToFirst()){
+        if (data != null && data.getCount() > 0 && data.moveToFirst()) {
             String title = data.getString(data.getColumnIndex(DBContent.DBTopic.TOPIC_TITLE));
             if (!TextUtils.isEmpty(title)) {
                 etTitle.setText(title);
@@ -293,23 +288,23 @@ public class DraftsDetailActivity extends BaseActivity implements LoaderManager.
             }
 
             String teletextStr = data.getString(data.getColumnIndex(DBContent.DBTopic.TOPIC_TELETEXTS));
-            if(!TextUtils.isEmpty(teletextStr)){
+            if (!TextUtils.isEmpty(teletextStr)) {
                 Gson gson = new Gson();
                 ArrayList<ImageModel> realImgs = new ArrayList<>();
-                ArrayList<ImageModel> imageModels = gson.fromJson(teletextStr, new TypeToken<ArrayList<ImageModel>>() {}.getType());
-                for (ImageModel img : imageModels){
+                ArrayList<ImageModel> imageModels = gson.fromJson(teletextStr, new TypeToken<ArrayList<ImageModel>>() {
+                }.getType());
+                for (ImageModel img : imageModels) {
                     File file = new File(img.getImgUrl());
-                    if(file.exists())
+                    if (file.exists())
                         realImgs.add(img);
                 }
-                if(realImgs.size() > 0){
+                if (realImgs.size() > 0) {
                     etImgDescri.setVisibility(View.VISIBLE);
                     adapter.setData(realImgs);
                     if (!TextUtils.isEmpty(realImgs.get(0).getContent())) {
                         etImgDescri.setText(realImgs.get(0).getContent());
                     }
                 }
-
             }
             handleTopicTypeRequest();
             addListener();
@@ -329,11 +324,11 @@ public class DraftsDetailActivity extends BaseActivity implements LoaderManager.
         values.put(DBContent.DBTopic.TOPIC_SORT, ns.getText().toString());
         values.put(DBContent.DBTopic.TOPIC_SORT_VALUE, type_value);
         values.put(DBContent.DBTopic.TOPIC_CONTENT, etContent.getText().toString());
-        if(adapter.getData() != null){
+        if (adapter.getData() != null) {
             Gson gson = new Gson();
             String images = gson.toJson(adapter.getData());
             values.put(DBContent.DBTopic.TOPIC_TELETEXTS, images);
-        }else{
+        } else {
             values.put(DBContent.DBTopic.TOPIC_TELETEXTS, "");
         }
         getContentResolver().update(ContentUris.withAppendedId(DBContent.DBTopic.CONTENT_URI, topicId), values, null, null);
@@ -359,9 +354,9 @@ public class DraftsDetailActivity extends BaseActivity implements LoaderManager.
                     }
                     ns.attachDataSource(topic_type_name);
                     // 初始值
-                    if(!TextUtils.isEmpty(type)){
+                    if (!TextUtils.isEmpty(type)) {
                         ns.setText(type);
-                    }else{
+                    } else {
                         type_value = topic_type_value.get(0);
                     }
                 }

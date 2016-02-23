@@ -36,7 +36,6 @@ import com.umeng.message.entity.UMessage;
  */
 public class BaseApplication extends MultiDexApplication {
     private static final String TAG = BaseApplication.class.getSimpleName();
-    private static BaseApplication instance;
     private static Context context;
     public static PushAgent mPushAgent;
     public static String PUSH_ALIAS_ITENTACTION = "com.cmbb.smartkids.alias";
@@ -46,7 +45,6 @@ public class BaseApplication extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-        instance = this;
         context = getApplicationContext();
         //讯飞科大
         SpeechUtility.createUtility(this, "appid=56600859");
@@ -70,8 +68,7 @@ public class BaseApplication extends MultiDexApplication {
     public static String getDeviceInfo(Context context) {
         try {
             org.json.JSONObject json = new org.json.JSONObject();
-            android.telephony.TelephonyManager tm = (android.telephony.TelephonyManager) context
-                    .getSystemService(Context.TELEPHONY_SERVICE);
+            android.telephony.TelephonyManager tm = (android.telephony.TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
 
             String device_id = tm.getDeviceId();
 

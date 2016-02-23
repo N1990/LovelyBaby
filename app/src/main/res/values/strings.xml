@@ -63,10 +63,8 @@
     <string name="title_activity_delivery_address_manager" translatable="false">管理收货地址</string>
     <string name="title_activity_delivery_address_choose" translatable="false">选择收货地址</string>
 
-
     <!-- menu tip-->
     <string name="menu_submit" translatable="false">提交</string>
     <string name="system_error" translatable="false">服务器异常</string>
     <string name="title_activity_splash">Splash</string>
-
 </resources>

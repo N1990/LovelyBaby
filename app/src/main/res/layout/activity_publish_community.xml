@@ -10,7 +10,6 @@
 
     <include layout="@layout/custom_actionbar" />
 
-
     <com.cmbb.smartkids.widget.autoscroll.MyScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -71,9 +70,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/btn_white_radio_bg"
-                    android:lineSpacingExtra="1.5dp"
                     android:gravity="start"
                     android:hint="请输入1-500个字"
+                    android:lineSpacingExtra="1.5dp"
                     android:minHeight="150dip"
                     android:padding="@dimen/half_global_padding"
                     android:textColor="@android:color/black"
@@ -129,6 +128,5 @@
             </RelativeLayout>
         </LinearLayout>
     </com.cmbb.smartkids.widget.autoscroll.MyScrollView>
-
 
 </LinearLayout>

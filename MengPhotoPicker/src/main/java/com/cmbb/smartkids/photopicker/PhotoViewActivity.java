@@ -209,7 +209,7 @@ public class PhotoViewActivity extends AppCompatActivity {
             bm.compress(Bitmap.CompressFormat.PNG, 100, out);
             out.flush();
             out.close();
-            Toast.makeText(PhotoViewActivity.this, "图片保持成功", Toast.LENGTH_SHORT).show();
+            Toast.makeText(PhotoViewActivity.this, "图片保存成功", Toast.LENGTH_SHORT).show();
             // 最后通知图库更新
             sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse("file://" + f.getAbsolutePath())));
         } catch (FileNotFoundException e) {

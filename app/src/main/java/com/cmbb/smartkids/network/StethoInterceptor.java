@@ -38,9 +38,7 @@ public class StethoInterceptor implements Interceptor {
     @Override
     public Response intercept(Chain chain) throws IOException {
         String requestId = String.valueOf(mNextRequestId.getAndIncrement());
-
         Request request = chain.request();
-
         int requestSize = 0;
         if (mEventReporter.isEnabled()) {
             OkHttpInspectorRequest inspectorRequest = new OkHttpInspectorRequest(requestId, request);

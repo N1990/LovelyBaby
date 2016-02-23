@@ -29,151 +29,151 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
                     android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/dimgray"
-                        android:text="收货人"/>
+                        android:text="收货人"
+                        android:textColor="@color/dimgray" />
 
                     <TextView
                         android:id="@+id/tv_delivery_address_detail_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="35dp"
-                        android:textColor="@android:color/black"
-                        android:singleLine="true"
                         android:ellipsize="end"
-                        android:text=""/>
+                        android:singleLine="true"
+                        android:text=""
+                        android:textColor="@android:color/black" />
 
                 </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1px"
-                    android:background="@android:color/darker_gray"/>
+                    android:background="@android:color/darker_gray" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
                     android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/dimgray"
-                        android:text="手机号码"/>
+                        android:text="手机号码"
+                        android:textColor="@color/dimgray" />
 
                     <TextView
                         android:id="@+id/tv_delivery_address_detail_phone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
-                        android:textColor="@android:color/black"
-                        android:singleLine="true"
                         android:ellipsize="end"
-                        android:text=""/>
+                        android:singleLine="true"
+                        android:text=""
+                        android:textColor="@android:color/black" />
 
                 </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1px"
-                    android:background="@android:color/darker_gray"/>
+                    android:background="@android:color/darker_gray" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
                     android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/dimgray"
-                        android:text="邮政编码"/>
+                        android:text="邮政编码"
+                        android:textColor="@color/dimgray" />
 
                     <TextView
                         android:id="@+id/tv_delivery_address_detail_postcode"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
-                        android:textColor="@android:color/black"
-                        android:singleLine="true"
                         android:ellipsize="end"
-                        android:text=""/>
+                        android:singleLine="true"
+                        android:text=""
+                        android:textColor="@android:color/black" />
 
                 </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1px"
-                    android:background="@android:color/darker_gray"/>
+                    android:background="@android:color/darker_gray" />
 
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
                     android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/dimgray"
-                        android:text="所在地区"/>
+                        android:text="所在地区"
+                        android:textColor="@color/dimgray" />
 
                     <TextView
                         android:id="@+id/tv_delivery_address_detail_local"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
-                        android:textColor="@android:color/black"
-                        android:singleLine="true"
                         android:ellipsize="end"
-                        android:text=""/>
+                        android:singleLine="true"
+                        android:text=""
+                        android:textColor="@android:color/black" />
 
                 </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1px"
-                    android:background="@android:color/darker_gray"/>
+                    android:background="@android:color/darker_gray" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
                     android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/dimgray"
-                        android:text="详细地址"/>
+                        android:text="详细地址"
+                        android:textColor="@color/dimgray" />
 
                     <TextView
                         android:id="@+id/tv_delivery_address_detail_address"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
-                        android:textColor="@android:color/black"
-                        android:singleLine="true"
                         android:ellipsize="end"
-                        android:text=""/>
+                        android:singleLine="true"
+                        android:text=""
+                        android:textColor="@android:color/black" />
 
                 </LinearLayout>
 
@@ -186,12 +186,12 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="30dp"
                 android:background="@android:color/white"
-                android:gravity="center_vertical"
-                android:textColor="@color/primaryColorDark"
-                android:textSize="@dimen/txt_middle"
-                android:singleLine="true"
                 android:ellipsize="end"
-                android:text="删除收货地址" />
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:text="删除收货地址"
+                android:textColor="@color/primaryColorDark"
+                android:textSize="@dimen/txt_middle" />
 
 
             <TextView
@@ -201,24 +201,15 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:background="@android:color/white"
+                android:ellipsize="end"
                 android:gravity="center_vertical"
+                android:singleLine="true"
+                android:text="设为默认收货地址"
                 android:textColor="@color/primaryColorDark"
                 android:textSize="@dimen/txt_middle"
-                android:singleLine="true"
-                android:ellipsize="end"
-                android:text="设为默认收货地址"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
-
-
-
-
-            </LinearLayout>
-
-
-
-
-
+        </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>
 

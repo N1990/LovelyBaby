@@ -13,8 +13,7 @@ public class DBContent implements BaseColumns {
     public static final String DB_NAME = "smarts.db";
     public static final String INTEGER_TYPE = " INTEGER,";
     public static final String TEXT_TYPE = " TEXT,";
-    public static int VERSION = 302;
-
+    public static int VERSION = 303;
 
     public static class DBUser {
         public static final String TABLE_NAME = "user";
@@ -141,7 +140,6 @@ public class DBContent implements BaseColumns {
 //
 //        public static final String TOPIC_IMG_10 = "topic_img10";
 //        public static final String TOPIC_TEXT_10= "topic_text10";
-
 
 
         public static String SQL = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + "( \n" +

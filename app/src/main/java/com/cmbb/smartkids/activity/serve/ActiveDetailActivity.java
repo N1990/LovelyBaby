@@ -19,7 +19,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.cmbb.smartkids.R;
-import com.cmbb.smartkids.activity.home.HomeActivity;
+import com.cmbb.smartkids.activity.home.home_v2.HomeActivity;
 import com.cmbb.smartkids.activity.home.model.ActiveDetailModel;
 import com.cmbb.smartkids.activity.login.model.SecurityCodeModel;
 import com.cmbb.smartkids.activity.order.OrderDetailActivity;
@@ -34,7 +34,6 @@ import com.cmbb.smartkids.utils.FrescoTool;
 import com.cmbb.smartkids.utils.ShareUtils;
 import com.cmbb.smartkids.utils.TDevice;
 import com.cmbb.smartkids.utils.Tools;
-import com.cmbb.smartkids.utils.log.Log;
 import com.cmbb.smartkids.widget.wheelview.CustomDialogBuilder;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.umeng.socialize.sso.UMSsoHandler;

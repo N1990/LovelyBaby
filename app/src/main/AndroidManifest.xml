@@ -203,7 +203,12 @@
         <activity android:name=".activity.GuidActivity" />
         <activity
             android:name=".activity.login.LoginActivity"
-            android:label="@string/title_activity_login" />
+            android:label="@string/title_activity_login">
+            <intent-filter>
+                <action android:name="com.cmbb.smartkids.loginagain" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".activity.login.RegisterActivity"
             android:label="@string/title_activity_register" />
@@ -362,19 +367,29 @@
         <activity android:name=".activity.diary.PublishBabyDiaryActivity" />
         <activity android:name=".activity.user.MyDraftsActivity" />
 
-        <!--
-             ATTENTION: This was auto-generated to add Google Play services to your project for
-             App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
-        -->
-        <meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
 
         <activity android:name=".activity.user.DraftsDetailActivity" />
         <activity android:name=".activity.user.DeliveryAddressListActivity" />
         <activity android:name=".activity.user.DeliveryAddressDetailActivity" />
-        <activity android:name=".activity.user.DeliveryAddressModifyActivity"/>
+        <activity android:name=".activity.user.DeliveryAddressModifyActivity" />
         <activity android:name=".activity.user.ManagerDeliveryAddressListActivity" />
+
+        <activity
+            android:name=".activity.home.home_v2.HomeActivity"
+            android:theme="@style/HomePageTheme"
+            android:windowSoftInputMode="adjustNothing|stateHidden" />
+        <activity
+            android:name=".activity.home.home_v2.HomeTopicActivity"
+            android:theme="@style/HomePageTheme" />
+        <activity
+            android:name=".activity.home.home_v2.HomeMeActivity"
+            android:theme="@style/HomePageTheme" />
+        <activity
+            android:name=".activity.home.home_v2.HomeMoreActivity"
+            android:theme="@style/HomePageTheme" />
+        <activity
+            android:name=".activity.home.home_v2.HomeServiceActivity"
+            android:theme="@style/HomePageTheme" />
     </application>
 
 </manifest>

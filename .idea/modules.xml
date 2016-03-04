@@ -8,6 +8,7 @@
       <module fileurl="file://$PROJECT_DIR$/MengPhotoPicker/MengPhotoPicker.iml" filepath="$PROJECT_DIR$/MengPhotoPicker/MengPhotoPicker.iml" />
       <module fileurl="file://$PROJECT_DIR$/OneSDK/OneSDK.iml" filepath="$PROJECT_DIR$/OneSDK/OneSDK.iml" />
       <module fileurl="file://$PROJECT_DIR$/PRTRecyclerView/PRTRecyclerView.iml" filepath="$PROJECT_DIR$/PRTRecyclerView/PRTRecyclerView.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SmartRecyclerView/SmartRecyclerView.iml" filepath="$PROJECT_DIR$/SmartRecyclerView/SmartRecyclerView.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

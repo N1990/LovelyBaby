@@ -3,6 +3,11 @@ package com.cmbb.smartkids.activity.login.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.cmbb.smartkids.base.Constants;
+import com.cmbb.smartkids.network.OkHttpClientManager;
+
+import java.util.HashMap;
+
 /**
  * 项目名称：LovelyBaby
  * 类描述：
@@ -72,5 +77,21 @@ public class SecurityCodeModel implements Parcelable {
                 "status='" + status + '\'' +
                 ", msg='" + msg + '\'' +
                 '}';
+    }
+
+    /**
+     * 更新个人图片
+     *
+     * @param imgPath
+     * @param imgWidth
+     * @param imgHeight
+     * @param callback
+     */
+    public static void updateBackgroundImageRequest(String imgPath, String imgWidth, String imgHeight, OkHttpClientManager.ResultCallback<SecurityCodeModel> callback) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("imgPath", imgPath);
+        params.put("imgWidth", imgWidth);
+        params.put("imgHeight", imgHeight);
+        OkHttpClientManager.postAsyn(Constants.ServiceInfo.UPDATA_IMG_FOR_USER, params, callback);
     }
 }

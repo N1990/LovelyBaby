@@ -9,7 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 
 import com.cmbb.smartkids.R;
-import com.cmbb.smartkids.activity.home.HomeActivity;
+import com.cmbb.smartkids.activity.home.home_v2.HomeActivity;
 import com.cmbb.smartkids.base.Constants;
 import com.cmbb.smartkids.utils.SPCache;
 import com.cmbb.smartkids.utils.log.Log;

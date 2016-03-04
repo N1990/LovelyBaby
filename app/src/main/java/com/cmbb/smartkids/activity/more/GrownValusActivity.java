@@ -1,5 +1,7 @@
 package com.cmbb.smartkids.activity.more;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -19,5 +21,9 @@ public class GrownValusActivity extends BaseActivity {
     @Override
     protected int getLayoutId() {
         return R.layout.activity_grown_valus;
+    }
+    public static void newInstance(Activity activity){
+        Intent intent = new Intent(activity, GrownValusActivity.class);
+        activity.startActivity(intent);
     }
 }

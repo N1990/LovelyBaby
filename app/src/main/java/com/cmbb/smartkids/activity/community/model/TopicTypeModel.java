@@ -3,6 +3,10 @@ package com.cmbb.smartkids.activity.community.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.cmbb.smartkids.base.Constants;
+import com.cmbb.smartkids.network.OkHttpClientManager;
+
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -46,6 +50,15 @@ public class TopicTypeModel implements Parcelable {
     public static class DataEntity implements Parcelable {
         private String name;
         private String value;
+        private int position;
+
+        public int getPosition() {
+            return position;
+        }
+
+        public void setPosition(int position) {
+            this.position = position;
+        }
 
         public void setName(String name) {
             this.name = name;
@@ -139,4 +152,15 @@ public class TopicTypeModel implements Parcelable {
             return new TopicTypeModel[size];
         }
     };
+
+    /**
+     * 获取话题类型
+     *
+     * @param callback ResultCallback
+     */
+    public static void getTopicTypeRequest(OkHttpClientManager.ResultCallback<TopicTypeModel> callback) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("typeCode", "topicType");
+        OkHttpClientManager.postAsyn(Constants.Community.TOPIC_TYPE, params, callback);
+    }
 }

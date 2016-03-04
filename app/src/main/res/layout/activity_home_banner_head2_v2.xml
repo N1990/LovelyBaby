@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/global_padding">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_white_background_no_corner"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="@dimen/activity_vertical_margin">
+
+                <TextView
+                    android:id="@+id/tv_qiandao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="每日签到"
+                    android:textAppearance="@style/TextAppearance.Smart.Small"
+                    android:textColor="@color/primaryColor"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_qiandao"
+                    android:text="每日有惊喜"
+                    android:textAppearance="@style/TextAppearance.Smart.Small"
+                    android:textColor="@color/darkgray" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/global_padding"
+                    android:src="@android:drawable/ic_menu_add" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="0.5px"
+                android:layout_height="match_parent"
+                android:alpha="0.3"
+                android:background="@color/darkgray" />
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+
+                android:padding="@dimen/activity_vertical_margin">
+
+                <TextView
+                    android:id="@+id/tv_rank"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="达人排行"
+                    android:textAppearance="@style/TextAppearance.Smart.Small"
+                    android:textColor="@android:color/holo_green_dark"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_rank"
+                    android:text="看看谁是达人"
+                    android:textAppearance="@style/TextAppearance.Smart.Small"
+                    android:textColor="@color/darkgray" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/global_padding"
+                    android:src="@android:drawable/ic_menu_add" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0.5px"
+            android:alpha="0.3"
+            android:background="@color/darkgray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="@dimen/activity_vertical_margin">
+
+                <TextView
+                    android:id="@+id/tv_tuijian"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="本周精选"
+                    android:textAppearance="@style/TextAppearance.Smart.Small"
+                    android:textColor="@android:color/holo_blue_bright"
+
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_tuijian"
+                    android:text="这周推荐服务"
+                    android:textAppearance="@style/TextAppearance.Smart.Small"
+                    android:textColor="@color/darkgray" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/global_padding"
+                    android:src="@android:drawable/ic_menu_add" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="0.5px"
+                android:layout_height="match_parent"
+                android:alpha="0.3"
+                android:background="@color/darkgray" />
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="@dimen/activity_vertical_margin">
+
+                <TextView
+                    android:id="@+id/tv_jing"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="精彩回顾"
+                    android:textAppearance="@style/TextAppearance.Smart.Small"
+                    android:textColor="@android:color/holo_green_light"
+
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_jing"
+                    android:text="回顾精彩瞬间"
+                    android:textAppearance="@style/TextAppearance.Smart.Small"
+                    android:textColor="@color/darkgray" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/global_padding"
+                    android:src="@android:drawable/ic_menu_add" />
+            </RelativeLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/global_padding"
+        android:background="@drawable/shape_white_background_no_corner"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/line" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@android:drawable/ic_menu_add"
+            android:gravity="center_vertical"
+            android:paddingBottom="2dp"
+            android:paddingLeft="@dimen/global_padding"
+            android:paddingTop="@dimen/half_global_padding"
+            android:text="热门推荐"
+            android:textAppearance="@style/TextAppearance.Smart.Small"
+            android:textColor="@color/primaryColor"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</LinearLayout>

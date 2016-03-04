@@ -17,8 +17,12 @@ import com.alibaba.sdk.android.AlibabaSDK;
 import com.alibaba.sdk.android.callback.InitResultCallback;
 import com.alibaba.sdk.android.media.MediaService;
 import com.cmbb.smartkids.R;
+import com.cmbb.smartkids.network.OkHttpClientManager;
 import com.cmbb.smartkids.utils.SPCache;
 import com.cmbb.smartkids.utils.log.Log;
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.imagepipeline.backends.okhttp.OkHttpImagePipelineConfigFactory;
+import com.facebook.imagepipeline.core.ImagePipelineConfig;
 import com.facebook.stetho.Stetho;
 import com.iflytek.cloud.SpeechUtility;
 import com.umeng.analytics.MobclickAgent;
@@ -56,12 +60,23 @@ public class BaseApplication extends MultiDexApplication {
         initUmengAnalytics();
         //初始化umeng推送
         initPushAgent();
+
+        initFresco();
         // 注册推送别名注册器
         LocalBroadcastManager.getInstance(this).registerReceiver(pushAliasReceiver, new IntentFilter(PUSH_ALIAS_ITENTACTION));
         // 登录状态获取token
         token = SPCache.getString(Constants.TOKEN, "");
         String result = getDeviceInfo(this);
         Log.e("Test", result);
+    }
+
+    private void initFresco() {
+        //fresco
+        ImagePipelineConfig config = OkHttpImagePipelineConfigFactory.newBuilder(BaseApplication.getContext(), OkHttpClientManager.getClinet())
+                .setDownsampleEnabled(true)
+                .setResizeAndRotateEnabledForNetwork(true)
+                .build();
+        Fresco.initialize(BaseApplication.getContext(), config);
     }
 
 

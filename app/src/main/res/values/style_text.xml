@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 内容区文字大小-->
+    <style name="TextAppearance.Smart.Body1" parent="Base.TextAppearance.AppCompat.Body1">
+        <item name="android:textColor">@color/dimgray</item>
+    </style>
+
+    <style name="TextAppearance.Smart.Body2" parent="Base.TextAppearance.AppCompat.Body2">
+        <item name="android:textColor">@color/dimgray</item>
+    </style>
+    <!-- 内容区文字大小-->
+
+    <!-- 按钮-->
+    <style name="TextAppearance.Smart.Button" parent="Base.TextAppearance.AppCompat.Button" />
+    <!-- 按钮-->
+
+    <!-- 标题-->
+    <style name="TextAppearance.Smart.Headline" parent="Base.TextAppearance.AppCompat.Headline" />
+
+    <style name="TextAppearance.Smart.Subhead" parent="Base.TextAppearance.AppCompat.Subhead" />
+
+    <style name="TextAppearance.Smart.Subhead.Inverse" parent="Base.TextAppearance.AppCompat.Subhead.Inverse" />
+
+    <style name="TextAppearance.Smart.Title" parent="Base.TextAppearance.AppCompat.Title" />
+
+    <style name="TextAppearance.Smart.Title.Inverse" parent="Base.TextAppearance.AppCompat.Title.Inverse" />
+
+    <!--文字大小-->
+    <style name="TextAppearance.Smart.Large" parent="Base.TextAppearance.AppCompat.Large" />
+
+    <style name="TextAppearance.Smart.Large.Inverse" parent="Base.TextAppearance.AppCompat.Large.Inverse" />
+
+    <style name="TextAppearance.Smart.Medium" parent="Base.TextAppearance.AppCompat.Medium">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="TextAppearance.Smart.Medium.Inverse" parent="Base.TextAppearance.AppCompat.Medium.Inverse">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="TextAppearance.Smart.Small" parent="Base.TextAppearance.AppCompat.Small" />
+
+    <style name="TextAppearance.Smart.Small.Inverse" parent="Base.TextAppearance.AppCompat.Small.Inverse" />
+    <!--文字大小-->
+
+
+</resources>

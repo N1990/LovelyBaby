@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include layout="@layout/custom_actionbar" />
+
+
+        <TextView
+            android:id="@+id/tv_suggest_feek"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_below="@+id/tl_main_actionbar"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/white"
+            android:drawableRight="@mipmap/btn_right_anchor_bg"
+            android:elevation="3dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="意见反馈"
+            android:textAppearance="@style/TextAppearance.Smart.Body1" />
+
+        <TextView
+            android:id="@+id/tv_growth_values"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_below="@+id/tv_suggest_feek"
+            android:layout_marginTop="20dp"
+            android:background="@android:color/white"
+            android:drawableRight="@mipmap/btn_right_anchor_bg"
+            android:elevation="3dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="成长值说明"
+            android:textAppearance="@style/TextAppearance.Smart.Body1" />
+
+        <TextView
+            android:id="@+id/tv_about"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_below="@+id/tv_growth_values"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/white"
+            android:drawableRight="@mipmap/btn_right_anchor_bg"
+            android:elevation="3dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="关于萌宝派"
+            android:textAppearance="@style/TextAppearance.Smart.Body1" />
+
+        <TextView
+            android:id="@+id/tv_clear_cache"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_below="@+id/tv_about"
+            android:layout_marginTop="20dp"
+            android:background="@android:color/white"
+            android:drawableRight="@mipmap/btn_right_anchor_bg"
+            android:elevation="3dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="清除缓存"
+            android:textAppearance="@style/TextAppearance.Smart.Body1" />
+
+
+        <LinearLayout
+            android:id="@+id/ll_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom"
+            android:background="@drawable/shape_white_background_no_corner"
+
+            android:orientation="horizontal"
+            android:paddingTop="@dimen/half_global_padding">
+
+            <TextView
+                android:id="@+id/tv_home"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/btn_home_main_selector"
+                android:gravity="center"
+                android:text="首页"
+                android:textColor="@color/selector_gray_to_primarycolor_text" />
+
+            <TextView
+                android:id="@+id/tv_service"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/btn_home_service_selector"
+                android:gravity="center"
+                android:text="服务"
+                android:textColor="@color/selector_gray_to_primarycolor_text" />
+
+            <TextView
+                android:id="@+id/tv_topic"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/btn_home_community_selector"
+                android:gravity="center"
+                android:text="话题"
+                android:textColor="@color/selector_gray_to_primarycolor_text" />
+
+            <TextView
+                android:id="@+id/tv_me"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/btn_home_self_selector"
+                android:gravity="center"
+                android:text="我的"
+                android:textColor="@color/selector_gray_to_primarycolor_text" />
+
+            <TextView
+                android:id="@+id/tv_more"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/btn_home_more_selector"
+                android:gravity="center"
+                android:text="更多"
+                android:textColor="@color/selector_gray_to_primarycolor_text" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>

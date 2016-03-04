@@ -7,12 +7,11 @@ import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.cmbb.smartkids.R;
-import com.cmbb.smartkids.activity.home.HomeActivity;
+import com.cmbb.smartkids.activity.home.home_v2.HomeActivity;
 import com.cmbb.smartkids.activity.login.model.SecurityCodeModel;
 import com.cmbb.smartkids.activity.order.model.OrderDetailModel;
 import com.cmbb.smartkids.activity.order.model.RefundModel;

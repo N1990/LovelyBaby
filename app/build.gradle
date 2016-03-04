@@ -63,6 +63,12 @@ android {
         SmartKids3 {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "SmartKids3"]
         }
+        Beekingdom {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Beekingdom"]
+        }
+        Flowers {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Flowers"]
+        }
     }
 
     sourceSets {
@@ -133,5 +139,6 @@ dependencies {
     compile project(':LoadMoreRecyclerView')
     compile project(':OneSDK')
     compile project(':PRTRecyclerView')
-    compile 'com.google.android.gms:play-services-appindexing:8.1.0'
+    compile 'com.jude:rollviewpager:1.0.7'
+    compile project(':SmartRecyclerView')
 }

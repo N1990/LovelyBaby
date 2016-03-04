@@ -3,6 +3,10 @@ package com.cmbb.smartkids.activity.home.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.cmbb.smartkids.base.Constants;
+import com.cmbb.smartkids.network.OkHttpClientManager;
+
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -165,4 +169,16 @@ public class BannerModel implements Parcelable {
             return new BannerModel[size];
         }
     };
+
+    /**
+     * 获取主页广告接口
+     *
+     * @param token    Token
+     * @param callback ResultCallback
+     */
+    public static void getHomeBannerRequest(String token, OkHttpClientManager.ResultCallback<BannerModel> callback) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("token", token);
+        OkHttpClientManager.postAsyn(Constants.ServiceInfo.HOME_MAIN_AD, params, callback);
+    }
 }

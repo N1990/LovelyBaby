@@ -3,6 +3,10 @@ package com.cmbb.smartkids.activity.user.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.cmbb.smartkids.base.Constants;
+import com.cmbb.smartkids.network.OkHttpClientManager;
+
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -658,4 +662,20 @@ public class UserCenterModel implements Parcelable {
             return new UserCenterModel[size];
         }
     };
+
+    /**
+     * 获取用户信息
+     *
+     * @param userAttentionId ID
+     * @param myCenter        是否是用户中心 1 表示是
+     * @param token           Token
+     * @param callback        ResultCallback
+     */
+    public static void getUserInfoRequest(String userAttentionId, int myCenter, String token, OkHttpClientManager.ResultCallback<UserCenterModel> callback) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("userAttentionId", userAttentionId);
+        params.put("myCenter", String.valueOf(myCenter));
+        params.put("token", token);
+        OkHttpClientManager.postAsyn(Constants.ServiceInfo.USER_INFO_REQUEST, params, callback);
+    }
 }

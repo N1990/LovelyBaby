@@ -3,6 +3,10 @@ package com.cmbb.smartkids.activity.serve.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.cmbb.smartkids.base.Constants;
+import com.cmbb.smartkids.network.OkHttpClientManager;
+
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -632,5 +636,29 @@ public class ServiceListModel implements Parcelable {
                 "data=" + data +
                 ", msg='" + msg + '\'' +
                 '}';
+    }
+
+    /**
+     * 获取服务俩表
+     *
+     * @param city
+     * @param type
+     * @param status
+     * @param pageNo
+     * @param pagerSize
+     * @param token
+     * @param callback
+     */
+    public static void getServiceListRequest(int city, int type, int status, int pageNo, int pagerSize, String token, OkHttpClientManager.ResultCallback<ServiceListModel> callback) {
+        HashMap<String, String> params = new HashMap<>();
+        if (city != 0)
+            params.put("city", String.valueOf(city));
+        if (type != 0)
+            params.put("type", String.valueOf(type));
+        if (status != 0)
+            params.put("status", String.valueOf(status));
+        params.put("pageNo", String.valueOf(pageNo));
+        params.put("numberOfPerPage", String.valueOf(pagerSize));
+        OkHttpClientManager.postAsyn(Constants.ServiceInfo.HOME_MAIN_HOT_SERVICE, params, callback);
     }
 }

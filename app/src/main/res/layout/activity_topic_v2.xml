@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/tl_main_actionbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawableRight="@mipmap/btn_community_achor_dowm_bg"
+                android:textAppearance="@style/TextAppearance.Smart.Medium"
+                android:textColor="@android:color/white" />
+
+
+        </android.support.v7.widget.Toolbar>
+
+        <com.cmbb.smartkids.recyclerview.SmartRecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/tl_main_actionbar"
+            android:layout_marginBottom="60dp"
+            app:layout_empty="@layout/view_empty"
+            app:layout_progress="@layout/view_progress"
+            app:scrollbarStyle="insideOverlay" />
+
+
+        <LinearLayout
+            android:id="@+id/ll_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom"
+            android:background="@drawable/shape_white_background_no_corner"
+
+            android:orientation="horizontal"
+            android:paddingTop="@dimen/half_global_padding">
+
+            <TextView
+                android:id="@+id/tv_home"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/btn_home_main_selector"
+                android:gravity="center"
+                android:text="首页"
+                android:textColor="@color/selector_gray_to_primarycolor_text" />
+
+            <TextView
+                android:id="@+id/tv_service"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/btn_home_service_selector"
+                android:gravity="center"
+                android:text="服务"
+                android:textColor="@color/selector_gray_to_primarycolor_text" />
+
+            <TextView
+                android:id="@+id/tv_topic"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/btn_home_community_selector"
+                android:gravity="center"
+                android:text="社区"
+                android:textColor="@color/selector_gray_to_primarycolor_text" />
+
+            <TextView
+                android:id="@+id/tv_me"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/btn_home_self_selector"
+                android:gravity="center"
+                android:text="我的"
+                android:textColor="@color/selector_gray_to_primarycolor_text" />
+
+            <TextView
+                android:id="@+id/tv_more"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/btn_home_more_selector"
+                android:gravity="center"
+                android:text="更多"
+                android:textColor="@color/selector_gray_to_primarycolor_text" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>

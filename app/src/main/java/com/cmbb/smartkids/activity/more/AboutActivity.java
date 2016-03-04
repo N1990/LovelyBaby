@@ -1,5 +1,7 @@
 package com.cmbb.smartkids.activity.more;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.View;
@@ -43,5 +45,11 @@ public class AboutActivity extends BaseActivity {
     public void onClick(View v) {
         CompanyRule.newInstance(this);
     }
+
+    public static void newInstance(Activity activity){
+        Intent intent = new Intent(activity, AboutActivity.class);
+        activity.startActivity(intent);
+    }
+
 
 }

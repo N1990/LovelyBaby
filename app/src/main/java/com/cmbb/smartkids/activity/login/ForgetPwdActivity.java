@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.cmbb.smartkids.R;
-import com.cmbb.smartkids.activity.home.HomeActivity;
+import com.cmbb.smartkids.activity.home.home_v2.HomeActivity;
 import com.cmbb.smartkids.activity.login.model.UserAssistModel;
 import com.cmbb.smartkids.activity.login.model.UserRootModel;
 import com.cmbb.smartkids.base.BaseActivity;

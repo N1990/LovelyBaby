@@ -3,6 +3,10 @@ package com.cmbb.smartkids.activity.home.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.cmbb.smartkids.base.Constants;
+import com.cmbb.smartkids.network.OkHttpClientManager;
+
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -632,5 +636,21 @@ public class HomePageRootModel implements Parcelable {
                 "data=" + data +
                 ", msg='" + msg + '\'' +
                 '}';
+    }
+
+    /**
+     * 获取主页热门服务
+     *
+     * @param numberOfPerPage 页面显示数量
+     * @param pageNo          页数
+     * @param callback        ResultCallback
+     */
+    public static void getHomeHotServiceRequest(int numberOfPerPage, int pageNo, OkHttpClientManager.ResultCallback<HomePageRootModel> callback) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("isRecommoned", "1");
+        params.put("sortType", "home");
+        params.put("numberOfPerPage", String.valueOf(numberOfPerPage));
+        params.put("pageNo", String.valueOf(pageNo));
+        OkHttpClientManager.postAsyn(Constants.ServiceInfo.HOME_MAIN_HOT_SERVICE, params, callback);
     }
 }

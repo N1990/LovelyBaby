@@ -13,6 +13,7 @@
     <!--暗灰色 -->
     <color name="darkgray">#A9A9A9</color>
     <color name="backgray">#F5F5F5</color>
+    <color name="line">#EEEEEE</color>
     <!--暗灰色 -->
     <color name="dimgray">#696969</color>
     <!--字体颜色-->

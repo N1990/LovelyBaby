@@ -1,5 +1,7 @@
 package com.cmbb.smartkids.activity.more;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -111,5 +113,10 @@ public class SuggestActivity extends BaseActivity implements TextWatcher{
 
             }
         }));
+    }
+
+    public static void newInstance(Context context) {
+        Intent intent = new Intent(context, SuggestActivity.class);
+        context.startActivity(intent);
     }
 }

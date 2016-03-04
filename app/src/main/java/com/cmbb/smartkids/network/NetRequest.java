@@ -81,12 +81,7 @@ public class NetRequest {
         httpClient.setWriteTimeout(6000, TimeUnit.SECONDS);
         httpClient.networkInterceptors().add(new StethoInterceptor());
         httpClient.setCookieHandler(new CookieManager(new PersistentCookieStore(BaseApplication.getContext()), CookiePolicy.ACCEPT_ALL));
-        //fresco
-        ImagePipelineConfig config = OkHttpImagePipelineConfigFactory.newBuilder(BaseApplication.getContext(), httpClient)
-                .setDownsampleEnabled(true)
-                .setResizeAndRotateEnabledForNetwork(true)
-                .build();
-        Fresco.initialize(BaseApplication.getContext(), config);
+
         try {
             if (Environment.isExternalStorageEmulated()) {
                 File cacheFile = new File(Environment.getExternalStorageDirectory(), Constants.PACKAGE_NAME);

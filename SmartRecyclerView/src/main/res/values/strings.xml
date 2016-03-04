@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">SmartRecyclerView</string>
+    <string name="noData">暂无数据</string>
+    <string name="err_network">网络错误,点击重试</string>
+    <string name="more_loading">更多加载中……</string>
+    <string name="no_more">没有更多了</string>
+</resources>

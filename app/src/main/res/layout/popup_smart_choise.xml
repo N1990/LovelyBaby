@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_white_background_no_corner"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/global_padding"
+        android:text="服务类型" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RadioGroup
+            android:id="@+id/rg_service_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rb_service_01"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/half_global_padding"
+                android:layout_weight="1"
+                android:background="@drawable/radio_normal"
+                android:button="@null"
+                android:gravity="center"
+                android:padding="@dimen/global_padding"
+                android:text="服务类型"
+                android:textColor="@color/selector_gray_to_primarycolor_text" />
+
+            <RadioButton
+                android:id="@+id/rb_service_02"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/half_global_padding"
+                android:layout_weight="1"
+                android:background="@drawable/radio_normal"
+                android:button="@null"
+                android:gravity="center"
+                android:padding="@dimen/global_padding"
+                android:text="服务类型"
+                android:textColor="@color/selector_gray_to_primarycolor_text" />
+
+            <RadioButton
+                android:id="@+id/rb_service_03"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/half_global_padding"
+                android:layout_weight="1"
+                android:background="@drawable/radio_normal"
+                android:button="@null"
+                android:gravity="center"
+                android:padding="@dimen/global_padding"
+                android:text="服务类型"
+                android:textColor="@color/selector_gray_to_primarycolor_text" />
+
+            <RadioButton
+                android:id="@+id/rb_service_04"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/half_global_padding"
+                android:layout_weight="1"
+                android:background="@drawable/radio_normal"
+                android:button="@null"
+                android:gravity="center"
+                android:padding="@dimen/global_padding"
+                android:text="服务类型"
+                android:textColor="@color/selector_gray_to_primarycolor_text" />
+        </RadioGroup>
+
+        <RadioGroup
+            android:id="@+id/rg_service_type1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rb_service_05"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/half_global_padding"
+                android:layout_weight="1"
+                android:background="@drawable/radio_normal"
+                android:button="@null"
+                android:gravity="center"
+                android:padding="@dimen/global_padding"
+                android:text="服务类型"
+                android:textColor="@color/selector_gray_to_primarycolor_text" />
+
+            <RadioButton
+                android:id="@+id/rb_service_06"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/half_global_padding"
+                android:layout_weight="1"
+                android:background="@drawable/radio_normal"
+                android:button="@null"
+                android:gravity="center"
+                android:padding="@dimen/global_padding"
+                android:text="服务类型"
+                android:textColor="@color/selector_gray_to_primarycolor_text" />
+
+            <RadioButton
+                android:id="@+id/rb_service_07"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/half_global_padding"
+                android:layout_weight="1"
+                android:background="@drawable/radio_normal"
+                android:button="@null"
+                android:gravity="center"
+                android:padding="@dimen/global_padding"
+                android:text="服务类型"
+                android:textColor="@color/selector_gray_to_primarycolor_text" />
+
+            <RadioButton
+                android:id="@+id/rb_service_08"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/half_global_padding"
+                android:layout_weight="1"
+                android:background="@drawable/radio_normal"
+                android:button="@null"
+                android:gravity="center"
+                android:padding="@dimen/global_padding"
+                android:text="服务类型"
+                android:textColor="@color/selector_gray_to_primarycolor_text" />
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginTop="@dimen/global_padding"
+        android:background="@color/darkgray" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/global_padding"
+        android:text="服务方式" />
+
+    <RadioGroup
+        android:id="@+id/rg_service_way"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <RadioButton
+            android:id="@+id/rb_service_way_01"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/half_global_padding"
+            android:layout_weight="1"
+            android:background="@drawable/radio_normal"
+            android:button="@null"
+            android:gravity="center"
+            android:padding="@dimen/global_padding"
+            android:text="服务方式"
+            android:textColor="@color/selector_gray_to_primarycolor_text" />
+
+        <RadioButton
+            android:id="@+id/rb_service_way_02"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/half_global_padding"
+            android:layout_weight="1"
+            android:background="@drawable/radio_normal"
+            android:button="@null"
+            android:gravity="center"
+            android:padding="@dimen/global_padding"
+            android:text="服务方式"
+            android:textColor="@color/selector_gray_to_primarycolor_text" />
+
+        <RadioButton
+            android:id="@+id/rb_service_way_03"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/half_global_padding"
+            android:layout_weight="1"
+            android:background="@drawable/radio_normal"
+            android:button="@null"
+            android:gravity="center"
+            android:padding="@dimen/global_padding"
+            android:text="服务方式"
+            android:textColor="@color/selector_gray_to_primarycolor_text" />
+
+        <RadioButton
+            android:id="@+id/rb_service_way_04"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/half_global_padding"
+            android:layout_weight="1"
+            android:background="@drawable/radio_normal"
+            android:button="@null"
+            android:gravity="center"
+            android:padding="@dimen/global_padding"
+            android:text="服务方式"
+            android:textColor="@color/selector_gray_to_primarycolor_text" />
+
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginTop="@dimen/global_padding"
+        android:background="@color/darkgray" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/global_padding"
+        android:text="排序" />
+
+    <RadioGroup
+        android:id="@+id/rg_service_sort"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_service_sort_01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/half_global_padding"
+            android:background="@drawable/radio_normal"
+            android:button="@null"
+            android:gravity="center"
+            android:padding="@dimen/global_padding"
+            android:text="升序排列"
+            android:textColor="@color/selector_gray_to_primarycolor_text" />
+
+        <RadioButton
+            android:id="@+id/rb_service_sort_02"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/half_global_padding"
+            android:background="@drawable/radio_normal"
+            android:button="@null"
+            android:gravity="center"
+            android:padding="@dimen/global_padding"
+            android:text="降序排列"
+            android:textColor="@color/selector_gray_to_primarycolor_text" />
+
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginTop="@dimen/global_padding"
+        android:background="@color/darkgray" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/global_padding"
+        android:layout_marginTop="@dimen/global_padding"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/btn_rest"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/half_global_padding"
+            android:layout_weight="1"
+            android:background="@color/darkgray"
+            android:gravity="center"
+            android:padding="@dimen/global_padding"
+            android:text="重置"
+            android:textColor="@android:color/white" />
+
+        <TextView
+            android:id="@+id/btn_comfirm"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/half_global_padding"
+            android:layout_weight="1"
+            android:background="@drawable/selector_primarycolor_to_white_button_corner"
+            android:gravity="center"
+            android:padding="@dimen/global_padding"
+            android:text="确定"
+            android:textColor="@color/selector_white_to_primarycolor_text" />
+
+    </LinearLayout>
+</LinearLayout>

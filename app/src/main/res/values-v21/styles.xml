@@ -1,14 +1,13 @@
 <resources>
 
     <style name="AppTheme" parent="Base.Theme.Design">
-        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
-        <item name="android:statusBarColor">@color/primaryColorDark</item>
+        <!--<item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@color/primaryColorDark</item>-->
     </style>
 
-    <!--<style name="AppThemeFullScreen" parent="Base.Theme.Design">
+    <style name="HomePageTheme" parent="HomePage.Theme.Design">
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
-    </style>-->
-
+    </style>
 
 </resources>

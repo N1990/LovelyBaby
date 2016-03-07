@@ -44,8 +44,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:background="@drawable/shape_search_background"
                 android:orientation="horizontal"
-                android:padding="@dimen/half_global_padding">
+                android:padding="@dimen/global_padding">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -81,19 +82,15 @@
                     android:visibility="invisible" />
             </LinearLayout>
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="-15dip"
-                android:background="@drawable/single_edit_bg" />
-
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dip"
+                android:background="@drawable/shape_search_background"
                 android:orientation="horizontal"
-                android:padding="@dimen/half_global_padding">
+
+                android:padding="@dimen/global_padding">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -129,19 +126,15 @@
                     android:visibility="invisible" />
             </LinearLayout>
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="-15dip"
-                android:background="@drawable/single_edit_bg" />
-
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dip"
+                android:background="@drawable/shape_search_background"
                 android:orientation="horizontal"
-                android:padding="@dimen/half_global_padding">
+
+                android:padding="@dimen/global_padding">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -177,19 +170,15 @@
                     android:visibility="invisible" />
             </LinearLayout>
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="-15dip"
-                android:background="@drawable/single_edit_bg" />
-
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dip"
+                android:background="@drawable/shape_search_background"
                 android:orientation="horizontal"
-                android:padding="@dimen/half_global_padding">
+
+                android:padding="@dimen/global_padding">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -227,11 +216,6 @@
                     android:textSize="@dimen/txt_normal" />
             </LinearLayout>
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="-15dip"
-                android:background="@drawable/single_edit_bg" />
 
             <com.cmbb.smartkids.widget.spinner.NiceSpinner
                 android:id="@+id/ns_sort_popman"

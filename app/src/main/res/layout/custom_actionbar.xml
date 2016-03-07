@@ -8,6 +8,7 @@
     android:background="?attr/colorPrimary"
     app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
     app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
     <ImageView
         android:id="@+id/iv_main_toolbar_left"
         android:layout_width="wrap_content"
@@ -23,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:textColor="@android:color/white"
-        android:textSize="@dimen/txt_large"/>
+        android:textSize="@dimen/txt_large" />
 
     <TextView
         android:id="@+id/tv_main_toolbar_right"
@@ -31,10 +32,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="right"
         android:layout_marginRight="10dp"
-        android:padding="10dp"
         android:gravity="center"
+        android:padding="10dp"
         android:textColor="@android:color/white"
-        android:textSize="@dimen/txt_small"
+        android:textSize="@dimen/txt_xmicro"
         android:visibility="gone" />
 
     <ImageView

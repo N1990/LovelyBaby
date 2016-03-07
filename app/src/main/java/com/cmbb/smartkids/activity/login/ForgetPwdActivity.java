@@ -95,8 +95,12 @@ public class ForgetPwdActivity extends BaseActivity {
                 UserAssistModel obj = (UserAssistModel) object;
                 hideWaitDialog();
                 if (null != obj && obj.getData() != null) {
-                    Log.i(TAG, "userInfo = " + obj.toString());
                     UserRootModel user = obj.getData();
+                    if (TextUtils.isEmpty(user.getToken())) {
+                        showShortToast(msg);
+                        startActivity(new Intent(ForgetPwdActivity.this, LoginActivity.class));
+                        finish();
+                    }
                     SPCache.putString(Constants.TOKEN, user.getToken());
                     SPCache.putString(Constants.USER_ID, user.getUserId() + "");
                     // 更改Application里面的值

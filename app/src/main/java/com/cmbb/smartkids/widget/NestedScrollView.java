@@ -675,6 +675,7 @@ public class NestedScrollView extends FrameLayout implements NestedScrollingPare
             case MotionEvent.ACTION_DOWN: {
                 final int y = (int) ev.getY();
                 if (!inChild((int) ev.getX(), (int) y)) {
+                    // mIsBeingDragged = !mScroller.isFinished();
                     mIsBeingDragged = false;
                     recycleVelocityTracker();
                     break;

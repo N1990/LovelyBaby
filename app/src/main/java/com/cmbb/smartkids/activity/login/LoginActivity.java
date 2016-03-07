@@ -85,6 +85,8 @@ public class LoginActivity extends BaseActivity {
         findViewById(R.id.iv_login_wx).setOnClickListener(this);
         findViewById(R.id.iv_login_qq).setOnClickListener(this);
         findViewById(R.id.iv_login_sina).setOnClickListener(this);
+        findViewById(R.id.tv_forget).setOnClickListener(this);
+
     }
 
 
@@ -97,9 +99,9 @@ public class LoginActivity extends BaseActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.tv_login_forget_pwd) {
+        if (id == R.id.tv_login_register) {
             Intent intent = new Intent(LoginActivity.this, VerifyActivity.class);
-            intent.putExtra("tag", "forget");
+            intent.putExtra("tag", "register");
             startActivity(intent);
             return true;
         }
@@ -131,6 +133,12 @@ public class LoginActivity extends BaseActivity {
                 String phone = etPhone.getText().toString();
                 String pwd = etPwd.getText().toString();
                 handleLogin(phone, pwd);
+                break;
+
+            case R.id.tv_forget:
+                Intent intent = new Intent(LoginActivity.this, VerifyActivity.class);
+                intent.putExtra("tag", "forget");
+                startActivity(intent);
                 break;
         }
     }

@@ -22,8 +22,19 @@ import com.alibaba.sdk.android.media.upload.UploadListener;
 import com.alibaba.sdk.android.media.upload.UploadTask;
 import com.alibaba.sdk.android.media.utils.FailReason;
 import com.cmbb.smartkids.R;
+import com.cmbb.smartkids.activity.diary.MyBabyListActivity;
+import com.cmbb.smartkids.activity.home.ApplyPopmanActivity;
 import com.cmbb.smartkids.activity.login.model.SecurityCodeModel;
+import com.cmbb.smartkids.activity.message.MessageActivity;
+import com.cmbb.smartkids.activity.order.MyOrderListActivity;
+import com.cmbb.smartkids.activity.serve.ServiceListActivity;
+import com.cmbb.smartkids.activity.user.MyCommunityActivity;
+import com.cmbb.smartkids.activity.user.MyDraftsActivity;
+import com.cmbb.smartkids.activity.user.MyListRedirectActivity;
+import com.cmbb.smartkids.activity.user.MyServiceOrderActivity;
 import com.cmbb.smartkids.activity.user.MySetActivity;
+import com.cmbb.smartkids.activity.user.PerssionListActivity;
+import com.cmbb.smartkids.activity.user.StorePointActivity;
 import com.cmbb.smartkids.activity.user.model.UserCenterModel;
 import com.cmbb.smartkids.base.BaseActivity;
 import com.cmbb.smartkids.base.BaseApplication;
@@ -108,6 +119,7 @@ public class HomeMeActivity extends BaseActivity implements View.OnClickListener
         progressDialog.setMessage("正在处理中...");
         ivMyself = (SimpleDraweeView) findViewById(R.id.iv_home_myself);
         ivUserHeader = (SimpleDraweeView) findViewById(R.id.iv_home_myself_header);
+        ivUserHeader.setOnClickListener(this);
         tvNickname = (TextView) findViewById(R.id.tv_home_myself_nickname);
         tvIdentity = (TextView) findViewById(R.id.tv_home_myself_identity);
         tvFan = (TextView) findViewById(R.id.tv_home_myself_fan);
@@ -118,16 +130,25 @@ public class HomeMeActivity extends BaseActivity implements View.OnClickListener
 
         myUid = (TextView) findViewById(R.id.tv_home_uid);
         myCollection = (LinearLayout) findViewById(R.id.tv_home_myself_collect);
+        myCollection.setOnClickListener(this);
         myCare = (LinearLayout) findViewById(R.id.tv_home_myself_care);
+        myCare.setOnClickListener(this);
         myPerssion = (LinearLayout) findViewById(R.id.tv_home_myself_perssion);
+        myPerssion.setOnClickListener(this);
         myOrder = (LinearLayout) findViewById(R.id.ll_home_self_order);
         myUID = (LinearLayout) findViewById(R.id.ll_home_self_uid);
+        myUID.setOnClickListener(this);
         myAccept = (LinearLayout) findViewById(R.id.ll_home_self_order_accept);
+        myAccept.setOnClickListener(this);
         myGold = (LinearLayout) findViewById(R.id.ll_home_self_gold);
         myCommunity = (LinearLayout) findViewById(R.id.ll_home_self_community);
+        myCommunity.setOnClickListener(this);
         myPopman = (LinearLayout) findViewById(R.id.ll_home_self_apply_popman);
+        myPopman.setOnClickListener(this);
         myBabyDiary = (LinearLayout) findViewById(R.id.ll_home_self_baby_diary);
+        myBabyDiary.setOnClickListener(this);
         myDrafts = (LinearLayout) findViewById(R.id.ll_home_self_drafts);
+        myDrafts.setOnClickListener(this);
         myCount = (TextView) findViewById(R.id.tv_home_count);
     }
 
@@ -144,6 +165,7 @@ public class HomeMeActivity extends BaseActivity implements View.OnClickListener
         tvMe.setOnClickListener(this);
         tvMore.setOnClickListener(this);
         findViewById(R.id.iv_main_toolbar_left).setOnClickListener(this);
+        findViewById(R.id.iv_main_toolbar_right).setOnClickListener(this);
     }
 
 
@@ -327,7 +349,7 @@ public class HomeMeActivity extends BaseActivity implements View.OnClickListener
                 break;
             // 信息
             case R.id.iv_main_toolbar_right:
-                /*MessageActivity.newInstance(this);*/
+                MessageActivity.newInstance(this);
                 break;
             case R.id.iv_home_myself:
                 PhotoPickerIntent intent = new PhotoPickerIntent(this);
@@ -335,47 +357,47 @@ public class HomeMeActivity extends BaseActivity implements View.OnClickListener
                 startActivityForResult(intent, PIC_REQUEST_CODE);
                 break;
             case R.id.tv_home_myself_collect:
-                /*Intent myCollect = new Intent(new Intent(getActivity(), MyListRedirectActivity.class));
+                Intent myCollect = new Intent(new Intent(this, MyListRedirectActivity.class));
                 myCollect.putExtra("flag", "collect");
-                getActivity().startActivity(myCollect);*/
+                startActivity(myCollect);
                 break;
             case R.id.tv_home_myself_care:
-               /* Intent myCare = new Intent(new Intent(getActivity(), MyListRedirectActivity.class));
+                Intent myCare = new Intent(new Intent(this, MyListRedirectActivity.class));
                 myCare.putExtra("flag", "care");
-                getActivity().startActivity(myCare);*/
+                startActivity(myCare);
                 break;
             case R.id.tv_home_myself_perssion:
-                /*Intent perssion = new Intent(getActivity(), PerssionListActivity.class);
-                perssion.putExtra("isPop", userModel.getIsEredar());
-                startActivity(perssion);*/
+                Intent perssion = new Intent(this, PerssionListActivity.class);
+                perssion.putExtra("isPop", userInfoEntity.getIsEredar());
+                startActivity(perssion);
                 break;
             case R.id.ll_home_self_order_accept:
-                /*if (userModel.getIsEredar() != 0) {  // 0 普通用户 1 达人
-                    startActivity(new Intent(getActivity(), MyServiceOrderActivity.class));
+                if (userInfoEntity.getIsEredar() != 0) {  // 0 普通用户 1 达人
+                    startActivity(new Intent(this, MyServiceOrderActivity.class));
                 } else {
-                    Intent myService = new Intent(getActivity(), ServiceListActivity.class);
+                    Intent myService = new Intent(this, ServiceListActivity.class);
                     myService.putExtra("myCenter", 1);
                     myService.putExtra("isPopman", 0);
-                    myService.putExtra("userId", userModel.getUserId());
+                    myService.putExtra("userId", userInfoEntity.getUserId());
                     startActivity(myService);
-                }*/
+                }
                 break;
             case R.id.ll_home_self_order:
-                /*Intent myOrder = new Intent(new Intent(getActivity(), MyOrderListActivity.class));
-                getActivity().startActivity(myOrder);*/
+                Intent myOrder = new Intent(new Intent(this, MyOrderListActivity.class));
+                startActivity(myOrder);
                 break;
             case R.id.ll_home_self_community:
-//                startActivity(new Intent(getActivity(), MyCommunityActivity.class));
+                startActivity(new Intent(this, MyCommunityActivity.class));
                 break;
             case R.id.ll_home_self_gold:
-                /*if (userModel != null)
-                    StorePointActivity.IntentStorePointActivity(getActivity(), userModel.getGoldCount());*/
+                if (userInfoEntity != null)
+                    StorePointActivity.IntentStorePointActivity(this, userInfoEntity.getGoldCount());
                 break;
             case R.id.ll_home_self_apply_popman:
-//                startActivityForResult(new Intent(getActivity(), ApplyPopmanActivity.class), HomeActivity.MY_SET_MODIFY);
+                startActivityForResult(new Intent(this, ApplyPopmanActivity.class), 2001);
                 break;
             case R.id.ll_home_self_baby_diary:
-//                startActivity(new Intent(getActivity(), MyBabyListActivity.class));
+                startActivity(new Intent(this, MyBabyListActivity.class));
                 break;
             case R.id.ll_home_self_uid:
                 ClipboardManager cmb = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
@@ -383,7 +405,7 @@ public class HomeMeActivity extends BaseActivity implements View.OnClickListener
                 showShortToast("萌宝UID已经复制到剪切板");
                 break;
             case R.id.ll_home_self_drafts:
-//                MyDraftsActivity.skipFromFragment(UserFragment.this, userModel.getUserId());
+                MyDraftsActivity.skipFromActivity(this, userInfoEntity.getUserId());
                 break;
         }
     }

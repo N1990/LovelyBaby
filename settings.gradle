@@ -1,1 +1,1 @@
-include ':app', ':MengBottomSheets', ':MengPhotoPicker', ':LoadMoreRecyclerView', ':OneSDK', ':PRTRecyclerView',':SmartRecyclerView'
+include ':app', ':MengBottomSheets', ':MengPhotoPicker', ':LoadMoreRecyclerView', ':PRTRecyclerView', ':SmartRecyclerView', ':OneSDK'

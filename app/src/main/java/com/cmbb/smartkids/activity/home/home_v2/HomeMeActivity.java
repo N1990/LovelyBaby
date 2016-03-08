@@ -54,7 +54,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * 项目名称：SmartApp
@@ -118,6 +117,7 @@ public class HomeMeActivity extends BaseActivity implements View.OnClickListener
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("正在处理中...");
         ivMyself = (SimpleDraweeView) findViewById(R.id.iv_home_myself);
+        ivMyself.setOnClickListener(this);
         ivUserHeader = (SimpleDraweeView) findViewById(R.id.iv_home_myself_header);
         ivUserHeader.setOnClickListener(this);
         tvNickname = (TextView) findViewById(R.id.tv_home_myself_nickname);
@@ -254,19 +254,20 @@ public class HomeMeActivity extends BaseActivity implements View.OnClickListener
      * @param height String
      */
     private void handleUpdateRequest(final String path, final String width, final String height) {
-        HashMap<String, String> params = new HashMap<>();
-        params.put("imgPath", path);
-        params.put("imgWidth", width);
-        params.put("imgHeight", height);
-
-        SecurityCodeModel.updateBackgroundImageRequest(path, width, height, new OkHttpClientManager.ResultCallback<SecurityCodeModel>() {
+        SecurityCodeModel.updateBackgroundImageRequest(path, width, height, BaseApplication.token, new OkHttpClientManager.ResultCallback<SecurityCodeModel>() {
             @Override
             public void onError(Request request, Exception e) {
                 showShortToast(e.toString());
+                if (progressDialog != null) {
+                    progressDialog.dismiss();
+                }
             }
 
             @Override
             public void onResponse(SecurityCodeModel response) {
+                if (progressDialog != null) {
+                    progressDialog.dismiss();
+                }
                 if (response != null) {
                     FrescoTool.loadImage(ivMyself, path, width, height);
                     showShortToast(response.getMsg());

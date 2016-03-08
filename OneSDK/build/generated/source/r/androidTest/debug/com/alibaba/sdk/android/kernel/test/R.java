@@ -13,22 +13,27 @@ public final class R {
     public static final class drawable {
         public static final int com_taobao_tae_sdk_root_cer=0x7f020000;
         public static final int com_taobao_tae_sdk_simple_toast_bg=0x7f020001;
-        public static final int com_taobao_tae_sdk_web_view_title_bar_back=0x7f020002;
-        public static final int com_taobao_tae_sdk_web_view_title_bar_close=0x7f020003;
-        public static final int yw_1222=0x7f020004;
+        public static final int com_taobao_tae_sdk_web_view_menu_item_bg=0x7f020002;
+        public static final int com_taobao_tae_sdk_web_view_title_bar_back=0x7f020003;
+        public static final int com_taobao_tae_sdk_web_view_title_bar_close=0x7f020004;
+        public static final int yw_1222=0x7f020005;
     }
     public static final class id {
         public static final int com_taobao_tae_sdk_progress_dialog_body=0x7f050000;
         public static final int com_taobao_tae_sdk_progress_dialog_message=0x7f050001;
-        public static final int com_taobao_tae_sdk_web_view_title_bar=0x7f050002;
-        public static final int com_taobao_tae_sdk_web_view_title_bar_back_button=0x7f050003;
-        public static final int com_taobao_tae_sdk_web_view_title_bar_close_button=0x7f050005;
-        public static final int com_taobao_tae_sdk_web_view_title_bar_title=0x7f050004;
+        public static final int com_taobao_tae_sdk_web_view_menu_item_title=0x7f050003;
+        public static final int com_taobao_tae_sdk_web_view_menu_layout=0x7f050002;
+        public static final int com_taobao_tae_sdk_web_view_title_bar=0x7f050004;
+        public static final int com_taobao_tae_sdk_web_view_title_bar_back_button=0x7f050005;
+        public static final int com_taobao_tae_sdk_web_view_title_bar_close_button=0x7f050007;
+        public static final int com_taobao_tae_sdk_web_view_title_bar_title=0x7f050006;
     }
     public static final class layout {
         public static final int com_taobao_tae_sdk_progress_dialog=0x7f030000;
         public static final int com_taobao_tae_sdk_web_view_activity=0x7f030001;
-        public static final int com_taobao_tae_sdk_web_view_title_bar=0x7f030002;
+        public static final int com_taobao_tae_sdk_web_view_menu=0x7f030002;
+        public static final int com_taobao_tae_sdk_web_view_menu_item=0x7f030003;
+        public static final int com_taobao_tae_sdk_web_view_title_bar=0x7f030004;
     }
     public static final class string {
         public static final int alisdk_message_10000_action=0x7f040000;

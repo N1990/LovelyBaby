@@ -13,7 +13,7 @@ android {
         versionName "3.0.3"
         multiDexEnabled true
         ndk {
-            abiFilters "armeabi", "armeabi-v7a", "x86", "mips"
+            abiFilters "armeabi", "armeabi-v7a", "x86"
         }
     }
     buildTypes {
@@ -137,8 +137,8 @@ dependencies {
     compile files('libs/Sunflower.jar')
     compile project(':MengPhotoPicker')
     compile project(':LoadMoreRecyclerView')
-    compile project(':OneSDK')
     compile project(':PRTRecyclerView')
     compile 'com.jude:rollviewpager:1.0.7'
     compile project(':SmartRecyclerView')
+    compile project(':OneSDK')
 }

@@ -11,7 +11,6 @@ import android.os.Handler;
 import android.support.multidex.MultiDexApplication;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.LocalBroadcastManager;
-import android.text.TextUtils;
 
 import com.alibaba.sdk.android.AlibabaSDK;
 import com.alibaba.sdk.android.callback.InitResultCallback;
@@ -66,8 +65,6 @@ public class BaseApplication extends MultiDexApplication {
         LocalBroadcastManager.getInstance(this).registerReceiver(pushAliasReceiver, new IntentFilter(PUSH_ALIAS_ITENTACTION));
         // 登录状态获取token
         token = SPCache.getString(Constants.TOKEN, "");
-        String result = getDeviceInfo(this);
-        Log.e("Test", result);
     }
 
     private void initFresco() {
@@ -80,34 +77,6 @@ public class BaseApplication extends MultiDexApplication {
     }
 
 
-    public static String getDeviceInfo(Context context) {
-        try {
-            org.json.JSONObject json = new org.json.JSONObject();
-            android.telephony.TelephonyManager tm = (android.telephony.TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-
-            String device_id = tm.getDeviceId();
-
-            android.net.wifi.WifiManager wifi = (android.net.wifi.WifiManager) context.getSystemService(Context.WIFI_SERVICE);
-
-            String mac = wifi.getConnectionInfo().getMacAddress();
-            json.put("mac", mac);
-
-            if (TextUtils.isEmpty(device_id)) {
-                device_id = mac;
-            }
-
-            if (TextUtils.isEmpty(device_id)) {
-                device_id = android.provider.Settings.Secure.getString(context.getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
-            }
-
-            json.put("device_id", device_id);
-
-            return json.toString();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
 
 
     /**

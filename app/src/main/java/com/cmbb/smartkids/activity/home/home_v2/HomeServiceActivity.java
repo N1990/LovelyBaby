@@ -174,6 +174,7 @@ public class HomeServiceActivity extends BaseActivity implements View.OnClickLis
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 mCityListPopupWindow.dismiss();
                 serviceCity = dataEntity.getData().getServiceCity().get(position).getValue();
+                PopuCityFlag = false;
                 onRefresh();
             }
         });

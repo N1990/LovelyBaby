@@ -207,6 +207,19 @@
             android:text="服务方式"
             android:textColor="@color/selector_gray_to_primarycolor_text" />
 
+        <RadioButton
+            android:id="@+id/rb_service_way_05"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/half_global_padding"
+            android:layout_weight="1"
+            android:background="@drawable/radio_normal"
+            android:button="@null"
+            android:gravity="center"
+            android:padding="@dimen/global_padding"
+            android:text="服务方式"
+            android:textColor="@color/selector_gray_to_primarycolor_text" />
+
     </RadioGroup>
 
     <TextView
@@ -241,6 +254,18 @@
 
         <RadioButton
             android:id="@+id/rb_service_sort_02"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/half_global_padding"
+            android:background="@drawable/radio_normal"
+            android:button="@null"
+            android:gravity="center"
+            android:padding="@dimen/global_padding"
+            android:text="降序排列"
+            android:textColor="@color/selector_gray_to_primarycolor_text" />
+
+        <RadioButton
+            android:id="@+id/rb_service_sort_03"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/half_global_padding"

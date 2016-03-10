@@ -14,20 +14,22 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.activity.home.home_v2.adapter.ServiceAdapter;
+import com.cmbb.smartkids.activity.home.model.ServiceSortModel;
+import com.cmbb.smartkids.activity.serve.ActiveDetailActivity;
 import com.cmbb.smartkids.activity.serve.model.ServiceListModel;
 import com.cmbb.smartkids.base.BaseActivity;
-import com.cmbb.smartkids.base.BaseApplication;
 import com.cmbb.smartkids.network.OkHttpClientManager;
 import com.cmbb.smartkids.recyclerview.SmartRecyclerView;
 import com.cmbb.smartkids.recyclerview.adapter.RecyclerArrayAdapter;
 import com.squareup.okhttp.Request;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 项目名称：SmartApp
@@ -54,7 +56,7 @@ public class HomeServiceActivity extends BaseActivity implements View.OnClickLis
     TextView btnRest;
     TextView btnComfirm;
     PopupWindow mSmartPopupWindow;
-    ArrayList<String> sortModels;
+    private String serviceWay, serviceCity, serviceCategroy, serviceSortType = "high_price";
 
 
     protected SmartRecyclerView mSmartRecyclerView;
@@ -81,7 +83,7 @@ public class HomeServiceActivity extends BaseActivity implements View.OnClickLis
     private void initView() {
         btnCity = (LinearLayout) findViewById(R.id.btn_city);
         btnSmart = (LinearLayout) findViewById(R.id.btn_smart);
-        initPopup();
+        initSortRequest();
         initServiceSort();
         initRecyclerView();
     }
@@ -101,10 +103,24 @@ public class HomeServiceActivity extends BaseActivity implements View.OnClickLis
     private void initServiceSort() {
     }
 
+    private void initSortRequest(){
+        ServiceSortModel.getServiceSortREquest(new OkHttpClientManager.ResultCallback<ServiceSortModel>() {
+            @Override
+            public void onError(Request request, Exception e) {
+                showShortToast(e.toString());
+            }
+
+            @Override
+            public void onResponse(ServiceSortModel response) {
+                initPopup(response.getData());
+            }
+        });
+    }
+
     @Override
     public void onLoadMore() {
         pager++;
-        ServiceListModel.getServiceListRequest(0, 0, 0, pager, pagerSize, BaseApplication.token, new OkHttpClientManager.ResultCallback<ServiceListModel>() {
+        ServiceListModel.getServiceListRequest(serviceWay, serviceCity, serviceCategroy, serviceSortType, pager, pagerSize, new OkHttpClientManager.ResultCallback<ServiceListModel>() {
             @Override
             public void onError(Request request, Exception e) {
                 showShortToast(e.toString());
@@ -122,7 +138,7 @@ public class HomeServiceActivity extends BaseActivity implements View.OnClickLis
     @Override
     public void onRefresh() {
         pager = 0;
-        ServiceListModel.getServiceListRequest(0, 0, 0, pager, pagerSize, BaseApplication.token, new OkHttpClientManager.ResultCallback<ServiceListModel>() {
+        ServiceListModel.getServiceListRequest(serviceWay, serviceCity, serviceCategroy, serviceSortType, pager, pagerSize, new OkHttpClientManager.ResultCallback<ServiceListModel>() {
             @Override
             public void onError(Request request, Exception e) {
                 showShortToast(e.toString());
@@ -143,23 +159,20 @@ public class HomeServiceActivity extends BaseActivity implements View.OnClickLis
     /**
      * 初始化Popup
      */
-    private void initPopup() {
+    private void initPopup(final ServiceSortModel.DataEntity dataEntity) {
         btnCity.setOnClickListener(this);
         btnSmart.setOnClickListener(this);
         mCityListPopupWindow = new ListPopupWindow(this);
-        sortModels = new ArrayList<>();
-        sortModels.add("上海");
-        sortModels.add("北京");
-        sortModels.add("广州");
-        sortModels.add("深圳");
-        mCityListPopupWindow.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, sortModels));
+        mCityListPopupWindow.setAdapter(new ArrayAdapter<ServiceSortModel.DataEntity.ServiceCityEntity>(this, android.R.layout.simple_list_item_1, dataEntity.getServiceCity()));
         //mListPopupWindow.setListSelector(getResources().getDrawable(R.mipmap.ic_launcher));
         mCityListPopupWindow.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
         mCityListPopupWindow.setAnchorView(btnCity);
         mCityListPopupWindow.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                mCityListPopupWindow.dismiss();
+                serviceCity = dataEntity.getServiceCity().get(position).getValue();
+                onRefresh();
             }
         });
 
@@ -167,11 +180,39 @@ public class HomeServiceActivity extends BaseActivity implements View.OnClickLis
         View view = LayoutInflater.from(this).inflate(R.layout.popup_smart_choise, null);
         rgServiceType2 = (RadioGroup) view.findViewById(R.id.rg_service_type);
         rgServiceType1 = (RadioGroup) view.findViewById(R.id.rg_service_type1);
+        ((RadioButton)view.findViewById(R.id.rb_service_01)).setText(dataEntity.getServiceCategroy().get(0).getName());
+        ((RadioButton)view.findViewById(R.id.rb_service_02)).setText(dataEntity.getServiceCategroy().get(1).getName());
+        ((RadioButton)view.findViewById(R.id.rb_service_03)).setText(dataEntity.getServiceCategroy().get(2).getName());
+        ((RadioButton)view.findViewById(R.id.rb_service_04)).setText(dataEntity.getServiceCategroy().get(3).getName());
+        ((RadioButton)view.findViewById(R.id.rb_service_05)).setText(dataEntity.getServiceCategroy().get(4).getName());
+        ((RadioButton)view.findViewById(R.id.rb_service_06)).setText(dataEntity.getServiceCategroy().get(5).getName());
+        ((RadioButton)view.findViewById(R.id.rb_service_07)).setText(dataEntity.getServiceCategroy().get(6).getName());
+        ((RadioButton)view.findViewById(R.id.rb_service_08)).setText(dataEntity.getServiceCategroy().get(7).getName());
+
+
         rgServiceWay = (RadioGroup) view.findViewById(R.id.rg_service_way);
+        ((RadioButton)view.findViewById(R.id.rb_service_way_01)).setText(dataEntity.getServices().get(0).getName());
+        ((RadioButton)view.findViewById(R.id.rb_service_way_02)).setText(dataEntity.getServices().get(1).getName());
+        ((RadioButton)view.findViewById(R.id.rb_service_way_03)).setText(dataEntity.getServices().get(2).getName());
+        ((RadioButton)view.findViewById(R.id.rb_service_way_04)).setText(dataEntity.getServices().get(3).getName());
+        ((RadioButton)view.findViewById(R.id.rb_service_way_05)).setText(dataEntity.getServices().get(4).getName());
+
+
+
+
         rgServiceSort = (RadioGroup) view.findViewById(R.id.rg_service_sort);
+        ((RadioButton)view.findViewById(R.id.rb_service_sort_01)).setText(dataEntity.getServiceSortType().get(0).getName());
+        ((RadioButton)view.findViewById(R.id.rb_service_sort_02)).setText(dataEntity.getServiceSortType().get(1).getName());
+        ((RadioButton)view.findViewById(R.id.rb_service_sort_03)).setText(dataEntity.getServiceSortType().get(2).getName());
+
+
+
+
         btnRest = (TextView) view.findViewById(R.id.btn_rest);
+        btnRest.setOnClickListener(cancelListener);
         btnComfirm = (TextView) view.findViewById(R.id.btn_comfirm);
-        initRadioGroup();
+        btnComfirm.setOnClickListener(selectorListener);
+        initRadioGroup(dataEntity);
         mSmartPopupWindow = new PopupWindow(view, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         mSmartPopupWindow.setOutsideTouchable(true);
         mSmartPopupWindow.setBackgroundDrawable(new BitmapDrawable());
@@ -179,19 +220,64 @@ public class HomeServiceActivity extends BaseActivity implements View.OnClickLis
 
     }
 
-    private void initRadioGroup() {
+    private View.OnClickListener cancelListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            mSmartPopupWindow.dismiss();
+        }
+    };
+
+    private View.OnClickListener selectorListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            mSmartPopupWindow.dismiss();
+            onRefresh();
+        }
+    };
+
+    private void initRadioGroup(final ServiceSortModel.DataEntity dataEntity) {
         rgServiceType1.setOnCheckedChangeListener(typeListener01);
         rgServiceType2.setOnCheckedChangeListener(typeListener02);
+        rgServiceType1.setTag(dataEntity.getServiceCategroy());
+        rgServiceType2.setTag(dataEntity.getServiceCategroy());
         rgServiceWay.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 // TODO Auto-generated method stub
+                switch (checkedId) {
+                    case R.id.rb_service_way_01:
+                        serviceWay = dataEntity.getServices().get(0).getValue();
+                        break;
+                    case R.id.rb_service_way_02:
+                        serviceWay = dataEntity.getServices().get(1).getValue();
+                        break;
+                    case R.id.rb_service_way_03:
+                        serviceWay = dataEntity.getServices().get(2).getValue();
+                        break;
+                    case R.id.rb_service_way_04:
+                        serviceWay = dataEntity.getServices().get(3).getValue();
+                        break;
+                    case R.id.rb_service_way_05:
+                        serviceWay = dataEntity.getServices().get(4).getValue();
+                        break;
+                }
             }
         });
         rgServiceSort.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 // TODO Auto-generated method stub
+                switch (checkedId) {
+                    case R.id.rb_service_sort_01:
+                        serviceSortType = dataEntity.getServiceSortType().get(0).getValue();
+                        break;
+                    case R.id.rb_service_sort_02:
+                        serviceSortType = dataEntity.getServiceSortType().get(1).getValue();
+                        break;
+                    case R.id.rb_service_sort_03:
+                        serviceSortType = dataEntity.getServiceSortType().get(2).getValue();
+                        break;
+                }
             }
         });
     }
@@ -200,24 +286,55 @@ public class HomeServiceActivity extends BaseActivity implements View.OnClickLis
 
         @Override
         public void onCheckedChanged(RadioGroup group, int checkedId) {
+            List<ServiceSortModel.DataEntity.ServiceCategroyEntity> categroyEntity = (List<ServiceSortModel.DataEntity.ServiceCategroyEntity>) group.getTag();
             if (checkedId != -1) {
                 rgServiceType2.setOnCheckedChangeListener(null);
                 rgServiceType2.clearCheck();
                 rgServiceType2.setOnCheckedChangeListener(typeListener02);
                 // TODO Auto-generated method stub
+                switch (checkedId){
+                    case R.id.rb_service_05:
+                        serviceCategroy = categroyEntity.get(4).getValue();
+                        break;
+                    case R.id.rb_service_06:
+                        serviceCategroy = categroyEntity.get(5).getValue();
+                        break;
+                    case R.id.rb_service_07:
+                        serviceCategroy = categroyEntity.get(6).getValue();
+                        break;
+                    case R.id.rb_service_08:
+                        serviceCategroy = categroyEntity.get(7).getValue();
+                        break;
+                }
             }
         }
     };
+
 
     private RadioGroup.OnCheckedChangeListener typeListener02 = new RadioGroup.OnCheckedChangeListener() {
 
         @Override
         public void onCheckedChanged(RadioGroup group, int checkedId) {
+            List<ServiceSortModel.DataEntity.ServiceCategroyEntity> categroyEntity = (List<ServiceSortModel.DataEntity.ServiceCategroyEntity>) group.getTag();
             if (checkedId != -1) {
                 rgServiceType1.setOnCheckedChangeListener(null);
                 rgServiceType1.clearCheck();
                 rgServiceType1.setOnCheckedChangeListener(typeListener01);
                 // TODO Auto-generated method stub
+                switch (checkedId){
+                    case R.id.rb_service_01:
+                        serviceCategroy = categroyEntity.get(0).getValue();
+                        break;
+                    case R.id.rb_service_02:
+                        serviceCategroy = categroyEntity.get(1).getValue();
+                        break;
+                    case R.id.rb_service_03:
+                        serviceCategroy = categroyEntity.get(2).getValue();
+                        break;
+                    case R.id.rb_service_04:
+                        serviceCategroy = categroyEntity.get(3).getValue();
+                        break;
+                }
             }
         }
     };
@@ -272,6 +389,10 @@ public class HomeServiceActivity extends BaseActivity implements View.OnClickLis
 
     @Override
     public void onItemClick(int position) {
-
+        showShortToast("adapter onItemClick is invoke");
+        Intent intent = new Intent(this, ActiveDetailActivity.class);
+        intent.putExtra("serviceId", adapter.getItem(position).getId());
+        startActivity(intent);
     }
+
 }

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ll_home_service_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="2dip"
+    android:padding="@dimen/half_global_padding"
+    android:background="@drawable/btn_white_radio_bg"
+    android:elevation="5dip">
+
+
+        <LinearLayout
+            android:id="@+id/ll_home_service_item_frist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/iv_home_service_item"
+            android:layout_width="120dp"
+            android:layout_height="72dp"
+            fresco:actualImageScaleType="centerCrop"
+            fresco:placeholderImage="@color/placeholder" />
+
+            <TextView
+                android:id="@+id/tv_service_item_city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/txt_middle"
+                android:textColor="@color/dimgray"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:text="上海"
+                />
+
+        </LinearLayout>
+
+      <!--  <ImageView
+            android:id="@+id/iv_home_service_tag_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:scaleType="centerCrop"
+            android:visibility="gone" />-->
+
+    <LinearLayout
+        android:id="@+id/ll_title_home_service_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dip"
+        android:layout_toRightOf="@+id/ll_home_service_item_frist"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_title_home_service_item"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:singleLine="true"
+            android:textStyle="bold"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:layout_marginTop="@dimen/half_global_padding"
+            android:text=""
+            android:layout_marginRight="10dp"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/tv_home_service_tag_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/primaryColorDark"
+            android:text=""
+            android:layout_gravity="center_vertical"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/txt_small"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:visibility="gone"/>
+    </LinearLayout>
+
+
+
+
+
+            <TextView
+                android:id="@+id/tv_time_home_service_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/ll_home_service_item_frist"
+                android:layout_below="@+id/ll_title_home_service_item"
+                android:layout_marginTop="6dp"
+                android:layout_marginLeft="15dip"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:text="活动时间:2016年5月7日 - 6月1日"
+                android:textColor="@color/dimgray" />
+
+            <TextView
+                android:id="@+id/tv_service_way_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/ll_home_service_item_frist"
+                android:layout_below="@+id/tv_time_home_service_item"
+                android:layout_marginTop="6dp"
+                android:layout_marginLeft="15dip"
+                android:text="服务方式:到店"
+                android:gravity="center_vertical"
+                android:textColor="@color/dimgray"/>
+
+    <View
+        android:id="@+id/v_service_divider_item"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_below="@+id/tv_service_way_item"
+        android:layout_toRightOf="@+id/ll_home_service_item_frist"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:background="@android:color/darker_gray"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/v_service_divider_item"
+        android:layout_toRightOf="@+id/ll_home_service_item_frist"
+        android:layout_marginLeft="10dp"
+        android:padding="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_service_status_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="进行中"
+            android:textColor="@android:color/white"
+            android:background="@drawable/btn_primary_cornor_bg"/>
+
+        <TextView
+            android:id="@+id/tv_service_purchase_number_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="已购买人数10"
+            android:layout_marginLeft="5dp"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:layout_gravity="center_vertical"
+            />
+
+        <TextView
+            android:id="@+id/tv_service_price_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/primaryColorDark"
+            android:textStyle="bold"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:layout_gravity="center_vertical"
+            android:gravity="right"
+            android:text="$200元"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
+

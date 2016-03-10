@@ -12,8 +12,6 @@ import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.activity.home.fragment.CommunityFragment;
 import com.cmbb.smartkids.activity.home.fragment.HomeFragment;
 import com.cmbb.smartkids.activity.home.fragment.MoreFragment;
-import com.cmbb.smartkids.activity.home.fragment.ServiceFragment;
-import com.cmbb.smartkids.activity.home.fragment.UserFragment;
 import com.cmbb.smartkids.activity.user.MySetActivity;
 import com.cmbb.smartkids.base.BaseActivity;
 import com.cmbb.smartkids.base.Constants;
@@ -152,7 +150,7 @@ public class HomeActivity extends BaseActivity {
             case 1:
                 reflushTab();
                 if (activeFra == null) {
-                    activeFra = new ServiceFragment();
+//                    activeFra = new ServiceFragment();
                     fraTransaction.add(R.id.fl_home_content, activeFra);
                 }
                 fraTransaction.show(activeFra);
@@ -172,8 +170,8 @@ public class HomeActivity extends BaseActivity {
             case 3:
                 reflushTab();
                 if (userFra == null) {
-                    userFra = new UserFragment();
-                    fraTransaction.add(R.id.fl_home_content, userFra);
+//                    userFra = new UserFragment();
+//                    fraTransaction.add(R.id.fl_home_content, userFra);
                 }
                 fraTransaction.show(userFra);
                 fraTransaction.commitAllowingStateLoss();

@@ -16,6 +16,7 @@ import com.cmbb.smartkids.activity.home.home_v2.adapter.BannerLoopAdapter;
 import com.cmbb.smartkids.activity.home.home_v2.adapter.HomeAdapter;
 import com.cmbb.smartkids.activity.home.model.BannerModel;
 import com.cmbb.smartkids.activity.home.model.HomePageRootModel;
+import com.cmbb.smartkids.activity.home.model.ManagerAdModel;
 import com.cmbb.smartkids.base.BaseActivity;
 import com.cmbb.smartkids.base.BaseApplication;
 import com.cmbb.smartkids.network.OkHttpClientManager;
@@ -23,6 +24,7 @@ import com.cmbb.smartkids.recyclerview.SmartRecyclerView;
 import com.cmbb.smartkids.recyclerview.adapter.RecyclerArrayAdapter;
 import com.jude.rollviewpager.RollPagerView;
 import com.squareup.okhttp.Request;
+import com.umeng.socialize.utils.Log;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -48,7 +50,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
     protected HomeAdapter adapter;
     private RollPagerView mRollViewPager;
     private BannerLoopAdapter bannerLoopAdapter;
-    private List<BannerModel.DataEntity> adData;
+    private List<ManagerAdModel.DataEntity> adData;
     private int pager = 0;
     private int pagerSize = 10;
 
@@ -131,14 +133,15 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
      * 请求广告
      */
     private void requestAdd() {
-        BannerModel.getHomeBannerRequest(BaseApplication.token, new OkHttpClientManager.ResultCallback<BannerModel>() {
+        ManagerAdModel.getHomeImgRequest(new OkHttpClientManager.ResultCallback<ManagerAdModel>() {
             @Override
             public void onError(Request request, Exception e) {
                 adData = new ArrayList<>();
+                showShortToast(e.toString());
             }
 
             @Override
-            public void onResponse(BannerModel response) {
+            public void onResponse(ManagerAdModel response) {
                 if (response != null) {
                     adData = response.getData();
                     bannerLoopAdapter.update(adData);

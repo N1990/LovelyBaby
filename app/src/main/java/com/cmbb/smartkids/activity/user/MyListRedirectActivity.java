@@ -10,6 +10,7 @@ import com.cmbb.smartkids.activity.user.adapter.SelfCommentPagerAdapter;
 import com.cmbb.smartkids.activity.user.fragment.MyCareFriendFragment;
 import com.cmbb.smartkids.activity.user.fragment.MyCarePopmanFragment;
 import com.cmbb.smartkids.activity.user.fragment.MyCollectCommunityFragment;
+//import com.cmbb.smartkids.activity.user.fragment.MyCollectServiceFragment;
 import com.cmbb.smartkids.activity.user.fragment.MyCollectServiceFragment;
 import com.cmbb.smartkids.activity.user.fragment.MyServiceMessageFragement;
 import com.cmbb.smartkids.activity.user.fragment.MySystemMessageFragement;

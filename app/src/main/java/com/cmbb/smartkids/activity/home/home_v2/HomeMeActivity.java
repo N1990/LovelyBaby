@@ -27,7 +27,6 @@ import com.cmbb.smartkids.activity.home.ApplyPopmanActivity;
 import com.cmbb.smartkids.activity.login.model.SecurityCodeModel;
 import com.cmbb.smartkids.activity.message.MessageActivity;
 import com.cmbb.smartkids.activity.order.MyOrderListActivity;
-import com.cmbb.smartkids.activity.serve.ServiceListActivity;
 import com.cmbb.smartkids.activity.user.MyCommunityActivity;
 import com.cmbb.smartkids.activity.user.MyDraftsActivity;
 import com.cmbb.smartkids.activity.user.MyListRedirectActivity;
@@ -376,11 +375,11 @@ public class HomeMeActivity extends BaseActivity implements View.OnClickListener
                 if (userInfoEntity.getIsEredar() != 0) {  // 0 普通用户 1 达人
                     startActivity(new Intent(this, MyServiceOrderActivity.class));
                 } else {
-                    Intent myService = new Intent(this, ServiceListActivity.class);
-                    myService.putExtra("myCenter", 1);
-                    myService.putExtra("isPopman", 0);
-                    myService.putExtra("userId", userInfoEntity.getUserId());
-                    startActivity(myService);
+//                    Intent myService = new Intent(this, ServiceListActivity.class);
+//                    myService.putExtra("myCenter", 1);
+//                    myService.putExtra("isPopman", 0);
+//                    myService.putExtra("userId", userInfoEntity.getUserId());
+//                    startActivity(myService);
                 }
                 break;
             case R.id.ll_home_self_order:

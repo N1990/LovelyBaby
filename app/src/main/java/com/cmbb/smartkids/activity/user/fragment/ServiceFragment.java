@@ -1,29 +1,25 @@
 package com.cmbb.smartkids.activity.user.fragment;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.widget.NestedScrollView;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.activity.serve.ActiveDetailActivity;
-import com.cmbb.smartkids.activity.serve.model.MyServiceListModel;
 import com.cmbb.smartkids.activity.serve.model.ServiceListModel;
 import com.cmbb.smartkids.activity.user.adapter.MyServiceAdapter;
-import com.cmbb.smartkids.base.BaseApplication;
 import com.cmbb.smartkids.base.BaseFragment;
-import com.cmbb.smartkids.base.Constants;
-import com.cmbb.smartkids.base.CustomListener;
-import com.cmbb.smartkids.network.NetRequest;
-import com.cmbb.smartkids.utils.log.Log;
-import com.javon.loadmorerecyclerview.LoadMoreRecyclerView;
+import com.cmbb.smartkids.network.OkHttpClientManager;
+import com.cmbb.smartkids.recyclerview.SmartRecyclerView;
+import com.cmbb.smartkids.recyclerview.adapter.RecyclerArrayAdapter;
+import com.squareup.okhttp.Request;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -32,9 +28,9 @@ import java.util.List;
  * 创建人：javon
  * 创建时间：2015/10/12 19:15
  */
-public class ServiceFragment extends BaseFragment {
+public class ServiceFragment extends BaseFragment implements View.OnClickListener, RecyclerArrayAdapter.OnLoadMoreListener, SwipeRefreshLayout.OnRefreshListener, RecyclerArrayAdapter.OnItemClickListener{
     private final String TAG = ServiceFragment.class.getSimpleName();
-    public LoadMoreRecyclerView lmrv;
+    public SmartRecyclerView srv;
     private NestedScrollView nsv;
     private MyServiceAdapter adapter;
     private int myCenter = 0;
@@ -46,7 +42,7 @@ public class ServiceFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.recyclerview_layout, null);
+        View root = inflater.inflate(R.layout.recyclerview_layout_v, null);
         return root;
     }
 
@@ -55,17 +51,20 @@ public class ServiceFragment extends BaseFragment {
         super.onActivityCreated(savedInstanceState);
         initView();
         initData();
-        addListener();
     }
 
 
     private void initView() {
         nsv = (NestedScrollView) getView().findViewById(R.id.nsv_self);
-        lmrv = (LoadMoreRecyclerView) getView().findViewById(R.id.lmrv_self);
-        lmrv.setLinearLayout();
-        adapter = new MyServiceAdapter();
-        adapter.setData(cacheList);
-        lmrv.setAdapter(adapter);
+        srv = (SmartRecyclerView) getView().findViewById(R.id.srv_self);
+        srv.setLayoutManager(new LinearLayoutManager(getActivity()));
+        adapter = new MyServiceAdapter(getActivity());
+        srv.setAdapterWithProgress(adapter);
+        adapter.setMore(R.layout.view_more, this);
+        adapter.setNoMore(R.layout.view_nomore);
+        adapter.setOnItemClickListener(this);
+        srv.setRefreshListener(this);
+        adapter.addAll(cacheList);
     }
 
     private void initData() {
@@ -82,85 +81,53 @@ public class ServiceFragment extends BaseFragment {
 
     }
 
-    private void addListener() {
-        lmrv.setPullLoadMoreListener(lmrvListener);
-        lmrv.setInitializeWithoutPb();
-        adapter.setOnFooterTryAgain(this);
-        adapter.setOnItemClick(itemClick);
+    @Override
+    public void onItemClick(int position) {
+        ServiceListModel.DataEntity.RowsEntity item = adapter.getItem(position);
+        Intent intent = new Intent(getActivity(), ActiveDetailActivity.class);
+        intent.putExtra("serviceId", item.getId());
+        startActivity(intent);
     }
-
-    private LoadMoreRecyclerView.PullLoadMoreListener lmrvListener = new LoadMoreRecyclerView.PullLoadMoreListener() {
-        @Override
-        public void onInitialize() {
-
-
-        }
-
-        @Override
-        public void onRefresh() {
-            adapter.clearData();
-            pager = 0;
-            handleRequest(pager, pagerSize);
-        }
-
-        @Override
-        public void onLoadMore() {
-            pager ++;
-            handleRequest(pager, pagerSize);
-        }
-    };
-
-
-
-    private CustomListener.ItemClickListener itemClick = new CustomListener.ItemClickListener() {
-        @Override
-        public void onItemClick(View v, int position, Object object) {
-            ServiceListModel.DataEntity.RowsEntity item = (ServiceListModel.DataEntity.RowsEntity) object;
-            Intent intent = new Intent(getActivity(), ActiveDetailActivity.class);
-            intent.putExtra("serviceId", item.getId());
-            startActivity(intent);
-        }
-    };
 
     @Override
-    public void onClick(View v) {
-        super.onClick(v);
+    public void onLoadMore() {
+        pager ++;
+        handleRequest(pager, pagerSize);
     }
 
+    @Override
+    public void onRefresh() {
+        adapter.clear();
+        pager = 0;
+        handleRequest(pager, pagerSize);
+    }
+
+
     private void handleRequest(final int pager, int pagerSize){
-        HashMap<String, String> params = new HashMap<>();
-        params.put("myCenter", String.valueOf(myCenter));
-        params.put("isEredar", String.valueOf(isPopman));
-        params.put("id", String.valueOf(userId));
-        params.put("pageNo", String.valueOf(pager));
-        params.put("numberOfPerPage", String.valueOf(pagerSize));
-        NetRequest.postRequest(Constants.ServiceInfo.MY_SERVICE_REQUEST, BaseApplication.token, params, ServiceListModel.class, new NetRequest.NetHandler(getActivity(), new NetRequest.NetResponseListener() {
+        ServiceListModel.getUserCenterServiceRequest(myCenter, isPopman, userId, pager, pagerSize, new OkHttpClientManager.ResultCallback<ServiceListModel>() {
             @Override
-            public void onSuccessListener(Object object, String msg) {
+            public void onError(Request request, Exception e) {
                 hideWaitDialog();
-                lmrv.setPullLoadMoreCompleted();
-                ServiceListModel listModel = (ServiceListModel) object;
-                if (listModel != null && listModel.getData() != null && listModel.getData().getRows().size() > 0 && cachePager != pager) {
-                    lmrv.setVisibility(View.VISIBLE);
-                    nsv.setVisibility(View.GONE);
-                    cacheList.addAll(listModel.getData().getRows());
-                    adapter.notifyDataSetChanged();
-                }
-                Log.e(TAG, "adapter.size1 : " + adapter.getDataSize());
-                if (adapter.getDataSize() == 0) {
-                    lmrv.setVisibility(View.GONE);
-                    nsv.setVisibility(View.VISIBLE);
-                }
-                showShortToast(msg);
+                showShortToast(e.toString());
             }
 
             @Override
-            public void onErrorListener(String message) {
+            public void onResponse(ServiceListModel response) {
                 hideWaitDialog();
-                lmrv.setPullLoadMoreCompleted();
-                showShortToast(message);
+                if (response != null && response.getData() != null && response.getData().getRows().size() > 0 && cachePager != pager) {
+                    srv.setVisibility(View.VISIBLE);
+                    nsv.setVisibility(View.GONE);
+                    cacheList.addAll(response.getData().getRows());
+                    adapter.notifyDataSetChanged();
+                }
+                if (adapter.getCount() == 0) {
+                    srv.setVisibility(View.GONE);
+                    nsv.setVisibility(View.VISIBLE);
+                }
+                showShortToast(response.getMsg());
             }
-        }));
+        });
+
     }
 
     @Override

@@ -277,7 +277,7 @@ public class UserCenterActivity extends BaseActivity implements AppBarLayout.OnO
             if (i == 0) {
                 switch (vp.getCurrentItem()) {
                     case 0:
-                        serviceFra.lmrv.mSwipeRefreshLayout.setEnabled(true);
+                        serviceFra.srv.getSwipeToRefresh().setEnabled(true);
                         break;
                     case 1:
                         communityFra.lmrv.mSwipeRefreshLayout.setEnabled(true);
@@ -289,7 +289,7 @@ public class UserCenterActivity extends BaseActivity implements AppBarLayout.OnO
             } else {
                 switch (vp.getCurrentItem()) {
                     case 0:
-                        serviceFra.lmrv.mSwipeRefreshLayout.setEnabled(false);
+                        serviceFra.srv.getSwipeToRefresh().setEnabled(true);
                         break;
                     case 1:
                         communityFra.lmrv.mSwipeRefreshLayout.setEnabled(false);

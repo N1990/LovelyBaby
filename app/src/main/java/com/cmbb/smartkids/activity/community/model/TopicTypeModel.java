@@ -3,6 +3,7 @@ package com.cmbb.smartkids.activity.community.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.cmbb.smartkids.base.BaseApplication;
 import com.cmbb.smartkids.base.Constants;
 import com.cmbb.smartkids.network.OkHttpClientManager;
 
@@ -162,5 +163,16 @@ public class TopicTypeModel implements Parcelable {
         HashMap<String, String> params = new HashMap<>();
         params.put("typeCode", "topicType");
         OkHttpClientManager.postAsyn(Constants.Community.TOPIC_TYPE, params, callback);
+    }
+
+    /**
+     * 获取搜索热词
+     * @param callback
+     */
+    public static void getSearchHotRequest(OkHttpClientManager.ResultCallback<TopicTypeModel> callback){
+        HashMap<String, String> params = new HashMap<>();
+        params.put("token", BaseApplication.token);
+        params.put("typeCode", "topicHotWords");
+        OkHttpClientManager.postAsyn(Constants.ServiceInfo.SMARTS_SORT_REQUEST, params, callback);
     }
 }

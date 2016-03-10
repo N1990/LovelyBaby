@@ -3,6 +3,7 @@ package com.cmbb.smartkids.activity.home.home_v2.holder;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -24,71 +25,57 @@ import com.facebook.drawee.view.SimpleDraweeView;
  */
 public class ServiceItemHolder extends BaseViewHolder<ServiceListModel.DataEntity.RowsEntity> implements View.OnClickListener {
     private final String TAG = ServiceItemHolder.class.getSimpleName();
-    private ServiceAdapter adapter;
     private RelativeLayout llHomeServiceItem;
+    private LinearLayout llHomeServiceItemFrist;
     private SimpleDraweeView ivHomeServiceItem;
+    private TextView tvServiceItemCity;
+    private LinearLayout llTitleHomeServiceItem;
     private TextView tvTitleHomeServiceItem;
-    private TextView tvPriceHomeServiceItem;
-    private TextView tvCityHomeServiceItem;
-    private TextView tvPreviewHomeServiceItem;
+    private TextView tvHomeServiceTagItem;
     private TextView tvTimeHomeServiceItem;
-    private TextView tvTagHomeServiceItem;
-    private int position;
+    private TextView tvServiceWayItem;
+    private TextView tvServiceStatusItem;
+    private TextView tvServicePurchaseNumberItem;
+    private TextView tvServicePriceItem;
 
     public ServiceItemHolder(ViewGroup parent) {
-        super(parent, R.layout.list_home_service_item);
+        super(parent, R.layout.list_home_service_item_v);
         llHomeServiceItem = $(R.id.ll_home_service_item);
+        llHomeServiceItemFrist = $(R.id.ll_home_service_item_frist);
         ivHomeServiceItem = $(R.id.iv_home_service_item);
+        tvServiceItemCity = $(R.id.tv_service_item_city);
+        llTitleHomeServiceItem = $(R.id.ll_title_home_service_item);
         tvTitleHomeServiceItem = $(R.id.tv_title_home_service_item);
-        tvPriceHomeServiceItem = $(R.id.tv_price_home_service_item);
-        tvPreviewHomeServiceItem = $(R.id.tv_preview_home_service_item);
-        tvCityHomeServiceItem = $(R.id.tv_city_home_service_item);
+        tvHomeServiceTagItem = $(R.id.tv_home_service_tag_item);
         tvTimeHomeServiceItem = $(R.id.tv_time_home_service_item);
-        tvTagHomeServiceItem = $(R.id.tv_home_service_tag_item);
-
+        tvServiceWayItem = $(R.id.tv_service_way_item);
+        tvServiceStatusItem = $(R.id.tv_service_status_item);
+        tvServicePurchaseNumberItem = $(R.id.tv_service_purchase_number_item);
+        tvServicePriceItem = $(R.id.tv_service_price_item);
     }
 
     public void setData(ServiceListModel.DataEntity.RowsEntity row) {
-        Log.e(TAG, "setData position : " + position);
-        this.adapter = adapter;
-        this.position = position;
         llHomeServiceItem.setTag(row);
         llHomeServiceItem.setOnClickListener(this);
         FrescoTool.loadImage(ivHomeServiceItem, row.getServicesImg(), String.valueOf(TDevice.dip2px(90, ivHomeServiceItem.getContext())));
+        tvServiceItemCity.setText(row.getCityText());
         tvTitleHomeServiceItem.setText(row.getTitle());
+        tvTimeHomeServiceItem.setText("活动时间:" + row.getServiceTime());
+        tvServiceWayItem.setText("服务方式:" + row.getType());
+        tvServiceStatusItem.setText(row.getStatusName());
+        tvServicePurchaseNumberItem.setText("已购买人数" + row.getRealityPeoples());
         if (!TextUtils.isEmpty(row.getPrice())) {
             double price = Double.valueOf(row.getPrice());
-            tvPriceHomeServiceItem.setText(price != 0 ? "￥" + row.getPrice() : "免费");
+            tvServicePriceItem.setText(price != 0 ? "￥" + row.getPrice() : "免费");
         }
-        tvPreviewHomeServiceItem.setText(row.getBrowseNumber() + "");
-        tvTagHomeServiceItem.setVisibility(View.VISIBLE);
-        int statusValue = row.getStatus();
-        ServiceStatus status = ServiceStatus.getStatusByValue(statusValue);
-        switch (status) {
-            case WEI_KAI_SHI:
-                tvTagHomeServiceItem.setVisibility(View.GONE);
-                break;
-            case YI_KAI_SHI:
-                tvTagHomeServiceItem.setText("已开始");
-                break;
-            case YU_DING_ZHONG:
-                tvTagHomeServiceItem.setText("报名中");
-                break;
-            case YI_JIE_SHU:
-                tvTagHomeServiceItem.setText("已过期");
-                break;
+
+        if(row.isIsNew()){
+            tvHomeServiceTagItem.setVisibility(View.VISIBLE);
+            tvHomeServiceTagItem.setText("NEW");
+        }else{
+            tvHomeServiceTagItem.setVisibility(View.GONE);
         }
-        tvCityHomeServiceItem.setVisibility(View.VISIBLE);
-        if (TextUtils.isEmpty(row.getCityText()))
-            tvCityHomeServiceItem.setVisibility(View.GONE);
-        tvCityHomeServiceItem.setText(row.getCityText());
-        try {
-            String applyStartTime = Tools.DataToString(row.getApplyStartTime(), "MM/dd");
-            String applyEndTime = Tools.DataToString(row.getApplyStartTime(), "MM/dd");
-            tvTimeHomeServiceItem.setText(applyStartTime + "-" + applyEndTime);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
     }
 
     @Override
@@ -96,4 +83,66 @@ public class ServiceItemHolder extends BaseViewHolder<ServiceListModel.DataEntit
         /*if (adapter.getOnItemClick() != null)
             adapter.getOnItemClick().onItemClick(v, position, llHomeServiceItem.getTag());*/
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//    private RelativeLayout llHomeServiceItem;
+//    private SimpleDraweeView ivHomeServiceItem;
+//    private TextView tvTitleHomeServiceItem;
+//    private TextView tvPriceHomeServiceItem;
+//    private TextView tvCityHomeServiceItem;
+//    private TextView tvPreviewHomeServiceItem;
+//    private TextView tvTimeHomeServiceItem;
+//    private TextView tvTagHomeServiceItem;
+//
+//    public ServiceItemHolder(ViewGroup parent) {
+//        super(parent, R.layout.list_home_service_item);
+//        llHomeServiceItem = $(R.id.ll_home_service_item);
+//        ivHomeServiceItem = $(R.id.iv_home_service_item);
+//        tvTitleHomeServiceItem = $(R.id.tv_title_home_service_item);
+//        tvPriceHomeServiceItem = $(R.id.tv_price_home_service_item);
+//        tvPreviewHomeServiceItem = $(R.id.tv_preview_home_service_item);
+//        tvCityHomeServiceItem = $(R.id.tv_city_home_service_item);
+//        tvTimeHomeServiceItem = $(R.id.tv_time_home_service_item);
+//        tvTagHomeServiceItem = $(R.id.tv_home_service_tag_item);
+//
+//    }
+//
+//
+
+
+
+
+
+
+
+
+
 }

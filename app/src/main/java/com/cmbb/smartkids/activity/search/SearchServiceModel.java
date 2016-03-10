@@ -3,6 +3,11 @@ package com.cmbb.smartkids.activity.search;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.cmbb.smartkids.base.BaseApplication;
+import com.cmbb.smartkids.base.Constants;
+import com.cmbb.smartkids.network.OkHttpClientManager;
+
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -594,4 +599,12 @@ public class SearchServiceModel implements Parcelable {
             return new SearchServiceModel[size];
         }
     };
+    public static void getSearchServiceRequest(String content, int pager, int pagerSize, OkHttpClientManager.ResultCallback<SearchServiceModel> callback){
+        HashMap<String, String> params = new HashMap<>();
+        params.put("token", BaseApplication.token);
+        params.put("pageNo", String.valueOf(pager));
+        params.put("numberOfPerPage", String.valueOf(pagerSize));
+        params.put("contents", content);
+        OkHttpClientManager.postAsyn(Constants.ServiceInfo.SEARCH_SERVICE_REQUEST, params, callback);
+    }
 }

@@ -72,10 +72,13 @@
 
     </android.support.v7.widget.Toolbar>
 
-    <com.javon.loadmorerecyclerview.LoadMoreRecyclerView
-        android:id="@+id/lmrl_search"
+    <com.cmbb.smartkids.recyclerview.SmartRecyclerView
+        android:id="@+id/srv_search"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/tl_main_actionbar" />
+        android:layout_below="@+id/tl_main_actionbar"
+        app:layout_empty="@layout/view_empty"
+        app:layout_progress="@layout/view_progress"
+        app:scrollbarStyle="insideOverlay"/>
 
 </RelativeLayout>

@@ -83,53 +83,53 @@
         android:orientation="horizontal">
 
 
-            <TextView
-                android:id="@+id/tv_city_home_service_item"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:text=""
-                android:textColor="@color/dimgray"
-                />
-
-            <TextView
-                android:id="@+id/tv_time_home_service_item"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dip"
-                android:gravity="center_vertical"
-                android:text=""
-                android:textColor="@color/dimgray" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/tv_city_home_service_item"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/rl_home_service_item"
-            android:layout_below="@+id/ll_city_home_service_item"
-            android:layout_marginLeft="5dip"
-            android:layout_marginTop="6dp"
-            android:orientation="horizontal">
+            android:gravity="center_vertical"
+            android:text=""
+            android:textColor="@color/dimgray"
+            />
 
-            <TextView
-                android:id="@+id/tv_preview_home_service_item"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.0"
-                android:drawableLeft="@mipmap/btn_my_care_bg"
-                android:text=""
-                android:gravity="center_vertical"
-                android:textColor="@color/dimgray"/>
+        <TextView
+            android:id="@+id/tv_time_home_service_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:gravity="center_vertical"
+            android:text=""
+            android:textColor="@color/dimgray" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/rl_home_service_item"
+        android:layout_below="@+id/ll_city_home_service_item"
+        android:layout_marginLeft="5dip"
+        android:layout_marginTop="6dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_preview_home_service_item"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:drawableLeft="@mipmap/btn_my_care_bg"
+            android:text=""
+            android:gravity="center_vertical"
+            android:textColor="@color/dimgray"/>
 
 
-            <TextView
-                android:id="@+id/tv_price_home_service_item"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/primaryColorDark"
-                android:textStyle="bold"
-                android:text=""/>
+        <TextView
+            android:id="@+id/tv_price_home_service_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/primaryColorDark"
+            android:textStyle="bold"
+            android:text=""/>
 
-        </LinearLayout>
+    </LinearLayout>
 </RelativeLayout>
 

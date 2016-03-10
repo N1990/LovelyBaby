@@ -3,6 +3,10 @@ package com.cmbb.smartkids.activity.home.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.cmbb.smartkids.base.Constants;
+import com.cmbb.smartkids.network.OkHttpClientManager;
+
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -14,7 +18,7 @@ public class ServiceSortModel implements Parcelable {
 
     private DataEntity data;
     /**
-     * data : {"services":[{"name":"上门","value":"201"},{"name":"到店","value":"202"},{"name":"培训","value":"203"}],"serviceCity":[{"name":"北京","value":"110100"},{"name":"上海","value":"310100"},{"name":"广州","value":"440100"}],"serviceStatus":[{"name":"开始","value":"1"},{"name":"预定","value":"2"},{"name":"结束","value":"3"}]}
+     * data : {"services":[{"name":"上门","value":"201"},{"name":"到店","value":"202"},{"name":"培训","value":"203"},{"name":"在线","value":"204"},{"name":"配送","value":"205"}],"serviceCity":[{"name":"北京","value":"110100"},{"name":"上海","value":"310100"},{"name":"广州","value":"440100"}],"serviceCategroy":[{"name":"萌宝独家","value":"MBDJ"},{"name":"好好学习","value":"HHXX"},{"name":"最爱户外","value":"ZAHW"},{"name":"艺海寻师","value":"YHXS"},{"name":"醉心定制","value":"ZXDZ"},{"name":"私家美食","value":"SJMS"},{"name":"国医妙手","value":"GYMS"},{"name":"辣妈速递","value":"LMSD"}],"serviceSortType":[{"name":"价格最低","value":"high_price"},{"name":"价格最高","value":"lowe_pirce"},{"name":"最新发布","value":"new_publish"}]}
      * msg : 操作成功
      */
 
@@ -50,11 +54,17 @@ public class ServiceSortModel implements Parcelable {
 
         private List<ServiceCityEntity> serviceCity;
         /**
-         * name : 开始
-         * value : 1
+         * name : 萌宝独家
+         * value : MBDJ
          */
 
-        private List<ServiceStatusEntity> serviceStatus;
+        private List<ServiceCategroyEntity> serviceCategroy;
+        /**
+         * name : 价格最低
+         * value : high_price
+         */
+
+        private List<ServiceSortTypeEntity> serviceSortType;
 
         public void setServices(List<ServicesEntity> services) {
             this.services = services;
@@ -64,8 +74,12 @@ public class ServiceSortModel implements Parcelable {
             this.serviceCity = serviceCity;
         }
 
-        public void setServiceStatus(List<ServiceStatusEntity> serviceStatus) {
-            this.serviceStatus = serviceStatus;
+        public void setServiceCategroy(List<ServiceCategroyEntity> serviceCategroy) {
+            this.serviceCategroy = serviceCategroy;
+        }
+
+        public void setServiceSortType(List<ServiceSortTypeEntity> serviceSortType) {
+            this.serviceSortType = serviceSortType;
         }
 
         public List<ServicesEntity> getServices() {
@@ -76,8 +90,12 @@ public class ServiceSortModel implements Parcelable {
             return serviceCity;
         }
 
-        public List<ServiceStatusEntity> getServiceStatus() {
-            return serviceStatus;
+        public List<ServiceCategroyEntity> getServiceCategroy() {
+            return serviceCategroy;
+        }
+
+        public List<ServiceSortTypeEntity> getServiceSortType() {
+            return serviceSortType;
         }
 
         public static class ServicesEntity implements Parcelable {
@@ -180,9 +198,14 @@ public class ServiceSortModel implements Parcelable {
                     return new ServiceCityEntity[size];
                 }
             };
+
+            @Override
+            public String toString() {
+                return name;
+            }
         }
 
-        public static class ServiceStatusEntity implements Parcelable {
+        public static class ServiceCategroyEntity implements Parcelable {
             private String name;
             private String value;
 
@@ -202,6 +225,55 @@ public class ServiceSortModel implements Parcelable {
                 return value;
             }
 
+            @Override
+            public int describeContents() {
+                return 0;
+            }
+
+            @Override
+            public void writeToParcel(Parcel dest, int flags) {
+                dest.writeString(this.name);
+                dest.writeString(this.value);
+            }
+
+            public ServiceCategroyEntity() {
+            }
+
+            protected ServiceCategroyEntity(Parcel in) {
+                this.name = in.readString();
+                this.value = in.readString();
+            }
+
+            public static final Parcelable.Creator<ServiceCategroyEntity> CREATOR = new Parcelable.Creator<ServiceCategroyEntity>() {
+                public ServiceCategroyEntity createFromParcel(Parcel source) {
+                    return new ServiceCategroyEntity(source);
+                }
+
+                public ServiceCategroyEntity[] newArray(int size) {
+                    return new ServiceCategroyEntity[size];
+                }
+            };
+        }
+
+        public static class ServiceSortTypeEntity implements Parcelable {
+            private String name;
+            private String value;
+
+            public void setName(String name) {
+                this.name = name;
+            }
+
+            public void setValue(String value) {
+                this.value = value;
+            }
+
+            public String getName() {
+                return name;
+            }
+
+            public String getValue() {
+                return value;
+            }
 
             @Override
             public int describeContents() {
@@ -214,21 +286,21 @@ public class ServiceSortModel implements Parcelable {
                 dest.writeString(this.value);
             }
 
-            public ServiceStatusEntity() {
+            public ServiceSortTypeEntity() {
             }
 
-            protected ServiceStatusEntity(Parcel in) {
+            protected ServiceSortTypeEntity(Parcel in) {
                 this.name = in.readString();
                 this.value = in.readString();
             }
 
-            public static final Parcelable.Creator<ServiceStatusEntity> CREATOR = new Parcelable.Creator<ServiceStatusEntity>() {
-                public ServiceStatusEntity createFromParcel(Parcel source) {
-                    return new ServiceStatusEntity(source);
+            public static final Parcelable.Creator<ServiceSortTypeEntity> CREATOR = new Parcelable.Creator<ServiceSortTypeEntity>() {
+                public ServiceSortTypeEntity createFromParcel(Parcel source) {
+                    return new ServiceSortTypeEntity(source);
                 }
 
-                public ServiceStatusEntity[] newArray(int size) {
-                    return new ServiceStatusEntity[size];
+                public ServiceSortTypeEntity[] newArray(int size) {
+                    return new ServiceSortTypeEntity[size];
                 }
             };
         }
@@ -242,7 +314,8 @@ public class ServiceSortModel implements Parcelable {
         public void writeToParcel(Parcel dest, int flags) {
             dest.writeTypedList(services);
             dest.writeTypedList(serviceCity);
-            dest.writeTypedList(serviceStatus);
+            dest.writeTypedList(serviceCategroy);
+            dest.writeTypedList(serviceSortType);
         }
 
         public DataEntity() {
@@ -251,7 +324,8 @@ public class ServiceSortModel implements Parcelable {
         protected DataEntity(Parcel in) {
             this.services = in.createTypedArrayList(ServicesEntity.CREATOR);
             this.serviceCity = in.createTypedArrayList(ServiceCityEntity.CREATOR);
-            this.serviceStatus = in.createTypedArrayList(ServiceStatusEntity.CREATOR);
+            this.serviceCategroy = in.createTypedArrayList(ServiceCategroyEntity.CREATOR);
+            this.serviceSortType = in.createTypedArrayList(ServiceSortTypeEntity.CREATOR);
         }
 
         public static final Parcelable.Creator<DataEntity> CREATOR = new Parcelable.Creator<DataEntity>() {
@@ -293,4 +367,11 @@ public class ServiceSortModel implements Parcelable {
             return new ServiceSortModel[size];
         }
     };
+
+    public static void getServiceSortREquest(OkHttpClientManager.ResultCallback<ServiceSortModel> callback){
+        HashMap<String, String> params = new HashMap<>();
+        params.put("typeCode", "serviceCity,serviceCategroy,services,serviceSortType");
+        OkHttpClientManager.postAsyn(Constants.ServiceInfo.SERVICE_SORT_REQUEST, params, callback);
+    }
+
 }

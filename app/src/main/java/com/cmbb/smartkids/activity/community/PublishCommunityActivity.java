@@ -21,7 +21,7 @@ import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.activity.community.adapter.PublicCommunityAdapter;
 import com.cmbb.smartkids.activity.community.model.ImageModel;
 import com.cmbb.smartkids.activity.community.model.TopicTypeModel;
-import com.cmbb.smartkids.activity.serve.model.ServiceListModel;
+import com.cmbb.smartkids.activity.login.model.SecurityCodeModel;
 import com.cmbb.smartkids.base.BaseActivity;
 import com.cmbb.smartkids.base.BaseApplication;
 import com.cmbb.smartkids.base.Constants;
@@ -34,11 +34,9 @@ import com.cmbb.smartkids.photopicker.utils.PhotoPickerIntent;
 import com.cmbb.smartkids.utils.FullyLinearLayoutManager;
 import com.cmbb.smartkids.utils.SPCache;
 import com.cmbb.smartkids.utils.Tools;
-import com.cmbb.smartkids.utils.Utils;
 import com.cmbb.smartkids.widget.spinner.NiceSpinner;
 import com.cmbb.smartkids.widget.wheelview.CustomDialogBuilder;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -319,7 +317,7 @@ public class PublishCommunityActivity extends BaseActivity {
             }
         }
         showWaitDialog();
-        NetRequest.postRequestWithFiles(Constants.Community.TOPIC_PUBLISH, params, "topicImgList", "imgText", files, ServiceListModel.class, new NetRequest.NetHandler(this, new NetRequest.NetResponseListener() {
+        NetRequest.postRequestWithFiles(Constants.Community.TOPIC_PUBLISH, params, "topicImgList", "imgText", files, SecurityCodeModel.class, new NetRequest.NetHandler(this, new NetRequest.NetResponseListener() {
             @Override
             public void onSuccessListener(Object object, String msg) {
                 hideWaitDialog();

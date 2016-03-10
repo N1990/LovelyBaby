@@ -3,10 +3,12 @@ package com.cmbb.smartkids.activity.search;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.cmbb.smartkids.R;
+import com.cmbb.smartkids.recyclerview.adapter.BaseViewHolder;
 import com.cmbb.smartkids.utils.FrescoTool;
 import com.cmbb.smartkids.utils.log.Log;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -17,7 +19,7 @@ import com.facebook.drawee.view.SimpleDraweeView;
  * 创建人：javon
  * 创建时间：2015/9/6 17:15
  */
-public class SearchUserHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class SearchUserHolder extends BaseViewHolder<SearchUserModel.DataEntity.RowsEntity> {
     private final String TAG = SearchUserHolder.class.getSimpleName();
 
     private SimpleDraweeView sdvSearchUserHead;
@@ -26,23 +28,19 @@ public class SearchUserHolder extends RecyclerView.ViewHolder implements View.On
     private TextView tvSearchUserTag;
     private TextView tvFans;
 
-    private SearchUserAdapter adapter;
-    private View root;
-    private int position;
 
-    public SearchUserHolder(View itemView) {
-        super(itemView);
-        this.root = itemView;
-        sdvSearchUserHead = (SimpleDraweeView) itemView.findViewById(R.id.sdv_search_user_head);
-        tvSearchUserNick = (TextView) itemView.findViewById(R.id.tv_search_user_nick);
-        rbSearchUserPerssion = (RatingBar) itemView.findViewById(R.id.rb_search_user_perssion);
-        tvSearchUserTag = (TextView) itemView.findViewById(R.id.tv_search_user_tag);
-        tvFans = (TextView) itemView.findViewById(R.id.tv_fans);
+    public SearchUserHolder(ViewGroup parent) {
+        super(parent, R.layout.list_search_user_item);
+        sdvSearchUserHead = $(R.id.sdv_search_user_head);
+        tvSearchUserNick = $(R.id.tv_search_user_nick);
+        rbSearchUserPerssion = $(R.id.rb_search_user_perssion);
+        tvSearchUserTag = $(R.id.tv_search_user_tag);
+        tvFans = $(R.id.tv_fans);
     }
 
-    public void setData(SearchUserModel.DataEntity.RowsEntity data, SearchUserAdapter adapter, int position) {
-        this.adapter = adapter;
-        this.position = position;
+    @Override
+    public void setData(SearchUserModel.DataEntity.RowsEntity data) {
+        super.setData(data);
         Log.e(TAG, "header : " + data.getUserSmallImg());
         FrescoTool.loadImage(sdvSearchUserHead, data.getUserSmallImg());
         tvSearchUserNick.setVisibility(View.VISIBLE);
@@ -54,13 +52,7 @@ public class SearchUserHolder extends RecyclerView.ViewHolder implements View.On
         rbSearchUserPerssion.setRating(data.getUserLevel());
         tvSearchUserTag.setText(data.getUserRole().get(0).getEredarName());
         tvFans.setText("Fans(" + data.getFans() + ")");
-        this.root.setOnClickListener(this);
-        this.root.setTag(data);
     }
 
-    @Override
-    public void onClick(View v) {
-        if (adapter.getOnItemListener() != null)
-            adapter.getOnItemListener().onItemClick(v, position, v.getTag());
-    }
+
 }

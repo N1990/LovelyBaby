@@ -3,13 +3,14 @@ package com.cmbb.smartkids.activity.search;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.cmbb.smartkids.R;
-import com.cmbb.smartkids.activity.home.adapter.ServiceFraAdapter;
 import com.cmbb.smartkids.activity.serve.model.ServiceListModel;
 import com.cmbb.smartkids.model.ServiceStatus;
+import com.cmbb.smartkids.recyclerview.adapter.BaseViewHolder;
 import com.cmbb.smartkids.utils.FrescoTool;
 import com.cmbb.smartkids.utils.TDevice;
 import com.cmbb.smartkids.utils.Tools;
@@ -22,9 +23,8 @@ import com.facebook.drawee.view.SimpleDraweeView;
  * 创建人：javon
  * 创建时间：2015/9/6 17:15
  */
-public class SearchServiceHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class SearchServiceHolder extends BaseViewHolder<SearchServiceModel.DataEntity.RowsEntity> {
     private final String TAG = SearchServiceHolder.class.getSimpleName();
-    private SearchServiceAdapter adapter;
     private RelativeLayout llHomeServiceItem;
     private SimpleDraweeView ivHomeServiceItem;
     private TextView tvTitleHomeServiceItem;
@@ -33,36 +33,33 @@ public class SearchServiceHolder extends RecyclerView.ViewHolder implements View
     private TextView tvPreviewHomeServiceItem;
     private TextView tvTimeHomeServiceItem;
     private TextView tvTagHomeServiceItem;
-    private int position;
 
-    public SearchServiceHolder(View itemView) {
-        super(itemView);
-        llHomeServiceItem = (RelativeLayout) itemView.findViewById(R.id.ll_home_service_item);
-        ivHomeServiceItem = (SimpleDraweeView) itemView.findViewById(R.id.iv_home_service_item);
-        tvTitleHomeServiceItem = (TextView) itemView.findViewById(R.id.tv_title_home_service_item);
-        tvPriceHomeServiceItem = (TextView) itemView.findViewById(R.id.tv_price_home_service_item);
-        tvPreviewHomeServiceItem = (TextView) itemView.findViewById(R.id.tv_preview_home_service_item);
-        tvCityHomeServiceItem = (TextView) itemView.findViewById(R.id.tv_city_home_service_item);
-        tvTimeHomeServiceItem = (TextView) itemView.findViewById(R.id.tv_time_home_service_item);
-        tvTagHomeServiceItem = (TextView) itemView.findViewById(R.id.tv_home_service_tag_item);
+    public SearchServiceHolder(ViewGroup parent) {
+        super(parent, R.layout.list_home_service_item);
+        llHomeServiceItem = $(R.id.ll_home_service_item);
+        ivHomeServiceItem = $(R.id.iv_home_service_item);
+        tvTitleHomeServiceItem = $(R.id.tv_title_home_service_item);
+        tvPriceHomeServiceItem = $(R.id.tv_price_home_service_item);
+        tvPreviewHomeServiceItem = $(R.id.tv_preview_home_service_item);
+        tvCityHomeServiceItem = $(R.id.tv_city_home_service_item);
+        tvTimeHomeServiceItem = $(R.id.tv_time_home_service_item);
+        tvTagHomeServiceItem = $(R.id.tv_home_service_tag_item);
 
     }
 
-    public void setData(SearchServiceModel.DataEntity.RowsEntity row, int position, SearchServiceAdapter adapter) {
-        Log.e(TAG, "setData position : " + position);
-        this.adapter = adapter;
-        this.position = position;
-        llHomeServiceItem.setTag(row);
-        llHomeServiceItem.setOnClickListener(this);
-        FrescoTool.loadImage(ivHomeServiceItem, row.getServicesImg(), String.valueOf(TDevice.dip2px(90, ivHomeServiceItem.getContext())));
-        tvTitleHomeServiceItem.setText(row.getTitle());
-        if (!TextUtils.isEmpty(row.getPrice())) {
-            double price = Double.valueOf(row.getPrice());
-            tvPriceHomeServiceItem.setText(price != 0 ? "￥" + row.getPrice() : "免费");
+
+    @Override
+    public void setData(SearchServiceModel.DataEntity.RowsEntity data) {
+        super.setData(data);
+        FrescoTool.loadImage(ivHomeServiceItem, data.getServicesImg(), String.valueOf(TDevice.dip2px(90, ivHomeServiceItem.getContext())));
+        tvTitleHomeServiceItem.setText(data.getTitle());
+        if (!TextUtils.isEmpty(data.getPrice())) {
+            double price = Double.valueOf(data.getPrice());
+            tvPriceHomeServiceItem.setText(price != 0 ? "￥" + data.getPrice() : "免费");
         }
-        tvPreviewHomeServiceItem.setText(row.getBrowseNumber() + "");
+        tvPreviewHomeServiceItem.setText(data.getBrowseNumber() + "");
         tvTagHomeServiceItem.setVisibility(View.VISIBLE);
-        int statusValue = row.getStatus();
+        int statusValue = data.getStatus();
         ServiceStatus status = ServiceStatus.getStatusByValue(statusValue);
         switch (status) {
             case WEI_KAI_SHI:
@@ -79,21 +76,16 @@ public class SearchServiceHolder extends RecyclerView.ViewHolder implements View
                 break;
         }
         tvCityHomeServiceItem.setVisibility(View.VISIBLE);
-        if (TextUtils.isEmpty(row.getCityText()))
+        if (TextUtils.isEmpty(data.getCityText()))
             tvCityHomeServiceItem.setVisibility(View.GONE);
-        tvCityHomeServiceItem.setText(row.getCityText());
+        tvCityHomeServiceItem.setText(data.getCityText());
         try {
-            String applyStartTime = Tools.DataToString(row.getApplyStartTime(), "MM/dd");
-            String applyEndTime = Tools.DataToString(row.getApplyStartTime(), "MM/dd");
+            String applyStartTime = Tools.DataToString(data.getApplyStartTime(), "MM/dd");
+            String applyEndTime = Tools.DataToString(data.getApplyStartTime(), "MM/dd");
             tvTimeHomeServiceItem.setText(applyStartTime + "-" + applyEndTime);
         }catch (Exception e){
             e.printStackTrace();
         }
     }
 
-    @Override
-    public void onClick(View v) {
-        if (adapter.getOnItemClick() != null)
-            adapter.getOnItemClick().onItemClick(v, position, llHomeServiceItem.getTag());
-    }
 }

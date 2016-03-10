@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:padding="10dp"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/sdv_evaluate_service_item"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="10dp"
+            app:actualImageScaleType="centerCrop"
+            app:fadeDuration="200"
+            app:placeholderImage="@color/primaryColor"
+            app:roundAsCircle="true"
+            app:roundingBorderColor="@android:color/white"
+            app:roundingBorderWidth="1dp"
+            />
+
+        <!--@drawable/ic_default_header_bg-->
+
+        <TextView
+            android:id="@+id/tv_evaluate_time_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:textColor="@android:color/darker_gray"
+            android:text="2016年10月12日"
+            />
+
+        <TextView
+            android:id="@+id/tv_evaluate_service_nickname_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/txt_middle"
+            android:layout_toRightOf="@+id/sdv_evaluate_service_item"
+            android:textColor="@android:color/holo_blue_dark"
+            android:text="萌宝派"/>
+
+        <RatingBar
+            android:id="@+id/rb_evaluate_service_item"
+            style="@style/foodRatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/tv_evaluate_service_nickname_item"
+            android:layout_toRightOf="@+id/sdv_evaluate_service_item"
+            android:numStars="5"
+            android:stepSize="1"
+            android:rating="3"
+            />
+
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/tv_evaluate_service_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="60dp"
+        android:textColor="@color/dimgray"
+        android:text="萌宝派萌宝派萌宝派萌萌宝派萌宝派萌宝派萌宝派萌宝派萌宝派萌宝派萌宝派萌宝派宝派萌宝派萌宝派萌宝派萌宝派萌宝派萌宝派"
+        android:lineSpacingExtra="2dp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dip"
+        android:layout_marginLeft="60dp"
+        android:orientation="horizontal">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/iv_evaluate_service_first_item"
+            android:layout_width="0dip"
+            android:layout_height="90dip"
+            android:layout_marginRight="10dip"
+            android:layout_weight="1.0"
+            app:actualImageScaleType="centerCrop"
+            app:fadeDuration="200"
+            app:placeholderImage="@color/placeholder"
+            />
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/iv_evaluate_service_second_item"
+            android:layout_width="0dip"
+            android:layout_height="90dip"
+            android:layout_marginRight="10dip"
+            android:layout_weight="1.0"
+            app:actualImageScaleType="centerCrop"
+            app:fadeDuration="200"
+            app:placeholderImage="@color/placeholder" />
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/iv_evaluate_service_third_item"
+            android:layout_width="0dip"
+            android:layout_height="90dip"
+            android:layout_weight="1.0"
+            app:actualImageScaleType="centerCrop"
+            app:fadeDuration="200"
+            app:placeholderImage="@color/placeholder" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/windowBackgroundColor"
+        android:padding="5dp">
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/iv_evaluate_service_title_item"
+            android:layout_width="120dp"
+            android:layout_height="72dip"
+            android:layout_marginRight="5dp"
+            app:actualImageScaleType="centerCrop"
+            app:fadeDuration="200"
+            app:placeholderImage="@color/placeholder" />
+
+        <TextView
+            android:id="@+id/tv_evaluate_service_title_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_toLeftOf="@+id/tv_evaluate_service_price_item"
+            android:gravity="left"
+            android:layout_toRightOf="@+id/iv_evaluate_service_title_item"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:text="萌宝派萌宝派萌宝派萌宝派萌宝派"/>
+
+        <TextView
+            android:id="@+id/tv_evaluate_service_price_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:text="$190/人" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_evaluate_service_title_item"
+            android:layout_toRightOf="@+id/iv_evaluate_service_title_item"
+            android:layout_marginTop="5dp"
+            android:drawableLeft="@mipmap/btn_local_order_bg"
+            android:gravity="center_vertical"
+            android:textColor="@color/dimgray"
+            android:text="上海"/>
+
+
+
+
+
+    </RelativeLayout>
+
+
+
+</LinearLayout>

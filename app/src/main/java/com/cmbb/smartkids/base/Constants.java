@@ -53,6 +53,7 @@ public class Constants {
         public static final String HOEM_MAIN_POPMAN_REQUEST = "smart/recommonedEredar"; // 推荐达人
         public static final String HOME_MAIN_HOT_SERVICE = "smart/services/getPage";  //热门服务
         public static final String HOME_MAIN_AD = "smart/topic/getAD";  //广告位
+        public static final String AD_MANAGER = "repository/advert/info";  //广告位
         public static final String UPDATA_IMG_FOR_USER = "smart/personal/updateBackgroundImg"; //更换个人的图片
         public static final String REGISTER_VERIFY_CODE = "smart/getRegisterSecurityCode"; // 获取注册验证码
         public static final String VERIFY_CODE = "smart/getSecurityCode"; //获取验证码，除注册外

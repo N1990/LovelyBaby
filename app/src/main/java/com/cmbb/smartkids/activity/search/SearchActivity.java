@@ -3,8 +3,12 @@ package com.cmbb.smartkids.activity.search;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.AppCompatSpinner;
 import android.support.v7.widget.AppCompatTextView;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -29,13 +33,17 @@ import com.cmbb.smartkids.base.BaseApplication;
 import com.cmbb.smartkids.base.Constants;
 import com.cmbb.smartkids.base.CustomListener;
 import com.cmbb.smartkids.network.NetRequest;
+import com.cmbb.smartkids.network.OkHttpClientManager;
+import com.cmbb.smartkids.recyclerview.SmartRecyclerView;
+import com.cmbb.smartkids.recyclerview.adapter.RecyclerArrayAdapter;
 import com.cmbb.smartkids.utils.log.Log;
 import com.javon.loadmorerecyclerview.LoadMoreRecyclerView;
+import com.squareup.okhttp.Request;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class SearchActivity extends BaseActivity {
+public class SearchActivity extends BaseActivity implements View.OnClickListener, RecyclerArrayAdapter.OnLoadMoreListener, SwipeRefreshLayout.OnRefreshListener, RecyclerArrayAdapter.OnItemClickListener{
 
     private static final String TAG = SearchActivity.class.getSimpleName();
 
@@ -45,7 +53,7 @@ public class SearchActivity extends BaseActivity {
     private EditText etSearch;
     private AppCompatTextView tvSearch;
     private AppCompatTextView btnSearch;
-    private LoadMoreRecyclerView lmrlSearch;
+    private SmartRecyclerView srv_search;
     private SearchTopicAdapter adapter_topic;
     private SearchUserAdapter adapter_user;
     private SearchServiceAdapter adapter_service;
@@ -79,16 +87,26 @@ public class SearchActivity extends BaseActivity {
         etSearch = (EditText) findViewById(R.id.et_search);
         tvSearch = (AppCompatTextView) findViewById(R.id.tv_search);
         btnSearch = (AppCompatTextView) findViewById(R.id.btn_search);
-        lmrlSearch = (LoadMoreRecyclerView) findViewById(R.id.lmrl_search);
-        lmrlSearch.setPullLoadMoreListener(lmrvListener);
-        lmrlSearch.setCanRefresh(false);
-        adapter_topic = new SearchTopicAdapter();
-        adapter_topic.setData(new ArrayList<TopicListModel.DataEntity.RowsEntity>());
-        adapter_user = new SearchUserAdapter();
-        adapter_user.setData(new ArrayList<SearchUserModel.DataEntity.RowsEntity>());
-        adapter_service = new SearchServiceAdapter();
-        adapter_service.setData(new ArrayList<SearchServiceModel.DataEntity.RowsEntity>());
-        adapter_hot = new SearchHotAdapter();
+
+
+        srv_search = (SmartRecyclerView) findViewById(R.id.srv_search);
+        adapter_topic = new SearchTopicAdapter(this);
+        adapter_topic.setMore(R.layout.view_more, this);
+        adapter_topic.setNoMore(R.layout.view_nomore);
+        adapter_topic.setOnItemClickListener(this);
+        adapter_user = new SearchUserAdapter(this);
+        adapter_user.setMore(R.layout.view_more, this);
+        adapter_user.setNoMore(R.layout.view_nomore);
+        adapter_user.setOnItemClickListener(this);
+        adapter_service = new SearchServiceAdapter(this);
+        adapter_service.setMore(R.layout.view_more, this);
+        adapter_service.setNoMore(R.layout.view_nomore);
+        adapter_service.setOnItemClickListener(this);
+        adapter_hot = new SearchHotAdapter(this);
+        srv_search.setRefreshListener(this);
+        srv_search.setAdapterWithProgress(adapter_hot);
+        srv_search.setRefreshing(false);
+        adapter_hot.setOnItemClickListener(this);
         handleHotRequest();
     }
 
@@ -97,74 +115,83 @@ public class SearchActivity extends BaseActivity {
         btnSearch.setOnClickListener(this);
         spinnerSearch.setOnItemSelectedListener(itemSelectedListener);
         etSearch.addTextChangedListener(textWatcher);
-        adapter_hot.setOnItemListener(onHotItemListener);
-        adapter_topic.setOnItemListener(onTopicItemListener);
-        adapter_user.setOnItemListener(onUserItemListener);
-        adapter_service.setOnItemClick(onServiceItemListener);
         etSearch.setOnEditorActionListener(onEditorListener);
     }
 
-    /**
-     * 热词adapter监听事件
-     */
-    private CustomListener.ItemClickListener onHotItemListener = new CustomListener.ItemClickListener() {
-        @Override
-        public void onItemClick(View v, int position, Object object) {
-            TopicTypeModel.DataEntity item = (TopicTypeModel.DataEntity) object;
+
+    @Override
+    public void onItemClick(int position) {
+        RecyclerView.Adapter adapter = srv_search.getAdapter();
+        if(adapter instanceof SearchHotAdapter) { //热词adapter监听事件
+            TopicTypeModel.DataEntity item = adapter_hot.getItem(position);
             search = item.getValue();
             etSearch.setText(search);
-            lmrlSearch.setPullRefreshEnable(true);
+            srv_search.setRefreshing(true);
             pager_topic = 0;
             showWaitDialog();
-            adapter_topic.clearData();
-            lmrlSearch.setLinearLayout();
-            lmrlSearch.setAdapter(adapter_topic);
+            adapter_topic.clear();
+            srv_search.setLayoutManager(new LinearLayoutManager(SearchActivity.this));
+            srv_search.setAdapter(adapter_topic);
             handleSearchTopic(pager_topic, pagerSize, search);
-        }
-    };
-
-    /**
-     * 话题adapter监听事件
-     */
-    private CustomListener.ItemClickListener onTopicItemListener = new CustomListener.ItemClickListener() {
-
-        @Override
-        public void onItemClick(View v, int position, Object object) {
-            TopicListModel.DataEntity.RowsEntity item = (TopicListModel.DataEntity.RowsEntity) object;
+        }else if(adapter instanceof SearchTopicAdapter){ // 话题adapter监听事件
+            TopicListModel.DataEntity.RowsEntity item = adapter_topic.getItem(position);
             int id = item.getId();
             Intent intent = new Intent(SearchActivity.this, CommunityDetailActivity.class);
             intent.putExtra("id", id);
             startActivity(intent);
-        }
-    };
-
-    /**
-     * 用户adapter监听事件
-     */
-    private CustomListener.ItemClickListener onUserItemListener = new CustomListener.ItemClickListener() {
-        @Override
-        public void onItemClick(View v, int position, Object object) {
-            SearchUserModel.DataEntity.RowsEntity item = (SearchUserModel.DataEntity.RowsEntity) object;
+        }else if(adapter instanceof SearchServiceAdapter){ //服务adapter监听事件
+            SearchServiceModel.DataEntity.RowsEntity item = (SearchServiceModel.DataEntity.RowsEntity) adapter_service.getItem(position);
+            int id = item.getId();
+            Intent intent = new Intent(SearchActivity.this, ActiveDetailActivity.class);
+            intent.putExtra("serviceId", id);
+            startActivity(intent);
+        }else if(adapter instanceof SearchUserAdapter){ //用户adapter监听事件
+            SearchUserModel.DataEntity.RowsEntity item =  adapter_user.getItem(position);
             int id = item.getId();
             Intent intent = new Intent(SearchActivity.this, UserCenterActivity.class);
             intent.putExtra("userId", id);
             startActivity(intent);
         }
-    };
+    }
 
-    /**
-     * 服务adapter监听事件
-     */
-    private CustomListener.ItemClickListener onServiceItemListener = new CustomListener.ItemClickListener() {
-        @Override
-        public void onItemClick(View v, int position, Object object) {
-            SearchServiceModel.DataEntity.RowsEntity item = (SearchServiceModel.DataEntity.RowsEntity) object;
-            int id = item.getId();
-            Intent intent = new Intent(SearchActivity.this, ActiveDetailActivity.class);
-            intent.putExtra("serviceId", id);
-            startActivity(intent);
+    @Override
+    public void onLoadMore() {
+        switch (type) {
+            case 0:
+                pager_topic++;
+                handleSearchTopic(pager_topic, pagerSize, search);
+                break;
+            case 1:
+                pager_user++;
+                handelSearchUserRequest(pager_user, pagerSize, search);
+                break;
+            case 2 :
+                pager_service++;
+                handleSearchServiceRequest(pager_service, pagerSize, search);
+                break;
         }
-    };
+    }
+
+    @Override
+    public void onRefresh() {
+        switch (type) {
+            case 0:
+                pager_topic = 0;
+                adapter_hot.clear();
+                handleSearchTopic(pager_topic, pagerSize, search);
+                break;
+            case 1:
+                pager_user = 0;
+                adapter_user.clear();
+                handelSearchUserRequest(pager_user, pagerSize, search);
+                break;
+            case 2 :
+                pager_service = 0;
+                adapter_service.clear();
+                handleSearchServiceRequest(pager_service, pagerSize, search);
+                break;
+        }
+    }
 
 
     private TextView.OnEditorActionListener onEditorListener = new TextView.OnEditorActionListener() {
@@ -176,7 +203,7 @@ public class SearchActivity extends BaseActivity {
                 ((InputMethodManager) etSearch.getContext().getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(SearchActivity.this.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                 InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
-                lmrlSearch.setLinearLayout();
+                srv_search.setLayoutManager(new LinearLayoutManager(SearchActivity.this));
                 //后续操作
                 search = etSearch.getText().toString();
                 if (TextUtils.isEmpty(search)) {
@@ -186,18 +213,18 @@ public class SearchActivity extends BaseActivity {
                 showWaitDialog();
                 if (type == 0) {
                     pager_topic = 0;
-                    adapter_topic.clearData();
-                    lmrlSearch.setAdapter(adapter_topic);
+                    adapter_topic.clear();
+                    srv_search.setAdapter(adapter_topic);
                     handleSearchTopic(pager_topic, pagerSize, search);
                 } else if(type == 1){
                     pager_user = 0;
-                    adapter_user.clearData();
-                    lmrlSearch.setAdapter(adapter_user);
+                    adapter_user.clear();
+                    srv_search.setAdapter(adapter_user);
                     handelSearchUserRequest(pager_user, pagerSize, search);
                 }else if(type == 2){
                     pager_service = 0;
-                    adapter_service.clearData();
-                    lmrlSearch.setAdapter(adapter_service);
+                    adapter_service.clear();
+                    srv_search.setAdapter(adapter_service);
                     handleSearchServiceRequest(pager_service, pagerSize, search);
                 }
                 showShortToast("开始搜索...");
@@ -216,7 +243,7 @@ public class SearchActivity extends BaseActivity {
                 ((InputMethodManager) etSearch.getContext().getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(SearchActivity.this.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                 InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
-                lmrlSearch.setLinearLayout();
+                srv_search.setLayoutManager(new LinearLayoutManager(SearchActivity.this));
                 //后续操作
                 search = etSearch.getText().toString();
                 if (TextUtils.isEmpty(search)) {
@@ -226,18 +253,18 @@ public class SearchActivity extends BaseActivity {
                 showWaitDialog();
                 if (type == 0) {
                     pager_topic = 0;
-                    adapter_topic.clearData();
-                    lmrlSearch.setAdapter(adapter_topic);
+                    adapter_topic.clear();
+                    srv_search.setAdapter(adapter_topic);
                     handleSearchTopic(pager_topic, pagerSize, search);
                 } else if(type == 1){
                     pager_user = 0;
-                    adapter_user.clearData();
-                    lmrlSearch.setAdapter(adapter_user);
+                    adapter_user.clear();
+                    srv_search.setAdapter(adapter_user);
                     handelSearchUserRequest(pager_user, pagerSize, search);
                 }else if(type == 2){
                     pager_service = 0;
-                    adapter_service.clearData();
-                    lmrlSearch.setAdapter(adapter_service);
+                    adapter_service.clear();
+                    srv_search.setAdapter(adapter_service);
                     handleSearchServiceRequest(pager_service, pagerSize, search);
                 }
                 showShortToast("开始搜索...");
@@ -257,10 +284,10 @@ public class SearchActivity extends BaseActivity {
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
             Log.e(TAG, "i come here" + position);
             etSearch.setText("");
-            adapter_topic.clearData();
-            adapter_user.clearData();
-            adapter_service.clearData();
-            adapter_hot.clearData();
+            adapter_topic.clear();
+            adapter_user.clear();
+            adapter_service.clear();
+            adapter_hot.clear();
             switch (position) {
                 case 0:
                     type = 0;
@@ -287,9 +314,8 @@ public class SearchActivity extends BaseActivity {
         public void afterTextChanged(Editable s) {
             if (type == 0 && TextUtils.isEmpty(s.toString())) {
                 Log.e("watcher", "watcher = " + type);
-                lmrlSearch.setGridRow(3);
-                lmrlSearch.setGridLayout();
-                lmrlSearch.setAdapter(adapter_hot);
+                srv_search.setLayoutManager(new GridLayoutManager(SearchActivity.this, 3));
+                srv_search.setAdapter(adapter_hot);
             }
 
         }
@@ -307,84 +333,31 @@ public class SearchActivity extends BaseActivity {
 
     };
 
-    private LoadMoreRecyclerView.PullLoadMoreListener lmrvListener = new LoadMoreRecyclerView.PullLoadMoreListener() {
-        @Override
-        public void onInitialize() {
-        }
-
-        @Override
-        public void onRefresh() {
-            switch (type) {
-                case 0:
-                    pager_topic = 0;
-                    adapter_hot.clearData();
-                    handleSearchTopic(pager_topic, pagerSize, search);
-                    break;
-                case 1:
-                    pager_user = 0;
-                    adapter_user.clearData();
-                    handelSearchUserRequest(pager_user, pagerSize, search);
-                    break;
-                case 2 :
-                    pager_service = 0;
-                    adapter_service.clearData();
-                    handleSearchServiceRequest(pager_service, pagerSize, search);
-                    break;
-            }
-
-        }
-
-        @Override
-        public void onLoadMore() {
-            switch (type) {
-                case 0:
-                    pager_topic++;
-                    handleSearchTopic(pager_topic, pagerSize, search);
-                    break;
-                case 1:
-                    pager_user++;
-                    handelSearchUserRequest(pager_user, pagerSize, search);
-                    break;
-                case 2 :
-                    pager_service++;
-                    handleSearchServiceRequest(pager_service, pagerSize, search);
-                    break;
-            }
-        }
-    };
-
 
     /**
      * 热词搜索
      */
     private void handleHotRequest() {
         showWaitDialog();
-        lmrlSearch.setPullRefreshEnable(false);
-        lmrlSearch.setGridRow(3);
-        lmrlSearch.setGridLayout();
-        HashMap<String, String> params = new HashMap<>();
-        params.put("typeCode", "topicHotWords");
-        NetRequest.postRequest(Constants.ServiceInfo.SMARTS_SORT_REQUEST, BaseApplication.token, params, TopicTypeModel.class, new NetRequest.NetHandler(this, new NetRequest.NetResponseListener() {
+        srv_search.setRefreshing(false);
+        srv_search.setLayoutManager(new GridLayoutManager(this, 3));
+        TopicTypeModel.getSearchHotRequest(new OkHttpClientManager.ResultCallback<TopicTypeModel>() {
             @Override
-            public void onSuccessListener(Object object, String msg) {
+            public void onError(Request request, Exception e) {
                 hideWaitDialog();
-                TopicTypeModel result = (TopicTypeModel) object;
-                if (result != null && result.getData() != null && result.getData().size() > 0) {
-                    lmrlSearch.setHasContent();
-                    adapter_hot.setData(result.getData());
-                    lmrlSearch.setAdapter(adapter_hot);// 默认Adapter
-                }
-                if (adapter_hot.getDataSize() == 0)
-                    lmrlSearch.setNoContent();
-                showShortToast(msg);
+                showShortToast(e.toString());
             }
 
             @Override
-            public void onErrorListener(String message) {
+            public void onResponse(TopicTypeModel response) {
                 hideWaitDialog();
-                showShortToast(message);
+                if (response != null && response.getData() != null && response.getData().size() > 0) {
+                    adapter_hot.addAll(response.getData());
+                    srv_search.setAdapter(adapter_hot);// 默认Adapter
+                }
+                showShortToast(response.getMsg());
             }
-        }));
+        });
     }
 
     /**
@@ -395,31 +368,22 @@ public class SearchActivity extends BaseActivity {
      * @param text
      */
     private void handleSearchTopic(int pager, int pagerSize, String text) {
-        HashMap<String, String> params = new HashMap<>();
-        params.put("pageNo", String.valueOf(pager));
-        params.put("numberOfPerPage", String.valueOf(pagerSize));
-        params.put("contents", text);
-        NetRequest.postRequest(Constants.Community.TOPIC_LIST, BaseApplication.token, params, TopicListModel.class, new NetRequest.NetHandler(this, new NetRequest.NetResponseListener() {
+        TopicListModel.getSearchTopicListRequest(text, pager, pagerSize, new OkHttpClientManager.ResultCallback<TopicListModel>() {
             @Override
-            public void onSuccessListener(Object object, String msg) {
+            public void onError(Request request, Exception e) {
                 hideWaitDialog();
-                lmrlSearch.setPullLoadMoreCompleted();
-                TopicListModel data = (TopicListModel) object;
-                if (data != null && data.getData().getRows() != null && data.getData().getRows().size() > 0) {
-                    lmrlSearch.setHasContent();
-                    adapter_topic.addData(data.getData().getRows(), lmrlSearch);
-                }
-                if (adapter_topic.getDataSize() == 0)
-                    lmrlSearch.setNoContent();
+                showShortToast(e.toString());
             }
 
             @Override
-            public void onErrorListener(String message) {
+            public void onResponse(TopicListModel response) {
                 hideWaitDialog();
-                lmrlSearch.setPullLoadMoreCompleted();
-                showShortToast(message);
+                if (response != null && response.getData().getRows() != null && response.getData().getRows().size() > 0) {
+                    adapter_topic.addAll(response.getData().getRows());
+                }
+                showWaitDialog(response.getMsg());
             }
-        }));
+        });
     }
 
 
@@ -431,32 +395,22 @@ public class SearchActivity extends BaseActivity {
      * @param text
      */
     private void handelSearchUserRequest(int pager, int pagerSize, String text) {
-        HashMap<String, String> params = new HashMap<>();
-        params.put("pageNo", String.valueOf(pager));
-        params.put("numberOfPerPage", String.valueOf(pagerSize));
-        params.put("userNike", text);
-        NetRequest.postRequest(Constants.ServiceInfo.SEARCH_USER_REQUEST, BaseApplication.token, params, SearchUserModel.class, new NetRequest.NetHandler(this, new NetRequest.NetResponseListener() {
+        SearchUserModel.getSearchUserRequest(text, pager, pagerSize, new OkHttpClientManager.ResultCallback<SearchUserModel>() {
             @Override
-            public void onSuccessListener(Object object, String msg) {
+            public void onError(Request request, Exception e) {
                 hideWaitDialog();
-                lmrlSearch.setPullLoadMoreCompleted();
-                SearchUserModel result = (SearchUserModel) object;
-                if (result != null && result.getData() != null && result.getData().getRows() != null && result.getData().getRows().size() > 0) {
-                    lmrlSearch.setHasContent();
-                    adapter_user.addData(result.getData().getRows(), lmrlSearch);
-                }
-                if (adapter_user.getDataSize() == 0)
-                    lmrlSearch.setNoContent();
-                showWaitDialog(msg);
+                showShortToast(e.toString());
             }
 
             @Override
-            public void onErrorListener(String message) {
+            public void onResponse(SearchUserModel response) {
                 hideWaitDialog();
-                lmrlSearch.setPullLoadMoreCompleted();
-                showShortToast(message);
+                if (response != null && response.getData() != null && response.getData().getRows() != null && response.getData().getRows().size() > 0) {
+                    adapter_user.addAll(response.getData().getRows());
+                }
+                showWaitDialog(response.getMsg());
             }
-        }));
+        });
     }
 
     /**
@@ -466,32 +420,21 @@ public class SearchActivity extends BaseActivity {
      * @param text
      */
     private void handleSearchServiceRequest(int pager, int pagerSize, String text){
-        HashMap<String, String> params = new HashMap<>();
-        params.put("pageNo", String.valueOf(pager));
-        params.put("numberOfPerPage", String.valueOf(pagerSize));
-        params.put("contents", text);
-        NetRequest.postRequest(Constants.ServiceInfo.SEARCH_SERVICE_REQUEST, BaseApplication.token, params, SearchServiceModel.class, new NetRequest.NetHandler(this, new NetRequest.NetResponseListener() {
+        SearchServiceModel.getSearchServiceRequest(text, pager, pagerSize, new OkHttpClientManager.ResultCallback<SearchServiceModel>() {
+            @Override
+            public void onError(Request request, Exception e) {
+                hideWaitDialog();
+                showShortToast(e.toString());
+            }
 
             @Override
-            public void onSuccessListener(Object object, String msg) {
+            public void onResponse(SearchServiceModel response) {
                 hideWaitDialog();
-                lmrlSearch.setPullLoadMoreCompleted();
-                SearchServiceModel result = (SearchServiceModel) object;
-                if (result != null && result.getData() != null && result.getData().getRows() != null && result.getData().getRows().size() > 0) {
-                    lmrlSearch.setHasContent();
-                    adapter_service.addData(result.getData().getRows(), lmrlSearch);
+                if (response != null && response.getData() != null && response.getData().getRows() != null && response.getData().getRows().size() > 0) {
+                    adapter_service.addAll(response.getData().getRows());
                 }
-                if (adapter_service.getDataSize() == 0)
-                    lmrlSearch.setNoContent();
-                showWaitDialog(msg);
+                showWaitDialog(response.getMsg());
             }
-
-            @Override
-            public void onErrorListener(String message) {
-                hideWaitDialog();
-                lmrlSearch.setPullLoadMoreCompleted();
-                showShortToast(message);
-            }
-        }));
+        });
     }
 }

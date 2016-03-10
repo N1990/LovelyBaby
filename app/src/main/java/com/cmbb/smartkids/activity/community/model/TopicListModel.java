@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.TextUtils;
 
+import com.cmbb.smartkids.base.BaseApplication;
 import com.cmbb.smartkids.base.Constants;
 import com.cmbb.smartkids.network.OkHttpClientManager;
 
@@ -1079,6 +1080,22 @@ public class TopicListModel implements Parcelable {
         params.put("pageNo", String.valueOf(pageNo));
         params.put("numberOfPerPage", String.valueOf(numberOfPerPage));
         params.put("token", token);
+        OkHttpClientManager.postAsyn(Constants.Community.TOPIC_LIST, params, callback);
+    }
+
+    /**
+     * 获取搜索话题列表
+     * @param content
+     * @param pageNo
+     * @param numberOfPerPage
+     * @param callback
+     */
+    public static void getSearchTopicListRequest(String content, int pageNo, int numberOfPerPage,OkHttpClientManager.ResultCallback<TopicListModel> callback){
+        HashMap<String, String> params = new HashMap<>();
+        params.put("token", BaseApplication.token);
+        params.put("pageNo", String.valueOf(pageNo));
+        params.put("numberOfPerPage", String.valueOf(numberOfPerPage));
+        params.put("contents", content);
         OkHttpClientManager.postAsyn(Constants.Community.TOPIC_LIST, params, callback);
     }
 }

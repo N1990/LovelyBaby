@@ -24,7 +24,7 @@ import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.activity.community.adapter.PublicCommunityAdapter;
 import com.cmbb.smartkids.activity.community.model.ImageModel;
 import com.cmbb.smartkids.activity.community.model.TopicTypeModel;
-import com.cmbb.smartkids.activity.serve.model.ServiceListModel;
+import com.cmbb.smartkids.activity.login.model.SecurityCodeModel;
 import com.cmbb.smartkids.base.BaseActivity;
 import com.cmbb.smartkids.base.BaseApplication;
 import com.cmbb.smartkids.base.Constants;
@@ -404,7 +404,7 @@ public class DraftsDetailActivity extends BaseActivity implements LoaderManager.
         params.put("contents", contents);
         params.put("token", BaseApplication.token);
         showWaitDialog();
-        NetRequest.postRequestWithFiles(Constants.Community.TOPIC_PUBLISH, params, "topicImgList", "imgText", files, ServiceListModel.class, new NetRequest.NetHandler(this, new NetRequest.NetResponseListener() {
+        NetRequest.postRequestWithFiles(Constants.Community.TOPIC_PUBLISH, params, "topicImgList", "imgText", files, SecurityCodeModel.class, new NetRequest.NetHandler(this, new NetRequest.NetResponseListener() {
             @Override
             public void onSuccessListener(Object object, String msg) {
                 hideWaitDialog();

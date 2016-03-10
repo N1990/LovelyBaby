@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/sdv_evaluate_popman_item"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="10dp"
+            app:actualImageScaleType="centerCrop"
+            app:fadeDuration="200"
+            app:placeholderImage="@color/primaryColor"
+            app:roundAsCircle="true"
+            app:roundingBorderColor="@android:color/white"
+            app:roundingBorderWidth="1dp" />
+
+        <!--@drawable/ic_default_header_bg-->
+
+        <TextView
+            android:id="@+id/tv_evaluate_popman_nickname_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/sdv_evaluate_popman_item"
+            android:text="萌宝派"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="@dimen/txt_middle" />
+
+        <RatingBar
+            android:id="@+id/rb_evaluate_popman_item"
+            style="@style/foodRatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="5dp"
+            android:numStars="5"
+            android:rating="3"
+            android:stepSize="1" />
+
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_evaluate_popman_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="-15dp"
+        android:lineSpacingExtra="2dp"
+        android:text="萌宝派萌宝派萌宝派萌萌宝派萌宝派萌宝派萌宝派萌宝派萌宝派萌宝派萌宝派萌宝派宝派萌宝派萌宝派萌宝派萌宝派萌宝派萌宝派"
+        android:textColor="@color/dimgray" />
+
+</LinearLayout>

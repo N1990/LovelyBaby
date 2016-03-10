@@ -23,9 +23,6 @@ import com.cmbb.smartkids.utils.TDevice;
 import com.cmbb.smartkids.utils.Tools;
 import com.cmbb.smartkids.utils.Utils;
 import com.cmbb.smartkids.utils.log.Log;
-import com.facebook.drawee.backends.pipeline.Fresco;
-import com.facebook.imagepipeline.backends.okhttp.OkHttpImagePipelineConfigFactory;
-import com.facebook.imagepipeline.core.ImagePipelineConfig;
 import com.google.gson.Gson;
 import com.squareup.okhttp.Cache;
 import com.squareup.okhttp.Callback;
@@ -61,15 +58,6 @@ public class NetRequest {
     private static Gson gson;
     private static final MediaType MEDIA_TYPE_PNG = MediaType.parse("image/png");
     private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
-    //开发环境
-//    public static final String BASE = "http://192.168.100.64:8081/wine-rest/";
-//    public static String BASE_URL_PIC = "http://192.168.100.174:8081/wine-rest/";
-    //生产环境
-    public static final String BASE = "http://120.26.88.135:8090/wine-rest/";
-//    public static String BASE_URL = BASE + "cgi";
-
-//    public static final String BASE = "http://mengbaopai.smart-kids.com:82/wine-rest/";
-    public static final String BASE_URL = BASE + "cgi";
 
 
     static {
@@ -79,7 +67,6 @@ public class NetRequest {
         httpClient.setConnectTimeout(3000, TimeUnit.SECONDS);
         httpClient.setReadTimeout(6000, TimeUnit.SECONDS);
         httpClient.setWriteTimeout(6000, TimeUnit.SECONDS);
-        httpClient.networkInterceptors().add(new StethoInterceptor());
         httpClient.setCookieHandler(new CookieManager(new PersistentCookieStore(BaseApplication.getContext()), CookiePolicy.ACCEPT_ALL));
 
         try {
@@ -126,8 +113,8 @@ public class NetRequest {
                     netHandler.sendMessage(errorMessage);
                 } else {
                     RequestBody body = RequestBody.create(JSON, json);
-                    Log.e("ServerUrl", "BASE_URL = " + BASE_URL);
-                    Request request = new Request.Builder().url(BASE_URL).post(body).tag(BASE_URL).build();
+                    Log.e("ServerUrl", "BASE_URL = " + Constants.BASE_URL);
+                    Request request = new Request.Builder().url(Constants.BASE_URL).post(body).tag(Constants.BASE_URL).build();
                     httpClient.newCall(request).enqueue(new Callback() {
                         @Override
                         public void onFailure(Request request, IOException e) {
@@ -246,9 +233,9 @@ public class NetRequest {
                     netHandler.sendMessage(errorMessage);
                 } else {
                     RequestBody body = RequestBody.create(JSON, json);
-                    Log.e("ServerUrl", "BASE_URL = " + BASE_URL);
+                    Log.e("ServerUrl", "BASE_URL = " + Constants.BASE_URL);
 
-                    Request request = new Request.Builder().url(BASE_URL).post(body).tag(BASE_URL).build();
+                    Request request = new Request.Builder().url(Constants.BASE_URL).post(body).tag(Constants.BASE_URL).build();
                     httpClient.newCall(request).enqueue(new Callback() {
                         @Override
                         public void onFailure(Request request, IOException e) {
@@ -369,9 +356,9 @@ public class NetRequest {
         }
 
         RequestBody formBody = multipartBuilder.build();
-        Log.e("param", "url = " + BASE + url);
+        Log.e("param", "url = " + Constants.BASE + url);
         Request request = new Request.Builder()
-                .url(BASE + url)
+                .url(Constants.BASE + url)
                 .post(formBody)
                 .build();
         httpClient.newCall(request).enqueue(new Callback() {

@@ -1,7 +1,5 @@
 package com.cmbb.smartkids.base;
 
-import com.cmbb.smartkids.network.NetRequest;
-
 /**
  * 项目名称：LovelyBaby
  * 类描述：
@@ -9,6 +7,18 @@ import com.cmbb.smartkids.network.NetRequest;
  * 创建时间：2015/8/10 13:09
  */
 public class Constants {
+
+    //开发环境
+    public static final String BASE = "http://192.168.100.99:8081/wine-rest/";
+//    public static String BASE_URL_PIC = "http://192.168.100.174:8081/wine-rest/";
+    //生产环境
+//    public static final String BASE = "http://120.26.88.135:8090/wine-rest/";
+//    public static String BASE_URL = BASE + "cgi";
+
+    //    public static final String BASE = "http://mengbaopai.smart-kids.com:82/wine-rest/";
+    public static final String BASE_URL = BASE + "cgi";
+
+
     public final static String TOKEN = "token";
     public final static String USER_ID = "userId";
     public final static String PACKAGE_NAME = "com.cmbb.smartkids";
@@ -35,11 +45,11 @@ public class Constants {
         public static final String DESCRIPTOR = "com.cmbb.smartkids";
 
         public static String getTopicShareUrl(int id) {
-            return NetRequest.BASE + "share/share.jsp?id=" + id;
+            return BASE + "share/share.jsp?id=" + id;
         }
 
         public static String getServerShareUrl(int id) {
-            return NetRequest.BASE + "share/service.jsp?id=" + id;
+            return BASE + "share/service.jsp?id=" + id;
         }
     }
 
@@ -112,6 +122,11 @@ public class Constants {
         public static final String GET_DELIVERY_DETAIL = "smart/userAddress/get";// 获取收货地址
         public static final String SET_DEFAULT_DELIVERY_ADDRESS = "smart/userAddress/setDefault";// 设置默认地址
         public static final String DELETE_DELIVERY_ADDRESS = "smart/userAddress/delete";// 删除地址
+
+
+        //服务接口 3.0.4
+        public static final String GET_MULTIPLE_DICT = "smart/system/getMultipleDict";// 获取服务字典
+
     }
 
     public static final class Community {

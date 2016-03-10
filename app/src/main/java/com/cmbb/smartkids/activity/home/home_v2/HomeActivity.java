@@ -14,17 +14,14 @@ import android.widget.TextView;
 import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.activity.home.home_v2.adapter.BannerLoopAdapter;
 import com.cmbb.smartkids.activity.home.home_v2.adapter.HomeAdapter;
-import com.cmbb.smartkids.activity.home.model.BannerModel;
 import com.cmbb.smartkids.activity.home.model.HomePageRootModel;
 import com.cmbb.smartkids.activity.home.model.ManagerAdModel;
 import com.cmbb.smartkids.base.BaseActivity;
-import com.cmbb.smartkids.base.BaseApplication;
 import com.cmbb.smartkids.network.OkHttpClientManager;
 import com.cmbb.smartkids.recyclerview.SmartRecyclerView;
 import com.cmbb.smartkids.recyclerview.adapter.RecyclerArrayAdapter;
 import com.jude.rollviewpager.RollPagerView;
 import com.squareup.okhttp.Request;
-import com.umeng.socialize.utils.Log;
 
 import java.util.ArrayList;
 import java.util.HashMap;

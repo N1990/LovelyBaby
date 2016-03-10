@@ -89,16 +89,6 @@ public class OkHttpClientManager {
     private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
 
-    //开发环境
-//    public static final String BASE = "http://192.168.100.64:8081/wine-rest/";
-//    public static String BASE_URL_PIC = "http://192.168.100.174:8081/wine-rest/";
-    //生产环境
-    public static final String BASE = "http://120.26.88.135:8090/wine-rest/";
-//    public static String BASE_URL = BASE + "cgi";
-
-//    public static final String BASE = "http://mengbaopai.smart-kids.com:82/wine-rest/";
-    public static final String BASE_URL = BASE + "cgi";
-
     private static int cacheSize = 30 * 1024 * 1024; // 30 MiB
 
     private OkHttpClientManager() {
@@ -245,7 +235,6 @@ public class OkHttpClientManager {
             public void onResponse(final Response response) {
                 try {
                     final String string = response.body().string();
-                    Log.e("response", string);
                     Log.json("response", string);
                     if (resCallBack.mType == String.class) {
                         sendSuccessResultCallback(string, resCallBack);
@@ -354,7 +343,7 @@ public class OkHttpClientManager {
         String json = param2json(url, params);
         RequestBody requestBody = RequestBody.create(JSON, json);
         Request.Builder reqBuilder = new Request.Builder();
-        reqBuilder.url(BASE_URL).post(requestBody);
+        reqBuilder.url(Constants.BASE_URL).post(requestBody);
 
         if (tag != null) {
             reqBuilder.tag(tag);

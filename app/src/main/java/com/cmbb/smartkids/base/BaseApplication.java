@@ -22,7 +22,6 @@ import com.cmbb.smartkids.utils.log.Log;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.imagepipeline.backends.okhttp.OkHttpImagePipelineConfigFactory;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
-import com.facebook.stetho.Stetho;
 import com.iflytek.cloud.SpeechUtility;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.message.PushAgent;
@@ -55,11 +54,9 @@ public class BaseApplication extends MultiDexApplication {
         initAlibabaSDK();
         initLog();
         initSharePreference();
-        initStetho();
         initUmengAnalytics();
         //初始化umeng推送
         initPushAgent();
-
         initFresco();
         // 注册推送别名注册器
         LocalBroadcastManager.getInstance(this).registerReceiver(pushAliasReceiver, new IntentFilter(PUSH_ALIAS_ITENTACTION));
@@ -76,18 +73,6 @@ public class BaseApplication extends MultiDexApplication {
         Fresco.initialize(BaseApplication.getContext(), config);
     }
 
-
-
-
-    /**
-     * 初始化 stetho
-     */
-    private void initStetho() {
-        Stetho.initialize(Stetho.newInitializerBuilder(this).enableDumpapp(
-                Stetho.defaultDumperPluginsProvider(this))
-                .enableWebKitInspector(Stetho.defaultInspectorModulesProvider(this))
-                .build());
-    }
 
     public static Context getContext() {
         return context;

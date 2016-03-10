@@ -390,6 +390,7 @@
         <activity
             android:name=".activity.home.home_v2.HomeServiceActivity"
             android:theme="@style/HomePageTheme" />
+
     </application>
 
 </manifest>

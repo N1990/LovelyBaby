@@ -102,6 +102,16 @@ public class ServiceSortModel implements Parcelable {
             private String name;
             private String value;
 
+            private boolean isChecked;
+
+            public boolean isChecked() {
+                return isChecked;
+            }
+
+            public void setChecked(boolean checked) {
+                isChecked = checked;
+            }
+
             public void setName(String name) {
                 this.name = name;
             }
@@ -208,6 +218,15 @@ public class ServiceSortModel implements Parcelable {
         public static class ServiceCategroyEntity implements Parcelable {
             private String name;
             private String value;
+            private boolean isChecked;
+
+            public boolean isChecked() {
+                return isChecked;
+            }
+
+            public void setChecked(boolean checked) {
+                isChecked = checked;
+            }
 
             public void setName(String name) {
                 this.name = name;
@@ -258,6 +277,15 @@ public class ServiceSortModel implements Parcelable {
         public static class ServiceSortTypeEntity implements Parcelable {
             private String name;
             private String value;
+            private boolean isChecked;
+
+            public boolean isChecked() {
+                return isChecked;
+            }
+
+            public void setChecked(boolean checked) {
+                isChecked = checked;
+            }
 
             public void setName(String name) {
                 this.name = name;

@@ -217,7 +217,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     }
 
     protected void cancelRequest() {
-        NetRequest.httpClient.cancel(NetRequest.BASE_URL);
+        NetRequest.httpClient.cancel(Constants.BASE_URL);
         finish();
     }
 

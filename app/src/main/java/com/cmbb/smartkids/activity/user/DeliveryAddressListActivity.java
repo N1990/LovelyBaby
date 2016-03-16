@@ -51,7 +51,7 @@ public class DeliveryAddressListActivity extends BaseActivity {
     private void initData() {
         if(getIntent() != null){
             deliveryAddressId = getIntent().getIntExtra("delivery_id", 0);
-            Log.e(TAG, "deliveryAddressId0 = " + deliveryAddressId);
+            Log.e(TAG, "deliveryAddressId = " + deliveryAddressId);
         }
         handleDeliveryAddressListRequest();
         setActionBarRight("管理");

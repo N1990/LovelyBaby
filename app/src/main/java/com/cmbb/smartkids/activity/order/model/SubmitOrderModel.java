@@ -1,57 +1,56 @@
-package com.cmbb.smartkids.activity.serve.v2.model;
+package com.cmbb.smartkids.activity.order.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.cmbb.smartkids.base.BaseApplication;
 import com.cmbb.smartkids.base.Constants;
 import com.cmbb.smartkids.network.OkHttpClientManager;
 
 import java.util.HashMap;
 
 /**
- * 项目名称：LovelyBaby
- * 类描述：
- * 创建人：N.Sun
- * 创建时间：16/3/16 上午10:48
+ * Created by javon on 16/3/16.
  */
-public class ReserveModel implements Parcelable {
+public class SubmitOrderModel implements Parcelable {
 
 
     /**
      * serviceId : 339
-     * orderId : 11
-     * userId : 100010
-     * orderCode :
-     * orderDate : 2016-03-15 11:18:27
+     * orderId : 1
+     * userId : 104312
+     * orderCode : 003391286659320007
+     * validCode :
+     * orderDate : 2016-03-16 19:44:25
      * servicePrice : 120
-     * participate :
-     * phone : 18939963309
-     * userNike : CharlesWl哈哈
+     * participate : 201
+     * phone : 18221365268
+     * userNike : javon
      * status : 1
-     * isGold : 2
+     * isGold : 0
      * goldCount : 1
      * discountPrice :
-     * refundTatio : 1
-     * priceId : 3
-     * specifications : 大份
-     * buyCount : 3
-     * price : 600
+     * refundTatio : 20
+     * priceId : 2
+     * specifications : 中份
+     * buyCount : 2
+     * price : 299.98
      * payment : 1
      * payDate :
      * isInvoice : 0
      * invoiceTitle :
-     * serviceInfo : {"id":339,"title":"富文本编辑器测试","serviceTime":"","startTime":"2016-03-04 15:40:00","endTime":"2016-03-18 15:40:00","applyStartTime":"2016-03-01 15:40:00","applyEndTime":"2016-03-04 15:40:00","peoples":12,"timeLeft":"","collectCount":1,"realityPeoples":2,"sellNum":23,"province":440000,"provinceText":"广东","city":440100,"cityText":"广州市","district":440103,"districtText":"荔湾区","address":"23234阿萨德发射点发","mark":"支持退款,支持支付宝付款,微信付款,支持信付款,支持微付款,支持微信款","price":"120","priceDesc":"份","category":"","type":201,"specifications":"","content":"<h1 label=\"标题居左\" style=\"font-size: 32px; font-weight: bold; border-bottom-color: rgb(204, 204, 204); border-bottom-width: 2px; border-bottom-style: solid; padding: 0px 4px 0px 0px; text-align: left; margin: 0px 0px 10px;\">第一标题<\/h1><p><span style=\"color: rgb(0, 176, 240);\">阿萨德发点发速读法<br/><\/span><\/p><p><span style=\"color: rgb(0, 176, 240);\">asdfasdfasdfa啊速度发射点发射掉<\/span><\/p><p><br/><\/p><p>啊速度发射点发速读法速度发射点发 啊速度发射的发呆<\/p><p>啊速度发射点发点发射点发点发速读法撒速读法速度发射点发速读法<\/p><p><img src=\"http://smart.image.alimmdn.com/system/image/2016-03-03/1457007185736086931_ODRmMDdmNGUtNTk1Ny00OTlhLTgwYzktMWE4NmQ5OTg4NGI0png\" style=\"\" title=\"1456818118201080884.png\"/><\/p><p><br/><\/p><p><br/><\/p><h1 label=\"标题居左\" style=\"font-size: 32px; font-weight: bold; border-bottom-color: rgb(204, 204, 204); border-bottom-width: 2px; border-bottom-style: solid; padding: 0px 4px 0px 0px; text-align: left; margin: 0px 0px 10px;\">第二标题<\/h1><p><span style=\"color: rgb(255, 0, 0);\">阿萨德发射点发速读法速度<br/><\/span><\/p><p><span style=\"color: rgb(255, 0, 0);\">啊速度发射点发射点发速读法速度发射的<\/span><\/p><p><img src=\"http://smart.image.alimmdn.com/system/image/2016-03-03/1457007185736086931_ODRmMDdmNGUtNTk1Ny00OTlhLTgwYzktMWE4NmQ5OTg4NGI0png\" style=\"\" title=\"1456818118211096838.png\"/><\/p><p><br/><\/p>","notice":"<p>啊速度发射点发射掉<\/p><p>撒旦发射点发射点发速读法规划法规<\/p><p><br/><\/p><p>啊点发射点发速读法电视发射点发点发速读法速度分<\/p><p><br/><\/p><p><br/><\/p><p>啊速度发射点发射点发速读法速度发射<\/p>","servicePhone":"121212","status":1,"isRecommoned":1,"servicesImg":"http://smart.image.alimmdn.com/system/image/2016-03-01/servicesImgFile_N2EwOGZhMGQtNTI1My00MjA3LTgwMzEtZjdjMjM5NzJhNDRl","imgWidth":"539","imgHeight":"355","sortNum":2,"browseNumber":6,"isCollect":1,"colletCount":2,"isReserve":1,"reserveText":"","surplusTime":"","userInfoList":"","serviceImgList":"","eventList":"","recommonedServiceList":"","priceList":""}
-     * addressId : 27
-     * receiveName : 王雷
-     * receivePhone : 18939963309
-     * postCode : 200000
-     * address : 上海上海市杨浦区飞虹路568弄13号
+     * serviceInfo : {"id":339,"title":"富文本编辑器测试","serviceTime":"","startTime":"2016-03-04 15:40:00","endTime":"2016-03-18 15:40:00","applyStartTime":"2016-03-01 15:40:00","applyEndTime":"2016-03-04 15:40:00","peoples":12,"timeLeft":"","collectCount":1,"realityPeoples":2,"sellNum":23,"province":440000,"provinceText":"","city":440100,"cityText":"","district":440103,"districtText":"","address":"23234阿萨德发射点发","mark":"支持退款,支持支付宝付款,微信付款,支持信付款,支持微付款,支持微信款","price":120,"priceDesc":"份","category":"","type":201,"specifications":"","content":"啊啊啊啊啊啊啊啊啊啊啊","notice":"<p>啊速度发射点发射掉<\/p><p>撒旦发射点发射点发速读法规划法规<\/p><p><br/><\/p><p>啊点发射点发速读法电视发射点发点发速读法速度分<\/p><p><br/><\/p><p><br/><\/p><p>啊速度发射点发射点发速读法速度发射<\/p>","servicePhone":"121212","status":1,"isRecommoned":1,"servicesImg":"http://smart.image.alimmdn.com/system/image/2016-03-01/servicesImgFile_N2EwOGZhMGQtNTI1My00MjA3LTgwMzEtZjdjMjM5NzJhNDRl","imgWidth":"539","imgHeight":"355","sortNum":2,"browseNumber":6,"isCollect":1,"colletCount":1,"isReserve":1,"reserveText":"","surplusTime":"","userInfoList":"","serviceImgList":"","eventList":"","recommonedServiceList":"","priceList":""}
+     * addressId : 1
+     * receiveName : javonLiu
+     * receivePhone : 18221365268
+     * postCode : 111111
+     * address : dsfommdghfsnddssa
      */
 
     private DataEntity data;
     /**
-     * data : {"serviceId":339,"orderId":11,"userId":100010,"orderCode":"","orderDate":"2016-03-15 11:18:27","servicePrice":"120","participate":"","phone":"18939963309","userNike":"CharlesWl哈哈","status":1,"isGold":2,"goldCount":1,"discountPrice":"","refundTatio":1,"priceId":3,"specifications":"大份","buyCount":3,"price":"600","payment":1,"payDate":"","isInvoice":0,"invoiceTitle":"","serviceInfo":{"id":339,"title":"富文本编辑器测试","serviceTime":"","startTime":"2016-03-04 15:40:00","endTime":"2016-03-18 15:40:00","applyStartTime":"2016-03-01 15:40:00","applyEndTime":"2016-03-04 15:40:00","peoples":12,"timeLeft":"","collectCount":1,"realityPeoples":2,"sellNum":23,"province":440000,"provinceText":"广东","city":440100,"cityText":"广州市","district":440103,"districtText":"荔湾区","address":"23234阿萨德发射点发","mark":"支持退款,支持支付宝付款,微信付款,支持信付款,支持微付款,支持微信款","price":"120","priceDesc":"份","category":"","type":201,"specifications":"","content":"<h1 label=\"标题居左\" style=\"font-size: 32px; font-weight: bold; border-bottom-color: rgb(204, 204, 204); border-bottom-width: 2px; border-bottom-style: solid; padding: 0px 4px 0px 0px; text-align: left; margin: 0px 0px 10px;\">第一标题<\/h1><p><span style=\"color: rgb(0, 176, 240);\">阿萨德发点发速读法<br/><\/span><\/p><p><span style=\"color: rgb(0, 176, 240);\">asdfasdfasdfa啊速度发射点发射掉<\/span><\/p><p><br/><\/p><p>啊速度发射点发速读法速度发射点发 啊速度发射的发呆<\/p><p>啊速度发射点发点发射点发点发速读法撒速读法速度发射点发速读法<\/p><p><img src=\"http://smart.image.alimmdn.com/system/image/2016-03-03/1457007185736086931_ODRmMDdmNGUtNTk1Ny00OTlhLTgwYzktMWE4NmQ5OTg4NGI0png\" style=\"\" title=\"1456818118201080884.png\"/><\/p><p><br/><\/p><p><br/><\/p><h1 label=\"标题居左\" style=\"font-size: 32px; font-weight: bold; border-bottom-color: rgb(204, 204, 204); border-bottom-width: 2px; border-bottom-style: solid; padding: 0px 4px 0px 0px; text-align: left; margin: 0px 0px 10px;\">第二标题<\/h1><p><span style=\"color: rgb(255, 0, 0);\">阿萨德发射点发速读法速度<br/><\/span><\/p><p><span style=\"color: rgb(255, 0, 0);\">啊速度发射点发射点发速读法速度发射的<\/span><\/p><p><img src=\"http://smart.image.alimmdn.com/system/image/2016-03-03/1457007185736086931_ODRmMDdmNGUtNTk1Ny00OTlhLTgwYzktMWE4NmQ5OTg4NGI0png\" style=\"\" title=\"1456818118211096838.png\"/><\/p><p><br/><\/p>","notice":"<p>啊速度发射点发射掉<\/p><p>撒旦发射点发射点发速读法规划法规<\/p><p><br/><\/p><p>啊点发射点发速读法电视发射点发点发速读法速度分<\/p><p><br/><\/p><p><br/><\/p><p>啊速度发射点发射点发速读法速度发射<\/p>","servicePhone":"121212","status":1,"isRecommoned":1,"servicesImg":"http://smart.image.alimmdn.com/system/image/2016-03-01/servicesImgFile_N2EwOGZhMGQtNTI1My00MjA3LTgwMzEtZjdjMjM5NzJhNDRl","imgWidth":"539","imgHeight":"355","sortNum":2,"browseNumber":6,"isCollect":1,"colletCount":2,"isReserve":1,"reserveText":"","surplusTime":"","userInfoList":"","serviceImgList":"","eventList":"","recommonedServiceList":"","priceList":""},"addressId":27,"receiveName":"王雷","receivePhone":"18939963309","postCode":"200000","address":"上海上海市杨浦区飞虹路568弄13号"}
-     * msg : 操作成功
+     * data : {"serviceId":339,"orderId":1,"userId":104312,"orderCode":"003391286659320007","validCode":"","orderDate":"2016-03-16 19:44:25","servicePrice":"120","participate":201,"phone":"18221365268","userNike":"javon","status":1,"isGold":0,"goldCount":1,"discountPrice":"","refundTatio":20,"priceId":2,"specifications":"中份","buyCount":2,"price":"299.98","payment":1,"payDate":"","isInvoice":0,"invoiceTitle":"","serviceInfo":{"id":339,"title":"富文本编辑器测试","serviceTime":"","startTime":"2016-03-04 15:40:00","endTime":"2016-03-18 15:40:00","applyStartTime":"2016-03-01 15:40:00","applyEndTime":"2016-03-04 15:40:00","peoples":12,"timeLeft":"","collectCount":1,"realityPeoples":2,"sellNum":23,"province":440000,"provinceText":"","city":440100,"cityText":"","district":440103,"districtText":"","address":"23234阿萨德发射点发","mark":"支持退款,支持支付宝付款,微信付款,支持信付款,支持微付款,支持微信款","price":120,"priceDesc":"份","category":"","type":201,"specifications":"","content":"啊啊啊啊啊啊啊啊啊啊啊","notice":"<p>啊速度发射点发射掉<\/p><p>撒旦发射点发射点发速读法规划法规<\/p><p><br/><\/p><p>啊点发射点发速读法电视发射点发点发速读法速度分<\/p><p><br/><\/p><p><br/><\/p><p>啊速度发射点发射点发速读法速度发射<\/p>","servicePhone":"121212","status":1,"isRecommoned":1,"servicesImg":"http://smart.image.alimmdn.com/system/image/2016-03-01/servicesImgFile_N2EwOGZhMGQtNTI1My00MjA3LTgwMzEtZjdjMjM5NzJhNDRl","imgWidth":"539","imgHeight":"355","sortNum":2,"browseNumber":6,"isCollect":1,"colletCount":1,"isReserve":1,"reserveText":"","surplusTime":"","userInfoList":"","serviceImgList":"","eventList":"","recommonedServiceList":"","priceList":""},"addressId":1,"receiveName":"javonLiu","receivePhone":"18221365268","postCode":"111111","address":"dsfommdghfsnddssa"}
+     * msg : 订单提交成功
      */
 
     private String msg;
@@ -77,9 +76,10 @@ public class ReserveModel implements Parcelable {
         private int orderId;
         private int userId;
         private String orderCode;
+        private String validCode;
         private String orderDate;
         private String servicePrice;
-        private String participate;
+        private int participate;
         private String phone;
         private String userNike;
         private int status;
@@ -109,11 +109,11 @@ public class ReserveModel implements Parcelable {
          * realityPeoples : 2
          * sellNum : 23
          * province : 440000
-         * provinceText : 广东
+         * provinceText :
          * city : 440100
-         * cityText : 广州市
+         * cityText :
          * district : 440103
-         * districtText : 荔湾区
+         * districtText :
          * address : 23234阿萨德发射点发
          * mark : 支持退款,支持支付宝付款,微信付款,支持信付款,支持微付款,支持微信款
          * price : 120
@@ -121,7 +121,7 @@ public class ReserveModel implements Parcelable {
          * category :
          * type : 201
          * specifications :
-         * content : <h1 label="标题居左" style="font-size: 32px; font-weight: bold; border-bottom-color: rgb(204, 204, 204); border-bottom-width: 2px; border-bottom-style: solid; padding: 0px 4px 0px 0px; text-align: left; margin: 0px 0px 10px;">第一标题</h1><p><span style="color: rgb(0, 176, 240);">阿萨德发点发速读法<br/></span></p><p><span style="color: rgb(0, 176, 240);">asdfasdfasdfa啊速度发射点发射掉</span></p><p><br/></p><p>啊速度发射点发速读法速度发射点发 啊速度发射的发呆</p><p>啊速度发射点发点发射点发点发速读法撒速读法速度发射点发速读法</p><p><img src="http://smart.image.alimmdn.com/system/image/2016-03-03/1457007185736086931_ODRmMDdmNGUtNTk1Ny00OTlhLTgwYzktMWE4NmQ5OTg4NGI0png" style="" title="1456818118201080884.png"/></p><p><br/></p><p><br/></p><h1 label="标题居左" style="font-size: 32px; font-weight: bold; border-bottom-color: rgb(204, 204, 204); border-bottom-width: 2px; border-bottom-style: solid; padding: 0px 4px 0px 0px; text-align: left; margin: 0px 0px 10px;">第二标题</h1><p><span style="color: rgb(255, 0, 0);">阿萨德发射点发速读法速度<br/></span></p><p><span style="color: rgb(255, 0, 0);">啊速度发射点发射点发速读法速度发射的</span></p><p><img src="http://smart.image.alimmdn.com/system/image/2016-03-03/1457007185736086931_ODRmMDdmNGUtNTk1Ny00OTlhLTgwYzktMWE4NmQ5OTg4NGI0png" style="" title="1456818118211096838.png"/></p><p><br/></p>
+         * content : 啊啊啊啊啊啊啊啊啊啊啊
          * notice : <p>啊速度发射点发射掉</p><p>撒旦发射点发射点发速读法规划法规</p><p><br/></p><p>啊点发射点发速读法电视发射点发点发速读法速度分</p><p><br/></p><p><br/></p><p>啊速度发射点发射点发速读法速度发射</p>
          * servicePhone : 121212
          * status : 1
@@ -132,7 +132,7 @@ public class ReserveModel implements Parcelable {
          * sortNum : 2
          * browseNumber : 6
          * isCollect : 1
-         * colletCount : 2
+         * colletCount : 1
          * isReserve : 1
          * reserveText :
          * surplusTime :
@@ -166,6 +166,10 @@ public class ReserveModel implements Parcelable {
             this.orderCode = orderCode;
         }
 
+        public void setValidCode(String validCode) {
+            this.validCode = validCode;
+        }
+
         public void setOrderDate(String orderDate) {
             this.orderDate = orderDate;
         }
@@ -174,7 +178,7 @@ public class ReserveModel implements Parcelable {
             this.servicePrice = servicePrice;
         }
 
-        public void setParticipate(String participate) {
+        public void setParticipate(int participate) {
             this.participate = participate;
         }
 
@@ -278,6 +282,10 @@ public class ReserveModel implements Parcelable {
             return orderCode;
         }
 
+        public String getValidCode() {
+            return validCode;
+        }
+
         public String getOrderDate() {
             return orderDate;
         }
@@ -286,7 +294,7 @@ public class ReserveModel implements Parcelable {
             return servicePrice;
         }
 
-        public String getParticipate() {
+        public int getParticipate() {
             return participate;
         }
 
@@ -395,7 +403,7 @@ public class ReserveModel implements Parcelable {
             private String districtText;
             private String address;
             private String mark;
-            private String price;
+            private int price;
             private String priceDesc;
             private String category;
             private int type;
@@ -501,7 +509,7 @@ public class ReserveModel implements Parcelable {
                 this.mark = mark;
             }
 
-            public void setPrice(String price) {
+            public void setPrice(int price) {
                 this.price = price;
             }
 
@@ -681,7 +689,7 @@ public class ReserveModel implements Parcelable {
                 return mark;
             }
 
-            public String getPrice() {
+            public int getPrice() {
                 return price;
             }
 
@@ -808,7 +816,7 @@ public class ReserveModel implements Parcelable {
                 dest.writeString(this.districtText);
                 dest.writeString(this.address);
                 dest.writeString(this.mark);
-                dest.writeString(this.price);
+                dest.writeInt(this.price);
                 dest.writeString(this.priceDesc);
                 dest.writeString(this.category);
                 dest.writeInt(this.type);
@@ -859,7 +867,7 @@ public class ReserveModel implements Parcelable {
                 this.districtText = in.readString();
                 this.address = in.readString();
                 this.mark = in.readString();
-                this.price = in.readString();
+                this.price = in.readInt();
                 this.priceDesc = in.readString();
                 this.category = in.readString();
                 this.type = in.readInt();
@@ -886,7 +894,7 @@ public class ReserveModel implements Parcelable {
                 this.priceList = in.readString();
             }
 
-            public static final Creator<ServiceInfoEntity> CREATOR = new Creator<ServiceInfoEntity>() {
+            public static final Parcelable.Creator<ServiceInfoEntity> CREATOR = new Parcelable.Creator<ServiceInfoEntity>() {
                 public ServiceInfoEntity createFromParcel(Parcel source) {
                     return new ServiceInfoEntity(source);
                 }
@@ -908,9 +916,10 @@ public class ReserveModel implements Parcelable {
             dest.writeInt(this.orderId);
             dest.writeInt(this.userId);
             dest.writeString(this.orderCode);
+            dest.writeString(this.validCode);
             dest.writeString(this.orderDate);
             dest.writeString(this.servicePrice);
-            dest.writeString(this.participate);
+            dest.writeInt(this.participate);
             dest.writeString(this.phone);
             dest.writeString(this.userNike);
             dest.writeInt(this.status);
@@ -942,9 +951,10 @@ public class ReserveModel implements Parcelable {
             this.orderId = in.readInt();
             this.userId = in.readInt();
             this.orderCode = in.readString();
+            this.validCode = in.readString();
             this.orderDate = in.readString();
             this.servicePrice = in.readString();
-            this.participate = in.readString();
+            this.participate = in.readInt();
             this.phone = in.readString();
             this.userNike = in.readString();
             this.status = in.readInt();
@@ -968,7 +978,7 @@ public class ReserveModel implements Parcelable {
             this.address = in.readString();
         }
 
-        public static final Creator<DataEntity> CREATOR = new Creator<DataEntity>() {
+        public static final Parcelable.Creator<DataEntity> CREATOR = new Parcelable.Creator<DataEntity>() {
             public DataEntity createFromParcel(Parcel source) {
                 return new DataEntity(source);
             }
@@ -990,41 +1000,47 @@ public class ReserveModel implements Parcelable {
         dest.writeString(this.msg);
     }
 
-    public ReserveModel() {
+    public SubmitOrderModel() {
     }
 
-    protected ReserveModel(Parcel in) {
+    protected SubmitOrderModel(Parcel in) {
         this.data = in.readParcelable(DataEntity.class.getClassLoader());
         this.msg = in.readString();
     }
 
-    public static final Creator<ReserveModel> CREATOR = new Creator<ReserveModel>() {
-        public ReserveModel createFromParcel(Parcel source) {
-            return new ReserveModel(source);
+    public static final Parcelable.Creator<SubmitOrderModel> CREATOR = new Parcelable.Creator<SubmitOrderModel>() {
+        public SubmitOrderModel createFromParcel(Parcel source) {
+            return new SubmitOrderModel(source);
         }
 
-        public ReserveModel[] newArray(int size) {
-            return new ReserveModel[size];
+        public SubmitOrderModel[] newArray(int size) {
+            return new SubmitOrderModel[size];
         }
     };
 
-
     /**
-     * 预定接口
-     *
+     * 提交订单
      * @param serviceId
      * @param priceId
      * @param buyCount
-     * @param token
+     * @param phone
+     * @param receiverName
+     * @param receiverPhone
+     * @param postCode
+     * @param address
      * @param callback
      */
-    public static void handleReserveRequest(String serviceId, String priceId, String buyCount, String token, OkHttpClientManager.ResultCallback<ReserveModel> callback) {
-        HashMap<String, String> maps = new HashMap<>();
-        maps.put("serviceId", serviceId);
-        maps.put("priceId", priceId);
-        maps.put("priceId", priceId);
-        maps.put("buyCount", buyCount);
-        maps.put("token", token);
-        OkHttpClientManager.postAsyn(Constants.ServiceInfo.SERVICES_RESERVE, maps, callback);
+    public static void postSubmitOrderRequest(int serviceId, int priceId, int buyCount, String phone, String receiverName, String receiverPhone, String postCode, String address, OkHttpClientManager.ResultCallback<SubmitOrderModel> callback){
+        HashMap<String, String> params = new HashMap<>();
+        params.put("token", BaseApplication.token);
+        params.put("serviceId", serviceId+"");
+        params.put("priceId", priceId+"");
+        params.put("buyCount", buyCount+"");
+        params.put("phone", phone);
+        params.put("receiveName", receiverName);
+        params.put("receivePhone", receiverPhone);
+        params.put("postCode", postCode);
+        params.put("address", address);
+        OkHttpClientManager.postAsyn(Constants.ServiceInfo.SUBMIT_ORDER_REQUEST, params, callback);
     }
 }

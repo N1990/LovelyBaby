@@ -66,5 +66,6 @@
     <!-- menu tip-->
     <string name="menu_submit" translatable="false">提交</string>
     <string name="system_error" translatable="false">服务器异常</string>
-    <string name="title_activity_splash">Splash</string>
+    <string name="title_activity_splash" translatable="false" >Splash</string>
+    <string name="title_comfire_order" translatable="false" >确认订单</string>
 </resources>

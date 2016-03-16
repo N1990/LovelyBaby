@@ -187,14 +187,14 @@ public class ServerDetailActivityV2 extends BaseActivity {
                 // 数量减小
                 Log.i("add", "jian");
 
-                if (Integer.parseInt(tvEditCount.getText().toString()) != 0) {
+                if (Integer.parseInt(tvEditCount.getText().toString()) > 0) {
                     tvEditCount.setText(Integer.parseInt(tvEditCount.getText().toString()) - 1 + "");
                     priceListEntity.setCount(Integer.parseInt(tvEditCount.getText().toString()));
-                    if (!tvEditCount.getText().toString().equals("0")) {
-                        tvWholePrice.setText("RMB " + Integer.parseInt(tvEditCount.getText().toString()) * priceListEntity.getPrice());
-                    } else {
-                        tvWholePrice.setText("RMB 0");
-                    }
+                    tvWholePrice.setText("RMB " + Integer.parseInt(tvEditCount.getText().toString()) * priceListEntity.getPrice());
+                }else{
+                    tvEditCount.setText("0");
+                    priceListEntity.setCount(0);
+                    tvWholePrice.setText("RMB 0");
                 }
             }
         });
@@ -203,7 +203,7 @@ public class ServerDetailActivityV2 extends BaseActivity {
             @Override
             public void onClick(View v) {
                 //数量增加
-                if (Integer.parseInt(tvEditCount.getText().toString()) != priceListEntity.getStock()) {
+                if (priceListEntity != null && Integer.parseInt(tvEditCount.getText().toString()) != priceListEntity.getStock()) {
 
                     tvEditCount.setText(Integer.parseInt(tvEditCount.getText().toString()) + 1 + "");
                     priceListEntity.setCount(Integer.parseInt(tvEditCount.getText().toString()));
@@ -231,15 +231,21 @@ public class ServerDetailActivityV2 extends BaseActivity {
         super.onClick(v);
         switch (v.getId()) {
             case R.id.tv_reserve:
-                int[] location = new int[2];
-                tvReserve.getLocationOnScreen(location);
-                mEditPopupWindow.showAtLocation(tvReserve, Gravity.NO_GRAVITY, location[0], location[1] - mEditPopupWindow.getHeight());
+                if(h5ServiceDetailModel != null){
+                    int[] location = new int[2];
+                    tvReserve.getLocationOnScreen(location);
+                    mEditPopupWindow.showAtLocation(tvReserve, Gravity.NO_GRAVITY, location[0], location[1] - mEditPopupWindow.getHeight());
+                }
                 break;
             case R.id.rl_bg:
                 mEditPopupWindow.dismiss();
                 break;
             case R.id.tv_edit_submit:
                 // 预定订单
+                if(priceListEntity == null){
+                    showShortToast("请选择规格");
+                    return;
+                }
                 showWaitDialog();
                 ReserveModel.handleReserveRequest(h5ServiceDetailModel.getId() + "", priceListEntity.getId() + "", priceListEntity.getCount() + "", BaseApplication.token, new OkHttpClientManager.ResultCallback<ReserveModel>() {
                     @Override
@@ -252,7 +258,7 @@ public class ServerDetailActivityV2 extends BaseActivity {
                     public void onResponse(ReserveModel response) {
                         hideWaitDialog();
                         if (response != null) {
-                            ConfirmOrder.newIntent(ServerDetailActivityV2.this, h5ServiceDetailModel, priceListEntity);
+                            ConfirmOrder.newIntent(ServerDetailActivityV2.this, h5ServiceDetailModel, priceListEntity, response.getData());
                         }
                     }
                 });

@@ -273,7 +273,7 @@ public class OkHttpClientManager {
                                             // 403错误信息
                                             sendServerFailedCallback(errorInfo);
                                         } else {
-                                            sendServerFailedCallback(errorInfo);
+                                            sendFailedStringCallback(response.request(), new Exception(errorInfo), resCallBack);
                                         }
                                         break;
                                 }

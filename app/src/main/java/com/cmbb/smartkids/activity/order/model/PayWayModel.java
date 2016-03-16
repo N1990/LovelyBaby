@@ -3,6 +3,11 @@ package com.cmbb.smartkids.activity.order.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.cmbb.smartkids.base.BaseApplication;
+import com.cmbb.smartkids.base.Constants;
+import com.cmbb.smartkids.network.OkHttpClientManager;
+
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -151,5 +156,14 @@ public class PayWayModel implements Parcelable {
                 "orderId='" + orderId + '\'' +
                 ", payTypes=" + payTypes +
                 '}';
+    }
+
+
+    public static void getPayWayRequest(String orderCode, OkHttpClientManager.ResultCallback<PayWayModel> callback){
+        HashMap<String, String> params = new HashMap<>();
+        params.put("token", BaseApplication.token);
+        params.put("orderCode", orderCode);
+        params.put("paymentTypeId", "1");
+        OkHttpClientManager.postAsyn(Constants.ServiceInfo.PAY_WAY_LIST, params, callback);
     }
 }

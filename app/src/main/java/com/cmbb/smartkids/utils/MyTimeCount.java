@@ -33,14 +33,15 @@ public class MyTimeCount extends CountDownTimer {
     @Override
     public void onTick(long millisUntilFinished) {
         tvCount.setEnabled(false);
-        tvCount.setTextColor(Color.GRAY);
-        tvCount.setText(millisUntilFinished / 1000 < 10 ? "获取验证码0" + (millisUntilFinished / 1000 ) + "s" : "获取验证码" + (millisUntilFinished / 1000 ) + "s");
+        tvCount.setTextColor(Color.WHITE);
+        tvCount.setText(millisUntilFinished / 1000 < 10 ? "验证码0" + (millisUntilFinished / 1000 ) + "s" : "验证码" + (millisUntilFinished / 1000 ) + "s");
     }
 
     @Override
     public void onFinish() {
         tvCount.setText("获取验证码");
-        tvCount.setTextColor(tvCount.getContext().getResources().getColor(R.color.primaryColor));
+//        tvCount.setTextColor(tvCount.getContext().getResources().getColor(R.color.primaryColor));
+        tvCount.setTextColor(Color.WHITE);
         tvCount.setEnabled(true);
     }
 }

@@ -95,4 +95,17 @@ public class SecurityCodeModel implements Parcelable {
         params.put("token", token);
         OkHttpClientManager.postAsyn(Constants.ServiceInfo.UPDATA_IMG_FOR_USER, params, callback);
     }
+
+    /**
+     * 获取除注册之外的所有手机验证码
+     * @param phone
+     * @param callback
+     */
+    public static void getPhoneCodeRequest(String phone, OkHttpClientManager.ResultCallback<SecurityCodeModel> callback){
+        HashMap<String, String> params = new HashMap<>();
+        params.put("loginAccount", phone);
+        OkHttpClientManager.postAsyn(Constants.ServiceInfo.VERIFY_CODE, params, callback);
+    }
+
+
 }

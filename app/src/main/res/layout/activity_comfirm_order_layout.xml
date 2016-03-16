@@ -50,7 +50,7 @@
                     android:layout_alignLeft="@+id/tv_title"
                     android:layout_alignStart="@+id/tv_title"
                     android:layout_below="@+id/tv_title"
-                    android:drawableLeft="@android:drawable/ic_menu_mylocation"
+                    android:drawableLeft="@mipmap/btn_local_order_bg"
                     android:gravity="center"
                     android:text="上海"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
@@ -116,6 +116,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="联系人"
+                        android:singleLine="true"
+                        android:ellipsize="end"
                         android:textStyle="bold" />
 
                     <EditText
@@ -159,6 +161,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
+                        android:singleLine="true"
+                        android:ellipsize="end"
                         android:background="@null"
                         android:hint="请输入手机号码"
                         android:textSize="@dimen/txt_middle" />
@@ -202,6 +206,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
                         android:background="@null"
+                        android:singleLine="true"
+                        android:ellipsize="end"
                         android:hint="请输入验证码"
                         android:textSize="@dimen/txt_middle" />
 
@@ -237,6 +243,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
+                        android:singleLine="true"
+                        android:ellipsize="end"
                         android:background="@null"
                         android:hint="请输入具体地址"
                         android:lines="1"

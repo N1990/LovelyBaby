@@ -180,7 +180,7 @@ public class OrderDetailActivity extends BaseActivity {
             finish();
         }else if(id == R.id.iv_order_detail_delivery_address) {
             deliveryAddressId = (int) v.getTag();
-            Log.e(TAG, "deliveryAddressId00 = " + deliveryAddressId);
+            Log.e(TAG, "deliveryAddressId = " + deliveryAddressId);
             DeliveryAddressListActivity.skipFromActivity(OrderDetailActivity.this, deliveryAddressId, MODIFY_ORDER_DELIVERY_ADDRESS);
         }
     }

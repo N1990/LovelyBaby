@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.cmbb.smartkids.R;
@@ -48,6 +47,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
     protected HomeAdapter adapter;
     private RollPagerView mRollViewPager;
     private BannerLoopAdapter bannerLoopAdapter;
+    private ManagerAdModel managerAdModel;
     private List<ManagerAdModel.DataEntity> adData;
     private int pager = 0;
     private int pagerSize = 10;
@@ -82,7 +82,14 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
 
             @Override
             public void onBindView(View headerView) {
-
+                headerView.findViewById(R.id.tv_mengbaoduijia).setOnClickListener(HomeActivity.this);
+                headerView.findViewById(R.id.tv_haohaoxuexi).setOnClickListener(HomeActivity.this);
+                headerView.findViewById(R.id.tv_zuiaihuwai).setOnClickListener(HomeActivity.this);
+                headerView.findViewById(R.id.tv_yihaixunshi).setOnClickListener(HomeActivity.this);
+                headerView.findViewById(R.id.tv_zuixindingzhi).setOnClickListener(HomeActivity.this);
+                headerView.findViewById(R.id.tv_sijiameishi).setOnClickListener(HomeActivity.this);
+                headerView.findViewById(R.id.tv_guoyimiaoshou).setOnClickListener(HomeActivity.this);
+                headerView.findViewById(R.id.tv_lamasudi).setOnClickListener(HomeActivity.this);
             }
         });
 
@@ -97,8 +104,9 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
 
             @Override
             public void onBindView(View headerView) {
-                RelativeLayout rlSign = (RelativeLayout) headerView.findViewById(R.id.rl_sign);
-                rlSign.setOnClickListener(signOnClick);
+                headerView.findViewById(R.id.rl_sign).setOnClickListener(HomeActivity.this);
+                headerView.findViewById(R.id.rl_rank).setOnClickListener(HomeActivity.this);
+                headerView.findViewById(R.id.rl_wonderful).setOnClickListener(HomeActivity.this);
 
             }
         });
@@ -129,13 +137,6 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
         tvMore.setOnClickListener(this);
     }
 
-    private View.OnClickListener signOnClick = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            SignActivity.newIntent(HomeActivity.this);
-        }
-    };
-
     /**
      * 请求广告
      */
@@ -150,6 +151,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
             @Override
             public void onResponse(ManagerAdModel response) {
                 if (response != null) {
+                    managerAdModel = response;
                     adData = response.getData();
                     bannerLoopAdapter.update(adData);
                 } else {
@@ -235,6 +237,41 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
                 break;
             case R.id.tv_more:
                 HomeMoreActivity.newIntent(this);
+                break;
+            case R.id.rl_sign:// 签到
+                SignActivity.newIntent(this);
+                break;
+            case R.id.rl_rank://大人排行
+                RankErdarActivity.newIntent(this);
+                break;
+            case R.id.rl_wonderful://精彩回顾
+                if (managerAdModel != null)
+                    WonderfulReviewActivity.newIntent(this, managerAdModel);
+                break;
+
+            case R.id.tv_mengbaoduijia:// 萌宝独家
+                HomeServiceActivity.newIntent(this, "MBDJ");
+                break;
+            case R.id.tv_haohaoxuexi:// 好好学习
+                HomeServiceActivity.newIntent(this, "HHXX");
+                break;
+            case R.id.tv_zuiaihuwai://最爱户外
+                HomeServiceActivity.newIntent(this, "ZAHW");
+                break;
+            case R.id.tv_yihaixunshi://艺海寻师
+                HomeServiceActivity.newIntent(this, "YHXS");
+                break;
+            case R.id.tv_zuixindingzhi:// 醉心定制
+                HomeServiceActivity.newIntent(this, "ZXDZ");
+                break;
+            case R.id.tv_sijiameishi://私家美食
+                HomeServiceActivity.newIntent(this, "SJMS");
+                break;
+            case R.id.tv_guoyimiaoshou://国医妙手
+                HomeServiceActivity.newIntent(this, "GYMS");
+                break;
+            case R.id.tv_lamasudi://辣妈速度
+                HomeServiceActivity.newIntent(this, "LMSD");
                 break;
         }
     }

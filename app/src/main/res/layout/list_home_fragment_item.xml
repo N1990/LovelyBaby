@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="3dip"
+    android:layout_marginBottom="@dimen/half_global_padding"
     android:background="@drawable/btn_white_radio_bg"
-    android:elevation="5dp">
+    android:padding="@dimen/global_padding">
 
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/iv_home_fra_item"
@@ -44,35 +45,62 @@
         android:textStyle="bold" />
 
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/btn_mask_bg"
-        android:padding="@dimen/half_global_padding">
+        android:layout_below="@+id/iv_home_fra_item"
+        android:paddingLeft="2dp"
+        android:paddingRight="2dp"
+        android:paddingTop="@dimen/half_global_padding">
+
+
+        <TextView
+            android:id="@+id/tv_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/shape_place_background"
+            android:paddingBottom="2dip"
+            android:paddingLeft="7dip"
+            android:paddingRight="7dip"
+            android:paddingTop="2dip"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/txt_small"
+            tools:text="认证机构" />
 
         <TextView
             android:id="@+id/tv_home_fra_title_item"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1.0"
+            android:layout_marginLeft="@dimen/global_padding"
+            android:layout_toRightOf="@+id/tv_tag"
             android:ellipsize="end"
-            android:padding="@dimen/half_global_padding"
             android:singleLine="true"
-            android:text=""
-            android:textColor="@android:color/white"
+            android:textColor="@color/dimgray"
             android:textSize="@dimen/txt_middle"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:text="dfadsfad s" />
 
 
         <TextView
             android:id="@+id/tv_home_fra_start_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
+            android:layout_below="@+id/tv_tag"
+            android:layout_marginTop="@dimen/global_padding"
             android:padding="@dimen/half_global_padding"
-            android:text=""
-            android:textColor="@android:color/white" />
-    </LinearLayout>
+            android:singleLine="true"
+            tools:text="fadfasdfas" />
+
+        <TextView
+            android:id="@+id/tv_home_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/tv_tag"
+            android:textColor="@color/primaryColor"
+            android:textStyle="bold"
+            tools:text="￥ 138" />
+    </RelativeLayout>
 </RelativeLayout>
 

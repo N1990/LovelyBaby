@@ -21,6 +21,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:clickable="true"
                 android:padding="@dimen/activity_vertical_margin">
 
                 <TextView
@@ -46,7 +47,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="@dimen/global_padding"
-                    android:src="@android:drawable/ic_menu_add" />
+                    android:src="@drawable/meiriqiandao" />
             </RelativeLayout>
 
             <TextView
@@ -56,9 +57,11 @@
                 android:background="@color/darkgray" />
 
             <RelativeLayout
+                android:id="@+id/rl_rank"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:clickable="true"
 
                 android:padding="@dimen/activity_vertical_margin">
 
@@ -85,7 +88,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="@dimen/global_padding"
-                    android:src="@android:drawable/ic_menu_add" />
+                    android:src="@drawable/darenpaihang" />
             </RelativeLayout>
         </LinearLayout>
 
@@ -104,6 +107,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:clickable="true"
+
                 android:padding="@dimen/activity_vertical_margin">
 
                 <TextView
@@ -130,7 +135,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="@dimen/global_padding"
-                    android:src="@android:drawable/ic_menu_add" />
+                    android:src="@drawable/meizhoujingxuan" />
             </RelativeLayout>
 
             <TextView
@@ -140,9 +145,12 @@
                 android:background="@color/darkgray" />
 
             <RelativeLayout
+                android:id="@+id/rl_wonderful"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:clickable="true"
+
                 android:padding="@dimen/activity_vertical_margin">
 
                 <TextView
@@ -169,7 +177,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="@dimen/global_padding"
-                    android:src="@android:drawable/ic_menu_add" />
+                    android:src="@drawable/jingcaihuigu" />
             </RelativeLayout>
         </LinearLayout>
 
@@ -190,14 +198,15 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@android:drawable/ic_menu_add"
+            android:drawableLeft="@drawable/line"
             android:gravity="center_vertical"
             android:paddingBottom="2dp"
-            android:paddingLeft="@dimen/global_padding"
+            android:paddingLeft="@dimen/half_global_padding"
             android:paddingTop="@dimen/half_global_padding"
             android:text="热门推荐"
-            android:textAppearance="@style/TextAppearance.Smart.Small"
+            android:textAppearance="@style/TextAppearance.Smart.Medium"
             android:textColor="@color/primaryColor"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
     </LinearLayout>

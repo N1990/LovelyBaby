@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.activity.home.adapter.HomeFraAdapter;
-import com.cmbb.smartkids.activity.home.model.RecommonedEredarModel;
+import com.cmbb.smartkids.activity.home.model.RankEredarModel;
 import com.cmbb.smartkids.utils.FrescoTool;
 import com.cmbb.smartkids.utils.TDevice;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -27,7 +27,7 @@ import java.util.ArrayList;
  */
 public class HomeGridHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     private LinearLayout llContent;
-    private ArrayList<RecommonedEredarModel> data;
+    private ArrayList<RankEredarModel> data;
     private Context context;
     private HomeFraAdapter adapter;
 
@@ -37,7 +37,7 @@ public class HomeGridHolder extends RecyclerView.ViewHolder implements View.OnCl
         llContent = (LinearLayout) itemView.findViewById(R.id.ll_home_fra_grid);
     }
 
-    public void setData(ArrayList<RecommonedEredarModel> imgs, HomeFraAdapter adapter) {
+    public void setData(ArrayList<RankEredarModel> imgs, HomeFraAdapter adapter) {
         this.adapter = adapter;
         //adapter加载数据源改变，多次刷新
         if (llContent != null && llContent.getChildCount() != 0) {
@@ -48,7 +48,7 @@ public class HomeGridHolder extends RecyclerView.ViewHolder implements View.OnCl
         if (imgs != null) {
             this.data = imgs;
             int index = 0;
-            for (RecommonedEredarModel pman : data) {
+            for (RankEredarModel pman : data) {
                /* LinearLayout.LayoutParams ps = new LinearLayout.LayoutParams(-2, -2);
                 if (index != data.size() - 1) {
                     ps.rightMargin = TDevice.dip2px(10, context);

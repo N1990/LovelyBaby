@@ -31,6 +31,7 @@ public class HomeMoreActivity extends BaseActivity implements View.OnClickListen
     @Override
     protected void init(Bundle savedInstanceState) {
         setNoBack();
+        setTitle("更多");
         initBottom();
     }
 

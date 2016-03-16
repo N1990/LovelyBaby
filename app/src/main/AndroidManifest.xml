@@ -398,6 +398,8 @@
         <activity android:name=".activity.order.v2.ConfirmOrder" />
         <activity android:name=".activity.order.v2.GenerateOrder" />
         <activity android:name=".activity.order.v2.PayConfirm" />
+        <activity android:name=".activity.home.home_v2.RankErdarActivity" />
+        <activity android:name=".activity.home.home_v2.WonderfulReviewActivity" android:theme="@style/HomePageTheme"/>
 
     </application>
 

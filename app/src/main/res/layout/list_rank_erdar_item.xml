@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_white_background_no_corner"
+    android:padding="@dimen/global_padding">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/sdb_head"
+        android:layout_width="55dip"
+        android:layout_height="55dip"
+        app:actualImageScaleType="centerCrop"
+        app:fadeDuration="200"
+        app:roundAsCircle="true"
+        app:roundingBorderColor="@android:color/white"
+        app:roundingBorderWidth="1dp" />
+
+    <TextView
+        android:id="@+id/tv__nick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/sdb_head"
+        android:layout_marginLeft="10dip"
+        android:layout_toRightOf="@+id/sdb_head"
+        android:padding="5dip"
+        android:text="昵称"
+        android:textAppearance="@style/TextAppearance.Smart.Small" />
+
+
+    <RatingBar
+        android:id="@+id/rb_erdar"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_alignBottom="@+id/sdb_head"
+        android:layout_marginLeft="10dip"
+        android:layout_toRightOf="@+id/sdb_head"
+        android:isIndicator="true"
+        android:numStars="5"
+        android:progressDrawable="@drawable/custome_ratingbar_bg"
+        android:rating="0"
+        android:stepSize="0.5" />
+
+
+    <TextView
+        android:id="@+id/tv_tag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="8dip"
+        android:layout_marginRight="@dimen/half_global_padding"
+        android:background="@drawable/shape_place_background"
+        android:paddingBottom="2dip"
+        android:paddingLeft="5dip"
+        android:paddingRight="5dip"
+        android:paddingTop="2dip"
+        android:text="认证机构"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/txt_small" />
+
+</RelativeLayout>

@@ -3,8 +3,11 @@ package com.cmbb.smartkids.activity.home.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.cmbb.smartkids.base.Constants;
+import com.cmbb.smartkids.network.OkHttpClientManager;
+
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 
 /**
  * 项目名称：LovelyBaby
@@ -12,7 +15,7 @@ import java.util.List;
  * 创建人：N.Sun
  * 创建时间：15/9/11 上午9:57
  */
-public class RecommonedEredarRootModel implements Parcelable {
+public class RankEredarRootModel implements Parcelable {
 
     /**
      * status : 1
@@ -22,7 +25,7 @@ public class RecommonedEredarRootModel implements Parcelable {
 
     private int status;
     private String msg;
-    private ArrayList<RecommonedEredarModel> data;
+    private ArrayList<RankEredarModel> data;
 
     public int getStatus() {
         return status;
@@ -40,17 +43,17 @@ public class RecommonedEredarRootModel implements Parcelable {
         this.msg = msg;
     }
 
-    public ArrayList<RecommonedEredarModel> getData() {
+    public ArrayList<RankEredarModel> getData() {
         return data;
     }
 
-    public void setData(ArrayList<RecommonedEredarModel> data) {
+    public void setData(ArrayList<RankEredarModel> data) {
         this.data = data;
     }
 
     @Override
     public String toString() {
-        return "RecommonedEredarRootModel{" +
+        return "RankEredarRootModel{" +
                 "status=" + status +
                 ", msg='" + msg + '\'' +
                 ", data=" + data +
@@ -70,22 +73,36 @@ public class RecommonedEredarRootModel implements Parcelable {
         dest.writeTypedList(data);
     }
 
-    public RecommonedEredarRootModel() {
+    public RankEredarRootModel() {
     }
 
-    protected RecommonedEredarRootModel(Parcel in) {
+    protected RankEredarRootModel(Parcel in) {
         this.status = in.readInt();
         this.msg = in.readString();
-        this.data = in.createTypedArrayList(RecommonedEredarModel.CREATOR);
+        this.data = in.createTypedArrayList(RankEredarModel.CREATOR);
     }
 
-    public static final Parcelable.Creator<RecommonedEredarRootModel> CREATOR = new Parcelable.Creator<RecommonedEredarRootModel>() {
-        public RecommonedEredarRootModel createFromParcel(Parcel source) {
-            return new RecommonedEredarRootModel(source);
+    public static final Parcelable.Creator<RankEredarRootModel> CREATOR = new Parcelable.Creator<RankEredarRootModel>() {
+        public RankEredarRootModel createFromParcel(Parcel source) {
+            return new RankEredarRootModel(source);
         }
 
-        public RecommonedEredarRootModel[] newArray(int size) {
-            return new RecommonedEredarRootModel[size];
+        public RankEredarRootModel[] newArray(int size) {
+            return new RankEredarRootModel[size];
         }
     };
+
+
+    /**
+     * 获取推荐达人
+     *
+     * @param callback
+     */
+    public static void getRankEredarRequest(int pageNo, int numberOfPerPage,OkHttpClientManager.ResultCallback<RankEredarRootModel> callback) {
+        HashMap<String, String> bodyEredar = new HashMap<>();
+        bodyEredar.put("isRecommoned", "1");
+        bodyEredar.put("numberOfPerPage", String.valueOf(numberOfPerPage));
+        bodyEredar.put("pageNo", String.valueOf(pageNo));
+        OkHttpClientManager.postAsyn(Constants.ServiceInfo.HOEM_MAIN_POPMAN_REQUEST, bodyEredar, callback);
+    }
 }

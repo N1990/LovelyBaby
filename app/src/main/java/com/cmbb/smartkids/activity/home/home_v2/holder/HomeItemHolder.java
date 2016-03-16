@@ -26,7 +26,7 @@ public class HomeItemHolder extends BaseViewHolder<HomePageRootModel.DataEntity.
     private final String TAG = HomeItemHolder.class.getSimpleName();
     private SimpleDraweeView iv;
     private ImageView ivTag;
-    private TextView tvTitle, tvTime, tvCity;
+    private TextView tvTitle, tvTime, tvCity, tvTag, tvPrice;
 
 
     public HomeItemHolder(ViewGroup parent) {
@@ -36,10 +36,14 @@ public class HomeItemHolder extends BaseViewHolder<HomePageRootModel.DataEntity.
         tvTime = $(R.id.tv_home_fra_start_time);
         tvCity = $(R.id.tv_home_fra_city_item);
         ivTag = $(R.id.iv_home_fra_tag_item);
+        tvTag = $(R.id.tv_tag);
+        tvPrice = $(R.id.tv_home_price);
     }
 
     public void setData(HomePageRootModel.DataEntity.RowsEntity row) {
         tvTitle.setText(row.getTitle());
+        tvTag.setText(row.getTypeText());
+        tvPrice.setText("￥ " + row.getPrice());
         if (TextUtils.isEmpty(row.getCityText()))
             tvCity.setVisibility(View.GONE);
         tvCity.setText(row.getCityText());

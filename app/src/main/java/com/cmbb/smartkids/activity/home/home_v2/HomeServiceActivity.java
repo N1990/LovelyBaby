@@ -31,6 +31,7 @@ import com.cmbb.smartkids.base.CustomListener;
 import com.cmbb.smartkids.network.OkHttpClientManager;
 import com.cmbb.smartkids.recyclerview.SmartRecyclerView;
 import com.cmbb.smartkids.recyclerview.adapter.RecyclerArrayAdapter;
+import com.cmbb.smartkids.utils.log.Log;
 import com.squareup.okhttp.Request;
 
 /**
@@ -66,7 +67,6 @@ public class HomeServiceActivity extends BaseActivity implements View.OnClickLis
     private int pager = 0;
     private int pagerSize = 10;
 
-
     @Override
     protected int getLayoutId() {
         return R.layout.activity_service_v2;
@@ -78,6 +78,17 @@ public class HomeServiceActivity extends BaseActivity implements View.OnClickLis
         setTitle("服务");
         initBottom();
         initView();
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (!TextUtils.isEmpty(getIntent().getStringExtra("serviceCategroy"))) {
+            serviceCategroy = getIntent().getStringExtra("serviceCategroy");
+        } else {
+            serviceCategroy = "";
+        }
         onRefresh();
     }
 
@@ -149,9 +160,7 @@ public class HomeServiceActivity extends BaseActivity implements View.OnClickLis
             @Override
             public void onResponse(ServiceListModel response) {
                 if (response != null) {
-                    if (response.getData().getRows().size() > 0) {
-                        adapter.clear();
-                    }
+                    adapter.clear();
                     adapter.addAll(response.getData().getRows());
                 }
             }
@@ -293,11 +302,22 @@ public class HomeServiceActivity extends BaseActivity implements View.OnClickLis
         context.startActivity(intent);
     }
 
+    /**
+     * 搜索
+     *
+     * @param context
+     * @param serviceCategroy
+     */
+    public static void newIntent(Context context, String serviceCategroy) {
+        Intent intent = new Intent(context, HomeServiceActivity.class);
+        intent.putExtra("serviceCategroy", serviceCategroy);
+        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        context.startActivity(intent);
+    }
+
     @Override
     public void onItemClick(int position) {
-        /*Intent intent = new Intent(this, ActiveDetailActivity.class);
-        intent.putExtra("serviceId", adapter.getItem(position).getId());
-        startActivity(intent);*/
+        Log.e("id", adapter.getItem(position).getId());
         ServerDetailActivityV2.newIntent(this, adapter.getItem(position).getId());
     }
 }

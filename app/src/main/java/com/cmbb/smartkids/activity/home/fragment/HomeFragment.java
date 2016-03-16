@@ -17,8 +17,8 @@ import com.cmbb.smartkids.activity.community.CommunityDetailActivity;
 import com.cmbb.smartkids.activity.home.adapter.HomeFraAdapter;
 import com.cmbb.smartkids.activity.home.model.BannerModel;
 import com.cmbb.smartkids.activity.home.model.HomePageRootModel;
-import com.cmbb.smartkids.activity.home.model.RecommonedEredarModel;
-import com.cmbb.smartkids.activity.home.model.RecommonedEredarRootModel;
+import com.cmbb.smartkids.activity.home.model.RankEredarRootModel;
+import com.cmbb.smartkids.activity.home.model.RankEredarModel;
 import com.cmbb.smartkids.activity.login.model.SecurityCodeModel;
 import com.cmbb.smartkids.activity.serve.ActiveDetailActivity;
 import com.cmbb.smartkids.activity.user.UserCenterActivity;
@@ -46,7 +46,7 @@ public class HomeFragment extends BaseFragment {
     private HomeFraAdapter adapter;
     private List<HomePageRootModel.DataEntity.RowsEntity> data;
     private List<BannerModel.DataEntity> adData;
-    private ArrayList<RecommonedEredarModel> popManData;
+    private ArrayList<RankEredarModel> popManData;
     private int pager = 0;
     private int pagerSize = 5;
 
@@ -182,7 +182,7 @@ public class HomeFragment extends BaseFragment {
     private CustomListener.ItemClickListener gridListener = new CustomListener.ItemClickListener() {
         @Override
         public void onItemClick(View v, int position, Object object) {
-            RecommonedEredarModel itemData = (RecommonedEredarModel) object;
+            RankEredarModel itemData = (RankEredarModel) object;
             int userId = itemData.getId();
             Intent intent = new Intent(getActivity(), UserCenterActivity.class);
             intent.putExtra("userId", userId);
@@ -234,10 +234,10 @@ public class HomeFragment extends BaseFragment {
                 showShortToast(message);
             }
         }));
-        NetRequest.postRequest(Constants.ServiceInfo.HOEM_MAIN_POPMAN_REQUEST, "", bodyEredar, RecommonedEredarRootModel.class, new NetRequest.NetHandler(getActivity(), new NetRequest.NetResponseListener() {
+        NetRequest.postRequest(Constants.ServiceInfo.HOEM_MAIN_POPMAN_REQUEST, "", bodyEredar, RankEredarRootModel.class, new NetRequest.NetHandler(getActivity(), new NetRequest.NetResponseListener() {
             @Override
             public void onSuccessListener(Object object, String msg) {
-                RecommonedEredarRootModel obj = (RecommonedEredarRootModel) object;
+                RankEredarRootModel obj = (RankEredarRootModel) object;
                 if (null != obj && obj.getData() != null && obj.getData().size() > 0) {
                     popManData = obj.getData();
                     reflushView();

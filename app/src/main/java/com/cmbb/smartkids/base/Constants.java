@@ -150,8 +150,6 @@ public class Constants {
     public static final class H5 {
         public static final String SMART_SIGN = "http://192.168.100.67:8080/SmartApp/page/smart-app-sign.html"; // 签到
         public static final String SMART_SERVICE_DETAIL = "http://192.168.100.67:8080/SmartApp/page/samrt-app-service-detail.html"; // 详情
-
     }
-
 
 }

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:fitsSystemWindows="true"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:expandedTitleMarginEnd="64dp"
+            app:expandedTitleMarginStart="48dp"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <com.jude.rollviewpager.RollPagerView
+                android:id="@+id/roll_view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:fitsSystemWindows="true"
+                app:layout_collapseMode="parallax"
+                app:rollviewpager_play_delay="3000" />
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/tl_main_actionbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginLeft="@dimen/global_padding"
+                    android:layout_marginRight="@dimen/global_padding"
+                    android:alpha="0.95"
+                    android:background="@drawable/shape_white_background_corner"
+                    android:elevation="2dp"
+                    android:gravity="center"
+                    android:hint="寻找有趣的服务"
+                    android:textAppearance="@style/TextAppearance.Smart.Small"
+                    android:textColorHint="@color/darkgray" />
+            </android.support.v7.widget.Toolbar>
+
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
+
+
+    <com.cmbb.smartkids.recyclerview.SmartRecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_empty="@layout/view_empty"
+        app:layout_progress="@layout/view_progress"
+        app:scrollbarStyle="insideOverlay" />
+
+
+</android.support.design.widget.CoordinatorLayout>

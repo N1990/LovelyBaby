@@ -11,7 +11,7 @@ import com.cmbb.smartkids.activity.home.holder.HomeGridHolder;
 import com.cmbb.smartkids.activity.home.holder.HomeItemHolder;
 import com.cmbb.smartkids.activity.home.model.BannerModel;
 import com.cmbb.smartkids.activity.home.model.HomePageRootModel;
-import com.cmbb.smartkids.activity.home.model.RecommonedEredarModel;
+import com.cmbb.smartkids.activity.home.model.RankEredarModel;
 import com.cmbb.smartkids.base.CustomListener;
 import com.javon.loadmorerecyclerview.BaseRecyclerAdapter;
 import com.javon.loadmorerecyclerview.LoadMoreRecyclerView;
@@ -31,9 +31,9 @@ public class HomeFraAdapter extends BaseRecyclerAdapter {
     private CustomListener.ItemClickListener onGridItemClick;
     private CustomListener.ItemClickListener onItemClick;
     private List<BannerModel.DataEntity> adData;
-    private ArrayList<RecommonedEredarModel> popManData;
+    private ArrayList<RankEredarModel> popManData;
 
-    public void setHeaderData(List<BannerModel.DataEntity> adData, ArrayList<RecommonedEredarModel> popManData) {
+    public void setHeaderData(List<BannerModel.DataEntity> adData, ArrayList<RankEredarModel> popManData) {
         if (adData != null) {
             this.adData = adData;
         } else {

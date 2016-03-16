@@ -26,8 +26,8 @@
             android:layout_height="48dip"
             android:layout_marginRight="10dip"
             app:actualImageScaleType="centerCrop"
-            app:fadeDuration="200"
             app:placeholderImage="@drawable/ic_default_header_bg"
+            app:fadeDuration="200"
             app:roundAsCircle="true"
             app:roundingBorderColor="@android:color/white"
             app:roundingBorderWidth="1dp" />

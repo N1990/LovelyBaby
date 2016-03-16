@@ -12,34 +12,45 @@
         android:padding="@dimen/activity_vertical_margin">
 
         <TextView
+            android:id="@+id/tv_mengbaoduijia"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:drawableTop="@android:drawable/ic_menu_add"
+            android:drawablePadding="@dimen/half_global_padding"
+            android:drawableTop="@drawable/mengbaodujia"
             android:gravity="center"
             android:text="萌宝独家" />
 
         <TextView
+            android:id="@+id/tv_haohaoxuexi"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:drawableTop="@android:drawable/ic_menu_add"
+            android:drawablePadding="@dimen/half_global_padding"
+
+            android:drawableTop="@drawable/haohaoxuexi"
             android:gravity="center"
             android:text="好好学习" />
 
         <TextView
+            android:id="@+id/tv_zuiaihuwai"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:drawableTop="@android:drawable/ic_menu_add"
+            android:drawablePadding="@dimen/half_global_padding"
+
+            android:drawableTop="@drawable/zuiaihuwai"
             android:gravity="center"
             android:text="最爱户外" />
 
         <TextView
+            android:id="@+id/tv_yihaixunshi"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:drawableTop="@android:drawable/ic_menu_add"
+            android:drawablePadding="@dimen/half_global_padding"
+
+            android:drawableTop="@drawable/yihaixunshi"
             android:gravity="center"
             android:text="艺海寻师" />
     </LinearLayout>
@@ -51,34 +62,42 @@
         android:padding="@dimen/activity_vertical_margin">
 
         <TextView
+            android:id="@+id/tv_zuixindingzhi"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:drawableTop="@android:drawable/ic_menu_add"
+            android:drawablePadding="@dimen/half_global_padding"
+            android:drawableTop="@drawable/zuixindingzhi"
             android:gravity="center"
             android:text="醉心订制" />
 
         <TextView
+            android:id="@+id/tv_sijiameishi"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:drawableTop="@android:drawable/ic_menu_add"
+            android:drawablePadding="@dimen/half_global_padding"
+            android:drawableTop="@drawable/sijiameishi"
             android:gravity="center"
             android:text="私家美食" />
 
         <TextView
+            android:id="@+id/tv_guoyimiaoshou"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:drawableTop="@android:drawable/ic_menu_add"
+            android:drawablePadding="@dimen/half_global_padding"
+            android:drawableTop="@drawable/guoyimiaoshou"
             android:gravity="center"
             android:text="国医妙手" />
 
         <TextView
+            android:id="@+id/tv_lamasudi"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:drawableTop="@android:drawable/ic_menu_add"
+            android:drawablePadding="@dimen/half_global_padding"
+            android:drawableTop="@drawable/lamasudi"
             android:gravity="center"
             android:text="辣妈速递" />
     </LinearLayout>

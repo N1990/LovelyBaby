@@ -1,19 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" >
-
-    <item
-        jar="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/transforms/instantRunSlicer/HuaWei/debug/jars/1/5/main_sliceb.jar"
-        jumboMode="true"
-        revision="23.0.2"
-        sha1="303de975aa6ed9803f5ba9b25e957cd42fcf5dd1">
-        <dex dex="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/transforms/dex/HuaWei/debug/folders/1000/5/main_sliceb_b49db638726519e32a562a0558796392c2b25dc7/classes.dex" />
-    </item>
-    <item
-        jar="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/transforms/instantRunSlicer/HuaWei/debug/jars/1/1a/dependencies.jar"
-        jumboMode="true"
-        revision="23.0.2"
-        sha1="7cbc0024dd07ec7653ab2498683b2c014c0c810f">
-        <dex dex="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/transforms/dex/HuaWei/debug/folders/1000/1a/dependencies_ddfac5b6a2321acd89d4466edff24d384bab7324/classes.dex" />
-    </item>
-
-</items>
+<items version="2" />

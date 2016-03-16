@@ -9,7 +9,7 @@ import android.os.Parcelable;
  * 创建人：N.Sun
  * 创建时间：15/9/10 下午3:53
  */
-public class RecommonedEredarModel implements Parcelable {
+public class RankEredarModel implements Parcelable {
 
 
     private int userId;
@@ -333,10 +333,10 @@ public class RecommonedEredarModel implements Parcelable {
         dest.writeString(this.updateUserId);
     }
 
-    public RecommonedEredarModel() {
+    public RankEredarModel() {
     }
 
-    protected RecommonedEredarModel(Parcel in) {
+    protected RankEredarModel(Parcel in) {
         this.userId = in.readInt();
         this.userNike = in.readString();
         this.userSex = in.readString();
@@ -370,19 +370,19 @@ public class RecommonedEredarModel implements Parcelable {
         this.updateUserId = in.readString();
     }
 
-    public static final Parcelable.Creator<RecommonedEredarModel> CREATOR = new Parcelable.Creator<RecommonedEredarModel>() {
-        public RecommonedEredarModel createFromParcel(Parcel source) {
-            return new RecommonedEredarModel(source);
+    public static final Parcelable.Creator<RankEredarModel> CREATOR = new Parcelable.Creator<RankEredarModel>() {
+        public RankEredarModel createFromParcel(Parcel source) {
+            return new RankEredarModel(source);
         }
 
-        public RecommonedEredarModel[] newArray(int size) {
-            return new RecommonedEredarModel[size];
+        public RankEredarModel[] newArray(int size) {
+            return new RankEredarModel[size];
         }
     };
 
     @Override
     public String toString() {
-        return "RecommonedEredarModel{" +
+        return "RankEredarModel{" +
                 "id=" + userId +
                 ", userNike='" + userNike + '\'' +
                 ", userSex='" + userSex + '\'' +

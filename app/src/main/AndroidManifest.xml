@@ -396,6 +396,8 @@
         <activity android:name=".activity.serve.v2.ServerDetailActivityV2" />
         <activity android:name=".activity.home.home_v2.SignActivity" />
         <activity android:name=".activity.order.v2.ConfirmOrder" />
+        <activity android:name=".activity.order.v2.GenerateOrder" />
+        <activity android:name=".activity.order.v2.PayConfirm" />
 
     </application>
 

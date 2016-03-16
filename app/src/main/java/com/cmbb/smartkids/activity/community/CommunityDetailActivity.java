@@ -85,13 +85,15 @@ public class CommunityDetailActivity extends BaseActivity implements CustomListe
 
     //分页
     private int pager = 0;
-    private int pageSize = 10;
+    private int pageSize = 20;
 
     private CommunityBaseFragment baseFragment;
     private final int PIC_REQUEST_CODE = 1001;
 
     private CommunityReplayModel cacheReplay;
     private CommunityDetailModel cacheDetail;
+
+    private String sortType = "asc";
 
 
     @Override
@@ -164,7 +166,6 @@ public class CommunityDetailActivity extends BaseActivity implements CustomListe
                     } else {
                         ivCollect.setVisibility(View.VISIBLE);
                     }
-
                     setPopTitle(cacheDetail.getData().getUserBasicInfo().getIsLoginUser());
                     baseFragment = CommentFirstFragment.newInstance(cacheDetail, cacheReplay);
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -200,7 +201,6 @@ public class CommunityDetailActivity extends BaseActivity implements CustomListe
                     }
                     setPopTitle(cacheDetail.getData().getUserBasicInfo().getIsLoginUser());
                     baseFragment = CommentFirstFragment.newInstance(cacheDetail, cacheReplay);
-
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                     transaction.replace(R.id.fl_community_container, baseFragment);
                     transaction.commitAllowingStateLoss();
@@ -293,6 +293,21 @@ public class CommunityDetailActivity extends BaseActivity implements CustomListe
                             showShortToast(message);
                         }
                     }));
+                    break;
+                case 2://正倒序
+                    switch (sortType) {
+                        case "asc":
+                            sortType = "desc";
+                            break;
+                        case "desc":
+                            sortType = "asc";
+                            break;
+                    }
+                    pager = 0;
+                    cacheDetail = null;
+                    cacheReplay = null;
+                    showWaitDialog();
+                    handleInitData(null);
                     break;
             }
 
@@ -499,11 +514,11 @@ public class CommunityDetailActivity extends BaseActivity implements CustomListe
     private void setPopTitle(int currentUser) {
         switch (currentUser) {
             case 1:
-                popTitle = new CommentPop(CommunityDetailActivity.this, new int[]{R.mipmap.btn_share_bg, R.mipmap.btn_community_comment_del_bg}, new String[]{"分享", "删除"});
+                popTitle = new CommentPop(CommunityDetailActivity.this, new int[]{R.mipmap.btn_share_bg, R.mipmap.btn_community_comment_del_bg, R.mipmap.btn_community_comment_del_bg}, new String[]{"分享", "删除", "排序"});
                 popTitle.setOnItemListener(onPopItemDeleteListener);
                 break;
             case 0:
-                popTitle = new CommentPop(CommunityDetailActivity.this, new int[]{R.mipmap.btn_share_bg, R.mipmap.btn_report_bg}, new String[]{"分享", "举报"});
+                popTitle = new CommentPop(CommunityDetailActivity.this, new int[]{R.mipmap.btn_share_bg, R.mipmap.btn_report_bg, R.mipmap.btn_community_comment_del_bg}, new String[]{"分享", "举报", "排序"});
                 popTitle.setOnItemListener(onPopItemReportListener);
                 break;
         }
@@ -600,6 +615,7 @@ public class CommunityDetailActivity extends BaseActivity implements CustomListe
         params.put("replyType", 1 + "");
         params.put("pageNo", String.valueOf(pager));
         params.put("numberOfPerPage", String.valueOf(pagerSize));
+        params.put("sortType", sortType);// 3.0.4倒序功能
         NetRequest.postRequest(Constants.Community.TOPIC_REPLAY, BaseApplication.token, params, CommunityReplayModel.class, netHandler);
     }
 

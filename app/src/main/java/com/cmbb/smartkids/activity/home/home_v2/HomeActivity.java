@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.cmbb.smartkids.R;
@@ -96,6 +97,8 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
 
             @Override
             public void onBindView(View headerView) {
+                RelativeLayout rlSign = (RelativeLayout) headerView.findViewById(R.id.rl_sign);
+                rlSign.setOnClickListener(signOnClick);
 
             }
         });
@@ -125,6 +128,13 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
         tvMe.setOnClickListener(this);
         tvMore.setOnClickListener(this);
     }
+
+    private View.OnClickListener signOnClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            SignActivity.newIntent(HomeActivity.this);
+        }
+    };
 
     /**
      * 请求广告

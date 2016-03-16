@@ -24,8 +24,8 @@ import com.cmbb.smartkids.activity.home.home_v2.adapter.PopuDictAdapter;
 import com.cmbb.smartkids.activity.home.home_v2.adapter.ServiceAdapter;
 import com.cmbb.smartkids.activity.home.home_v2.holder.servicedict.ServiceDictFooterHolder;
 import com.cmbb.smartkids.activity.home.model.ServiceSortModel;
-import com.cmbb.smartkids.activity.serve.ActiveDetailActivity;
 import com.cmbb.smartkids.activity.serve.model.ServiceListModel;
+import com.cmbb.smartkids.activity.serve.v2.ServerDetailActivityV2;
 import com.cmbb.smartkids.base.BaseActivity;
 import com.cmbb.smartkids.base.CustomListener;
 import com.cmbb.smartkids.network.OkHttpClientManager;
@@ -94,9 +94,9 @@ public class HomeServiceActivity extends BaseActivity implements View.OnClickLis
         mSmartRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new ServiceAdapter(this);
         mSmartRecyclerView.setAdapterWithProgress(adapter);
+        adapter.setOnItemClickListener(this);
         adapter.setMore(R.layout.view_more, this);
         adapter.setNoMore(R.layout.view_nomore);
-        adapter.setOnItemClickListener(this);
         mSmartRecyclerView.setRefreshListener(this);
     }
 
@@ -295,10 +295,9 @@ public class HomeServiceActivity extends BaseActivity implements View.OnClickLis
 
     @Override
     public void onItemClick(int position) {
-        showShortToast("adapter onItemClick is invoke");
-        Intent intent = new Intent(this, ActiveDetailActivity.class);
+        /*Intent intent = new Intent(this, ActiveDetailActivity.class);
         intent.putExtra("serviceId", adapter.getItem(position).getId());
-        startActivity(intent);
+        startActivity(intent);*/
+        ServerDetailActivityV2.newIntent(this, adapter.getItem(position).getId());
     }
-
 }

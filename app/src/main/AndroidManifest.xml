@@ -5,6 +5,8 @@
     <!-- umeng-analytics -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <!-- umeng-analytics -->
@@ -390,6 +392,10 @@
         <activity
             android:name=".activity.home.home_v2.HomeServiceActivity"
             android:theme="@style/HomePageTheme" />
+
+        <activity android:name=".activity.serve.v2.ServerDetailActivityV2" />
+        <activity android:name=".activity.home.home_v2.SignActivity" />
+        <activity android:name=".activity.order.v2.ConfirmOrder" />
 
     </application>
 

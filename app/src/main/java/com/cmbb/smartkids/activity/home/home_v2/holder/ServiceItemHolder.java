@@ -8,13 +8,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.cmbb.smartkids.R;
-import com.cmbb.smartkids.activity.home.home_v2.adapter.ServiceAdapter;
 import com.cmbb.smartkids.activity.serve.model.ServiceListModel;
 import com.cmbb.smartkids.recyclerview.adapter.BaseViewHolder;
 import com.cmbb.smartkids.utils.FrescoTool;
 import com.cmbb.smartkids.utils.TDevice;
-import com.cmbb.smartkids.utils.Tools;
-import com.cmbb.smartkids.utils.log.Log;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 /**
@@ -23,7 +20,7 @@ import com.facebook.drawee.view.SimpleDraweeView;
  * 创建人：javon
  * 创建时间：2015/9/6 17:15
  */
-public class ServiceItemHolder extends BaseViewHolder<ServiceListModel.DataEntity.RowsEntity> implements View.OnClickListener {
+public class ServiceItemHolder extends BaseViewHolder<ServiceListModel.DataEntity.RowsEntity> {
     private final String TAG = ServiceItemHolder.class.getSimpleName();
     private RelativeLayout llHomeServiceItem;
     private LinearLayout llHomeServiceItemFrist;
@@ -55,8 +52,6 @@ public class ServiceItemHolder extends BaseViewHolder<ServiceListModel.DataEntit
     }
 
     public void setData(ServiceListModel.DataEntity.RowsEntity row) {
-        llHomeServiceItem.setTag(row);
-        llHomeServiceItem.setOnClickListener(this);
         FrescoTool.loadImage(ivHomeServiceItem, row.getServicesImg(), String.valueOf(TDevice.dip2px(90, ivHomeServiceItem.getContext())));
         tvServiceItemCity.setText(row.getCityText());
         tvTitleHomeServiceItem.setText(row.getTitle());
@@ -69,80 +64,12 @@ public class ServiceItemHolder extends BaseViewHolder<ServiceListModel.DataEntit
             tvServicePriceItem.setText(price != 0 ? "￥" + row.getPrice() : "免费");
         }
 
-        if(row.isIsNew()){
+        if (row.isIsNew()) {
             tvHomeServiceTagItem.setVisibility(View.VISIBLE);
             tvHomeServiceTagItem.setText("NEW");
-        }else{
+        } else {
             tvHomeServiceTagItem.setVisibility(View.GONE);
         }
 
     }
-
-    @Override
-    public void onClick(View v) {
-        /*if (adapter.getOnItemClick() != null)
-            adapter.getOnItemClick().onItemClick(v, position, llHomeServiceItem.getTag());*/
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//    private RelativeLayout llHomeServiceItem;
-//    private SimpleDraweeView ivHomeServiceItem;
-//    private TextView tvTitleHomeServiceItem;
-//    private TextView tvPriceHomeServiceItem;
-//    private TextView tvCityHomeServiceItem;
-//    private TextView tvPreviewHomeServiceItem;
-//    private TextView tvTimeHomeServiceItem;
-//    private TextView tvTagHomeServiceItem;
-//
-//    public ServiceItemHolder(ViewGroup parent) {
-//        super(parent, R.layout.list_home_service_item);
-//        llHomeServiceItem = $(R.id.ll_home_service_item);
-//        ivHomeServiceItem = $(R.id.iv_home_service_item);
-//        tvTitleHomeServiceItem = $(R.id.tv_title_home_service_item);
-//        tvPriceHomeServiceItem = $(R.id.tv_price_home_service_item);
-//        tvPreviewHomeServiceItem = $(R.id.tv_preview_home_service_item);
-//        tvCityHomeServiceItem = $(R.id.tv_city_home_service_item);
-//        tvTimeHomeServiceItem = $(R.id.tv_time_home_service_item);
-//        tvTagHomeServiceItem = $(R.id.tv_home_service_tag_item);
-//
-//    }
-//
-//
-
-
-
-
-
-
-
-
-
 }

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tv01"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/half_global_padding"
+    android:background="@drawable/radio_normal"
+    android:button="@null"
+    android:clickable="true"
+    android:gravity="center"
+    android:padding="@dimen/global_padding"
+    android:text="服务方式"
+    android:textColor="@color/selector_gray_to_primarycolor_text" />

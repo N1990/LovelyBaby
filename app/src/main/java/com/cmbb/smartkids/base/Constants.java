@@ -9,7 +9,7 @@ package com.cmbb.smartkids.base;
 public class Constants {
 
     //开发环境
-    public static final String BASE = "http://192.168.100.99:8081/wine-rest/";
+    public static final String BASE = "http://192.168.100.105:8081/wine-rest/";
 //    public static String BASE_URL_PIC = "http://192.168.100.174:8081/wine-rest/";
     //生产环境
 //    public static final String BASE = "http://120.26.88.135:8090/wine-rest/";
@@ -126,6 +126,7 @@ public class Constants {
 
         //服务接口 3.0.4
         public static final String GET_MULTIPLE_DICT = "smart/system/getMultipleDict";// 获取服务字典
+        public static final String SERVICES_RESERVE = "smart/services/Reserve";// 获取服务字典
 
     }
 
@@ -144,6 +145,12 @@ public class Constants {
         public static final String TOPIC_REPORTREPLY = "smart/topic/reportReply"; // 举报话题
         public static final String TOPIC_REPLYTOPIC = "smart/topic/replyTopic"; // 举报话题
         public static final String TOPIC_DELETEREPLY = "smart/topic/deleteReply"; // 举报话题
+    }
+
+    public static final class H5 {
+        public static final String SMART_SIGN = "http://192.168.100.67:8080/SmartApp/page/smart-app-sign.html"; // 签到
+        public static final String SMART_SERVICE_DETAIL = "http://192.168.100.67:8080/SmartApp/page/samrt-app-service-detail.html"; // 详情
+
     }
 
 

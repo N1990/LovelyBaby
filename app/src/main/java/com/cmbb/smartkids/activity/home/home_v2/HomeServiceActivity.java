@@ -26,7 +26,6 @@ import com.cmbb.smartkids.activity.home.home_v2.holder.servicedict.ServiceDictFo
 import com.cmbb.smartkids.activity.home.model.ServiceSortModel;
 import com.cmbb.smartkids.activity.serve.model.ServiceListModel;
 import com.cmbb.smartkids.activity.serve.v2.ServerDetailActivityV2;
-import com.cmbb.smartkids.base.BaseActivity;
 import com.cmbb.smartkids.base.CustomListener;
 import com.cmbb.smartkids.network.OkHttpClientManager;
 import com.cmbb.smartkids.recyclerview.SmartRecyclerView;
@@ -40,14 +39,7 @@ import com.squareup.okhttp.Request;
  * 创建人：N.Sun
  * 创建时间：16/3/1 下午4:18
  */
-public class HomeServiceActivity extends BaseActivity implements View.OnClickListener, RecyclerArrayAdapter.OnLoadMoreListener, SwipeRefreshLayout.OnRefreshListener, RecyclerArrayAdapter.OnItemClickListener {
-
-    // Bottom
-    private TextView tvHome;
-    private TextView tvService;
-    private TextView tvTopic;
-    private TextView tvMe;
-    private TextView tvMore;
+public class HomeServiceActivity extends BaseHomeActivity implements View.OnClickListener, RecyclerArrayAdapter.OnLoadMoreListener, SwipeRefreshLayout.OnRefreshListener, RecyclerArrayAdapter.OnItemClickListener {
 
     // 筛选
     LinearLayout btnCity, btnSmart;//筛选的按钮
@@ -76,14 +68,13 @@ public class HomeServiceActivity extends BaseActivity implements View.OnClickLis
     protected void init(Bundle savedInstanceState) {
         setNoBack();
         setTitle("服务");
-        initBottom();
         initView();
-
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        tvService.setSelected(true);
         if (!TextUtils.isEmpty(getIntent().getStringExtra("serviceCategroy"))) {
             serviceCategroy = getIntent().getStringExtra("serviceCategroy");
         } else {
@@ -91,6 +82,7 @@ public class HomeServiceActivity extends BaseActivity implements View.OnClickLis
         }
         onRefresh();
     }
+
 
     private void initView() {
         btnCity = (LinearLayout) findViewById(R.id.btn_city);
@@ -226,39 +218,11 @@ public class HomeServiceActivity extends BaseActivity implements View.OnClickLis
         }
     };
 
-    private void initBottom() {
-        tvHome = (TextView) findViewById(R.id.tv_home);
-        tvService = (TextView) findViewById(R.id.tv_service);
-        tvService.setSelected(true);
-        tvTopic = (TextView) findViewById(R.id.tv_topic);
-        tvMe = (TextView) findViewById(R.id.tv_me);
-        tvMore = (TextView) findViewById(R.id.tv_more);
-        tvHome.setOnClickListener(this);
-        tvService.setOnClickListener(this);
-        tvTopic.setOnClickListener(this);
-        tvMe.setOnClickListener(this);
-        tvMore.setOnClickListener(this);
-    }
-
 
     @Override
     public void onClick(View v) {
+        super.onClick(v);
         switch (v.getId()) {
-            case R.id.tv_home:
-                HomeActivity.newIntent(this);
-                break;
-            case R.id.tv_service:
-                HomeServiceActivity.newIntent(this);
-                break;
-            case R.id.tv_topic:
-                HomeTopicActivity.newIntent(this);
-                break;
-            case R.id.tv_me:
-                HomeMeActivity.newIntent(this);
-                break;
-            case R.id.tv_more:
-                HomeMoreActivity.newIntent(this);
-                break;
             case R.id.btn_city:// 城市筛选
                 if (PopuCityFlag) {
                     PopuCityFlag = false;

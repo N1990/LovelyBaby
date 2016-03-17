@@ -45,7 +45,7 @@
                     android:layout_marginLeft="@dimen/global_padding"
                     android:layout_marginRight="@dimen/global_padding"
                     android:layout_marginTop="5dp"
-                    android:alpha="0.95"
+                    android:alpha="0.8"
                     android:background="@drawable/shape_white_background_corner"
                     android:elevation="2dp"
                     android:gravity="center"

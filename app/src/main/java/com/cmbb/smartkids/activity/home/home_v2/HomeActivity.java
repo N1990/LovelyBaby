@@ -9,14 +9,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.activity.home.home_v2.adapter.BannerLoopAdapter;
 import com.cmbb.smartkids.activity.home.home_v2.adapter.HomeAdapter;
 import com.cmbb.smartkids.activity.home.model.HomePageRootModel;
 import com.cmbb.smartkids.activity.home.model.ManagerAdModel;
-import com.cmbb.smartkids.base.BaseActivity;
+import com.cmbb.smartkids.activity.serve.v2.ServerDetailActivityV2;
 import com.cmbb.smartkids.network.OkHttpClientManager;
 import com.cmbb.smartkids.recyclerview.SmartRecyclerView;
 import com.cmbb.smartkids.recyclerview.adapter.RecyclerArrayAdapter;
@@ -34,14 +33,9 @@ import java.util.List;
  * 创建人：N.Sun
  * 创建时间：16/3/1 下午2:59
  */
-public class HomeActivity extends BaseActivity implements View.OnClickListener, RecyclerArrayAdapter.OnLoadMoreListener, SwipeRefreshLayout.OnRefreshListener, RecyclerArrayAdapter.OnItemClickListener {
+public class HomeActivity extends BaseHomeActivity implements View.OnClickListener, RecyclerArrayAdapter.OnLoadMoreListener, SwipeRefreshLayout.OnRefreshListener, RecyclerArrayAdapter.OnItemClickListener {
 
     private static final String TAG = HomeActivity.class.getSimpleName();
-    private TextView tvHome;
-    private TextView tvService;
-    private TextView tvTopic;
-    private TextView tvMe;
-    private TextView tvMore;
 
     protected SmartRecyclerView mSmartRecyclerView;
     protected HomeAdapter adapter;
@@ -59,8 +53,13 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
 
     @Override
     protected void init(Bundle savedInstanceState) {
-        initBottom();
         initView();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        tvHome.setSelected(true);
     }
 
     private void initView() {
@@ -121,20 +120,6 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
         adapter.setMore(R.layout.view_more, this);
         adapter.setNoMore(R.layout.view_nomore);
         adapter.setOnItemClickListener(this);
-    }
-
-    private void initBottom() {
-        tvHome = (TextView) findViewById(R.id.tv_home);
-        tvHome.setSelected(true);
-        tvService = (TextView) findViewById(R.id.tv_service);
-        tvTopic = (TextView) findViewById(R.id.tv_topic);
-        tvMe = (TextView) findViewById(R.id.tv_me);
-        tvMore = (TextView) findViewById(R.id.tv_more);
-        tvHome.setOnClickListener(this);
-        tvService.setOnClickListener(this);
-        tvTopic.setOnClickListener(this);
-        tvMe.setOnClickListener(this);
-        tvMore.setOnClickListener(this);
     }
 
     /**
@@ -222,6 +207,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
 
     @Override
     public void onClick(View v) {
+        super.onClick(v);
         switch (v.getId()) {
             case R.id.tv_home:
                 HomeActivity.newIntent(this);
@@ -248,7 +234,6 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
                 if (managerAdModel != null)
                     WonderfulReviewActivity.newIntent(this, managerAdModel);
                 break;
-
             case R.id.tv_mengbaoduijia:// 萌宝独家
                 HomeServiceActivity.newIntent(this, "MBDJ");
                 break;
@@ -278,6 +263,6 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
 
     @Override
     public void onItemClick(int position) {
-
+        ServerDetailActivityV2.newIntent(this, adapter.getItem(position).getId());
     }
 }

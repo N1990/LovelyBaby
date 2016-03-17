@@ -4,10 +4,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 
 import com.cmbb.smartkids.R;
+import com.cmbb.smartkids.activity.community.CommunityDetailActivity;
+import com.cmbb.smartkids.activity.home.model.ADSignModel;
+import com.cmbb.smartkids.activity.serve.v2.ServerDetailActivityV2;
 import com.cmbb.smartkids.base.BaseActivity;
 import com.cmbb.smartkids.base.BaseApplication;
 import com.cmbb.smartkids.base.Constants;
@@ -53,16 +57,30 @@ public class SignActivity extends BaseActivity {
 
         webView.loadUrl(Constants.H5.SMART_SIGN);//+ "?token=" + BaseApplication.token
         webView.registerHandler("showAdLink", new BridgeHandler() {
-
             @Override
             public void handler(String data, CallBackFunction function) {
-                Log.i(TAG, "handler = submitFromWeb, data from web = " + data);
-                function.onCallBack("Android");
+                if (!TextUtils.isEmpty(data)) {
+                    ADSignModel adSignModel = new Gson().fromJson(data, ADSignModel.class);
+                    switch (adSignModel.getRedirectType()) {
+                        case "INNER":
+                            switch (adSignModel.getInnerRedirectType()) {
+                                case "APP_TOPIC":
+                                    Intent intent = new Intent(SignActivity.this, CommunityDetailActivity.class);
+                                    intent.putExtra("id", adSignModel.getRelateId());
+                                    startActivity(intent);
+                                    break;
+                                case "APP_SERVICE":
+                                    ServerDetailActivityV2.newIntent(SignActivity.this, adSignModel.getRelateId());
+                                    break;
+                            }
+                            break;
+                        case "OUTTER":
+                            ADActivity.newIntent(SignActivity.this, adSignModel.getRedirectUrl());
+                            break;
+                    }
+                }
             }
-
         });
-
-
 
         webView.callHandler("showMsg", "萌宝派 h5 test", new CallBackFunction() {
             @Override

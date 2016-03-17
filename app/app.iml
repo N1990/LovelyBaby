@@ -41,6 +41,12 @@
       <sourceFolder url="file://$MODULE_DIR$/src/HuaWeiDebug/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/HuaWeiDebug/jni" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/HuaWeiDebug/rs" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/r/androidTest/HuaWei/debug" isTestSource="true" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/aidl/androidTest/HuaWei/debug" isTestSource="true" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/buildConfig/androidTest/HuaWei/debug" isTestSource="true" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/rs/androidTest/HuaWei/debug" isTestSource="true" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/rs/androidTest/HuaWei/debug" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/resValues/androidTest/HuaWei/debug" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/testHuaWeiDebug/res" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/testHuaWeiDebug/resources" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/testHuaWeiDebug/assets" type="java-test-resource" />
@@ -48,12 +54,6 @@
       <sourceFolder url="file://$MODULE_DIR$/src/testHuaWeiDebug/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/testHuaWeiDebug/jni" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/testHuaWeiDebug/rs" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/r/androidTest/HuaWei/debug" isTestSource="true" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/aidl/androidTest/HuaWei/debug" isTestSource="true" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/buildConfig/androidTest/HuaWei/debug" isTestSource="true" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/rs/androidTest/HuaWei/debug" isTestSource="true" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/rs/androidTest/HuaWei/debug" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/resValues/androidTest/HuaWei/debug" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/HuaWei/res" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/HuaWei/resources" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/HuaWei/assets" type="java-resource" />
@@ -61,13 +61,6 @@
       <sourceFolder url="file://$MODULE_DIR$/src/HuaWei/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/HuaWei/jni" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/HuaWei/rs" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/testHuaWei/res" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/testHuaWei/resources" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/testHuaWei/assets" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/testHuaWei/aidl" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/testHuaWei/java" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/testHuaWei/jni" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/testHuaWei/rs" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/androidTestHuaWei/res" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/androidTestHuaWei/resources" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/androidTestHuaWei/assets" type="java-test-resource" />
@@ -75,6 +68,13 @@
       <sourceFolder url="file://$MODULE_DIR$/src/androidTestHuaWei/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/androidTestHuaWei/jni" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/androidTestHuaWei/rs" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/testHuaWei/res" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/testHuaWei/resources" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/testHuaWei/assets" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/testHuaWei/aidl" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/testHuaWei/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/testHuaWei/jni" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/testHuaWei/rs" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/debug/res" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/debug/resources" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/debug/assets" type="java-resource" />

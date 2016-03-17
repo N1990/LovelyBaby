@@ -6,24 +6,10 @@
 
     <include layout="@layout/custom_actionbar" />
 
-    <com.cmbb.smartkids.widget.jsbridge.BridgeWebView
-        android:id="@+id/webView"
+    <FrameLayout
+        android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/tv_reserve"
         android:layout_below="@+id/tl_main_actionbar" />
-
-    <TextView
-        android:id="@+id/tv_reserve"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/btn_buy_selector"
-        android:gravity="center"
-        android:padding="@dimen/global_padding"
-        android:text="立即购买"
-        android:textColor="@android:color/white"
-        android:textSize="@dimen/txt_middle"
-        android:visibility="gone" />
 
 </RelativeLayout>

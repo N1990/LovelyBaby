@@ -22,7 +22,6 @@ import com.cmbb.smartkids.activity.community.model.TopicListModel;
 import com.cmbb.smartkids.activity.community.model.TopicTypeModel;
 import com.cmbb.smartkids.activity.home.home_v2.adapter.TopicAdapter;
 import com.cmbb.smartkids.activity.home.home_v2.adapter.TopicTypeAdapter;
-import com.cmbb.smartkids.base.BaseActivity;
 import com.cmbb.smartkids.base.BaseApplication;
 import com.cmbb.smartkids.base.CustomListener;
 import com.cmbb.smartkids.network.OkHttpClientManager;
@@ -36,15 +35,9 @@ import com.squareup.okhttp.Request;
  * 创建人：N.Sun
  * 创建时间：16/3/1 下午4:17
  */
-public class HomeTopicActivity extends BaseActivity implements View.OnClickListener, RecyclerArrayAdapter.OnLoadMoreListener, SwipeRefreshLayout.OnRefreshListener, RecyclerArrayAdapter.OnItemClickListener {
+public class HomeTopicActivity extends BaseHomeActivity implements View.OnClickListener, RecyclerArrayAdapter.OnLoadMoreListener, SwipeRefreshLayout.OnRefreshListener, RecyclerArrayAdapter.OnItemClickListener {
 
     private static final String TAG = HomeTopicActivity.class.getSimpleName();
-    //Bottom
-    private TextView tvHome;
-    private TextView tvService;
-    private TextView tvTopic;
-    private TextView tvMe;
-    private TextView tvMore;
 
     protected SmartRecyclerView mSmartRecyclerView;
 
@@ -65,10 +58,15 @@ public class HomeTopicActivity extends BaseActivity implements View.OnClickListe
         ((TextView) findViewById(R.id.tv_title)).setText("全部话题");
         findViewById(R.id.tv_title).setOnClickListener(this);
         setNoBack();
-        initBottom();
         initRecyclerView();
         initPopup();
         onRefresh();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        tvTopic.setSelected(true);
     }
 
     private void initRecyclerView() {
@@ -86,20 +84,6 @@ public class HomeTopicActivity extends BaseActivity implements View.OnClickListe
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_home_topic, menu);
         return super.onCreateOptionsMenu(menu);
-    }
-
-    private void initBottom() {
-        tvHome = (TextView) findViewById(R.id.tv_home);
-        tvService = (TextView) findViewById(R.id.tv_service);
-        tvTopic = (TextView) findViewById(R.id.tv_topic);
-        tvTopic.setSelected(true);
-        tvMe = (TextView) findViewById(R.id.tv_me);
-        tvMore = (TextView) findViewById(R.id.tv_more);
-        tvHome.setOnClickListener(this);
-        tvService.setOnClickListener(this);
-        tvTopic.setOnClickListener(this);
-        tvMe.setOnClickListener(this);
-        tvMore.setOnClickListener(this);
     }
 
     @Override
@@ -211,22 +195,8 @@ public class HomeTopicActivity extends BaseActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+        super.onClick(v);
         switch (v.getId()) {
-            case R.id.tv_home:
-                HomeActivity.newIntent(this);
-                break;
-            case R.id.tv_service:
-                HomeServiceActivity.newIntent(this);
-                break;
-            case R.id.tv_topic:
-                HomeTopicActivity.newIntent(this);
-                break;
-            case R.id.tv_me:
-                HomeMeActivity.newIntent(this);
-                break;
-            case R.id.tv_more:
-                HomeMoreActivity.newIntent(this);
-                break;
             case R.id.tv_title:
                 mSmartPopupWindow.showAsDropDown(findViewById(R.id.tv_title));
                 break;
@@ -238,6 +208,5 @@ public class HomeTopicActivity extends BaseActivity implements View.OnClickListe
         intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         context.startActivity(intent);
     }
-
 
 }

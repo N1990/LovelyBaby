@@ -400,6 +400,8 @@
             android:name=".activity.home.home_v2.WonderfulReviewActivity"
             android:theme="@style/HomePageTheme" />
 
+        <activity android:name=".activity.home.home_v2.ADActivity" />
+
     </application>
 
 </manifest>

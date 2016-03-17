@@ -35,7 +35,6 @@ import com.cmbb.smartkids.activity.user.MySetActivity;
 import com.cmbb.smartkids.activity.user.PerssionListActivity;
 import com.cmbb.smartkids.activity.user.StorePointActivity;
 import com.cmbb.smartkids.activity.user.model.UserCenterModel;
-import com.cmbb.smartkids.base.BaseActivity;
 import com.cmbb.smartkids.base.BaseApplication;
 import com.cmbb.smartkids.base.Constants;
 import com.cmbb.smartkids.network.OkHttpClientManager;
@@ -60,16 +59,10 @@ import java.util.ArrayList;
  * 创建人：N.Sun
  * 创建时间：16/3/1 下午4:08
  */
-public class HomeMeActivity extends BaseActivity implements View.OnClickListener {
+public class HomeMeActivity extends BaseHomeActivity implements View.OnClickListener {
 
 
     private static final String TAG = HomeMeActivity.class.getSimpleName();
-    // Bottom
-    private TextView tvHome;
-    private TextView tvService;
-    private TextView tvTopic;
-    private TextView tvMe;
-    private TextView tvMore;
 
 
     private final int PIC_REQUEST_CODE = 1001;
@@ -90,10 +83,10 @@ public class HomeMeActivity extends BaseActivity implements View.OnClickListener
     @Override
     protected void init(Bundle savedInstanceState) {
         setNoBack();
-        initBottom();
         initView();
         initData();
     }
+
 
     private void initData() {
         UserCenterModel.getUserInfoRequest(SPCache.getString(Constants.USER_ID, "-1"), 1, BaseApplication.token, new OkHttpClientManager.ResultCallback<UserCenterModel>() {
@@ -149,20 +142,6 @@ public class HomeMeActivity extends BaseActivity implements View.OnClickListener
         myDrafts = (LinearLayout) findViewById(R.id.ll_home_self_drafts);
         myDrafts.setOnClickListener(this);
         myCount = (TextView) findViewById(R.id.tv_home_count);
-    }
-
-    private void initBottom() {
-        tvHome = (TextView) findViewById(R.id.tv_home);
-        tvService = (TextView) findViewById(R.id.tv_service);
-        tvTopic = (TextView) findViewById(R.id.tv_topic);
-        tvMe = (TextView) findViewById(R.id.tv_me);
-        tvMe.setSelected(true);
-        tvMore = (TextView) findViewById(R.id.tv_more);
-        tvHome.setOnClickListener(this);
-        tvService.setOnClickListener(this);
-        tvTopic.setOnClickListener(this);
-        tvMe.setOnClickListener(this);
-        tvMore.setOnClickListener(this);
         findViewById(R.id.iv_main_toolbar_left).setOnClickListener(this);
         findViewById(R.id.iv_main_toolbar_right).setOnClickListener(this);
     }
@@ -192,6 +171,7 @@ public class HomeMeActivity extends BaseActivity implements View.OnClickListener
     @Override
     public void onResume() {
         super.onResume();
+        tvMe.setSelected(true);
         LocalBroadcastManager.getInstance(this).registerReceiver(messageReceiveTagReceiver, new IntentFilter(Constants.INTENT_ACTION_MESSAGE_RECEIVE));
         LocalBroadcastManager.getInstance(this).registerReceiver(messageCancelTagReceiver, new IntentFilter(Constants.INTENT_ACTION_MESSAGE_CANCEL));
     }
@@ -326,22 +306,8 @@ public class HomeMeActivity extends BaseActivity implements View.OnClickListener
 
     @Override
     public void onClick(View v) {
+        super.onClick(v);
         switch (v.getId()) {
-            case R.id.tv_home:
-                HomeActivity.newIntent(this);
-                break;
-            case R.id.tv_service:
-                HomeServiceActivity.newIntent(this);
-                break;
-            case R.id.tv_topic:
-                HomeTopicActivity.newIntent(this);
-                break;
-            case R.id.tv_me:
-                HomeMeActivity.newIntent(this);
-                break;
-            case R.id.tv_more:
-                HomeMoreActivity.newIntent(this);
-                break;
             // 设置
             case R.id.iv_main_toolbar_left:
                 Intent intentSetting = new Intent(this, MySetActivity.class);

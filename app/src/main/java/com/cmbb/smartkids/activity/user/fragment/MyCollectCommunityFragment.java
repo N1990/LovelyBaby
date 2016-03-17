@@ -3,23 +3,24 @@ package com.cmbb.smartkids.activity.user.fragment;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.cmbb.smartkids.R;
-import com.cmbb.smartkids.activity.community.CommunityDetailActivity;
 import com.cmbb.smartkids.activity.community.model.TopicListModel;
 import com.cmbb.smartkids.activity.user.adapter.MyCommunityAdapter;
 import com.cmbb.smartkids.base.BaseApplication;
 import com.cmbb.smartkids.base.BaseFragment;
-import com.cmbb.smartkids.base.Constants;
-import com.cmbb.smartkids.base.CustomListener;
-import com.cmbb.smartkids.network.NetRequest;
-import com.javon.loadmorerecyclerview.LoadMoreRecyclerView;
+import com.cmbb.smartkids.network.OkHttpClientManager;
+import com.cmbb.smartkids.recyclerview.SmartRecyclerView;
+import com.cmbb.smartkids.recyclerview.adapter.RecyclerArrayAdapter;
+import com.squareup.okhttp.Request;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.List;
 
 /**
  * 项目名称：LovelyBaby
@@ -27,13 +28,17 @@ import java.util.HashMap;
  * 创建人：javon
  * 创建时间：2015/9/8 13:15
  */
-public class MyCollectCommunityFragment extends BaseFragment {
+public class MyCollectCommunityFragment extends BaseFragment implements View.OnClickListener, RecyclerArrayAdapter.OnLoadMoreListener, SwipeRefreshLayout.OnRefreshListener, RecyclerArrayAdapter.OnItemClickListener {
     private final String TAG = MyCollectCommunityFragment.class.getSimpleName();
     private final int COMMUNITY_DETAIL_REQUEST = 10019;
-    private LoadMoreRecyclerView lmrv;
+    public SmartRecyclerView smartRecyclerView;
     private MyCommunityAdapter adapter;
     private int pager = 0;
     private int pagerSize = 10;
+    private String userId;
+    private List<TopicListModel.DataEntity.RowsEntity> cacheList = new ArrayList<>();
+    private int cachePager = -1;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -41,94 +46,80 @@ public class MyCollectCommunityFragment extends BaseFragment {
         return root;
     }
 
+
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         initView();
         initData();
-        addListener();
+        onRefresh();
     }
 
     private void initView() {
-        lmrv = (LoadMoreRecyclerView) getView().findViewById(R.id.lmrv_self);
-        lmrv.setLinearLayout();
-        adapter = new MyCommunityAdapter();
-        adapter.setData(new ArrayList<TopicListModel.DataEntity.RowsEntity>());
-        lmrv.setAdapter(adapter);
+        smartRecyclerView = (SmartRecyclerView) getView().findViewById(R.id.srv_self);
+        smartRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        adapter = new MyCommunityAdapter(getActivity());
+        smartRecyclerView.setAdapterWithProgress(adapter);
+        adapter.setMore(R.layout.view_more, this);
+        adapter.setNoMore(R.layout.view_nomore);
+        adapter.setOnItemClickListener(this);
+        smartRecyclerView.setRefreshListener(this);
+        adapter.addAll(cacheList);
     }
 
     private void initData() {
-
-    }
-
-    private void addListener() {
-        lmrv.setPullLoadMoreListener(lmrvListener);
-        lmrv.setInitializeWithoutPb();
-        adapter.setOnFooterTryAgain(this);
-        adapter.setOnItemListener(itemClick);
-    }
-
-    private LoadMoreRecyclerView.PullLoadMoreListener lmrvListener = new LoadMoreRecyclerView.PullLoadMoreListener() {
-        @Override
-        public void onInitialize() {
+        Bundle bundle = null;
+        if ((bundle = getArguments()) != null) {
+            userId = bundle.getString("userId");
             showWaitsDialog();
-            handleCollectCommunityRequest();
+        } else {
+            showShortToast("传参出错~");
+            return;
         }
+    }
 
-        @Override
-        public void onRefresh() {
-            adapter.clearData();
-            pager = 0;
-            handleCollectCommunityRequest();
-        }
 
-        @Override
-        public void onLoadMore() {
-            pager++;
-            handleCollectCommunityRequest();
-        }
-    };
-    private CustomListener.ItemClickListener itemClick = new CustomListener.ItemClickListener() {
-        @Override
-        public void onItemClick(View v, int position, Object object) {
-            TopicListModel.DataEntity.RowsEntity data = (TopicListModel.DataEntity.RowsEntity) object;
-            Intent intent = new Intent(getActivity(), CommunityDetailActivity.class);
-            intent.putExtra("id", data.getId());
-            intent.putExtra("from", "collect");
-            startActivityForResult(intent, COMMUNITY_DETAIL_REQUEST);
-        }
-    };
+    private void handleRequest(final int pager, int pagerSize, final boolean flag) {
+        TopicListModel.getCollectionTopicListRequest(pager, pagerSize, BaseApplication.token, new OkHttpClientManager.ResultCallback<TopicListModel>() {
+                    @Override
+                    public void onError(Request request, Exception e) {
+                        showShortToast(e.toString());
+                    }
 
-    /**
-     * 获取话题收藏列表
-     */
-    private void handleCollectCommunityRequest() {
-        HashMap<String, String> params = new HashMap<>();
-        params.put("pageNo", String.valueOf(pager));
-        params.put("numberOfPerPage", String.valueOf(pagerSize));
-        NetRequest.postRequest(Constants.ServiceInfo.COLLECT_COMMUNITY_LIST, BaseApplication.token, params, TopicListModel.class, new NetRequest.NetHandler(getActivity(), new NetRequest.NetResponseListener() {
-            @Override
-            public void onSuccessListener(Object object, String msg) {
-                hideWaitDialog();
-                lmrv.setPullLoadMoreCompleted();
-                TopicListModel data = (TopicListModel) object;
-                if (data != null && data.getData().getRows() != null && data.getData().getRows().size() > 0) {
-                    lmrv.setHasContent();
-                    adapter.addData(data.getData().getRows(), lmrv);
+                    @Override
+                    public void onResponse(TopicListModel response) {
+                        if (response != null) {
+                            if (flag)
+                                adapter.clear();
+                            adapter.addAll(response.getData().getRows());
+                        }
+                    }
                 }
-                if (adapter.getDataSize() == 0)
-                    lmrv.setNoContent();
-                showShortToast(msg);
+        );
+    }
 
-            }
 
-            @Override
-            public void onErrorListener(String message) {
-                hideWaitDialog();
-                lmrv.setPullLoadMoreCompleted();
-                showShortToast(message);
-            }
-        }));
+    @Override
+    public void onPause() {
+        super.onPause();
+        cachePager = pager;
+    }
+
+    @Override
+    public void onItemClick(int position) {
+
+    }
+
+    @Override
+    public void onLoadMore() {
+        pager++;
+        handleRequest(pager, pagerSize, false);
+    }
+
+    @Override
+    public void onRefresh() {
+        pager = 0;
+        handleRequest(pager, pagerSize, true);
     }
 
     @Override
@@ -136,12 +127,8 @@ public class MyCollectCommunityFragment extends BaseFragment {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK && requestCode == COMMUNITY_DETAIL_REQUEST) {
             // 刷新页面
-            adapter.clearData();
             pager = 0;
-            showWaitsDialog();
-            handleCollectCommunityRequest();
+            onRefresh();
         }
     }
-
-
 }

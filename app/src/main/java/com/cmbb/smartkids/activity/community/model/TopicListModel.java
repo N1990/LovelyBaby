@@ -610,6 +610,7 @@ public class TopicListModel implements Parcelable {
                 public List<UserRoleEntity> getUserRole() {
                     return userRole;
                 }
+
                 /**
                  * eredarCode : 0
                  * eredarName : 萌宝用户
@@ -1072,7 +1073,7 @@ public class TopicListModel implements Parcelable {
      * @param numberOfPerPage 页面显示数量
      * @param callback        ResultCallback
      */
-    public static void getTopicListRequest(String topicType, int pageNo, int numberOfPerPage, String token,OkHttpClientManager.ResultCallback<TopicListModel> callback) {
+    public static void getTopicListRequest(String topicType, int pageNo, int numberOfPerPage, String token, OkHttpClientManager.ResultCallback<TopicListModel> callback) {
         HashMap<String, String> params = new HashMap<>();
         if (!TextUtils.isEmpty(topicType)) {
             params.put("topicType", topicType);
@@ -1083,14 +1084,33 @@ public class TopicListModel implements Parcelable {
         OkHttpClientManager.postAsyn(Constants.Community.TOPIC_LIST, params, callback);
     }
 
+    public static void getCollectionTopicListRequest(int pageNo, int numberOfPerPage, String token, OkHttpClientManager.ResultCallback<TopicListModel> callback) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("pageNo", String.valueOf(pageNo));
+        params.put("numberOfPerPage", String.valueOf(numberOfPerPage));
+        params.put("token", token);
+        OkHttpClientManager.postAsyn(Constants.ServiceInfo.COLLECT_COMMUNITY_LIST, params, callback);
+    }
+
+
+    public static void getTopicListRequest(int center, int pageNo, int numberOfPerPage, String token, OkHttpClientManager.ResultCallback<TopicListModel> callback) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("myCenter", String.valueOf(center));
+        params.put("pageNo", String.valueOf(pageNo));
+        params.put("numberOfPerPage", String.valueOf(numberOfPerPage));
+        params.put("token", token);
+        OkHttpClientManager.postAsyn(Constants.ServiceInfo.MY_COMMUNITY_LIST, params, callback);
+    }
+
     /**
      * 获取搜索话题列表
+     *
      * @param content
      * @param pageNo
      * @param numberOfPerPage
      * @param callback
      */
-    public static void getSearchTopicListRequest(String content, int pageNo, int numberOfPerPage,OkHttpClientManager.ResultCallback<TopicListModel> callback){
+    public static void getSearchTopicListRequest(String content, int pageNo, int numberOfPerPage, OkHttpClientManager.ResultCallback<TopicListModel> callback) {
         HashMap<String, String> params = new HashMap<>();
         params.put("token", BaseApplication.token);
         params.put("pageNo", String.valueOf(pageNo));

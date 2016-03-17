@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 
 import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.activity.diary.BabyDiaryListActivity;
-import com.cmbb.smartkids.activity.diary.adapter.BabyDiaryAdapter;
 import com.cmbb.smartkids.activity.diary.model.BabyListModel;
 import com.cmbb.smartkids.activity.user.adapter.UserBabyDiaryAdapter;
 import com.cmbb.smartkids.base.BaseApplication;
@@ -88,15 +87,15 @@ public class BabyListFragment extends BaseFragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode == BABY_DETAIL_REQUEST && resultCode == Activity.RESULT_OK){
+        if (requestCode == BABY_DETAIL_REQUEST && resultCode == Activity.RESULT_OK) {
             handleBabyListRequest();
-        } else{
+        } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
 
-    private void handleBabyListRequest(){
-        showWaitsDialog();
+    private void handleBabyListRequest() {
+//        showWaitsDialog();
         HashMap<String, String> params = new HashMap<>();
         params.put("myCenter", "0");
         params.put("id", String.valueOf(userId));
@@ -105,7 +104,7 @@ public class BabyListFragment extends BaseFragment {
             public void onSuccessListener(Object object, String msg) {
                 hideWaitDialog();
                 BabyListModel data = (BabyListModel) object;
-                if (data.getData() != null && data.getData().getRows() != null){
+                if (data.getData() != null && data.getData().getRows() != null) {
                     adapter.setData(data.getData().getRows());
                     rv.setVisibility(View.VISIBLE);
                     nsv.setVisibility(View.GONE);

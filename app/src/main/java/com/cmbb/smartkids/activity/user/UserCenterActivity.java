@@ -1,6 +1,5 @@
 package com.cmbb.smartkids.activity.user;
 
-import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
@@ -11,9 +10,6 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.DecelerateInterpolator;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -38,11 +34,11 @@ import java.util.HashMap;
 public class UserCenterActivity extends BaseActivity implements AppBarLayout.OnOffsetChangedListener {
     private final String TAG = UserCenterActivity.class.getSimpleName();
     private SimpleDraweeView ivCenterBg, ivHeader;
-    private ImageView ivCare;
-    private TextView tvNickename, tvIdentity, tvFan, tvIntroduction, tvBar;// tvGroup
+    private TextView tvCare;
+    private TextView tvNickename, tvIdentity, tvFan, tvIntroduction;// tvGroup
     private AppBarLayout abl;
     private RatingBar rb;
-//    private ProgressBar pb;
+    //    private ProgressBar pb;
     private TabLayout tl;
     private ViewPager vp;
     private UserCenterAdapter adapter;
@@ -78,9 +74,8 @@ public class UserCenterActivity extends BaseActivity implements AppBarLayout.OnO
         ab.setDisplayHomeAsUpEnabled(true);
         ab.setDisplayShowTitleEnabled(false);
         abl = (AppBarLayout) findViewById(R.id.appbar);
-        tvBar = (TextView) findViewById(R.id.tv_user_center_toolbar);
         ivCenterBg = (SimpleDraweeView) findViewById(R.id.iv_user_center_bg);
-        ivCare = (ImageView) findViewById(R.id.iv_user_center_care);
+        tvCare = (TextView) findViewById(R.id.tv_main_toolbar_right);
         ivHeader = (SimpleDraweeView) findViewById(R.id.iv_user_center_header);
         tvNickename = (TextView) findViewById(R.id.tv_user_center_nickename);
         rb = (RatingBar) findViewById(R.id.rb_user_center_perssion);
@@ -105,24 +100,24 @@ public class UserCenterActivity extends BaseActivity implements AppBarLayout.OnO
         if (getIntent() != null && (bundle = getIntent().getExtras()) != null) {
             userId = bundle.getInt("userId", -1);
         }
-        tvBar.setText(getString(R.string.title_activity_user_center));
         hanleRequest();
     }
 
 
     private void addListener() {
-        ivCare.setOnClickListener(this);
+        tvCare.setOnClickListener(this);
     }
 
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.iv_user_center_care:
+            case R.id.tv_main_toolbar_right:
                 handleCareRequest();
                 break;
         }
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -139,45 +134,37 @@ public class UserCenterActivity extends BaseActivity implements AppBarLayout.OnO
      * 获取用户详细信息
      */
     private void hanleRequest() {
-//        showWaitDialog();
+        showWaitDialog();
         HashMap<String, String> params = new HashMap<>();
         params.put("userAttentionId", String.valueOf(userId));
         params.put("myCenter", "0");
         NetRequest.postRequest(Constants.ServiceInfo.USER_INFO_REQUEST, BaseApplication.token, params, UserCenterModel.class, new NetRequest.NetHandler(this, new NetRequest.NetResponseListener() {
             @Override
             public void onSuccessListener(Object object, String msg) {
+                hideWaitDialog();
                 UserCenterModel userCenter = (UserCenterModel) object;
                 if (userCenter != null && userCenter.getData() != null) {
                     userModel = userCenter.getData();
-                    findViewById(R.id.ll_empty_data).setVisibility(View.GONE);
                     findViewById(R.id.appbar).setVisibility(View.VISIBLE);
                     findViewById(R.id.vp_user_center).setVisibility(View.VISIBLE);
                     FrescoTool.loadImage(ivCenterBg, userModel.getBackgroundImg(), userModel.getBackImgWidth(), userModel.getBackImgHeight());
-
                     FrescoTool.loadImage(ivHeader, userModel.getUserSmallImg());
                     tvNickename.setText(userModel.getUserNike());
                     tvIdentity.setText(userModel.getUserRole().get(0).getEredarName());
                     tvFan.setText("Fans(" + userModel.getFans() + ")");
                     rb.setRating(userModel.getUserLevel());
 
-//                    pb.setMax(20000);
-//                    tvGroup.setText("当前成长值:" + userModel.getGrowthCount());
-//                    ObjectAnimator animator = new ObjectAnimator().ofInt(pb, "progress", userModel.getGrowthCount());
-//                    animator.setDuration(500);
-//                    animator.setInterpolator(new DecelerateInterpolator());
-//                    animator.start();
-
                     if (userModel.getIsLoginUser() == 0) {
-                        ivCare.setVisibility(View.VISIBLE);
+                        tvCare.setVisibility(View.VISIBLE);
                         if (userModel.getIsAttention() == 0) {
                             careFlag = false;
-                            ivCare.setBackgroundResource(R.mipmap.btn_user_care_normal);
+                            tvCare.setText("关注");
                         } else {
                             careFlag = true;
-                            ivCare.setBackgroundResource(R.mipmap.btn_user_care_pressed);
+                            tvCare.setText("取消关注");
                         }
                     } else {
-                        ivCare.setVisibility(View.GONE);
+                        tvCare.setVisibility(View.GONE);
                     }
                     Bundle bundle = new Bundle();
                     bundle.putString("userId", String.valueOf(userId));
@@ -241,10 +228,10 @@ public class UserCenterActivity extends BaseActivity implements AppBarLayout.OnO
                 hideWaitDialog();
                 if (careFlag) {
                     careFlag = false;
-                    ivCare.setBackgroundResource(R.mipmap.btn_user_care_normal);
+                    tvCare.setText("关注");
                 } else {
                     careFlag = true;
-                    ivCare.setBackgroundResource(R.mipmap.btn_user_care_pressed);
+                    tvCare.setText("取消关注");
                 }
                 showShortToast(msg);
             }
@@ -277,25 +264,25 @@ public class UserCenterActivity extends BaseActivity implements AppBarLayout.OnO
             if (i == 0) {
                 switch (vp.getCurrentItem()) {
                     case 0:
-                        serviceFra.srv.getSwipeToRefresh().setEnabled(true);
+                        serviceFra.smartRecyclerView.getSwipeToRefresh().setEnabled(true);
                         break;
                     case 1:
-                        communityFra.lmrv.mSwipeRefreshLayout.setEnabled(true);
+                        communityFra.smartRecyclerView.getSwipeToRefresh().setEnabled(true);
                         break;
                     case 2:
-                        evaluateFra.lmrv.mSwipeRefreshLayout.setEnabled(true);
+                        evaluateFra.smartRecyclerView.getSwipeToRefresh().setEnabled(true);
                         break;
                 }
             } else {
                 switch (vp.getCurrentItem()) {
                     case 0:
-                        serviceFra.srv.getSwipeToRefresh().setEnabled(true);
+                        serviceFra.smartRecyclerView.getSwipeToRefresh().setEnabled(true);
                         break;
                     case 1:
-                        communityFra.lmrv.mSwipeRefreshLayout.setEnabled(false);
+                        communityFra.smartRecyclerView.getSwipeToRefresh().setEnabled(false);
                         break;
                     case 2:
-                        evaluateFra.lmrv.mSwipeRefreshLayout.setEnabled(false);
+                        evaluateFra.smartRecyclerView.getSwipeToRefresh().setEnabled(false);
                         break;
                 }
             }

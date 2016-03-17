@@ -1,51 +1,40 @@
 package com.cmbb.smartkids.activity.user;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
 import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.activity.order.model.EvaluateListModel;
 import com.cmbb.smartkids.activity.user.adapter.MyPerssionAdapter;
 import com.cmbb.smartkids.base.BaseActivity;
-import com.cmbb.smartkids.base.BaseApplication;
-import com.cmbb.smartkids.base.Constants;
-import com.cmbb.smartkids.base.CustomListener;
-import com.cmbb.smartkids.network.NetRequest;
-import com.javon.loadmorerecyclerview.LoadMoreRecyclerView;
+import com.cmbb.smartkids.network.OkHttpClientManager;
+import com.cmbb.smartkids.recyclerview.SmartRecyclerView;
+import com.cmbb.smartkids.recyclerview.adapter.RecyclerArrayAdapter;
+import com.squareup.okhttp.Request;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
-public class PerssionListActivity extends BaseActivity {
+public class PerssionListActivity extends BaseActivity implements View.OnClickListener, RecyclerArrayAdapter.OnLoadMoreListener, SwipeRefreshLayout.OnRefreshListener, RecyclerArrayAdapter.OnItemClickListener {
     private final String TAG = PerssionListActivity.class.getSimpleName();
-    private LoadMoreRecyclerView lmrv;
+
     private MyPerssionAdapter adapter;
-    private int isPopman;
+    public SmartRecyclerView smartRecyclerView;
+    private int myCenter = 0;
     private int pager = 0;
-    private int pagerSize = 10;
-
-
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_perssion_list;
-    }
+    private int pagerSize = 5;
+    private int isPopman;
+    private int cachePager = -1; //缓存上次的pager
 
     @Override
     protected void init(Bundle savedInstanceState) {
         initView();
         initData();
-        addListener();
+        onRefresh();
     }
 
-
-    private void initView() {
-        setTitle(getString(R.string.title_activity_perssion_list));
-        lmrv = (LoadMoreRecyclerView) findViewById(R.id.lmrv_self);
-        lmrv.setLinearLayout();
-        adapter = new MyPerssionAdapter();
-        adapter.setData(new ArrayList<EvaluateListModel.DataEntity.RowsEntity>());
-        lmrv.setAdapter(adapter);
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_perssion_list;
     }
 
     private void initData() {
@@ -58,81 +47,70 @@ public class PerssionListActivity extends BaseActivity {
         }
     }
 
-    private void addListener() {
-        lmrv.setPullLoadMoreListener(lmrvListener);
-        lmrv.setInitializeWithoutPb();
-        adapter.setOnFooterTryAgain(this);
-        adapter.setOnHeaderListener(itemClick);
+    private void initView() {
+        smartRecyclerView = (SmartRecyclerView) findViewById(R.id.srv_self);
+        smartRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new MyPerssionAdapter(this);
+        smartRecyclerView.setAdapterWithProgress(adapter);
+        adapter.setMore(R.layout.view_more, this);
+        adapter.setNoMore(R.layout.view_nomore);
+        adapter.setOnItemClickListener(this);
+        smartRecyclerView.setRefreshListener(this);
     }
 
-    private LoadMoreRecyclerView.PullLoadMoreListener lmrvListener = new LoadMoreRecyclerView.PullLoadMoreListener() {
-        @Override
-        public void onInitialize() {
-            showWaitDialog();
-            handleRequest(pager, pagerSize);
 
-        }
-
-        @Override
-        public void onRefresh() {
-            pager = 0;
-            adapter.clearData();
-            handleRequest(pager, pagerSize);
-        }
-
-        @Override
-        public void onLoadMore() {
-            pager++;
-            handleRequest(pager, pagerSize);
-
-        }
-    };
-
-    private CustomListener.ItemClickListener itemClick = new CustomListener.ItemClickListener() {
-        @Override
-        public void onItemClick(View v, int position, Object object) {
-            int userId = (int) object;
-            Intent intent = new Intent(PerssionListActivity.this, UserCenterActivity.class);
-            intent.putExtra("userId", userId);
-            startActivity(intent);
-        }
-    };
+    /*@Override
+    public void onItemClick(int position) {
+        ServiceListModel.DataEntity.RowsEntity item = adapter.getItem(position);
+        Intent intent = new Intent(getActivity(), UserCenterActivity.class);
+        intent.putExtra("userId", userId);
+        startActivity(intent);
+    }*/
 
     @Override
-    public void onClick(View v) {
-        super.onClick(v);
+    public void onLoadMore() {
+        pager++;
+        handleRequest(pager, pagerSize, false);
+    }
+
+    @Override
+    public void onRefresh() {
+        adapter.clear();
+        pager = 0;
+        handleRequest(pager, pagerSize, true);
     }
 
 
-    private void handleRequest(int pager, int pagerSize) {
-        HashMap<String, String> params = new HashMap<>();
-        params.put("pageNo", String.valueOf(pager));
-        params.put("numberOfPerPage", String.valueOf(pagerSize));
-        params.put("myCenter", 1 + "");
-        params.put("isEredar", isPopman + "");
-        NetRequest.postRequest(Constants.ServiceInfo.EVALUATE_LIST_REQUEST, BaseApplication.token, params, EvaluateListModel.class, new NetRequest.NetHandler(this, new NetRequest.NetResponseListener() {
+    private void handleRequest(final int pager, int pagerSize, final boolean flag) {
+        EvaluateListModel.getMeServiceRequest(isPopman + "", pager, pagerSize, new OkHttpClientManager.ResultCallback<EvaluateListModel>() {
             @Override
-            public void onSuccessListener(Object object, String msg) {
-                hideWaitDialog();
-                lmrv.setPullLoadMoreCompleted();
-                EvaluateListModel data = (EvaluateListModel) object;
-                if (data != null && data.getData() != null && data.getData().getRows().size() > 0) {
-                    lmrv.setHasContent();
-                    adapter.addData(data.getData().getRows(), lmrv);
-                }
-                if (adapter.getDataSize() == 0) {
-                    lmrv.setNoContent();
-                }
-                showShortToast(msg);
+            public void onError(Request request, Exception e) {
+                showShortToast(e.toString());
             }
 
             @Override
-            public void onErrorListener(String message) {
-                hideWaitDialog();
-                lmrv.setPullLoadMoreCompleted();
-                showShortToast(message);
+            public void onResponse(EvaluateListModel response) {
+                if (response != null && response.getData() != null && response.getData().getRows().size() > 0 && cachePager != pager) {
+                    if (flag) {
+                        adapter.clear();
+                    }
+                    adapter.addAll(response.getData().getRows());
+                }
             }
-        }));
+        });
+
+    }
+
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        cachePager = pager;
+    }
+
+
+    @Override
+    public void onItemClick(int position) {
 
     }
 

@@ -43,6 +43,15 @@ public class RankEredarModel implements Parcelable {
     private String createUserId;
     private String updateDate;
     private String updateUserId;
+    private String uid;
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
 
     public int getId() {
         return userId;
@@ -302,6 +311,7 @@ public class RankEredarModel implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(this.userId);
         dest.writeString(this.userNike);
+        dest.writeString(this.uid);
         dest.writeString(this.userSex);
         dest.writeString(this.userBigImg);
         dest.writeString(this.userBigWidth);
@@ -339,6 +349,7 @@ public class RankEredarModel implements Parcelable {
     protected RankEredarModel(Parcel in) {
         this.userId = in.readInt();
         this.userNike = in.readString();
+        this.uid = in.readString();
         this.userSex = in.readString();
         this.userBigImg = in.readString();
         this.userBigWidth = in.readString();

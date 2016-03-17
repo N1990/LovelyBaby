@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.cmbb.smartkids.activity.user.MyCommunityActivity">
 
-    <include
-        layout="@layout/custom_actionbar"/>
+    <include layout="@layout/custom_actionbar" />
 
-    <com.javon.loadmorerecyclerview.LoadMoreRecyclerView
-        android:id="@+id/lmrv_my_community"
+
+    <com.cmbb.smartkids.recyclerview.SmartRecyclerView
+        android:id="@+id/srv_self"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_empty="@layout/view_empty"
+        app:layout_progress="@layout/view_progress"
+        app:scrollbarStyle="insideOverlay" />
 
 
 </LinearLayout>

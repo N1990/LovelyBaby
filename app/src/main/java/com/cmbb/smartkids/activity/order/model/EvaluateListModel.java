@@ -3,6 +3,11 @@ package com.cmbb.smartkids.activity.order.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.cmbb.smartkids.base.BaseApplication;
+import com.cmbb.smartkids.base.Constants;
+import com.cmbb.smartkids.network.OkHttpClientManager;
+
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -801,4 +806,27 @@ public class EvaluateListModel implements Parcelable {
             return new EvaluateListModel[size];
         }
     };
+
+
+    public static void getUserCenterServiceRequest(int myCenter, String isPopman, String userId, int pager, int pagerSize, OkHttpClientManager.ResultCallback<EvaluateListModel> callback) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("token", BaseApplication.token);
+        params.put("myCenter", String.valueOf(myCenter));
+        params.put("isEredar", isPopman);
+        params.put("id", userId);
+        params.put("pageNo", String.valueOf(pager));
+        params.put("numberOfPerPage", String.valueOf(pagerSize));
+        OkHttpClientManager.postAsyn(Constants.ServiceInfo.EVALUATE_LIST_REQUEST, params, callback);
+    }
+
+    public static void getMeServiceRequest(String isPopman, int pager, int pagerSize, OkHttpClientManager.ResultCallback<EvaluateListModel> callback) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("token", BaseApplication.token);
+        params.put("pageNo", String.valueOf(pager));
+        params.put("numberOfPerPage", String.valueOf(pagerSize));
+        params.put("myCenter", 1 + "");
+        params.put("isEredar", isPopman + "");
+        OkHttpClientManager.postAsyn(Constants.ServiceInfo.EVALUATE_LIST_REQUEST, params, callback);
+    }
+
 }

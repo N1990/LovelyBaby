@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.text.TextUtils;
@@ -21,13 +22,16 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.cmbb.smartkids.R;
+import com.cmbb.smartkids.activity.home.model.RankEredarModel;
 import com.cmbb.smartkids.activity.order.v2.ConfirmOrder;
 import com.cmbb.smartkids.activity.serve.v2.model.H5ServiceDetailModel;
 import com.cmbb.smartkids.activity.serve.v2.model.ReserveModel;
+import com.cmbb.smartkids.activity.user.UserCenterActivity;
 import com.cmbb.smartkids.base.BaseActivity;
 import com.cmbb.smartkids.base.BaseApplication;
 import com.cmbb.smartkids.base.Constants;
 import com.cmbb.smartkids.network.OkHttpClientManager;
+import com.cmbb.smartkids.photopicker.PhotoViewActivity;
 import com.cmbb.smartkids.recyclerview.SmartRecyclerView;
 import com.cmbb.smartkids.recyclerview.adapter.RecyclerArrayAdapter;
 import com.cmbb.smartkids.utils.log.Log;
@@ -64,9 +68,12 @@ public class ServerDetailActivityV2 extends BaseActivity {
     PopuGridAdapter popuGridAdapter;
     H5ServiceDetailModel.PriceListEntity priceListEntity;//选中的对象
 
+    private int serviceID;
+
     @Override
     protected void init(Bundle savedInstanceState) {
         setTitle("服务详情");
+        serviceID = getIntent().getIntExtra("serviceID", -1);
         tvReserve = (TextView) findViewById(R.id.tv_reserve);
         tvReserve.setOnClickListener(this);
         webView = (BridgeWebView) findViewById(R.id.webView);
@@ -87,17 +94,7 @@ public class ServerDetailActivityV2 extends BaseActivity {
 
             }
         });
-
-        webView.loadUrl(Constants.H5.SMART_SERVICE_DETAIL);//+ "?token=" + BaseApplication.token
-        webView.registerHandler("showAdLink", new BridgeHandler() {
-
-            @Override
-            public void handler(String data, CallBackFunction function) {
-                Log.i(TAG, "handler = submitFromWeb, data from web = " + data);
-                function.onCallBack("Android");
-            }
-
-        });
+        webView.loadUrl(Constants.H5.SMART_SERVICE_DETAIL + "?" + SystemClock.currentThreadTimeMillis());
         //点击电话
         webView.registerHandler("callPhone", new BridgeHandler() {
             @Override
@@ -113,7 +110,30 @@ public class ServerDetailActivityV2 extends BaseActivity {
             }
 
         });
-        //获取数据
+        //图片资源
+        webView.registerHandler("getImage", new BridgeHandler() {
+            @Override
+            public void handler(String data, CallBackFunction function) {
+                if (!TextUtils.isEmpty(data)) {
+                    H5Image h5Image = new Gson().fromJson(data, H5Image.class);
+                    PhotoViewActivity.IntentPhotoView(ServerDetailActivityV2.this, h5Image.getImgUrl());
+                }
+            }
+        });
+
+        //头像点击
+        webView.registerHandler("clickHead", new BridgeHandler() {
+            @Override
+            public void handler(String data, CallBackFunction function) {
+                if (!TextUtils.isEmpty(data)) {
+                    RankEredarModel rankEredarModel = new Gson().fromJson(data, RankEredarModel.class);
+                    Intent intent = new Intent(ServerDetailActivityV2.this, UserCenterActivity.class);
+                    intent.putExtra("userId", rankEredarModel.getId());
+                    startActivity(intent);
+                }
+            }
+        });
+        //订购数据
         webView.registerHandler("getServiceData", new BridgeHandler() {
             @Override
             public void handler(String data, CallBackFunction function) {
@@ -121,32 +141,31 @@ public class ServerDetailActivityV2 extends BaseActivity {
                     Log.i("getServiceData", data);
                     h5ServiceDetailModel = new Gson().fromJson(data, H5ServiceDetailModel.class);
                     initPopup(h5ServiceDetailModel);
+                    tvReserve.setVisibility(View.VISIBLE);
                 }
             }
 
         });
-        webView.callHandler("showMsg", "萌宝派 h5 test", new CallBackFunction() {
-            @Override
-            public void onCallBack(String data) {
-                Log.i("form JS", data);
-            }
-        });
 
+
+        // 发送服务ID 数据
         H5SignInitModel h5SignInitModel = new H5SignInitModel();
         h5SignInitModel.setToken(BaseApplication.token);
-        h5SignInitModel.setServiceID(getIntent().getIntExtra("serviceID", -1));
+        h5SignInitModel.setServiceID(serviceID);
         String sendSiginInit = new Gson().toJson(h5SignInitModel);
-        Log.e("send", "send = " + sendSiginInit);
-
         webView.callHandler("getParams", sendSiginInit, new CallBackFunction() {
             @Override
             public void onCallBack(String data) {
-                Log.i("H5数据", data);
             }
         });
         webView.send("hello");
     }
 
+    /**
+     * popuwindow
+     *
+     * @param data
+     */
     private void initPopup(final H5ServiceDetailModel data) {
         View view = LayoutInflater.from(this).inflate(R.layout.popup_order_edit, null);
         tvType = (TextView) view.findViewById(R.id.tv_type);
@@ -191,7 +210,7 @@ public class ServerDetailActivityV2 extends BaseActivity {
                     tvEditCount.setText(Integer.parseInt(tvEditCount.getText().toString()) - 1 + "");
                     priceListEntity.setCount(Integer.parseInt(tvEditCount.getText().toString()));
                     tvWholePrice.setText("RMB " + Integer.parseInt(tvEditCount.getText().toString()) * priceListEntity.getPrice());
-                }else{
+                } else {
                     tvEditCount.setText("0");
                     priceListEntity.setCount(0);
                     tvWholePrice.setText("RMB 0");
@@ -231,7 +250,7 @@ public class ServerDetailActivityV2 extends BaseActivity {
         super.onClick(v);
         switch (v.getId()) {
             case R.id.tv_reserve:
-                if(h5ServiceDetailModel != null){
+                if (h5ServiceDetailModel != null) {
                     int[] location = new int[2];
                     tvReserve.getLocationOnScreen(location);
                     mEditPopupWindow.showAtLocation(tvReserve, Gravity.NO_GRAVITY, location[0], location[1] - mEditPopupWindow.getHeight());
@@ -242,7 +261,7 @@ public class ServerDetailActivityV2 extends BaseActivity {
                 break;
             case R.id.tv_edit_submit:
                 // 预定订单
-                if(priceListEntity == null){
+                if (priceListEntity == null) {
                     showShortToast("请选择规格");
                     return;
                 }
@@ -310,5 +329,34 @@ public class ServerDetailActivityV2 extends BaseActivity {
         }
     }
 
+    class H5Image {
+        String imgUrl;
+        String imgWidth;
+        String imgHeight;
+
+        public String getImgUrl() {
+            return imgUrl;
+        }
+
+        public void setImgUrl(String imgUrl) {
+            this.imgUrl = imgUrl;
+        }
+
+        public String getImgWidth() {
+            return imgWidth;
+        }
+
+        public void setImgWidth(String imgWidth) {
+            this.imgWidth = imgWidth;
+        }
+
+        public String getImgHeight() {
+            return imgHeight;
+        }
+
+        public void setImgHeight(String imgHeight) {
+            this.imgHeight = imgHeight;
+        }
+    }
 
 }

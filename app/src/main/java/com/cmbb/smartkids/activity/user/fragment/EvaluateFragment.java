@@ -1,26 +1,20 @@
 package com.cmbb.smartkids.activity.user.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.widget.NestedScrollView;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.activity.order.model.EvaluateListModel;
-import com.cmbb.smartkids.activity.user.UserCenterActivity;
 import com.cmbb.smartkids.activity.user.adapter.MyPerssionAdapter;
-import com.cmbb.smartkids.base.BaseApplication;
 import com.cmbb.smartkids.base.BaseFragment;
-import com.cmbb.smartkids.base.Constants;
-import com.cmbb.smartkids.base.CustomListener;
-import com.cmbb.smartkids.network.NetRequest;
-import com.javon.loadmorerecyclerview.LoadMoreRecyclerView;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import com.cmbb.smartkids.network.OkHttpClientManager;
+import com.cmbb.smartkids.recyclerview.SmartRecyclerView;
+import com.cmbb.smartkids.recyclerview.adapter.RecyclerArrayAdapter;
+import com.squareup.okhttp.Request;
 
 /**
  * 项目名称：LovelyBaby
@@ -28,22 +22,19 @@ import java.util.List;
  * 创建人：javon
  * 创建时间：2015/10/12 19:15
  */
-public class EvaluateFragment extends BaseFragment {
+public class EvaluateFragment extends BaseFragment implements View.OnClickListener, RecyclerArrayAdapter.OnLoadMoreListener, SwipeRefreshLayout.OnRefreshListener, RecyclerArrayAdapter.OnItemClickListener {
     private final String TAG = EvaluateFragment.class.getSimpleName();
-    public LoadMoreRecyclerView lmrv;
-    private NestedScrollView nsv;
     private MyPerssionAdapter adapter;
-    private String isPopman, userId;
+    public SmartRecyclerView smartRecyclerView;
+    private int myCenter = 0;
     private int pager = 0;
-    private int pagerSize = 10;
-    private List<EvaluateListModel.DataEntity.RowsEntity> cacheList = new ArrayList<>();
-    private int cachePager = -1;
-
-
+    private int pagerSize = 5;
+    private String userId, isPopman;
+    private int cachePager = -1; //缓存上次的pager
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_list_evaluate, null);
+        View root = inflater.inflate(R.layout.recyclerview_layout_v, null);
         return root;
     }
 
@@ -52,102 +43,70 @@ public class EvaluateFragment extends BaseFragment {
         super.onActivityCreated(savedInstanceState);
         initView();
         initData();
-        addListener();
+        onRefresh();
     }
 
-    private void initView(){
-        lmrv = (LoadMoreRecyclerView) getView().findViewById(R.id.lmrv_self);
-        nsv = (NestedScrollView) getView().findViewById(R.id.nsv_self);
-        lmrv.setLinearLayout();
-        adapter = new MyPerssionAdapter();
-        adapter.setData(cacheList);
-        lmrv.setAdapter(adapter);
+
+    private void initView() {
+        smartRecyclerView = (SmartRecyclerView) getView().findViewById(R.id.srv_self);
+        smartRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        adapter = new MyPerssionAdapter(getActivity());
+        smartRecyclerView.setAdapterWithProgress(adapter);
+        adapter.setMore(R.layout.view_more, this);
+        adapter.setNoMore(R.layout.view_nomore);
+        adapter.setOnItemClickListener(this);
+        smartRecyclerView.setRefreshListener(this);
     }
 
-    private void initData(){
+    private void initData() {
         Bundle bundle = null;
-        if((bundle = getArguments()) != null){
-            isPopman = bundle.getString("isPopman");
+        if (getArguments() != null && (bundle = getArguments()) != null) {
             userId = bundle.getString("userId");
-        }else{
+            isPopman = bundle.getString("isPopman");
+        } else {
             showShortToast("传参出错~");
-            return;
         }
     }
 
-    private void addListener(){
-        lmrv.setPullLoadMoreListener(lmrvListener);
-        lmrv.setInitializeWithoutPb();
-        adapter.setOnFooterTryAgain(this);
-        adapter.setOnHeaderListener(itemClick);
+    /*@Override
+    public void onItemClick(int position) {
+        ServiceListModel.DataEntity.RowsEntity item = adapter.getItem(position);
+        Intent intent = new Intent(getActivity(), UserCenterActivity.class);
+        intent.putExtra("userId", userId);
+        startActivity(intent);
+    }*/
+
+    @Override
+    public void onLoadMore() {
+        pager++;
+        handleRequest(pager, pagerSize, false);
     }
 
-    private LoadMoreRecyclerView.PullLoadMoreListener lmrvListener = new LoadMoreRecyclerView.PullLoadMoreListener() {
-        @Override
-        public void onInitialize() {
-            showWaitsDialog();
-            handleRequest(pager, pagerSize);
+    @Override
+    public void onRefresh() {
+        adapter.clear();
+        pager = 0;
+        handleRequest(pager, pagerSize, true);
+    }
 
-        }
 
-        @Override
-        public void onRefresh() {
-            pager = 0;
-            adapter.clearData();
-            handleRequest(pager, pagerSize);
-        }
-
-        @Override
-        public void onLoadMore() {
-            pager ++;
-            handleRequest(pager, pagerSize);
-
-        }
-    };
-
-    private CustomListener.ItemClickListener itemClick = new CustomListener.ItemClickListener() {
-        @Override
-        public void onItemClick(View v, int position, Object object) {
-            int userId = (int) object;
-            Intent intent = new Intent(getActivity(), UserCenterActivity.class);
-            intent.putExtra("userId", userId);
-            startActivity(intent);
-        }
-    };
-
-    private void handleRequest(final int pager, int pagerSize){
-        HashMap<String, String> params = new HashMap<>();
-        params.put("pageNo", String.valueOf(pager));
-        params.put("numberOfPerPage", String.valueOf(pagerSize));
-        params.put("myCenter", 0 + "");
-        params.put("id", userId + "");
-        params.put("isEredar", isPopman + "");
-        NetRequest.postRequest(Constants.ServiceInfo.EVALUATE_LIST_REQUEST, BaseApplication.token, params, EvaluateListModel.class, new NetRequest.NetHandler(getActivity(), new NetRequest.NetResponseListener() {
+    private void handleRequest(final int pager, int pagerSize, final boolean flag) {
+        EvaluateListModel.getUserCenterServiceRequest(0, isPopman, userId, pager, pagerSize, new OkHttpClientManager.ResultCallback<EvaluateListModel>() {
             @Override
-            public void onSuccessListener(Object object, String msg) {
-                hideWaitDialog();
-                lmrv.setPullLoadMoreCompleted();
-                EvaluateListModel data = (EvaluateListModel) object;
-                if (data != null && data.getData() != null && data.getData().getRows().size() > 0 && cachePager != pager) {
-                    lmrv.setVisibility(View.VISIBLE);
-                    nsv.setVisibility(View.GONE);
-                    cacheList.addAll(data.getData().getRows());
-                    adapter.notifyDataSetChanged();
-                }
-                if (adapter.getDataSize() == 0) {
-                    lmrv.setVisibility(View.GONE);
-                    nsv.setVisibility(View.VISIBLE);
-                }
-                showShortToast(msg);
+            public void onError(Request request, Exception e) {
+                showShortToast(e.toString());
             }
 
             @Override
-            public void onErrorListener(String message) {
-                hideWaitDialog();
-                lmrv.setPullLoadMoreCompleted();
-                showShortToast(message);
+            public void onResponse(EvaluateListModel response) {
+                if (response != null && response.getData() != null && response.getData().getRows().size() > 0 && cachePager != pager) {
+                    if (flag) {
+                        adapter.clear();
+                    }
+                    adapter.addAll(response.getData().getRows());
+                }
             }
-        }));
+        });
 
     }
 
@@ -158,4 +117,8 @@ public class EvaluateFragment extends BaseFragment {
     }
 
 
+    @Override
+    public void onItemClick(int position) {
+
+    }
 }

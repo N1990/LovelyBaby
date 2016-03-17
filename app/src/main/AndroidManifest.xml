@@ -263,10 +263,7 @@
             android:label="@string/title_activity_my_set" />
         <activity
             android:name=".activity.user.UserCenterActivity"
-            android:label="@string/title_activity_user_center" />
-        <activity
-            android:name=".activity.serve.ServiceListActivity"
-            android:label="@string/title_activity_service_list" />
+            android:theme="@style/HomePageTheme" />
         <activity
             android:name=".activity.user.PerssionListActivity"
             android:label="@string/title_activity_perssion_list" />
@@ -399,7 +396,9 @@
         <activity android:name=".activity.order.v2.GenerateOrder" />
         <activity android:name=".activity.order.v2.PayConfirm" />
         <activity android:name=".activity.home.home_v2.RankErdarActivity" />
-        <activity android:name=".activity.home.home_v2.WonderfulReviewActivity" android:theme="@style/HomePageTheme"/>
+        <activity
+            android:name=".activity.home.home_v2.WonderfulReviewActivity"
+            android:theme="@style/HomePageTheme" />
 
     </application>
 

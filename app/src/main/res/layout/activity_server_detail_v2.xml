@@ -23,6 +23,7 @@
         android:padding="@dimen/global_padding"
         android:text="立即购买"
         android:textColor="@android:color/white"
-        android:textSize="@dimen/txt_middle" />
+        android:textSize="@dimen/txt_middle"
+        android:visibility="gone" />
 
 </RelativeLayout>

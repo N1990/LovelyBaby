@@ -1,7 +1,6 @@
 package com.cmbb.smartkids.activity.user.fragment;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,7 +11,6 @@ import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.activity.user.UserCenterActivity;
 import com.cmbb.smartkids.activity.user.adapter.MyCareAdapter;
 import com.cmbb.smartkids.activity.user.model.FriendListModel;
-import com.cmbb.smartkids.base.BaseActivity;
 import com.cmbb.smartkids.base.BaseApplication;
 import com.cmbb.smartkids.base.BaseFragment;
 import com.cmbb.smartkids.base.Constants;
@@ -22,7 +20,6 @@ import com.javon.loadmorerecyclerview.LoadMoreRecyclerView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * 项目名称：LovelyBaby
@@ -30,7 +27,7 @@ import java.util.List;
  * 创建人：javon
  * 创建时间：2015/9/8 13:11
  */
-public class MyCareFriendFragment extends BaseFragment{
+public class MyCareFriendFragment extends BaseFragment {
     private final String TAG = MyCareFriendFragment.class.getSimpleName();
     private final int USER_CENTER_REQUEST = 1101;
     private LoadMoreRecyclerView lmrv;
@@ -86,12 +83,11 @@ public class MyCareFriendFragment extends BaseFragment{
             adapter.clearData();
             pager = 0;
             handleRequest(pager, pagerSize);
-
         }
 
         @Override
         public void onLoadMore() {
-            pager ++;
+            pager++;
             handleRequest(pager, pagerSize);
         }
     };
@@ -114,23 +110,23 @@ public class MyCareFriendFragment extends BaseFragment{
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode == USER_CENTER_REQUEST && resultCode == -1){
+        if (requestCode == USER_CENTER_REQUEST && resultCode == -1) {
             adapter.clearData();
             pager = 0;
             showWaitsDialog();
-            handleRequest(pager,pagerSize);
-        }else{
+            handleRequest(pager, pagerSize);
+        } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
 
     /**
-     *
      * 加载好友列表
+     *
      * @param pager
      * @param pagerSize
      */
-    public void handleRequest(int pager, int pagerSize){
+    public void handleRequest(int pager, int pagerSize) {
         HashMap<String, String> params = new HashMap<>();
         params.put("typeNum", "0");
         params.put("pageNo", String.valueOf(pager));
@@ -143,25 +139,24 @@ public class MyCareFriendFragment extends BaseFragment{
                 lmrv.setPullLoadMoreCompleted();
                 FriendListModel friend = (FriendListModel) object;
                 Log.e(TAG, "friend:" + friend.toString());
-                if(friend != null && friend.getData() != null && friend.getData().getRecords() != 0){
+                if (friend != null && friend.getData() != null && friend.getData().getRecords() != 0) {
                     adapter.addData(friend.getData().getRows(), lmrv);
-                }else{
+                } else {
                     showShortToast(msg);
                 }
-                if(adapter.getDataSize() == 0)
+                if (adapter.getDataSize() == 0)
                     lmrv.setNoContent();
             }
 
             @Override
             public void onErrorListener(String message) {
-                Log.e(TAG, "friend error:"+message);
+                Log.e(TAG, "friend error:" + message);
                 hideWaitDialog();
                 lmrv.setPullLoadMoreCompleted();
                 showShortToast(message);
             }
         }));
     }
-
 
 
 }

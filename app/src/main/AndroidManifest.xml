@@ -395,6 +395,13 @@
         <activity android:name=".activity.order.v2.ConfirmOrder" />
         <activity android:name=".activity.order.v2.GenerateOrder" />
         <activity android:name=".activity.order.v2.PayConfirm" />
+        <activity android:name=".activity.order.v2.SavePhoneActivity" />
+        <activity android:name=".activity.order.v2.BaseOrderListActivity" />
+        <activity android:name=".activity.order.v2.AllOrderListActivity" />
+        <activity android:name=".activity.order.v2.UnpayOrderListActivity" />
+        <activity android:name=".activity.order.v2.UnConsumeOrderListActivity" />
+        <activity android:name=".activity.order.v2.UnEvaluateOrderListActivity" />
+        <activity android:name=".activity.order.v2.ReimburseOrderListActivity" />
         <activity android:name=".activity.home.home_v2.RankErdarActivity" />
         <activity
             android:name=".activity.home.home_v2.WonderfulReviewActivity"

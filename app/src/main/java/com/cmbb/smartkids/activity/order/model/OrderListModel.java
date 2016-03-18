@@ -2,7 +2,13 @@ package com.cmbb.smartkids.activity.order.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.text.TextUtils;
 
+import com.cmbb.smartkids.base.BaseApplication;
+import com.cmbb.smartkids.base.Constants;
+import com.cmbb.smartkids.network.OkHttpClientManager;
+
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -15,18 +21,20 @@ public class OrderListModel implements Parcelable {
 
 
     /**
-     * status : 1
-     * data : {"page":1,"records":1,"rows":[{"title":"萌宝驾到21！","price":22,"serviceId":21,"status":1,"orderCode":"0314430868119668378","servicesImg":"http://fuck.image.alimmdn.com/2015-9-18/image_2a3320c26e70426cb07a5afc3fe9bf3c","orderDate":"2015-09-24 17:27:01","orderId":31}],"total":1,"userdata":null}
+     * page : 1
+     * records : 14
+     * rows : [{"buyCount":2,"title":"富文本编辑器测试","price":"299.98","serviceId":339,"status":1,"orderCode":"003391327381460014","servicesImg":"http://smart.image.alimmdn.com/system/image/2016-03-01/servicesImgFile_N2EwOGZhMGQtNTI1My00MjA3LTgwMzEtZjdjMjM5NzJhNDRl","orderDate":"2016-03-16 20:52:18","specifications":"中份","orderId":103}]
+     * total : 2
+     * userdata :
+     */
+
+    private DataEntity data;
+    /**
+     * data : {"page":1,"records":14,"rows":[{"buyCount":2,"title":"富文本编辑器测试","price":"299.98","serviceId":339,"status":1,"orderCode":"003391327381460014","servicesImg":"http://smart.image.alimmdn.com/system/image/2016-03-01/servicesImgFile_N2EwOGZhMGQtNTI1My00MjA3LTgwMzEtZjdjMjM5NzJhNDRl","orderDate":"2016-03-16 20:52:18","specifications":"中份","orderId":103}],"total":2,"userdata":""}
      * msg : 数据加载成功
      */
 
-    private int status;
-    private DataEntity data;
     private String msg;
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
 
     public void setData(DataEntity data) {
         this.data = data;
@@ -34,10 +42,6 @@ public class OrderListModel implements Parcelable {
 
     public void setMsg(String msg) {
         this.msg = msg;
-    }
-
-    public int getStatus() {
-        return status;
     }
 
     public DataEntity getData() {
@@ -49,18 +53,23 @@ public class OrderListModel implements Parcelable {
     }
 
     public static class DataEntity implements Parcelable {
-        /**
-         * page : 1
-         * records : 1
-         * rows : [{"title":"萌宝驾到21！","price":22,"serviceId":21,"status":1,"orderCode":"0314430868119668378","servicesImg":"http://fuck.image.alimmdn.com/2015-9-18/image_2a3320c26e70426cb07a5afc3fe9bf3c","orderDate":"2015-09-24 17:27:01","orderId":31}]
-         * total : 1
-         * userdata : null
-         */
-
         private int page;
         private int records;
         private int total;
         private String userdata;
+        /**
+         * buyCount : 2
+         * title : 富文本编辑器测试
+         * price : 299.98
+         * serviceId : 339
+         * status : 1
+         * orderCode : 003391327381460014
+         * servicesImg : http://smart.image.alimmdn.com/system/image/2016-03-01/servicesImgFile_N2EwOGZhMGQtNTI1My00MjA3LTgwMzEtZjdjMjM5NzJhNDRl
+         * orderDate : 2016-03-16 20:52:18
+         * specifications : 中份
+         * orderId : 103
+         */
+
         private List<RowsEntity> rows;
 
         public void setPage(int page) {
@@ -104,17 +113,7 @@ public class OrderListModel implements Parcelable {
         }
 
         public static class RowsEntity implements Parcelable {
-            /**
-             * title : 萌宝驾到21！
-             * price : 22
-             * serviceId : 21
-             * status : 1
-             * orderCode : 0314430868119668378
-             * servicesImg : http://fuck.image.alimmdn.com/2015-9-18/image_2a3320c26e70426cb07a5afc3fe9bf3c
-             * orderDate : 2015-09-24 17:27:01
-             * orderId : 31
-             */
-
+            private int buyCount;
             private String title;
             private String price;
             private int serviceId;
@@ -122,7 +121,12 @@ public class OrderListModel implements Parcelable {
             private String orderCode;
             private String servicesImg;
             private String orderDate;
+            private String specifications;
             private int orderId;
+
+            public void setBuyCount(int buyCount) {
+                this.buyCount = buyCount;
+            }
 
             public void setTitle(String title) {
                 this.title = title;
@@ -152,8 +156,16 @@ public class OrderListModel implements Parcelable {
                 this.orderDate = orderDate;
             }
 
+            public void setSpecifications(String specifications) {
+                this.specifications = specifications;
+            }
+
             public void setOrderId(int orderId) {
                 this.orderId = orderId;
+            }
+
+            public int getBuyCount() {
+                return buyCount;
             }
 
             public String getTitle() {
@@ -184,6 +196,10 @@ public class OrderListModel implements Parcelable {
                 return orderDate;
             }
 
+            public String getSpecifications() {
+                return specifications;
+            }
+
             public int getOrderId() {
                 return orderId;
             }
@@ -195,6 +211,7 @@ public class OrderListModel implements Parcelable {
 
             @Override
             public void writeToParcel(Parcel dest, int flags) {
+                dest.writeInt(this.buyCount);
                 dest.writeString(this.title);
                 dest.writeString(this.price);
                 dest.writeInt(this.serviceId);
@@ -202,6 +219,7 @@ public class OrderListModel implements Parcelable {
                 dest.writeString(this.orderCode);
                 dest.writeString(this.servicesImg);
                 dest.writeString(this.orderDate);
+                dest.writeString(this.specifications);
                 dest.writeInt(this.orderId);
             }
 
@@ -209,6 +227,7 @@ public class OrderListModel implements Parcelable {
             }
 
             protected RowsEntity(Parcel in) {
+                this.buyCount = in.readInt();
                 this.title = in.readString();
                 this.price = in.readString();
                 this.serviceId = in.readInt();
@@ -216,6 +235,7 @@ public class OrderListModel implements Parcelable {
                 this.orderCode = in.readString();
                 this.servicesImg = in.readString();
                 this.orderDate = in.readString();
+                this.specifications = in.readString();
                 this.orderId = in.readInt();
             }
 
@@ -228,20 +248,6 @@ public class OrderListModel implements Parcelable {
                     return new RowsEntity[size];
                 }
             };
-
-            @Override
-            public String toString() {
-                return "RowsEntity{" +
-                        "title='" + title + '\'' +
-                        ", price=" + price +
-                        ", serviceId=" + serviceId +
-                        ", status=" + status +
-                        ", orderCode='" + orderCode + '\'' +
-                        ", servicesImg='" + servicesImg + '\'' +
-                        ", orderDate='" + orderDate + '\'' +
-                        ", orderId=" + orderId +
-                        '}';
-            }
         }
 
         @Override
@@ -278,17 +284,6 @@ public class OrderListModel implements Parcelable {
                 return new DataEntity[size];
             }
         };
-
-        @Override
-        public String toString() {
-            return "DataEntity{" +
-                    "page=" + page +
-                    ", records=" + records +
-                    ", total=" + total +
-                    ", userdata='" + userdata + '\'' +
-                    ", rows=" + rows +
-                    '}';
-        }
     }
 
     @Override
@@ -298,7 +293,6 @@ public class OrderListModel implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(this.status);
         dest.writeParcelable(this.data, 0);
         dest.writeString(this.msg);
     }
@@ -307,7 +301,6 @@ public class OrderListModel implements Parcelable {
     }
 
     protected OrderListModel(Parcel in) {
-        this.status = in.readInt();
         this.data = in.readParcelable(DataEntity.class.getClassLoader());
         this.msg = in.readString();
     }
@@ -322,12 +315,24 @@ public class OrderListModel implements Parcelable {
         }
     };
 
-    @Override
-    public String toString() {
-        return "OrderListModel{" +
-                "status=" + status +
-                ", data=" + data +
-                ", msg='" + msg + '\'' +
-                '}';
+
+    /**
+     * 获取订单列表
+     * @param queryType
+     * @param status
+     * @param pager
+     * @param pagerSize
+     * @param callback
+     */
+    public static void getOrderListRequest(String queryType, String status, int pager, int pagerSize, OkHttpClientManager.ResultCallback<OrderListModel> callback){
+        HashMap<String, String> params = new HashMap<>();
+        params.put("token", BaseApplication.token);
+        params.put("queryType", queryType);
+        if(!TextUtils.isEmpty(status))
+            params.put("status", status);
+        params.put("pageNo", String.valueOf(pager));
+        params.put("numberOfPerPage", String.valueOf(pagerSize));
+        OkHttpClientManager.postAsyn(Constants.ServiceInfo.ORDER_LIST_REQUEST, params, callback);
     }
+
 }

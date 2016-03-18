@@ -100,6 +100,7 @@ public class OrderDetailActivity extends BaseActivity {
         if (getIntent() != null && (bundle = getIntent().getExtras()) != null) {
             data = bundle.getParcelable("orderDetail");
             flag = bundle.getBoolean("flag", false);
+            orderCode = bundle.getString("orderCode");
 //            serviceTitle = bundle.getString("serviceTitle");
 //            serviceCity = bundle.getString("serviceCity");
 //            serviceTime = bundle.getString("serviceTime");
@@ -107,7 +108,7 @@ public class OrderDetailActivity extends BaseActivity {
 //            serviceImg = bundle.getString("serviceImg");
 //            serviceWidth = bundle.getString("serviceWidth");
 //            serviceHeight = bundle.getString("serviceHeight");
-//            orderCode = bundle.getString("orderCode");
+
         }
 //        if (serviceTitle == null)
 //            Log.e(TAG, "service data is null");

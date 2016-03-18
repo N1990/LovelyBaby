@@ -160,7 +160,7 @@
                         android:id="@+id/tv_phone"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="2"
+                        android:layout_weight="3.0"
                         android:singleLine="true"
                         android:ellipsize="end"
                         android:background="@null"
@@ -171,18 +171,18 @@
                         android:id="@+id/tv_phone_change"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1.2"
+                        android:layout_weight="1.0"
                         android:background="@drawable/btn_login_selector"
                         android:gravity="center"
                         android:paddingBottom="@dimen/half_global_padding"
                         android:paddingLeft="@dimen/global_padding"
                         android:paddingRight="@dimen/global_padding"
                         android:paddingTop="@dimen/half_global_padding"
-                        android:text="获取验证码"
+                        android:text="修改"
                         android:textColor="@android:color/white" />
                 </LinearLayout>
 
-                <LinearLayout
+               <!-- <LinearLayout
                     android:id="@+id/ll_contact_verify"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -218,12 +218,12 @@
                         android:layout_weight="1.2"
                         android:gravity="center" />
                 </LinearLayout>
-
+-->
                 <LinearLayout
                     android:id="@+id/ll_contact_address"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/ll_contact_verify"
+                    android:layout_below="@+id/ll_contact_phone"
                     android:background="@drawable/shape_background_white_c"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"

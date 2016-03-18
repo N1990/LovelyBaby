@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@android:color/white"
+    android:padding="@dimen/half_global_padding"
+    android:layout_marginTop="5dp"
+    android:layout_marginRight="5dp"
+    android:layout_marginLeft="5dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/global_padding"
+        android:paddingBottom="@dimen/global_padding"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/tv_order_code_item"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:textAppearance="?android:textAppearanceSmall"
+            android:textColor="@color/dimgray"
+            android:text="订单编号:2374483957439475"/>
+
+        <TextView
+            android:id="@+id/tv_order_status_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:textAppearanceSmall"
+            android:textColor="@color/primaryColor"
+            android:text="未支付"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@android:color/darker_gray"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/global_padding"
+        android:paddingBottom="@dimen/global_padding">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/sdv_order_item"
+            android:layout_width="120dp"
+            android:layout_height="72dp"
+            android:layout_marginRight="10dp"
+            app:placeholderImage="@color/primaryColor"
+            app:actualImageScaleType="centerCrop"
+            app:fadeDuration="300"/>
+
+        <TextView
+            android:id="@+id/tv_order_title_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/sdv_order_item"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:textAppearance="?android:textAppearance"
+            android:textColor="@color/dimgray"
+            android:text="服务:当你浪费的时间发来的舒服纽芬兰省呢"/>
+
+        <TextView
+            android:id="@+id/tv_order_num_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/sdv_order_item"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/tv_order_title_item"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:textAppearance="?android:textAppearance"
+            android:textColor="@color/dimgray"
+            android:text="数量:1"/>
+
+
+
+        <TextView
+            android:id="@+id/tv_order_price_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/sdv_order_item"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/tv_order_num_item"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:textAppearance="?android:textAppearance"
+            android:textColor="@color/dimgray"
+            android:text="价格:95元"/>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@android:color/darker_gray"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/global_padding"
+        android:paddingBottom="@dimen/global_padding"
+        android:layout_gravity="right"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_order_cancle_item"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:padding="6dp"
+            android:layout_marginRight="10dp"
+            android:textAppearance="?android:textAppearance"
+            android:background="@drawable/edit_gray_radio_bg"
+            android:textColor="@android:color/darker_gray"
+            android:text="取消订单"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/tv_order_handler_item"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:padding="6dp"
+            android:textAppearance="?android:textAppearance"
+            android:background="@drawable/orange_radio_bg"
+            android:textColor="@android:color/holo_orange_light"
+            android:text="去支付"
+            android:visibility="gone"/>
+
+
+
+    </LinearLayout>
+
+</LinearLayout>

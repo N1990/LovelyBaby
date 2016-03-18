@@ -3,6 +3,12 @@ package com.cmbb.smartkids.activity.order.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.cmbb.smartkids.base.BaseApplication;
+import com.cmbb.smartkids.base.Constants;
+import com.cmbb.smartkids.network.OkHttpClientManager;
+
+import java.util.HashMap;
+
 /**
  * 项目名称：LovelyBaby
  * 类描述：
@@ -71,5 +77,17 @@ public class RefundModel implements Parcelable {
                 "status='" + status + '\'' +
                 ", name='" + name + '\'' +
                 '}';
+    }
+
+    /**
+     * 申请退款
+     * @param orderCode
+     * @param callback
+     */
+    public static void handleApplyRefundRequest(String orderCode, OkHttpClientManager.ResultCallback<RefundModel> callback){
+        HashMap<String, String> params = new HashMap<>();
+        params.put("token", BaseApplication.token);
+        params.put("orderCode", orderCode);
+        OkHttpClientManager.postAsyn(Constants.ServiceInfo.APPLY_REFUND_REQUEST, params, callback);
     }
 }

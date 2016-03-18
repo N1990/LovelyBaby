@@ -49,6 +49,8 @@ import java.util.List;
 public class ConfirmOrder extends BaseActivity {
     private static final String TAG = ConfirmOrder.class.getSimpleName();
     private final int CHOOSE_ADDRESS_REQUEST = 10101;
+    private final int MODIFY_PHONE_REQUEST = 10111;
+
     private RelativeLayout llHomeServiceItem;
     private SimpleDraweeView sdPic;
     private TextView tvTitle;
@@ -89,7 +91,6 @@ public class ConfirmOrder extends BaseActivity {
     H5ServiceDetailModel.PriceListEntity priceListEntity;//选中的对象
     ReserveModel.DataEntity  reserveEntity;
     DeliveryAddressListModel.DataEntity.RowsEntity local;
-    private MyTimeCount timeCount;
     private String receiverName;
     private String receiverPhone;
     private String postCode;
@@ -216,8 +217,8 @@ public class ConfirmOrder extends BaseActivity {
         llContactPhone = (LinearLayout) findViewById(R.id.ll_contact_phone);
         tvPhoneTag = (TextView) findViewById(R.id.tv_phone_tag);
         tvPhone = (TextView) findViewById(R.id.tv_phone);
+        tvPhone.setEnabled(false);
         tvPhoneChange = (TextView) findViewById(R.id.tv_phone_change);
-        tvPhoneChange.setText("获取验证码");
         tvPhoneChange.setOnClickListener(this);
         llContactAddress = (LinearLayout) findViewById(R.id.ll_contact_address);
         tvAddressTag = (TextView) findViewById(R.id.tv_address_tag);
@@ -229,7 +230,6 @@ public class ConfirmOrder extends BaseActivity {
         tvTotalPrice = (TextView) findViewById(R.id.tv_whole_price);
         tvSubmit = (TextView) findViewById(R.id.tv_submit);
         tvSubmit.setOnClickListener(this);
-        timeCount = new MyTimeCount(60000, 1000, tvPhoneChange);
     }
 
 
@@ -246,25 +246,7 @@ public class ConfirmOrder extends BaseActivity {
                 tvTotalPrice.setText(tvWholePrice.getText().toString());
                 break;
             case R.id.tv_phone_change:// 修改手机号码
-                String phone = tvPhone.getText().toString();
-                if(!Tools.isMobileNo(phone)){
-                    showShortToast("请输入正确的手机号");
-                    return;
-                }
-                SecurityCodeModel.getPhoneCodeRequest(phone, new OkHttpClientManager.ResultCallback<SecurityCodeModel>() {
-                    @Override
-                    public void onError(Request request, Exception e) {
-                        showShortToast(e.toString());
-                        tvPhoneChange.setEnabled(true);
-                    }
-
-                    @Override
-                    public void onResponse(SecurityCodeModel response) {
-                        showShortToast(response.getMsg());
-                        tvPhoneChange.setEnabled(false);
-                        timeCount.start();
-                    }
-                });
+                SavePhoneActivity.newInstance(ConfirmOrder.this, MODIFY_PHONE_REQUEST);
                 break;
             case R.id.tv_address_manager:// 地址管理
                 int deliveryAddressId = (int) tvAdd.getTag();
@@ -323,6 +305,9 @@ public class ConfirmOrder extends BaseActivity {
                 tvAdd.setTag(local.getId());
                 tvAdd.setText(local.getProvinceText() + local.getCityText() + local.getDistrictText() + local.getAddress());
             }
+        }else if(requestCode == MODIFY_PHONE_REQUEST && resultCode == RESULT_OK){
+            String phone = data.getStringExtra("phone");
+            tvPhone.setText(phone+"");
         }else{
             super.onActivityResult(requestCode, resultCode, data);
         }

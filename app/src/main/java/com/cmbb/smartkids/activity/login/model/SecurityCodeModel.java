@@ -3,6 +3,7 @@ package com.cmbb.smartkids.activity.login.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.cmbb.smartkids.base.BaseApplication;
 import com.cmbb.smartkids.base.Constants;
 import com.cmbb.smartkids.network.OkHttpClientManager;
 
@@ -105,6 +106,19 @@ public class SecurityCodeModel implements Parcelable {
         HashMap<String, String> params = new HashMap<>();
         params.put("loginAccount", phone);
         OkHttpClientManager.postAsyn(Constants.ServiceInfo.VERIFY_CODE, params, callback);
+    }
+
+
+    /**
+     * 取消订单
+     * @param orderCode
+     * @param callback
+     */
+    public static void handleCancelOrderRequest(String orderCode, OkHttpClientManager.ResultCallback<SecurityCodeModel> callback){
+        HashMap<String, String> params = new HashMap<>();
+        params.put("token", BaseApplication.token);
+        params.put("orderCode", orderCode);
+        OkHttpClientManager.postAsyn(Constants.ServiceInfo.CANCEL_ORDER_REQUEST, params, callback);
     }
 
 

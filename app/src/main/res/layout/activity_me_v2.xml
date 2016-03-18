@@ -270,34 +270,38 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/tv_order_unpay"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:drawableTop="@android:drawable/ic_menu_add"
+                            android:drawableTop="@mipmap/unpay_bg"
                             android:gravity="center"
                             android:text="待付款" />
 
                         <TextView
+                            android:id="@+id/tv_order_unuse"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:drawableTop="@android:drawable/ic_menu_add"
+                            android:drawableTop="@mipmap/unuse_bg"
                             android:gravity="center"
                             android:text="待使用" />
 
                         <TextView
+                            android:id="@+id/tv_order_uncomment"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:drawableTop="@android:drawable/ic_menu_add"
+                            android:drawableTop="@mipmap/uncoment_bg"
                             android:gravity="center"
                             android:text="待评价" />
 
                         <TextView
+                            android:id="@+id/tv_order_reimburse"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:drawableTop="@android:drawable/ic_menu_add"
+                            android:drawableTop="@mipmap/reimburse_bg"
                             android:gravity="center"
                             android:text="退款" />
                     </LinearLayout>
@@ -317,7 +321,7 @@
                 android:paddingRight="10dip">
 
                 <LinearLayout
-                    android:id="@+id/tv_home_myself_collect"
+                    android:id="@+id/tv_home_myself_perssion"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
@@ -327,17 +331,17 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@mipmap/btn_my_order_bg"
+                        android:background="@mipmap/comment_bg"
                         android:scaleType="center" />
 
                     <TextView
-                        android:id="@+id/tv_home_myself_collect_tag"
+                        android:id="@+id/tv_home_myself_perssion_tag"
                         android:layout_width="0dip"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dip"
                         android:layout_weight="1.0"
                         android:padding="5dip"
-                        android:text="我的收藏"
+                        android:text="我的评价"
                         android:textAppearance="@style/TextAppearance.Smart.Small" />
 
                     <ImageView
@@ -346,6 +350,8 @@
                         android:background="@mipmap/btn_right_anchor_bg"
                         android:scaleType="centerCrop" />
                 </LinearLayout>
+
+
 
                 <View
                     android:id="@+id/v_home_myself_collect_tag"
@@ -364,7 +370,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@mipmap/btn_my_order_bg"
+                        android:background="@mipmap/careful_bg"
                         android:scaleType="center" />
 
                     <TextView
@@ -391,7 +397,7 @@
                     android:background="@color/line" />
 
                 <LinearLayout
-                    android:id="@+id/tv_home_myself_perssion"
+                    android:id="@+id/tv_home_myself_collect"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
@@ -401,17 +407,17 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@mipmap/btn_my_order_bg"
+                        android:background="@mipmap/collection_bg"
                         android:scaleType="center" />
 
                     <TextView
-                        android:id="@+id/tv_home_myself_perssion_tag"
+                        android:id="@+id/tv_home_myself_collect_tag"
                         android:layout_width="0dip"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dip"
                         android:layout_weight="1.0"
                         android:padding="5dip"
-                        android:text="我的评价"
+                        android:text="我的收藏"
                         android:textAppearance="@style/TextAppearance.Smart.Small" />
 
                     <ImageView
@@ -420,7 +426,6 @@
                         android:background="@mipmap/btn_right_anchor_bg"
                         android:scaleType="centerCrop" />
                 </LinearLayout>
-
 
             </LinearLayout>
 
@@ -511,6 +516,38 @@
                     android:background="@color/line" />
 
                 <LinearLayout
+                    android:id="@+id/ll_home_self_baby_diary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="5dip">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/btn_baby_diary_bg"
+                        android:scaleType="center" />
+
+                    <TextView
+                        android:id="@+id/tv_home_self_baby_diary"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dip"
+                        android:layout_weight="1.0"
+                        android:padding="5dip"
+                        android:text="我的宝宝"
+                        android:textAppearance="@style/TextAppearance.Smart.Small" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/btn_right_anchor_bg"
+                        android:scaleType="centerCrop" />
+                </LinearLayout>
+
+
+                <LinearLayout
                     android:id="@+id/ll_home_self_drafts"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -546,36 +583,7 @@
                     android:layout_height="1px"
                     android:background="@color/line" />
 
-                <LinearLayout
-                    android:id="@+id/ll_home_self_baby_diary"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:padding="5dip">
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@mipmap/btn_baby_diary_bg"
-                        android:scaleType="center" />
-
-                    <TextView
-                        android:id="@+id/tv_home_self_baby_diary"
-                        android:layout_width="0dip"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dip"
-                        android:layout_weight="1.0"
-                        android:padding="5dip"
-                        android:text="我的宝宝"
-                        android:textAppearance="@style/TextAppearance.Smart.Small" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@mipmap/btn_right_anchor_bg"
-                        android:scaleType="centerCrop" />
-                </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"

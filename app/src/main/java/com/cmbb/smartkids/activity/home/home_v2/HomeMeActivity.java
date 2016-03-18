@@ -27,6 +27,11 @@ import com.cmbb.smartkids.activity.home.ApplyPopmanActivity;
 import com.cmbb.smartkids.activity.login.model.SecurityCodeModel;
 import com.cmbb.smartkids.activity.message.MessageActivity;
 import com.cmbb.smartkids.activity.order.MyOrderListActivity;
+import com.cmbb.smartkids.activity.order.v2.AllOrderListActivity;
+import com.cmbb.smartkids.activity.order.v2.ReimburseOrderListActivity;
+import com.cmbb.smartkids.activity.order.v2.UnConsumeOrderListActivity;
+import com.cmbb.smartkids.activity.order.v2.UnEvaluateOrderListActivity;
+import com.cmbb.smartkids.activity.order.v2.UnpayOrderListActivity;
 import com.cmbb.smartkids.activity.user.MyCommunityActivity;
 import com.cmbb.smartkids.activity.user.MyDraftsActivity;
 import com.cmbb.smartkids.activity.user.MyListRedirectActivity;
@@ -142,6 +147,10 @@ public class HomeMeActivity extends BaseHomeActivity implements View.OnClickList
         myDrafts = (LinearLayout) findViewById(R.id.ll_home_self_drafts);
         myDrafts.setOnClickListener(this);
         myCount = (TextView) findViewById(R.id.tv_home_count);
+        findViewById(R.id.tv_order_unpay).setOnClickListener(this);
+        findViewById(R.id.tv_order_unuse).setOnClickListener(this);
+        findViewById(R.id.tv_order_uncomment).setOnClickListener(this);
+        findViewById(R.id.tv_order_reimburse).setOnClickListener(this);
         findViewById(R.id.iv_main_toolbar_left).setOnClickListener(this);
         findViewById(R.id.iv_main_toolbar_right).setOnClickListener(this);
     }
@@ -349,8 +358,9 @@ public class HomeMeActivity extends BaseHomeActivity implements View.OnClickList
                 }
                 break;
             case R.id.ll_home_self_order:
-                Intent myOrder = new Intent(new Intent(this, MyOrderListActivity.class));
-                startActivity(myOrder);
+                AllOrderListActivity.newInstance(this);
+//                Intent myOrder = new Intent(new Intent(this, MyOrderListActivity.class));
+//                startActivity(myOrder);
                 break;
             case R.id.ll_home_self_community:
                 startActivity(new Intent(this, MyCommunityActivity.class));
@@ -372,6 +382,18 @@ public class HomeMeActivity extends BaseHomeActivity implements View.OnClickList
                 break;
             case R.id.ll_home_self_drafts:
                 MyDraftsActivity.skipFromActivity(this, userInfoEntity.getUserId());
+                break;
+            case R.id.tv_order_unpay:
+                UnpayOrderListActivity.newInstance(this);
+                break;
+            case R.id.tv_order_unuse:
+                UnConsumeOrderListActivity.newInstance(this);
+                break;
+            case R.id.tv_order_uncomment:
+                UnEvaluateOrderListActivity.newInstance(this);
+                break;
+            case R.id.tv_order_reimburse:
+                ReimburseOrderListActivity.newInstance(this);
                 break;
         }
     }

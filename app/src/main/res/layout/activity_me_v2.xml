@@ -352,7 +352,6 @@
                 </LinearLayout>
 
 
-
                 <View
                     android:id="@+id/v_home_myself_collect_tag"
                     android:layout_width="match_parent"
@@ -546,6 +545,10 @@
                         android:scaleType="centerCrop" />
                 </LinearLayout>
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@color/line" />
 
                 <LinearLayout
                     android:id="@+id/ll_home_self_drafts"
@@ -577,13 +580,6 @@
                         android:background="@mipmap/btn_right_anchor_bg"
                         android:scaleType="centerCrop" />
                 </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1px"
-                    android:background="@color/line" />
-
-
 
                 <View
                     android:layout_width="match_parent"

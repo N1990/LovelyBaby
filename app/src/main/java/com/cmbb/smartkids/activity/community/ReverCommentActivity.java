@@ -182,9 +182,7 @@ public class ReverCommentActivity extends BaseActivity {
         @Override
         public void onClick(View v) {
             int userId = (int) v.getTag();
-            Intent intent = new Intent(ReverCommentActivity.this, UserCenterActivity.class);
-            intent.putExtra("userId", userId);
-            startActivity(intent);
+            UserCenterActivity.newIntent(ReverCommentActivity.this, userId);
         }
     };
 
@@ -232,7 +230,7 @@ public class ReverCommentActivity extends BaseActivity {
 
                     break;
                 case 0://
-                // report
+                    // report
                     builder = CustomDialogBuilder.getInstance(ReverCommentActivity.this).withTitle("操作")
                             .withMessage("您确认要举报此回复吗？")
                             .withComfirmText("确认", new CustomListener.DialogListener() {
@@ -409,7 +407,7 @@ public class ReverCommentActivity extends BaseActivity {
         if (parentId == -1) return;
         params.put("parentId", parentId + "");
         params.put("replyType", 1 + "");
-        if (!TextUtils.isEmpty(contents)){
+        if (!TextUtils.isEmpty(contents)) {
             params.put("contents", contents);
         }
         if (!TextUtils.isEmpty(img))

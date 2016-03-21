@@ -2,6 +2,7 @@ package com.cmbb.smartkids.activity.user.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
@@ -33,23 +34,21 @@ public class MyCollectServiceFragment extends BaseFragment implements View.OnCli
     private int pagerSize = 5;
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.recyclerview_layout_v, null);
-        return root;
+        return inflater.inflate(R.layout.recyclerview_layout, null);
     }
+
 
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        initView();
-        showWaitsDialog();
-        handleRequest(pager, pagerSize);
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        initView(view);
+        onRefresh();
     }
 
-    private void initView() {
-        srv = (SmartRecyclerView) getView().findViewById(R.id.srv_self);
+    private void initView(View view) {
+        srv = (SmartRecyclerView) view.findViewById(R.id.srv_self);
         srv.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter = new MyServiceAdapter(getActivity());
         srv.setAdapterWithProgress(adapter);
@@ -61,7 +60,7 @@ public class MyCollectServiceFragment extends BaseFragment implements View.OnCli
 
     @Override
     public void onItemClick(int position) {
-        ServiceListModel.DataEntity.RowsEntity itemData =  adapter.getItem(position);
+        ServiceListModel.DataEntity.RowsEntity itemData = adapter.getItem(position);
         Intent intent = new Intent(getActivity(), ActiveDetailActivity.class);
         intent.putExtra("serviceId", itemData.getId());
         startActivityForResult(intent, SERVICE_DETAIL_REQUEST);
@@ -69,13 +68,12 @@ public class MyCollectServiceFragment extends BaseFragment implements View.OnCli
 
     @Override
     public void onLoadMore() {
-        pager ++;
+        pager++;
         handleRequest(pager, pagerSize);
     }
 
     @Override
     public void onRefresh() {
-        adapter.clear();
         pager = 0;
         handleRequest(pager, pagerSize);
     }
@@ -93,20 +91,19 @@ public class MyCollectServiceFragment extends BaseFragment implements View.OnCli
     }
 
 
-    private void handleRequest(int pager, int pagerSize){
+    private void handleRequest(int pager, int pagerSize) {
         ServiceListModel.getCollectServiceRequest(pager, pagerSize, new OkHttpClientManager.ResultCallback<ServiceListModel>() {
             @Override
             public void onError(Request request, Exception e) {
-
+                showShortToast(e.toString());
             }
 
             @Override
             public void onResponse(ServiceListModel response) {
                 hideWaitDialog();
-                showShortToast(response.getMsg());
-                if(response != null && response.getData() != null && response.getData().getRecords() != 0){
+                if (response != null) {
+                    adapter.clear();
                     adapter.addAll(response.getData().getRows());
-                }else{
                     showShortToast(response.getMsg());
                 }
             }

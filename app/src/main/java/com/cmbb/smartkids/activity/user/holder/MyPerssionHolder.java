@@ -24,11 +24,11 @@ public class MyPerssionHolder extends BaseViewHolder<EvaluateListModel.DataEntit
 
     public MyPerssionHolder(ViewGroup parent) {
         super(parent, R.layout.list_perssion_item);
-        ivHeader = (SimpleDraweeView) itemView.findViewById(R.id.iv_header_perssion_item);
-        tvNickname = (TextView) itemView.findViewById(R.id.tv_nickname_perssion_item);
-        tvIdentity = (TextView) itemView.findViewById(R.id.tv_identity_perssion_item);
-        tvTitle = (TextView) itemView.findViewById(R.id.tv_title_perssion_item);
-        tvTime = (TextView) itemView.findViewById(R.id.tv_time_perssion_item);
+        ivHeader = $(R.id.iv_header_perssion_item);
+        tvNickname = $(R.id.tv_nickname_perssion_item);
+        tvIdentity = $(R.id.tv_identity_perssion_item);
+        tvTitle = $(R.id.tv_title_perssion_item);
+        tvTime = $(R.id.tv_time_perssion_item);
     }
 
     public void setData(EvaluateListModel.DataEntity.RowsEntity data) {

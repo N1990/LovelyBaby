@@ -184,9 +184,7 @@ public class HomeFragment extends BaseFragment {
         public void onItemClick(View v, int position, Object object) {
             RankEredarModel itemData = (RankEredarModel) object;
             int userId = itemData.getId();
-            Intent intent = new Intent(getActivity(), UserCenterActivity.class);
-            intent.putExtra("userId", userId);
-            startActivity(intent);
+            UserCenterActivity.newIntent(getActivity(), userId);
         }
     };
     //监听事件item

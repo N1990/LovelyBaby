@@ -1,14 +1,14 @@
 package com.cmbb.smartkids.activity.user.holder;
 
 import android.graphics.Color;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cmbb.smartkids.R;
-import com.cmbb.smartkids.activity.user.adapter.MyMsgAdapter;
 import com.cmbb.smartkids.activity.user.model.MessageListModel;
+import com.cmbb.smartkids.recyclerview.adapter.BaseViewHolder;
 import com.cmbb.smartkids.utils.Tools;
 
 import java.text.ParseException;
@@ -19,25 +19,20 @@ import java.text.ParseException;
  * 创建人：javon
  * 创建时间：2015/10/16 15:58
  */
-public class MyMessageHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class MyMessageHolder extends BaseViewHolder<MessageListModel.DataEntity.RowsEntity> {
     private TextView tvMessage, tvSort, tvTime;
     private ImageView ivTag;
-    private View root;
-    private MyMsgAdapter adapter;
-    private int position;
 
-    public MyMessageHolder(View itemView) {
-        super(itemView);
-        this.root = itemView;
-        tvMessage = (TextView) itemView.findViewById(R.id.tv_message_item);
-        tvSort = (TextView) itemView.findViewById(R.id.tv_message_sort_item);
-        tvTime = (TextView) itemView.findViewById(R.id.tv_message_time_item);
-        ivTag = (ImageView) itemView.findViewById(R.id.iv_message_tag_item);
+    public MyMessageHolder(ViewGroup itemView) {
+        super(itemView, R.layout.list_service_message_item);
+        tvMessage =$(R.id.tv_message_item);
+        tvSort = $(R.id.tv_message_sort_item);
+        tvTime = $(R.id.tv_message_time_item);
+        ivTag = $(R.id.iv_message_tag_item);
     }
 
-    public void setData(MyMsgAdapter adapter, MessageListModel.DataEntity.RowsEntity data, int position) {
-        this.adapter = adapter;
-        this.position = position;
+    @Override
+    public void setData(MessageListModel.DataEntity.RowsEntity data) {
         int readFlag = data.getIsRead();
         if (readFlag == 1) {
             tvMessage.setTextColor(Color.GRAY);
@@ -65,13 +60,5 @@ public class MyMessageHolder extends RecyclerView.ViewHolder implements View.OnC
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        root.setTag(data);
-        root.setOnClickListener(this);
-    }
-
-    @Override
-    public void onClick(View v) {
-        if (adapter.getOnItemListener() != null)
-            adapter.getOnItemListener().onItemClick(v, position, root.getTag());
     }
 }

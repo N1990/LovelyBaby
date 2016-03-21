@@ -3,6 +3,10 @@ package com.cmbb.smartkids.activity.user.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.cmbb.smartkids.base.Constants;
+import com.cmbb.smartkids.network.OkHttpClientManager;
+
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -297,4 +301,29 @@ public class MessageListModel implements Parcelable {
             return new MessageListModel[size];
         }
     };
+
+    /**
+     * 获取信息列表
+     *
+     * @param pager
+     * @param pagerSize
+     * @param token
+     * @param callback
+     */
+    public static void getMessageListRequest(int pager, int pagerSize, int type, String token, OkHttpClientManager.ResultCallback<MessageListModel> callback) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("pageNo", String.valueOf(pager));
+        params.put("numberOfPerPage", String.valueOf(pagerSize));
+        params.put("type", String.valueOf(type));
+        params.put("token", token);
+        OkHttpClientManager.postAsyn(Constants.ServiceInfo.MESSAGE_LIST_REQUEST, params, callback);
+    }
+
+    public static void getMessageListRequest(int pager, int pagerSize, String token, OkHttpClientManager.ResultCallback<MessageListModel> callback) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("pageNo", String.valueOf(pager));
+        params.put("numberOfPerPage", String.valueOf(pagerSize));
+        params.put("token", token);
+        OkHttpClientManager.postAsyn(Constants.ServiceInfo.MESSAGE_LIST_REQUEST, params, callback);
+    }
 }

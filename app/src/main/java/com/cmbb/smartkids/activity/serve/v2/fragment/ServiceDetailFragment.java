@@ -150,9 +150,7 @@ public class ServiceDetailFragment extends BaseFragment {
                 public void handler(String data, CallBackFunction function) {
                     if (!TextUtils.isEmpty(data)) {
                         RankEredarModel rankEredarModel = new Gson().fromJson(data, RankEredarModel.class);
-                        Intent intent = new Intent(getActivity(), UserCenterActivity.class);
-                        intent.putExtra("userId", rankEredarModel.getId());
-                        startActivity(intent);
+                        UserCenterActivity.newIntent(getActivity(), rankEredarModel.getId());
                     }
                 }
             });

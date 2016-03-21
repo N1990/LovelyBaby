@@ -1,8 +1,5 @@
 package com.cmbb.smartkids.activity.order;
 
-import android.content.Intent;
-import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,13 +12,11 @@ import com.cmbb.smartkids.activity.login.model.SecurityCodeModel;
 import com.cmbb.smartkids.activity.order.adapter.EvaluationAdapter;
 import com.cmbb.smartkids.activity.order.model.EvaluateModel;
 import com.cmbb.smartkids.activity.user.UserCenterActivity;
-import com.cmbb.smartkids.activity.user.adapter.ServiceOrderAdapter;
 import com.cmbb.smartkids.base.BaseActivity;
 import com.cmbb.smartkids.base.BaseApplication;
 import com.cmbb.smartkids.base.Constants;
 import com.cmbb.smartkids.base.CustomListener;
 import com.cmbb.smartkids.network.NetRequest;
-import com.javon.loadmorerecyclerview.LoadMoreRecyclerView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -79,9 +74,7 @@ public class EvaluateListActivity extends BaseActivity {
         public void onItemClick(View v, int position, Object object) {
             EvaluateModel.DataEntity item = (EvaluateModel.DataEntity) object;
             int userId = item.getUserId();
-            Intent intent = new Intent(EvaluateListActivity.this, UserCenterActivity.class);
-            intent.putExtra("userId", userId);
-            startActivity(intent);
+            UserCenterActivity.newIntent(EvaluateListActivity.this, userId);
         }
     };
 

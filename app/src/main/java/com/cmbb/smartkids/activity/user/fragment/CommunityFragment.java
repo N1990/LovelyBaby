@@ -3,6 +3,7 @@ package com.cmbb.smartkids.activity.user.fragment;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
@@ -26,7 +27,7 @@ import com.squareup.okhttp.Request;
  * 创建时间：2015/10/12 19:15
  */
 public class CommunityFragment extends BaseFragment implements View.OnClickListener, RecyclerArrayAdapter.OnLoadMoreListener, SwipeRefreshLayout.OnRefreshListener, RecyclerArrayAdapter.OnItemClickListener {
-    private final String TAG = MyCollectCommunityFragment.class.getSimpleName();
+    private final String TAG = CommunityFragment.class.getSimpleName();
     private final int COMMUNITY_DETAIL_REQUEST = 10020;
     public SmartRecyclerView smartRecyclerView;
     private MyCommunityAdapter adapter;
@@ -44,15 +45,15 @@ public class CommunityFragment extends BaseFragment implements View.OnClickListe
 
 
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        initView();
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        initView(view);
         initData();
         onRefresh();
     }
 
-    private void initView() {
-        smartRecyclerView = (SmartRecyclerView) getView().findViewById(R.id.srv_self);
+    private void initView(View view) {
+        smartRecyclerView = (SmartRecyclerView) view.findViewById(R.id.srv_self);
         smartRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter = new MyCommunityAdapter(getActivity());
         smartRecyclerView.setAdapterWithProgress(adapter);

@@ -3,6 +3,10 @@ package com.cmbb.smartkids.activity.user.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.cmbb.smartkids.base.Constants;
+import com.cmbb.smartkids.network.OkHttpClientManager;
+
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -418,5 +422,21 @@ public class FriendListModel implements Parcelable {
                 ", data=" + data +
                 ", msg='" + msg + '\'' +
                 '}';
+    }
+
+    /**
+     * 获取好友列表
+     *
+     * @param pager
+     * @param pagerSize
+     * @param callback
+     */
+    public static void getFriendListRequest(int typeNum, int pager, int pagerSize, String token, OkHttpClientManager.ResultCallback<FriendListModel> callback) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("typeNum", String.valueOf(typeNum));
+        params.put("pageNo", String.valueOf(pager));
+        params.put("numberOfPerPage", String.valueOf(pagerSize));
+        params.put("token", token);
+        OkHttpClientManager.postAsyn(Constants.ServiceInfo.CARE_LIST_REQUEST, params, callback);
     }
 }

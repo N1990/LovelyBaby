@@ -66,4 +66,9 @@ public class HomeMoreActivity extends BaseHomeActivity implements View.OnClickLi
                 break;
         }
     }
+
+    @Override
+    protected void netChange() {
+
+    }
 }

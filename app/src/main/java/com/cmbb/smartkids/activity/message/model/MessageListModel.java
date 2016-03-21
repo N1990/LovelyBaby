@@ -3,6 +3,10 @@ package com.cmbb.smartkids.activity.message.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.cmbb.smartkids.base.Constants;
+import com.cmbb.smartkids.network.OkHttpClientManager;
+
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -309,4 +313,23 @@ public class MessageListModel implements Parcelable {
             return new MessageListModel[size];
         }
     };
+
+
+    /**
+     * 获取消息
+     *
+     * @param modual
+     * @param pager
+     * @param numberOfPerPage
+     * @param token
+     * @param callback
+     */
+    public static void getOfficialMessageRequest(String modual, int pager, int numberOfPerPage, String token, OkHttpClientManager.ResultCallback<MessageListModel> callback) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("modual", modual);
+        params.put("pageNo", String.valueOf(pager));
+        params.put("numberOfPerPage", String.valueOf(numberOfPerPage));
+        params.put("token", token);
+        OkHttpClientManager.postAsyn(Constants.ServiceInfo.MESSAGE_GET_PAGE, params, callback);
+    }
 }

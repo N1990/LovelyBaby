@@ -262,6 +262,11 @@ public class HomeActivity extends BaseHomeActivity implements View.OnClickListen
     }
 
     @Override
+    protected void netChange() {
+        onRefresh();
+    }
+
+    @Override
     public void onItemClick(int position) {
         ServerDetailActivityV2.newIntent(this, adapter.getItem(position).getId());
     }

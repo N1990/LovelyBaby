@@ -203,6 +203,11 @@ public class HomeTopicActivity extends BaseHomeActivity implements View.OnClickL
         }
     }
 
+    @Override
+    protected void netChange() {
+        onRefresh();
+    }
+
     public static void newIntent(Context context) {
         Intent intent = new Intent(context, HomeTopicActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);

@@ -26,7 +26,6 @@ import com.cmbb.smartkids.activity.diary.MyBabyListActivity;
 import com.cmbb.smartkids.activity.home.ApplyPopmanActivity;
 import com.cmbb.smartkids.activity.login.model.SecurityCodeModel;
 import com.cmbb.smartkids.activity.message.MessageActivity;
-import com.cmbb.smartkids.activity.order.MyOrderListActivity;
 import com.cmbb.smartkids.activity.order.v2.AllOrderListActivity;
 import com.cmbb.smartkids.activity.order.v2.ReimburseOrderListActivity;
 import com.cmbb.smartkids.activity.order.v2.UnConsumeOrderListActivity;
@@ -396,5 +395,10 @@ public class HomeMeActivity extends BaseHomeActivity implements View.OnClickList
                 ReimburseOrderListActivity.newInstance(this);
                 break;
         }
+    }
+
+    @Override
+    protected void netChange() {
+        initData();
     }
 }

@@ -20,17 +20,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="订单编号:359590459495945949"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            />
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <View
             android:id="@+id/v_order_code_divider"
             android:layout_width="match_parent"
             android:layout_height="1px"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
             android:layout_below="@+id/tv_order_code"
-            android:background="@android:color/darker_gray"/>
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/darker_gray" />
 
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/iv_home_service_item"
@@ -236,7 +235,7 @@
             <TextView
                 android:id="@+id/tv_whole_price"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:text="98.00"
                 android:textColor="@color/primaryColor"
                 android:textSize="@dimen/txt_large"
@@ -246,7 +245,7 @@
         <TextView
             android:id="@+id/tv_submit"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/btn_buy_selector"
             android:gravity="center"
@@ -258,44 +257,44 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/relativeLayout"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:padding="@dimen/global_padding"
+        android:layout_below="@+id/relativeLayout"
         android:layout_marginTop="@dimen/global_padding"
-        android:background="@drawable/shape_background_white_c">
+        android:background="@drawable/shape_background_white_c"
+        android:padding="@dimen/global_padding">
 
         <TextView
+            android:id="@+id/tv_pay_way_tag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="选择支付方式"
-            android:id="@+id/tv_pay_way_tag"
-            android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:text="选择支付方式"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_pay_way_tag"
             android:layout_alignLeft="@+id/tv_pay_way_tag"
             android:layout_alignStart="@+id/tv_pay_way_tag"
-            android:layout_marginTop="@dimen/half_global_padding">
+            android:layout_below="@+id/tv_pay_way_tag"
+            android:layout_marginTop="@dimen/half_global_padding"
+            android:orientation="horizontal">
 
             <CheckBox
+                android:id="@+id/checkBox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:id="@+id/checkBox"
                 android:checked="true"
-                android:clickable="false"/>
+                android:clickable="false" />
 
             <ImageView
+                android:id="@+id/imageView"
                 android:layout_width="108dp"
                 android:layout_height="47dp"
-                android:id="@+id/imageView"
                 android:scaleType="centerCrop"
                 android:src="@mipmap/alipay_bg" />
         </LinearLayout>

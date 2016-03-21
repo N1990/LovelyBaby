@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.cmbb.smartkids.activity.message.MessageListActivity">
+    android:orientation="vertical">
 
-    <include
-        layout="@layout/custom_actionbar"/>
+    <include layout="@layout/custom_actionbar" />
 
-    <include
-        layout="@layout/recyclerview_layout"/>
-
+    <com.cmbb.smartkids.recyclerview.SmartRecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/rl_top"
+        app:layout_empty="@layout/view_empty"
+        app:layout_progress="@layout/view_progress"
+        app:scrollbarStyle="insideOverlay" />
 
 </LinearLayout>

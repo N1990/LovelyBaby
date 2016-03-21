@@ -48,7 +48,7 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void onResponse(ManagerAdModel response) {
                 if (response.getData() != null && response.getData().size() != 0)
-                    FrescoTool.loadImage(sdv, response.getData().get(0).getAdImg(), TDevice.getScreenWidth(SplashActivity.this)+"", TDevice.getScreenHeight(SplashActivity.this)+"");
+                    FrescoTool.loadImage(sdv, response.getData().get(0).getAdImg(), TDevice.getScreenWidth(SplashActivity.this) + "", TDevice.getScreenHeight(SplashActivity.this) + "");
             }
         });
 

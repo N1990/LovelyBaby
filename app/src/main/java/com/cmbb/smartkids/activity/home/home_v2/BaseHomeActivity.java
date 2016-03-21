@@ -1,6 +1,11 @@
 package com.cmbb.smartkids.activity.home.home_v2;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -8,6 +13,7 @@ import android.widget.TextView;
 import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.base.BaseActivity;
 import com.cmbb.smartkids.base.Constants;
+import com.cmbb.smartkids.utils.log.Log;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -19,6 +25,7 @@ import java.util.TimerTask;
  * 创建时间：16/3/17 下午4:17
  */
 public abstract class BaseHomeActivity extends BaseActivity {
+    private static final String TAG = BaseHomeActivity.class.getSimpleName();
     protected TextView tvHome;
     protected TextView tvService;
     protected TextView tvTopic;
@@ -28,9 +35,15 @@ public abstract class BaseHomeActivity extends BaseActivity {
     private Boolean isQuit = false;// 退出应用标识符
     private Timer timer = new Timer();// 程序退出定时器
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //注册网络监听器
+        NetWorkChangeBroadcastReceiver netWorkChangeBroadcastReceiver = new NetWorkChangeBroadcastReceiver();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(netWorkChangeBroadcastReceiver, filter);
         tvHome = (TextView) findViewById(R.id.tv_home);
         tvService = (TextView) findViewById(R.id.tv_service);
         tvTopic = (TextView) findViewById(R.id.tv_topic);
@@ -41,6 +54,11 @@ public abstract class BaseHomeActivity extends BaseActivity {
         tvTopic.setOnClickListener(this);
         tvMe.setOnClickListener(this);
         tvMore.setOnClickListener(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 
     @Override
@@ -64,6 +82,30 @@ public abstract class BaseHomeActivity extends BaseActivity {
                 break;
         }
     }
+
+
+    public class NetWorkChangeBroadcastReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+            if (activeNetwork != null) { // connected to the internet
+                /*if (activeNetwork.getType() == ConnectivityManager.TYPE_WIFI) {
+                    // connected to wifi
+                } else if (activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE) {
+                    // connected to the mobile provider's data plan
+                }*/
+                Log.i(TAG, "activeNetwork  = " + activeNetwork.getTypeName());
+                netChange();
+            } else {
+                // 无网络连接
+            }
+        }
+    }
+
+
+    protected abstract void netChange();
 
     @Override
     public void onBackPressed() {

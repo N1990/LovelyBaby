@@ -21,17 +21,11 @@ import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.activity.order.model.PayWayModel;
 import com.cmbb.smartkids.activity.order.model.SubmitOrderModel;
 import com.cmbb.smartkids.base.BaseActivity;
-import com.cmbb.smartkids.base.BaseApplication;
-import com.cmbb.smartkids.base.Constants;
-import com.cmbb.smartkids.network.NetRequest;
 import com.cmbb.smartkids.network.OkHttpClientManager;
 import com.cmbb.smartkids.pay.PayResult;
 import com.cmbb.smartkids.utils.FrescoTool;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.squareup.okhttp.Request;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * 项目名称：LovelyBaby
@@ -126,7 +120,8 @@ public class PayConfirm extends BaseActivity {
         initView();
         initData();
     }
-    private void initView(){
+
+    private void initView() {
         llHomeServiceItem = (RelativeLayout) findViewById(R.id.ll_home_service_item);
         ivHomeServiceItem = (SimpleDraweeView) findViewById(R.id.iv_home_service_item);
         tvOrderCode = (TextView) findViewById(R.id.tv_order_code);
@@ -154,8 +149,8 @@ public class PayConfirm extends BaseActivity {
         imageView = (ImageView) findViewById(R.id.imageView);
     }
 
-    private void initData(){
-        if(getIntent() != null && getIntent().getExtras() != null){
+    private void initData() {
+        if (getIntent() != null && getIntent().getExtras() != null) {
             dataEntity = getIntent().getParcelableExtra("dataEntity");
             handleRequest(dataEntity.getOrderCode());
             tvOrderCode.setText("订单编号:" + dataEntity.getOrderCode());
@@ -186,17 +181,14 @@ public class PayConfirm extends BaseActivity {
                     .setTitle("警告")
                     .setMessage("需要配置PARTNER | RSA_PRIVATE| SELLER")
                     .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                        public void onClick(
-                                DialogInterface dialoginterface, int i) {
-                            //
+                        public void onClick(DialogInterface dialoginterface, int i) {
                             finish();
                         }
                     }).show();
             return;
         }
-        if(payWayModel != null){
+        if (payWayModel != null) {
             Log.e(TAG, "paymentData : " + payWayModel.getPayTypes().get(0));
-
             Runnable payRunnable = new Runnable() {
 
                 @Override
@@ -215,7 +207,7 @@ public class PayConfirm extends BaseActivity {
             // 必须异步调用
             Thread payThread = new Thread(payRunnable);
             payThread.start();
-        }else{
+        } else {
             showShortToast("数据出错啦~");
         }
 
@@ -223,7 +215,7 @@ public class PayConfirm extends BaseActivity {
     }
 
 
-    private void handleRequest(String orderCode){
+    private void handleRequest(String orderCode) {
         showWaitDialog();
         PayWayModel.getPayWayRequest(orderCode, new OkHttpClientManager.ResultCallback<PayWayModel>() {
             @Override
@@ -242,14 +234,11 @@ public class PayConfirm extends BaseActivity {
     }
 
 
-
-    public static void newInstance(Activity activity, SubmitOrderModel.DataEntity dataEntity){
+    public static void newInstance(Activity activity, SubmitOrderModel.DataEntity dataEntity) {
         Intent intent = new Intent(activity, PayConfirm.class);
         intent.putExtra("dataEntity", dataEntity);
         activity.startActivity(intent);
     }
-
-
 
 
 }

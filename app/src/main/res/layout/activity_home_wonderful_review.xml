@@ -38,19 +38,6 @@
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="20dp"
-                    android:layout_marginLeft="@dimen/global_padding"
-                    android:layout_marginRight="@dimen/global_padding"
-                    android:alpha="0.95"
-                    android:background="@drawable/shape_white_background_corner"
-                    android:elevation="2dp"
-                    android:gravity="center"
-                    android:hint="寻找有趣的服务"
-                    android:textAppearance="@style/TextAppearance.Smart.Small"
-                    android:textColorHint="@color/darkgray" />
             </android.support.v7.widget.Toolbar>
 
 

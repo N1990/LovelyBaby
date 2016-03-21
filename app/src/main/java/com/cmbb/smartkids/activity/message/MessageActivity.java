@@ -14,6 +14,7 @@ import com.cmbb.smartkids.base.BaseApplication;
 import com.cmbb.smartkids.base.BaseFragment;
 import com.cmbb.smartkids.base.Constants;
 import com.cmbb.smartkids.network.NetRequest;
+import com.cmbb.smartkids.utils.log.Log;
 
 /**
  * 项目名称：LovelyBaby
@@ -38,6 +39,12 @@ public class MessageActivity extends BaseActivity {
     private TextView tvServiceContent;
 
     private MessageCountModel messageCountModel;
+
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_message;
+    }
 
     @Override
     protected void init(Bundle savedInstanceState) {
@@ -114,30 +121,27 @@ public class MessageActivity extends BaseActivity {
         }));
     }
 
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_message;
-    }
 
     @Override
     public void onClick(View v) {
         super.onClick(v);
+        Log.i("MessageActivity", "id = " + v.getId());
         switch (v.getId()) {
             case R.id.message_official:
                 if (messageCountModel != null)
-                    MessageListActivity.newInstance(MessageActivity.this, messageCountModel.getData().get(0));
+                    MessageOfficialListActivity.newInstance(MessageActivity.this, messageCountModel.getData().get(0));
                 break;
             case R.id.message_order:
                 if (messageCountModel != null)
-                    MessageListActivity.newInstance(MessageActivity.this, messageCountModel.getData().get(1));
+                    MessageOfficialListActivity.newInstance(MessageActivity.this, messageCountModel.getData().get(1));
                 break;
             case R.id.message_replay:
                 if (messageCountModel != null)
-                    MessageListActivity.newInstance(MessageActivity.this, messageCountModel.getData().get(2));
+                    MessageReverListActivity.newInstance(MessageActivity.this, messageCountModel.getData().get(2));
                 break;
             case R.id.message_server:
                 if (messageCountModel != null)
-                    MessageListActivity.newInstance(MessageActivity.this, messageCountModel.getData().get(3));
+                    MessageServiceListActivity.newInstance(MessageActivity.this, messageCountModel.getData().get(3));
                 break;
         }
     }

@@ -1,38 +1,24 @@
 package com.cmbb.smartkids.activity.message.adapter;
 
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
+import android.content.Context;
 import android.view.ViewGroup;
 
-import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.activity.message.holder.MsgOrderHolder;
 import com.cmbb.smartkids.activity.message.model.MessageListModel;
-import com.cmbb.smartkids.base.CustomListener;
-import com.javon.loadmorerecyclerview.BaseRecyclerAdapter;
+import com.cmbb.smartkids.recyclerview.adapter.BaseViewHolder;
+import com.cmbb.smartkids.recyclerview.adapter.RecyclerArrayAdapter;
 
 /**
  * Created by javon on 15/12/10.
  */
-public class MsgOrderAdapter extends BaseRecyclerAdapter {
-    private CustomListener.ItemClickListener onItemListener;
+public class MsgOrderAdapter extends RecyclerArrayAdapter<MessageListModel.DataEntity.RowsEntity> {
 
-    public CustomListener.ItemClickListener getOnItemListener() {
-        return onItemListener;
-    }
-
-    public void setOnItemListener(CustomListener.ItemClickListener onItemListener) {
-        this.onItemListener = onItemListener;
+    public MsgOrderAdapter(Context context) {
+        super(context);
     }
 
     @Override
-    protected RecyclerView.ViewHolder onCustomViewHolder(ViewGroup parent, int viewType) {
-        View root = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_msg_order_item, parent, false);
-        return new MsgOrderHolder(root);
-    }
-
-    @Override
-    protected void onBindCustomViewHolder(RecyclerView.ViewHolder holder, int position) {
-        ((MsgOrderHolder) holder).setData(this, (MessageListModel.DataEntity.RowsEntity) (dataList.get(position)));
+    public BaseViewHolder OnCreateViewHolder(ViewGroup parent, int viewType) {
+        return new MsgOrderHolder(parent);
     }
 }

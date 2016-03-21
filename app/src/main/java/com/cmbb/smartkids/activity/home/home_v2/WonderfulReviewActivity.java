@@ -44,7 +44,6 @@ public class WonderfulReviewActivity extends BaseActivity implements RecyclerArr
     @Override
     protected void init(Bundle savedInstanceState) {
         managerAdModel = getIntent().getParcelableExtra("managerAdModel");
-        setNoBack();
         initView();
     }
 

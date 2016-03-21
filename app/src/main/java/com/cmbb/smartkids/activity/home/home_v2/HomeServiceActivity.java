@@ -16,8 +16,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
-import android.widget.RadioGroup;
-import android.widget.TextView;
 
 import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.activity.home.home_v2.adapter.PopuDictAdapter;
@@ -44,12 +42,6 @@ public class HomeServiceActivity extends BaseHomeActivity implements View.OnClic
     // 筛选
     LinearLayout btnCity, btnSmart;//筛选的按钮
     ListPopupWindow mCityListPopupWindow;
-    RadioGroup rgServiceType1;
-    RadioGroup rgServiceType2;
-    RadioGroup rgServiceWay;
-    RadioGroup rgServiceSort;
-    TextView btnRest;
-    TextView btnComfirm;
     PopupWindow mSmartPopupWindow;
     PopuDictAdapter popuDictAdapter;// 智能筛选adapter
     private String serviceWay, serviceCity, serviceCategroy, serviceSortType = "high_price";
@@ -69,6 +61,7 @@ public class HomeServiceActivity extends BaseHomeActivity implements View.OnClic
         setNoBack();
         setTitle("服务");
         initView();
+
     }
 
     @Override
@@ -83,6 +76,11 @@ public class HomeServiceActivity extends BaseHomeActivity implements View.OnClic
         onRefresh();
     }
 
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+    }
 
     private void initView() {
         btnCity = (LinearLayout) findViewById(R.id.btn_city);
@@ -242,6 +240,11 @@ public class HomeServiceActivity extends BaseHomeActivity implements View.OnClic
                 }
                 break;
         }
+    }
+
+    @Override
+    protected void netChange() {
+        onRefresh();
     }
 
     boolean PopuSmartFlag = false;// popu的关开的标识位

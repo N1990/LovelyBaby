@@ -1,33 +1,24 @@
 package com.cmbb.smartkids.activity.serve;
 
-import android.content.Intent;
-import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 
 import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.activity.home.model.ActiveDetailModel;
-import com.cmbb.smartkids.activity.order.MyOrderListActivity;
 import com.cmbb.smartkids.activity.serve.adapter.ServiceUserAdapter;
 import com.cmbb.smartkids.activity.user.UserCenterActivity;
-import com.cmbb.smartkids.activity.user.adapter.ServiceOrderAdapter;
 import com.cmbb.smartkids.base.BaseActivity;
 import com.cmbb.smartkids.base.CustomListener;
-import com.javon.loadmorerecyclerview.LoadMoreRecyclerView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ServiceUserListActivity extends BaseActivity {
     private final String TAG = ServiceUserListActivity.class.getSimpleName();
     private RecyclerView rv;
     private ServiceUserAdapter adapter;
     private ArrayList<ActiveDetailModel.DataEntity.UserInfoListEntity> data;
-
 
 
     @Override
@@ -50,11 +41,11 @@ public class ServiceUserListActivity extends BaseActivity {
     }
 
     private void initData() {
-        if(getIntent() != null){
+        if (getIntent() != null) {
             data = getIntent().getParcelableArrayListExtra("users");
             adapter = new ServiceUserAdapter(data);
             rv.setAdapter(adapter);
-        }else{
+        } else {
             showShortToast("传参出错~");
         }
     }
@@ -67,9 +58,7 @@ public class ServiceUserListActivity extends BaseActivity {
         @Override
         public void onItemClick(View v, int position, Object object) {
             ActiveDetailModel.DataEntity.UserInfoListEntity itemData = (ActiveDetailModel.DataEntity.UserInfoListEntity) object;
-            Intent intent = new Intent(ServiceUserListActivity.this, UserCenterActivity.class);
-            intent.putExtra("userId", itemData.getUserId());
-            startActivity(intent);
+            UserCenterActivity.newIntent(ServiceUserListActivity.this, itemData.getUserId());
         }
     };
 

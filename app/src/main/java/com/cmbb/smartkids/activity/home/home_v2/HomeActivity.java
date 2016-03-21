@@ -67,7 +67,7 @@ public class HomeActivity extends BaseHomeActivity implements View.OnClickListen
         mRollViewPager = (RollPagerView) findViewById(R.id.roll_view_pager);
         mRollViewPager.setPlayDelay(2000);
         mRollViewPager.setAnimationDurtion(500);
-        bannerLoopAdapter = new BannerLoopAdapter(adData);
+        bannerLoopAdapter = new BannerLoopAdapter(this, adData);
         mRollViewPager.setAdapter(bannerLoopAdapter);
         requestAdd();
         initRecyclerView();

@@ -101,8 +101,8 @@ public class RankEredarRootModel implements Parcelable {
     public static void getRankEredarRequest(int pageNo, int numberOfPerPage,OkHttpClientManager.ResultCallback<RankEredarRootModel> callback) {
         HashMap<String, String> bodyEredar = new HashMap<>();
         bodyEredar.put("isRecommoned", "1");
-        bodyEredar.put("numberOfPerPage", String.valueOf(numberOfPerPage));
-        bodyEredar.put("pageNo", String.valueOf(pageNo));
+       /* bodyEredar.put("numberOfPerPage", String.valueOf(numberOfPerPage));
+        bodyEredar.put("pageNo", String.valueOf(pageNo));*/
         OkHttpClientManager.postAsyn(Constants.ServiceInfo.HOEM_MAIN_POPMAN_REQUEST, bodyEredar, callback);
     }
 }

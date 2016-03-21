@@ -29,19 +29,11 @@ import com.cmbb.smartkids.activity.community.model.TopicTypeModel;
 import com.cmbb.smartkids.activity.serve.ActiveDetailActivity;
 import com.cmbb.smartkids.activity.user.UserCenterActivity;
 import com.cmbb.smartkids.base.BaseActivity;
-import com.cmbb.smartkids.base.BaseApplication;
-import com.cmbb.smartkids.base.Constants;
-import com.cmbb.smartkids.base.CustomListener;
-import com.cmbb.smartkids.network.NetRequest;
 import com.cmbb.smartkids.network.OkHttpClientManager;
 import com.cmbb.smartkids.recyclerview.SmartRecyclerView;
 import com.cmbb.smartkids.recyclerview.adapter.RecyclerArrayAdapter;
 import com.cmbb.smartkids.utils.log.Log;
-import com.javon.loadmorerecyclerview.LoadMoreRecyclerView;
 import com.squareup.okhttp.Request;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 
 public class SearchActivity extends BaseActivity implements View.OnClickListener, RecyclerArrayAdapter.OnLoadMoreListener, SwipeRefreshLayout.OnRefreshListener, RecyclerArrayAdapter.OnItemClickListener{
 
@@ -148,9 +140,7 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
         }else if(adapter instanceof SearchUserAdapter){ //用户adapter监听事件
             SearchUserModel.DataEntity.RowsEntity item =  adapter_user.getItem(position);
             int id = item.getId();
-            Intent intent = new Intent(SearchActivity.this, UserCenterActivity.class);
-            intent.putExtra("userId", id);
-            startActivity(intent);
+            UserCenterActivity.newIntent(SearchActivity.this, id);
         }
     }
 

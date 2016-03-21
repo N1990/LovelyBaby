@@ -1,10 +1,12 @@
 package com.cmbb.smartkids.activity.home.home_v2.adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.cmbb.smartkids.R;
+import com.cmbb.smartkids.activity.community.CommunityDetailActivity;
 import com.cmbb.smartkids.activity.home.model.ManagerAdModel;
 import com.cmbb.smartkids.utils.FrescoTool;
 import com.cmbb.smartkids.utils.TDevice;
@@ -22,9 +24,11 @@ import java.util.List;
  */
 public class BannerLoopAdapter extends StaticPagerAdapter implements View.OnClickListener {
     private List<ManagerAdModel.DataEntity> imgs;
+    private Context context;
 
-    public BannerLoopAdapter(List<ManagerAdModel.DataEntity> dataEntities) {
+    public BannerLoopAdapter(Context context, List<ManagerAdModel.DataEntity> dataEntities) {
         super();
+        this.context = context;
         if (dataEntities == null) {
             this.imgs = new ArrayList<>();
         } else {
@@ -53,7 +57,8 @@ public class BannerLoopAdapter extends StaticPagerAdapter implements View.OnClic
 
     @Override
     public void onClick(View v) {
-
+        int position = (int) v.getTag();
+        CommunityDetailActivity.newInstance(this.context, imgs.get(position).getId());
     }
 
     @Override

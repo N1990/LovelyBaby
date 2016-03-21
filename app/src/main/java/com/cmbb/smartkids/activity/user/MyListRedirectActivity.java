@@ -49,22 +49,21 @@ public class MyListRedirectActivity extends BaseActivity {
     }
 
 
-    private void selectView(){
+    private void selectView() {
         Bundle bundle = null;
-        if(getIntent() != null && (bundle = getIntent().getExtras()) != null)
+        if (getIntent() != null && (bundle = getIntent().getExtras()) != null)
             flag = bundle.getString("flag");
-        if("service".equals(flag)){
+        if ("service".equals(flag)) {
             setTitle("我的服务");
-//            myServiceView();
-        }else if("community".equals(flag)){
+        } else if ("community".equals(flag)) {
             setTitle("我的话题");
-        }else if("care".equals(flag)){
+        } else if ("care".equals(flag)) {
             setTitle("我的关注");
             myCareView();
-        }else if("message".equals(flag)){
+        } else if ("message".equals(flag)) {
             setTitle("我的消息");
             myMessageView();
-        }else if("collect".equals(flag)){
+        } else if ("collect".equals(flag)) {
             setTitle("我的收藏");
             myColletView();
         }
@@ -72,8 +71,7 @@ public class MyListRedirectActivity extends BaseActivity {
     }
 
 
-
-    private void myCareView(){
+    private void myCareView() {
         Fragment friendFra = new MyCareFriendFragment();
         titles.add("朋友");
         fragments.add(friendFra);
@@ -85,7 +83,7 @@ public class MyListRedirectActivity extends BaseActivity {
         tl.setupWithViewPager(vpSlef);
     }
 
-    private void myMessageView(){
+    private void myMessageView() {
         Fragment serviceFra = new MyServiceMessageFragement();
         titles.add("服务");
         fragments.add(serviceFra);
@@ -97,7 +95,7 @@ public class MyListRedirectActivity extends BaseActivity {
         tl.setupWithViewPager(vpSlef);
     }
 
-    private void myColletView(){
+    private void myColletView() {
         Fragment friendFra = new MyCollectServiceFragment();
         titles.add("服务");
         fragments.add(friendFra);

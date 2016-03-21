@@ -16,8 +16,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/half_global_padding"
-            android:layout_marginRight="@dimen/half_global_padding"
             android:orientation="vertical">
 
 
@@ -27,8 +25,7 @@
                 android:layout_height="48dip"
                 android:layout_marginBottom="5dip"
                 android:layout_marginTop="10dip"
-                android:background="@drawable/btn_white_radio_bg"
-                android:elevation="3dip">
+                android:background="@drawable/shape_background_white_c">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -68,8 +65,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="48dip"
                 android:layout_marginBottom="5dip"
-                android:background="@drawable/btn_white_radio_bg"
-                android:elevation="3dip">
+                android:background="@drawable/shape_background_white_c">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -104,8 +100,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="48dip"
                 android:layout_marginBottom="5dip"
-                android:background="@drawable/btn_white_radio_bg"
-                android:elevation="3dip">
+                android:background="@drawable/shape_background_white_c">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -140,8 +135,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="48dip"
                 android:layout_marginBottom="5dip"
-                android:background="@drawable/btn_white_radio_bg"
-                android:elevation="3dip">
+                android:background="@drawable/shape_background_white_c">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -176,8 +170,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="48dip"
                 android:layout_marginBottom="5dip"
-                android:background="@drawable/btn_white_radio_bg"
-                android:elevation="3dip">
+                android:background="@drawable/shape_background_white_c">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -211,8 +204,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="48dip"
                 android:layout_marginBottom="5dip"
-                android:background="@drawable/btn_white_radio_bg"
-                android:elevation="3dip">
+                android:background="@drawable/shape_background_white_c">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -247,8 +239,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="48dip"
                 android:layout_marginBottom="5dip"
-                android:background="@drawable/btn_white_radio_bg"
-                android:elevation="3dip">
+                android:background="@drawable/shape_background_white_c">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -282,8 +273,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="48dip"
                 android:layout_marginBottom="5dip"
-                android:background="@drawable/btn_white_radio_bg"
-                android:elevation="3dip">
+                android:background="@drawable/shape_background_white_c">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -301,7 +291,7 @@
                     android:layout_toLeftOf="@+id/tv_my_set_user_delivery_address_right"
                     android:maxLength="5"
                     android:textColor="@android:color/black"
-                    android:visibility="gone"/>
+                    android:visibility="gone" />
 
                 <ImageView
                     android:id="@+id/tv_my_set_user_delivery_address_right"
@@ -318,8 +308,8 @@
                  android:id="@+id/rl_my_set_user_qq"
                  android:layout_width="match_parent"
                  android:layout_height="50dip"
-                 android:background="@drawable/btn_white_radio_bg"
-                 android:elevation="3dip"
+                 android:background="shape_background_white_c"
+                  
                  android:layout_marginBottom="5dip">
 
                  <TextView
@@ -355,8 +345,8 @@
                  android:id="@+id/rl_my_set_user_wx"
                  android:layout_width="match_parent"
                  android:layout_height="50dip"
-                 android:background="@drawable/btn_white_radio_bg"
-                 android:elevation="3dip"
+                 android:background="shape_background_white_c"
+                  
                  android:layout_marginBottom="5dip">
 
                  <TextView

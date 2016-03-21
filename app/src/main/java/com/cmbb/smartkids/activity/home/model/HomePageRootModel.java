@@ -139,6 +139,7 @@ public class HomePageRootModel implements Parcelable {
             private String statusName;
             private boolean isNew;
             private String servicesImg;
+            private String introduce;
             private String applyEndTime;
             private int imgWidth;
             private int type;
@@ -148,7 +149,7 @@ public class HomePageRootModel implements Parcelable {
             private int id;
             private int browseNumber;
             private String title;
-            private int price;
+            private double price;
             private int peoples;
             private String serviceTime;
             private String typeText;
@@ -158,6 +159,14 @@ public class HomePageRootModel implements Parcelable {
             private int imgHeight;
             private String applyStartTime;
             private String surplusTime;
+
+            public String getIntroduce() {
+                return introduce;
+            }
+
+            public void setIntroduce(String introduce) {
+                this.introduce = introduce;
+            }
 
             public String getSurplusTime() {
                 return surplusTime;
@@ -271,7 +280,7 @@ public class HomePageRootModel implements Parcelable {
                 this.title = title;
             }
 
-            public int getPrice() {
+            public double getPrice() {
                 return price;
             }
 
@@ -355,6 +364,7 @@ public class HomePageRootModel implements Parcelable {
                 dest.writeString(this.statusName);
                 dest.writeByte(isNew ? (byte) 1 : (byte) 0);
                 dest.writeString(this.servicesImg);
+                dest.writeString(this.introduce);
                 dest.writeString(this.applyEndTime);
                 dest.writeInt(this.imgWidth);
                 dest.writeInt(this.type);
@@ -364,7 +374,7 @@ public class HomePageRootModel implements Parcelable {
                 dest.writeInt(this.id);
                 dest.writeInt(this.browseNumber);
                 dest.writeString(this.title);
-                dest.writeInt(this.price);
+                dest.writeDouble(this.price);
                 dest.writeInt(this.peoples);
                 dest.writeString(this.serviceTime);
                 dest.writeString(this.typeText);
@@ -383,6 +393,7 @@ public class HomePageRootModel implements Parcelable {
                 this.statusName = in.readString();
                 this.isNew = in.readByte() != 0;
                 this.servicesImg = in.readString();
+                this.introduce = in.readString();
                 this.applyEndTime = in.readString();
                 this.imgWidth = in.readInt();
                 this.type = in.readInt();
@@ -392,7 +403,7 @@ public class HomePageRootModel implements Parcelable {
                 this.id = in.readInt();
                 this.browseNumber = in.readInt();
                 this.title = in.readString();
-                this.price = in.readInt();
+                this.price = in.readDouble();
                 this.peoples = in.readInt();
                 this.serviceTime = in.readString();
                 this.typeText = in.readString();

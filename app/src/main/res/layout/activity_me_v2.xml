@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -15,6 +16,7 @@
         <android.support.design.widget.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/line"
             android:fitsSystemWindows="true"
             app:contentScrim="?attr/colorPrimary"
             app:expandedTitleMarginEnd="64dp"
@@ -126,8 +128,8 @@
                     android:layout_marginLeft="10dip"
                     android:layout_toRightOf="@+id/iv_home_myself_header"
                     android:padding="5dip"
-                    android:text="昵称"
-                    android:textAppearance="@style/TextAppearance.Smart.Small" />
+                    android:textAppearance="@style/TextAppearance.Smart.Small"
+                    tools:text="昵称" />
 
                 <TextView
                     android:id="@+id/tv_home_myself_identity"
@@ -136,8 +138,8 @@
                     android:layout_marginLeft="10dip"
                     android:layout_toLeftOf="@+id/tv_home_myself_fan"
                     android:padding="5dip"
-                    android:text="身份"
-                    android:textAppearance="@style/TextAppearance.Smart.Small" />
+                    android:textAppearance="@style/TextAppearance.Smart.Small"
+                    tools:text="身份" />
 
 
                 <RatingBar
@@ -161,8 +163,8 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginLeft="5dip"
                     android:padding="5dip"
-                    android:text="Fans（）"
-                    android:textAppearance="@style/TextAppearance.Smart.Small" />
+                    android:textAppearance="@style/TextAppearance.Smart.Small"
+                    tools:text="Fans（）" />
 
                 <LinearLayout
                     android:id="@+id/ll_myself_progress"
@@ -250,11 +252,6 @@
                             android:text="我的订单"
                             android:textAppearance="@style/TextAppearance.Smart.Small" />
 
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@mipmap/btn_right_anchor_bg"
-                            android:scaleType="centerCrop" />
                     </LinearLayout>
 
                     <View
@@ -350,7 +347,6 @@
                         android:background="@mipmap/btn_right_anchor_bg"
                         android:scaleType="centerCrop" />
                 </LinearLayout>
-
 
 
                 <View
@@ -546,6 +542,10 @@
                         android:scaleType="centerCrop" />
                 </LinearLayout>
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@color/line" />
 
                 <LinearLayout
                     android:id="@+id/ll_home_self_drafts"
@@ -577,13 +577,6 @@
                         android:background="@mipmap/btn_right_anchor_bg"
                         android:scaleType="centerCrop" />
                 </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1px"
-                    android:background="@color/line" />
-
-
 
                 <View
                     android:layout_width="match_parent"

@@ -135,9 +135,7 @@ public class CommentFirstFragment extends CommunityBaseFragment {
         @Override
         public void onClick(View v) {
             int userId = (int) v.getTag();
-            Intent intent = new Intent(getActivity(), UserCenterActivity.class);
-            intent.putExtra("userId", userId);
-            startActivity(intent);
+            UserCenterActivity.newIntent(getActivity(), userId);
         }
     };
 
@@ -170,9 +168,7 @@ public class CommentFirstFragment extends CommunityBaseFragment {
         @Override
         public void onItemClick(View v, int position, Object object) {
             int userId = (int) v.getTag();
-            Intent intent = new Intent(getActivity(), UserCenterActivity.class);
-            intent.putExtra("userId", userId);
-            startActivity(intent);
+            UserCenterActivity.newIntent(getActivity(), userId);
         }
     };
 
@@ -183,9 +179,7 @@ public class CommentFirstFragment extends CommunityBaseFragment {
         @Override
         public void onItemClick(View v, int position, Object object) {
             int userId = (int) v.getTag();
-            Intent intent = new Intent(getActivity(), UserCenterActivity.class);
-            intent.putExtra("userId", userId);
-            startActivity(intent);
+            UserCenterActivity.newIntent(getActivity(), userId);
         }
     };
 
@@ -196,9 +190,7 @@ public class CommentFirstFragment extends CommunityBaseFragment {
         @Override
         public void onItemClick(View v, int position, Object object) {
             CommunityReplayModel.DataEntity.RowsEntity.ChildReplyEntity data = (CommunityReplayModel.DataEntity.RowsEntity.ChildReplyEntity) v.getTag();
-            Intent intent = new Intent(getActivity(), UserCenterActivity.class);
-            intent.putExtra("userId", data.getUserBasicInfo().getUserId());
-            startActivity(intent);
+            UserCenterActivity.newIntent(getActivity(), data.getUserBasicInfo().getUserId());
         }
     };
 

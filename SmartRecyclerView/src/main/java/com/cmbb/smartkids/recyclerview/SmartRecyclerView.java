@@ -37,7 +37,6 @@ public class SmartRecyclerView extends FrameLayout {
     protected int mScrollbarStyle;
 
 
-
     protected RecyclerView.OnScrollListener mInternalOnScrollListener;
     protected RecyclerView.OnScrollListener mExternalOnScrollListener;
 
@@ -80,7 +79,6 @@ public class SmartRecyclerView extends FrameLayout {
             mPaddingLeft = (int) a.getDimension(R.styleable.superrecyclerview_recyclerPaddingLeft, 0.0f);
             mPaddingRight = (int) a.getDimension(R.styleable.superrecyclerview_recyclerPaddingRight, 0.0f);
             mScrollbarStyle = a.getInteger(R.styleable.superrecyclerview_scrollbarStyle, -1);
-
             mEmptyId = a.getResourceId(R.styleable.superrecyclerview_layout_empty, 0);
             mProgressId = a.getResourceId(R.styleable.superrecyclerview_layout_progress, 0);
             mErrorId = a.getResourceId(R.styleable.superrecyclerview_layout_error, 0);
@@ -96,14 +94,14 @@ public class SmartRecyclerView extends FrameLayout {
         //生成主View
         View v = LayoutInflater.from(getContext()).inflate(R.layout.layout_progress_recyclerview, this);
         mPtrLayout = (SwipeRefreshLayout) v.findViewById(R.id.ptr_layout);
+        mPtrLayout.setColorSchemeResources(android.R.color.holo_orange_light, android.R.color.holo_blue_light, android.R.color.holo_red_light, android.R.color.holo_green_light);
         mPtrLayout.setEnabled(false);
-
         mProgressView = (ViewGroup) v.findViewById(R.id.progress);
-        if (mProgressId!=0)LayoutInflater.from(getContext()).inflate(mProgressId,mProgressView);
+        if (mProgressId != 0) LayoutInflater.from(getContext()).inflate(mProgressId, mProgressView);
         mEmptyView = (ViewGroup) v.findViewById(R.id.empty);
-        if (mEmptyId!=0)LayoutInflater.from(getContext()).inflate(mEmptyId,mEmptyView);
+        if (mEmptyId != 0) LayoutInflater.from(getContext()).inflate(mEmptyId, mEmptyView);
         mErrorView = (ViewGroup) v.findViewById(R.id.error);
-        if (mErrorId!=0)LayoutInflater.from(getContext()).inflate(mErrorId,mErrorView);
+        if (mErrorId != 0) LayoutInflater.from(getContext()).inflate(mErrorId, mErrorView);
         initRecyclerView(v);
     }
 
@@ -112,7 +110,7 @@ public class SmartRecyclerView extends FrameLayout {
         return mPtrLayout.dispatchTouchEvent(ev);
     }
 
-    public void setRecyclerPadding(int left,int top,int right,int bottom){
+    public void setRecyclerPadding(int left, int top, int right, int bottom) {
         this.mPaddingLeft = left;
         this.mPaddingTop = top;
         this.mPaddingRight = right;
@@ -120,32 +118,37 @@ public class SmartRecyclerView extends FrameLayout {
         mRecycler.setPadding(mPaddingLeft, mPaddingTop, mPaddingRight, mPaddingBottom);
     }
 
-    public void setEmptyView(View emptyView){
+    public void setEmptyView(View emptyView) {
         mEmptyView.removeAllViews();
         mEmptyView.addView(emptyView);
     }
-    public void setProgressView(View progressView){
+
+    public void setProgressView(View progressView) {
         mProgressView.removeAllViews();
         mProgressView.addView(progressView);
     }
-    public void setErrorView(View errorView){
+
+    public void setErrorView(View errorView) {
         mErrorView.removeAllViews();
         mErrorView.addView(errorView);
     }
-    public void setEmptyView(int emptyView){
+
+    public void setEmptyView(int emptyView) {
         mEmptyView.removeAllViews();
         LayoutInflater.from(getContext()).inflate(emptyView, mEmptyView);
     }
-    public void setProgressView(int progressView){
+
+    public void setProgressView(int progressView) {
         mProgressView.removeAllViews();
         LayoutInflater.from(getContext()).inflate(progressView, mProgressView);
     }
-    public void setErrorView(int errorView){
+
+    public void setErrorView(int errorView) {
         mErrorView.removeAllViews();
         LayoutInflater.from(getContext()).inflate(errorView, mErrorView);
     }
 
-    public void scrollToPosition(int position){
+    public void scrollToPosition(int position) {
         getRecyclerView().scrollToPosition(position);
     }
 
@@ -246,20 +249,20 @@ public class SmartRecyclerView extends FrameLayout {
         private void update() {
             log("update");
             if (recyclerView.getAdapter() instanceof RecyclerArrayAdapter) {
-                if (((RecyclerArrayAdapter) recyclerView.getAdapter()).getCount() == 0){
-                    log("no data:"+((hasProgress&&!isInitialized)?"show progress":"show empty"));
-                    if (hasProgress&&!isInitialized)recyclerView.showProgress();
+                if (((RecyclerArrayAdapter) recyclerView.getAdapter()).getCount() == 0) {
+                    log("no data:" + ((hasProgress && !isInitialized) ? "show progress" : "show empty"));
+                    if (hasProgress && !isInitialized) recyclerView.showProgress();
                     else recyclerView.showEmpty();
-                } else{
+                } else {
                     log("has data");
                     recyclerView.showRecycler();
                 }
             } else {
                 if (recyclerView.getAdapter().getItemCount() == 0) {
-                    log("no data:"+((hasProgress&&!isInitialized)?"show progress":"show empty"));
-                    if (hasProgress&&!isInitialized)recyclerView.showProgress();
+                    log("no data:" + ((hasProgress && !isInitialized) ? "show progress" : "show empty"));
+                    if (hasProgress && !isInitialized) recyclerView.showProgress();
                     else recyclerView.showEmpty();
-                } else{
+                } else {
                     log("has data");
                     recyclerView.showRecycler();
                 }
@@ -276,7 +279,7 @@ public class SmartRecyclerView extends FrameLayout {
      */
     public void setAdapter(RecyclerView.Adapter adapter) {
         mRecycler.setAdapter(adapter);
-        adapter.registerAdapterDataObserver(new EasyDataObserver(this,false));
+        adapter.registerAdapterDataObserver(new EasyDataObserver(this, false));
         adapter.notifyDataSetChanged();
     }
 
@@ -288,7 +291,7 @@ public class SmartRecyclerView extends FrameLayout {
      */
     public void setAdapterWithProgress(RecyclerView.Adapter adapter) {
         mRecycler.setAdapter(adapter);
-        adapter.registerAdapterDataObserver(new EasyDataObserver(this,true));
+        adapter.registerAdapterDataObserver(new EasyDataObserver(this, true));
         adapter.notifyDataSetChanged();
     }
 
@@ -300,7 +303,7 @@ public class SmartRecyclerView extends FrameLayout {
     }
 
 
-    private void hideAll(){
+    private void hideAll() {
         mEmptyView.setVisibility(View.GONE);
         mProgressView.setVisibility(View.GONE);
         mErrorView.setVisibility(GONE);
@@ -311,10 +314,10 @@ public class SmartRecyclerView extends FrameLayout {
 
     public void showError() {
         log("showError");
-        if (mErrorView.getChildCount()>0){
+        if (mErrorView.getChildCount() > 0) {
             hideAll();
             mErrorView.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             showRecycler();
         }
 
@@ -322,10 +325,10 @@ public class SmartRecyclerView extends FrameLayout {
 
     public void showEmpty() {
         log("showEmpty");
-        if (mEmptyView.getChildCount()>0){
+        if (mEmptyView.getChildCount() > 0) {
             hideAll();
             mEmptyView.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             showRecycler();
         }
     }
@@ -333,10 +336,10 @@ public class SmartRecyclerView extends FrameLayout {
 
     public void showProgress() {
         log("showProgress");
-        if (mProgressView.getChildCount()>0){
+        if (mProgressView.getChildCount() > 0) {
             hideAll();
             mProgressView.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             showRecycler();
         }
     }
@@ -360,7 +363,7 @@ public class SmartRecyclerView extends FrameLayout {
         this.mRefreshListener = listener;
     }
 
-    public void setRefreshing(final boolean isRefreshing){
+    public void setRefreshing(final boolean isRefreshing) {
         mPtrLayout.post(new Runnable() {
             @Override
             public void run() {
@@ -369,12 +372,12 @@ public class SmartRecyclerView extends FrameLayout {
         });
     }
 
-    public void setRefreshing(final boolean isRefreshing, final boolean isCallbackListener){
+    public void setRefreshing(final boolean isRefreshing, final boolean isCallbackListener) {
         mPtrLayout.post(new Runnable() {
             @Override
             public void run() {
                 mPtrLayout.setRefreshing(isRefreshing);
-                if (isRefreshing&&isCallbackListener&&mRefreshListener!=null){
+                if (isRefreshing && isCallbackListener && mRefreshListener != null) {
                     mRefreshListener.onRefresh();
                 }
             }
@@ -465,7 +468,7 @@ public class SmartRecyclerView extends FrameLayout {
      * @return inflated error view or null
      */
     public View getErrorView() {
-        if (mErrorView.getChildCount()>0)return mErrorView.getChildAt(0);
+        if (mErrorView.getChildCount() > 0) return mErrorView.getChildAt(0);
         return null;
     }
 
@@ -473,7 +476,7 @@ public class SmartRecyclerView extends FrameLayout {
      * @return inflated progress view or null
      */
     public View getProgressView() {
-        if (mProgressView.getChildCount()>0)return mProgressView.getChildAt(0);
+        if (mProgressView.getChildCount() > 0) return mProgressView.getChildAt(0);
         return null;
     }
 
@@ -482,13 +485,13 @@ public class SmartRecyclerView extends FrameLayout {
      * @return inflated empty view or null
      */
     public View getEmptyView() {
-        if (mEmptyView.getChildCount()>0)return mEmptyView.getChildAt(0);
+        if (mEmptyView.getChildCount() > 0) return mEmptyView.getChildAt(0);
         return null;
     }
 
-    private static void log(String content){
-        if (DEBUG){
-            Log.i(TAG,content);
+    private static void log(String content) {
+        if (DEBUG) {
+            Log.i(TAG, content);
         }
     }
 

@@ -1,10 +1,6 @@
 package com.cmbb.smartkids.activity.home.home_v2.holder;
 
-import android.graphics.Color;
-import android.text.SpannableString;
-import android.text.Spanned;
 import android.text.TextUtils;
-import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -26,14 +22,14 @@ public class HomeItemHolder extends BaseViewHolder<HomePageRootModel.DataEntity.
     private final String TAG = HomeItemHolder.class.getSimpleName();
     private SimpleDraweeView iv;
     private ImageView ivTag;
-    private TextView tvTitle, tvTime, tvCity, tvTag, tvPrice;
+    private TextView tvTitle, tvIntroduce, tvCity, tvTag, tvPrice;
 
 
     public HomeItemHolder(ViewGroup parent) {
         super(parent, R.layout.list_home_fragment_item);
         iv = $(R.id.iv_home_fra_item);
         tvTitle = $(R.id.tv_home_fra_title_item);
-        tvTime = $(R.id.tv_home_fra_start_time);
+        tvIntroduce = $(R.id.tv_home_introduce);
         tvCity = $(R.id.tv_home_fra_city_item);
         ivTag = $(R.id.iv_home_fra_tag_item);
         tvTag = $(R.id.tv_tag);
@@ -47,7 +43,8 @@ public class HomeItemHolder extends BaseViewHolder<HomePageRootModel.DataEntity.
         if (TextUtils.isEmpty(row.getCityText()))
             tvCity.setVisibility(View.GONE);
         tvCity.setText(row.getCityText());
-        String startTime = row.getSurplusTime();
+        tvIntroduce.setText(row.getIntroduce());
+        /*String startTime = row.getSurplusTime();
         if (TextUtils.isEmpty(startTime)) {
             tvTime.setVisibility(View.GONE);
         } else {
@@ -62,7 +59,7 @@ public class HomeItemHolder extends BaseViewHolder<HomePageRootModel.DataEntity.
                 }
                 tvTime.setText(ss);
             }
-        }
+        }*/
         FrescoTool.loadImage(iv, row.getServicesImg(), 1.67f);
         ivTag.setVisibility(View.VISIBLE);
         int statusValue = row.getStatus();

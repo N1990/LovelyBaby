@@ -49,7 +49,7 @@ public class ServerDetailActivityV2 extends BaseActivity {
 
     public void newFragment(int id, boolean addBack) {
         serviceID = id;
-        Log.i(TAG, id);
+        Log.i(TAG, id+"");
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.container, ServiceDetailFragment.newInstance(id), id + "");
 //        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);

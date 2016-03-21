@@ -72,7 +72,7 @@ public class H5ServiceDetailModel implements Parcelable {
     private int collectCount;
     private String realityPeoples;
     private int sellNum;
-    private int province;
+    private String province;
     private String provinceText;
     private int city;
     private String cityText;
@@ -80,7 +80,7 @@ public class H5ServiceDetailModel implements Parcelable {
     private String districtText;
     private String address;
     private String mark;
-    private int price;
+    private double price;
     private String priceDesc;
     private String category;
     private int type;
@@ -215,7 +215,7 @@ public class H5ServiceDetailModel implements Parcelable {
         this.sellNum = sellNum;
     }
 
-    public void setProvince(int province) {
+    public void setProvince(String province) {
         this.province = province;
     }
 
@@ -247,7 +247,7 @@ public class H5ServiceDetailModel implements Parcelable {
         this.mark = mark;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -387,7 +387,7 @@ public class H5ServiceDetailModel implements Parcelable {
         return sellNum;
     }
 
-    public int getProvince() {
+    public String getProvince() {
         return province;
     }
 
@@ -419,7 +419,7 @@ public class H5ServiceDetailModel implements Parcelable {
         return mark;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
@@ -971,12 +971,31 @@ public class H5ServiceDetailModel implements Parcelable {
         private int serviceId;
         private String specification;
         private double price;
+
         private int stock;
         private int isLimitStock;
         // 增加
+        private int buyLimit;
+        private int sellNum;
         private boolean selected;
         private int count;
         private String all = "0";
+
+        public int getBuyLimit() {
+            return buyLimit;
+        }
+
+        public void setBuyLimit(int buyLimit) {
+            this.buyLimit = buyLimit;
+        }
+
+        public int getSellNum() {
+            return sellNum;
+        }
+
+        public void setSellNum(int sellNum) {
+            this.sellNum = sellNum;
+        }
 
         public boolean isSelected() {
             return selected;
@@ -1061,6 +1080,8 @@ public class H5ServiceDetailModel implements Parcelable {
         @Override
         public void writeToParcel(Parcel dest, int flags) {
             dest.writeInt(this.id);
+            dest.writeInt(this.buyLimit);
+            dest.writeInt(this.sellNum);
             dest.writeInt(this.serviceId);
             dest.writeString(this.specification);
             dest.writeDouble(this.price);
@@ -1077,6 +1098,8 @@ public class H5ServiceDetailModel implements Parcelable {
         protected PriceListEntity(Parcel in) {
             this.id = in.readInt();
             this.serviceId = in.readInt();
+            this.buyLimit = in.readInt();
+            this.sellNum = in.readInt();
             this.specification = in.readString();
             this.price = in.readDouble();
             this.stock = in.readInt();

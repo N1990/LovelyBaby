@@ -1,7 +1,5 @@
 package com.cmbb.smartkids.utils.log;
 
-import android.util.Log;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -13,11 +11,9 @@ import org.json.JSONObject;
  * 创建时间：15/11/22 下午12:49
  */
 public class JsonLog extends BaseLog {
-    
+
     public static void printJson(String tag, String msg, String headString) {
-
         String message;
-
         try {
             if (msg.startsWith("{")) {
                 JSONObject jsonObject = new JSONObject(msg);
@@ -32,12 +28,23 @@ public class JsonLog extends BaseLog {
             message = msg;
         }
 
-        printLine(tag, true);
         message = headString + LINE_SEPARATOR + message;
-        String[] lines = message.split(LINE_SEPARATOR);
-        for (String line : lines) {
-            Log.e(tag, "║ " + line);
+        //  超过4000 换行
+        int subNum = message.length() / 4000;
+        if (subNum > 0) {
+            int index = 0;
+            for (int i = 0; i < subNum; i++) {
+                int lastIndex = index + 4000;
+                String sub = message.substring(index, lastIndex);
+                Log.e(tag, sub);
+                index = lastIndex;
+            }
+            Log.e(tag, message.substring(index, message.length()));
+        } else {
+            Log.e(tag, message);
         }
-        printLine(tag, false);
+        /*message = headString + LINE_SEPARATOR + message;
+        String[] lines = message.split(LINE_SEPARATOR);
+        Log.e(tag, message);*/
     }
 }

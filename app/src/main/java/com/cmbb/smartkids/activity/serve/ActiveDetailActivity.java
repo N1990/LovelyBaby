@@ -175,9 +175,7 @@ public class ActiveDetailActivity extends BaseActivity {
             case R.id.iv_user_center_header:
             case R.id.tv_user_center_nickename:
                 if (userList != null) {
-                    Intent intent = new Intent(ActiveDetailActivity.this, UserCenterActivity.class);
-                    intent.putExtra("userId", userList.get(0).getUserId());
-                    startActivity(intent);
+                    UserCenterActivity.newIntent(ActiveDetailActivity.this, userList.get(0).getUserId());
                 }
                 break;
             case R.id.rl_user_center_users:

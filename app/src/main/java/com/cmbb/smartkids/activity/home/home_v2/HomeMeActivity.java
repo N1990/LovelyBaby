@@ -1,12 +1,12 @@
 package com.cmbb.smartkids.activity.home.home_v2;
 
 import android.animation.ObjectAnimator;
-import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
@@ -50,11 +50,13 @@ import com.cmbb.smartkids.utils.SPCache;
 import com.cmbb.smartkids.utils.TDevice;
 import com.cmbb.smartkids.utils.log.Log;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.soundcloud.android.crop.Crop;
 import com.squareup.okhttp.Request;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.util.ArrayList;
 
 /**
@@ -64,24 +66,17 @@ import java.util.ArrayList;
  * 创建时间：16/3/1 下午4:08
  */
 public class HomeMeActivity extends BaseHomeActivity implements View.OnClickListener {
-
-
     private static final String TAG = HomeMeActivity.class.getSimpleName();
-
-
     private final int PIC_REQUEST_CODE = 1001;
     private SimpleDraweeView ivMyself;
     private SimpleDraweeView ivUserHeader;
     private ImageView ivMessageTag;
-
     private TextView tvFan, tvNickname, tvIdentity, tvProgress, myUid, myCount;
     private LinearLayout myOrder, myAccept, myGold, myCommunity, myPopman, myBabyDiary, myUID, myDrafts, myCollection, myCare, myPerssion;
     private ProgressBar pb;
     private RatingBar rb;
 
     private UserCenterModel.DataEntity userInfoEntity;
-
-    private ProgressDialog progressDialog;
 
 
     @Override
@@ -110,8 +105,6 @@ public class HomeMeActivity extends BaseHomeActivity implements View.OnClickList
     }
 
     private void initView() {
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("正在处理中...");
         ivMyself = (SimpleDraweeView) findViewById(R.id.iv_home_myself);
         ivMyself.setOnClickListener(this);
         ivUserHeader = (SimpleDraweeView) findViewById(R.id.iv_home_myself_header);
@@ -152,6 +145,7 @@ public class HomeMeActivity extends BaseHomeActivity implements View.OnClickList
         findViewById(R.id.tv_order_reimburse).setOnClickListener(this);
         findViewById(R.id.iv_main_toolbar_left).setOnClickListener(this);
         findViewById(R.id.iv_main_toolbar_right).setOnClickListener(this);
+        findViewById(R.id.tv_home_self_gold).setOnClickListener(this);
     }
 
 
@@ -203,7 +197,6 @@ public class HomeMeActivity extends BaseHomeActivity implements View.OnClickList
         //Fresco
         FrescoTool.loadImage(ivUserHeader, userModel.getUserSmallImg());
         FrescoTool.loadImage(ivMyself, userModel.getBackgroundImg(), String.valueOf(TDevice.dip2px(180, this)));
-
         if (!TextUtils.isEmpty(userModel.getUserNike())) {
             tvNickname.setVisibility(View.VISIBLE);
             tvNickname.setText(userModel.getUserNike());
@@ -245,16 +238,12 @@ public class HomeMeActivity extends BaseHomeActivity implements View.OnClickList
             @Override
             public void onError(Request request, Exception e) {
                 showShortToast(e.toString());
-                if (progressDialog != null) {
-                    progressDialog.dismiss();
-                }
+                hideWaitDialog();
             }
 
             @Override
             public void onResponse(SecurityCodeModel response) {
-                if (progressDialog != null) {
-                    progressDialog.dismiss();
-                }
+                hideWaitDialog();
                 if (response != null) {
                     FrescoTool.loadImage(ivMyself, path, width, height);
                     showShortToast(response.getMsg());
@@ -268,7 +257,15 @@ public class HomeMeActivity extends BaseHomeActivity implements View.OnClickList
         if (resultCode == -1 && requestCode == PIC_REQUEST_CODE) {
             if (data != null) {
                 final ArrayList<String> tempUrls = data.getStringArrayListExtra(PhotoPickerActivity.KEY_SELECTED_PHOTOS);
-                progressDialog.show();
+                Uri source = Uri.fromFile(new File(tempUrls.get(0)));
+                Uri destination = Uri.fromFile(new File(getCacheDir(), "smartkids"));
+                Crop.of(source, destination).start(this);
+            }
+        } else if (resultCode == -1 && requestCode == Crop.REQUEST_CROP) {
+            if (Crop.getOutput(data) != null) {
+                showWaitDialog();
+                final ArrayList<String> tempUrls = new ArrayList<>();
+                tempUrls.add(Crop.getOutput(data).getPath());
                 ImageUpload.getInstance().uploadImages(this, tempUrls, new UploadListener() {
                     @Override
                     public void onUploading(UploadTask uploadTask) {
@@ -277,7 +274,7 @@ public class HomeMeActivity extends BaseHomeActivity implements View.OnClickList
 
                     @Override
                     public void onUploadFailed(UploadTask uploadTask, FailReason failReason) {
-                        progressDialog.dismiss();
+                        hideWaitDialog();
                         showShortToast(failReason.getMessage());
                     }
 
@@ -329,6 +326,8 @@ public class HomeMeActivity extends BaseHomeActivity implements View.OnClickList
                 PhotoPickerIntent intent = new PhotoPickerIntent(this);
                 intent.setPhotoCount(1);
                 startActivityForResult(intent, PIC_REQUEST_CODE);
+
+
                 break;
             case R.id.tv_home_myself_collect:
                 Intent myCollect = new Intent(new Intent(this, MyListRedirectActivity.class));
@@ -358,8 +357,6 @@ public class HomeMeActivity extends BaseHomeActivity implements View.OnClickList
                 break;
             case R.id.ll_home_self_order:
                 AllOrderListActivity.newInstance(this);
-//                Intent myOrder = new Intent(new Intent(this, MyOrderListActivity.class));
-//                startActivity(myOrder);
                 break;
             case R.id.ll_home_self_community:
                 startActivity(new Intent(this, MyCommunityActivity.class));
@@ -394,6 +391,9 @@ public class HomeMeActivity extends BaseHomeActivity implements View.OnClickList
             case R.id.tv_order_reimburse:
                 ReimburseOrderListActivity.newInstance(this);
                 break;
+            case R.id.tv_home_self_gold:
+
+                break;
         }
     }
 
@@ -401,4 +401,5 @@ public class HomeMeActivity extends BaseHomeActivity implements View.OnClickList
     protected void netChange() {
         initData();
     }
+
 }

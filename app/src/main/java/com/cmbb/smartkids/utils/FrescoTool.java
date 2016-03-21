@@ -1,10 +1,8 @@
 package com.cmbb.smartkids.utils;
 
 import android.net.Uri;
-import android.os.Environment;
 import android.text.TextUtils;
 
-import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.base.BaseApplication;
 import com.cmbb.smartkids.utils.log.Log;
 import com.facebook.drawee.backends.pipeline.Fresco;
@@ -37,7 +35,7 @@ public class FrescoTool {
     public static void loadImage(SimpleDraweeView simpleDraweeView, String url, String width, String height) {
         if (TextUtils.isEmpty(url)) {
             Log.e(TAG, "url is null");
-            simpleDraweeView.setImageResource(R.color.placeholder);
+            //simpleDraweeView.setImageResource(R.color.placeholder);
             return;
         }
 
@@ -48,7 +46,7 @@ public class FrescoTool {
             simpleDraweeView.setAspectRatio(r);
         }
         Uri uri = Uri.parse(url + "@" + TDevice.getScreenWidth(BaseApplication.getContext()) + "w_1o.jpeg");
-        Log.e("Image", "Image = " + uri.toString());
+        //Log.e("Image", "Image = " + uri.toString());
         ImageRequest request = ImageRequestBuilder
                 .newBuilderWithSource(uri)
                 .setProgressiveRenderingEnabled(true)
@@ -73,11 +71,11 @@ public class FrescoTool {
         simpleDraweeView.setAspectRatio(ratio);
         if (TextUtils.isEmpty(url)) {
             Log.e(TAG, "url is null");
-            simpleDraweeView.setImageResource(R.color.placeholder);
+            //simpleDraweeView.setImageResource(R.color.placeholder);
             return;
         }
         Uri uri = Uri.parse(url + "@" + TDevice.getScreenWidth(BaseApplication.getContext()) + "w_1o.jpeg");
-        Log.e("Image", "Image = " + uri.toString());
+        //Log.e("Image", "Image = " + uri.toString());
         ImageRequest request = ImageRequestBuilder
                 .newBuilderWithSource(uri)
                 .setProgressiveRenderingEnabled(true)
@@ -105,7 +103,7 @@ public class FrescoTool {
         }
         simpleDraweeView.setAspectRatio(ratio);
         Uri uri = Uri.parse(url + "@" + TDevice.getScreenWidth(BaseApplication.getContext()) + "w_1o.jpeg");
-        Log.e("Image", "Image = " + uri.toString());
+        //Log.e("Image", "Image = " + uri.toString());
         ImageRequest request = ImageRequestBuilder
                 .newBuilderWithSource(uri)
                 .setLocalThumbnailPreviewsEnabled(true)
@@ -131,7 +129,7 @@ public class FrescoTool {
         }
 
         Uri uri = Uri.parse(url + "@" + height + "h_1o.jpeg");
-        Log.e("Image", "Image = " + uri.toString());
+        //Log.e("Image", "Image = " + uri.toString());
         ImageRequest request = ImageRequestBuilder
                 .newBuilderWithSource(uri)
                 .setProgressiveRenderingEnabled(true)

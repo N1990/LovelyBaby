@@ -1030,10 +1030,11 @@ public class SubmitOrderModel implements Parcelable {
      * @param address
      * @param callback
      */
-    public static void postSubmitOrderRequest(int serviceId, int priceId, int buyCount, String phone, String receiverName, String receiverPhone, String postCode, String address, OkHttpClientManager.ResultCallback<SubmitOrderModel> callback){
+    public static void postSubmitOrderRequest(int serviceId, double servicePrice,int priceId, int buyCount, String phone, String receiverName, String receiverPhone, String postCode, String address, OkHttpClientManager.ResultCallback<SubmitOrderModel> callback){
         HashMap<String, String> params = new HashMap<>();
         params.put("token", BaseApplication.token);
         params.put("serviceId", serviceId+"");
+        params.put("servicePrice", String.valueOf(servicePrice));
         params.put("priceId", priceId+"");
         params.put("buyCount", buyCount+"");
         params.put("phone", phone);

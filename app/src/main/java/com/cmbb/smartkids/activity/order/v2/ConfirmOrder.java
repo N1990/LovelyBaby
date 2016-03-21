@@ -1,9 +1,7 @@
 package com.cmbb.smartkids.activity.order.v2;
 
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -18,7 +16,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.cmbb.smartkids.R;
-import com.cmbb.smartkids.activity.login.model.SecurityCodeModel;
 import com.cmbb.smartkids.activity.order.model.SubmitOrderModel;
 import com.cmbb.smartkids.activity.serve.v2.PopuGridAdapter;
 import com.cmbb.smartkids.activity.serve.v2.model.H5ServiceDetailModel;
@@ -26,17 +23,13 @@ import com.cmbb.smartkids.activity.serve.v2.model.ReserveModel;
 import com.cmbb.smartkids.activity.user.DeliveryAddressListActivity;
 import com.cmbb.smartkids.activity.user.model.DeliveryAddressListModel;
 import com.cmbb.smartkids.base.BaseActivity;
-import com.cmbb.smartkids.base.BaseApplication;
-import com.cmbb.smartkids.db.DBContent;
 import com.cmbb.smartkids.network.OkHttpClientManager;
 import com.cmbb.smartkids.recyclerview.SmartRecyclerView;
 import com.cmbb.smartkids.recyclerview.adapter.RecyclerArrayAdapter;
 import com.cmbb.smartkids.utils.FrescoTool;
-import com.cmbb.smartkids.utils.MyTimeCount;
 import com.cmbb.smartkids.utils.Tools;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.squareup.okhttp.Request;
-import com.umeng.socialize.utils.Log;
 
 import java.util.List;
 
@@ -89,7 +82,7 @@ public class ConfirmOrder extends BaseActivity {
     PopuGridAdapter popuGridAdapter;
     H5ServiceDetailModel h5ServiceDetailModel;
     H5ServiceDetailModel.PriceListEntity priceListEntity;//选中的对象
-    ReserveModel.DataEntity  reserveEntity;
+    ReserveModel.DataEntity reserveEntity;
     DeliveryAddressListModel.DataEntity.RowsEntity local;
     private String receiverName;
     private String receiverPhone;
@@ -109,7 +102,7 @@ public class ConfirmOrder extends BaseActivity {
         tvAddress.setText(reserveEntity.getServiceInfo().getCityText());
         tvPrice.setText("RMB " + reserveEntity.getServicePrice());
         tvCount.setText("x" + reserveEntity.getBuyCount());
-        tvTotalPrice.setText(reserveEntity.getPrice());
+        tvTotalPrice.setText(String.valueOf(reserveEntity.getPrice()));
         tvNick.setText(reserveEntity.getReceiveName());
         String phone = reserveEntity.getReceivePhone();
         if (!TextUtils.isEmpty(phone))
@@ -121,6 +114,7 @@ public class ConfirmOrder extends BaseActivity {
         postCode = reserveEntity.getPostCode();
 
     }
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_comfirm_order_layout;
@@ -242,7 +236,7 @@ public class ConfirmOrder extends BaseActivity {
                 mEditPopupWindow.showAtLocation(llBottom, Gravity.NO_GRAVITY, location[0], location[1] - mEditPopupWindow.getHeight());
                 break;
             case R.id.tv_edit_submit:
-                tvCount.setText("x" +tvEditCount.getText().toString());
+                tvCount.setText("x" + tvEditCount.getText().toString());
                 tvTotalPrice.setText(tvWholePrice.getText().toString());
                 break;
             case R.id.tv_phone_change:// 修改手机号码
@@ -255,16 +249,16 @@ public class ConfirmOrder extends BaseActivity {
             case R.id.tv_submit://确认
                 String receiverContact = tvNick.getText().toString();
                 String Phone = tvPhone.getText().toString();
-                if(TextUtils.isEmpty(receiverContact)){
+                if (TextUtils.isEmpty(receiverContact)) {
                     showShortToast("联系人名字不能为空");
                     return;
                 }
-                if(!Tools.isMobileNo(Phone)){
+                if (!Tools.isMobileNo(Phone)) {
                     showShortToast("请正确填写你的手机号码");
                     return;
                 }
                 showWaitDialog();
-                SubmitOrderModel.postSubmitOrderRequest(reserveEntity.getServiceId(), reserveEntity.getPriceId(), reserveEntity.getBuyCount(), Phone, receiverName, receiverPhone, postCode, address, new OkHttpClientManager.ResultCallback<SubmitOrderModel>() {
+                SubmitOrderModel.postSubmitOrderRequest(reserveEntity.getServiceId(), reserveEntity.getPrice(), reserveEntity.getPriceId(), reserveEntity.getBuyCount(), Phone, receiverName, receiverPhone, postCode, address, new OkHttpClientManager.ResultCallback<SubmitOrderModel>() {
                     @Override
                     public void onError(Request request, Exception e) {
                         hideWaitDialog();
@@ -274,7 +268,7 @@ public class ConfirmOrder extends BaseActivity {
                     @Override
                     public void onResponse(SubmitOrderModel response) {
                         hideWaitDialog();
-                        if(response != null)
+                        if (response != null)
                             PayConfirm.newInstance(ConfirmOrder.this, response.getData());
                         showShortToast(response.getMsg());
                     }
@@ -287,17 +281,11 @@ public class ConfirmOrder extends BaseActivity {
     }
 
 
-
-
-
-
-
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode == CHOOSE_ADDRESS_REQUEST && resultCode == RESULT_OK){
+        if (requestCode == CHOOSE_ADDRESS_REQUEST && resultCode == RESULT_OK) {
             local = data.getParcelableExtra("delivery_address");
-            if(local != null) {
+            if (local != null) {
                 receiverName = local.getReceiveName();
                 receiverPhone = local.getReceivePhone();
                 postCode = local.getPostCode();
@@ -305,31 +293,18 @@ public class ConfirmOrder extends BaseActivity {
                 tvAdd.setTag(local.getId());
                 tvAdd.setText(local.getProvinceText() + local.getCityText() + local.getDistrictText() + local.getAddress());
             }
-        }else if(requestCode == MODIFY_PHONE_REQUEST && resultCode == RESULT_OK){
+        } else if (requestCode == MODIFY_PHONE_REQUEST && resultCode == RESULT_OK) {
             String phone = data.getStringExtra("phone");
-            tvPhone.setText(phone+"");
-        }else{
+            tvPhone.setText(phone + "");
+        } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     /**
      * @param context
-     * @param dataEntity      返回数据
+     * @param dataEntity 返回数据
      */
     public static void newIntent(Context context, H5ServiceDetailModel h5ServiceDetailModel, H5ServiceDetailModel.PriceListEntity priceListEntity, ReserveModel.DataEntity dataEntity) {
         Intent intent = new Intent(context, ConfirmOrder.class);

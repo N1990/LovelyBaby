@@ -3,6 +3,7 @@ package com.cmbb.smartkids.activity.user.fragment;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -27,7 +28,7 @@ import java.util.HashMap;
  * Created by javon on 15/12/17.
  */
 public class BabyListFragment extends BaseFragment {
-    private final String TAG = MyCollectCommunityFragment.class.getSimpleName();
+    private final String TAG = BabyListFragment.class.getSimpleName();
     private final int BABY_DETAIL_REQUEST = 10020;
     public RecyclerView rv;
     private NestedScrollView nsv;
@@ -41,16 +42,17 @@ public class BabyListFragment extends BaseFragment {
     }
 
 
+
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        initView();
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        initView(view);
         initData();
         addListener();
     }
 
-    private void initView() {
-        rv = (RecyclerView) getView().findViewById(R.id.rv_self);
+    private void initView(View view) {
+        rv = (RecyclerView) view.findViewById(R.id.rv_self);
         nsv = (NestedScrollView) getView().findViewById(R.id.nsv_self);
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter = new UserBabyDiaryAdapter();

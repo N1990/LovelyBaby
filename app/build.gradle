@@ -139,5 +139,6 @@ dependencies {
     compile 'com.android.support:cardview-v7:23.1.1'
     compile 'com.squareup.okhttp:okhttp:2.4.0'
     compile 'com.umeng.analytics:analytics:5.5.3'
+    compile 'com.soundcloud.android:android-crop:1.0.1@aar'
     compile 'com.jude:rollviewpager:1.0.7'
 }

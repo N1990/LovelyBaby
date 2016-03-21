@@ -52,6 +52,7 @@ public class RankErdarActivity extends BaseActivity implements RecyclerArrayAdap
         adapter.setMore(R.layout.view_more, this);
         adapter.setNoMore(R.layout.view_nomore);
         adapter.setOnItemClickListener(this);
+        mSmartRecyclerView.setRefreshListener(this);
     }
 
     @Override
@@ -61,7 +62,7 @@ public class RankErdarActivity extends BaseActivity implements RecyclerArrayAdap
 
     @Override
     public void onLoadMore() {
-        pager++;
+        /*pager++;
         RankEredarRootModel.getRankEredarRequest(pager, pagerSize, new OkHttpClientManager.ResultCallback<RankEredarRootModel>() {
             @Override
             public void onError(Request request, Exception e) {
@@ -74,7 +75,8 @@ public class RankErdarActivity extends BaseActivity implements RecyclerArrayAdap
                     adapter.addAll(response.getData());
                 }
             }
-        });
+        });*/
+        adapter.pauseMore();
     }
 
     @Override

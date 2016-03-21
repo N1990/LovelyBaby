@@ -1,12 +1,8 @@
 package com.cmbb.smartkids.activity.home.holder;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
-import android.text.SpannableString;
-import android.text.Spanned;
 import android.text.TextUtils;
-import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -29,7 +25,7 @@ public class HomeItemHolder extends RecyclerView.ViewHolder implements View.OnCl
     private View root;
     private SimpleDraweeView iv;
     private ImageView ivTag;
-    private TextView tvTitle, tvTime, tvCity;
+    private TextView tvTitle, tvIntroduce, tvCity;
     private Context context;
     private HomeFraAdapter adapter;
     private int position;
@@ -41,7 +37,7 @@ public class HomeItemHolder extends RecyclerView.ViewHolder implements View.OnCl
         this.root = itemView;
         iv = (SimpleDraweeView) itemView.findViewById(R.id.iv_home_fra_item);
         tvTitle = (TextView) itemView.findViewById(R.id.tv_home_fra_title_item);
-        tvTime = (TextView) itemView.findViewById(R.id.tv_home_fra_start_time);
+        tvIntroduce = (TextView) itemView.findViewById(R.id.tv_home_introduce);
         tvCity = (TextView) itemView.findViewById(R.id.tv_home_fra_city_item);
         ivTag = (ImageView) itemView.findViewById(R.id.iv_home_fra_tag_item);
     }
@@ -55,7 +51,7 @@ public class HomeItemHolder extends RecyclerView.ViewHolder implements View.OnCl
         tvCity.setText(row.getCityText());
         String startTime = row.getSurplusTime();
 //        List<Integer> intTemp = new ArrayList<>();
-        if (TextUtils.isEmpty(startTime)) {
+        /*if (TextUtils.isEmpty(startTime)) {
             tvTime.setVisibility(View.GONE);
         } else {
             SpannableString ss = new SpannableString(startTime);
@@ -69,7 +65,8 @@ public class HomeItemHolder extends RecyclerView.ViewHolder implements View.OnCl
                 }
                 tvTime.setText(ss);
             }
-        }
+        }*/
+        tvIntroduce.setText(row.getIntroduce());
         FrescoTool.loadImage(iv, row.getServicesImg(), 1.67f);
         ivTag.setVisibility(View.VISIBLE);
         int statusValue = row.getStatus();
@@ -94,10 +91,10 @@ public class HomeItemHolder extends RecyclerView.ViewHolder implements View.OnCl
     }
 
 
-        @Override
-        public void onClick(View v) {
-            HomePageRootModel.DataEntity.RowsEntity active = (HomePageRootModel.DataEntity.RowsEntity) v.getTag();
-            if (adapter.getOnItemClick() != null)
-                adapter.getOnItemClick().onItemClick(v, position, active);
-        }
+    @Override
+    public void onClick(View v) {
+        HomePageRootModel.DataEntity.RowsEntity active = (HomePageRootModel.DataEntity.RowsEntity) v.getTag();
+        if (adapter.getOnItemClick() != null)
+            adapter.getOnItemClick().onItemClick(v, position, active);
+    }
 }

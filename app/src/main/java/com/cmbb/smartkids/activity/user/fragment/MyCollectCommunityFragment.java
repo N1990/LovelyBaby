@@ -3,6 +3,7 @@ package com.cmbb.smartkids.activity.user.fragment;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
@@ -35,28 +36,25 @@ public class MyCollectCommunityFragment extends BaseFragment implements View.OnC
     private MyCommunityAdapter adapter;
     private int pager = 0;
     private int pagerSize = 10;
-    private String userId;
     private List<TopicListModel.DataEntity.RowsEntity> cacheList = new ArrayList<>();
     private int cachePager = -1;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.recyclerview_layout, null);
-        return root;
+        return inflater.inflate(R.layout.recyclerview_layout, null);
     }
 
 
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        initView();
-        initData();
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        initView(view);
         onRefresh();
     }
 
-    private void initView() {
-        smartRecyclerView = (SmartRecyclerView) getView().findViewById(R.id.srv_self);
+    private void initView(View view) {
+        smartRecyclerView = (SmartRecyclerView) view.findViewById(R.id.srv_self);
         smartRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter = new MyCommunityAdapter(getActivity());
         smartRecyclerView.setAdapterWithProgress(adapter);
@@ -65,17 +63,6 @@ public class MyCollectCommunityFragment extends BaseFragment implements View.OnC
         adapter.setOnItemClickListener(this);
         smartRecyclerView.setRefreshListener(this);
         adapter.addAll(cacheList);
-    }
-
-    private void initData() {
-        Bundle bundle = null;
-        if ((bundle = getArguments()) != null) {
-            userId = bundle.getString("userId");
-            showWaitsDialog();
-        } else {
-            showShortToast("传参出错~");
-            return;
-        }
     }
 
 

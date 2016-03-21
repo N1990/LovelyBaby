@@ -61,13 +61,6 @@
       <sourceFolder url="file://$MODULE_DIR$/src/HuaWei/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/HuaWei/jni" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/HuaWei/rs" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/testHuaWei/res" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/testHuaWei/resources" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/testHuaWei/assets" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/testHuaWei/aidl" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/testHuaWei/java" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/testHuaWei/jni" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/testHuaWei/rs" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/androidTestHuaWei/res" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/androidTestHuaWei/resources" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/androidTestHuaWei/assets" type="java-test-resource" />
@@ -75,6 +68,13 @@
       <sourceFolder url="file://$MODULE_DIR$/src/androidTestHuaWei/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/androidTestHuaWei/jni" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/androidTestHuaWei/rs" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/testHuaWei/res" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/testHuaWei/resources" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/testHuaWei/assets" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/testHuaWei/aidl" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/testHuaWei/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/testHuaWei/jni" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/testHuaWei/rs" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/debug/res" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/debug/resources" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/debug/assets" type="java-resource" />
@@ -96,13 +96,6 @@
       <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/jni" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/rs" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/res" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/resources" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/assets" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/aidl" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/java" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/jni" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/rs" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/res" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/resources" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/assets" type="java-test-resource" />
@@ -110,6 +103,13 @@
       <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/jni" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/rs" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/res" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/resources" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/assets" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/aidl" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/jni" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/rs" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/assets" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/blame" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/builds" />
@@ -124,6 +124,7 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.1.1/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.jude/rollviewpager/1.0.7/jars" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.soundcloud.android/android-crop/1.0.1/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/incremental" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/incremental-classes" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/incremental-runtime-classes" />
@@ -148,6 +149,7 @@
     <orderEntry type="library" exported="" name="recyclerview-v7-23.1.1" level="project" />
     <orderEntry type="library" exported="" name="SocialSDK_scrshot" level="project" />
     <orderEntry type="library" exported="" name="support-v4-23.1.1" level="project" />
+    <orderEntry type="library" exported="" name="android-crop-1.0.1" level="project" />
     <orderEntry type="library" exported="" name="SocialSDK_QQZone_1" level="project" />
     <orderEntry type="library" exported="" name="SocialSDK_WeiXin_1" level="project" />
     <orderEntry type="library" exported="" name="SocialSDK_QQZone_2" level="project" />

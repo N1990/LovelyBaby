@@ -8,6 +8,7 @@ import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Handler;
+import android.support.multidex.MultiDex;
 import android.support.multidex.MultiDexApplication;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.LocalBroadcastManager;
@@ -62,6 +63,12 @@ public class BaseApplication extends MultiDexApplication {
         LocalBroadcastManager.getInstance(this).registerReceiver(pushAliasReceiver, new IntentFilter(PUSH_ALIAS_ITENTACTION));
         // 登录状态获取token
         token = SPCache.getString(Constants.TOKEN, "");
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
     }
 
     private void initFresco() {

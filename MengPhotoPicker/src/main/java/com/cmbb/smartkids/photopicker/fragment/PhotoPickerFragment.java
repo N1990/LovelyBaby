@@ -9,7 +9,6 @@ import android.support.v7.widget.ListPopupWindow;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,7 +51,6 @@ public class PhotoPickerFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setRetainInstance(true);
-        Log.i("fragment", "fragment on Create");
         mPhotoDirectories = new ArrayList<>();
         mPhotoGridAdapter = new PhotoGridAdapter(getActivity(), mPhotoDirectories);
         mPopupDirectoryListAdapter = new PopupDirectoryListAdapter(getActivity(), mPhotoDirectories);

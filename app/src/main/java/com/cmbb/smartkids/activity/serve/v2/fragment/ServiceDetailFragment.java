@@ -150,9 +150,7 @@ public class ServiceDetailFragment extends BaseFragment {
                 public void handler(String data, CallBackFunction function) {
                     if (!TextUtils.isEmpty(data)) {
                         RankEredarModel rankEredarModel = new Gson().fromJson(data, RankEredarModel.class);
-                        Intent intent = new Intent(getActivity(), UserCenterActivity.class);
-                        intent.putExtra("userId", rankEredarModel.getId());
-                        startActivity(intent);
+                        UserCenterActivity.newIntent(getActivity(), rankEredarModel.getId());
                     }
                 }
             });
@@ -221,8 +219,8 @@ public class ServiceDetailFragment extends BaseFragment {
                 // 设置界面
                 tvEditTitle.setText(priceListEntity.getSpecification());
                 tvEditCount.setText(priceListEntity.getCount() + "");
-                tvEditPrice.setText("RMB " + priceListEntity.getPrice());
-                tvWholePrice.setText("RMB " + priceListEntity.getAll());
+                tvEditPrice.setText("￥ " + priceListEntity.getPrice());
+                tvWholePrice.setText("￥ " + priceListEntity.getAll());
                 popuGridAdapter.notifyDataSetChanged();
             }
         });
@@ -241,16 +239,14 @@ public class ServiceDetailFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 // 数量减小
-                Log.i("add", "jian");
-
                 if (Integer.parseInt(tvEditCount.getText().toString()) > 0) {
                     tvEditCount.setText(Integer.parseInt(tvEditCount.getText().toString()) - 1 + "");
                     priceListEntity.setCount(Integer.parseInt(tvEditCount.getText().toString()));
-                    tvWholePrice.setText("RMB " + Integer.parseInt(tvEditCount.getText().toString()) * priceListEntity.getPrice());
+                    tvWholePrice.setText("￥ " + Integer.parseInt(tvEditCount.getText().toString()) * priceListEntity.getPrice());
                 } else {
                     tvEditCount.setText("0");
                     priceListEntity.setCount(0);
-                    tvWholePrice.setText("RMB 0");
+                    tvWholePrice.setText("￥ 0");
                 }
             }
         });
@@ -259,14 +255,15 @@ public class ServiceDetailFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 //数量增加
-                if (priceListEntity != null && Integer.parseInt(tvEditCount.getText().toString()) != priceListEntity.getStock()) {
-
-                    tvEditCount.setText(Integer.parseInt(tvEditCount.getText().toString()) + 1 + "");
-                    priceListEntity.setCount(Integer.parseInt(tvEditCount.getText().toString()));
-                    if (!tvEditCount.getText().toString().equals("0")) {
-                        tvWholePrice.setText("RMB " + Integer.parseInt(tvEditCount.getText().toString()) * priceListEntity.getPrice());
-                    } else {
-                        tvWholePrice.setText("RMB 0");
+                if (priceListEntity != null && priceListEntity.getIsLimitStock() != 0) {
+                    if (Integer.parseInt(tvEditCount.getText().toString()) < (priceListEntity.getStock() < priceListEntity.getBuyLimit() ? priceListEntity.getStock() : priceListEntity.getBuyLimit())) {
+                        tvEditCount.setText(Integer.parseInt(tvEditCount.getText().toString()) + 1 + "");
+                        priceListEntity.setCount(Integer.parseInt(tvEditCount.getText().toString()));
+                        if (!tvEditCount.getText().toString().equals("0")) {
+                            tvWholePrice.setText("￥ " + Integer.parseInt(tvEditCount.getText().toString()) * priceListEntity.getPrice());
+                        } else {
+                            tvWholePrice.setText("￥ 0");
+                        }
                     }
                 }
             }
@@ -298,7 +295,7 @@ public class ServiceDetailFragment extends BaseFragment {
                     return;
                 }
                 showWaitsDialog();
-                ReserveModel.handleReserveRequest(h5ServiceDetailModel.getId() + "", priceListEntity.getId() + "", priceListEntity.getCount() + "", BaseApplication.token, new OkHttpClientManager.ResultCallback<ReserveModel>() {
+                ReserveModel.handleReserveRequest(h5ServiceDetailModel.getId() + "", priceListEntity.getPrice(), priceListEntity.getId() + "", priceListEntity.getCount() + "", BaseApplication.token, new OkHttpClientManager.ResultCallback<ReserveModel>() {
                     @Override
                     public void onError(Request request, Exception e) {
                         hideWaitDialog();

@@ -1,11 +1,14 @@
 package com.cmbb.smartkids.activity.user;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.MenuItem;
@@ -289,5 +292,17 @@ public class UserCenterActivity extends BaseActivity implements AppBarLayout.OnO
         } catch (NullPointerException e) {
 
         }
+    }
+
+    public static void newIntent(Context context, int userId) {
+        Intent intent = new Intent(context, UserCenterActivity.class);
+        intent.putExtra("userId", userId);
+        context.startActivity(intent);
+    }
+
+    public static void newIntent(AppCompatActivity context, int userId, int requestCode) {
+        Intent intent = new Intent(context, UserCenterActivity.class);
+        intent.putExtra("userId", userId);
+        context.startActivityForResult(intent, requestCode);
     }
 }

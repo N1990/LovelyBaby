@@ -32,6 +32,7 @@ public class PhotoPickerActivity extends AppCompatActivity {
 
     private int maxCount = DEFAULT_MAX_COUNT;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,46 +41,34 @@ public class PhotoPickerActivity extends AppCompatActivity {
         Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mToolbar.setTitle(R.string.images);
         setSupportActionBar(mToolbar);
-
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             actionBar.setElevation(25);
         }
-
         maxCount = getIntent().getIntExtra(EXTRA_MAX_COUNT, DEFAULT_MAX_COUNT);
         boolean showCamera = getIntent().getBooleanExtra(EXTRA_SHOW_CAMERA, true);
-
         pickerFragment = (PhotoPickerFragment) getSupportFragmentManager().findFragmentById(R.id.photoPickerFragment);
-
         pickerFragment.getPhotoGridAdapter().setShowCamera(showCamera);
-
         pickerFragment.getPhotoGridAdapter().setOnItemCheckListener(new OnItemCheckListener() {
             @Override
             public boolean OnItemCheck(int position, Photo photo, final boolean isCheck, int selectedItemCount) {
-
                 int total = selectedItemCount + (isCheck ? -1 : 1);
-
                 menuDoneItem.setEnabled(total > 0);
-
                 if (maxCount <= 1) {
                     List<Photo> photos = pickerFragment.getPhotoGridAdapter().getSelectedPhotos();
                     photos.clear();
                     pickerFragment.getPhotoGridAdapter().notifyDataSetChanged();
                     return true;
                 }
-
                 if (total > maxCount) {
-                    Toast.makeText(getActivity(), getString(R.string.over_max_count_tips, maxCount),
-                            Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), getString(R.string.over_max_count_tips, maxCount), Toast.LENGTH_LONG).show();
                     return false;
                 }
                 menuDoneItem.setTitle(getString(R.string.done_with_count, total, maxCount));
                 return true;
             }
         });
-
     }
 
 
@@ -136,5 +125,10 @@ public class PhotoPickerActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

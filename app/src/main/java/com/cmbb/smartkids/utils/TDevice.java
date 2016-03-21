@@ -7,11 +7,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
 import android.net.TrafficStats;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
+import android.provider.MediaStore;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -21,8 +24,13 @@ import android.view.inputmethod.InputMethodManager;
 
 import com.cmbb.smartkids.base.BaseApplication;
 import com.cmbb.smartkids.base.Constants;
+import com.cmbb.smartkids.utils.log.Log;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Calendar;
 import java.util.UUID;
 
 @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
@@ -159,7 +167,7 @@ public class TDevice {
      * @param view
      */
     public static void calcViewMeasure(View view) {
-        int width = View.MeasureSpec.makeMeasureSpec(0,View.MeasureSpec.UNSPECIFIED);
+        int width = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
         int expandSpec = View.MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE >> 2, View.MeasureSpec.AT_MOST);
         view.measure(width, expandSpec);
     }
@@ -271,7 +279,7 @@ public class TDevice {
         Intent intent = new Intent();
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.setAction(Intent.ACTION_VIEW);
-        intent.setDataAndType(Uri.fromFile(file),"application/vnd.android.package-archive");
+        intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
         context.startActivity(intent);
     }
 
@@ -339,5 +347,90 @@ public class TDevice {
             }
         }
         return null;
+    }
+
+
+    /**
+     * 启用系统的画廊 带剪切功能
+     *
+     * @param context
+     * @param requestCode
+     */
+    public static void startSystemImageWithCrop(AppCompatActivity context, Uri mUri, int requestCode) {
+        /*Intent innerIntent = new Intent("com.android.camera.action.CROP");
+        innerIntent.setDataAndType(mUri, "image*//*");// mUri是已经选择的图片Uri
+        innerIntent.putExtra("aspectX", 1);
+        innerIntent.putExtra("return-data", true);
+        context.startActivityForResult(innerIntent, requestCode); // 设返回 码为 1  onActivityResult 中的 requestCode 对应*/
+       /* File tempFile = new File(Environment.getExternalStorageDirectory() + "/萌宝派/" + Calendar.getInstance().getTimeInMillis() + ".jpg");
+        File temp = new File(Environment.getExternalStorageDirectory() + "/萌宝派");//自已项目 文件夹
+        if (!temp.exists()) {
+            temp.mkdir();
+        }
+        Intent intent = new Intent("com.android.camera.action.CROP");
+        intent.setDataAndType(mUri, "image*//*");
+        // crop为true是设置在开启的intent中设置显示的view可以剪裁
+        intent.putExtra("crop", "true");
+        // aspectX aspectY 是宽高的比例
+        intent.putExtra("aspectX", 1);
+        intent.putExtra("aspectY", 1);
+        // outputX,outputY 是剪裁图片的宽高
+        intent.putExtra("outputX", 300);
+        intent.putExtra("outputY", 300);
+        intent.putExtra("return-data", true);
+        intent.putExtra("noFaceDetection", true);
+        intent.putExtra("output", Uri.fromFile(tempFile));
+        context.startActivityForResult(intent, requestCode);*/
+
+        File tempFile = new File(Environment.getExternalStorageDirectory() + "/萌宝派/" + Calendar.getInstance().getTimeInMillis() + ".jpg");
+        File temp = new File(Environment.getExternalStorageDirectory() + "/萌宝派");//自已项目 文件夹
+        if (!temp.exists()) {
+            temp.mkdir();
+        }
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT, null);
+        intent.setType("image/*");
+        intent.putExtra("crop", "true");
+        intent.putExtra("aspectX", 2);
+        intent.putExtra("aspectY", 1);
+        intent.putExtra("outputX", 600);
+        intent.putExtra("outputY", 300);
+        intent.putExtra("scale", true);
+        intent.putExtra("return-data", false);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(tempFile));
+        intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
+        intent.putExtra("noFaceDetection", true); // no face detection
+        context.startActivityForResult(intent, requestCode);
+    }
+
+    public static String saveBitmap(Bitmap data) {
+        // 图像保存到文件中
+        boolean saveFlag = false;
+        File tempFile = new File(Environment.getExternalStorageDirectory() + "/萌宝派/" + Calendar.getInstance().getTimeInMillis() + ".jpg");
+        File temp = new File(Environment.getExternalStorageDirectory() + "/萌宝派");//自已项目 文件夹
+        if (!temp.exists()) {
+            temp.mkdir();
+        }
+        FileOutputStream foutput = null;
+        try {
+            foutput = new FileOutputStream(tempFile);
+            saveFlag = data.compress(Bitmap.CompressFormat.JPEG, 100, foutput);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            if (null != foutput) {
+                try {
+                    foutput.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
+        Log.i("saveImage", "saveImage = " + saveFlag);
+        if (saveFlag) {
+            return tempFile.getAbsolutePath();
+        } else {
+            return "";
+        }
     }
 }

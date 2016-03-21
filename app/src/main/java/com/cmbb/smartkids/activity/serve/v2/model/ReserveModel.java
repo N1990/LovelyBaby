@@ -90,7 +90,7 @@ public class ReserveModel implements Parcelable {
         private int priceId;
         private String specifications;
         private int buyCount;
-        private String price;
+        private double price;
         private int payment;
         private String payDate;
         private int isInvoice;
@@ -218,7 +218,7 @@ public class ReserveModel implements Parcelable {
             this.buyCount = buyCount;
         }
 
-        public void setPrice(String price) {
+        public void setPrice(double price) {
             this.price = price;
         }
 
@@ -330,7 +330,7 @@ public class ReserveModel implements Parcelable {
             return buyCount;
         }
 
-        public String getPrice() {
+        public double getPrice() {
             return price;
         }
 
@@ -921,7 +921,7 @@ public class ReserveModel implements Parcelable {
             dest.writeInt(this.priceId);
             dest.writeString(this.specifications);
             dest.writeInt(this.buyCount);
-            dest.writeString(this.price);
+            dest.writeDouble(this.price);
             dest.writeInt(this.payment);
             dest.writeString(this.payDate);
             dest.writeInt(this.isInvoice);
@@ -955,7 +955,7 @@ public class ReserveModel implements Parcelable {
             this.priceId = in.readInt();
             this.specifications = in.readString();
             this.buyCount = in.readInt();
-            this.price = in.readString();
+            this.price = in.readDouble();
             this.payment = in.readInt();
             this.payDate = in.readString();
             this.isInvoice = in.readInt();
@@ -1018,10 +1018,11 @@ public class ReserveModel implements Parcelable {
      * @param token
      * @param callback
      */
-    public static void handleReserveRequest(String serviceId, String priceId, String buyCount, String token, OkHttpClientManager.ResultCallback<ReserveModel> callback) {
+    public static void handleReserveRequest(String serviceId, double servicePrice,String priceId, String buyCount, String token, OkHttpClientManager.ResultCallback<ReserveModel> callback) {
         HashMap<String, String> maps = new HashMap<>();
         maps.put("serviceId", serviceId);
         maps.put("priceId", priceId);
+        maps.put("servicePrice", String.valueOf(servicePrice));
         maps.put("priceId", priceId);
         maps.put("buyCount", buyCount);
         maps.put("token", token);

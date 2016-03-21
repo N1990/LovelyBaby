@@ -3,6 +3,7 @@ package com.cmbb.smartkids.activity.home.home_v2;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
@@ -30,9 +31,10 @@ import com.squareup.okhttp.Request;
  * 创建人：N.Sun
  * 创建时间：16/3/16 下午4:05
  */
-public class WonderfulReviewActivity extends BaseActivity implements RecyclerArrayAdapter.OnLoadMoreListener, SwipeRefreshLayout.OnRefreshListener, RecyclerArrayAdapter.OnItemClickListener {
+public class WonderfulReviewActivity extends BaseActivity implements RecyclerArrayAdapter.OnLoadMoreListener, SwipeRefreshLayout.OnRefreshListener, RecyclerArrayAdapter.OnItemClickListener, AppBarLayout.OnOffsetChangedListener {
     private static final String TAG = WonderfulReviewActivity.class.getSimpleName();
     protected SmartRecyclerView mSmartRecyclerView;
+    protected AppBarLayout abl;
     protected TopicAdapter adapter;
     private RollPagerView mRollViewPager;
     private BannerLoopAdapter bannerLoopAdapter;
@@ -53,10 +55,11 @@ public class WonderfulReviewActivity extends BaseActivity implements RecyclerArr
     }
 
     private void initView() {
+        abl = (AppBarLayout) findViewById(R.id.abl);
         mRollViewPager = (RollPagerView) findViewById(R.id.roll_view_pager);
         mRollViewPager.setPlayDelay(2000);
         mRollViewPager.setAnimationDurtion(500);
-        bannerLoopAdapter = new BannerLoopAdapter(managerAdModel.getData());
+        bannerLoopAdapter = new BannerLoopAdapter(this, managerAdModel.getData());
         mRollViewPager.setAdapter(bannerLoopAdapter);
         initRecyclerView();
         adapter.addHeader(new RecyclerArrayAdapter.ItemView() {
@@ -69,6 +72,7 @@ public class WonderfulReviewActivity extends BaseActivity implements RecyclerArr
 
             @Override
             public void onBindView(View headerView) {
+
             }
         });
         onRefresh();
@@ -137,5 +141,27 @@ public class WonderfulReviewActivity extends BaseActivity implements RecyclerArr
         Intent intent = new Intent(context, WonderfulReviewActivity.class);
         intent.putExtra("managerAdModel", managerAdModel);
         context.startActivity(intent);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        abl.addOnOffsetChangedListener(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        abl.removeOnOffsetChangedListener(this);
+    }
+
+    @Override
+    public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+        if (verticalOffset == 0) {
+            mSmartRecyclerView.getSwipeToRefresh().setEnabled(true);
+        } else {
+            mSmartRecyclerView.getSwipeToRefresh().setEnabled(false);
+        }
+
     }
 }

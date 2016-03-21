@@ -9,6 +9,7 @@ import android.content.IntentFilter;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
@@ -54,10 +55,12 @@ import com.cmbb.smartkids.widget.wheelview.CustomDialogBuilder;
 import com.cmbb.smartkids.widget.wheelview.LocationSelectorDialogBuilder;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.gson.Gson;
+import com.soundcloud.android.crop.Crop;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -414,7 +417,14 @@ public class MySetActivity extends BaseActivity implements LocationSelectorDialo
         if (requestCode == PIC_REQUEST_CODE && resultCode == RESULT_OK) {
             if (data != null) {
                 final ArrayList<String> tempUrls = data.getStringArrayListExtra(PhotoPickerActivity.KEY_SELECTED_PHOTOS);
-                Log.e(TAG, "pic path:" + tempUrls.get(0));
+                Uri source = Uri.fromFile(new File(tempUrls.get(0)));
+                Uri destination = Uri.fromFile(new File(getCacheDir(), "smartkids"));
+                Crop.of(source, destination).start(this);
+            }
+        } else if (requestCode == Crop.REQUEST_CROP && resultCode == RESULT_OK) {
+            if (Crop.getOutput(data) != null) {
+                final ArrayList<String> tempUrls = new ArrayList<>();
+                tempUrls.add(Crop.getOutput(data).getPath());
                 showWaitDialog();
                 ImageUpload.getInstance().uploadImages(MySetActivity.this, tempUrls, new UploadListener() {
                     @Override

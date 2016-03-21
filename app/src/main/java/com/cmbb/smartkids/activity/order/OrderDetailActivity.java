@@ -49,7 +49,7 @@ public class OrderDetailActivity extends BaseActivity {
     //    private CollapsingToolbarLayout ctl;
     private boolean flag;
     private ServiceOrderModel.DataEntity data;
-//    private String serviceTitle, serviceCity, serviceTime, serviceAddress, serviceImg, serviceWidth, serviceHeight;
+    //    private String serviceTitle, serviceCity, serviceTime, serviceAddress, serviceImg, serviceWidth, serviceHeight;
     private String orderCode, phone;
     private CustomDialogBuilder builder;
     boolean orderResult;
@@ -179,7 +179,7 @@ public class OrderDetailActivity extends BaseActivity {
             intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
             startActivity(intent);
             finish();
-        }else if(id == R.id.iv_order_detail_delivery_address) {
+        } else if (id == R.id.iv_order_detail_delivery_address) {
             deliveryAddressId = (int) v.getTag();
             Log.e(TAG, "deliveryAddressId = " + deliveryAddressId);
             DeliveryAddressListActivity.skipFromActivity(OrderDetailActivity.this, deliveryAddressId, MODIFY_ORDER_DELIVERY_ADDRESS);
@@ -293,9 +293,9 @@ public class OrderDetailActivity extends BaseActivity {
         } else if (requestCode == MODIFY_ORDER_PHONE && resultCode == RESULT_OK) {
             phone = data.getStringExtra("phone");
             tvPhone.setText(phone);
-        } else if(requestCode == MODIFY_ORDER_DELIVERY_ADDRESS && resultCode == RESULT_OK){
+        } else if (requestCode == MODIFY_ORDER_DELIVERY_ADDRESS && resultCode == RESULT_OK) {
             DeliveryAddressListModel.DataEntity.RowsEntity local = data.getParcelableExtra("delivery_address");
-            if(local != null) {
+            if (local != null) {
                 ivChooseDelivery.setTag(local.getId());
                 tvDeliveryAddress.setText(local.getProvinceText() + local.getCityText() + local.getDistrictText() + local.getAddress());
             }
@@ -323,7 +323,7 @@ public class OrderDetailActivity extends BaseActivity {
         tvCity.setText(data.getServiceInfo().getCityText());
         tvPrice.setText(Double.valueOf(data.getServicePrice()) == 0 ? "免费" : "￥" + data.getServicePrice());
         try {
-            tvTime.setText( Tools.DataToString(data.getOrderDate(), "yyyy.MM.dd HH:mm"));
+            tvTime.setText(Tools.DataToString(data.getOrderDate(), "yyyy.MM.dd HH:mm"));
 //            tvActiveTime.setText(Tools.DataToString(serviceTime, "yyyy.MM.dd HH:mm"));
             tvActiveTime.setText(Tools.DataToString(data.getServiceInfo().getStartTime(), "yyyy.MM.dd HH:mm"));
         } catch (Exception e) {
@@ -338,11 +338,11 @@ public class OrderDetailActivity extends BaseActivity {
         }
 //        tvActiveLocal.setText(serviceAddress);
         tvActiveLocal.setText(data.getServiceInfo().getAddress());
-        if(data.getServiceInfo().getType() == 205){
+        if (data.getServiceInfo().getType() == 205) {
             rlDeliveryAddress.setVisibility(View.VISIBLE);
             tvDeliveryAddress.setText(data.getAddress());
             ivChooseDelivery.setTag(data.getAddressId());
-        }else{
+        } else {
             rlDeliveryAddress.setVisibility(View.GONE);
         }
         tvActivePrice.setText(data.getPrice() == null || Double.valueOf(data.getPrice()) == 0 ? "￥" + "0.00" : "￥" + data.getPrice());
@@ -396,11 +396,11 @@ public class OrderDetailActivity extends BaseActivity {
             tvPhone.setText(phone);
         }
         tvActiveLocal.setText(sData.getAddress());
-        if(data.getServiceInfo() != null && data.getServiceInfo().getType() == 205){
+        if (data.getServiceInfo() != null && data.getServiceInfo().getType() == 205) {
             rlDeliveryAddress.setVisibility(View.VISIBLE);
             tvDeliveryAddress.setText(data.getAddress());
             ivChooseDelivery.setTag(data.getAddressId());
-        }else {
+        } else {
             rlDeliveryAddress.setVisibility(View.GONE);
         }
         tvActivePrice.setText(Double.valueOf(data.getPrice()) == 0 ? "￥" + "0.00" : "￥" + data.getPrice());

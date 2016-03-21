@@ -284,7 +284,7 @@ public class HomeServiceActivity extends BaseHomeActivity implements View.OnClic
 
     @Override
     public void onItemClick(int position) {
-        Log.e("id", adapter.getItem(position).getId());
+        Log.e("id", adapter.getItem(position).getId()+"");
         ServerDetailActivityV2.newIntent(this, adapter.getItem(position).getId());
     }
 }

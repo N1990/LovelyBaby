@@ -2,7 +2,10 @@ package com.cmbb.smartkids.activity.user.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,13 +16,10 @@ import com.cmbb.smartkids.activity.user.adapter.MyCareAdapter;
 import com.cmbb.smartkids.activity.user.model.FriendListModel;
 import com.cmbb.smartkids.base.BaseApplication;
 import com.cmbb.smartkids.base.BaseFragment;
-import com.cmbb.smartkids.base.Constants;
-import com.cmbb.smartkids.base.CustomListener;
-import com.cmbb.smartkids.network.NetRequest;
-import com.javon.loadmorerecyclerview.LoadMoreRecyclerView;
-
-import java.util.ArrayList;
-import java.util.HashMap;
+import com.cmbb.smartkids.network.OkHttpClientManager;
+import com.cmbb.smartkids.recyclerview.SmartRecyclerView;
+import com.cmbb.smartkids.recyclerview.adapter.RecyclerArrayAdapter;
+import com.squareup.okhttp.Request;
 
 /**
  * 项目名称：LovelyBaby
@@ -27,10 +27,10 @@ import java.util.HashMap;
  * 创建人：javon
  * 创建时间：2015/9/8 13:11
  */
-public class MyCareFriendFragment extends BaseFragment {
+public class MyCareFriendFragment extends BaseFragment implements View.OnClickListener, RecyclerArrayAdapter.OnLoadMoreListener, SwipeRefreshLayout.OnRefreshListener, RecyclerArrayAdapter.OnItemClickListener {
     private final String TAG = MyCareFriendFragment.class.getSimpleName();
     private final int USER_CENTER_REQUEST = 1101;
-    private LoadMoreRecyclerView lmrv;
+    public SmartRecyclerView smartRecyclerView;
     private MyCareAdapter adapter;
     private int pager = 0;
     private int pagerSize = 10;
@@ -38,70 +38,26 @@ public class MyCareFriendFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.recyclerview_layout, null);
-        return root;
+        return inflater.inflate(R.layout.recyclerview_layout, null);
     }
 
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        initView();
-        initData();
-        addListener();
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        initView(view);
+        onRefresh();
     }
 
-    private void initView() {
-        lmrv = (LoadMoreRecyclerView) getView().findViewById(R.id.lmrv_self);
-        lmrv.setLinearLayout();
-        adapter = new MyCareAdapter();
-        adapter.setData(new ArrayList<FriendListModel.DataEntity.RowsEntity>());// 模拟数据
-        lmrv.setAdapter(adapter);
+    private void initView(View view) {
+        smartRecyclerView = (SmartRecyclerView) view.findViewById(R.id.srv_self);
+        smartRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        adapter = new MyCareAdapter(getActivity());
+        smartRecyclerView.setAdapterWithProgress(adapter);
+        adapter.setMore(R.layout.view_more, this);
+        adapter.setNoMore(R.layout.view_nomore);
+        adapter.setOnItemClickListener(this);
+        smartRecyclerView.setRefreshListener(this);
     }
-
-    private void initData() {
-
-    }
-
-    private void addListener() {
-        lmrv.setPullLoadMoreListener(lmrvListener);
-        lmrv.setInitializeWithoutPb();
-        adapter.setOnFooterTryAgain(this);
-        adapter.setOnItemClick(itemClick);
-    }
-
-    private LoadMoreRecyclerView.PullLoadMoreListener lmrvListener = new LoadMoreRecyclerView.PullLoadMoreListener() {
-        @Override
-        public void onInitialize() {
-            showWaitsDialog();
-            handleRequest(pager, pagerSize);
-
-
-        }
-
-        @Override
-        public void onRefresh() {
-            adapter.clearData();
-            pager = 0;
-            handleRequest(pager, pagerSize);
-        }
-
-        @Override
-        public void onLoadMore() {
-            pager++;
-            handleRequest(pager, pagerSize);
-        }
-    };
-
-    private CustomListener.ItemClickListener itemClick = new CustomListener.ItemClickListener() {
-        @Override
-        public void onItemClick(View v, int position, Object object) {
-            FriendListModel.DataEntity.RowsEntity itemData = (FriendListModel.DataEntity.RowsEntity) object;
-            int userId = itemData.getUserId();
-            Intent intent = new Intent(getActivity(), UserCenterActivity.class);
-            intent.putExtra("userId", userId);
-            startActivityForResult(intent, USER_CENTER_REQUEST);
-        }
-    };
 
     @Override
     public void onClick(View v) {
@@ -111,52 +67,53 @@ public class MyCareFriendFragment extends BaseFragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == USER_CENTER_REQUEST && resultCode == -1) {
-            adapter.clearData();
-            pager = 0;
-            showWaitsDialog();
-            handleRequest(pager, pagerSize);
+            adapter.clear();
+            onRefresh();
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
 
-    /**
-     * 加载好友列表
-     *
-     * @param pager
-     * @param pagerSize
-     */
-    public void handleRequest(int pager, int pagerSize) {
-        HashMap<String, String> params = new HashMap<>();
-        params.put("typeNum", "0");
-        params.put("pageNo", String.valueOf(pager));
-        params.put("numberOfPerPage", String.valueOf(pagerSize));
 
-        NetRequest.postRequest(Constants.ServiceInfo.CARE_LIST_REQUEST, BaseApplication.token, params, FriendListModel.class, new NetRequest.NetHandler(getActivity(), new NetRequest.NetResponseListener() {
-            @Override
-            public void onSuccessListener(Object object, String msg) {
-                hideWaitDialog();
-                lmrv.setPullLoadMoreCompleted();
-                FriendListModel friend = (FriendListModel) object;
-                Log.e(TAG, "friend:" + friend.toString());
-                if (friend != null && friend.getData() != null && friend.getData().getRecords() != 0) {
-                    adapter.addData(friend.getData().getRows(), lmrv);
-                } else {
-                    showShortToast(msg);
-                }
-                if (adapter.getDataSize() == 0)
-                    lmrv.setNoContent();
-            }
-
-            @Override
-            public void onErrorListener(String message) {
-                Log.e(TAG, "friend error:" + message);
-                hideWaitDialog();
-                lmrv.setPullLoadMoreCompleted();
-                showShortToast(message);
-            }
-        }));
+    @Override
+    public void onItemClick(int position) {
+        UserCenterActivity.newIntent((AppCompatActivity) getActivity(), adapter.getItem(position).getUserId(), USER_CENTER_REQUEST);
     }
 
+    @Override
+    public void onLoadMore() {
+        pager++;
+        FriendListModel.getFriendListRequest(0,pager, pagerSize, BaseApplication.token, new OkHttpClientManager.ResultCallback<FriendListModel>() {
+            @Override
+            public void onError(Request request, Exception e) {
+                showShortToast(e.toString());
+            }
 
+            @Override
+            public void onResponse(FriendListModel response) {
+                if (response != null) {
+                    adapter.addAll(response.getData().getRows());
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onRefresh() {
+        pager = 0;
+        FriendListModel.getFriendListRequest(0,pager, pagerSize, BaseApplication.token, new OkHttpClientManager.ResultCallback<FriendListModel>() {
+            @Override
+            public void onError(Request request, Exception e) {
+                showShortToast(e.toString());
+            }
+
+            @Override
+            public void onResponse(FriendListModel response) {
+                if (response != null) {
+                    adapter.clear();
+                    adapter.addAll(response.getData().getRows());
+                }
+            }
+        });
+    }
 }

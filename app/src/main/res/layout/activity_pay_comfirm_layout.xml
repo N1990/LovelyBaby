@@ -132,7 +132,6 @@
             android:layout_below="@+id/ll_contact_person"
             android:background="@drawable/shape_background_white_c"
             android:orientation="horizontal"
-
             android:padding="@dimen/global_padding">
 
             <TextView
@@ -164,7 +163,7 @@
                 android:paddingTop="@dimen/half_global_padding"
                 android:text="修改"
                 android:textColor="@android:color/white"
-                android:visibility="invisible" />
+                android:visibility="gone" />
         </LinearLayout>
 
         <LinearLayout
@@ -174,7 +173,6 @@
             android:layout_below="@+id/ll_contact_phone"
             android:background="@drawable/shape_background_white_c"
             android:orientation="horizontal"
-
             android:padding="@dimen/global_padding">
 
             <TextView
@@ -208,7 +206,7 @@
                 android:paddingTop="@dimen/half_global_padding"
                 android:text="地址管理"
                 android:textColor="@android:color/white"
-                android:visibility="invisible" />
+                android:visibility="gone" />
         </LinearLayout>
 
     </RelativeLayout>

@@ -28,6 +28,7 @@ import com.cmbb.smartkids.base.Constants;
 import com.cmbb.smartkids.base.CustomListener;
 import com.cmbb.smartkids.db.DBContent;
 import com.cmbb.smartkids.network.NetRequest;
+import com.cmbb.smartkids.network.OkHttpClientManager;
 import com.cmbb.smartkids.photopicker.PhotoPickerActivity;
 import com.cmbb.smartkids.photopicker.PhotoViewActivity;
 import com.cmbb.smartkids.photopicker.utils.PhotoPickerIntent;

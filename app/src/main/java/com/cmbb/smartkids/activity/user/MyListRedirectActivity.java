@@ -12,6 +12,8 @@ import com.cmbb.smartkids.activity.user.fragment.MyCarePopmanFragment;
 import com.cmbb.smartkids.activity.user.fragment.MyCollectCommunityFragment;
 //import com.cmbb.smartkids.activity.user.fragment.MyCollectServiceFragment;
 import com.cmbb.smartkids.activity.user.fragment.MyCollectServiceFragment;
+import com.cmbb.smartkids.activity.user.fragment.MyEvaluateServiceFragment;
+import com.cmbb.smartkids.activity.user.fragment.MyEvaluateUserFragment;
 import com.cmbb.smartkids.activity.user.fragment.MyServiceMessageFragement;
 import com.cmbb.smartkids.activity.user.fragment.MySystemMessageFragement;
 import com.cmbb.smartkids.base.BaseActivity;
@@ -24,6 +26,7 @@ public class MyListRedirectActivity extends BaseActivity {
     private ViewPager vpSlef;
     private SelfCommentPagerAdapter adapter;
     private String flag;
+    private int isEredar;
     ArrayList<Fragment> fragments;
     ArrayList<String> titles;
 
@@ -51,8 +54,10 @@ public class MyListRedirectActivity extends BaseActivity {
 
     private void selectView() {
         Bundle bundle = null;
-        if (getIntent() != null && (bundle = getIntent().getExtras()) != null)
+        if (getIntent() != null && (bundle = getIntent().getExtras()) != null){
             flag = bundle.getString("flag");
+            isEredar = bundle.getInt("isEredar");
+        }
         if ("service".equals(flag)) {
             setTitle("我的服务");
         } else if ("community".equals(flag)) {
@@ -66,6 +71,9 @@ public class MyListRedirectActivity extends BaseActivity {
         } else if ("collect".equals(flag)) {
             setTitle("我的收藏");
             myColletView();
+        }else if("evaluate".equals(flag)){
+            setTitle("我的评价");
+            myEvaluateView(isEredar);
         }
 
     }
@@ -102,6 +110,21 @@ public class MyListRedirectActivity extends BaseActivity {
         Fragment popmanFra = new MyCollectCommunityFragment();
         titles.add("话题");
         fragments.add(popmanFra);
+        adapter.setData(fragments, titles);
+        vpSlef.setAdapter(adapter);
+        tl.setupWithViewPager(vpSlef);
+    }
+
+    private void myEvaluateView(int isEredar){
+        Bundle bundle = new Bundle();
+        bundle.putInt("isEredar", isEredar);
+        Fragment evaluateService = new MyEvaluateServiceFragment();
+        titles.add("服务");
+        fragments.add(evaluateService);
+        Fragment evaluateUser = new MyEvaluateUserFragment();
+        evaluateUser.setArguments(bundle);
+        titles.add("达人");
+        fragments.add(evaluateUser);
         adapter.setData(fragments, titles);
         vpSlef.setAdapter(adapter);
         tl.setupWithViewPager(vpSlef);

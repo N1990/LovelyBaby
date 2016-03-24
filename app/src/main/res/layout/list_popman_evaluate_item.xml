@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:background="@android:color/white"
     android:orientation="vertical"
+    android:layout_marginBottom="10dp"
     android:padding="10dp">
 
     <RelativeLayout
@@ -40,11 +41,25 @@
             style="@style/foodRatingBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="-2dp"
+            android:layout_toRightOf="@+id/sdv_evaluate_popman_item"
+            android:layout_below="@+id/tv_evaluate_popman_nickname_item"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:stepSize="1" />
+
+
+        <TextView
+            android:id="@+id/tv_evaluate_popman_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginTop="5dp"
-            android:numStars="5"
-            android:rating="3"
-            android:stepSize="1" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/primaryColor"
+            android:textStyle="bold"
+            android:text="非常满意"/>
+
 
 
     </RelativeLayout>
@@ -54,7 +69,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="60dp"
-        android:layout_marginTop="-15dp"
         android:lineSpacingExtra="2dp"
         android:text="萌宝派萌宝派萌宝派萌萌宝派萌宝派萌宝派萌宝派萌宝派萌宝派萌宝派萌宝派萌宝派宝派萌宝派萌宝派萌宝派萌宝派萌宝派萌宝派"
         android:textColor="@color/dimgray" />

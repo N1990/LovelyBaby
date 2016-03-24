@@ -88,15 +88,18 @@ public class HomeMeActivity extends BaseHomeActivity implements View.OnClickList
 
 
     private void initData() {
+        showWaitDialog();
         UserCenterModel.getUserInfoRequest(SPCache.getString(Constants.USER_ID, "-1"), 1, BaseApplication.token, new OkHttpClientManager.ResultCallback<UserCenterModel>() {
             @Override
             public void onError(Request request, Exception e) {
+                hideWaitDialog();
                 showShortToast(e.toString());
             }
 
             @Override
             public void onResponse(UserCenterModel response) {
                 if (response != null) {
+                    hideWaitDialog();
                     userInfoEntity = response.getData();
                     reflushView(userInfoEntity);
                 }
@@ -125,6 +128,7 @@ public class HomeMeActivity extends BaseHomeActivity implements View.OnClickList
         myPerssion = (LinearLayout) findViewById(R.id.tv_home_myself_perssion);
         myPerssion.setOnClickListener(this);
         myOrder = (LinearLayout) findViewById(R.id.ll_home_self_order);
+        myOrder.setOnClickListener(this);
         myUID = (LinearLayout) findViewById(R.id.ll_home_self_uid);
         myUID.setOnClickListener(this);
         myAccept = (LinearLayout) findViewById(R.id.ll_home_self_order_accept);
@@ -340,8 +344,9 @@ public class HomeMeActivity extends BaseHomeActivity implements View.OnClickList
                 startActivity(myCare);
                 break;
             case R.id.tv_home_myself_perssion:
-                Intent perssion = new Intent(this, PerssionListActivity.class);
-                perssion.putExtra("isPop", userInfoEntity.getIsEredar());
+                Intent perssion = new Intent(this, MyListRedirectActivity.class);
+                perssion.putExtra("flag", "evaluate");
+                perssion.putExtra("isEredar", userInfoEntity.getIsEredar());
                 startActivity(perssion);
                 break;
             case R.id.ll_home_self_order_accept:

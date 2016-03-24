@@ -43,6 +43,7 @@ public class ConfirmOrder extends BaseActivity {
     private static final String TAG = ConfirmOrder.class.getSimpleName();
     private final int CHOOSE_ADDRESS_REQUEST = 10101;
     private final int MODIFY_PHONE_REQUEST = 10111;
+    private final int GO_PAY_REQUEST = 10112;
 
     private RelativeLayout llHomeServiceItem;
     private SimpleDraweeView sdPic;
@@ -102,9 +103,9 @@ public class ConfirmOrder extends BaseActivity {
         tvAddress.setText(reserveEntity.getServiceInfo().getCityText());
         tvPrice.setText("RMB " + reserveEntity.getServicePrice());
         tvCount.setText("x" + reserveEntity.getBuyCount());
-        tvTotalPrice.setText(String.valueOf(reserveEntity.getPrice()));
-        tvNick.setText(reserveEntity.getReceiveName());
-        String phone = reserveEntity.getReceivePhone();
+        tvTotalPrice.setText(reserveEntity.getPrice() + "");
+        tvNick.setText(reserveEntity.getUserNike());
+        String phone = reserveEntity.getPhone();
         if (!TextUtils.isEmpty(phone))
             tvPhone.setText(phone);
         address = reserveEntity.getAddress();
@@ -253,12 +254,12 @@ public class ConfirmOrder extends BaseActivity {
                     showShortToast("联系人名字不能为空");
                     return;
                 }
-                if (!Tools.isMobileNo(Phone)) {
+                if(!Tools.isMobileNo(Phone)){
                     showShortToast("请正确填写你的手机号码");
                     return;
                 }
                 showWaitDialog();
-                SubmitOrderModel.postSubmitOrderRequest(reserveEntity.getServiceId(), reserveEntity.getPrice(), reserveEntity.getPriceId(), reserveEntity.getBuyCount(), Phone, receiverName, receiverPhone, postCode, address, new OkHttpClientManager.ResultCallback<SubmitOrderModel>() {
+                SubmitOrderModel.postSubmitOrderRequest(reserveEntity.getServiceId(), reserveEntity.getPriceId(), reserveEntity.getServicePrice(), reserveEntity.getBuyCount(), receiverContact, Phone, receiverName, receiverPhone, postCode, address, new OkHttpClientManager.ResultCallback<SubmitOrderModel>() {
                     @Override
                     public void onError(Request request, Exception e) {
                         hideWaitDialog();
@@ -268,8 +269,13 @@ public class ConfirmOrder extends BaseActivity {
                     @Override
                     public void onResponse(SubmitOrderModel response) {
                         hideWaitDialog();
-                        if (response != null)
-                            PayConfirm.newInstance(ConfirmOrder.this, response.getData());
+                        com.cmbb.smartkids.utils.log.Log.e(TAG, " response is null :" + (response == null));
+                        com.cmbb.smartkids.utils.log.Log.e(TAG, " i come here");
+                        if (response != null){
+                            com.cmbb.smartkids.utils.log.Log.e(TAG, " i come here01");
+                            PayConfirm.newInstance(ConfirmOrder.this, response.getData(), GO_PAY_REQUEST);
+                        }
+                        com.cmbb.smartkids.utils.log.Log.e(TAG, " i come here02");
                         showShortToast(response.getMsg());
                     }
                 });
@@ -296,6 +302,8 @@ public class ConfirmOrder extends BaseActivity {
         } else if (requestCode == MODIFY_PHONE_REQUEST && resultCode == RESULT_OK) {
             String phone = data.getStringExtra("phone");
             tvPhone.setText(phone + "");
+        } else if(GO_PAY_REQUEST == requestCode && resultCode == RESULT_OK){
+            finish();
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }

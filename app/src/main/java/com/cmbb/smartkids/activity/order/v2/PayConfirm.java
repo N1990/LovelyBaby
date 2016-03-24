@@ -18,9 +18,11 @@ import android.widget.Toast;
 
 import com.alipay.sdk.app.PayTask;
 import com.cmbb.smartkids.R;
+import com.cmbb.smartkids.activity.order.model.GenerateOrderModel;
 import com.cmbb.smartkids.activity.order.model.PayWayModel;
 import com.cmbb.smartkids.activity.order.model.SubmitOrderModel;
 import com.cmbb.smartkids.base.BaseActivity;
+import com.cmbb.smartkids.model.OrderStatus;
 import com.cmbb.smartkids.network.OkHttpClientManager;
 import com.cmbb.smartkids.pay.PayResult;
 import com.cmbb.smartkids.utils.FrescoTool;
@@ -72,6 +74,8 @@ public class PayConfirm extends BaseActivity {
     private TextView tvPayWayTag;
     private ImageView imageView;
     private SubmitOrderModel.DataEntity dataEntity;
+    private GenerateOrderModel.DataEntity dataEntity02;
+    private String orderCode;
     private PayWayModel payWayModel;
 
     private Handler mHandler = new Handler() {
@@ -86,7 +90,7 @@ public class PayConfirm extends BaseActivity {
                     if (TextUtils.equals(resultStatus, "9000")) {
                         Toast.makeText(PayConfirm.this, "支付成功", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent();
-                        intent.putExtra("order_code", dataEntity.getOrderCode());
+                        intent.putExtra("order_status", OrderStatus.YI_ZHI_FU);
                         setResult(RESULT_OK, intent);
                         finish();
                     } else {
@@ -152,17 +156,47 @@ public class PayConfirm extends BaseActivity {
     private void initData() {
         if (getIntent() != null && getIntent().getExtras() != null) {
             dataEntity = getIntent().getParcelableExtra("dataEntity");
-            handleRequest(dataEntity.getOrderCode());
-            tvOrderCode.setText("订单编号:" + dataEntity.getOrderCode());
-            FrescoTool.loadImage(ivHomeServiceItem, dataEntity.getServiceInfo().getServicesImg(), 1.67f);
-            tvTitle.setText(dataEntity.getServiceInfo().getTitle());
-            tvAddress.setText(dataEntity.getServiceInfo().getCityText());
-            tvPrice.setText(dataEntity.getServicePrice());
-            tvCount.setText("x" + dataEntity.getBuyCount());
-            tvNick.setText(dataEntity.getReceiveName());
-            tvPhone.setText(dataEntity.getReceivePhone());
-            tvAdd.setText(dataEntity.getAddress());
-            tvWholePrice.setText(dataEntity.getPrice());
+            dataEntity02 = getIntent().getParcelableExtra("dataEntity02");
+            orderCode = getIntent().getParcelableExtra("order_code");
+            if(dataEntity != null){
+                handleRequest(dataEntity.getOrderCode());
+                tvOrderCode.setText("订单编号:" + dataEntity.getOrderCode());
+                FrescoTool.loadImage(ivHomeServiceItem, dataEntity.getServiceInfo().getServicesImg(), 1.67f);
+                tvTitle.setText(dataEntity.getServiceInfo().getTitle());
+                tvAddress.setText(dataEntity.getServiceInfo().getCityText());
+                tvPrice.setText(dataEntity.getServicePrice());
+                tvCount.setText("x" + dataEntity.getBuyCount());
+                tvNick.setText(dataEntity.getUserNike());
+                tvPhone.setText(dataEntity.getPhone());
+                if(!TextUtils.isEmpty(dataEntity.getAddress())){
+                    tvAdd.setVisibility(View.VISIBLE);
+                    tvAdd.setText(dataEntity.getAddress());
+                }else {
+                    tvAdd.setVisibility(View.GONE);
+                }
+                tvWholePrice.setText(dataEntity.getPrice());
+            }else if(dataEntity02 != null){
+                handleRequest(dataEntity02.getOrderCode());
+                tvOrderCode.setText("订单编号:" + dataEntity02.getOrderCode());
+                FrescoTool.loadImage(ivHomeServiceItem, dataEntity02.getServiceInfo().getServicesImg(), 1.67f);
+                tvTitle.setText(dataEntity02.getServiceInfo().getTitle());
+                tvAddress.setText(dataEntity02.getServiceInfo().getCityText());
+                tvPrice.setText(dataEntity02.getServicePrice());
+                tvCount.setText("x" + dataEntity02.getBuyCount());
+                tvNick.setText(dataEntity02.getUserNike());
+                tvPhone.setText(dataEntity02.getPhone());
+                if(!TextUtils.isEmpty(dataEntity02.getAddress())){
+                    tvAdd.setVisibility(View.VISIBLE);
+                    tvAdd.setText(dataEntity02.getAddress());
+                }else {
+                    tvAdd.setVisibility(View.GONE);
+                }
+                tvWholePrice.setText(dataEntity02.getPrice());
+            }else if(!TextUtils.isEmpty(orderCode)){
+                handleOrderRequest(orderCode);
+            }else{
+                showShortToast("数据传错啦~");
+            }
         }
     }
 
@@ -214,7 +248,52 @@ public class PayConfirm extends BaseActivity {
 
     }
 
+    /**
+     * 订单详情请求
+     *
+     * @param orderCode
+     */
+    private void handleOrderRequest(String orderCode) {
+        showWaitDialog();
+        GenerateOrderModel.getOrderDetailRequest(orderCode, new OkHttpClientManager.ResultCallback<GenerateOrderModel>() {
+            @Override
+            public void onError(Request request, Exception e) {
+                hideWaitDialog();
+                showShortToast(e.toString());
+            }
 
+            @Override
+            public void onResponse(GenerateOrderModel response) {
+                hideWaitDialog();
+                if (response != null && response.getData() != null && response.getData().getServiceInfo() != null) {
+                    dataEntity02 = response.getData();
+                    handleRequest(dataEntity02.getOrderCode());
+                    tvOrderCode.setText("订单编号:" + dataEntity02.getOrderCode());
+                    FrescoTool.loadImage(ivHomeServiceItem, dataEntity02.getServiceInfo().getServicesImg(), 1.67f);
+                    tvTitle.setText(dataEntity02.getServiceInfo().getTitle());
+                    tvAddress.setText(dataEntity02.getServiceInfo().getCityText());
+                    tvPrice.setText(dataEntity02.getServicePrice());
+                    tvCount.setText("x" + dataEntity02.getBuyCount());
+                    tvNick.setText(dataEntity02.getUserNike());
+                    tvPhone.setText(dataEntity02.getPhone());
+                    if(!TextUtils.isEmpty(dataEntity02.getAddress())){
+                        tvAdd.setVisibility(View.VISIBLE);
+                        tvAdd.setText(dataEntity02.getAddress());
+                    }else {
+                        tvAdd.setVisibility(View.GONE);
+                    }
+                    tvWholePrice.setText(dataEntity02.getPrice());
+                }
+                showShortToast(response.getMsg());
+            }
+        });
+    }
+
+
+    /**
+     * 支付方式
+     * @param orderCode
+     */
     private void handleRequest(String orderCode) {
         showWaitDialog();
         PayWayModel.getPayWayRequest(orderCode, new OkHttpClientManager.ResultCallback<PayWayModel>() {
@@ -234,10 +313,17 @@ public class PayConfirm extends BaseActivity {
     }
 
 
-    public static void newInstance(Activity activity, SubmitOrderModel.DataEntity dataEntity) {
+    public static void newInstance(Activity activity, SubmitOrderModel.DataEntity dataEntity, int requestCode) {
         Intent intent = new Intent(activity, PayConfirm.class);
         intent.putExtra("dataEntity", dataEntity);
-        activity.startActivity(intent);
+        activity.startActivityForResult(intent, requestCode);
+    }
+
+
+    public static void newInstance(Activity activity, GenerateOrderModel.DataEntity dataEntity, int requestCode) {
+        Intent intent = new Intent(activity, PayConfirm.class);
+        intent.putExtra("dataEntity02", dataEntity);
+        activity.startActivityForResult(intent, requestCode);
     }
 
 

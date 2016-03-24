@@ -105,9 +105,7 @@ public class BaseOrderListActivity extends BaseActivity implements  RecyclerArra
             case WEI_ZHI_FU:
                 if(price != 0){
                     Intent pay = new Intent(BaseOrderListActivity.this, PayConfirm.class);
-                    pay.putExtra("order_title", data.getTitle());
-                    pay.putExtra("order_price", data.getPrice());
-                    pay.putExtra("orderCode", String.valueOf(data.getOrderCode()));
+                    pay.putExtra("order_code", String.valueOf(data.getOrderCode()));
                     startActivityForResult(pay, HANDLER_ORDER_REQUEST);
                 }else{
                     showCustomDialog(data.getOrderCode());
@@ -124,10 +122,7 @@ public class BaseOrderListActivity extends BaseActivity implements  RecyclerArra
                 showRefundDialog(data.getOrderCode());
                 break;
             case YI_CAN_JIA:
-                Intent evaluate = new Intent(BaseOrderListActivity.this, EvaluateListActivity.class);
-                evaluate.putExtra("order_code", data.getOrderCode());
-                evaluate.putExtra("service_id", data.getServiceId());
-                startActivityForResult(evaluate, HANDLER_ORDER_REQUEST);
+                EvaluateOrderActivity.newInstance(BaseOrderListActivity.this, data.getServiceId(), data.getOrderCode(), HANDLER_ORDER_REQUEST);
                 break;
             case YI_PING_JIA:
             case YI_TUI_KUAN:
@@ -165,7 +160,7 @@ public class BaseOrderListActivity extends BaseActivity implements  RecyclerArra
                     public void onClick(View v) {
                         if(builder != null)
                             builder.setDialogDismiss();
-                        handleApplyRefund(orderCode);
+                        ReimburseActivity.newInstance(BaseOrderListActivity.this, orderCode, HANDLER_ORDER_REQUEST);
                     }
                 })
                 .withCancelText("取消", new CustomListener.DialogListener() {
@@ -214,31 +209,6 @@ public class BaseOrderListActivity extends BaseActivity implements  RecyclerArra
         });
     }
 
-    /**
-     * 申请退款
-     * @param orderCode
-     */
-    private void handleApplyRefund(String orderCode){
-        showWaitDialog();
-        RefundModel.handleApplyRefundRequest(orderCode, new OkHttpClientManager.ResultCallback<RefundModel>() {
-            @Override
-            public void onError(Request request, Exception e) {
-                hideWaitDialog();
-                showShortToast(e.toString());
-            }
-
-            @Override
-            public void onResponse(RefundModel response) {
-                hideWaitDialog();
-                if (response != null) {
-                    pager = 0;
-                    onRefresh();
-                } else {
-                    showShortToast("退款中...");
-                }
-            }
-        });
-    }
 
 
 

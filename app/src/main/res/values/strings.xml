@@ -90,4 +90,7 @@
     <string name="product_info">产品信息</string>
     <string name="manufacturer_info">制造商信息</string>
     <!-- Log Info -->
+    <string name="title_reimburse_activity" translatable="false" >申请退款</string>
+    <string name="title_evaluate_order" translatable="false" >评价订单</string>
+    <string name="title_ordere_detail" translatable="false">订单详情</string>
 </resources>

@@ -13,7 +13,8 @@ public class Constants {
 //    public static String BASE_URL_PIC = "http://192.168.100.174:8081/wine-rest/";
     //生产环境
     public static final String BASE = "http://120.26.88.135:8090/wine-rest/";
-    //    public static String BASE_URL = BASE + "cgi";
+//    public static String BASE_URL = BASE + "cgi";
+
     //    public static final String BASE = "http://mengbaopai.smart-kids.com:82/wine-rest/";
     public static final String BASE_URL = BASE + "cgi";
     public final static String TOKEN = "token";
@@ -85,7 +86,9 @@ public class Constants {
         public static final String MY_SERVICE_REQUEST = "smart/personal/getService"; //我的服务
         public static final String EVALUATE_POPMAN_REQUEST = "smart/eredar/saveEvaluate";//评价达人
         public static final String EVALUATE_POPMAN_LIST = "smart/services/getServiceEredar"; //评价达人列表
-        public static final String EVALUATE_LIST_REQUEST = "smart/personal/getEredarEvaluate"; //评价列表
+        public static final String EVALUATE_LIST_REQUEST = "smart/personal/getEredarEvaluate"; //达人评价列表
+        public static final String EVALUATE_SERVICE_LIST_REQUEST = "smart/personal/getServiceEvaluate"; //服务评价列表
+        public static final String EVALUATE_ORDER = "smart/evaluate"; //评价列表
         public static final String FEEDBACK_SUGGEST_REQUEST = "smart/feedback/opinion";//意见反馈
 
         public static final String PAY_WAY_LIST = "smart/services/payOrder"; //获取支付列表

@@ -6,7 +6,6 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
-    <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <!-- umeng-analytics -->
@@ -406,6 +405,8 @@
         <activity android:name=".activity.order.v2.UnEvaluateOrderListActivity" />
         <activity android:name=".activity.order.v2.ReimburseOrderListActivity" />
         <activity android:name=".activity.home.home_v2.RankErdarActivity" />
+        <activity android:name=".activity.order.v2.EvaluateOrderActivity" />
+        <activity android:name=".activity.order.v2.ReimburseActivity" />
         <activity
             android:name=".activity.home.home_v2.WonderfulReviewActivity"
             android:theme="@style/HomePageTheme" />

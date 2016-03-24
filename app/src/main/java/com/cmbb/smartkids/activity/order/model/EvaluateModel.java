@@ -3,6 +3,11 @@ package com.cmbb.smartkids.activity.order.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.cmbb.smartkids.base.BaseApplication;
+import com.cmbb.smartkids.base.Constants;
+import com.cmbb.smartkids.network.OkHttpClientManager;
+
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -642,4 +647,17 @@ public class EvaluateModel implements Parcelable {
             return new EvaluateModel[size];
         }
     };
+
+
+    /**
+     * 获取评价达人列表
+     * @param serviceId
+     * @param callback
+     */
+    public static void getEvaluateServicePeoples(int serviceId, OkHttpClientManager.ResultCallback<EvaluateModel> callback){
+        HashMap<String, String> params = new HashMap<>();
+        params.put("token", BaseApplication.token);
+        params.put("id", serviceId+"");
+        OkHttpClientManager.postAsyn(Constants.ServiceInfo.EVALUATE_POPMAN_LIST, params, callback);
+    }
 }

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        layout="@layout/custom_actionbar"/>
+
+
+
+
+    <RadioGroup
+        android:id="@+id/rg_reimburse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tl_main_actionbar"
+        android:padding="@dimen/global_padding"
+        android:background="@android:color/white"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/rb_reimburse_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.Smart.Body1"
+            android:text="拍错了,不想买了"
+             />
+
+        <RadioButton
+            android:id="@+id/rb_reimburse_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.Smart.Body1"
+            android:text="与商家达成一致退款" />
+
+        <RadioButton
+            android:id="@+id/rb_reimburse_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.Smart.Body1"
+            android:text="其它原因" />
+    </RadioGroup>
+
+
+    <FrameLayout
+        android:id="@+id/fl_reimburse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rg_reimburse"
+        android:background="@android:color/white"
+        android:layout_marginTop="15dp"
+        android:padding="@dimen/global_padding"
+        android:visibility="gone">
+        <EditText
+            android:id="@+id/et_reimburse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/half_global_padding"
+            android:background="@drawable/edit_gray_radio_bg"
+            android:gravity="left"
+            android:textAppearance="@style/TextAppearance.Smart.Body1"
+            android:minHeight="100dp"
+            android:text=""
+            />
+    </FrameLayout>
+
+
+    <TextView
+        android:id="@+id/tv_reimburse_submit"
+        android:layout_width="match_parent"
+        android:layout_height="48dip"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:background="@color/primaryColor"
+        android:textAppearance="@style/TextAppearance.Smart.Medium"
+        android:textColor="@android:color/white"
+        android:text="提交申请"/>
+</RelativeLayout>

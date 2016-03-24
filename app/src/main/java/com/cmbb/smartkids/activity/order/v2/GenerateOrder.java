@@ -1,8 +1,10 @@
 package com.cmbb.smartkids.activity.order.v2;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -11,15 +13,18 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.cmbb.smartkids.R;
+import com.cmbb.smartkids.activity.login.model.SecurityCodeModel;
 import com.cmbb.smartkids.activity.order.model.GenerateOrderModel;
 import com.cmbb.smartkids.activity.order.model.OrderDetailModel;
 import com.cmbb.smartkids.activity.serve.v2.ServerDetailActivityV2;
 import com.cmbb.smartkids.base.BaseActivity;
+import com.cmbb.smartkids.base.CustomListener;
 import com.cmbb.smartkids.model.OrderStatus;
 import com.cmbb.smartkids.network.OkHttpClientManager;
 import com.cmbb.smartkids.utils.FrescoTool;
 import com.cmbb.smartkids.utils.Tools;
 import com.cmbb.smartkids.utils.log.Log;
+import com.cmbb.smartkids.widget.wheelview.CustomDialogBuilder;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.squareup.okhttp.Request;
 
@@ -31,6 +36,7 @@ import com.squareup.okhttp.Request;
  */
 public class GenerateOrder extends BaseActivity {
     private final String TAG = GenerateOrder.class.getSimpleName();
+    private final int HANDLER_ORDER_REQUEST = 10129;
     private TextView tvOrderNum;
     private RelativeLayout llHomeServiceItem;
     private SimpleDraweeView ivHomeServiceItem;
@@ -58,6 +64,8 @@ public class GenerateOrder extends BaseActivity {
     private TextView tvAppointment;
     private TextView tvReimburse;
     private GenerateOrderModel.DataEntity dataEntity;
+    private CustomDialogBuilder builder;
+    private boolean isReimburse;
 
     @Override
     protected int getLayoutId() {
@@ -78,6 +86,7 @@ public class GenerateOrder extends BaseActivity {
     }
 
     private void initView() {
+        setTitle(getString(R.string.title_ordere_detail));
         tvOrderNum = (TextView) findViewById(R.id.tv_order_num);
         llHomeServiceItem = (RelativeLayout) findViewById(R.id.ll_home_service_item);
         ivHomeServiceItem = (SimpleDraweeView) findViewById(R.id.iv_home_service_item);
@@ -116,10 +125,33 @@ public class GenerateOrder extends BaseActivity {
                 ServerDetailActivityV2.newIntent(GenerateOrder.this, dataEntity.getServiceId());
                 break;
             case R.id.tv_appointment:
-
+                OrderStatus status = OrderStatus.getStatusByValue(dataEntity.getStatus());
+                switch (status) {
+                    case WEI_ZHI_FU:
+                        double price = Double.valueOf(dataEntity.getPrice());
+                        if(price != 0){
+                            PayConfirm.newInstance(GenerateOrder.this, dataEntity, HANDLER_ORDER_REQUEST);
+                        }else{
+                            showCustomDialog(dataEntity.getOrderCode());
+                        }
+                        break;
+                    case YI_ZHI_FU:
+                        if(TextUtils.isEmpty(dataEntity.getServiceInfo().getServicePhone())){
+                            showShortToast("商家没有留下任何联系方式");
+                        }else{
+                            Intent intent = new Intent(Intent.ACTION_DIAL);
+                            Uri data = Uri.parse("tel:" + dataEntity.getServiceInfo().getServicePhone());
+                            intent.setData(data);
+                            startActivity(intent);
+                        }
+                        break;
+                    case YI_CAN_JIA:
+                        EvaluateOrderActivity.newInstance(GenerateOrder.this, dataEntity.getServiceId(), dataEntity.getOrderCode(), HANDLER_ORDER_REQUEST);
+                        break;
+                }
                 break;
             case R.id.tv_reimburse:
-
+                ReimburseActivity.newInstance(GenerateOrder.this, dataEntity.getOrderCode(), HANDLER_ORDER_REQUEST);
                 break;
         }
     }
@@ -147,19 +179,25 @@ public class GenerateOrder extends BaseActivity {
         }else {
             llContactAddress.setVisibility(View.GONE);
         }
-            reflushBottomView();
+        int status = dataEntity.getStatus();
+        reflushBottomView(status);
     }
     /**
      * 刷新底部状态与按钮
      *
      */
-    private void reflushBottomView() {
-        OrderStatus status = OrderStatus.getStatusByValue(dataEntity.getStatus());
+    private void reflushBottomView(int statusCode) {
+        OrderStatus status = OrderStatus.getStatusByValue(statusCode);
         switch (status) {
             case WEI_ZHI_FU:
                 tvReimburse.setVisibility(View.GONE);
                 tvAppointment.setVisibility(View.VISIBLE);
-                tvAppointment.setText("立即支付");
+                double p = Double.valueOf(dataEntity.getPrice());
+                if(p != 0) {
+                    tvAppointment.setText("立即支付");
+                }else{
+                    tvAppointment.setText("取消订单");
+                }
                 break;
             case YI_ZHI_FU:
                 double price = Double.valueOf(dataEntity.getPrice());
@@ -213,8 +251,49 @@ public class GenerateOrder extends BaseActivity {
         }
     }
 
+    private void showCustomDialog(final String orderCode){
+        builder = CustomDialogBuilder.getInstance(this).withTitle("取消订单")
+                .withMessage("您确认要取消此订单吗？取消之后您需重新预订此服务...")
+                .withComfirmText("确认", new CustomListener.DialogListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(builder != null)
+                            builder.setDialogDismiss();
+                        handleCancelRequest(orderCode);
+                    }
+                })
+                .withCancelText("取消", new CustomListener.DialogListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(builder != null)
+                            builder.dismiss();
+                    }
+                });
+        builder.show();
+    }
 
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == HANDLER_ORDER_REQUEST && resultCode == RESULT_OK){
+            isReimburse = true;
+            int status = data.getIntExtra("order_status", 0);
+            reflushBottomView(status);
+        }else{
+            super.onActivityResult(requestCode, resultCode, data);
+        }
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(isReimburse){
+            setResult(RESULT_OK);
+            finish();
+        }else{
+            super.onBackPressed();
+        }
+    }
 
     /**
      * 订单详情请求
@@ -222,7 +301,7 @@ public class GenerateOrder extends BaseActivity {
      * @param orderCode
      */
     private void handleOrderRequest(String orderCode) {
-
+        showWaitDialog();
         GenerateOrderModel.getOrderDetailRequest(orderCode, new OkHttpClientManager.ResultCallback<GenerateOrderModel>() {
             @Override
             public void onError(Request request, Exception e) {
@@ -240,6 +319,39 @@ public class GenerateOrder extends BaseActivity {
                 showShortToast(response.getMsg());
             }
         });
+    }
+
+    /**取消订单
+     * @param orderCode
+     */
+    private void handleCancelRequest(String orderCode){
+        showWaitDialog();
+        SecurityCodeModel.handleCancelOrderRequest(orderCode, new OkHttpClientManager.ResultCallback<SecurityCodeModel>() {
+            @Override
+            public void onError(Request request, Exception e) {
+                hideWaitDialog();
+                showShortToast(e.toString());
+            }
+
+            @Override
+            public void onResponse(SecurityCodeModel response) {
+                hideWaitDialog();
+                if (response != null) {
+                    showShortToast(response.getMsg());
+                    setResult(RESULT_OK);
+                    finish();
+                } else {
+                    showShortToast("订单取消失败");
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if(builder != null)
+            builder.setDialogDismiss();
     }
 
     public static void newInstance(Activity activity, String orderCode, int requestCode){

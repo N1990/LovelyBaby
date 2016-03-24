@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:background="@android:color/white"
     android:padding="10dp"
+    android:layout_marginBottom="10dp"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -50,12 +51,12 @@
             style="@style/foodRatingBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="2dp"
+            android:isIndicator="true"
             android:layout_below="@+id/tv_evaluate_service_nickname_item"
             android:layout_toRightOf="@+id/sdv_evaluate_service_item"
             android:numStars="5"
             android:stepSize="1"
-            android:rating="3"
             />
 
     </RelativeLayout>
@@ -65,7 +66,6 @@
         android:id="@+id/tv_evaluate_service_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_marginLeft="60dp"
         android:textColor="@color/dimgray"
         android:text="萌宝派萌宝派萌宝派萌萌宝派萌宝派萌宝派萌宝派萌宝派萌宝派萌宝派萌宝派萌宝派宝派萌宝派萌宝派萌宝派萌宝派萌宝派萌宝派"
@@ -75,7 +75,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dip"
         android:layout_marginLeft="60dp"
         android:orientation="horizontal">
 
@@ -84,6 +83,7 @@
             android:layout_width="0dip"
             android:layout_height="90dip"
             android:layout_marginRight="10dip"
+            android:layout_marginTop="3dip"
             android:layout_weight="1.0"
             app:actualImageScaleType="centerCrop"
             app:fadeDuration="200"
@@ -94,6 +94,7 @@
             android:id="@+id/iv_evaluate_service_second_item"
             android:layout_width="0dip"
             android:layout_height="90dip"
+            android:layout_marginTop="3dip"
             android:layout_marginRight="10dip"
             android:layout_weight="1.0"
             app:actualImageScaleType="centerCrop"
@@ -104,6 +105,7 @@
             android:id="@+id/iv_evaluate_service_third_item"
             android:layout_width="0dip"
             android:layout_height="90dip"
+            android:layout_marginTop="3dip"
             android:layout_weight="1.0"
             app:actualImageScaleType="centerCrop"
             app:fadeDuration="200"
@@ -111,10 +113,11 @@
     </LinearLayout>
 
     <RelativeLayout
+        android:id="@+id/rl_evaluate_service_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="60dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:background="@color/windowBackgroundColor"
         android:padding="5dp">
         <com.facebook.drawee.view.SimpleDraweeView
@@ -148,6 +151,7 @@
             android:text="$190/人" />
 
         <TextView
+            android:id="@+id/tv_evaluate_city_item"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_evaluate_service_title_item"
@@ -157,11 +161,6 @@
             android:gravity="center_vertical"
             android:textColor="@color/dimgray"
             android:text="上海"/>
-
-
-
-
-
     </RelativeLayout>
 
 

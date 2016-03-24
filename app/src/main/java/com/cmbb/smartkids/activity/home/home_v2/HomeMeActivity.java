@@ -1,12 +1,12 @@
 package com.cmbb.smartkids.activity.home.home_v2;
 
 import android.animation.ObjectAnimator;
-import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
@@ -50,11 +50,13 @@ import com.cmbb.smartkids.utils.SPCache;
 import com.cmbb.smartkids.utils.TDevice;
 import com.cmbb.smartkids.utils.log.Log;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.soundcloud.android.crop.Crop;
 import com.squareup.okhttp.Request;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.util.ArrayList;
 
 /**
@@ -103,8 +105,6 @@ public class HomeMeActivity extends BaseHomeActivity implements View.OnClickList
     }
 
     private void initView() {
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("正在处理中...");
         ivMyself = (SimpleDraweeView) findViewById(R.id.iv_home_myself);
         ivMyself.setOnClickListener(this);
         ivUserHeader = (SimpleDraweeView) findViewById(R.id.iv_home_myself_header);
@@ -196,7 +196,7 @@ public class HomeMeActivity extends BaseHomeActivity implements View.OnClickList
     private void reflushView(UserCenterModel.DataEntity userModel) {
         //Fresco
         FrescoTool.loadImage(ivUserHeader, userModel.getUserSmallImg());
-        FrescoTool.loadImage(ivMyself, userModel.getBackgroundImg(), String.valueOf(TDevice.dip2px(180, this)));
+        FrescoTool.loadImage(ivMyself, userModel.getBackgroundImg(), String.valueOf(TDevice.dip2px(256, this)));
 
         if (!TextUtils.isEmpty(userModel.getUserNike())) {
             tvNickname.setVisibility(View.VISIBLE);
@@ -275,8 +275,9 @@ public class HomeMeActivity extends BaseHomeActivity implements View.OnClickList
 
                     @Override
                     public void onUploadFailed(UploadTask uploadTask, FailReason failReason) {
-                        progressDialog.dismiss();
+                        hideWaitDialog();
                         showShortToast(failReason.getMessage());
+
                     }
 
                     @Override

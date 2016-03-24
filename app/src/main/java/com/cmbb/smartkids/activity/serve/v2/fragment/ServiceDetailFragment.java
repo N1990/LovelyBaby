@@ -265,6 +265,16 @@ public class ServiceDetailFragment extends BaseFragment {
                             tvWholePrice.setText("￥ 0");
                         }
                     }
+                } else if (priceListEntity != null && priceListEntity.getIsLimitStock() == 0) {
+                    if (Integer.parseInt(tvEditCount.getText().toString()) < priceListEntity.getBuyLimit()) {
+                        tvEditCount.setText(Integer.parseInt(tvEditCount.getText().toString()) + 1 + "");
+                        priceListEntity.setCount(Integer.parseInt(tvEditCount.getText().toString()));
+                        if (!tvEditCount.getText().toString().equals("0")) {
+                            tvWholePrice.setText("￥ " + Integer.parseInt(tvEditCount.getText().toString()) * priceListEntity.getPrice());
+                        } else {
+                            tvWholePrice.setText("￥ 0");
+                        }
+                    }
                 }
             }
         });
@@ -292,6 +302,10 @@ public class ServiceDetailFragment extends BaseFragment {
                 // 预定订单
                 if (priceListEntity == null) {
                     showShortToast("请选择规格");
+                    return;
+                }
+                if (priceListEntity.getCount() == 0) {
+                    showShortToast("请选择数量");
                     return;
                 }
                 showWaitsDialog();

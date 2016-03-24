@@ -10,7 +10,7 @@ import android.view.View;
  * 创建人：javon
  * 创建时间：2015/8/11 10:08
  */
-public class BaseFragment extends Fragment implements View.OnClickListener{
+public class BaseFragment extends Fragment implements View.OnClickListener {
     private final String TAG = BaseFragment.class.getSimpleName();
 
     @Override
@@ -29,43 +29,46 @@ public class BaseFragment extends Fragment implements View.OnClickListener{
     }
 
 
-
-    protected void showToast(String tip){
-        if(getActivity() instanceof BaseActivity){
+    protected void showToast(String tip) {
+        if (getActivity() instanceof BaseActivity) {
             ((BaseActivity) getActivity()).showToast(tip);
         }
     }
-    protected void showShortToast(String tip){
-        if(getActivity() instanceof BaseActivity){
+
+    protected void showShortToast(String tip) {
+        if (getActivity() instanceof BaseActivity) {
             ((BaseActivity) getActivity()).showShortToast(tip);
         }
     }
 
-    protected void showWaitsDialog(){
-        if(getActivity() instanceof BaseActivity){
+    protected void showWaitsDialog() {
+        if (getActivity() instanceof BaseActivity) {
             ((BaseActivity) getActivity()).showWaitDialog();
         }
     }
 
     protected boolean isWaitShow() {
-        if(getActivity() instanceof BaseActivity){
+        if (getActivity() instanceof BaseActivity) {
             return ((BaseActivity) getActivity()).isWaitShow();
-        }else{
+        } else {
             return false;
         }
     }
-    protected void showWaitsDialog(String tip){
-        if(getActivity() instanceof BaseActivity){
+
+    protected void showWaitsDialog(String tip) {
+        if (getActivity() instanceof BaseActivity) {
             ((BaseActivity) getActivity()).showWaitDialog(tip);
         }
     }
-    protected void hideWaitDialog(){
-        if(getActivity() instanceof BaseActivity){
+
+    protected void hideWaitDialog() {
+        if (getActivity() instanceof BaseActivity) {
             ((BaseActivity) getActivity()).hideWaitDialog();
         }
     }
-    protected void cancelRequest(){
-        if(getActivity() instanceof BaseActivity){
+
+    protected void cancelRequest() {
+        if (getActivity() instanceof BaseActivity) {
             ((BaseActivity) getActivity()).cancelRequest();
         }
     }

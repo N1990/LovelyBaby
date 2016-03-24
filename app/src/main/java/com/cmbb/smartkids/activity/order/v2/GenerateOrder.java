@@ -196,20 +196,15 @@ public class GenerateOrder extends BaseActivity {
                 tvAppointment.setText("立即支付");
                 break;
             case YI_ZHI_FU:
-                double price = Double.valueOf(dataEntity.getPrice());
                 tvAppointment.setVisibility(View.VISIBLE);
                 tvAppointment.setText("立即预约");
-                if (price != 0) {
-                    tvReimburse.setVisibility(View.VISIBLE);
-                    tvReimburse.setText("申请退款");
-                } else {
-                    tvReimburse.setVisibility(View.GONE);
-                }
+                tvReimburse.setVisibility(View.VISIBLE);
+                tvReimburse.setText("申请退款");
                 break;
             case YI_GUO_QI:
-                tvReimburse.setVisibility(View.GONE);
-                tvAppointment.setVisibility(View.VISIBLE);
-                tvAppointment.setText("申请退款");
+                tvReimburse.setVisibility(View.VISIBLE);
+                tvReimburse.setText("申请退款");
+                tvAppointment.setVisibility(View.GONE);
                 break;
             case YI_CAN_JIA:
                 tvReimburse.setVisibility(View.GONE);

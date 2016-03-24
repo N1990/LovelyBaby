@@ -10,6 +10,7 @@ import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.activity.message.adapter.MsgServiceAdapter;
 import com.cmbb.smartkids.activity.message.model.MessageCountModel;
 import com.cmbb.smartkids.activity.message.model.MessageListModel;
+import com.cmbb.smartkids.activity.serve.v2.ServerDetailActivityV2;
 import com.cmbb.smartkids.base.BaseActivity;
 import com.cmbb.smartkids.base.BaseApplication;
 import com.cmbb.smartkids.network.OkHttpClientManager;
@@ -60,7 +61,7 @@ public class MessageServiceListActivity extends BaseActivity implements View.OnC
 
     @Override
     public void onItemClick(int position) {
-
+        ServerDetailActivityV2.newIntent(this,Integer.valueOf(adapter.getItem(position).getRelateField()));
     }
 
     @Override

@@ -136,6 +136,18 @@
             android:text="去支付"
             android:visibility="gone"/>
 
+        <TextView
+            android:id="@+id/tv_order_check_item"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:padding="5dp"
+            android:textAppearance="?android:textAppearance"
+            android:background="@drawable/orange_radio_bg"
+            android:textColor="@android:color/holo_orange_light"
+            android:text="查看订单"
+            android:visibility="gone"/>
+
 
 
     </LinearLayout>

@@ -38,7 +38,7 @@ public enum OrderStatus {
 
         @Override
         public String toString() {
-            return "已预订";
+            return "已支付";
         }
     },
     YI_CAN_JIA {
@@ -105,6 +105,18 @@ public enum OrderStatus {
         @Override
         public String toString() {
             return "退款中";
+        }
+
+    },
+    YI_YU_DING {  //已预订
+        @Override
+        public int getValue() {
+            return 9;
+        }
+
+        @Override
+        public String toString() {
+            return "已预订";
         }
     };
 

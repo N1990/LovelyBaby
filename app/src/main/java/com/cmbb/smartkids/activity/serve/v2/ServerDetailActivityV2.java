@@ -1,5 +1,6 @@
 package com.cmbb.smartkids.activity.serve.v2;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -45,6 +46,7 @@ public class ServerDetailActivityV2 extends BaseActivity {
         intent.putExtra("serviceID", serviceID);
         context.startActivity(intent);
     }
+
 
 
     public void newFragment(int id, boolean addBack) {

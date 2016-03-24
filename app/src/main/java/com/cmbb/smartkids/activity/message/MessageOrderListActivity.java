@@ -11,6 +11,7 @@ import com.cmbb.smartkids.activity.message.adapter.MsgOrderAdapter;
 import com.cmbb.smartkids.activity.message.model.MessageCountModel;
 import com.cmbb.smartkids.activity.message.model.MessageListModel;
 import com.cmbb.smartkids.activity.order.OrderDetailActivity;
+import com.cmbb.smartkids.activity.order.v2.GenerateOrder;
 import com.cmbb.smartkids.base.BaseActivity;
 import com.cmbb.smartkids.base.BaseApplication;
 import com.cmbb.smartkids.network.OkHttpClientManager;
@@ -61,7 +62,7 @@ public class MessageOrderListActivity extends BaseActivity implements View.OnCli
 
     @Override
     public void onItemClick(int position) {
-        OrderDetailActivity.newInstance(this, adapter.getItem(position).getRelateField());
+        GenerateOrder.newInstance(this, adapter.getItem(position).getRelateField());
     }
 
     @Override

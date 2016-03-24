@@ -89,8 +89,8 @@ public class PayConfirm extends BaseActivity {
                     // 判断resultStatus 为“9000”则代表支付成功，具体状态码代表含义可参考接口文档
                     if (TextUtils.equals(resultStatus, "9000")) {
                         Toast.makeText(PayConfirm.this, "支付成功", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent();
-                        intent.putExtra("order_status", OrderStatus.YI_ZHI_FU);
+                        Intent intent = getIntent();
+                        intent.putExtra("order_status", OrderStatus.YI_ZHI_FU.getValue());
                         setResult(RESULT_OK, intent);
                         finish();
                     } else {
@@ -157,7 +157,7 @@ public class PayConfirm extends BaseActivity {
         if (getIntent() != null && getIntent().getExtras() != null) {
             dataEntity = getIntent().getParcelableExtra("dataEntity");
             dataEntity02 = getIntent().getParcelableExtra("dataEntity02");
-            orderCode = getIntent().getParcelableExtra("order_code");
+            orderCode = getIntent().getStringExtra("order_code");
             if(dataEntity != null){
                 handleRequest(dataEntity.getOrderCode());
                 tvOrderCode.setText("订单编号:" + dataEntity.getOrderCode());
@@ -237,15 +237,18 @@ public class PayConfirm extends BaseActivity {
                     mHandler.sendMessage(msg);
                 }
             };
-
             // 必须异步调用
             Thread payThread = new Thread(payRunnable);
             payThread.start();
         } else {
             showShortToast("数据出错啦~");
         }
+    }
 
-
+    @Override
+    public void onBackPressed() {
+        setResult(RESULT_OK);
+        finish();
     }
 
     /**

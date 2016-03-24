@@ -102,9 +102,9 @@
 
             <TextView
                 android:id="@+id/tv_nick_tag"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_marginRight="10dp"
                 android:text="联系人"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -118,9 +118,8 @@
 
             <TextView
                 android:id="@+id/tv_operation"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:gravity="center"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
         </LinearLayout>
@@ -136,9 +135,9 @@
 
             <TextView
                 android:id="@+id/tv_phone_tag"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_marginRight="10dp"
                 android:text="手机号"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -177,9 +176,9 @@
 
             <TextView
                 android:id="@+id/tv_address_tag"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_marginRight="10dp"
                 android:text="具体地址"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 

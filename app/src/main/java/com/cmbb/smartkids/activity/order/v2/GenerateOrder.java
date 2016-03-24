@@ -66,6 +66,7 @@ public class GenerateOrder extends BaseActivity {
     private GenerateOrderModel.DataEntity dataEntity;
     private CustomDialogBuilder builder;
     private boolean isReimburse;
+    private boolean isConfirmOrder;
 
     @Override
     protected int getLayoutId() {
@@ -79,6 +80,7 @@ public class GenerateOrder extends BaseActivity {
         Bundle bundle = null;
         if (getIntent() != null && (bundle = getIntent().getExtras()) != null) {
             String orderCode = bundle.getString("orderCode");
+            isConfirmOrder = bundle.getBoolean("isConfirmOrder", false);
             handleOrderRequest(orderCode);
         }else{
             Log.e(TAG, "data is null");
@@ -126,14 +128,10 @@ public class GenerateOrder extends BaseActivity {
                 break;
             case R.id.tv_appointment:
                 OrderStatus status = OrderStatus.getStatusByValue(dataEntity.getStatus());
+                Log.e("orderStatus", status.toString());
                 switch (status) {
                     case WEI_ZHI_FU:
-                        double price = Double.valueOf(dataEntity.getPrice());
-                        if(price != 0){
-                            PayConfirm.newInstance(GenerateOrder.this, dataEntity, HANDLER_ORDER_REQUEST);
-                        }else{
-                            showCustomDialog(dataEntity.getOrderCode());
-                        }
+                        PayConfirm.newInstance(GenerateOrder.this, dataEntity, HANDLER_ORDER_REQUEST);
                         break;
                     case YI_ZHI_FU:
                         if(TextUtils.isEmpty(dataEntity.getServiceInfo().getServicePhone())){
@@ -147,6 +145,9 @@ public class GenerateOrder extends BaseActivity {
                         break;
                     case YI_CAN_JIA:
                         EvaluateOrderActivity.newInstance(GenerateOrder.this, dataEntity.getServiceId(), dataEntity.getOrderCode(), HANDLER_ORDER_REQUEST);
+                        break;
+                    case YI_YU_DING:
+                        showCustomDialog(dataEntity.getOrderCode());
                         break;
                 }
                 break;
@@ -192,12 +193,7 @@ public class GenerateOrder extends BaseActivity {
             case WEI_ZHI_FU:
                 tvReimburse.setVisibility(View.GONE);
                 tvAppointment.setVisibility(View.VISIBLE);
-                double p = Double.valueOf(dataEntity.getPrice());
-                if(p != 0) {
-                    tvAppointment.setText("立即支付");
-                }else{
-                    tvAppointment.setText("取消订单");
-                }
+                tvAppointment.setText("立即支付");
                 break;
             case YI_ZHI_FU:
                 double price = Double.valueOf(dataEntity.getPrice());
@@ -248,6 +244,11 @@ public class GenerateOrder extends BaseActivity {
                 tvAppointment.setEnabled(false);
                 tvAppointment.setText("退款中");
                 break;
+            case YI_YU_DING:
+                tvReimburse.setVisibility(View.GONE);
+                tvAppointment.setVisibility(View.VISIBLE);
+                tvAppointment.setText("取消订单");
+                break;
         }
     }
 
@@ -275,9 +276,10 @@ public class GenerateOrder extends BaseActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode == HANDLER_ORDER_REQUEST && resultCode == RESULT_OK){
+        if(requestCode == HANDLER_ORDER_REQUEST && resultCode == RESULT_OK && data != null){
             isReimburse = true;
             int status = data.getIntExtra("order_status", 0);
+            dataEntity.setStatus(status);
             reflushBottomView(status);
         }else{
             super.onActivityResult(requestCode, resultCode, data);
@@ -287,7 +289,7 @@ public class GenerateOrder extends BaseActivity {
 
     @Override
     public void onBackPressed() {
-        if(isReimburse){
+        if(isConfirmOrder || isReimburse){
             setResult(RESULT_OK);
             finish();
         }else{
@@ -354,9 +356,31 @@ public class GenerateOrder extends BaseActivity {
             builder.setDialogDismiss();
     }
 
+    public static void newInstance(Activity activity, String orderCode){
+        Intent intent = new Intent(activity, GenerateOrder.class);
+        intent.putExtra("orderCode", orderCode);
+        activity.startActivity(intent);
+    }
+
+
+
     public static void newInstance(Activity activity, String orderCode, int requestCode){
         Intent intent = new Intent(activity, GenerateOrder.class);
         intent.putExtra("orderCode", orderCode);
+        activity.startActivityForResult(intent, requestCode);
+    }
+
+    /**
+     * 免费订单提交直接到订单详情入口
+     * @param activity
+     * @param orderCode
+     * @param isConfirmOrder
+     * @param requestCode
+     */
+    public static void newInstance(Activity activity, String orderCode, boolean isConfirmOrder, int requestCode){
+        Intent intent = new Intent(activity, GenerateOrder.class);
+        intent.putExtra("orderCode", orderCode);
+        intent.putExtra("isConfirmOrder", isConfirmOrder);
         activity.startActivityForResult(intent, requestCode);
     }
 }

@@ -56,6 +56,7 @@ public class BaseOrderListActivity extends BaseActivity implements  RecyclerArra
         adapter.setOnItemClickListener(onItemListener);
         adapter.setOnCancelListener(onCancelListener);
         adapter.setOnHandlerListener(onHandlerListener);
+        adapter.setOnCkeckOrderListener(onCheckOrderListener);
     }
 
     private RecyclerArrayAdapter.OnItemClickListener onItemListener = new RecyclerArrayAdapter.OnItemClickListener() {
@@ -84,6 +85,16 @@ public class BaseOrderListActivity extends BaseActivity implements  RecyclerArra
     };
 
 
+    private CustomListener.ItemClickListener onCheckOrderListener = new CustomListener.ItemClickListener() {
+        @Override
+        public void onItemClick(View v, int position, Object object) {
+            OrderListModel.DataEntity.RowsEntity itemData = adapter.getItem(position);
+            String orderCode = itemData.getOrderCode();
+            GenerateOrder.newInstance(BaseOrderListActivity.this, orderCode, HANDLER_ORDER_REQUEST);
+        }
+    };
+
+
     @Override
     public void onLoadMore() {
 
@@ -100,23 +111,14 @@ public class BaseOrderListActivity extends BaseActivity implements  RecyclerArra
      */
     public void listViewHandler(OrderListModel.DataEntity.RowsEntity data) {
         OrderStatus status = OrderStatus.getStatusByValue(data.getStatus());
-        double price = Double.valueOf(data.getPrice());
         switch (status) {
             case WEI_ZHI_FU:
-                if(price != 0){
-                    Intent pay = new Intent(BaseOrderListActivity.this, PayConfirm.class);
-                    pay.putExtra("order_code", String.valueOf(data.getOrderCode()));
-                    startActivityForResult(pay, HANDLER_ORDER_REQUEST);
-                }else{
-                    showCustomDialog(data.getOrderCode());
-                }
+                Intent pay = new Intent(BaseOrderListActivity.this, PayConfirm.class);
+                pay.putExtra("order_code", data.getOrderCode());
+                startActivityForResult(pay, HANDLER_ORDER_REQUEST);
                 break;
             case YI_ZHI_FU:
-                if(price != 0){
-                    showRefundDialog(data.getOrderCode());
-                }else{
-                    showCustomDialog(data.getOrderCode());
-                }
+                showRefundDialog(data.getOrderCode());
                 break;
             case YI_GUO_QI:
                 showRefundDialog(data.getOrderCode());

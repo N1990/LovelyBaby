@@ -313,6 +313,8 @@ public class ServiceDetailFragment extends BaseFragment {
                     @Override
                     public void onError(Request request, Exception e) {
                         hideWaitDialog();
+                        if(mEditPopupWindow.isShowing())
+                            mEditPopupWindow.dismiss();
                         showShortToast(e.toString());
                     }
 
@@ -320,6 +322,8 @@ public class ServiceDetailFragment extends BaseFragment {
                     public void onResponse(ReserveModel response) {
                         hideWaitDialog();
                         if (response != null) {
+                            if(mEditPopupWindow.isShowing())
+                                mEditPopupWindow.dismiss();
                             ConfirmOrder.newIntent(getActivity(), h5ServiceDetailModel, priceListEntity, response.getData());
                         }
                     }

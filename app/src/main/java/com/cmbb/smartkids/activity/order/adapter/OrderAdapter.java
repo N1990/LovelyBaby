@@ -15,6 +15,7 @@ import com.cmbb.smartkids.recyclerview.adapter.RecyclerArrayAdapter;
 public class OrderAdapter extends RecyclerArrayAdapter<OrderListModel.DataEntity.RowsEntity> {
     private CustomListener.ItemClickListener onCancelListener;
     private CustomListener.ItemClickListener onHandlerListener;
+    private CustomListener.ItemClickListener onCkeckOrderListener;
 
     public OrderAdapter(Context context) {
         super(context);
@@ -34,6 +35,14 @@ public class OrderAdapter extends RecyclerArrayAdapter<OrderListModel.DataEntity
 
     public void setOnHandlerListener(CustomListener.ItemClickListener onHandlerListener) {
         this.onHandlerListener = onHandlerListener;
+    }
+
+    public CustomListener.ItemClickListener getOnCkeckOrderListener() {
+        return onCkeckOrderListener;
+    }
+
+    public void setOnCkeckOrderListener(CustomListener.ItemClickListener onCkeckOrderListener) {
+        this.onCkeckOrderListener = onCkeckOrderListener;
     }
 
     @Override

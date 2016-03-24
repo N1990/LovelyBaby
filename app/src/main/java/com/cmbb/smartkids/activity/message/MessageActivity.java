@@ -133,7 +133,7 @@ public class MessageActivity extends BaseActivity {
                 break;
             case R.id.message_order:
                 if (messageCountModel != null)
-                    MessageOfficialListActivity.newInstance(MessageActivity.this, messageCountModel.getData().get(1));
+                    MessageOrderListActivity.newInstance(MessageActivity.this, messageCountModel.getData().get(1));
                 break;
             case R.id.message_replay:
                 if (messageCountModel != null)

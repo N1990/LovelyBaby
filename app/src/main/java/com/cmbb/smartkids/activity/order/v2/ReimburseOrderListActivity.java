@@ -25,7 +25,7 @@ public class ReimburseOrderListActivity extends BaseOrderListActivity{
     @Override
     public void onLoadMore() {
         pager ++;
-        OrderListModel.getOrderListRequest("0", "6", pager, pagerSize, new OkHttpClientManager.ResultCallback<OrderListModel>() {
+        OrderListModel.getOrderListRequest("0", "6,8", pager, pagerSize, new OkHttpClientManager.ResultCallback<OrderListModel>() {
             @Override
             public void onError(Request request, Exception e) {
                 showShortToast(e.toString());

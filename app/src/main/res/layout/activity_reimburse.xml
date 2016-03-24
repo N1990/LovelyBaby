@@ -58,6 +58,7 @@
             android:padding="@dimen/half_global_padding"
             android:background="@drawable/edit_gray_radio_bg"
             android:gravity="left"
+            android:maxLength="100"
             android:textAppearance="@style/TextAppearance.Smart.Body1"
             android:minHeight="100dp"
             android:text=""

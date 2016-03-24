@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.activity.order.model.SubmitOrderModel;
 import com.cmbb.smartkids.activity.serve.v2.PopuGridAdapter;
+import com.cmbb.smartkids.activity.serve.v2.ServerDetailActivityV2;
 import com.cmbb.smartkids.activity.serve.v2.model.H5ServiceDetailModel;
 import com.cmbb.smartkids.activity.serve.v2.model.ReserveModel;
 import com.cmbb.smartkids.activity.user.DeliveryAddressListActivity;
@@ -108,8 +109,12 @@ public class ConfirmOrder extends BaseActivity {
         String phone = reserveEntity.getPhone();
         if (!TextUtils.isEmpty(phone))
             tvPhone.setText(phone);
-        address = reserveEntity.getAddress();
-        tvAdd.setText(address);
+        if(!TextUtils.isEmpty(reserveEntity.getAddress())){
+            tvAdd.setVisibility(View.VISIBLE);
+            tvAdd.setText(reserveEntity.getAddress());
+        }else {
+            tvAdd.setVisibility(View.GONE);
+        }
         receiverName = reserveEntity.getReceiveName();
         receiverPhone = reserveEntity.getReceivePhone();
         postCode = reserveEntity.getPostCode();
@@ -269,13 +274,13 @@ public class ConfirmOrder extends BaseActivity {
                     @Override
                     public void onResponse(SubmitOrderModel response) {
                         hideWaitDialog();
-                        com.cmbb.smartkids.utils.log.Log.e(TAG, " response is null :" + (response == null));
-                        com.cmbb.smartkids.utils.log.Log.e(TAG, " i come here");
                         if (response != null){
-                            com.cmbb.smartkids.utils.log.Log.e(TAG, " i come here01");
-                            PayConfirm.newInstance(ConfirmOrder.this, response.getData(), GO_PAY_REQUEST);
+                            if(Double.parseDouble(response.getData().getPrice()) != 0){
+                                PayConfirm.newInstance(ConfirmOrder.this, response.getData(), GO_PAY_REQUEST);
+                            }else {
+                                GenerateOrder.newInstance(ConfirmOrder.this, response.getData().getOrderCode(), true, GO_PAY_REQUEST);
+                            }
                         }
-                        com.cmbb.smartkids.utils.log.Log.e(TAG, " i come here02");
                         showShortToast(response.getMsg());
                     }
                 });

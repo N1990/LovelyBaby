@@ -28,6 +28,7 @@ public class OrderHolder extends BaseViewHolder<OrderListModel.DataEntity.RowsEn
     private TextView tvOrderPriceItem;
     private TextView tvOrderCancleItem;
     private TextView tvOrderHandlerItem;
+    private TextView tvOrderCheckItem;
 
     public OrderHolder(ViewGroup parent, OrderAdapter adapter) {
         super(parent, R.layout.list_order_item_v);
@@ -40,6 +41,7 @@ public class OrderHolder extends BaseViewHolder<OrderListModel.DataEntity.RowsEn
         tvOrderPriceItem =  $(R.id.tv_order_price_item);
         tvOrderCancleItem = $(R.id.tv_order_cancle_item);
         tvOrderHandlerItem =  $(R.id.tv_order_handler_item);
+        tvOrderCheckItem = $(R.id.tv_order_check_item);
     }
 
     @Override
@@ -56,50 +58,56 @@ public class OrderHolder extends BaseViewHolder<OrderListModel.DataEntity.RowsEn
         tvOrderPriceItem.setText(spanText);
         OrderStatus status  = OrderStatus.getStatusByValue(data.getStatus());
         tvOrderStatusItem.setText(status.toString());
-        switch (status){
+        switch (status){ //已取消  已退款  退款中   已预订  已过期
             case WEI_ZHI_FU:
                 tvOrderHandlerItem.setVisibility(View.VISIBLE);
                 tvOrderHandlerItem.setText("去支付");
                 tvOrderStatusItem.setText(status.toString());
                 tvOrderCancleItem.setVisibility(View.VISIBLE);
                 tvOrderCancleItem.setText("取消订单");
+                tvOrderCheckItem.setVisibility(View.GONE);
                 break;
             case YI_ZHI_FU:
-                double p = Double.valueOf(price);
-                tvOrderCancleItem.setVisibility(View.GONE);
-                tvOrderStatusItem.setText(status.toString());
-                tvOrderHandlerItem.setVisibility(View.VISIBLE);
-                if(p != 0){
-                    tvOrderHandlerItem.setText("申请退款");
-                }else{
-                    tvOrderHandlerItem.setText("取消订单");
-                }
-                break;
-            case YI_GUO_QI:
                 tvOrderCancleItem.setVisibility(View.GONE);
                 tvOrderStatusItem.setText(status.toString());
                 tvOrderHandlerItem.setVisibility(View.VISIBLE);
                 tvOrderHandlerItem.setText("申请退款");
+                tvOrderCheckItem.setVisibility(View.GONE);
+                break;
+            case YI_GUO_QI: //查看订单
+                tvOrderCancleItem.setVisibility(View.GONE);
+                tvOrderStatusItem.setText(status.toString());
+                tvOrderHandlerItem.setVisibility(View.VISIBLE);
+                tvOrderHandlerItem.setText("申请退款");
+                tvOrderCheckItem.setVisibility(View.GONE);
                 break;
             case YI_CAN_JIA:
                 tvOrderCancleItem.setVisibility(View.GONE);
                 tvOrderStatusItem.setText(status.toString());
                 tvOrderHandlerItem.setVisibility(View.VISIBLE);
                 tvOrderHandlerItem.setText("立即评价");
+                tvOrderCheckItem.setVisibility(View.GONE);
                 break;
-            case YI_PING_JIA:
+            case YI_PING_JIA: //查看订单
             case YI_TUI_KUAN:
             case YI_QU_XIAO:
             case TUI_KUAN_ZHONG:
                 tvOrderCancleItem.setVisibility(View.GONE);
                 tvOrderHandlerItem.setVisibility(View.GONE);
                 tvOrderStatusItem.setText(status.toString());
+                tvOrderCheckItem.setVisibility(View.VISIBLE);
+                break;
+            case YI_YU_DING: //查看订单
+                tvOrderCancleItem.setVisibility(View.VISIBLE);
+                tvOrderStatusItem.setText(status.toString());
+                tvOrderHandlerItem.setVisibility(View.GONE);
+                tvOrderCheckItem.setVisibility(View.VISIBLE);
                 break;
         }
         tvOrderCancleItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(adapter.getOnCancelListener() != null){
+                if (adapter.getOnCancelListener() != null) {
                     adapter.getOnCancelListener().onItemClick(v, position, data);
                 }
             }
@@ -107,8 +115,17 @@ public class OrderHolder extends BaseViewHolder<OrderListModel.DataEntity.RowsEn
         tvOrderHandlerItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(adapter.getOnHandlerListener() != null){
+                if (adapter.getOnHandlerListener() != null) {
                     adapter.getOnHandlerListener().onItemClick(v, position, data);
+                }
+            }
+        });
+
+        tvOrderCheckItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(adapter.getOnCkeckOrderListener() != null){
+                    adapter.getOnCkeckOrderListener().onItemClick(v, position, data);
                 }
             }
         });

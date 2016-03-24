@@ -147,7 +147,10 @@ public class GenerateOrder extends BaseActivity {
                         EvaluateOrderActivity.newInstance(GenerateOrder.this, dataEntity.getServiceId(), dataEntity.getOrderCode(), HANDLER_ORDER_REQUEST);
                         break;
                     case YI_YU_DING:
-                        showCustomDialog(dataEntity.getOrderCode());
+                        Intent intent = new Intent(Intent.ACTION_DIAL);
+                        Uri data = Uri.parse("tel:" + dataEntity.getServiceInfo().getServicePhone());
+                        intent.setData(data);
+                        startActivity(intent);
                         break;
                 }
                 break;
@@ -242,7 +245,7 @@ public class GenerateOrder extends BaseActivity {
             case YI_YU_DING:
                 tvReimburse.setVisibility(View.GONE);
                 tvAppointment.setVisibility(View.VISIBLE);
-                tvAppointment.setText("取消订单");
+                tvAppointment.setText("立即预约");
                 break;
         }
     }

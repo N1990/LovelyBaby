@@ -64,7 +64,6 @@ public class GenerateOrder extends BaseActivity {
     private TextView tvAppointment;
     private TextView tvReimburse;
     private GenerateOrderModel.DataEntity dataEntity;
-    private CustomDialogBuilder builder;
     private boolean isReimburse;
     private boolean isConfirmOrder;
 
@@ -250,27 +249,6 @@ public class GenerateOrder extends BaseActivity {
         }
     }
 
-    private void showCustomDialog(final String orderCode){
-        builder = CustomDialogBuilder.getInstance(this).withTitle("取消订单")
-                .withMessage("您确认要取消此订单吗？取消之后您需重新预订此服务...")
-                .withComfirmText("确认", new CustomListener.DialogListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if(builder != null)
-                            builder.setDialogDismiss();
-                        handleCancelRequest(orderCode);
-                    }
-                })
-                .withCancelText("取消", new CustomListener.DialogListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if(builder != null)
-                            builder.dismiss();
-                    }
-                });
-        builder.show();
-    }
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -319,39 +297,6 @@ public class GenerateOrder extends BaseActivity {
                 showShortToast(response.getMsg());
             }
         });
-    }
-
-    /**取消订单
-     * @param orderCode
-     */
-    private void handleCancelRequest(String orderCode){
-        showWaitDialog();
-        SecurityCodeModel.handleCancelOrderRequest(orderCode, new OkHttpClientManager.ResultCallback<SecurityCodeModel>() {
-            @Override
-            public void onError(Request request, Exception e) {
-                hideWaitDialog();
-                showShortToast(e.toString());
-            }
-
-            @Override
-            public void onResponse(SecurityCodeModel response) {
-                hideWaitDialog();
-                if (response != null) {
-                    showShortToast(response.getMsg());
-                    setResult(RESULT_OK);
-                    finish();
-                } else {
-                    showShortToast("订单取消失败");
-                }
-            }
-        });
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if(builder != null)
-            builder.setDialogDismiss();
     }
 
     public static void newInstance(Activity activity, String orderCode){

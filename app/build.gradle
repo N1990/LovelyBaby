@@ -98,8 +98,8 @@ android {
 
     signingConfigs {
         debug {
-            storeFile file("/Users/javon/Documents/mengbao/smartkids")
-//            storeFile file("/Users/niesen918/AndroidStudioProjects/key/smartkids")
+//            storeFile file("/Users/javon/Documents/mengbao/smartkids")
+            storeFile file("/Users/niesen918/AndroidStudioProjects/key/smartkids")
             storePassword "ns101288"
             keyAlias "smartkids"
             keyPassword "ns101288"
@@ -123,6 +123,7 @@ dependencies {
     compile files('libs/umeng-update-v2.6.0.1.jar')
     compile files('libs/umeng_social_sdk.jar')
     compile files('libs/alipaySDK-20151014.jar')
+    compile files('libs/libammsdk.jar')
     compile files('libs/Msc.jar')
     compile files('libs/Sunflower.jar')
     compile project(':MengPhotoPicker')

@@ -255,17 +255,7 @@ public class ServiceDetailFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 //数量增加
-                if (priceListEntity != null && priceListEntity.getIsLimitStock() != 0) {
-                    if (Integer.parseInt(tvEditCount.getText().toString()) < (priceListEntity.getStock() < priceListEntity.getBuyLimit() ? priceListEntity.getBuyLimit() : priceListEntity.getStock())) {
-                        tvEditCount.setText(Integer.parseInt(tvEditCount.getText().toString()) + 1 + "");
-                        priceListEntity.setCount(Integer.parseInt(tvEditCount.getText().toString()));
-                        if (!tvEditCount.getText().toString().equals("0")) {
-                            tvWholePrice.setText("￥ " + Integer.parseInt(tvEditCount.getText().toString()) * priceListEntity.getPrice());
-                        } else {
-                            tvWholePrice.setText("￥ 0");
-                        }
-                    }
-                } else if (priceListEntity != null && priceListEntity.getIsLimitStock() == 0) {
+                if (priceListEntity != null) {
                     if (Integer.parseInt(tvEditCount.getText().toString()) < priceListEntity.getBuyLimit()) {
                         tvEditCount.setText(Integer.parseInt(tvEditCount.getText().toString()) + 1 + "");
                         priceListEntity.setCount(Integer.parseInt(tvEditCount.getText().toString()));

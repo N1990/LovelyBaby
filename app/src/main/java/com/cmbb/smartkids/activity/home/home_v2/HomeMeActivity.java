@@ -36,7 +36,6 @@ import com.cmbb.smartkids.activity.user.MyDraftsActivity;
 import com.cmbb.smartkids.activity.user.MyListRedirectActivity;
 import com.cmbb.smartkids.activity.user.MyServiceOrderActivity;
 import com.cmbb.smartkids.activity.user.MySetActivity;
-import com.cmbb.smartkids.activity.user.PerssionListActivity;
 import com.cmbb.smartkids.activity.user.StorePointActivity;
 import com.cmbb.smartkids.activity.user.model.UserCenterModel;
 import com.cmbb.smartkids.base.BaseApplication;
@@ -201,7 +200,6 @@ public class HomeMeActivity extends BaseHomeActivity implements View.OnClickList
         //Fresco
         FrescoTool.loadImage(ivUserHeader, userModel.getUserSmallImg());
         FrescoTool.loadImage(ivMyself, userModel.getBackgroundImg(), String.valueOf(TDevice.dip2px(256, this)));
-
         if (!TextUtils.isEmpty(userModel.getUserNike())) {
             tvNickname.setVisibility(View.VISIBLE);
             tvNickname.setText(userModel.getUserNike());
@@ -327,6 +325,7 @@ public class HomeMeActivity extends BaseHomeActivity implements View.OnClickList
             // 信息
             case R.id.iv_main_toolbar_right:
                 MessageActivity.newInstance(this);
+
                 break;
             case R.id.iv_home_myself:
                 PhotoPickerIntent intent = new PhotoPickerIntent(this);

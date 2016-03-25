@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -26,8 +25,12 @@ import com.cmbb.smartkids.model.OrderStatus;
 import com.cmbb.smartkids.network.OkHttpClientManager;
 import com.cmbb.smartkids.pay.PayResult;
 import com.cmbb.smartkids.utils.FrescoTool;
+import com.cmbb.smartkids.utils.log.Log;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.squareup.okhttp.Request;
+import com.tencent.mm.sdk.modelpay.PayReq;
+import com.tencent.mm.sdk.openapi.IWXAPI;
+import com.tencent.mm.sdk.openapi.WXAPIFactory;
 
 /**
  * 项目名称：LovelyBaby
@@ -77,6 +80,10 @@ public class PayConfirm extends BaseActivity {
     private GenerateOrderModel.DataEntity dataEntity02;
     private String orderCode;
     private PayWayModel payWayModel;
+    private IWXAPI api;// weixin API
+
+
+    private int payWay; // 0: 支付宝 1： 微信
 
     private Handler mHandler = new Handler() {
         public void handleMessage(Message msg) {
@@ -158,7 +165,7 @@ public class PayConfirm extends BaseActivity {
             dataEntity = getIntent().getParcelableExtra("dataEntity");
             dataEntity02 = getIntent().getParcelableExtra("dataEntity02");
             orderCode = getIntent().getStringExtra("order_code");
-            if(dataEntity != null){
+            if (dataEntity != null) {
                 handleRequest(dataEntity.getOrderCode());
                 tvOrderCode.setText("订单编号:" + dataEntity.getOrderCode());
                 FrescoTool.loadImage(ivHomeServiceItem, dataEntity.getServiceInfo().getServicesImg(), 1.67f);
@@ -168,14 +175,14 @@ public class PayConfirm extends BaseActivity {
                 tvCount.setText("x" + dataEntity.getBuyCount());
                 tvNick.setText(dataEntity.getUserNike());
                 tvPhone.setText(dataEntity.getPhone());
-                if(!TextUtils.isEmpty(dataEntity.getAddress())){
+                if (!TextUtils.isEmpty(dataEntity.getAddress())) {
                     tvAdd.setVisibility(View.VISIBLE);
                     tvAdd.setText(dataEntity.getAddress());
-                }else {
+                } else {
                     tvAdd.setVisibility(View.GONE);
                 }
                 tvWholePrice.setText(dataEntity.getPrice());
-            }else if(dataEntity02 != null){
+            } else if (dataEntity02 != null) {
                 handleRequest(dataEntity02.getOrderCode());
                 tvOrderCode.setText("订单编号:" + dataEntity02.getOrderCode());
                 FrescoTool.loadImage(ivHomeServiceItem, dataEntity02.getServiceInfo().getServicesImg(), 1.67f);
@@ -185,16 +192,16 @@ public class PayConfirm extends BaseActivity {
                 tvCount.setText("x" + dataEntity02.getBuyCount());
                 tvNick.setText(dataEntity02.getUserNike());
                 tvPhone.setText(dataEntity02.getPhone());
-                if(!TextUtils.isEmpty(dataEntity02.getAddress())){
+                if (!TextUtils.isEmpty(dataEntity02.getAddress())) {
                     tvAdd.setVisibility(View.VISIBLE);
                     tvAdd.setText(dataEntity02.getAddress());
-                }else {
+                } else {
                     tvAdd.setVisibility(View.GONE);
                 }
                 tvWholePrice.setText(dataEntity02.getPrice());
-            }else if(!TextUtils.isEmpty(orderCode)){
+            } else if (!TextUtils.isEmpty(orderCode)) {
                 handleOrderRequest(orderCode);
-            }else{
+            } else {
                 showShortToast("数据传错啦~");
             }
         }
@@ -210,38 +217,66 @@ public class PayConfirm extends BaseActivity {
         /**
          * call alipay sdk pay. 调用SDK支付
          */
-        if (TextUtils.isEmpty(PARTNER) || TextUtils.isEmpty(RSA_PRIVATE) || TextUtils.isEmpty(SELLER)) {
-            new AlertDialog.Builder(PayConfirm.this)
-                    .setTitle("警告")
-                    .setMessage("需要配置PARTNER | RSA_PRIVATE| SELLER")
-                    .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialoginterface, int i) {
-                            finish();
-                        }
-                    }).show();
-            return;
-        }
-        if (payWayModel != null) {
-            Log.e(TAG, "paymentData : " + payWayModel.getPayTypes().get(0));
-            Runnable payRunnable = new Runnable() {
-
-                @Override
-                public void run() {
-                    // 构造PayTask 对象
-                    PayTask alipay = new PayTask(PayConfirm.this);
-                    // 调用支付接口，获取支付结果
-                    String result = alipay.pay(payWayModel.getPayTypes().get(0).getPaymentData());
-                    Message msg = new Message();
-                    msg.what = SDK_PAY_FLAG;
-                    msg.obj = result;
-                    mHandler.sendMessage(msg);
+        switch (payWay) {
+            case 1:
+                if (TextUtils.isEmpty(PARTNER) || TextUtils.isEmpty(RSA_PRIVATE) || TextUtils.isEmpty(SELLER)) {
+                    new AlertDialog.Builder(PayConfirm.this)
+                            .setTitle("警告")
+                            .setMessage("需要配置PARTNER | RSA_PRIVATE| SELLER")
+                            .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialoginterface, int i) {
+                                    finish();
+                                }
+                            }).show();
+                    return;
                 }
-            };
-            // 必须异步调用
-            Thread payThread = new Thread(payRunnable);
-            payThread.start();
-        } else {
-            showShortToast("数据出错啦~");
+                if (payWayModel != null) {
+                    Log.e(TAG, "paymentData : " + payWayModel.getPayTypes().get(0));
+                    Runnable payRunnable = new Runnable() {
+
+                        @Override
+                        public void run() {
+                            // 构造PayTask 对象
+                            PayTask alipay = new PayTask(PayConfirm.this);
+                            // 调用支付接口，获取支付结果
+                            String result = alipay.pay(payWayModel.getPayTypes().get(0).getPaymentData());
+                            Message msg = new Message();
+                            msg.what = SDK_PAY_FLAG;
+                            msg.obj = result;
+                            mHandler.sendMessage(msg);
+                        }
+                    };
+                    // 必须异步调用
+                    Thread payThread = new Thread(payRunnable);
+                    payThread.start();
+                } else {
+                    showShortToast("数据出错啦~");
+                }
+                break;
+            case 0:
+
+                try {
+                    if (payWayModel != null) {
+                        PayReq req = new PayReq();
+                        req.appId = payWayModel.getPayTypes().get(1).getWeixinData().getAppid();
+                        req.partnerId = payWayModel.getPayTypes().get(1).getWeixinData().getPartnerid();
+                        req.prepayId = payWayModel.getPayTypes().get(1).getWeixinData().getPrepayid();
+                        req.nonceStr = payWayModel.getPayTypes().get(1).getWeixinData().getNoncestr();
+                        req.timeStamp = payWayModel.getPayTypes().get(1).getWeixinData().getTimestamp();
+                        req.packageValue = payWayModel.getPayTypes().get(1).getWeixinData().getPackageX();
+                        req.sign = payWayModel.getPayTypes().get(1).getWeixinData().getSign();
+                        showShortToast("正在启动微信支付...");
+                        api.sendReq(req);
+                    } else {
+                        Log.d("PAY_GET", "服务器请求错误");
+                        showShortToast("服务器请求错误");
+                    }
+                } catch (Exception e) {
+                    Log.e("PAY_GET", "异常：" + e.getMessage());
+                    showShortToast("异常：" + e.getMessage());
+                }
+                break;
+
         }
     }
 
@@ -279,10 +314,10 @@ public class PayConfirm extends BaseActivity {
                     tvCount.setText("x" + dataEntity02.getBuyCount());
                     tvNick.setText(dataEntity02.getUserNike());
                     tvPhone.setText(dataEntity02.getPhone());
-                    if(!TextUtils.isEmpty(dataEntity02.getAddress())){
+                    if (!TextUtils.isEmpty(dataEntity02.getAddress())) {
                         tvAdd.setVisibility(View.VISIBLE);
                         tvAdd.setText(dataEntity02.getAddress());
-                    }else {
+                    } else {
                         tvAdd.setVisibility(View.GONE);
                     }
                     tvWholePrice.setText(dataEntity02.getPrice());
@@ -295,6 +330,7 @@ public class PayConfirm extends BaseActivity {
 
     /**
      * 支付方式
+     *
      * @param orderCode
      */
     private void handleRequest(String orderCode) {
@@ -310,6 +346,9 @@ public class PayConfirm extends BaseActivity {
             public void onResponse(PayWayModel response) {
                 hideWaitDialog();
                 payWayModel = response;
+                api = WXAPIFactory.createWXAPI(PayConfirm.this, null);
+                // 将该app注册到微信
+                api.registerApp(payWayModel.getPayTypes().get(1).getWeixinData().getAppid());
             }
         });
 

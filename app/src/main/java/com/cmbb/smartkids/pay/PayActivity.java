@@ -95,7 +95,6 @@ public class PayActivity extends BaseActivity {
     }
 
 
-
     @Override
     protected void init(Bundle savedInstanceState) {
         initView();
@@ -104,7 +103,7 @@ public class PayActivity extends BaseActivity {
     }
 
 
-    private void initView(){
+    private void initView() {
         setTitle(getString(R.string.title_activity_pay_way));
         setActionBarRight("check");
         rv = (RecyclerView) findViewById(R.id.rv_order_pay);
@@ -116,26 +115,26 @@ public class PayActivity extends BaseActivity {
         rv.setAdapter(adapter);
     }
 
-    private void initData(){
+    private void initData() {
         Bundle bundle = null;
-        if(getIntent() != null && (bundle = getIntent().getExtras()) != null){
+        if (getIntent() != null && (bundle = getIntent().getExtras()) != null) {
             String title = bundle.getString("order_title");
             String price = bundle.getString("order_price");
             orderCode = bundle.getString("orderCode");
-            if(!TextUtils.isEmpty(title)) headerData.add(title);
-            if(!TextUtils.isEmpty(price)) headerData.add(price);
-            if(!TextUtils.isEmpty(orderCode)) {
+            if (!TextUtils.isEmpty(title)) headerData.add(title);
+            if (!TextUtils.isEmpty(price)) headerData.add(price);
+            if (!TextUtils.isEmpty(orderCode)) {
                 handleRequest(orderCode);
-            }else{
+            } else {
                 showShortToast("传参出错~");
             }
-        }else{
+        } else {
             showShortToast("传参出错~");
         }
     }
 
 
-    private void addListener(){
+    private void addListener() {
         adapter.setOnBottomListener(onBottomListener);
         adapter.setOnItemClick(onItemListener);
     }
@@ -211,7 +210,7 @@ public class PayActivity extends BaseActivity {
     @Override
     public void onClick(View v) {
         int id = v.getId();
-        if(id == R.id.tv_main_toolbar_right){
+        if (id == R.id.tv_main_toolbar_right) {
             /**
              * check whether the device has authentication alipay account.
              * 查询终端设备是否存在支付宝认证账户
@@ -332,10 +331,7 @@ public class PayActivity extends BaseActivity {
     }
 
 
-
-
-
-    private void handleRequest(String orderCode){
+    private void handleRequest(String orderCode) {
         showWaitDialog();
         HashMap<String, String> params = new HashMap<>();
         params.put("orderCode", orderCode);

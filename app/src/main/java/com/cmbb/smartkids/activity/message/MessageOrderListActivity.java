@@ -10,7 +10,6 @@ import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.activity.message.adapter.MsgOrderAdapter;
 import com.cmbb.smartkids.activity.message.model.MessageCountModel;
 import com.cmbb.smartkids.activity.message.model.MessageListModel;
-import com.cmbb.smartkids.activity.order.OrderDetailActivity;
 import com.cmbb.smartkids.activity.order.v2.GenerateOrder;
 import com.cmbb.smartkids.base.BaseActivity;
 import com.cmbb.smartkids.base.BaseApplication;
@@ -86,6 +85,8 @@ public class MessageOrderListActivity extends BaseActivity implements View.OnCli
     @Override
     public void onRefresh() {
         pager = 0;
+        MessageCountModel.handleEmptyMessageRequest(dataEntity.getId() + "", null);
+
         MessageListModel.getOfficialMessageRequest(dataEntity.getModual(), pager, pagerSize, BaseApplication.token, new OkHttpClientManager.ResultCallback<MessageListModel>() {
             @Override
             public void onError(Request request, Exception e) {

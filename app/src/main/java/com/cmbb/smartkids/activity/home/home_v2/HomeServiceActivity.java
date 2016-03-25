@@ -115,7 +115,8 @@ public class HomeServiceActivity extends BaseHomeActivity implements View.OnClic
             @Override
             public void onResponse(ServiceSortModel response) {
                 if (response != null)
-                    initPopup(response);
+                    response.getData().getServiceCity().add(0, new ServiceSortModel.DataEntity.ServiceCityEntity("全部", ""));
+                initPopup(response);
             }
         });
     }
@@ -284,7 +285,7 @@ public class HomeServiceActivity extends BaseHomeActivity implements View.OnClic
 
     @Override
     public void onItemClick(int position) {
-        Log.e("id", adapter.getItem(position).getId()+"");
+        Log.e("id", adapter.getItem(position).getId() + "");
         ServerDetailActivityV2.newIntent(this, adapter.getItem(position).getId());
     }
 }

@@ -36,7 +36,7 @@ public class ServiceFragment extends BaseFragment implements View.OnClickListene
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.recyclerview_layout_v, null);
+        View root = inflater.inflate(R.layout.recyclerview_layout, null);
         return root;
     }
 

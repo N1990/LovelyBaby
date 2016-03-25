@@ -3,6 +3,11 @@ package com.cmbb.smartkids.activity.message.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.cmbb.smartkids.base.BaseApplication;
+import com.cmbb.smartkids.base.Constants;
+import com.cmbb.smartkids.network.OkHttpClientManager;
+
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -136,4 +141,17 @@ public class MessageCountModel implements Parcelable {
             return new MessageCountModel[size];
         }
     };
+
+
+    /**
+     * 至空消息
+     *
+     * @param id 消息ID
+     */
+    public static void handleEmptyMessageRequest(String id, OkHttpClientManager.ResultCallback<MessageCountModel> callback) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("id", id);
+        params.put("token", BaseApplication.token);
+        OkHttpClientManager.postAsyn(Constants.ServiceInfo.MESSAGE_SET_MESSAGE_TYPE, params, callback);
+    }
 }

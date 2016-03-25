@@ -36,6 +36,7 @@ import com.cmbb.smartkids.network.OkHttpClientManager;
 import com.cmbb.smartkids.photopicker.PhotoViewActivity;
 import com.cmbb.smartkids.recyclerview.SmartRecyclerView;
 import com.cmbb.smartkids.recyclerview.adapter.RecyclerArrayAdapter;
+import com.cmbb.smartkids.utils.ShareUtils;
 import com.cmbb.smartkids.utils.log.Log;
 import com.cmbb.smartkids.widget.jsbridge.BridgeHandler;
 import com.cmbb.smartkids.widget.jsbridge.BridgeWebView;
@@ -163,6 +164,7 @@ public class ServiceDetailFragment extends BaseFragment {
                         h5ServiceDetailModel = new Gson().fromJson(data, H5ServiceDetailModel.class);
                         initPopup(h5ServiceDetailModel);
                         tvReserve.setVisibility(View.VISIBLE);
+                        ShareUtils.setShareContent(h5ServiceDetailModel.getTitle(), h5ServiceDetailModel.getContent(), Constants.Share.getServerShareUrl(h5ServiceDetailModel.getId()), h5ServiceDetailModel.getServicesImg());
                     }
                 }
 
@@ -303,7 +305,7 @@ public class ServiceDetailFragment extends BaseFragment {
                     @Override
                     public void onError(Request request, Exception e) {
                         hideWaitDialog();
-                        if(mEditPopupWindow.isShowing())
+                        if (mEditPopupWindow.isShowing())
                             mEditPopupWindow.dismiss();
                         showShortToast(e.toString());
                     }
@@ -312,7 +314,7 @@ public class ServiceDetailFragment extends BaseFragment {
                     public void onResponse(ReserveModel response) {
                         hideWaitDialog();
                         if (response != null) {
-                            if(mEditPopupWindow.isShowing())
+                            if (mEditPopupWindow.isShowing())
                                 mEditPopupWindow.dismiss();
                             ConfirmOrder.newIntent(getActivity(), h5ServiceDetailModel, priceListEntity, response.getData());
                         }

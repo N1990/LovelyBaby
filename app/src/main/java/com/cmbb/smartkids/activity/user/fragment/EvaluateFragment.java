@@ -34,8 +34,7 @@ public class EvaluateFragment extends BaseFragment implements View.OnClickListen
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.recyclerview_layout_v, null);
-        return root;
+        return inflater.inflate(R.layout.recyclerview_layout, null);
     }
 
     @Override

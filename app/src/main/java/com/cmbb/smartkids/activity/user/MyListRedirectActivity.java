@@ -54,7 +54,7 @@ public class MyListRedirectActivity extends BaseActivity {
 
     private void selectView() {
         Bundle bundle = null;
-        if (getIntent() != null && (bundle = getIntent().getExtras()) != null){
+        if (getIntent() != null && (bundle = getIntent().getExtras()) != null) {
             flag = bundle.getString("flag");
             isEredar = bundle.getInt("isEredar");
         }
@@ -71,7 +71,7 @@ public class MyListRedirectActivity extends BaseActivity {
         } else if ("collect".equals(flag)) {
             setTitle("我的收藏");
             myColletView();
-        }else if("evaluate".equals(flag)){
+        } else if ("evaluate".equals(flag)) {
             setTitle("我的评价");
             myEvaluateView(isEredar);
         }
@@ -115,7 +115,7 @@ public class MyListRedirectActivity extends BaseActivity {
         tl.setupWithViewPager(vpSlef);
     }
 
-    private void myEvaluateView(int isEredar){
+    private void myEvaluateView(int isEredar) {
         Bundle bundle = new Bundle();
         bundle.putInt("isEredar", isEredar);
         Fragment evaluateService = new MyEvaluateServiceFragment();

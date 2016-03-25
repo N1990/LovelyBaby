@@ -88,7 +88,7 @@ public class SecurityCodeModel implements Parcelable {
      * @param imgHeight
      * @param callback
      */
-    public static void updateBackgroundImageRequest(String imgPath, String imgWidth, String imgHeight, String token,OkHttpClientManager.ResultCallback<SecurityCodeModel> callback) {
+    public static void updateBackgroundImageRequest(String imgPath, String imgWidth, String imgHeight, String token, OkHttpClientManager.ResultCallback<SecurityCodeModel> callback) {
         HashMap<String, String> params = new HashMap<>();
         params.put("imgPath", imgPath);
         params.put("imgWidth", imgWidth);
@@ -99,10 +99,11 @@ public class SecurityCodeModel implements Parcelable {
 
     /**
      * 获取除注册之外的所有手机验证码
+     *
      * @param phone
      * @param callback
      */
-    public static void getPhoneCodeRequest(String phone, OkHttpClientManager.ResultCallback<SecurityCodeModel> callback){
+    public static void getPhoneCodeRequest(String phone, OkHttpClientManager.ResultCallback<SecurityCodeModel> callback) {
         HashMap<String, String> params = new HashMap<>();
         params.put("loginAccount", phone);
         OkHttpClientManager.postAsyn(Constants.ServiceInfo.VERIFY_CODE, params, callback);
@@ -111,10 +112,11 @@ public class SecurityCodeModel implements Parcelable {
 
     /**
      * 取消订单
+     *
      * @param orderCode
      * @param callback
      */
-    public static void handleCancelOrderRequest(String orderCode, OkHttpClientManager.ResultCallback<SecurityCodeModel> callback){
+    public static void handleCancelOrderRequest(String orderCode, OkHttpClientManager.ResultCallback<SecurityCodeModel> callback) {
         HashMap<String, String> params = new HashMap<>();
         params.put("token", BaseApplication.token);
         params.put("orderCode", orderCode);
@@ -122,6 +124,21 @@ public class SecurityCodeModel implements Parcelable {
     }
 
 
+    /**
+     * 收藏
+     *
+     * @param isCollect
+     * @param serviceId
+     * @param callback
+     */
+    public static void handleCollectRequest(int isCollect, int serviceId, OkHttpClientManager.ResultCallback<SecurityCodeModel> callback) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("id", String.valueOf(serviceId));
+        params.put("isCollect", String.valueOf(isCollect));
+        params.put("token", BaseApplication.token);
+        OkHttpClientManager.postAsyn(Constants.ServiceInfo.HANDLE_COLLECT_SERVICE, params, callback);
+
+    }
 
 
 }

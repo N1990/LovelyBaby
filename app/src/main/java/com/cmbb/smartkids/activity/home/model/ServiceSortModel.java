@@ -191,6 +191,11 @@ public class ServiceSortModel implements Parcelable {
                 dest.writeString(this.value);
             }
 
+            public ServiceCityEntity(String name, String value) {
+                this.name = name;
+                this.value = value;
+            }
+
             public ServiceCityEntity() {
             }
 

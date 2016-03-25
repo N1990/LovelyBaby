@@ -29,9 +29,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
+            android:layout_marginRight="@dimen/half_global_padding"
             android:background="@mipmap/btn_community_collect_normal"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/txt_small"
             android:visibility="visible" />
 
     </android.support.v7.widget.Toolbar>

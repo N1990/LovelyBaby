@@ -61,7 +61,7 @@ public class MessageServiceListActivity extends BaseActivity implements View.OnC
 
     @Override
     public void onItemClick(int position) {
-        ServerDetailActivityV2.newIntent(this,Integer.valueOf(adapter.getItem(position).getRelateField()));
+        ServerDetailActivityV2.newIntent(this, Integer.valueOf(adapter.getItem(position).getRelateField()));
     }
 
     @Override
@@ -85,6 +85,8 @@ public class MessageServiceListActivity extends BaseActivity implements View.OnC
     @Override
     public void onRefresh() {
         pager = 0;
+        MessageCountModel.handleEmptyMessageRequest(dataEntity.getId() + "", null);
+
         MessageListModel.getOfficialMessageRequest(dataEntity.getModual(), pager, pagerSize, BaseApplication.token, new OkHttpClientManager.ResultCallback<MessageListModel>() {
             @Override
             public void onError(Request request, Exception e) {

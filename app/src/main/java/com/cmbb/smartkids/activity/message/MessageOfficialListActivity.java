@@ -84,6 +84,7 @@ public class MessageOfficialListActivity extends BaseActivity implements View.On
     @Override
     public void onRefresh() {
         pager = 0;
+        MessageCountModel.handleEmptyMessageRequest(dataEntity.getId() + "", null);
         MessageListModel.getOfficialMessageRequest(dataEntity.getModual(), pager, pagerSize, BaseApplication.token, new OkHttpClientManager.ResultCallback<MessageListModel>() {
             @Override
             public void onError(Request request, Exception e) {

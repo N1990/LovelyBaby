@@ -15,6 +15,7 @@ import com.cmbb.smartkids.activity.home.home_v2.adapter.BannerLoopAdapter;
 import com.cmbb.smartkids.activity.home.home_v2.adapter.HomeAdapter;
 import com.cmbb.smartkids.activity.home.model.HomePageRootModel;
 import com.cmbb.smartkids.activity.home.model.ManagerAdModel;
+import com.cmbb.smartkids.activity.search.SearchActivity;
 import com.cmbb.smartkids.activity.serve.v2.ServerDetailActivityV2;
 import com.cmbb.smartkids.network.OkHttpClientManager;
 import com.cmbb.smartkids.recyclerview.SmartRecyclerView;
@@ -43,6 +44,7 @@ public class HomeActivity extends BaseHomeActivity implements View.OnClickListen
     private BannerLoopAdapter bannerLoopAdapter;
     private ManagerAdModel managerAdModel;
     private List<ManagerAdModel.DataEntity> adData;
+    private LinearLayout llSearch;
     private int pager = 0;
     private int pagerSize = 10;
 
@@ -64,6 +66,8 @@ public class HomeActivity extends BaseHomeActivity implements View.OnClickListen
 
     private void initView() {
         setNoBack();
+        llSearch = (LinearLayout) findViewById(R.id.ll_search);
+        llSearch.setOnClickListener(this);
         mRollViewPager = (RollPagerView) findViewById(R.id.roll_view_pager);
         mRollViewPager.setPlayDelay(2000);
         mRollViewPager.setAnimationDurtion(500);
@@ -106,7 +110,6 @@ public class HomeActivity extends BaseHomeActivity implements View.OnClickListen
                 headerView.findViewById(R.id.rl_sign).setOnClickListener(HomeActivity.this);
                 headerView.findViewById(R.id.rl_rank).setOnClickListener(HomeActivity.this);
                 headerView.findViewById(R.id.rl_wonderful).setOnClickListener(HomeActivity.this);
-
             }
         });
         onRefresh();
@@ -180,7 +183,6 @@ public class HomeActivity extends BaseHomeActivity implements View.OnClickListen
         bodyHot.put("sortType", "home");
         bodyHot.put("numberOfPerPage", String.valueOf(pagerSize));
         bodyHot.put("pageNo", String.valueOf(pager));
-
         HomePageRootModel.getHomeHotServiceRequest(pagerSize, pager, new OkHttpClientManager.ResultCallback<HomePageRootModel>() {
             @Override
             public void onError(Request request, Exception e) {
@@ -257,6 +259,9 @@ public class HomeActivity extends BaseHomeActivity implements View.OnClickListen
                 break;
             case R.id.tv_lamasudi://辣妈速度
                 HomeServiceActivity.newIntent(this, "LMSD");
+                break;
+            case R.id.ll_search:
+                SearchActivity.newIntent(this);
                 break;
         }
     }

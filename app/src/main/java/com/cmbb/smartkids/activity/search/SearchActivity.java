@@ -35,7 +35,7 @@ import com.cmbb.smartkids.recyclerview.adapter.RecyclerArrayAdapter;
 import com.cmbb.smartkids.utils.log.Log;
 import com.squareup.okhttp.Request;
 
-public class SearchActivity extends BaseActivity implements View.OnClickListener, RecyclerArrayAdapter.OnLoadMoreListener, SwipeRefreshLayout.OnRefreshListener, RecyclerArrayAdapter.OnItemClickListener{
+public class SearchActivity extends BaseActivity implements View.OnClickListener, RecyclerArrayAdapter.OnLoadMoreListener, SwipeRefreshLayout.OnRefreshListener, RecyclerArrayAdapter.OnItemClickListener {
 
     private static final String TAG = SearchActivity.class.getSimpleName();
 
@@ -114,7 +114,7 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
     @Override
     public void onItemClick(int position) {
         RecyclerView.Adapter adapter = srv_search.getAdapter();
-        if(adapter instanceof SearchHotAdapter) { //热词adapter监听事件
+        if (adapter instanceof SearchHotAdapter) { //热词adapter监听事件
             TopicTypeModel.DataEntity item = adapter_hot.getItem(position);
             search = item.getValue();
             etSearch.setText(search);
@@ -125,20 +125,20 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
             srv_search.setLayoutManager(new LinearLayoutManager(SearchActivity.this));
             srv_search.setAdapter(adapter_topic);
             handleSearchTopic(pager_topic, pagerSize, search);
-        }else if(adapter instanceof SearchTopicAdapter){ // 话题adapter监听事件
+        } else if (adapter instanceof SearchTopicAdapter) { // 话题adapter监听事件
             TopicListModel.DataEntity.RowsEntity item = adapter_topic.getItem(position);
             int id = item.getId();
             Intent intent = new Intent(SearchActivity.this, CommunityDetailActivity.class);
             intent.putExtra("id", id);
             startActivity(intent);
-        }else if(adapter instanceof SearchServiceAdapter){ //服务adapter监听事件
+        } else if (adapter instanceof SearchServiceAdapter) { //服务adapter监听事件
             SearchServiceModel.DataEntity.RowsEntity item = (SearchServiceModel.DataEntity.RowsEntity) adapter_service.getItem(position);
             int id = item.getId();
             Intent intent = new Intent(SearchActivity.this, ActiveDetailActivity.class);
             intent.putExtra("serviceId", id);
             startActivity(intent);
-        }else if(adapter instanceof SearchUserAdapter){ //用户adapter监听事件
-            SearchUserModel.DataEntity.RowsEntity item =  adapter_user.getItem(position);
+        } else if (adapter instanceof SearchUserAdapter) { //用户adapter监听事件
+            SearchUserModel.DataEntity.RowsEntity item = adapter_user.getItem(position);
             int id = item.getId();
             UserCenterActivity.newIntent(SearchActivity.this, id);
         }
@@ -155,7 +155,7 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
                 pager_user++;
                 handelSearchUserRequest(pager_user, pagerSize, search);
                 break;
-            case 2 :
+            case 2:
                 pager_service++;
                 handleSearchServiceRequest(pager_service, pagerSize, search);
                 break;
@@ -175,7 +175,7 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
                 adapter_user.clear();
                 handelSearchUserRequest(pager_user, pagerSize, search);
                 break;
-            case 2 :
+            case 2:
                 pager_service = 0;
                 adapter_service.clear();
                 handleSearchServiceRequest(pager_service, pagerSize, search);
@@ -206,12 +206,12 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
                     adapter_topic.clear();
                     srv_search.setAdapter(adapter_topic);
                     handleSearchTopic(pager_topic, pagerSize, search);
-                } else if(type == 1){
+                } else if (type == 1) {
                     pager_user = 0;
                     adapter_user.clear();
                     srv_search.setAdapter(adapter_user);
                     handelSearchUserRequest(pager_user, pagerSize, search);
-                }else if(type == 2){
+                } else if (type == 2) {
                     pager_service = 0;
                     adapter_service.clear();
                     srv_search.setAdapter(adapter_service);
@@ -246,12 +246,12 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
                     adapter_topic.clear();
                     srv_search.setAdapter(adapter_topic);
                     handleSearchTopic(pager_topic, pagerSize, search);
-                } else if(type == 1){
+                } else if (type == 1) {
                     pager_user = 0;
                     adapter_user.clear();
                     srv_search.setAdapter(adapter_user);
                     handelSearchUserRequest(pager_user, pagerSize, search);
-                }else if(type == 2){
+                } else if (type == 2) {
                     pager_service = 0;
                     adapter_service.clear();
                     srv_search.setAdapter(adapter_service);
@@ -286,7 +286,7 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
                 case 1:
                     type = 1;
                     break;
-                case 2 :
+                case 2:
                     type = 2;
                     break;
             }
@@ -405,11 +405,12 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
 
     /**
      * 搜索服务
+     *
      * @param pager
      * @param pagerSize
      * @param text
      */
-    private void handleSearchServiceRequest(int pager, int pagerSize, String text){
+    private void handleSearchServiceRequest(int pager, int pagerSize, String text) {
         SearchServiceModel.getSearchServiceRequest(text, pager, pagerSize, new OkHttpClientManager.ResultCallback<SearchServiceModel>() {
             @Override
             public void onError(Request request, Exception e) {
@@ -426,5 +427,10 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
                 showWaitDialog(response.getMsg());
             }
         });
+    }
+
+    public static void newIntent(Context context) {
+        Intent intent = new Intent(context, SearchActivity.class);
+        context.startActivity(intent);
     }
 }

@@ -38,7 +38,8 @@
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
-                <EditText
+                <LinearLayout
+                    android:id="@+id/ll_search"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginBottom="15dp"
@@ -49,9 +50,23 @@
                     android:background="@drawable/shape_white_background_corner"
                     android:elevation="2dp"
                     android:gravity="center"
-                    android:hint="寻找有趣的服务"
-                    android:textAppearance="@style/TextAppearance.Smart.Small"
-                    android:textColorHint="@color/darkgray" />
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:src="@android:drawable/ic_menu_search" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="寻找有趣的服务"
+                        android:textColor="@color/darkgray"
+                        android:textSize="@dimen/txt_middle" />
+
+                </LinearLayout>
+
             </android.support.v7.widget.Toolbar>
 
 

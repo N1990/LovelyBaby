@@ -4,6 +4,7 @@ package com.cmbb.smartkids.activity.serve.v2.fragment;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ import android.widget.TextView;
 
 import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.activity.home.model.RankEredarModel;
+import com.cmbb.smartkids.activity.login.LoginActivity;
 import com.cmbb.smartkids.activity.order.v2.ConfirmOrder;
 import com.cmbb.smartkids.activity.serve.v2.PopuGridAdapter;
 import com.cmbb.smartkids.activity.serve.v2.ServerDetailActivityV2;
@@ -32,11 +34,14 @@ import com.cmbb.smartkids.activity.user.UserCenterActivity;
 import com.cmbb.smartkids.base.BaseApplication;
 import com.cmbb.smartkids.base.BaseFragment;
 import com.cmbb.smartkids.base.Constants;
+import com.cmbb.smartkids.db.DBHelper;
 import com.cmbb.smartkids.network.OkHttpClientManager;
 import com.cmbb.smartkids.photopicker.PhotoViewActivity;
 import com.cmbb.smartkids.recyclerview.SmartRecyclerView;
 import com.cmbb.smartkids.recyclerview.adapter.RecyclerArrayAdapter;
+import com.cmbb.smartkids.utils.SPCache;
 import com.cmbb.smartkids.utils.ShareUtils;
+import com.cmbb.smartkids.utils.TDevice;
 import com.cmbb.smartkids.utils.log.Log;
 import com.cmbb.smartkids.widget.jsbridge.BridgeHandler;
 import com.cmbb.smartkids.widget.jsbridge.BridgeWebView;
@@ -131,6 +136,30 @@ public class ServiceDetailFragment extends BaseFragment {
                         }
                         getActivity().startActivity(intent);
                     }
+                }
+
+            });
+            //重新登陆
+            webView.registerHandler("loginAgain", new BridgeHandler() {
+                @Override
+                public void handler(String data, CallBackFunction function) {
+                    try {
+                        boolean flag = BaseApplication.mPushAgent.removeAlias(SPCache.getString(Constants.USER_ID, "") + "_" + TDevice.getDeviceId(BaseApplication.getContext()), "service");
+                        Log.e("Alias", "Alias remove = " + flag);
+                        Log.e("Alias", "Alias remove id = " + SPCache.getString(Constants.USER_ID, ""));
+                        if (flag) {
+                            SPCache.clear();
+                            DBHelper dbHelper = new DBHelper(BaseApplication.getContext());
+                            SQLiteDatabase db = dbHelper.getWritableDatabase();
+                            dbHelper.delete(db);
+                        } else {
+
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    startActivity(new Intent(getActivity(), LoginActivity.class));
+                    getActivity().finish();
                 }
 
             });
@@ -241,14 +270,18 @@ public class ServiceDetailFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 // 数量减小
-                if (Integer.parseInt(tvEditCount.getText().toString()) > 0) {
-                    tvEditCount.setText(Integer.parseInt(tvEditCount.getText().toString()) - 1 + "");
-                    priceListEntity.setCount(Integer.parseInt(tvEditCount.getText().toString()));
-                    tvWholePrice.setText("￥ " + Integer.parseInt(tvEditCount.getText().toString()) * priceListEntity.getPrice());
+                if (priceListEntity != null) {
+                    if (Integer.parseInt(tvEditCount.getText().toString()) > 0) {
+                        tvEditCount.setText(Integer.parseInt(tvEditCount.getText().toString()) - 1 + "");
+                        priceListEntity.setCount(Integer.parseInt(tvEditCount.getText().toString()));
+                        tvWholePrice.setText("￥ " + Integer.parseInt(tvEditCount.getText().toString()) * priceListEntity.getPrice());
+                    } else {
+                        tvEditCount.setText("0");
+                        priceListEntity.setCount(0);
+                        tvWholePrice.setText("￥ 0");
+                    }
                 } else {
-                    tvEditCount.setText("0");
-                    priceListEntity.setCount(0);
-                    tvWholePrice.setText("￥ 0");
+                    showShortToast("请选择种类");
                 }
             }
         });
@@ -267,6 +300,9 @@ public class ServiceDetailFragment extends BaseFragment {
                             tvWholePrice.setText("￥ 0");
                         }
                     }
+                } else {
+                    showShortToast("请选择种类");
+
                 }
             }
         });

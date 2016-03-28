@@ -98,8 +98,8 @@ android {
 
     signingConfigs {
         debug {
-//            storeFile file("/Users/javon/Documents/mengbao/smartkids")
-            storeFile file("/Users/niesen918/AndroidStudioProjects/key/smartkids")
+            storeFile file("/Users/javon/Documents/mengbao/smartkids")
+//            storeFile file("/Users/niesen918/AndroidStudioProjects/key/smartkids")
             storePassword "ns101288"
             keyAlias "smartkids"
             keyPassword "ns101288"
@@ -140,4 +140,5 @@ dependencies {
     compile 'com.umeng.analytics:analytics:5.5.3'
     compile 'com.soundcloud.android:android-crop:1.0.1@aar'
     compile 'com.jude:rollviewpager:1.0.7'
+    compile files('libs/libammsdk.jar')
 }

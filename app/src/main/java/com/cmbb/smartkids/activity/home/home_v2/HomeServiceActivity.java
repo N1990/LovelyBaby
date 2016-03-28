@@ -165,8 +165,8 @@ public class HomeServiceActivity extends BaseHomeActivity implements View.OnClic
         btnCity.setOnClickListener(this);
         btnSmart.setOnClickListener(this);
         mCityListPopupWindow = new ListPopupWindow(this);
-        mCityListPopupWindow.setAdapter(new ArrayAdapter<ServiceSortModel.DataEntity.ServiceCityEntity>(this, android.R.layout.simple_list_item_1, dataEntity.getData().getServiceCity()));
-        //mListPopupWindow.setListSelector(getResources().getDrawable(R.mipmap.ic_launcher));
+        mCityListPopupWindow.setAdapter(new ArrayAdapter<ServiceSortModel.DataEntity.ServiceCityEntity>(this,R.layout.city_list_item, dataEntity.getData().getServiceCity()));
+        mCityListPopupWindow.setListSelector(getResources().getDrawable(R.drawable.arrow));
         mCityListPopupWindow.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
         mCityListPopupWindow.setAnchorView(btnCity);
         mCityListPopupWindow.setOnItemClickListener(new AdapterView.OnItemClickListener() {

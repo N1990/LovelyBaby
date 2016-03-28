@@ -150,6 +150,7 @@ public class Constants {
         public static final String TOPIC_DETIAL = "smart/topic/detial"; // 话题详情
         public static final String TOPIC_REPLAY = "smart/topic/replyList"; //
         public static final String TOPIC_LIST = "smart/topic/getPage"; // 话题列表
+        public static final String TOPIC_REVIEW = "smart/topic/review"; // 话题列表
         public static final String REPLAY_DETAIL = "smart/topic/getReplyDetial"; // 话题列表
         public static final String TOPIC_SPOT = "smart/topic/spot"; // 话题列表
         public static final String TOPIC_COLLECT = "smart/topic/collect"; // 话题列表

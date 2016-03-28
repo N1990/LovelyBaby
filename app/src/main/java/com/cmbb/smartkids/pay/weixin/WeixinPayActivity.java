@@ -37,7 +37,7 @@ public class WeixinPayActivity extends BaseActivity {
     /**
      * 支付方式
      *
-     * @param orderCode
+     * @param orderCode String
      */
     private void handleRequest(String orderCode) {
         showWaitDialog();

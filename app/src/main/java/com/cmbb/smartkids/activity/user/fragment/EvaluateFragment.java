@@ -98,7 +98,7 @@ public class EvaluateFragment extends BaseFragment implements View.OnClickListen
 
             @Override
             public void onResponse(EvaluateListModel response) {
-                if (response != null && response.getData() != null && response.getData().getRows().size() > 0 && cachePager != pager) {
+                if (response != null) {
                     if (flag) {
                         adapter.clear();
                     }

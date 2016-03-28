@@ -101,7 +101,7 @@ public class ServiceFragment extends BaseFragment implements View.OnClickListene
 
             @Override
             public void onResponse(ServiceListModel response) {
-                if (response != null && response.getData() != null && response.getData().getRows().size() > 0 && cachePager != pager) {
+                if (response != null) {
                     if (flag) {
                         adapter.clear();
                     }

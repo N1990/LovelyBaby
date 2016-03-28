@@ -93,4 +93,13 @@
     <string name="title_reimburse_activity" translatable="false" >申请退款</string>
     <string name="title_evaluate_order" translatable="false" >评价订单</string>
     <string name="title_ordere_detail" translatable="false">订单详情</string>
+
+    <string name="errcode_success" translatable="false">支付成功</string>
+    <string name="errcode_cancel" translatable="false">您已取消支付</string>
+    <string name="errcode_deny" translatable="false">发送被拒绝</string>
+    <string name="errcode_unknown" translatable="false">发送返回</string>
+    <string name="app_tip" translatable="false">提示</string>
+    <string name="pay_result_callback_msg" formatted="false" translatable="false">微信支付结果：%s</string>
+    <string name="title_payresult">支付结果</string>
 </resources>
+

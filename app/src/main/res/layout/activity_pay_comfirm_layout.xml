@@ -5,212 +5,304 @@
     android:layout_height="match_parent">
 
     <include layout="@layout/custom_actionbar" />
-
-    <RelativeLayout
-        android:id="@+id/ll_home_service_item"
+    
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tl_main_actionbar"
-        android:background="@drawable/btn_white_radio_bg"
-        android:padding="@dimen/global_padding">
+        android:layout_above="@+id/ll_pay_bottom">
 
-
-        <TextView
-            android:id="@+id/tv_order_code"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="订单编号:359590459495945949"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <View
-            android:id="@+id/v_order_code_divider"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:layout_below="@+id/tv_order_code"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
-            android:background="@android:color/darker_gray" />
-
-        <com.facebook.drawee.view.SimpleDraweeView
-            android:id="@+id/iv_home_service_item"
-            android:layout_width="120dp"
-            android:layout_height="72dp"
-            android:layout_below="@+id/v_order_code_divider"
-            fresco:actualImageScaleType="centerCrop"
-            fresco:placeholderImage="@color/placeholder" />
-
-        <TextView
-            android:id="@+id/tv_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/v_order_code_divider"
-            android:layout_marginLeft="@dimen/global_padding"
-            android:layout_toEndOf="@+id/iv_home_service_item"
-            android:layout_toRightOf="@+id/iv_home_service_item"
-            android:text="儿童摄影"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <TextView
-            android:id="@+id/tv_address"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/tv_title"
-            android:layout_alignStart="@+id/tv_title"
-            android:layout_below="@+id/tv_title"
-            android:drawableLeft="@mipmap/btn_local_order_bg"
-            android:gravity="center"
-            android:text="上海"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
-
-        <TextView
-            android:id="@+id/tv_price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/iv_home_service_item"
-            android:layout_alignLeft="@+id/tv_address"
-            android:layout_alignStart="@+id/tv_address"
-            android:text="98.00"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
-
-        <TextView
-            android:id="@+id/tv_count"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/tv_price"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:text="X12"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
+            android:layout_height="wrap_content">
 
 
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/relativeLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/ll_home_service_item"
-        android:layout_marginTop="@dimen/activity_vertical_margin">
-
-        <LinearLayout
-            android:id="@+id/ll_contact_person"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/shape_background_white_c"
-            android:orientation="horizontal"
-            android:padding="@dimen/global_padding">
-
-            <TextView
-                android:id="@+id/tv_nick_tag"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:id="@+id/ll_home_service_item"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:text="联系人"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:layout_below="@+id/tl_main_actionbar"
+                android:background="@drawable/btn_white_radio_bg"
+                android:padding="@dimen/global_padding">
 
-            <TextView
-                android:id="@+id/tv_nick"
-                android:layout_width="0dp"
+
+                <TextView
+                    android:id="@+id/tv_order_code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="订单编号:359590459495945949"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <View
+                    android:id="@+id/v_order_code_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_below="@+id/tv_order_code"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@android:color/darker_gray" />
+
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:id="@+id/iv_home_service_item"
+                    android:layout_width="120dp"
+                    android:layout_height="72dp"
+                    android:layout_below="@+id/v_order_code_divider"
+                    fresco:actualImageScaleType="centerCrop"
+                    fresco:placeholderImage="@color/placeholder" />
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/v_order_code_divider"
+                    android:layout_marginLeft="@dimen/global_padding"
+                    android:layout_toEndOf="@+id/iv_home_service_item"
+                    android:layout_toRightOf="@+id/iv_home_service_item"
+                    android:text="儿童摄影"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <TextView
+                    android:id="@+id/tv_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/tv_title"
+                    android:layout_alignStart="@+id/tv_title"
+                    android:layout_below="@+id/tv_title"
+                    android:drawableLeft="@mipmap/btn_local_order_bg"
+                    android:gravity="center"
+                    android:text="上海"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                <TextView
+                    android:id="@+id/tv_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/iv_home_service_item"
+                    android:layout_alignLeft="@+id/tv_address"
+                    android:layout_alignStart="@+id/tv_address"
+                    android:text="98.00"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                <TextView
+                    android:id="@+id/tv_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/tv_price"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:text="X12"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:text="张三"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:layout_below="@+id/ll_home_service_item"
+                android:layout_marginTop="@dimen/activity_vertical_margin">
 
-            <TextView
-                android:id="@+id/tv_operation"
-                android:layout_width="wrap_content"
+                <LinearLayout
+                    android:id="@+id/ll_contact_person"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_background_white_c"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/global_padding">
+
+                    <TextView
+                        android:id="@+id/tv_nick_tag"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:text="联系人"
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                    <TextView
+                        android:id="@+id/tv_nick"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text="张三"
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                    <TextView
+                        android:id="@+id/tv_operation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_contact_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ll_contact_person"
+                    android:background="@drawable/shape_background_white_c"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/global_padding">
+
+                    <TextView
+                        android:id="@+id/tv_phone_tag"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:text="手机号"
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                    <TextView
+                        android:id="@+id/tv_phone"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text="15201921714"
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                    <TextView
+                        android:id="@+id/tv_phone_change"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn_login_selector"
+                        android:gravity="center"
+                        android:paddingBottom="@dimen/half_global_padding"
+                        android:paddingLeft="@dimen/global_padding"
+                        android:paddingRight="@dimen/global_padding"
+                        android:paddingTop="@dimen/half_global_padding"
+                        android:text="修改"
+                        android:textColor="@android:color/white"
+                        android:visibility="gone" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_contact_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ll_contact_phone"
+                    android:background="@drawable/shape_background_white_c"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/global_padding">
+
+                    <TextView
+                        android:id="@+id/tv_address_tag"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:text="具体地址"
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                    <TextView
+                        android:id="@+id/tv_add"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:ellipsize="end"
+                        android:lines="1"
+                        android:text="上海市杨浦区飞虹路568弄"
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                    <TextView
+                        android:id="@+id/tv_address_manager"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn_login_selector"
+                        android:gravity="center"
+                        android:paddingBottom="@dimen/half_global_padding"
+                        android:paddingLeft="@dimen/global_padding"
+                        android:paddingRight="@dimen/global_padding"
+                        android:paddingTop="@dimen/half_global_padding"
+                        android:text="地址管理"
+                        android:textColor="@android:color/white"
+                        android:visibility="gone" />
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-        </LinearLayout>
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/relativeLayout"
+                android:layout_marginTop="@dimen/global_padding"
+                android:background="@drawable/shape_background_white_c"
+                android:padding="@dimen/global_padding">
 
-        <LinearLayout
-            android:id="@+id/ll_contact_phone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/ll_contact_person"
-            android:background="@drawable/shape_background_white_c"
-            android:orientation="horizontal"
-            android:padding="@dimen/global_padding">
+                <TextView
+                    android:id="@+id/tv_pay_way_tag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:text="选择支付方式"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
 
-            <TextView
-                android:id="@+id/tv_phone_tag"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:text="手机号"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
 
-            <TextView
-                android:id="@+id/tv_phone"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:text="15201921714"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                <RadioGroup
+                    android:id="@+id/rg_pay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_pay_way_tag"
+                    android:layout_marginTop="@dimen/half_global_padding">
 
-            <TextView
-                android:id="@+id/tv_phone_change"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/btn_login_selector"
-                android:gravity="center"
-                android:paddingBottom="@dimen/half_global_padding"
-                android:paddingLeft="@dimen/global_padding"
-                android:paddingRight="@dimen/global_padding"
-                android:paddingTop="@dimen/half_global_padding"
-                android:text="修改"
-                android:textColor="@android:color/white"
-                android:visibility="gone" />
-        </LinearLayout>
+                    <RadioButton
+                        android:id="@+id/rb_pay_zfb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:drawableLeft="@mipmap/alipay_bg"
+                        android:drawablePadding="5dp"
+                        android:text="支付宝"/>
 
-        <LinearLayout
-            android:id="@+id/ll_contact_address"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/ll_contact_phone"
-            android:background="@drawable/shape_background_white_c"
-            android:orientation="horizontal"
-            android:padding="@dimen/global_padding">
+                    <RadioButton
+                        android:id="@+id/rb_pay_wx"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:drawableLeft="@mipmap/wx_bg"
+                        android:drawablePadding="5dp"
+                        android:text="微信"/>
 
-            <TextView
-                android:id="@+id/tv_address_tag"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:text="具体地址"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                </RadioGroup>
 
-            <TextView
-                android:id="@+id/tv_add"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:ellipsize="end"
-                android:lines="1"
-                android:text="上海市杨浦区飞虹路568弄"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
 
-            <TextView
-                android:id="@+id/tv_address_manager"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/btn_login_selector"
-                android:gravity="center"
-                android:paddingBottom="@dimen/half_global_padding"
-                android:paddingLeft="@dimen/global_padding"
-                android:paddingRight="@dimen/global_padding"
-                android:paddingTop="@dimen/half_global_padding"
-                android:text="地址管理"
-                android:textColor="@android:color/white"
-                android:visibility="gone" />
-        </LinearLayout>
 
-    </RelativeLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/tv_pay_way_tag"
+                    android:layout_alignStart="@+id/tv_pay_way_tag"
+                    android:layout_below="@+id/tv_pay_way_tag"
+                    android:layout_marginTop="@dimen/half_global_padding"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <CheckBox
+                        android:id="@+id/checkBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:checked="true"
+                        android:clickable="false" />
+
+                    <ImageView
+                        android:id="@+id/imageView"
+                        android:layout_width="108dp"
+                        android:layout_height="47dp"
+                        android:scaleType="centerCrop"
+                        android:src="@mipmap/alipay_bg" />
+                </LinearLayout>
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </ScrollView>
 
     <LinearLayout
+        android:id="@+id/ll_pay_bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -251,50 +343,5 @@
             android:textColor="@android:color/white" />
     </LinearLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/relativeLayout"
-        android:layout_marginTop="@dimen/global_padding"
-        android:background="@drawable/shape_background_white_c"
-        android:padding="@dimen/global_padding">
-
-        <TextView
-            android:id="@+id/tv_pay_way_tag"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:text="选择支付方式"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/tv_pay_way_tag"
-            android:layout_alignStart="@+id/tv_pay_way_tag"
-            android:layout_below="@+id/tv_pay_way_tag"
-            android:layout_marginTop="@dimen/half_global_padding"
-            android:orientation="horizontal">
-
-            <CheckBox
-                android:id="@+id/checkBox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:checked="true"
-                android:clickable="false" />
-
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="108dp"
-                android:layout_height="47dp"
-                android:scaleType="centerCrop"
-                android:src="@mipmap/alipay_bg" />
-        </LinearLayout>
-    </RelativeLayout>
 
 </RelativeLayout>

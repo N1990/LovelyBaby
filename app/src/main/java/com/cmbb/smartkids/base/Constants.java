@@ -26,6 +26,10 @@ public class Constants {
     public final static String INTENT_ACTION_MESSAGE_RECEIVE = PACKAGE_NAME + ".message.receive";
     public final static String INTENT_ACTION_MESSAGE_CANCEL = PACKAGE_NAME + ".message.cancel";
 
+
+    public final static String APP_ID = "wx_app_id";  //wx766b807ef51aa8da
+//    public final static String APP_ID = "wxd930ea5d5a258f4f";
+
     public static class SharePreference {
         public static final String SCREEN_WIDTH = "screen_width";
         public static final String SCREEN_HEIGHT = "screen_height";

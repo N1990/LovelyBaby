@@ -1,5 +1,6 @@
 package com.cmbb.smartkids.base;
 
+import android.app.Application;
 import android.app.Notification;
 import android.content.BroadcastReceiver;
 import android.content.Context;

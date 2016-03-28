@@ -103,7 +103,20 @@ public class PayWayModel implements Parcelable {
         }
 
         public static class WeixinDataEntity implements Parcelable {
-
+            @Override
+            public String toString() {
+                return "WeixinDataEntity{" +
+                        "timestamp='" + timestamp + '\'' +
+                        ", sign='" + sign + '\'' +
+                        ", retcode=" + retcode +
+                        ", partnerid='" + partnerid + '\'' +
+                        ", noncestr='" + noncestr + '\'' +
+                        ", prepayid='" + prepayid + '\'' +
+                        ", packageX='" + packageX + '\'' +
+                        ", retmsg='" + retmsg + '\'' +
+                        ", appid='" + appid + '\'' +
+                        '}';
+            }
 
             private String timestamp;
             private String sign;

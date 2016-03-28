@@ -22,4 +22,5 @@
     <color name="service_bottom_left">#29a6f5</color>
     <color name="service_bottom_right">#7dcf44</color>
     <!--活动详情底部-->
+    <color name="navpage">#FFE1E8EB</color>
 </resources>

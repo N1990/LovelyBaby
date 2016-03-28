@@ -2,15 +2,19 @@ package com.cmbb.smartkids.activity.order.v2;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,10 +25,12 @@ import com.cmbb.smartkids.activity.order.model.GenerateOrderModel;
 import com.cmbb.smartkids.activity.order.model.PayWayModel;
 import com.cmbb.smartkids.activity.order.model.SubmitOrderModel;
 import com.cmbb.smartkids.base.BaseActivity;
+import com.cmbb.smartkids.base.Constants;
 import com.cmbb.smartkids.model.OrderStatus;
 import com.cmbb.smartkids.network.OkHttpClientManager;
 import com.cmbb.smartkids.pay.PayResult;
 import com.cmbb.smartkids.utils.FrescoTool;
+import com.cmbb.smartkids.utils.SPCache;
 import com.cmbb.smartkids.utils.log.Log;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.squareup.okhttp.Request;
@@ -38,7 +44,7 @@ import com.tencent.mm.sdk.openapi.WXAPIFactory;
  * 创建人：N.Sun
  * 创建时间：16/3/16 上午11:47
  */
-public class PayConfirm extends BaseActivity {
+public class PayConfirm extends BaseActivity { //implements IWXAPIEventHandler
     private final String TAG = PayConfirm.class.getSimpleName();
 
     // 商户PID
@@ -74,16 +80,16 @@ public class PayConfirm extends BaseActivity {
     private TextView tvAddressManager;
     private TextView tvWholePrice;
     private TextView tvSubmit;
-    private TextView tvPayWayTag;
-    private ImageView imageView;
+    private RadioGroup rgPayWay;
     private SubmitOrderModel.DataEntity dataEntity;
     private GenerateOrderModel.DataEntity dataEntity02;
     private String orderCode;
     private PayWayModel payWayModel;
     private IWXAPI api;// weixin API
+    private BroadcastReceiver payReceiver;
 
 
-    private int payWay; // 0: 支付宝 1： 微信
+    private int payWay = 0; // 0: 支付宝 1： 微信
 
     private Handler mHandler = new Handler() {
         public void handleMessage(Message msg) {
@@ -156,8 +162,15 @@ public class PayConfirm extends BaseActivity {
         tvWholePrice = (TextView) findViewById(R.id.tv_whole_price);
         tvSubmit = (TextView) findViewById(R.id.tv_submit);
         tvSubmit.setOnClickListener(this);
-        tvPayWayTag = (TextView) findViewById(R.id.tv_pay_way_tag);
-        imageView = (ImageView) findViewById(R.id.imageView);
+//        tvPayWayTag = (TextView) findViewById(R.id.tv_pay_way_tag);
+//        imageView = (ImageView) findViewById(R.id.imageView);
+        rgPayWay = (RadioGroup) findViewById(R.id.rg_pay);
+        ((RadioButton)findViewById(R.id.rb_pay_zfb)).setChecked(true);
+        rgPayWay.setOnCheckedChangeListener(onCheckChangeListener);
+
+        payReceiver = new MyBroadCastReceiver();
+        IntentFilter filter = new IntentFilter("com.cbmm.smartkids.pay");
+        registerReceiver(payReceiver, filter);
     }
 
     private void initData() {
@@ -218,7 +231,7 @@ public class PayConfirm extends BaseActivity {
          * call alipay sdk pay. 调用SDK支付
          */
         switch (payWay) {
-            case 1:
+            case 0:
                 if (TextUtils.isEmpty(PARTNER) || TextUtils.isEmpty(RSA_PRIVATE) || TextUtils.isEmpty(SELLER)) {
                     new AlertDialog.Builder(PayConfirm.this)
                             .setTitle("警告")
@@ -253,9 +266,9 @@ public class PayConfirm extends BaseActivity {
                     showShortToast("数据出错啦~");
                 }
                 break;
-            case 0:
-
+            case 1:
                 try {
+                    Log.e(TAG, "payWayModel is null :" + payWayModel == null);
                     if (payWayModel != null) {
                         PayReq req = new PayReq();
                         req.appId = payWayModel.getPayTypes().get(1).getWeixinData().getAppid();
@@ -265,6 +278,9 @@ public class PayConfirm extends BaseActivity {
                         req.timeStamp = payWayModel.getPayTypes().get(1).getWeixinData().getTimestamp();
                         req.packageValue = payWayModel.getPayTypes().get(1).getWeixinData().getPackageX();
                         req.sign = payWayModel.getPayTypes().get(1).getWeixinData().getSign();
+
+                        api.registerApp(req.appId);
+                        Log.e(TAG, payWayModel.getPayTypes().get(1).getWeixinData().toString());
                         showShortToast("正在启动微信支付...");
                         api.sendReq(req);
                     } else {
@@ -279,6 +295,18 @@ public class PayConfirm extends BaseActivity {
 
         }
     }
+
+
+    private RadioGroup.OnCheckedChangeListener onCheckChangeListener = new RadioGroup.OnCheckedChangeListener() {
+        @Override
+        public void onCheckedChanged(RadioGroup group, int checkedId) {
+            if(checkedId == R.id.rb_pay_zfb){
+                payWay = 0;
+            }else if(checkedId == R.id.rb_pay_wx){
+                payWay = 1;
+            }
+        }
+    };
 
     @Override
     public void onBackPressed() {
@@ -346,14 +374,17 @@ public class PayConfirm extends BaseActivity {
             public void onResponse(PayWayModel response) {
                 hideWaitDialog();
                 payWayModel = response;
-                api = WXAPIFactory.createWXAPI(PayConfirm.this, null);
-                // 将该app注册到微信
-                api.registerApp(payWayModel.getPayTypes().get(1).getWeixinData().getAppid());
+                api = WXAPIFactory.createWXAPI(PayConfirm.this, Constants.APP_ID);
+                SPCache.putString(Constants.APP_ID, payWayModel.getPayTypes().get(1).getWeixinData().getAppid());
             }
         });
-
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(payReceiver);
+    }
 
     public static void newInstance(Activity activity, SubmitOrderModel.DataEntity dataEntity, int requestCode) {
         Intent intent = new Intent(activity, PayConfirm.class);
@@ -369,4 +400,16 @@ public class PayConfirm extends BaseActivity {
     }
 
 
+    class MyBroadCastReceiver extends BroadcastReceiver{
+
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Toast.makeText(PayConfirm.this, "支付成功", Toast.LENGTH_SHORT).show();
+            Intent intent1 =  PayConfirm.this.getIntent();
+            intent.putExtra("order_status", OrderStatus.YI_ZHI_FU.getValue());
+            PayConfirm.this.setResult(RESULT_OK, intent1);
+            finish();
+        }
+    }
 }

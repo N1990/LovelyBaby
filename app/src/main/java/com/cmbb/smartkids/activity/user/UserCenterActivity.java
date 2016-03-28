@@ -201,6 +201,7 @@ public class UserCenterActivity extends BaseActivity implements AppBarLayout.OnO
                     fragments.add(diaryFra);
                     adapter.setData(fragments, titles);
                     vp.setAdapter(adapter);
+                    vp.setOffscreenPageLimit(3);
                     tl.setTabMode(TabLayout.MODE_FIXED);
                     tl.setupWithViewPager(vp);
                 } else {

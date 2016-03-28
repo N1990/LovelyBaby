@@ -16,6 +16,9 @@ import com.cmbb.smartkids.recyclerview.SmartRecyclerView;
 import com.cmbb.smartkids.recyclerview.adapter.RecyclerArrayAdapter;
 import com.squareup.okhttp.Request;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 项目名称：LovelyBaby
  * 类描述：
@@ -30,7 +33,6 @@ public class EvaluateFragment extends BaseFragment implements View.OnClickListen
     private int pager = 0;
     private int pagerSize = 5;
     private String userId, isPopman;
-    private int cachePager = -1; //缓存上次的pager
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -108,13 +110,6 @@ public class EvaluateFragment extends BaseFragment implements View.OnClickListen
         });
 
     }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        cachePager = pager;
-    }
-
 
     @Override
     public void onItemClick(int position) {

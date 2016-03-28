@@ -20,6 +20,9 @@ import com.cmbb.smartkids.recyclerview.SmartRecyclerView;
 import com.cmbb.smartkids.recyclerview.adapter.RecyclerArrayAdapter;
 import com.squareup.okhttp.Request;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 项目名称：LovelyBaby
  * 类描述：
@@ -34,7 +37,6 @@ public class CommunityFragment extends BaseFragment implements View.OnClickListe
     private int pager = 0;
     private int pagerSize = 10;
     private String userId;
-    private int cachePager = -1;
 
 
     @Override
@@ -84,8 +86,9 @@ public class CommunityFragment extends BaseFragment implements View.OnClickListe
                     @Override
                     public void onResponse(TopicListModel response) {
                         if (response != null) {
-                            if (flag)
+                            if (flag){
                                 adapter.clear();
+                            }
                             adapter.addAll(response.getData().getRows());
                         }
                     }
@@ -93,12 +96,6 @@ public class CommunityFragment extends BaseFragment implements View.OnClickListe
         );
     }
 
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        cachePager = pager;
-    }
 
     @Override
     public void onItemClick(int position) {

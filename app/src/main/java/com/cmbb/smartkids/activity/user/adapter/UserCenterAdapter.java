@@ -43,6 +43,7 @@ public class UserCenterAdapter extends FragmentStatePagerAdapter {
         notifyDataSetChanged();
     }
 
+
     @Override
     public Fragment getItem(int position) {
         return data.get(position);

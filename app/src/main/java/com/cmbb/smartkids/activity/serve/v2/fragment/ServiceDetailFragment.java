@@ -9,6 +9,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.text.TextUtils;
@@ -123,7 +124,20 @@ public class ServiceDetailFragment extends BaseFragment {
 
                 }
             });
+            //清楚缓存
+            webView.getSettings().setAppCacheEnabled(false);
+            webView.clearHistory();
+            webView.clearFormData();
+            webView.clearCache(true);
             webView.loadUrl(Constants.H5.SMART_SERVICE_DETAIL + "?" + SystemClock.currentThreadTimeMillis());
+        }
+        return view;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        if (isAdded()) {
             //点击电话
             webView.registerHandler("callPhone", new BridgeHandler() {
                 @Override
@@ -191,7 +205,8 @@ public class ServiceDetailFragment extends BaseFragment {
                     if (!TextUtils.isEmpty(data)) {
                         Log.i("getServiceData", data);
                         h5ServiceDetailModel = new Gson().fromJson(data, H5ServiceDetailModel.class);
-                        initPopup(h5ServiceDetailModel);
+                        if (isAdded())
+                            initPopup(h5ServiceDetailModel);
                         tvReserve.setVisibility(View.VISIBLE);
                         ShareUtils.setShareContent(h5ServiceDetailModel.getTitle(), h5ServiceDetailModel.getContent(), Constants.Share.getServerShareUrl(h5ServiceDetailModel.getId()), h5ServiceDetailModel.getServicesImg());
                     }
@@ -224,13 +239,12 @@ public class ServiceDetailFragment extends BaseFragment {
             });
             webView.send("hello");
         }
-        return view;
     }
 
     /**
      * popuwindow
      *
-     * @param data
+     * @param data H5ServiceDetailModel
      */
     private void initPopup(final H5ServiceDetailModel data) {
         View view = LayoutInflater.from(getActivity()).inflate(R.layout.popup_order_edit, null);

@@ -13,8 +13,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DBHelper extends SQLiteOpenHelper {
     private final String TAG = DBHelper.class.getSimpleName();
 
-
-
     public DBHelper(Context context) {
         super(context, DBContent.DB_NAME, null, DBContent.VERSION);
     }

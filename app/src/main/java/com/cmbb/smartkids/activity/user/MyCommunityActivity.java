@@ -7,6 +7,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 
 import com.cmbb.smartkids.R;
+import com.cmbb.smartkids.activity.community.CommunityDetailActivity;
 import com.cmbb.smartkids.activity.community.model.TopicListModel;
 import com.cmbb.smartkids.activity.user.adapter.MyCommunityAdapter;
 import com.cmbb.smartkids.base.BaseActivity;
@@ -78,7 +79,7 @@ public class MyCommunityActivity extends BaseActivity implements RecyclerArrayAd
 
     @Override
     public void onItemClick(int position) {
-
+        CommunityDetailActivity.newInstance(this, adapter.getItem(position).getId());
     }
 
     @Override

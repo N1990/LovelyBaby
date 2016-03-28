@@ -86,7 +86,6 @@ public class MessageServiceListActivity extends BaseActivity implements View.OnC
     public void onRefresh() {
         pager = 0;
         MessageCountModel.handleEmptyMessageRequest(dataEntity.getId() + "", null);
-
         MessageListModel.getOfficialMessageRequest(dataEntity.getModual(), pager, pagerSize, BaseApplication.token, new OkHttpClientManager.ResultCallback<MessageListModel>() {
             @Override
             public void onError(Request request, Exception e) {
@@ -109,6 +108,12 @@ public class MessageServiceListActivity extends BaseActivity implements View.OnC
         super.onBackPressed();
     }
 
+    /**
+     * 启动
+     *
+     * @param context
+     * @param dataEntity
+     */
     public static void newInstance(BaseActivity context, MessageCountModel.DataEntity dataEntity) {
         Intent intent = new Intent(context, MessageServiceListActivity.class);
         intent.putExtra("DataEntity", dataEntity);

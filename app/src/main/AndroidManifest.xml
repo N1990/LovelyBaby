@@ -24,6 +24,8 @@
     <uses-permission android:name="android.permission.READ_LOGS" />
     <!-- 获取logcat日志 -->
     <uses-permission android:name="android.permission.GET_TASKS" />
+    <!--清除缓存-->
+    <uses-permission android:name="android.permission.CLEAR_APP_CACHE"/>
 
     <!-- 支付宝 -->
     <uses-permission android:name="android.permission.INTERNET" />

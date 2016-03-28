@@ -124,7 +124,7 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
             adapter_topic.clear();
             srv_search.setLayoutManager(new LinearLayoutManager(SearchActivity.this));
             srv_search.setAdapter(adapter_topic);
-            handleSearchTopic(pager_topic, pagerSize, search);
+            handleSearchTopic(pager_topic, pagerSize, search, true);
         } else if (adapter instanceof SearchTopicAdapter) { // 话题adapter监听事件
             TopicListModel.DataEntity.RowsEntity item = adapter_topic.getItem(position);
             int id = item.getId();
@@ -149,15 +149,15 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
         switch (type) {
             case 0:
                 pager_topic++;
-                handleSearchTopic(pager_topic, pagerSize, search);
+                handleSearchTopic(pager_topic, pagerSize, search, false);
                 break;
             case 1:
                 pager_user++;
-                handelSearchUserRequest(pager_user, pagerSize, search);
+                handelSearchUserRequest(pager_user, pagerSize, search, false);
                 break;
             case 2:
                 pager_service++;
-                handleSearchServiceRequest(pager_service, pagerSize, search);
+                handleSearchServiceRequest(pager_service, pagerSize, search, false);
                 break;
         }
     }
@@ -167,18 +167,15 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
         switch (type) {
             case 0:
                 pager_topic = 0;
-                adapter_hot.clear();
-                handleSearchTopic(pager_topic, pagerSize, search);
+                handleSearchTopic(pager_topic, pagerSize, search, true);
                 break;
             case 1:
                 pager_user = 0;
-                adapter_user.clear();
-                handelSearchUserRequest(pager_user, pagerSize, search);
+                handelSearchUserRequest(pager_user, pagerSize, search, true);
                 break;
             case 2:
                 pager_service = 0;
-                adapter_service.clear();
-                handleSearchServiceRequest(pager_service, pagerSize, search);
+                handleSearchServiceRequest(pager_service, pagerSize, search, true);
                 break;
         }
     }
@@ -203,21 +200,20 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
                 showWaitDialog();
                 if (type == 0) {
                     pager_topic = 0;
-                    adapter_topic.clear();
                     srv_search.setAdapter(adapter_topic);
-                    handleSearchTopic(pager_topic, pagerSize, search);
+                    onRefresh();
+//                    handleSearchTopic(pager_topic, pagerSize, search, true);
                 } else if (type == 1) {
                     pager_user = 0;
-                    adapter_user.clear();
                     srv_search.setAdapter(adapter_user);
-                    handelSearchUserRequest(pager_user, pagerSize, search);
+                    onRefresh();
+//                    handelSearchUserRequest(pager_user, pagerSize, search, true);
                 } else if (type == 2) {
                     pager_service = 0;
-                    adapter_service.clear();
                     srv_search.setAdapter(adapter_service);
-                    handleSearchServiceRequest(pager_service, pagerSize, search);
+                    onRefresh();
+//                    handleSearchServiceRequest(pager_service, pagerSize, search, true);
                 }
-                showShortToast("开始搜索...");
                 return true;
             }
             return false;
@@ -243,21 +239,18 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
                 showWaitDialog();
                 if (type == 0) {
                     pager_topic = 0;
-                    adapter_topic.clear();
                     srv_search.setAdapter(adapter_topic);
-                    handleSearchTopic(pager_topic, pagerSize, search);
+                    //handleSearchTopic(pager_topic, pagerSize, search, true);
+                    onRefresh();
                 } else if (type == 1) {
                     pager_user = 0;
-                    adapter_user.clear();
                     srv_search.setAdapter(adapter_user);
-                    handelSearchUserRequest(pager_user, pagerSize, search);
+                    onRefresh();
                 } else if (type == 2) {
                     pager_service = 0;
-                    adapter_service.clear();
                     srv_search.setAdapter(adapter_service);
-                    handleSearchServiceRequest(pager_service, pagerSize, search);
+                    onRefresh();
                 }
-                showShortToast("开始搜索...");
                 break;
         }
     }
@@ -357,7 +350,7 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
      * @param pagerSize
      * @param text
      */
-    private void handleSearchTopic(int pager, int pagerSize, String text) {
+    private void handleSearchTopic(int pager, int pagerSize, String text, final boolean clear) {
         TopicListModel.getSearchTopicListRequest(text, pager, pagerSize, new OkHttpClientManager.ResultCallback<TopicListModel>() {
             @Override
             public void onError(Request request, Exception e) {
@@ -368,10 +361,11 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
             @Override
             public void onResponse(TopicListModel response) {
                 hideWaitDialog();
-                if (response != null && response.getData().getRows() != null && response.getData().getRows().size() > 0) {
+                if (response != null) {
+                    if (clear)
+                        adapter_hot.clear();
                     adapter_topic.addAll(response.getData().getRows());
                 }
-                showWaitDialog(response.getMsg());
             }
         });
     }
@@ -384,7 +378,7 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
      * @param pagerSize
      * @param text
      */
-    private void handelSearchUserRequest(int pager, int pagerSize, String text) {
+    private void handelSearchUserRequest(int pager, int pagerSize, String text, final boolean clear) {
         SearchUserModel.getSearchUserRequest(text, pager, pagerSize, new OkHttpClientManager.ResultCallback<SearchUserModel>() {
             @Override
             public void onError(Request request, Exception e) {
@@ -395,10 +389,11 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
             @Override
             public void onResponse(SearchUserModel response) {
                 hideWaitDialog();
-                if (response != null && response.getData() != null && response.getData().getRows() != null && response.getData().getRows().size() > 0) {
+                if (response != null) {
+                    if (clear)
+                        adapter_user.clear();
                     adapter_user.addAll(response.getData().getRows());
                 }
-                showWaitDialog(response.getMsg());
             }
         });
     }
@@ -410,7 +405,7 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
      * @param pagerSize
      * @param text
      */
-    private void handleSearchServiceRequest(int pager, int pagerSize, String text) {
+    private void handleSearchServiceRequest(int pager, int pagerSize, String text, final boolean clear) {
         SearchServiceModel.getSearchServiceRequest(text, pager, pagerSize, new OkHttpClientManager.ResultCallback<SearchServiceModel>() {
             @Override
             public void onError(Request request, Exception e) {
@@ -421,10 +416,11 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
             @Override
             public void onResponse(SearchServiceModel response) {
                 hideWaitDialog();
-                if (response != null && response.getData() != null && response.getData().getRows() != null && response.getData().getRows().size() > 0) {
+                if (response != null) {
+                    if (clear)
+                        adapter_service.clear();
                     adapter_service.addAll(response.getData().getRows());
                 }
-                showWaitDialog(response.getMsg());
             }
         });
     }

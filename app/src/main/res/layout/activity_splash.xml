@@ -4,7 +4,7 @@
     android:id="@+id/sdv_splash"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:placeholderImage="@color/primaryColor"
+    app:placeholderImage="@color/placeholder"
     app:actualImageScaleType="centerCrop"
     app:fadeDuration="300"/>
 

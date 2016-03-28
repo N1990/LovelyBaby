@@ -30,6 +30,11 @@ public class Constants {
     public final static String APP_ID = "wx_app_id";  //wx766b807ef51aa8da
 //    public final static String APP_ID = "wxd930ea5d5a258f4f";
 
+    public static final class H5 {
+        public static final String SMART_SIGN = "http://120.26.88.135:8090/SmartApp/page/smart-app-sign.html"; // 签到
+        public static final String SMART_SERVICE_DETAIL = "http://120.26.88.135:8090/SmartApp/page/samrt-app-service-detail.html"; // 详情
+    }
+
     public static class SharePreference {
         public static final String SCREEN_WIDTH = "screen_width";
         public static final String SCREEN_HEIGHT = "screen_height";
@@ -155,9 +160,6 @@ public class Constants {
         public static final String TOPIC_DELETEREPLY = "smart/topic/deleteReply"; // 举报话题
     }
 
-    public static final class H5 {
-        public static final String SMART_SIGN = "http://192.168.100.67:8080/SmartApp/page/smart-app-sign.html"; // 签到
-        public static final String SMART_SERVICE_DETAIL = "http://120.26.88.135:8090/SmartApp/page/samrt-app-service-detail.html"; // 详情
-    }
+
 
 }

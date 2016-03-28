@@ -253,10 +253,10 @@ public class HomeServiceActivity extends BaseHomeActivity implements View.OnClic
 
     @Override
     public void onBackPressed() {
-        if (mSmartPopupWindow.isShowing()) {
+        if (mSmartPopupWindow != null && mSmartPopupWindow.isShowing()) {
             mSmartPopupWindow.dismiss();
             PopuSmartFlag = false;
-        } else if (mCityListPopupWindow.isShowing()) {
+        } else if (mCityListPopupWindow != null && mCityListPopupWindow.isShowing()) {
             mCityListPopupWindow.dismiss();
             PopuCityFlag = false;
         } else {

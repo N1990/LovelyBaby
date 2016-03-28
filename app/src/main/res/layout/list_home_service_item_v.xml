@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ll_home_service_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -28,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
-            android:text="上海"
+            tools:text="上海"
             android:textColor="@color/dimgray"
             android:textSize="@dimen/txt_middle" />
 
@@ -93,7 +94,7 @@
         android:ellipsize="end"
         android:gravity="center_vertical"
         android:singleLine="true"
-        android:text="活动时间:2016年5月7日 - 6月1日"
+        tools:text="活动时间:2016年5月7日 - 6月1日"
         android:textColor="@color/dimgray" />
 
     <TextView
@@ -105,7 +106,7 @@
         android:layout_marginTop="6dp"
         android:layout_toRightOf="@+id/ll_home_service_item_frist"
         android:gravity="center_vertical"
-        android:text="服务方式:到店"
+        tools:text="服务方式:到店"
         android:textColor="@color/dimgray" />
 
     <View
@@ -133,7 +134,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/btn_primary_cornor_bg"
-            android:text="进行中"
+            tools:text="进行中"
             android:textColor="@android:color/white" />
 
         <TextView
@@ -144,7 +145,7 @@
             android:layout_marginLeft="5dp"
             android:ellipsize="end"
             android:singleLine="true"
-            android:text="已购买人数10" />
+            tools:text="已购买人数10" />
 
         <TextView
             android:id="@+id/tv_service_price_item"
@@ -154,7 +155,7 @@
             android:ellipsize="end"
             android:gravity="right"
             android:singleLine="true"
-            android:text="$200元"
+            tools:text="$200元"
             android:textColor="@color/primaryColorDark"
             android:textStyle="bold" />
 

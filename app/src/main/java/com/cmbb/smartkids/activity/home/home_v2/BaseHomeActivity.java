@@ -100,6 +100,7 @@ public abstract class BaseHomeActivity extends BaseActivity {
                 netChange();
             } else {
                 // 无网络连接
+                showShortToast("网络出现连接错误，请检测网络");
             }
         }
     }

@@ -62,7 +62,7 @@ public class HomeItemHolder extends BaseViewHolder<HomePageRootModel.DataEntity.
         }*/
         FrescoTool.loadImage(iv, row.getServicesImg(), 1.67f);
         ivTag.setVisibility(View.VISIBLE);
-        int statusValue = row.getStatus();
+        /*int statusValue = row.getStatus();
         ServiceStatus status = ServiceStatus.getStatusByValue(statusValue);
         switch (status) {
             case WEI_KAI_SHI:
@@ -77,6 +77,6 @@ public class HomeItemHolder extends BaseViewHolder<HomePageRootModel.DataEntity.
             case YI_JIE_SHU:
                 ivTag.setImageResource(R.mipmap.ic_order_overtime_bg);
                 break;
-        }
+        }*/
     }
 }

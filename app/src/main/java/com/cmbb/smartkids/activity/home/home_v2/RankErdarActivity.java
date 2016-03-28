@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.activity.home.home_v2.adapter.RankErdarAdapter;
 import com.cmbb.smartkids.activity.home.model.RankEredarRootModel;
+import com.cmbb.smartkids.activity.user.UserCenterActivity;
 import com.cmbb.smartkids.base.BaseActivity;
 import com.cmbb.smartkids.network.OkHttpClientManager;
 import com.cmbb.smartkids.recyclerview.SmartRecyclerView;
@@ -57,7 +58,7 @@ public class RankErdarActivity extends BaseActivity implements RecyclerArrayAdap
 
     @Override
     public void onItemClick(int position) {
-
+        UserCenterActivity.newIntent(this, adapter.getItem(position).getId());
     }
 
     @Override

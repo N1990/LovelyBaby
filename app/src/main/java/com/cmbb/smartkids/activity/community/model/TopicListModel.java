@@ -1118,4 +1118,19 @@ public class TopicListModel implements Parcelable {
         params.put("contents", content);
         OkHttpClientManager.postAsyn(Constants.Community.TOPIC_LIST, params, callback);
     }
+
+
+    /**
+     * 精彩回顾
+     *
+     * @param pageNo
+     * @param numberOfPerPage
+     * @param callback
+     */
+    public static void getWonderfulReviewRequest(int pageNo, int numberOfPerPage, OkHttpClientManager.ResultCallback<TopicListModel> callback) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("pageNo", String.valueOf(pageNo));
+        params.put("numberOfPerPage", String.valueOf(numberOfPerPage));
+        OkHttpClientManager.postAsyn(Constants.Community.TOPIC_REVIEW, params, callback);
+    }
 }

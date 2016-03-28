@@ -19,7 +19,6 @@ import com.cmbb.smartkids.activity.more.SuggestActivity;
 public class HomeMoreActivity extends BaseHomeActivity implements View.OnClickListener {
 
 
-
     @Override
     protected void init(Bundle savedInstanceState) {
         setNoBack();
@@ -28,7 +27,7 @@ public class HomeMoreActivity extends BaseHomeActivity implements View.OnClickLi
         findViewById(R.id.tv_suggest_feek).setOnClickListener(this);
         findViewById(R.id.tv_growth_values).setOnClickListener(this);
         findViewById(R.id.tv_about).setOnClickListener(this);
-        findViewById(R.id.tv_clear_cache).setOnClickListener(this);
+//        findViewById(R.id.tv_clear_cache).setOnClickListener(this);
     }
 
     @Override
@@ -61,9 +60,8 @@ public class HomeMoreActivity extends BaseHomeActivity implements View.OnClickLi
             case R.id.tv_about:
                 AboutActivity.newInstance(this);
                 break;
-            case R.id.tv_clear_cache:
-
-                break;
+            /*case R.id.tv_clear_cache:
+                break;*/
         }
     }
 

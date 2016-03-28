@@ -325,7 +325,6 @@ public class HomeMeActivity extends BaseHomeActivity implements View.OnClickList
             // 信息
             case R.id.iv_main_toolbar_right:
                 MessageActivity.newInstance(this);
-
                 break;
             case R.id.iv_home_myself:
                 PhotoPickerIntent intent = new PhotoPickerIntent(this);

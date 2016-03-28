@@ -158,12 +158,11 @@ public class Tools {
                     if (((String) e.getValue()).contains("\n") && ((String) e.getValue()).contains("\"")) {
                         values = ((String) e.getValue()).replace("\n", "\\n");
                         values = values.replace("\"", "\\\"");
-                    } else if(((String) e.getValue()).contains("\"")){
+                    } else if (((String) e.getValue()).contains("\"")) {
                         values = ((String) e.getValue()).replace("\"", "\\\"");
-                    }else if(((String) e.getValue()).contains("\n") ){
+                    } else if (((String) e.getValue()).contains("\n")) {
                         values = ((String) e.getValue()).replace("\n", "\\n");
-                    }
-                    else {
+                    } else {
                         values = (String) e.getValue();
                     }
                     stringBuilder.append("\"" + values + "\"");

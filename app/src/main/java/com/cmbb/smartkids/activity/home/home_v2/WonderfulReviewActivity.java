@@ -119,7 +119,7 @@ public class WonderfulReviewActivity extends BaseActivity implements RecyclerArr
     @Override
     public void onRefresh() {
         pager = 0;
-        TopicListModel.getTopicListRequest("FAMILY", pager, pagerSize, BaseApplication.token, new OkHttpClientManager.ResultCallback<TopicListModel>() {
+        TopicListModel.getWonderfulReviewRequest(pager, pagerSize, new OkHttpClientManager.ResultCallback<TopicListModel>() {
             @Override
             public void onError(Request request, Exception e) {
                 showShortToast(e.toString());

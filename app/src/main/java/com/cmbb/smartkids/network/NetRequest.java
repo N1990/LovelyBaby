@@ -377,7 +377,8 @@ public class NetRequest {
                         JSONObject object = new JSONObject(responseStr);
                         JSONObject errJson = object.optJSONObject("error");
                         int codeStatus = object.optInt("statusCode");
-                        Log.e("err", errJson.toString());
+                        if (errJson != null)
+                            Log.e("err", errJson.toString());
                         if (errJson == null) {
                             if (codeStatus >= 200 && codeStatus < 300) {
                                 JSONObject data = object.optJSONObject("response");

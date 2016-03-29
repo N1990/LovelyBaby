@@ -50,6 +50,7 @@ public class HomeServiceActivity extends BaseHomeActivity implements View.OnClic
     protected ServiceAdapter adapter;
     private int pager = 0;
     private int pagerSize = 10;
+    private boolean isPopuSmartFlagConfirm;
 
     @Override
     protected int getLayoutId() {
@@ -189,6 +190,13 @@ public class HomeServiceActivity extends BaseHomeActivity implements View.OnClic
         mSmartPopupWindow.setOutsideTouchable(true);
         mSmartPopupWindow.setBackgroundDrawable(new BitmapDrawable());
         mSmartPopupWindow.setTouchable(true);
+        mSmartPopupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                if(!isPopuSmartFlagConfirm)
+                    popuDictAdapter.initItemCheckView();
+            }
+        });
     }
 
     //智能筛选回调
@@ -211,6 +219,7 @@ public class HomeServiceActivity extends BaseHomeActivity implements View.OnClic
             } else {
                 serviceWay = "";
             }
+            isPopuSmartFlagConfirm = true;
             mSmartPopupWindow.dismiss();
             PopuSmartFlag = false;
             onRefresh();
@@ -237,6 +246,7 @@ public class HomeServiceActivity extends BaseHomeActivity implements View.OnClic
                     mSmartPopupWindow.dismiss();
                 } else {
                     PopuSmartFlag = true;
+                    isPopuSmartFlagConfirm = false;
                     mSmartPopupWindow.showAsDropDown(btnSmart);
                 }
                 break;

@@ -33,6 +33,7 @@ public class PopuDictAdapter extends RecyclerView.Adapter {
     public static final int SERVICE_SORT_HEAD = 3;
     public static final int SERVICE_NORMAL = 4;
     public static final int SERVICE_FOOTER = 5;
+    private ServiceNormalHolder normalHolder;
 
     int categroy;
     int services;
@@ -92,7 +93,7 @@ public class PopuDictAdapter extends RecyclerView.Adapter {
                 return new ServiceDictFooterHolder(itemFooter, serviceSmartDictModel, this, onConfirmClick);
             case SERVICE_NORMAL:
                 View itemNormal = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_service_popu_normal_dict, parent, false);
-                return new ServiceNormalHolder(itemNormal, this, serviceSmartDictModel);
+                return normalHolder = new ServiceNormalHolder(itemNormal, this, serviceSmartDictModel);
         }
         return null;
     }
@@ -129,6 +130,11 @@ public class PopuDictAdapter extends RecyclerView.Adapter {
         services = serviceSmartDictModel.getData().getServices().size() / 4 + (serviceSmartDictModel.getData().getServices().size() % 4 > 0 ? 1 : 0) + 1;
         sortType = serviceSmartDictModel.getData().getServiceSortType().size() / 4 + (serviceSmartDictModel.getData().getServiceSortType().size() % 4 > 0 ? 1 : 0) + 1;
         return categroy + services + sortType + 1;
+    }
+
+
+    public void initItemCheckView(){
+        normalHolder.initCkeck();
     }
 }
 

@@ -58,7 +58,7 @@ public class MyServiceHolder extends BaseViewHolder<ServiceListModel.DataEntity.
         tvServiceItemCity.setText(data.getCityText());
         tvTitleHomeServiceItem.setText(data.getTitle());
         tvTimeHomeServiceItem.setText("活动时间:" + data.getServiceTime());
-        tvServiceWayItem.setText("服务方式:" + data.getType());
+        tvServiceWayItem.setText("服务方式:" + data.getTypeText());
         tvServiceStatusItem.setText(data.getStatusName());
         tvServicePurchaseNumberItem.setText("已购买人数" + data.getRealityPeoples());
         if (!TextUtils.isEmpty(data.getPrice())) {

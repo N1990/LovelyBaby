@@ -110,10 +110,10 @@ public class ConfirmOrder extends BaseActivity {
         if (!TextUtils.isEmpty(phone))
             tvPhone.setText(phone);
         if(!TextUtils.isEmpty(reserveEntity.getAddress())){
-            tvAdd.setVisibility(View.VISIBLE);
+            llContactAddress.setVisibility(View.VISIBLE);
             tvAdd.setText(reserveEntity.getAddress());
         }else {
-            tvAdd.setVisibility(View.GONE);
+            llContactAddress.setVisibility(View.GONE);
         }
         receiverName = reserveEntity.getReceiveName();
         receiverPhone = reserveEntity.getReceivePhone();

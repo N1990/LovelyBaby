@@ -242,7 +242,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
 
-                <RadioGroup
+                <!--<RadioGroup
                     android:id="@+id/rg_pay"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -256,6 +256,7 @@
                         android:layout_marginTop="5dp"
                         android:drawableLeft="@mipmap/alipay_bg"
                         android:drawablePadding="5dp"
+                        android:checked="true"
                         android:text="支付宝"/>
 
                     <RadioButton
@@ -267,7 +268,7 @@
                         android:drawablePadding="5dp"
                         android:text="微信"/>
 
-                </RadioGroup>
+                </RadioGroup>-->
 
 
 
@@ -277,9 +278,9 @@
                     android:layout_alignLeft="@+id/tv_pay_way_tag"
                     android:layout_alignStart="@+id/tv_pay_way_tag"
                     android:layout_below="@+id/tv_pay_way_tag"
-                    android:layout_marginTop="@dimen/half_global_padding"
+                    android:layout_marginTop="10dp"
                     android:orientation="horizontal"
-                    android:visibility="gone">
+                    android:visibility="visible">
 
                     <CheckBox
                         android:id="@+id/checkBox"
@@ -289,12 +290,15 @@
                         android:checked="true"
                         android:clickable="false" />
 
-                    <ImageView
+                    <TextView
                         android:id="@+id/imageView"
-                        android:layout_width="108dp"
-                        android:layout_height="47dp"
-                        android:scaleType="centerCrop"
-                        android:src="@mipmap/alipay_bg" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center"
+                        android:drawablePadding="5dp"
+                        android:text="支付宝"
+                        android:drawableLeft="@mipmap/alipay_bg" />
                 </LinearLayout>
             </RelativeLayout>
 

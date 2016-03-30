@@ -32,7 +32,7 @@ public class AcceptOrderHolder extends BaseViewHolder<OrderListModel.DataEntity.
     public void setData(OrderListModel.DataEntity.RowsEntity itemData) {
         FrescoTool.loadImage(ivHeader, itemData.getServicesImg());
         tvTitle.setText(itemData.getTitle());
-        tvStatus.setText(OrderStatus.getStatusByValue(itemData.getStatus()).toString());
+        tvStatus.setText(itemData.getStatusName());
         tvNumber.setText("订单号：" + itemData.getOrderCode());
         tvTime.setText("订单时间：" + itemData.getOrderDate());
     }

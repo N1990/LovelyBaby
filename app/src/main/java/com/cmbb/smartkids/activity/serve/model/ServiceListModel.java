@@ -22,35 +22,37 @@ public class ServiceListModel implements Parcelable {
 
     /**
      * page : 1
-     * records : 4
-     * rows : [{"status":1,"statusName":"开始","isNew":false,"servicesImg":"http://smart.image.alimmdn.com/system/image/2016-03-01/servicesImgFile_N2EwOGZhMGQtNTI1My00MjA3LTgwMzEtZjdjMjM5NzJhNDRl","applyEndTime":"2016-03-04 15:40:00","imgWidth":539,"type":"上门","endTime":"2016-03-18 15:40:00","city":440100,"startTime":"2016-03-04 15:40:00","id":339,"browseNumber":6,"title":"富文本编辑器测试","price":"120","peoples":12,"serviceTime":"3月4日 15:40 - 3月18日 15:40","cityText":"广州","createDate":"2016-03-01 15:43:01","realityPeoples":2,"imgHeight":355,"applyStartTime":"2016-03-01 15:40:00"}]
+     * records : 6
+     * rows : [{"status":2,"statusName":"预定","isNew":false,"servicesImg":"http://smart.image.alimmdn.com/system/image/2016-03-29/servicesImgFile_NjQ0MDM4M2YtNDQ5ZC00ZDRmLWE1ZjctMGZkNWVkZjFjNzI0","introduce":"服务简介你好啊，测试啊","applyEndTime":"\u201c\u201d","imgWidth":"\u201c1920\u201d","type":202,"endTime":"2016-04-01 15:13:00","city":310100,"startTime":"2016-03-29 13:56:00","id":357,"browseNumber":1,"title":"非配送/上门","price":"\u201c0.01\u201d","surplusTime":"报名截止时间","peoples":100,"serviceTime":"3.29-4.1","typeText":"到店","cityText":"上海","createDate":"2016-03-29 13:58:27","realityPeoples":1,"imgHeight":"\u201c1080\u201d","applyStartTime":"\u201c\u201d"}]
      * total : 1
-     * userdata :
+     * userdata : “”
      */
 
     private DataEntity data;
     /**
-     * data : {"page":1,"records":4,"rows":[{"status":1,"statusName":"开始","isNew":false,"servicesImg":"http://smart.image.alimmdn.com/system/image/2016-03-01/servicesImgFile_N2EwOGZhMGQtNTI1My00MjA3LTgwMzEtZjdjMjM5NzJhNDRl","applyEndTime":"2016-03-04 15:40:00","imgWidth":539,"type":"上门","endTime":"2016-03-18 15:40:00","city":440100,"startTime":"2016-03-04 15:40:00","id":339,"browseNumber":6,"title":"富文本编辑器测试","price":"120","peoples":12,"serviceTime":"3月4日 15:40 - 3月18日 15:40","cityText":"广州","createDate":"2016-03-01 15:43:01","realityPeoples":2,"imgHeight":355,"applyStartTime":"2016-03-01 15:40:00"}],"total":1,"userdata":""}
+     * data : {"page":1,"records":6,"rows":[{"status":2,"statusName":"预定","isNew":false,"servicesImg":"http://smart.image.alimmdn.com/system/image/2016-03-29/servicesImgFile_NjQ0MDM4M2YtNDQ5ZC00ZDRmLWE1ZjctMGZkNWVkZjFjNzI0","introduce":"服务简介你好啊，测试啊","applyEndTime":"\u201c\u201d","imgWidth":"\u201c1920\u201d","type":202,"endTime":"2016-04-01 15:13:00","city":310100,"startTime":"2016-03-29 13:56:00","id":357,"browseNumber":1,"title":"非配送/上门","price":"\u201c0.01\u201d","surplusTime":"报名截止时间","peoples":100,"serviceTime":"3.29-4.1","typeText":"到店","cityText":"上海","createDate":"2016-03-29 13:58:27","realityPeoples":1,"imgHeight":"\u201c1080\u201d","applyStartTime":"\u201c\u201d"}],"total":1,"userdata":"\u201c\u201d"}
      * msg : 数据加载成功
      */
 
     private String msg;
 
+
+    public DataEntity getData() {
+        return data;
+    }
+
     public void setData(DataEntity data) {
         this.data = data;
+    }
+
+    public String getMsg() {
+        return msg;
     }
 
     public void setMsg(String msg) {
         this.msg = msg;
     }
 
-    public DataEntity getData() {
-        return data;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
 
     public static class DataEntity implements Parcelable {
         private int page;
@@ -58,69 +60,72 @@ public class ServiceListModel implements Parcelable {
         private int total;
         private String userdata;
         /**
-         * status : 1
-         * statusName : 开始
+         * status : 2
+         * statusName : 预定
          * isNew : false
-         * servicesImg : http://smart.image.alimmdn.com/system/image/2016-03-01/servicesImgFile_N2EwOGZhMGQtNTI1My00MjA3LTgwMzEtZjdjMjM5NzJhNDRl
-         * applyEndTime : 2016-03-04 15:40:00
-         * imgWidth : 539
-         * type : 上门
-         * endTime : 2016-03-18 15:40:00
-         * city : 440100
-         * startTime : 2016-03-04 15:40:00
-         * id : 339
-         * browseNumber : 6
-         * title : 富文本编辑器测试
-         * price : 120
-         * peoples : 12
-         * serviceTime : 3月4日 15:40 - 3月18日 15:40
-         * cityText : 广州
-         * createDate : 2016-03-01 15:43:01
-         * realityPeoples : 2
-         * imgHeight : 355
-         * applyStartTime : 2016-03-01 15:40:00
+         * servicesImg : http://smart.image.alimmdn.com/system/image/2016-03-29/servicesImgFile_NjQ0MDM4M2YtNDQ5ZC00ZDRmLWE1ZjctMGZkNWVkZjFjNzI0
+         * introduce : 服务简介你好啊，测试啊
+         * applyEndTime : “”
+         * imgWidth : “1920”
+         * type : 202
+         * endTime : 2016-04-01 15:13:00
+         * city : 310100
+         * startTime : 2016-03-29 13:56:00
+         * id : 357
+         * browseNumber : 1
+         * title : 非配送/上门
+         * price : “0.01”
+         * surplusTime : 报名截止时间
+         * peoples : 100
+         * serviceTime : 3.29-4.1
+         * typeText : 到店
+         * cityText : 上海
+         * createDate : 2016-03-29 13:58:27
+         * realityPeoples : 1
+         * imgHeight : “1080”
+         * applyStartTime : “”
          */
 
         private List<RowsEntity> rows;
 
-        public void setPage(int page) {
-            this.page = page;
-        }
-
-        public void setRecords(int records) {
-            this.records = records;
-        }
-
-        public void setTotal(int total) {
-            this.total = total;
-        }
-
-        public void setUserdata(String userdata) {
-            this.userdata = userdata;
-        }
-
-        public void setRows(List<RowsEntity> rows) {
-            this.rows = rows;
-        }
-
         public int getPage() {
             return page;
+        }
+
+        public void setPage(int page) {
+            this.page = page;
         }
 
         public int getRecords() {
             return records;
         }
 
+        public void setRecords(int records) {
+            this.records = records;
+        }
+
         public int getTotal() {
             return total;
+        }
+
+        public void setTotal(int total) {
+            this.total = total;
         }
 
         public String getUserdata() {
             return userdata;
         }
 
+        public void setUserdata(String userdata) {
+            this.userdata = userdata;
+        }
+
         public List<RowsEntity> getRows() {
             return rows;
+        }
+
+        public void setRows(List<RowsEntity> rows) {
+            this.rows = rows;
         }
 
         public static class RowsEntity implements Parcelable {
@@ -128,9 +133,10 @@ public class ServiceListModel implements Parcelable {
             private String statusName;
             private boolean isNew;
             private String servicesImg;
+            private String introduce;
             private String applyEndTime;
-            private int imgWidth;
-            private String type;
+            private String imgWidth;
+            private int type;
             private String endTime;
             private int city;
             private String startTime;
@@ -138,180 +144,206 @@ public class ServiceListModel implements Parcelable {
             private int browseNumber;
             private String title;
             private String price;
+            private String surplusTime;
             private int peoples;
             private String serviceTime;
+            private String typeText;
             private String cityText;
             private String createDate;
             private int realityPeoples;
-            private int imgHeight;
+            private String imgHeight;
             private String applyStartTime;
-
-            public void setStatus(int status) {
-                this.status = status;
-            }
-
-            public void setStatusName(String statusName) {
-                this.statusName = statusName;
-            }
-
-            public void setIsNew(boolean isNew) {
-                this.isNew = isNew;
-            }
-
-            public void setServicesImg(String servicesImg) {
-                this.servicesImg = servicesImg;
-            }
-
-            public void setApplyEndTime(String applyEndTime) {
-                this.applyEndTime = applyEndTime;
-            }
-
-            public void setImgWidth(int imgWidth) {
-                this.imgWidth = imgWidth;
-            }
-
-            public void setType(String type) {
-                this.type = type;
-            }
-
-            public void setEndTime(String endTime) {
-                this.endTime = endTime;
-            }
-
-            public void setCity(int city) {
-                this.city = city;
-            }
-
-            public void setStartTime(String startTime) {
-                this.startTime = startTime;
-            }
-
-            public void setId(int id) {
-                this.id = id;
-            }
-
-            public void setBrowseNumber(int browseNumber) {
-                this.browseNumber = browseNumber;
-            }
-
-            public void setTitle(String title) {
-                this.title = title;
-            }
-
-            public void setPrice(String price) {
-                this.price = price;
-            }
-
-            public void setPeoples(int peoples) {
-                this.peoples = peoples;
-            }
-
-            public void setServiceTime(String serviceTime) {
-                this.serviceTime = serviceTime;
-            }
-
-            public void setCityText(String cityText) {
-                this.cityText = cityText;
-            }
-
-            public void setCreateDate(String createDate) {
-                this.createDate = createDate;
-            }
-
-            public void setRealityPeoples(int realityPeoples) {
-                this.realityPeoples = realityPeoples;
-            }
-
-            public void setImgHeight(int imgHeight) {
-                this.imgHeight = imgHeight;
-            }
-
-            public void setApplyStartTime(String applyStartTime) {
-                this.applyStartTime = applyStartTime;
-            }
 
             public int getStatus() {
                 return status;
+            }
+
+            public void setStatus(int status) {
+                this.status = status;
             }
 
             public String getStatusName() {
                 return statusName;
             }
 
+            public void setStatusName(String statusName) {
+                this.statusName = statusName;
+            }
+
             public boolean isIsNew() {
                 return isNew;
+            }
+
+            public void setIsNew(boolean isNew) {
+                this.isNew = isNew;
             }
 
             public String getServicesImg() {
                 return servicesImg;
             }
 
+            public void setServicesImg(String servicesImg) {
+                this.servicesImg = servicesImg;
+            }
+
+            public String getIntroduce() {
+                return introduce;
+            }
+
+            public void setIntroduce(String introduce) {
+                this.introduce = introduce;
+            }
+
             public String getApplyEndTime() {
                 return applyEndTime;
             }
 
-            public int getImgWidth() {
+            public void setApplyEndTime(String applyEndTime) {
+                this.applyEndTime = applyEndTime;
+            }
+
+            public String getImgWidth() {
                 return imgWidth;
             }
 
-            public String getType() {
+            public void setImgWidth(String imgWidth) {
+                this.imgWidth = imgWidth;
+            }
+
+            public int getType() {
                 return type;
+            }
+
+            public void setType(int type) {
+                this.type = type;
             }
 
             public String getEndTime() {
                 return endTime;
             }
 
+            public void setEndTime(String endTime) {
+                this.endTime = endTime;
+            }
+
             public int getCity() {
                 return city;
+            }
+
+            public void setCity(int city) {
+                this.city = city;
             }
 
             public String getStartTime() {
                 return startTime;
             }
 
+            public void setStartTime(String startTime) {
+                this.startTime = startTime;
+            }
+
             public int getId() {
                 return id;
+            }
+
+            public void setId(int id) {
+                this.id = id;
             }
 
             public int getBrowseNumber() {
                 return browseNumber;
             }
 
+            public void setBrowseNumber(int browseNumber) {
+                this.browseNumber = browseNumber;
+            }
+
             public String getTitle() {
                 return title;
+            }
+
+            public void setTitle(String title) {
+                this.title = title;
             }
 
             public String getPrice() {
                 return price;
             }
 
+            public void setPrice(String price) {
+                this.price = price;
+            }
+
+            public String getSurplusTime() {
+                return surplusTime;
+            }
+
+            public void setSurplusTime(String surplusTime) {
+                this.surplusTime = surplusTime;
+            }
+
             public int getPeoples() {
                 return peoples;
+            }
+
+            public void setPeoples(int peoples) {
+                this.peoples = peoples;
             }
 
             public String getServiceTime() {
                 return serviceTime;
             }
 
+            public void setServiceTime(String serviceTime) {
+                this.serviceTime = serviceTime;
+            }
+
+            public String getTypeText() {
+                return typeText;
+            }
+
+            public void setTypeText(String typeText) {
+                this.typeText = typeText;
+            }
+
             public String getCityText() {
                 return cityText;
+            }
+
+            public void setCityText(String cityText) {
+                this.cityText = cityText;
             }
 
             public String getCreateDate() {
                 return createDate;
             }
 
+            public void setCreateDate(String createDate) {
+                this.createDate = createDate;
+            }
+
             public int getRealityPeoples() {
                 return realityPeoples;
             }
 
-            public int getImgHeight() {
+            public void setRealityPeoples(int realityPeoples) {
+                this.realityPeoples = realityPeoples;
+            }
+
+            public String getImgHeight() {
                 return imgHeight;
+            }
+
+            public void setImgHeight(String imgHeight) {
+                this.imgHeight = imgHeight;
             }
 
             public String getApplyStartTime() {
                 return applyStartTime;
+            }
+
+            public void setApplyStartTime(String applyStartTime) {
+                this.applyStartTime = applyStartTime;
             }
 
             @Override
@@ -325,9 +357,10 @@ public class ServiceListModel implements Parcelable {
                 dest.writeString(this.statusName);
                 dest.writeByte(isNew ? (byte) 1 : (byte) 0);
                 dest.writeString(this.servicesImg);
+                dest.writeString(this.introduce);
                 dest.writeString(this.applyEndTime);
-                dest.writeInt(this.imgWidth);
-                dest.writeString(this.type);
+                dest.writeString(this.imgWidth);
+                dest.writeInt(this.type);
                 dest.writeString(this.endTime);
                 dest.writeInt(this.city);
                 dest.writeString(this.startTime);
@@ -335,12 +368,14 @@ public class ServiceListModel implements Parcelable {
                 dest.writeInt(this.browseNumber);
                 dest.writeString(this.title);
                 dest.writeString(this.price);
+                dest.writeString(this.surplusTime);
                 dest.writeInt(this.peoples);
                 dest.writeString(this.serviceTime);
+                dest.writeString(this.typeText);
                 dest.writeString(this.cityText);
                 dest.writeString(this.createDate);
                 dest.writeInt(this.realityPeoples);
-                dest.writeInt(this.imgHeight);
+                dest.writeString(this.imgHeight);
                 dest.writeString(this.applyStartTime);
             }
 
@@ -352,9 +387,10 @@ public class ServiceListModel implements Parcelable {
                 this.statusName = in.readString();
                 this.isNew = in.readByte() != 0;
                 this.servicesImg = in.readString();
+                this.introduce = in.readString();
                 this.applyEndTime = in.readString();
-                this.imgWidth = in.readInt();
-                this.type = in.readString();
+                this.imgWidth = in.readString();
+                this.type = in.readInt();
                 this.endTime = in.readString();
                 this.city = in.readInt();
                 this.startTime = in.readString();
@@ -362,20 +398,24 @@ public class ServiceListModel implements Parcelable {
                 this.browseNumber = in.readInt();
                 this.title = in.readString();
                 this.price = in.readString();
+                this.surplusTime = in.readString();
                 this.peoples = in.readInt();
                 this.serviceTime = in.readString();
+                this.typeText = in.readString();
                 this.cityText = in.readString();
                 this.createDate = in.readString();
                 this.realityPeoples = in.readInt();
-                this.imgHeight = in.readInt();
+                this.imgHeight = in.readString();
                 this.applyStartTime = in.readString();
             }
 
             public static final Parcelable.Creator<RowsEntity> CREATOR = new Parcelable.Creator<RowsEntity>() {
+                @Override
                 public RowsEntity createFromParcel(Parcel source) {
                     return new RowsEntity(source);
                 }
 
+                @Override
                 public RowsEntity[] newArray(int size) {
                     return new RowsEntity[size];
                 }
@@ -408,10 +448,12 @@ public class ServiceListModel implements Parcelable {
         }
 
         public static final Parcelable.Creator<DataEntity> CREATOR = new Parcelable.Creator<DataEntity>() {
+            @Override
             public DataEntity createFromParcel(Parcel source) {
                 return new DataEntity(source);
             }
 
+            @Override
             public DataEntity[] newArray(int size) {
                 return new DataEntity[size];
             }
@@ -425,7 +467,7 @@ public class ServiceListModel implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeParcelable(this.data, 0);
+        dest.writeParcelable(this.data, flags);
         dest.writeString(this.msg);
     }
 
@@ -438,14 +480,17 @@ public class ServiceListModel implements Parcelable {
     }
 
     public static final Parcelable.Creator<ServiceListModel> CREATOR = new Parcelable.Creator<ServiceListModel>() {
+        @Override
         public ServiceListModel createFromParcel(Parcel source) {
             return new ServiceListModel(source);
         }
 
+        @Override
         public ServiceListModel[] newArray(int size) {
             return new ServiceListModel[size];
         }
     };
+
 
     /**
      * 获取服务列表
@@ -491,12 +536,11 @@ public class ServiceListModel implements Parcelable {
 
     /**
      * 获取收藏服务列表
-     *
      * @param pager
      * @param pagerSize
      * @param callback
      */
-    public static void getCollectServiceRequest(int pager, int pagerSize, OkHttpClientManager.ResultCallback<ServiceListModel> callback) {
+    public static void getCollectServiceRequest(int pager, int pagerSize, OkHttpClientManager.ResultCallback<ServiceListModel> callback){
         HashMap<String, String> params = new HashMap<>();
         params.put("token", BaseApplication.token);
         params.put("pageNo", String.valueOf(pager));
@@ -515,7 +559,7 @@ public class ServiceListModel implements Parcelable {
      * @param pagerSize
      * @param callback
      */
-    public static void getUserCenterServiceRequest(int myCenter, String isPopman, String userId, int pager, int pagerSize, OkHttpClientManager.ResultCallback<ServiceListModel> callback) {
+    public static void getUserCenterServiceRequest(int myCenter, String isPopman, String userId, int pager, int pagerSize, OkHttpClientManager.ResultCallback<ServiceListModel> callback){
         HashMap<String, String> params = new HashMap<>();
         params.put("token", BaseApplication.token);
         params.put("myCenter", String.valueOf(myCenter));
@@ -525,6 +569,4 @@ public class ServiceListModel implements Parcelable {
         params.put("numberOfPerPage", String.valueOf(pagerSize));
         OkHttpClientManager.postAsyn(Constants.ServiceInfo.MY_SERVICE_REQUEST, params, callback);
     }
-
-
 }

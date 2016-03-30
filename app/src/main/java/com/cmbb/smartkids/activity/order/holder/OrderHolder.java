@@ -56,34 +56,30 @@ public class OrderHolder extends BaseViewHolder<OrderListModel.DataEntity.RowsEn
         spanText.setSpan(new ForegroundColorSpan(tvOrderPriceItem.getResources().getColor(R.color.primaryColor)), 3, spanText.length(),
                 Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
         tvOrderPriceItem.setText(spanText);
+        tvOrderStatusItem.setText(data.getStatusName());
         OrderStatus status  = OrderStatus.getStatusByValue(data.getStatus());
-        tvOrderStatusItem.setText(status.toString());
         switch (status){ //已取消  已退款  退款中   已预订  已过期
             case WEI_ZHI_FU:
                 tvOrderHandlerItem.setVisibility(View.VISIBLE);
                 tvOrderHandlerItem.setText("去支付");
-                tvOrderStatusItem.setText(status.toString());
                 tvOrderCancleItem.setVisibility(View.VISIBLE);
                 tvOrderCancleItem.setText("取消订单");
                 tvOrderCheckItem.setVisibility(View.GONE);
                 break;
             case YI_ZHI_FU:
                 tvOrderCancleItem.setVisibility(View.GONE);
-                tvOrderStatusItem.setText(status.toString());
                 tvOrderHandlerItem.setVisibility(View.VISIBLE);
                 tvOrderHandlerItem.setText("申请退款");
                 tvOrderCheckItem.setVisibility(View.GONE);
                 break;
             case YI_GUO_QI: //查看订单
                 tvOrderCancleItem.setVisibility(View.GONE);
-                tvOrderStatusItem.setText(status.toString());
                 tvOrderHandlerItem.setVisibility(View.VISIBLE);
                 tvOrderHandlerItem.setText("申请退款");
                 tvOrderCheckItem.setVisibility(View.GONE);
                 break;
             case YI_CAN_JIA:
                 tvOrderCancleItem.setVisibility(View.GONE);
-                tvOrderStatusItem.setText(status.toString());
                 tvOrderHandlerItem.setVisibility(View.VISIBLE);
                 tvOrderHandlerItem.setText("立即评价");
                 tvOrderCheckItem.setVisibility(View.GONE);
@@ -94,12 +90,10 @@ public class OrderHolder extends BaseViewHolder<OrderListModel.DataEntity.RowsEn
             case TUI_KUAN_ZHONG:
                 tvOrderCancleItem.setVisibility(View.GONE);
                 tvOrderHandlerItem.setVisibility(View.GONE);
-                tvOrderStatusItem.setText(status.toString());
                 tvOrderCheckItem.setVisibility(View.VISIBLE);
                 break;
             case YI_YU_DING: //查看订单
                 tvOrderCancleItem.setVisibility(View.VISIBLE);
-                tvOrderStatusItem.setText(status.toString());
                 tvOrderHandlerItem.setVisibility(View.GONE);
                 tvOrderCheckItem.setVisibility(View.VISIBLE);
                 break;

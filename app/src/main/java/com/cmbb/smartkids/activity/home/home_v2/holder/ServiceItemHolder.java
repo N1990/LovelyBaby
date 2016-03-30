@@ -56,7 +56,7 @@ public class ServiceItemHolder extends BaseViewHolder<ServiceListModel.DataEntit
         tvServiceItemCity.setText(row.getCityText());
         tvTitleHomeServiceItem.setText(row.getTitle());
         tvTimeHomeServiceItem.setText("活动时间:" + row.getServiceTime());
-        tvServiceWayItem.setText("服务方式:" + row.getType());
+        tvServiceWayItem.setText("服务方式:" + row.getTypeText());
         tvServiceStatusItem.setText(row.getStatusName());
         tvServicePurchaseNumberItem.setText("已购买人数" + row.getRealityPeoples());
         if (!TextUtils.isEmpty(row.getPrice())) {

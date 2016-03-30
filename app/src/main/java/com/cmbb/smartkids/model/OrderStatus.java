@@ -49,7 +49,7 @@ public enum OrderStatus {
 
         @Override
         public String toString() {
-            return "已参加";
+            return "待评价";
         }
     },
     YI_GUO_QI {

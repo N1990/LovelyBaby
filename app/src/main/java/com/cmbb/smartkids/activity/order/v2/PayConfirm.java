@@ -58,35 +58,25 @@ public class PayConfirm extends BaseActivity { //implements IWXAPIEventHandler
 
     private static final int SDK_CHECK_FLAG = 2;
 
-    private RelativeLayout llHomeServiceItem;
     private SimpleDraweeView ivHomeServiceItem;
     private TextView tvOrderCode;
     private TextView tvTitle;
     private TextView tvAddress;
     private TextView tvPrice;
     private TextView tvCount;
-    private RelativeLayout relativeLayout;
-    private LinearLayout llContactPerson;
-    private TextView tvNickTag;
     private TextView tvNick;
-    private TextView tvOperation;
-    private LinearLayout llContactPhone;
-    private TextView tvPhoneTag;
     private TextView tvPhone;
-    private TextView tvPhoneChange;
     private LinearLayout llContactAddress;
-    private TextView tvAddressTag;
     private TextView tvAdd;
-    private TextView tvAddressManager;
     private TextView tvWholePrice;
     private TextView tvSubmit;
-    private RadioGroup rgPayWay;
     private SubmitOrderModel.DataEntity dataEntity;
     private GenerateOrderModel.DataEntity dataEntity02;
     private String orderCode;
     private PayWayModel payWayModel;
-    private IWXAPI api;// weixin API
-    private BroadcastReceiver payReceiver;
+//    private RadioGroup rgPayWay;
+//    private IWXAPI api;// weixin API
+//    private BroadcastReceiver payReceiver; //微信支付返回结果  刷新前个页面
 
 
     private int payWay = 0; // 0: 支付宝 1： 微信
@@ -139,38 +129,28 @@ public class PayConfirm extends BaseActivity { //implements IWXAPIEventHandler
     }
 
     private void initView() {
-        llHomeServiceItem = (RelativeLayout) findViewById(R.id.ll_home_service_item);
         ivHomeServiceItem = (SimpleDraweeView) findViewById(R.id.iv_home_service_item);
         tvOrderCode = (TextView) findViewById(R.id.tv_order_code);
         tvTitle = (TextView) findViewById(R.id.tv_title);
         tvAddress = (TextView) findViewById(R.id.tv_address);
         tvPrice = (TextView) findViewById(R.id.tv_price);
         tvCount = (TextView) findViewById(R.id.tv_count);
-        relativeLayout = (RelativeLayout) findViewById(R.id.relativeLayout);
-        llContactPerson = (LinearLayout) findViewById(R.id.ll_contact_person);
-        tvNickTag = (TextView) findViewById(R.id.tv_nick_tag);
         tvNick = (TextView) findViewById(R.id.tv_nick);
-        tvOperation = (TextView) findViewById(R.id.tv_operation);
-        llContactPhone = (LinearLayout) findViewById(R.id.ll_contact_phone);
-        tvPhoneTag = (TextView) findViewById(R.id.tv_phone_tag);
         tvPhone = (TextView) findViewById(R.id.tv_phone);
-        tvPhoneChange = (TextView) findViewById(R.id.tv_phone_change);
         llContactAddress = (LinearLayout) findViewById(R.id.ll_contact_address);
-        tvAddressTag = (TextView) findViewById(R.id.tv_address_tag);
         tvAdd = (TextView) findViewById(R.id.tv_add);
-        tvAddressManager = (TextView) findViewById(R.id.tv_address_manager);
         tvWholePrice = (TextView) findViewById(R.id.tv_whole_price);
         tvSubmit = (TextView) findViewById(R.id.tv_submit);
         tvSubmit.setOnClickListener(this);
-//        tvPayWayTag = (TextView) findViewById(R.id.tv_pay_way_tag);
-//        imageView = (ImageView) findViewById(R.id.imageView);
-        rgPayWay = (RadioGroup) findViewById(R.id.rg_pay);
+
+
+        //微信支付
+       /* rgPayWay = (RadioGroup) findViewById(R.id.rg_pay);
         ((RadioButton)findViewById(R.id.rb_pay_zfb)).setChecked(true);
         rgPayWay.setOnCheckedChangeListener(onCheckChangeListener);
-
         payReceiver = new MyBroadCastReceiver();
         IntentFilter filter = new IntentFilter("com.cbmm.smartkids.pay");
-        registerReceiver(payReceiver, filter);
+        registerReceiver(payReceiver, filter);*/
     }
 
     private void initData() {
@@ -189,10 +169,10 @@ public class PayConfirm extends BaseActivity { //implements IWXAPIEventHandler
                 tvNick.setText(dataEntity.getUserNike());
                 tvPhone.setText(dataEntity.getPhone());
                 if (!TextUtils.isEmpty(dataEntity.getAddress())) {
-                    tvAdd.setVisibility(View.VISIBLE);
+                    llContactAddress.setVisibility(View.VISIBLE);
                     tvAdd.setText(dataEntity.getAddress());
                 } else {
-                    tvAdd.setVisibility(View.GONE);
+                    llContactAddress.setVisibility(View.GONE);
                 }
                 tvWholePrice.setText(dataEntity.getPrice());
             } else if (dataEntity02 != null) {
@@ -206,10 +186,10 @@ public class PayConfirm extends BaseActivity { //implements IWXAPIEventHandler
                 tvNick.setText(dataEntity02.getUserNike());
                 tvPhone.setText(dataEntity02.getPhone());
                 if (!TextUtils.isEmpty(dataEntity02.getAddress())) {
-                    tvAdd.setVisibility(View.VISIBLE);
+                    llContactAddress.setVisibility(View.VISIBLE);
                     tvAdd.setText(dataEntity02.getAddress());
                 } else {
-                    tvAdd.setVisibility(View.GONE);
+                    llContactAddress.setVisibility(View.GONE);
                 }
                 tvWholePrice.setText(dataEntity02.getPrice());
             } else if (!TextUtils.isEmpty(orderCode)) {
@@ -266,7 +246,8 @@ public class PayConfirm extends BaseActivity { //implements IWXAPIEventHandler
                     showShortToast("数据出错啦~");
                 }
                 break;
-            case 1:
+            /*case 1:
+                //微信支付
                 try {
                     Log.e(TAG, "payWayModel is null :" + payWayModel == null);
                     if (payWayModel != null) {
@@ -292,12 +273,13 @@ public class PayConfirm extends BaseActivity { //implements IWXAPIEventHandler
                     showShortToast("异常：" + e.getMessage());
                 }
                 break;
+                */
 
         }
     }
 
-
-    private RadioGroup.OnCheckedChangeListener onCheckChangeListener = new RadioGroup.OnCheckedChangeListener() {
+    //微信支付
+   /* private RadioGroup.OnCheckedChangeListener onCheckChangeListener = new RadioGroup.OnCheckedChangeListener() {
         @Override
         public void onCheckedChanged(RadioGroup group, int checkedId) {
             if(checkedId == R.id.rb_pay_zfb){
@@ -306,7 +288,7 @@ public class PayConfirm extends BaseActivity { //implements IWXAPIEventHandler
                 payWay = 1;
             }
         }
-    };
+    };*/
 
     @Override
     public void onBackPressed() {
@@ -343,10 +325,10 @@ public class PayConfirm extends BaseActivity { //implements IWXAPIEventHandler
                     tvNick.setText(dataEntity02.getUserNike());
                     tvPhone.setText(dataEntity02.getPhone());
                     if (!TextUtils.isEmpty(dataEntity02.getAddress())) {
-                        tvAdd.setVisibility(View.VISIBLE);
+                        llContactAddress.setVisibility(View.VISIBLE);
                         tvAdd.setText(dataEntity02.getAddress());
                     } else {
-                        tvAdd.setVisibility(View.GONE);
+                        llContactAddress.setVisibility(View.GONE);
                     }
                     tvWholePrice.setText(dataEntity02.getPrice());
                 }
@@ -374,8 +356,10 @@ public class PayConfirm extends BaseActivity { //implements IWXAPIEventHandler
             public void onResponse(PayWayModel response) {
                 hideWaitDialog();
                 payWayModel = response;
-                api = WXAPIFactory.createWXAPI(PayConfirm.this, Constants.APP_ID);
-                SPCache.putString(Constants.APP_ID, payWayModel.getPayTypes().get(1).getWeixinData().getAppid());
+
+                //微信支付
+              /*  api = WXAPIFactory.createWXAPI(PayConfirm.this, Constants.APP_ID);
+                SPCache.putString(Constants.APP_ID, payWayModel.getPayTypes().get(1).getWeixinData().getAppid());*/
             }
         });
     }
@@ -383,7 +367,7 @@ public class PayConfirm extends BaseActivity { //implements IWXAPIEventHandler
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        unregisterReceiver(payReceiver);
+//        unregisterReceiver(payReceiver);  //微信支付
     }
 
     public static void newInstance(Activity activity, SubmitOrderModel.DataEntity dataEntity, int requestCode) {

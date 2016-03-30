@@ -186,12 +186,20 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     }
 
     protected void showToast(String tip, int duration) {
+        String showString;
+        if (tip.contains("java.lang.Exception")) {
+            showString = tip.replace("java.lang.Exception:", "");
+        } else if (tip.contains("java.net.ConnectException:connection")) {
+            showString = tip.replace("java.net.ConnectException:connection:", "");
+        } else {
+            showString = tip;
+        }
         long time = System.currentTimeMillis();
         if (!TextUtils.isEmpty(tip)) {
             if (!tip.equalsIgnoreCase(lastToast) || (time - lastToastTime) > 2000) {
-                Toast.makeText(this, tip, duration).show();
+                Toast.makeText(this, showString, duration).show();
                 lastToastTime = System.currentTimeMillis();
-                lastToast = tip;
+                lastToast = showString;
             }
         }
     }

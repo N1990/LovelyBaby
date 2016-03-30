@@ -133,6 +133,12 @@ public class PhotoViewActivity extends AppCompatActivity {
             } else {
                 uri = Uri.parse("file://" + mDrawables.get(position));
             }
+            photoDraweeView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.i("onClick", "onClick");
+                }
+            });
             photoDraweeView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
@@ -143,12 +149,10 @@ public class PhotoViewActivity extends AppCompatActivity {
                                 .listener(new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
-
                                         ImagePipeline imagePipeline = Fresco.getImagePipeline();
                                         ImageRequest imageRequest = ImageRequestBuilder.newBuilderWithSource(uri).build();
                                         final DataSource<CloseableReference<CloseableImage>> dataSource = imagePipeline.fetchDecodedImage(imageRequest, PhotoViewActivity.this);
                                         final DataSubscriber<CloseableReference<CloseableImage>> dataSubscriber = new BaseBitmapDataSubscriber() {
-
                                             @Override
                                             protected void onFailureImpl(DataSource<CloseableReference<CloseableImage>> dataSource) {
                                                 Toast.makeText(PhotoViewActivity.this, "保持失败", Toast.LENGTH_SHORT).show();

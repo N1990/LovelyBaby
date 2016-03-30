@@ -7,7 +7,9 @@ import android.view.ViewGroup;
 
 import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.activity.community.CommunityDetailActivity;
+import com.cmbb.smartkids.activity.home.home_v2.ADActivity;
 import com.cmbb.smartkids.activity.home.model.ManagerAdModel;
+import com.cmbb.smartkids.activity.serve.v2.ServerDetailActivityV2;
 import com.cmbb.smartkids.utils.FrescoTool;
 import com.cmbb.smartkids.utils.TDevice;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -49,7 +51,7 @@ public class BannerLoopAdapter extends StaticPagerAdapter implements View.OnClic
         SimpleDraweeView iv = (SimpleDraweeView) LayoutInflater.from(container.getContext()).inflate(R.layout.activity_home_banner_image, null);
         ManagerAdModel.DataEntity img = imgs.get(position);
         FrescoTool.loadImage(iv, img.getAdImg(), String.valueOf(TDevice.dip2px(180, container.getContext())));
-        iv.setTag(position);
+        iv.setTag(imgs.get(position));
         iv.setOnClickListener(this);
         return iv;
     }
@@ -57,8 +59,23 @@ public class BannerLoopAdapter extends StaticPagerAdapter implements View.OnClic
 
     @Override
     public void onClick(View v) {
-        int position = (int) v.getTag();
-        CommunityDetailActivity.newInstance(this.context, imgs.get(position).getId());
+        ManagerAdModel.DataEntity entity = (ManagerAdModel.DataEntity) v.getTag();
+        switch (entity.getRedirectType()) {
+            case "INNER":
+                switch (entity.getInnerRedirectType()) {
+                    case "APP_TOPIC":
+                        CommunityDetailActivity.newInstance(this.context, entity.getRelateId());
+
+                        break;
+                    case "APP_SERVICE":
+                        ServerDetailActivityV2.newIntent(this.context, entity.getRelateId());
+                        break;
+                }
+                break;
+            case "OUTTER":
+                ADActivity.newIntent(this.context, entity.getRedirectUrl());
+                break;
+        }
     }
 
     @Override

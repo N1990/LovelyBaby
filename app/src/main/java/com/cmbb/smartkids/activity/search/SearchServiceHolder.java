@@ -1,6 +1,5 @@
 package com.cmbb.smartkids.activity.search;
 
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,13 +7,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.cmbb.smartkids.R;
-import com.cmbb.smartkids.activity.serve.model.ServiceListModel;
 import com.cmbb.smartkids.model.ServiceStatus;
 import com.cmbb.smartkids.recyclerview.adapter.BaseViewHolder;
 import com.cmbb.smartkids.utils.FrescoTool;
 import com.cmbb.smartkids.utils.TDevice;
 import com.cmbb.smartkids.utils.Tools;
-import com.cmbb.smartkids.utils.log.Log;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 /**
@@ -83,7 +80,7 @@ public class SearchServiceHolder extends BaseViewHolder<SearchServiceModel.DataE
             String applyStartTime = Tools.DataToString(data.getApplyStartTime(), "MM/dd");
             String applyEndTime = Tools.DataToString(data.getApplyStartTime(), "MM/dd");
             tvTimeHomeServiceItem.setText(applyStartTime + "-" + applyEndTime);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

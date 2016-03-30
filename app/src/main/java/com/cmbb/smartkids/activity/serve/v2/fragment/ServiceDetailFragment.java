@@ -125,10 +125,10 @@ public class ServiceDetailFragment extends BaseFragment {
                 }
             });
             //清楚缓存
-            webView.getSettings().setAppCacheEnabled(false);
+            /*webView.getSettings().setAppCacheEnabled(false);
             webView.clearHistory();
             webView.clearFormData();
-            webView.clearCache(true);
+            webView.clearCache(true);*/
             webView.loadUrl(Constants.H5.SMART_SERVICE_DETAIL + "?" + SystemClock.currentThreadTimeMillis());
         }
         return view;

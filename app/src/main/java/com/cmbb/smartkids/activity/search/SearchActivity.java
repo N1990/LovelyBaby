@@ -57,7 +57,7 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
     private int pager_service = 0;
     private int pagerSize = 10;
 
-    private int type = 0;//
+    private int type = 0;// 0:代表服务 1：代表用户 2：代表话题
 
     @Override
     protected int getLayoutId() {
@@ -69,6 +69,7 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
         initView();
         addListener();
     }
+
 
     private void initView() {
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
@@ -149,7 +150,7 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
         switch (type) {
             case 0:
                 pager_topic++;
-                handleSearchTopic(pager_topic, pagerSize, search, false);
+                handleSearchServiceRequest(pager_service, pagerSize, search, false);
                 break;
             case 1:
                 pager_user++;
@@ -157,7 +158,7 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
                 break;
             case 2:
                 pager_service++;
-                handleSearchServiceRequest(pager_service, pagerSize, search, false);
+                handleSearchTopic(pager_topic, pagerSize, search, false);
                 break;
         }
     }
@@ -167,7 +168,7 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
         switch (type) {
             case 0:
                 pager_topic = 0;
-                handleSearchTopic(pager_topic, pagerSize, search, true);
+                handleSearchServiceRequest(pager_service, pagerSize, search, true);
                 break;
             case 1:
                 pager_user = 0;
@@ -175,7 +176,7 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
                 break;
             case 2:
                 pager_service = 0;
-                handleSearchServiceRequest(pager_service, pagerSize, search, true);
+                handleSearchTopic(pager_topic, pagerSize, search, true);
                 break;
         }
     }
@@ -200,7 +201,7 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
                 showWaitDialog();
                 if (type == 0) {
                     pager_topic = 0;
-                    srv_search.setAdapter(adapter_topic);
+                    srv_search.setAdapter(adapter_service);
                     onRefresh();
 //                    handleSearchTopic(pager_topic, pagerSize, search, true);
                 } else if (type == 1) {
@@ -210,7 +211,7 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
 //                    handelSearchUserRequest(pager_user, pagerSize, search, true);
                 } else if (type == 2) {
                     pager_service = 0;
-                    srv_search.setAdapter(adapter_service);
+                    srv_search.setAdapter(adapter_topic);
                     onRefresh();
 //                    handleSearchServiceRequest(pager_service, pagerSize, search, true);
                 }
@@ -239,7 +240,7 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
                 showWaitDialog();
                 if (type == 0) {
                     pager_topic = 0;
-                    srv_search.setAdapter(adapter_topic);
+                    srv_search.setAdapter(adapter_service);
                     //handleSearchTopic(pager_topic, pagerSize, search, true);
                     onRefresh();
                 } else if (type == 1) {
@@ -248,7 +249,7 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
                     onRefresh();
                 } else if (type == 2) {
                     pager_service = 0;
-                    srv_search.setAdapter(adapter_service);
+                    srv_search.setAdapter(adapter_topic);
                     onRefresh();
                 }
                 break;
@@ -274,13 +275,13 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
             switch (position) {
                 case 0:
                     type = 0;
-                    handleHotRequest();
                     break;
                 case 1:
                     type = 1;
                     break;
                 case 2:
                     type = 2;
+                    handleHotRequest();
                     break;
             }
         }
@@ -295,7 +296,7 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
 
         @Override
         public void afterTextChanged(Editable s) {
-            if (type == 0 && TextUtils.isEmpty(s.toString())) {
+            if (type == 2 && TextUtils.isEmpty(s.toString())) {
                 Log.e("watcher", "watcher = " + type);
                 srv_search.setLayoutManager(new GridLayoutManager(SearchActivity.this, 3));
                 srv_search.setAdapter(adapter_hot);
@@ -338,7 +339,7 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
                     adapter_hot.addAll(response.getData());
                     srv_search.setAdapter(adapter_hot);// 默认Adapter
                 }
-                showShortToast(response.getMsg());
+//                showShortToast(response.getMsg());
             }
         });
     }
@@ -423,6 +424,12 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
                 }
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 
     public static void newIntent(Context context) {

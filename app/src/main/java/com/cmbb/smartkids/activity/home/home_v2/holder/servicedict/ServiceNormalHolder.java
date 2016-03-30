@@ -226,26 +226,5 @@ public class ServiceNormalHolder extends RecyclerView.ViewHolder implements View
             adapter.notifyDataSetChanged();
         }
     }
-
-
-    public void initCkeck() {
-        if(model.getData() != null){
-            if(model.getData().getServiceCategroy() != null){
-                for (ServiceSortModel.DataEntity.ServiceCategroyEntity entity : model.getData().getServiceCategroy()) {
-                    entity.setChecked(false);
-                }
-            }if(model.getData().getServices() != null){
-                for (ServiceSortModel.DataEntity.ServicesEntity entity : model.getData().getServices()) {
-                    entity.setChecked(false);
-                }
-            }
-            if(model.getData().getServiceSortType() != null){
-                for (ServiceSortModel.DataEntity.ServiceSortTypeEntity entity : model.getData().getServiceSortType()) {
-                    entity.setChecked(false);
-                }
-            }
-            adapter.notifyDataSetChanged();
-        }
-    }
 }
 

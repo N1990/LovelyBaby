@@ -100,6 +100,6 @@
     <string name="errcode_unknown" translatable="false">发送返回</string>
     <string name="app_tip" translatable="false">提示</string>
     <string name="pay_result_callback_msg" formatted="false" translatable="false">微信支付结果：%s</string>
-    <string name="title_payresult">支付结果</string>
+    <string name="title_payresult" translatable="false">支付结果</string>
 </resources>
 

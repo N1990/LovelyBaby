@@ -535,6 +535,9 @@ public class MySetActivity extends BaseActivity implements LocationSelectorDialo
                                     //删除表
                                     SQLiteDatabase db = dbHelper.getWritableDatabase();
                                     dbHelper.delete(db);
+                                    //关闭主页面
+                                    Intent intent = new Intent(Constants.INTENT_ACTION_EXIT_APP);
+                                    sendBroadcast(intent);
                                     Intent guid = new Intent(MySetActivity.this, GuidActivity.class);
                                     guid.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                     startActivity(guid);

@@ -3,6 +3,7 @@ package com.cmbb.smartkids.activity.home.home_v2;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
@@ -34,11 +35,11 @@ import java.util.List;
  * 创建人：N.Sun
  * 创建时间：16/3/1 下午2:59
  */
-public class HomeActivity extends BaseHomeActivity implements View.OnClickListener, RecyclerArrayAdapter.OnLoadMoreListener, SwipeRefreshLayout.OnRefreshListener, RecyclerArrayAdapter.OnItemClickListener {
+public class HomeActivity extends BaseHomeActivity implements View.OnClickListener, RecyclerArrayAdapter.OnLoadMoreListener, SwipeRefreshLayout.OnRefreshListener, RecyclerArrayAdapter.OnItemClickListener, AppBarLayout.OnOffsetChangedListener {
 
     private static final String TAG = HomeActivity.class.getSimpleName();
-
     protected SmartRecyclerView mSmartRecyclerView;
+    protected AppBarLayout abl;
     protected HomeAdapter adapter;
     private RollPagerView mRollViewPager;
     private BannerLoopAdapter bannerLoopAdapter;
@@ -58,14 +59,10 @@ public class HomeActivity extends BaseHomeActivity implements View.OnClickListen
         initView();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        tvHome.setSelected(true);
-    }
 
     private void initView() {
         setNoBack();
+        abl = (AppBarLayout) findViewById(R.id.abl);
         llSearch = (LinearLayout) findViewById(R.id.ll_search);
         llSearch.setOnClickListener(this);
         mRollViewPager = (RollPagerView) findViewById(R.id.roll_view_pager);
@@ -110,6 +107,7 @@ public class HomeActivity extends BaseHomeActivity implements View.OnClickListen
                 headerView.findViewById(R.id.rl_sign).setOnClickListener(HomeActivity.this);
                 headerView.findViewById(R.id.rl_rank).setOnClickListener(HomeActivity.this);
                 headerView.findViewById(R.id.rl_wonderful).setOnClickListener(HomeActivity.this);
+                headerView.findViewById(R.id.rl_week).setOnClickListener(HomeActivity.this);
             }
         });
         onRefresh();
@@ -123,6 +121,7 @@ public class HomeActivity extends BaseHomeActivity implements View.OnClickListen
         adapter.setMore(R.layout.view_more, this);
         adapter.setNoMore(R.layout.view_nomore);
         adapter.setOnItemClickListener(this);
+        mSmartRecyclerView.setRefreshListener(this);
     }
 
     /**
@@ -199,6 +198,8 @@ public class HomeActivity extends BaseHomeActivity implements View.OnClickListen
                 }
             }
         });
+        //重新加载广告
+        requestAdd();
     }
 
     public static void newIntent(Context context) {
@@ -235,6 +236,9 @@ public class HomeActivity extends BaseHomeActivity implements View.OnClickListen
             case R.id.rl_wonderful://精彩回顾
                 if (managerAdModel != null)
                     WonderfulReviewActivity.newIntent(this, managerAdModel);
+                break;
+            case R.id.rl_week:
+                WeekReviewActivity.newIntent(this);
                 break;
             case R.id.tv_mengbaoduijia:// 萌宝独家
                 HomeServiceActivity.newIntent(this, "MBDJ");
@@ -274,5 +278,27 @@ public class HomeActivity extends BaseHomeActivity implements View.OnClickListen
     @Override
     public void onItemClick(int position) {
         ServerDetailActivityV2.newIntent(this, adapter.getItem(position).getId());
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        tvHome.setSelected(true);
+        abl.addOnOffsetChangedListener(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        abl.removeOnOffsetChangedListener(this);
+    }
+
+    @Override
+    public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+        if (verticalOffset == 0) {
+            mSmartRecyclerView.getSwipeToRefresh().setEnabled(true);
+        } else {
+            mSmartRecyclerView.getSwipeToRefresh().setEnabled(false);
+        }
     }
 }

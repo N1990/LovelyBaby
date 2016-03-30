@@ -423,6 +423,7 @@
 
         <activity android:name=".activity.home.home_v2.ADActivity" />
         <activity android:name="com.soundcloud.android.crop.CropImageActivity" />
+        <activity android:name=".activity.home.home_v2.WeekReviewActivity" />
 
     </application>
 

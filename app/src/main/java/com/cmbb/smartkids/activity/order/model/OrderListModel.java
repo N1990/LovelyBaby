@@ -318,20 +318,49 @@ public class OrderListModel implements Parcelable {
 
     /**
      * 获取订单列表
+     *
      * @param queryType
      * @param status
      * @param pager
      * @param pagerSize
      * @param callback
      */
-    public static void getOrderListRequest(String queryType, String status, int pager, int pagerSize, OkHttpClientManager.ResultCallback<OrderListModel> callback){
+    public static void getOrderListRequest(String queryType, String status, int pager, int pagerSize, OkHttpClientManager.ResultCallback<OrderListModel> callback) {
         HashMap<String, String> params = new HashMap<>();
         params.put("token", BaseApplication.token);
         params.put("queryType", queryType);
-        if(!TextUtils.isEmpty(status))
+        if (!TextUtils.isEmpty(status))
             params.put("status", status);
         params.put("pageNo", String.valueOf(pager));
         params.put("numberOfPerPage", String.valueOf(pagerSize));
+        OkHttpClientManager.postAsyn(Constants.ServiceInfo.ORDER_LIST_REQUEST, params, callback);
+    }
+
+    /**
+     * @param pager
+     * @param pagerSize
+     * @param callback
+     */
+    public static void getAcceptOrderListRequest(int serviceId, int pager, int pagerSize, OkHttpClientManager.ResultCallback<OrderListModel> callback) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("token", BaseApplication.token);
+        params.put("queryType", "1");
+        params.put("status", "2,4");
+        params.put("pageNo", String.valueOf(pager));
+        params.put("numberOfPerPage", String.valueOf(pagerSize));
+        params.put("serviceId", String.valueOf(serviceId));
+        OkHttpClientManager.postAsyn(Constants.ServiceInfo.ORDER_LIST_REQUEST, params, callback);
+    }
+
+
+    public static void getVerifyOrderListRequest(int serviceId, int pager, int pagerSize, OkHttpClientManager.ResultCallback<OrderListModel> callback) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("token", BaseApplication.token);
+        params.put("queryType", "1");
+        params.put("status", "3,5");
+        params.put("pageNo", String.valueOf(pager));
+        params.put("numberOfPerPage", String.valueOf(pagerSize));
+        params.put("serviceId", String.valueOf(serviceId));
         OkHttpClientManager.postAsyn(Constants.ServiceInfo.ORDER_LIST_REQUEST, params, callback);
     }
 

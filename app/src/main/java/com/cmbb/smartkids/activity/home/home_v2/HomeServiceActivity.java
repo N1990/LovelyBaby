@@ -16,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 
 import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.activity.home.home_v2.adapter.PopuDictAdapter;
@@ -43,8 +44,13 @@ public class HomeServiceActivity extends BaseHomeActivity implements View.OnClic
     LinearLayout btnCity, btnSmart;//筛选的按钮
     ListPopupWindow mCityListPopupWindow;
     PopupWindow mSmartPopupWindow;
+    TextView tvCity;
     PopuDictAdapter popuDictAdapter;// 智能筛选adapter
-    private String serviceWay, serviceCity, serviceCategroy, serviceSortType = "high_price";
+    ServiceSortModel serviceSortModel;
+    private String serviceWay = "";
+    private String serviceCity = "";
+    private String serviceCategroy = "";
+    private String serviceSortType = "high_price";
 
     protected SmartRecyclerView mSmartRecyclerView;
     protected ServiceAdapter adapter;
@@ -84,6 +90,8 @@ public class HomeServiceActivity extends BaseHomeActivity implements View.OnClic
     }
 
     private void initView() {
+        tvCity = (TextView) findViewById(R.id.tv_city);
+        tvCity.setText("全部城市");
         btnCity = (LinearLayout) findViewById(R.id.btn_city);
         btnSmart = (LinearLayout) findViewById(R.id.btn_smart);
         initSortRequest();
@@ -115,9 +123,11 @@ public class HomeServiceActivity extends BaseHomeActivity implements View.OnClic
 
             @Override
             public void onResponse(ServiceSortModel response) {
-                if (response != null)
+                if (response != null) {
+                    serviceSortModel = response;
                     response.getData().getServiceCity().add(0, new ServiceSortModel.DataEntity.ServiceCityEntity("全部", ""));
-                initPopup(response);
+                    initPopup(response);
+                }
             }
         });
     }
@@ -166,8 +176,8 @@ public class HomeServiceActivity extends BaseHomeActivity implements View.OnClic
         btnCity.setOnClickListener(this);
         btnSmart.setOnClickListener(this);
         mCityListPopupWindow = new ListPopupWindow(this);
-        mCityListPopupWindow.setAdapter(new ArrayAdapter<ServiceSortModel.DataEntity.ServiceCityEntity>(this,R.layout.city_list_item, dataEntity.getData().getServiceCity()));
-        mCityListPopupWindow.setListSelector(getResources().getDrawable(R.drawable.arrow));
+        mCityListPopupWindow.setAdapter(new ArrayAdapter<ServiceSortModel.DataEntity.ServiceCityEntity>(this, R.layout.city_list_item, dataEntity.getData().getServiceCity()));
+        mCityListPopupWindow.setListSelector(getResources().getDrawable(R.drawable.btn_buy_selector));
         mCityListPopupWindow.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
         mCityListPopupWindow.setAnchorView(btnCity);
         mCityListPopupWindow.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -175,11 +185,11 @@ public class HomeServiceActivity extends BaseHomeActivity implements View.OnClic
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 mCityListPopupWindow.dismiss();
                 serviceCity = dataEntity.getData().getServiceCity().get(position).getValue();
+                tvCity.setText(dataEntity.getData().getServiceCity().get(position).getName());
                 PopuCityFlag = false;
                 onRefresh();
             }
         });
-
         //智能筛选
         RecyclerView recyclerView = (RecyclerView) LayoutInflater.from(this).inflate(R.layout.popup_smart_dict, null);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -190,13 +200,6 @@ public class HomeServiceActivity extends BaseHomeActivity implements View.OnClic
         mSmartPopupWindow.setOutsideTouchable(true);
         mSmartPopupWindow.setBackgroundDrawable(new BitmapDrawable());
         mSmartPopupWindow.setTouchable(true);
-        mSmartPopupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
-            @Override
-            public void onDismiss() {
-                if(!isPopuSmartFlagConfirm)
-                    popuDictAdapter.initItemCheckView();
-            }
-        });
     }
 
     //智能筛选回调
@@ -241,6 +244,7 @@ public class HomeServiceActivity extends BaseHomeActivity implements View.OnClic
                 }
                 break;
             case R.id.btn_smart:// 智能筛选
+                updatePopuSmartData();
                 if (PopuSmartFlag) {
                     PopuSmartFlag = false;
                     mSmartPopupWindow.dismiss();
@@ -251,6 +255,40 @@ public class HomeServiceActivity extends BaseHomeActivity implements View.OnClic
                 }
                 break;
         }
+    }
+
+    /**
+     * 更新SmartPopu的对象数据
+     */
+    private void updatePopuSmartData() {
+        if (!TextUtils.isEmpty(serviceWay)) {
+            for (ServiceSortModel.DataEntity.ServicesEntity entity : serviceSortModel.getData().getServices()) {
+                if (entity.getValue().equals(serviceWay)) {
+                    entity.setChecked(true);
+                } else {
+                    entity.setChecked(false);
+                }
+            }
+        }
+
+        if (!TextUtils.isEmpty(serviceCategroy)) {
+            for (ServiceSortModel.DataEntity.ServiceCategroyEntity entity : serviceSortModel.getData().getServiceCategroy()) {
+                if (entity.getValue().equals(serviceCategroy)) {
+                    entity.setChecked(true);
+                } else {
+                    entity.setChecked(false);
+                }
+            }
+        }
+
+        for (ServiceSortModel.DataEntity.ServiceSortTypeEntity entity : serviceSortModel.getData().getServiceSortType()) {
+            if (entity.getValue().equals(serviceSortType)) {
+                entity.setChecked(true);
+            } else {
+                entity.setChecked(false);
+            }
+        }
+        popuDictAdapter.notifyDataSetChanged();//更新界面
     }
 
     @Override
@@ -283,8 +321,8 @@ public class HomeServiceActivity extends BaseHomeActivity implements View.OnClic
     /**
      * 搜索
      *
-     * @param context
-     * @param serviceCategroy
+     * @param context         Context
+     * @param serviceCategroy String
      */
     public static void newIntent(Context context, String serviceCategroy) {
         Intent intent = new Intent(context, HomeServiceActivity.class);

@@ -27,7 +27,6 @@ public class PopuDictAdapter extends RecyclerView.Adapter {
     ServiceSortModel serviceSmartDictModel;
     private CustomListener.ItemClickListener onConfirmClick;
 
-
     public static final int SERVICE_TYPE_HEAD = 1;
     public static final int SERVICE_WAY_HEAD = 2;
     public static final int SERVICE_SORT_HEAD = 3;
@@ -130,11 +129,6 @@ public class PopuDictAdapter extends RecyclerView.Adapter {
         services = serviceSmartDictModel.getData().getServices().size() / 4 + (serviceSmartDictModel.getData().getServices().size() % 4 > 0 ? 1 : 0) + 1;
         sortType = serviceSmartDictModel.getData().getServiceSortType().size() / 4 + (serviceSmartDictModel.getData().getServiceSortType().size() % 4 > 0 ? 1 : 0) + 1;
         return categroy + services + sortType + 1;
-    }
-
-
-    public void initItemCheckView(){
-        normalHolder.initCkeck();
     }
 }
 

@@ -36,13 +36,11 @@ public class SmartRecyclerView extends FrameLayout {
     protected int mPaddingRight;
     protected int mScrollbarStyle;
 
-
     protected RecyclerView.OnScrollListener mInternalOnScrollListener;
     protected RecyclerView.OnScrollListener mExternalOnScrollListener;
 
     protected SwipeRefreshLayout mPtrLayout;
     protected android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener mRefreshListener;
-
 
     public SwipeRefreshLayout getSwipeToRefresh() {
         return mPtrLayout;
@@ -157,7 +155,6 @@ public class SmartRecyclerView extends FrameLayout {
      */
     protected void initRecyclerView(View view) {
         mRecycler = (RecyclerView) view.findViewById(android.R.id.list);
-
 
         if (mRecycler != null) {
             mRecycler.setHasFixedSize(true);
@@ -320,7 +317,6 @@ public class SmartRecyclerView extends FrameLayout {
         } else {
             showRecycler();
         }
-
     }
 
     public void showEmpty() {
@@ -463,7 +459,6 @@ public class SmartRecyclerView extends FrameLayout {
         mRecycler.removeItemDecoration(itemDecoration);
     }
 
-
     /**
      * @return inflated error view or null
      */
@@ -479,7 +474,6 @@ public class SmartRecyclerView extends FrameLayout {
         if (mProgressView.getChildCount() > 0) return mProgressView.getChildAt(0);
         return null;
     }
-
 
     /**
      * @return inflated empty view or null

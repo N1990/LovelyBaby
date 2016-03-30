@@ -135,8 +135,9 @@
                     android:id="@+id/tv_home_myself_identity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/iv_home_myself_header"
                     android:layout_marginLeft="10dip"
-                    android:layout_toLeftOf="@+id/tv_home_myself_fan"
+                    android:layout_toRightOf="@+id/iv_home_myself_header"
                     android:padding="5dip"
                     android:textAppearance="@style/TextAppearance.Smart.Small"
                     tools:text="身份" />
@@ -145,8 +146,7 @@
                 <RatingBar
                     android:id="@+id/rb_home_myself_perssion"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBottom="@+id/iv_home_myself_header"
+                    android:layout_height="28dp"
                     android:layout_alignTop="@+id/iv_home_myself_header"
                     android:layout_marginLeft="10dip"
                     android:layout_toRightOf="@+id/tv_home_myself_nickname"
@@ -160,8 +160,9 @@
                     android:id="@+id/tv_home_myself_fan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginLeft="5dip"
+                    android:layout_alignBottom="@+id/tv_home_myself_identity"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_toRightOf="@+id/tv_home_myself_identity"
                     android:padding="5dip"
                     android:textAppearance="@style/TextAppearance.Smart.Small"
                     tools:text="Fans（）" />
@@ -170,11 +171,10 @@
                     android:id="@+id/ll_myself_progress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignBottom="@+id/iv_home_myself_header"
+                    android:layout_below="@+id/iv_home_myself_header"
                     android:layout_marginLeft="10dip"
                     android:layout_marginRight="5dip"
                     android:layout_marginTop="5dip"
-                    android:layout_toRightOf="@+id/iv_home_myself_header"
                     android:orientation="horizontal">
 
                     <TextView

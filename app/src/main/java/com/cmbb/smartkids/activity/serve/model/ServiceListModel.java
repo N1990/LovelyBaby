@@ -473,14 +473,30 @@ public class ServiceListModel implements Parcelable {
         OkHttpClientManager.postAsyn(Constants.ServiceInfo.HOME_MAIN_HOT_SERVICE, params, callback);
     }
 
+    /**
+     * 获取本周精选
+     *
+     * @param pageNo
+     * @param pagerSize
+     * @param callback
+     */
+    public static void getWeekServiceListRequest(int pageNo, int pagerSize, OkHttpClientManager.ResultCallback<ServiceListModel> callback) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("isWeekChoice", String.valueOf(1));
+        params.put("pageNo", String.valueOf(pageNo));
+        params.put("numberOfPerPage", String.valueOf(pagerSize));
+        OkHttpClientManager.postAsyn(Constants.ServiceInfo.HOME_MAIN_HOT_SERVICE, params, callback);
+    }
+
 
     /**
      * 获取收藏服务列表
+     *
      * @param pager
      * @param pagerSize
      * @param callback
      */
-    public static void getCollectServiceRequest(int pager, int pagerSize, OkHttpClientManager.ResultCallback<ServiceListModel> callback){
+    public static void getCollectServiceRequest(int pager, int pagerSize, OkHttpClientManager.ResultCallback<ServiceListModel> callback) {
         HashMap<String, String> params = new HashMap<>();
         params.put("token", BaseApplication.token);
         params.put("pageNo", String.valueOf(pager));
@@ -499,7 +515,7 @@ public class ServiceListModel implements Parcelable {
      * @param pagerSize
      * @param callback
      */
-    public static void getUserCenterServiceRequest(int myCenter, String isPopman, String userId, int pager, int pagerSize, OkHttpClientManager.ResultCallback<ServiceListModel> callback){
+    public static void getUserCenterServiceRequest(int myCenter, String isPopman, String userId, int pager, int pagerSize, OkHttpClientManager.ResultCallback<ServiceListModel> callback) {
         HashMap<String, String> params = new HashMap<>();
         params.put("token", BaseApplication.token);
         params.put("myCenter", String.valueOf(myCenter));
@@ -509,8 +525,6 @@ public class ServiceListModel implements Parcelable {
         params.put("numberOfPerPage", String.valueOf(pagerSize));
         OkHttpClientManager.postAsyn(Constants.ServiceInfo.MY_SERVICE_REQUEST, params, callback);
     }
-
-
 
 
 }

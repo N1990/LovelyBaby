@@ -87,7 +87,7 @@ public class ServerDetailActivityV2 extends BaseActivity {
     /**
      * 收藏服务
      *
-     * @param isCollect
+     * @param isCollect int
      */
     private void handleCollectRequest(final int isCollect, int serviceId) {  // 1 收藏  0取消收藏
         showWaitDialog();

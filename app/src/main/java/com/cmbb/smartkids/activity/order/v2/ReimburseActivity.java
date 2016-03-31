@@ -88,9 +88,9 @@ public class ReimburseActivity extends BaseActivity {
                         public void onResponse(RefundModel response) {
                             hideWaitDialog();
                             showShortToast("申请退款成功");
-                            Intent intent = getIntent();
-                            intent.putExtra("order_status", OrderStatus.TUI_KUAN_ZHONG.getValue());
-                            setResult(RESULT_OK, intent);
+//                            Intent intent = getIntent();
+//                            intent.putExtra("order_status", OrderStatus.TUI_KUAN_ZHONG.getValue());
+                            setResult(RESULT_OK);
                             finish();
                         }
                     });

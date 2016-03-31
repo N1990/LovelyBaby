@@ -199,9 +199,9 @@ public class EvaluateOrderActivity extends BaseActivity {
                     public void onSuccessListener(Object object, String msg) {
                         hideWaitDialog();
                         showShortToast(msg);
-                        Intent intent = getIntent();
-                        intent.putExtra("order_status", OrderStatus.YI_PING_JIA.getValue());
-                        setResult(RESULT_OK, intent);
+//                        Intent intent = getIntent();
+//                        intent.putExtra("order_status", OrderStatus.YI_PING_JIA.getValue());
+                        setResult(RESULT_OK);
                         finish();
                     }
 

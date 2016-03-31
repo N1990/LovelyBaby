@@ -47,8 +47,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@android:color/black"
+            android:layout_marginTop="15dp"
             android:layout_toRightOf="@+id/iv_header_perssion_item"
-            android:layout_alignBottom="@+id/iv_header_perssion_item"
+            android:layout_below="@+id/tv_identity_perssion_item"
             android:text="服务标题（非常满意）"/>
     </RelativeLayout>
     <TextView

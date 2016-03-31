@@ -242,7 +242,10 @@ public class ConfirmOrder extends BaseActivity {
                 mEditPopupWindow.showAtLocation(llBottom, Gravity.NO_GRAVITY, location[0], location[1] - mEditPopupWindow.getHeight());
                 break;
             case R.id.tv_edit_submit:
+                if(mEditPopupWindow.isShowing())
+                    mEditPopupWindow.dismiss();
                 tvCount.setText("x" + tvEditCount.getText().toString());
+                tvPrice.setText(tvEditPrice.getText().toString());
                 tvTotalPrice.setText(tvWholePrice.getText().toString());
                 break;
             case R.id.tv_phone_change:// 修改手机号码

@@ -92,9 +92,9 @@ public class PayConfirm extends BaseActivity { //implements IWXAPIEventHandler
                     // 判断resultStatus 为“9000”则代表支付成功，具体状态码代表含义可参考接口文档
                     if (TextUtils.equals(resultStatus, "9000")) {
                         Toast.makeText(PayConfirm.this, "支付成功", Toast.LENGTH_SHORT).show();
-                        Intent intent = getIntent();
-                        intent.putExtra("order_status", OrderStatus.YI_ZHI_FU.getValue());
-                        setResult(RESULT_OK, intent);
+//                        Intent intent = getIntent();
+//                        intent.putExtra("order_status", OrderStatus.YI_ZHI_FU.getValue());
+                        setResult(RESULT_OK);
                         finish();
                     } else {
                         // 判断resultStatus 为非“9000”则代表可能支付失败
@@ -390,9 +390,9 @@ public class PayConfirm extends BaseActivity { //implements IWXAPIEventHandler
         @Override
         public void onReceive(Context context, Intent intent) {
             Toast.makeText(PayConfirm.this, "支付成功", Toast.LENGTH_SHORT).show();
-            Intent intent1 =  PayConfirm.this.getIntent();
-            intent.putExtra("order_status", OrderStatus.YI_ZHI_FU.getValue());
-            PayConfirm.this.setResult(RESULT_OK, intent1);
+//            Intent intent1 =  PayConfirm.this.getIntent();
+//            intent.putExtra("order_status", OrderStatus.YI_ZHI_FU.getValue());
+            PayConfirm.this.setResult(RESULT_OK);
             finish();
         }
     }

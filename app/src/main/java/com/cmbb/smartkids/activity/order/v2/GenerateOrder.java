@@ -50,6 +50,8 @@ public class GenerateOrder extends BaseActivity {
     private TextView tvToatalPrice;
     private TextView tvAppointment;
     private TextView tvReimburse;
+    private LinearLayout llVerifyCode;
+    private TextView tvVerifyCode;
     private GenerateOrderModel.DataEntity dataEntity;
     private boolean isReimburse;
     private boolean isConfirmOrder;
@@ -88,6 +90,8 @@ public class GenerateOrder extends BaseActivity {
         tvAppointment = (TextView) findViewById(R.id.tv_appointment);
         tvReimburse = (TextView) findViewById(R.id.tv_reimburse);
         tvToatalPrice = (TextView) findViewById(R.id.tv_total_price);
+        llVerifyCode = (LinearLayout) findViewById(R.id.ll_verify_order);
+        tvVerifyCode = (TextView) findViewById(R.id.tv_verify_order);
         tvAppointment.setOnClickListener(this);
         tvReimburse.setOnClickListener(this);
         ivHomeServiceItem.setOnClickListener(this);
@@ -156,6 +160,14 @@ public class GenerateOrder extends BaseActivity {
         }else {
             llContactAddress.setVisibility(View.GONE);
         }
+
+        if(!TextUtils.isEmpty(dataEntity.getValidCode())){
+            llVerifyCode.setVisibility(View.VISIBLE);
+            tvVerifyCode.setText(dataEntity.getValidCode());
+        }else {
+            llVerifyCode.setVisibility(View.GONE);
+        }
+
         int status = dataEntity.getStatus();
         reflushBottomView(status);
     }
@@ -226,11 +238,12 @@ public class GenerateOrder extends BaseActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode == HANDLER_ORDER_REQUEST && resultCode == RESULT_OK && data != null){
+        if(requestCode == HANDLER_ORDER_REQUEST && resultCode == RESULT_OK){ //&& data != null
             isReimburse = true;
-            int status = data.getIntExtra("order_status", 0);
-            dataEntity.setStatus(status);
-            reflushBottomView(status);
+//            int status = data.getIntExtra("order_status", 0);
+//            dataEntity.setStatus(status);
+//            reflushBottomView(status);
+            handleOrderRequest(dataEntity.getOrderCode());
         }else{
             super.onActivityResult(requestCode, resultCode, data);
         }

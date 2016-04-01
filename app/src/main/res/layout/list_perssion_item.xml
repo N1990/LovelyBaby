@@ -4,12 +4,9 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/btn_white_radio_bg"
+    android:background="@drawable/shape_background_white_c"
     android:padding="@dimen/half_global_padding"
-    android:layout_marginTop="@dimen/half_global_padding"
-    android:layout_marginRight="@dimen/half_global_padding"
-    android:layout_marginLeft="@dimen/half_global_padding"
-    android:elevation="3dip">
+    android:layout_marginTop="@dimen/half_global_padding">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

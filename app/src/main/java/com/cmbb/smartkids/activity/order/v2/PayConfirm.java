@@ -46,6 +46,7 @@ import com.tencent.mm.sdk.openapi.WXAPIFactory;
  */
 public class PayConfirm extends BaseActivity { //implements IWXAPIEventHandler
     private final String TAG = PayConfirm.class.getSimpleName();
+    private final int PAY_SUCCESS_REQUEST = 10120;
 
     // 商户PID
     public static final String PARTNER = "2088021604444292";
@@ -92,10 +93,11 @@ public class PayConfirm extends BaseActivity { //implements IWXAPIEventHandler
                     // 判断resultStatus 为“9000”则代表支付成功，具体状态码代表含义可参考接口文档
                     if (TextUtils.equals(resultStatus, "9000")) {
                         Toast.makeText(PayConfirm.this, "支付成功", Toast.LENGTH_SHORT).show();
+                        GenerateOrder.newInstance(PayConfirm.this, orderCode, true, PAY_SUCCESS_REQUEST);
 //                        Intent intent = getIntent();
 //                        intent.putExtra("order_status", OrderStatus.YI_ZHI_FU.getValue());
-                        setResult(RESULT_OK);
-                        finish();
+//                        setResult(RESULT_OK);
+//                        finish();
                     } else {
                         // 判断resultStatus 为非“9000”则代表可能支付失败
                         // “8000”代表支付结果因为支付渠道原因或者系统原因还在等待支付结果确认，最终交易是否成功以服务端异步通知为准（小概率状态）
@@ -159,6 +161,7 @@ public class PayConfirm extends BaseActivity { //implements IWXAPIEventHandler
             dataEntity02 = getIntent().getParcelableExtra("dataEntity02");
             orderCode = getIntent().getStringExtra("order_code");
             if (dataEntity != null) {
+                orderCode = dataEntity.getOrderCode();
                 handleRequest(dataEntity.getOrderCode());
                 tvOrderCode.setText("订单编号:" + dataEntity.getOrderCode());
                 FrescoTool.loadImage(ivHomeServiceItem, dataEntity.getServiceInfo().getServicesImg(), 1.67f);
@@ -176,6 +179,7 @@ public class PayConfirm extends BaseActivity { //implements IWXAPIEventHandler
                 }
                 tvWholePrice.setText(dataEntity.getPrice());
             } else if (dataEntity02 != null) {
+                orderCode = dataEntity02.getOrderCode();
                 handleRequest(dataEntity02.getOrderCode());
                 tvOrderCode.setText("订单编号:" + dataEntity02.getOrderCode());
                 FrescoTool.loadImage(ivHomeServiceItem, dataEntity02.getServiceInfo().getServicesImg(), 1.67f);
@@ -294,6 +298,17 @@ public class PayConfirm extends BaseActivity { //implements IWXAPIEventHandler
     public void onBackPressed() {
         setResult(RESULT_OK);
         finish();
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == PAY_SUCCESS_REQUEST && resultCode == RESULT_OK){
+            setResult(RESULT_OK);
+            finish();
+        }else{
+            super.onActivityResult(requestCode, resultCode, data);
+        }
     }
 
     /**

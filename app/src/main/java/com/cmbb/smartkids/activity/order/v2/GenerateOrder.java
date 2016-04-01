@@ -301,7 +301,7 @@ public class GenerateOrder extends BaseActivity {
     }
 
     /**
-     * 免费订单提交直接到订单详情入口
+     * 免费订单,支付成功提交直接到订单详情入口
      * @param activity
      * @param orderCode
      * @param isConfirmOrder

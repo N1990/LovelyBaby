@@ -58,7 +58,7 @@ public class RankErdarActivity extends BaseActivity implements RecyclerArrayAdap
 
     @Override
     public void onItemClick(int position) {
-        UserCenterActivity.newIntent(this, adapter.getItem(position).getId());
+        UserCenterActivity.newIntent(this, adapter.getItem(position).getUserId());
     }
 
     @Override

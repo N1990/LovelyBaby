@@ -19,23 +19,8 @@ import java.util.List;
  */
 public class ServiceListModel implements Parcelable {
 
-
-    /**
-     * page : 1
-     * records : 6
-     * rows : [{"status":2,"statusName":"预定","isNew":false,"servicesImg":"http://smart.image.alimmdn.com/system/image/2016-03-29/servicesImgFile_NjQ0MDM4M2YtNDQ5ZC00ZDRmLWE1ZjctMGZkNWVkZjFjNzI0","introduce":"服务简介你好啊，测试啊","applyEndTime":"\u201c\u201d","imgWidth":"\u201c1920\u201d","type":202,"endTime":"2016-04-01 15:13:00","city":310100,"startTime":"2016-03-29 13:56:00","id":357,"browseNumber":1,"title":"非配送/上门","price":"\u201c0.01\u201d","surplusTime":"报名截止时间","peoples":100,"serviceTime":"3.29-4.1","typeText":"到店","cityText":"上海","createDate":"2016-03-29 13:58:27","realityPeoples":1,"imgHeight":"\u201c1080\u201d","applyStartTime":"\u201c\u201d"}]
-     * total : 1
-     * userdata : “”
-     */
-
     private DataEntity data;
-    /**
-     * data : {"page":1,"records":6,"rows":[{"status":2,"statusName":"预定","isNew":false,"servicesImg":"http://smart.image.alimmdn.com/system/image/2016-03-29/servicesImgFile_NjQ0MDM4M2YtNDQ5ZC00ZDRmLWE1ZjctMGZkNWVkZjFjNzI0","introduce":"服务简介你好啊，测试啊","applyEndTime":"\u201c\u201d","imgWidth":"\u201c1920\u201d","type":202,"endTime":"2016-04-01 15:13:00","city":310100,"startTime":"2016-03-29 13:56:00","id":357,"browseNumber":1,"title":"非配送/上门","price":"\u201c0.01\u201d","surplusTime":"报名截止时间","peoples":100,"serviceTime":"3.29-4.1","typeText":"到店","cityText":"上海","createDate":"2016-03-29 13:58:27","realityPeoples":1,"imgHeight":"\u201c1080\u201d","applyStartTime":"\u201c\u201d"}],"total":1,"userdata":"\u201c\u201d"}
-     * msg : 数据加载成功
-     */
-
     private String msg;
-
 
     public DataEntity getData() {
         return data;
@@ -59,33 +44,6 @@ public class ServiceListModel implements Parcelable {
         private int records;
         private int total;
         private String userdata;
-        /**
-         * status : 2
-         * statusName : 预定
-         * isNew : false
-         * servicesImg : http://smart.image.alimmdn.com/system/image/2016-03-29/servicesImgFile_NjQ0MDM4M2YtNDQ5ZC00ZDRmLWE1ZjctMGZkNWVkZjFjNzI0
-         * introduce : 服务简介你好啊，测试啊
-         * applyEndTime : “”
-         * imgWidth : “1920”
-         * type : 202
-         * endTime : 2016-04-01 15:13:00
-         * city : 310100
-         * startTime : 2016-03-29 13:56:00
-         * id : 357
-         * browseNumber : 1
-         * title : 非配送/上门
-         * price : “0.01”
-         * surplusTime : 报名截止时间
-         * peoples : 100
-         * serviceTime : 3.29-4.1
-         * typeText : 到店
-         * cityText : 上海
-         * createDate : 2016-03-29 13:58:27
-         * realityPeoples : 1
-         * imgHeight : “1080”
-         * applyStartTime : “”
-         */
-
         private List<RowsEntity> rows;
 
         public int getPage() {
@@ -503,7 +461,7 @@ public class ServiceListModel implements Parcelable {
      * @param pagerSize
      * @param callback
      */
-    public static void getServiceListRequest(String serviceWay, String serviceCity, String serviceCategroy, String serviceSortType, int pageNo, int pagerSize, OkHttpClientManager.ResultCallback<ServiceListModel> callback) {
+    public static void getServiceListRequest(String serviceWay, String serviceCity, String serviceCategroy, String serviceSortType, String serviceStatus, int pageNo, int pagerSize, OkHttpClientManager.ResultCallback<ServiceListModel> callback) {
         HashMap<String, String> params = new HashMap<>();
         if (!TextUtils.isEmpty(serviceCity))
             params.put("city", serviceCity);
@@ -513,6 +471,8 @@ public class ServiceListModel implements Parcelable {
             params.put("category", serviceCategroy);
         if (!TextUtils.isEmpty(serviceSortType))
             params.put("sortType", serviceSortType);
+        if (!TextUtils.isEmpty(serviceStatus))
+            params.put("status", serviceStatus);
         params.put("pageNo", String.valueOf(pageNo));
         params.put("numberOfPerPage", String.valueOf(pagerSize));
         OkHttpClientManager.postAsyn(Constants.ServiceInfo.HOME_MAIN_HOT_SERVICE, params, callback);
@@ -536,11 +496,12 @@ public class ServiceListModel implements Parcelable {
 
     /**
      * 获取收藏服务列表
+     *
      * @param pager
      * @param pagerSize
      * @param callback
      */
-    public static void getCollectServiceRequest(int pager, int pagerSize, OkHttpClientManager.ResultCallback<ServiceListModel> callback){
+    public static void getCollectServiceRequest(int pager, int pagerSize, OkHttpClientManager.ResultCallback<ServiceListModel> callback) {
         HashMap<String, String> params = new HashMap<>();
         params.put("token", BaseApplication.token);
         params.put("pageNo", String.valueOf(pager));
@@ -559,7 +520,7 @@ public class ServiceListModel implements Parcelable {
      * @param pagerSize
      * @param callback
      */
-    public static void getUserCenterServiceRequest(int myCenter, String isPopman, String userId, int pager, int pagerSize, OkHttpClientManager.ResultCallback<ServiceListModel> callback){
+    public static void getUserCenterServiceRequest(int myCenter, String isPopman, String userId, int pager, int pagerSize, OkHttpClientManager.ResultCallback<ServiceListModel> callback) {
         HashMap<String, String> params = new HashMap<>();
         params.put("token", BaseApplication.token);
         params.put("myCenter", String.valueOf(myCenter));
@@ -568,5 +529,23 @@ public class ServiceListModel implements Parcelable {
         params.put("pageNo", String.valueOf(pager));
         params.put("numberOfPerPage", String.valueOf(pagerSize));
         OkHttpClientManager.postAsyn(Constants.ServiceInfo.MY_SERVICE_REQUEST, params, callback);
+    }
+
+
+    /**
+     * 搜索服务列表
+     *
+     * @param content
+     * @param pager
+     * @param pagerSize
+     * @param callback
+     */
+    public static void getSearchServiceRequest(String content, int pager, int pagerSize, OkHttpClientManager.ResultCallback<ServiceListModel> callback) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("token", BaseApplication.token);
+        params.put("pageNo", String.valueOf(pager));
+        params.put("numberOfPerPage", String.valueOf(pagerSize));
+        params.put("contents", content);
+        OkHttpClientManager.postAsyn(Constants.ServiceInfo.SEARCH_SERVICE_REQUEST, params, callback);
     }
 }

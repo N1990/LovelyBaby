@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -119,6 +120,12 @@ public class ServerDetailActivityV2 extends BaseActivity {
         Intent intent = new Intent(context, ServerDetailActivityV2.class);
         intent.putExtra("serviceID", serviceID);
         context.startActivity(intent);
+    }
+
+    public static void newIntent(AppCompatActivity context, int serviceID, int rc) {
+        Intent intent = new Intent(context, ServerDetailActivityV2.class);
+        intent.putExtra("serviceID", serviceID);
+        context.startActivityForResult(intent, rc);
     }
 
 

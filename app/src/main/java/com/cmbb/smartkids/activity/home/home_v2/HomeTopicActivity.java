@@ -69,6 +69,7 @@ public class HomeTopicActivity extends BaseHomeActivity implements View.OnClickL
         tvTopic.setSelected(true);
     }
 
+
     private void initRecyclerView() {
         mSmartRecyclerView = (SmartRecyclerView) findViewById(R.id.recyclerView);
         mSmartRecyclerView.setLayoutManager(new LinearLayoutManager(this));

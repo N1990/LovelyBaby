@@ -242,7 +242,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
 
-                <!--<RadioGroup
+                <RadioGroup
                     android:id="@+id/rg_pay"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -255,7 +255,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:drawableLeft="@mipmap/alipay_bg"
-                        android:drawablePadding="5dp"
+                        android:drawablePadding="@dimen/global_padding"
                         android:checked="true"
                         android:text="支付宝"/>
 
@@ -265,14 +265,14 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
                         android:drawableLeft="@mipmap/wx_bg"
-                        android:drawablePadding="5dp"
+                        android:drawablePadding="@dimen/global_padding"
                         android:text="微信"/>
 
-                </RadioGroup>-->
+                </RadioGroup>
 
 
 
-                <LinearLayout
+                <!--<LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignLeft="@+id/tv_pay_way_tag"
@@ -299,7 +299,7 @@
                         android:drawablePadding="5dp"
                         android:text="支付宝"
                         android:drawableLeft="@mipmap/alipay_bg" />
-                </LinearLayout>
+                </LinearLayout>-->
             </RelativeLayout>
 
         </RelativeLayout>

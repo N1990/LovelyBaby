@@ -12,6 +12,7 @@ import com.cmbb.smartkids.activity.home.home_v2.holder.servicedict.ServiceDictFo
 import com.cmbb.smartkids.activity.home.home_v2.holder.servicedict.ServiceHeadHolder;
 import com.cmbb.smartkids.activity.home.home_v2.holder.servicedict.ServiceNormalHolder;
 import com.cmbb.smartkids.activity.home.home_v2.holder.servicedict.ServiceSortTypeHeadHolder;
+import com.cmbb.smartkids.activity.home.home_v2.holder.servicedict.ServiceStatusHeadHolder;
 import com.cmbb.smartkids.activity.home.model.ServiceSortModel;
 import com.cmbb.smartkids.base.CustomListener;
 
@@ -30,13 +31,14 @@ public class PopuDictAdapter extends RecyclerView.Adapter {
     public static final int SERVICE_TYPE_HEAD = 1;
     public static final int SERVICE_WAY_HEAD = 2;
     public static final int SERVICE_SORT_HEAD = 3;
-    public static final int SERVICE_NORMAL = 4;
-    public static final int SERVICE_FOOTER = 5;
-    private ServiceNormalHolder normalHolder;
+    public static final int SERVICE_STATUS_HEAD = 4;
+    public static final int SERVICE_NORMAL = 5;
+    public static final int SERVICE_FOOTER = 6;
 
     int categroy;
     int services;
     int sortType;
+    int status;
 
     public PopuDictAdapter(Context context, ServiceSortModel serviceSmartDictModel) {
         this.setModel(serviceSmartDictModel);
@@ -69,6 +71,8 @@ public class PopuDictAdapter extends RecyclerView.Adapter {
         } else if (position == categroy + services) {
             return SERVICE_SORT_HEAD;
         } else if (position == categroy + services + sortType) {
+            return SERVICE_STATUS_HEAD;
+        } else if (position == categroy + services + sortType + status) {
             return SERVICE_FOOTER;
         } else {
             return SERVICE_NORMAL;
@@ -87,12 +91,15 @@ public class PopuDictAdapter extends RecyclerView.Adapter {
             case SERVICE_SORT_HEAD:
                 View itemSortType = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_service_popu_head_dict, parent, false);
                 return new ServiceSortTypeHeadHolder(itemSortType);
+            case SERVICE_STATUS_HEAD:
+                View itemStatus = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_service_popu_head_dict, parent, false);
+                return new ServiceStatusHeadHolder(itemStatus);
             case SERVICE_FOOTER:
                 View itemFooter = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_service_popu_foot_dict, parent, false);
                 return new ServiceDictFooterHolder(itemFooter, serviceSmartDictModel, this, onConfirmClick);
             case SERVICE_NORMAL:
                 View itemNormal = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_service_popu_normal_dict, parent, false);
-                return normalHolder = new ServiceNormalHolder(itemNormal, this, serviceSmartDictModel);
+                return new ServiceNormalHolder(itemNormal, this, serviceSmartDictModel);
         }
         return null;
     }
@@ -105,6 +112,8 @@ public class PopuDictAdapter extends RecyclerView.Adapter {
             ((ServiceHeadHolder) holder).setTitle("服务方式");
         } else if (holder instanceof ServiceSortTypeHeadHolder) {
             ((ServiceSortTypeHeadHolder) holder).setTitle("排序");
+        } else if (holder instanceof ServiceStatusHeadHolder) {
+            ((ServiceStatusHeadHolder) holder).setTitle("状态");
         } else {
             // Normal Layout
             if (0 < position && position < categroy) {
@@ -116,19 +125,22 @@ public class PopuDictAdapter extends RecyclerView.Adapter {
             } else if (position > categroy + services && position < categroy + services + sortType) {
                 //第三段
                 ((ServiceNormalHolder) holder).setServiceSortData(serviceSmartDictModel.getData().getServiceSortType(), 4 * (position - 1 - (categroy + services)));
+            } else if (position > categroy + services + sortType && position < categroy + services + sortType + status) {
+                //第四段
+                ((ServiceNormalHolder) holder).setServiceStatusData(serviceSmartDictModel.getData().getServiceStatus(), 4 * (position - 1 - (categroy + services + sortType)));
             }
         }
     }
 
     @Override
     public int getItemCount() {
-        if (serviceSmartDictModel.getData() == null || serviceSmartDictModel.getData().getServiceCategroy() == null) {
+        if (serviceSmartDictModel.getData() == null || serviceSmartDictModel.getData().getServiceCategroy() == null)
             return 0;
-        }
         categroy = serviceSmartDictModel.getData().getServiceCategroy().size() / 4 + (serviceSmartDictModel.getData().getServiceCategroy().size() % 4 > 0 ? 1 : 0) + 1;
         services = serviceSmartDictModel.getData().getServices().size() / 4 + (serviceSmartDictModel.getData().getServices().size() % 4 > 0 ? 1 : 0) + 1;
         sortType = serviceSmartDictModel.getData().getServiceSortType().size() / 4 + (serviceSmartDictModel.getData().getServiceSortType().size() % 4 > 0 ? 1 : 0) + 1;
-        return categroy + services + sortType + 1;
+        status = serviceSmartDictModel.getData().getServiceStatus().size() / 4 + (serviceSmartDictModel.getData().getServiceStatus().size() % 4 > 0 ? 1 : 0) + 1;
+        return categroy + services + sortType + status + 1;
     }
 }
 

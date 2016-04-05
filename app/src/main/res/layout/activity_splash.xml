@@ -1,10 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.facebook.drawee.view.SimpleDraweeView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/sdv_splash"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:placeholderImage="@color/placeholder"
-    app:actualImageScaleType="centerCrop"
-    app:fadeDuration="300"/>
+    android:layout_height="match_parent">
+
+    <com.facebook.drawee.view.SimpleDraweeView xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/sdv_splash"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:actualImageScaleType="focusCrop"
+        app:fadeDuration="300"
+        app:placeholderImage="@color/accentColor" />
+
+    <TextView
+        android:id="@+id/tv_second"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/shape_background_white_circle"
+        android:padding="@dimen/global_padding"
+        android:layout_margin="@dimen/half_global_padding"
+        android:text="3秒跳过" />
+
+</RelativeLayout>
 

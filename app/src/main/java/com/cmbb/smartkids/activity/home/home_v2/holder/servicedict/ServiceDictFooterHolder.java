@@ -47,6 +47,10 @@ public class ServiceDictFooterHolder extends RecyclerView.ViewHolder implements 
                 for (ServiceSortModel.DataEntity.ServiceSortTypeEntity entity : model.getData().getServiceSortType()) {
                     entity.setChecked(false);
                 }
+
+                for (ServiceSortModel.DataEntity.ServiceStatusEntity entity : model.getData().getServiceStatus()) {
+                    entity.setChecked(false);
+                }
                 adapter.notifyDataSetChanged();
                 break;
             case R.id.btn_comfirm:
@@ -67,6 +71,11 @@ public class ServiceDictFooterHolder extends RecyclerView.ViewHolder implements 
                             confirmModel.setSortType(entity.getValue());
                         }
                     }
+                    for (ServiceSortModel.DataEntity.ServiceStatusEntity entity : model.getData().getServiceStatus()) {
+                        if (entity.isChecked()) {
+                            confirmModel.setStatus(entity.getValue());
+                        }
+                    }
                     itemClickListener.onItemClick(v, -1, confirmModel);
                 }
                 break;
@@ -78,6 +87,15 @@ public class ServiceDictFooterHolder extends RecyclerView.ViewHolder implements 
         String category;
         String sortType;
         String type;
+        String status;
+
+        public String getStatus() {
+            return status;
+        }
+
+        public void setStatus(String status) {
+            this.status = status;
+        }
 
         public String getCategory() {
             return category;

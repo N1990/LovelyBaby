@@ -37,5 +37,7 @@ public class RankErdarItemHolder extends BaseViewHolder<RankEredarModel> {
         tvNick.setText(row.getUserNike());
         FrescoTool.loadImage(sdbHead, row.getUserSmallImg());
         rbErdar.setRating(row.getUserLevel());
+        if (row.getUserRole() != null && row.getUserRole().size() > 0)
+            tvTag.setText(row.getUserRole().get(0).getEredarName());
     }
 }

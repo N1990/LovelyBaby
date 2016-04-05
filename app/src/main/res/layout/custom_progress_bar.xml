@@ -6,15 +6,6 @@
     android:gravity="center"
     android:orientation="horizontal"
     android:padding="@dimen/activity_vertical_margin">
-    <!--<android.support.v4.widget.ContentLoadingProgressBar
-        android:id="@+id/cpb_wait_progress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:indeterminateDrawable="@drawable/custom_progress_bar_bg"
-        android:layout_gravity="center_vertical"
-        android:interpolator="@android:interpolator/cycle"
-        android:indeterminate="true"
-        />-->
 
     <com.cmbb.smartkids.widget.avloader.AVLoadingIndicatorView
         android:id="@+id/cpb_wait_progress"
@@ -29,6 +20,6 @@
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="10dip"
         android:text=""
-        android:visibility="gone" />
+        android:visibility="invisible" />
 
 </LinearLayout>

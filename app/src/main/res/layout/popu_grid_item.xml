@@ -8,6 +8,7 @@
     android:button="@null"
     android:clickable="true"
     android:gravity="center"
+    android:lines="1"
     android:padding="@dimen/global_padding"
     android:text="服务方式"
     android:textColor="@color/selector_gray_to_primarycolor_text" />

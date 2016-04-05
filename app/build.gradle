@@ -15,11 +15,13 @@ android {
         ndk {
             abiFilters "armeabi", "armeabi-v7a", "x86"
         }
+        signingConfig signingConfigs.debug
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
         }
     }
 
@@ -98,8 +100,8 @@ android {
 
     signingConfigs {
         debug {
-            storeFile file("/Users/javon/Documents/mengbao/smartkids")
-//            storeFile file("/Users/niesen918/AndroidStudioProjects/key/smartkids")
+//            storeFile file("/Users/javon/Documents/mengbao/smartkids")
+            storeFile file("/Users/niesen918/AndroidStudioProjects/key/smartkids")
             storePassword "ns101288"
             keyAlias "smartkids"
             keyPassword "ns101288"

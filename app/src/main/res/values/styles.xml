@@ -4,10 +4,12 @@
     <style name="AppTheme" parent="Base.Theme.Design" />
 
     <style name="AppTheme.White" parent="Base.Theme.Design.White" />
+
     <style name="HomePageTheme" parent="HomePage.Theme.Design" />
 
 
     <style name="AppThemeFullScreen" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@mipmap/splah_bg</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
     </style>

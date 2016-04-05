@@ -21,11 +21,11 @@ public class Constants {
     public final static String USER_ID = "userId";
     public final static String PACKAGE_NAME = "com.cmbb.smartkids";
     public final static String INTENT_ACTION_EXIT_APP = PACKAGE_NAME + ".intent.action.exitapp";
+    public final static String INTENT_ACTION_LOGIN_APP = PACKAGE_NAME + ".intent.action.loginapp";
     public final static int CANCEL_WAIT_DIALOG = 10001;
 
     public final static String INTENT_ACTION_MESSAGE_RECEIVE = PACKAGE_NAME + ".message.receive";
     public final static String INTENT_ACTION_MESSAGE_CANCEL = PACKAGE_NAME + ".message.cancel";
-
 
     public final static String APP_ID = "wx_app_id";  //wx766b807ef51aa8da
 //    public final static String APP_ID = "wxd930ea5d5a258f4f";
@@ -78,6 +78,7 @@ public class Constants {
         public static final String UPDATA_IMG_FOR_USER = "smart/personal/updateBackgroundImg"; //更换个人的图片
         public static final String REGISTER_VERIFY_CODE = "smart/getRegisterSecurityCode"; // 获取注册验证码
         public static final String VERIFY_CODE = "smart/getSecurityCode"; //获取验证码，除注册外
+        public static final String FORGET_PWD_CODE = "smart/forgetPwdSecurityCode"; //忘记密码
         public static final String REGISTER_NEXT_REQUEST = "smart/registerNext"; //注册下一步
         public static final String FORGEST_PWD_REQUEST = "smart/forgetPWD"; //忘记密码
         public static final String LOGIN_REQUEST = "smart/login"; //登录
@@ -160,7 +161,6 @@ public class Constants {
         public static final String TOPIC_REPLYTOPIC = "smart/topic/replyTopic"; // 举报话题
         public static final String TOPIC_DELETEREPLY = "smart/topic/deleteReply"; // 举报话题
     }
-
 
 
 }

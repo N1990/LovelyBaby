@@ -4,14 +4,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.cmbb.smartkids.R;
-import com.cmbb.smartkids.activity.serve.ActiveDetailActivity;
 import com.cmbb.smartkids.activity.serve.model.ServiceListModel;
+import com.cmbb.smartkids.activity.serve.v2.ServerDetailActivityV2;
 import com.cmbb.smartkids.activity.user.adapter.MyServiceAdapter;
 import com.cmbb.smartkids.base.BaseFragment;
 import com.cmbb.smartkids.network.OkHttpClientManager;
@@ -61,21 +62,19 @@ public class MyCollectServiceFragment extends BaseFragment implements View.OnCli
     @Override
     public void onItemClick(int position) {
         ServiceListModel.DataEntity.RowsEntity itemData = adapter.getItem(position);
-        Intent intent = new Intent(getActivity(), ActiveDetailActivity.class);
-        intent.putExtra("serviceId", itemData.getId());
-        startActivityForResult(intent, SERVICE_DETAIL_REQUEST);
+        ServerDetailActivityV2.newIntent((AppCompatActivity) getActivity(), itemData.getId(), SERVICE_DETAIL_REQUEST);
     }
 
     @Override
     public void onLoadMore() {
         pager++;
-        handleRequest(pager, pagerSize);
+        handleRequest(pager, pagerSize, false);
     }
 
     @Override
     public void onRefresh() {
         pager = 0;
-        handleRequest(pager, pagerSize);
+        handleRequest(pager, pagerSize, true);
     }
 
 
@@ -84,14 +83,14 @@ public class MyCollectServiceFragment extends BaseFragment implements View.OnCli
         if (requestCode == SERVICE_DETAIL_REQUEST && resultCode == -1) {
             adapter.clear();
             pager = 0;
-            handleRequest(pager, pagerSize);
+            handleRequest(pager, pagerSize, true);
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
 
 
-    private void handleRequest(int pager, int pagerSize) {
+    private void handleRequest(int pager, int pagerSize, final boolean refresh) {
         ServiceListModel.getCollectServiceRequest(pager, pagerSize, new OkHttpClientManager.ResultCallback<ServiceListModel>() {
             @Override
             public void onError(Request request, Exception e) {
@@ -102,9 +101,9 @@ public class MyCollectServiceFragment extends BaseFragment implements View.OnCli
             public void onResponse(ServiceListModel response) {
                 hideWaitDialog();
                 if (response != null) {
-                    adapter.clear();
+                    if (refresh)
+                        adapter.clear();
                     adapter.addAll(response.getData().getRows());
-                    showShortToast(response.getMsg());
                 }
             }
         });

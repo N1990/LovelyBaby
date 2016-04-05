@@ -69,7 +69,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         }
         mPushAgent = PushAgent.getInstance(this);
         mPushAgent.onAppStart();
-        initExit();
+        initBroadcast();
         init(savedInstanceState);
     }
 
@@ -169,7 +169,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     /**
      * 程序退出
      */
-    private void initExit() {
+    private void initBroadcast() {
         existReceiver = new ExitBroadcast(this);
         IntentFilter filter = new IntentFilter(Constants.INTENT_ACTION_EXIT_APP);
         registerReceiver(existReceiver, filter);
@@ -189,8 +189,8 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         String showString;
         if (tip.contains("java.lang.Exception")) {
             showString = tip.replace("java.lang.Exception:", "");
-        } else if (tip.contains("java.net.ConnectException:connection")) {
-            showString = tip.replace("java.net.ConnectException:connection:", "");
+        } else if (tip.contains("java.net.ConnectException")) {
+            showString = tip.replace("java.net.ConnectException:", "");
         } else {
             showString = tip;
         }

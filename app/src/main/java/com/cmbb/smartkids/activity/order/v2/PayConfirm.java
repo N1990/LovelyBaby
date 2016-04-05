@@ -15,7 +15,6 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,18 +24,14 @@ import com.cmbb.smartkids.activity.order.model.GenerateOrderModel;
 import com.cmbb.smartkids.activity.order.model.PayWayModel;
 import com.cmbb.smartkids.activity.order.model.SubmitOrderModel;
 import com.cmbb.smartkids.base.BaseActivity;
-import com.cmbb.smartkids.base.Constants;
-import com.cmbb.smartkids.model.OrderStatus;
 import com.cmbb.smartkids.network.OkHttpClientManager;
 import com.cmbb.smartkids.pay.PayResult;
 import com.cmbb.smartkids.utils.FrescoTool;
-import com.cmbb.smartkids.utils.SPCache;
 import com.cmbb.smartkids.utils.log.Log;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.squareup.okhttp.Request;
 import com.tencent.mm.sdk.modelpay.PayReq;
 import com.tencent.mm.sdk.openapi.IWXAPI;
-import com.tencent.mm.sdk.openapi.WXAPIFactory;
 
 /**
  * 项目名称：LovelyBaby
@@ -75,9 +70,9 @@ public class PayConfirm extends BaseActivity { //implements IWXAPIEventHandler
     private GenerateOrderModel.DataEntity dataEntity02;
     private String orderCode;
     private PayWayModel payWayModel;
-//    private RadioGroup rgPayWay;
-//    private IWXAPI api;// weixin API
-//    private BroadcastReceiver payReceiver; //微信支付返回结果  刷新前个页面
+    private RadioGroup rgPayWay;
+    private IWXAPI api;// weixin API
+    private BroadcastReceiver payReceiver; //微信支付返回结果  刷新前个页面
 
 
     private int payWay = 0; // 0: 支付宝 1： 微信
@@ -147,12 +142,12 @@ public class PayConfirm extends BaseActivity { //implements IWXAPIEventHandler
 
 
         //微信支付
-       /* rgPayWay = (RadioGroup) findViewById(R.id.rg_pay);
+        rgPayWay = (RadioGroup) findViewById(R.id.rg_pay);
         ((RadioButton)findViewById(R.id.rb_pay_zfb)).setChecked(true);
         rgPayWay.setOnCheckedChangeListener(onCheckChangeListener);
         payReceiver = new MyBroadCastReceiver();
         IntentFilter filter = new IntentFilter("com.cbmm.smartkids.pay");
-        registerReceiver(payReceiver, filter);*/
+        registerReceiver(payReceiver, filter);
     }
 
     private void initData() {
@@ -250,7 +245,7 @@ public class PayConfirm extends BaseActivity { //implements IWXAPIEventHandler
                     showShortToast("数据出错啦~");
                 }
                 break;
-            /*case 1:
+            case 1:
                 //微信支付
                 try {
                     Log.e(TAG, "payWayModel is null :" + payWayModel == null);
@@ -277,13 +272,12 @@ public class PayConfirm extends BaseActivity { //implements IWXAPIEventHandler
                     showShortToast("异常：" + e.getMessage());
                 }
                 break;
-                */
 
         }
     }
 
     //微信支付
-   /* private RadioGroup.OnCheckedChangeListener onCheckChangeListener = new RadioGroup.OnCheckedChangeListener() {
+    private RadioGroup.OnCheckedChangeListener onCheckChangeListener = new RadioGroup.OnCheckedChangeListener() {
         @Override
         public void onCheckedChanged(RadioGroup group, int checkedId) {
             if(checkedId == R.id.rb_pay_zfb){
@@ -292,7 +286,7 @@ public class PayConfirm extends BaseActivity { //implements IWXAPIEventHandler
                 payWay = 1;
             }
         }
-    };*/
+    };
 
     @Override
     public void onBackPressed() {

@@ -1,5 +1,6 @@
 package com.cmbb.smartkids.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
@@ -9,8 +10,10 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.cmbb.smartkids.R;
+import com.cmbb.smartkids.activity.home.home_v2.HomeActivity;
 import com.cmbb.smartkids.activity.login.LoginActivity;
 import com.cmbb.smartkids.activity.login.VerifyActivity;
 import com.cmbb.smartkids.base.BaseActivity;
@@ -29,6 +32,7 @@ public class GuidActivity extends BaseActivity {
     private CirclePageIndicator cpiGuid;
     private boolean skipFlag;
     private LinearLayout ll_bottom;
+    private TextView tvIn;
 
     @Override
     protected int getLayoutId() {
@@ -46,9 +50,11 @@ public class GuidActivity extends BaseActivity {
     private void addListener() {
         findViewById(R.id.tv_guid_login).setOnClickListener(this);
         findViewById(R.id.tv_guid_register).setOnClickListener(this);
+        tvIn.setOnClickListener(this);
     }
 
     private void initView() {
+        tvIn = (TextView) findViewById(R.id.tv_in);
         ll_bottom = (LinearLayout) findViewById(R.id.ll_bottom);
         vp = (ViewPager) findViewById(R.id.vp_guid);
         cpiGuid = (CirclePageIndicator) findViewById(R.id.cpi_guid);
@@ -68,6 +74,9 @@ public class GuidActivity extends BaseActivity {
                 Intent intent = new Intent(GuidActivity.this, VerifyActivity.class);
                 intent.putExtra("tag", "register");
                 startActivity(intent);
+                break;
+            case R.id.tv_in:
+                HomeActivity.newIntent(this);
                 break;
         }
     }
@@ -121,6 +130,12 @@ public class GuidActivity extends BaseActivity {
             Intent intent = new Intent(Constants.INTENT_ACTION_EXIT_APP);
             sendBroadcast(intent);
         }
+    }
+
+
+    public static void newIntent(Context context) {
+        Intent intent = new Intent(context, GuidActivity.class);
+        context.startActivity(intent);
     }
 
 }

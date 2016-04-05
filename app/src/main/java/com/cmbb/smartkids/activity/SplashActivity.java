@@ -1,12 +1,15 @@
 package com.cmbb.smartkids.activity;
 
-import android.content.Intent;
+import android.annotation.SuppressLint;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cmbb.smartkids.R;
@@ -24,16 +27,48 @@ import com.umeng.analytics.MobclickAgent;
 import com.umeng.message.IUmengRegisterCallback;
 import com.umeng.message.PushAgent;
 
-public class SplashActivity extends AppCompatActivity {
+
+public class SplashActivity extends AppCompatActivity implements View.OnClickListener {
 
     private SimpleDraweeView sdv;
     public PushAgent mPushAgent;
+    private TextView tvSecond;
+
+    private int recLen = 3;
+
+    @SuppressLint("HandlerLeak")
+    final Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case 1:
+                    String token = SPCache.getString(Constants.TOKEN, "");
+                    if (!TextUtils.isEmpty(token)) {
+                        recLen--;
+                        tvSecond.setText(recLen + 1 + "秒跳过");
+                        if (recLen > 0) {
+                            Message message = handler.obtainMessage(1);
+                            handler.sendMessageDelayed(message, 1000);
+                        } else {
+                            HomeActivity.newIntent(SplashActivity.this);
+                            finish();
+                        }
+                    } else {
+                        GuidActivity.newIntent(SplashActivity.this);
+                        finish();
+                    }
+            }
+            super.handleMessage(msg);
+        }
+    };
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_splash);
+        tvSecond = (TextView) findViewById(R.id.tv_second);
+        tvSecond.setOnClickListener(this);
         sdv = (SimpleDraweeView) findViewById(R.id.sdv_splash);
         mPushAgent = PushAgent.getInstance(this);
         mPushAgent.onAppStart();
@@ -47,26 +82,12 @@ public class SplashActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(ManagerAdModel response) {
-                if (response.getData() != null && response.getData().size() != 0)
+                if (response != null)
                     FrescoTool.loadImage(sdv, response.getData().get(0).getAdImg(), TDevice.getScreenWidth(SplashActivity.this) + "", TDevice.getScreenHeight(SplashActivity.this) + "");
             }
         });
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                //判断Token
-                String token = SPCache.getString(Constants.TOKEN, "");
-                Intent intent = null;
-                if (TextUtils.isEmpty(token)) {
-                    intent = new Intent(SplashActivity.this, GuidActivity.class);
-                } else {
-                    intent = new Intent(SplashActivity.this, HomeActivity.class);
-                }
-                startActivity(intent);
-                finish();
-            }
-        }, 6000);
+        Message message = handler.obtainMessage(1);
+        handler.sendMessageDelayed(message, 1000);
     }
 
 
@@ -76,14 +97,11 @@ public class SplashActivity extends AppCompatActivity {
         MobclickAgent.onResume(this);
     }
 
-
     @Override
-
     protected void onPause() {
         super.onPause();
         MobclickAgent.onPause(this);
     }
-
 
     // 友盟推送注册器
     private IUmengRegisterCallback mRegisterCallback = new IUmengRegisterCallback() {
@@ -92,4 +110,9 @@ public class SplashActivity extends AppCompatActivity {
             Log.e("mRegisterCallback", "token:" + mPushAgent.getRegistrationId());
         }
     };
+
+    @Override
+    public void onClick(View v) {
+        recLen = 0;
+    }
 }

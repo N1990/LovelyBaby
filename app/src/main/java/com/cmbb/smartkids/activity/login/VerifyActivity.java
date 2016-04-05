@@ -112,7 +112,7 @@ public class VerifyActivity extends BaseActivity {
                 } else if (tag.equals("forget")) {
                     HashMap<String, String> body = new HashMap<>();
                     body.put("loginAccount", phone);
-                    NetRequest.postRequest(Constants.ServiceInfo.VERIFY_CODE, "", body, SecurityCodeModel.class, new NetRequest.NetHandler(this, new NetRequest.NetResponseListener() {
+                    NetRequest.postRequest(Constants.ServiceInfo.FORGET_PWD_CODE, "", body, SecurityCodeModel.class, new NetRequest.NetHandler(this, new NetRequest.NetResponseListener() {
                         @Override
                         public void onSuccessListener(Object object, String msg) {
                             showShortToast(msg);

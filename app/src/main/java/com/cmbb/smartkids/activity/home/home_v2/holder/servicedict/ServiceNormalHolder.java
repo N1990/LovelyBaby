@@ -7,6 +7,7 @@ import android.widget.TextView;
 import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.activity.home.home_v2.adapter.PopuDictAdapter;
 import com.cmbb.smartkids.activity.home.model.ServiceSortModel;
+import com.cmbb.smartkids.utils.log.Log;
 
 import java.util.List;
 
@@ -33,7 +34,9 @@ public class ServiceNormalHolder extends RecyclerView.ViewHolder implements View
     }
 
     public void setCategroyData(List<ServiceSortModel.DataEntity.ServiceCategroyEntity> entities, int part) {
+        Log.i("setCategroyData", "part = " + part);
         if (part < entities.size()) {
+            tv01.setVisibility(View.VISIBLE);
             tv01.setText(entities.get(part).getName());
             if (entities.get(part).isChecked()) {
                 tv01.setSelected(true);
@@ -46,6 +49,7 @@ public class ServiceNormalHolder extends RecyclerView.ViewHolder implements View
             tv01.setVisibility(View.INVISIBLE);
         }
         if (part + 1 < entities.size()) {
+            tv02.setVisibility(View.VISIBLE);
             tv02.setText(entities.get(part + 1).getName());
             if (entities.get(part + 1).isChecked()) {
                 tv02.setSelected(true);
@@ -58,6 +62,7 @@ public class ServiceNormalHolder extends RecyclerView.ViewHolder implements View
             tv02.setVisibility(View.INVISIBLE);
         }
         if (part + 2 < entities.size()) {
+            tv03.setVisibility(View.VISIBLE);
             tv03.setText(entities.get(part + 2).getName());
             if (entities.get(part + 2).isChecked()) {
                 tv03.setSelected(true);
@@ -70,6 +75,7 @@ public class ServiceNormalHolder extends RecyclerView.ViewHolder implements View
             tv03.setVisibility(View.INVISIBLE);
         }
         if (part + 3 < entities.size()) {
+            tv04.setVisibility(View.VISIBLE);
             tv04.setText(entities.get(part + 3).getName());
             if (entities.get(part + 3).isChecked()) {
                 tv04.setSelected(true);
@@ -84,7 +90,9 @@ public class ServiceNormalHolder extends RecyclerView.ViewHolder implements View
     }
 
     public void setServiceData(List<ServiceSortModel.DataEntity.ServicesEntity> entities, int part) {
+        Log.i("setServiceData", "part = " + part);
         if (part < entities.size()) {
+            tv01.setVisibility(View.VISIBLE);
             tv01.setText(entities.get(part).getName());
             if (entities.get(part).isChecked()) {
                 tv01.setSelected(true);
@@ -97,6 +105,7 @@ public class ServiceNormalHolder extends RecyclerView.ViewHolder implements View
             tv01.setVisibility(View.INVISIBLE);
         }
         if (part + 1 < entities.size()) {
+            tv02.setVisibility(View.VISIBLE);
             tv02.setText(entities.get(part + 1).getName());
             if (entities.get(part + 1).isChecked()) {
                 tv02.setSelected(true);
@@ -109,6 +118,7 @@ public class ServiceNormalHolder extends RecyclerView.ViewHolder implements View
             tv02.setVisibility(View.INVISIBLE);
         }
         if (part + 2 < entities.size()) {
+            tv03.setVisibility(View.VISIBLE);
             tv03.setText(entities.get(part + 2).getName());
             if (entities.get(part + 2).isChecked()) {
                 tv03.setSelected(true);
@@ -121,6 +131,7 @@ public class ServiceNormalHolder extends RecyclerView.ViewHolder implements View
             tv03.setVisibility(View.INVISIBLE);
         }
         if (part + 3 < entities.size()) {
+            tv04.setVisibility(View.VISIBLE);
             tv04.setText(entities.get(part + 3).getName());
             if (entities.get(part + 3).isChecked()) {
                 tv04.setSelected(true);
@@ -135,7 +146,9 @@ public class ServiceNormalHolder extends RecyclerView.ViewHolder implements View
     }
 
     public void setServiceSortData(List<ServiceSortModel.DataEntity.ServiceSortTypeEntity> entities, int part) {
+        Log.i("setServiceSortData", "part = " + part);
         if (part < entities.size()) {
+            tv01.setVisibility(View.VISIBLE);
             tv01.setText(entities.get(part).getName());
             if (entities.get(part).isChecked()) {
                 tv01.setSelected(true);
@@ -148,6 +161,7 @@ public class ServiceNormalHolder extends RecyclerView.ViewHolder implements View
             tv01.setVisibility(View.INVISIBLE);
         }
         if (part + 1 < entities.size()) {
+            tv02.setVisibility(View.VISIBLE);
             tv02.setText(entities.get(part + 1).getName());
             if (entities.get(part + 1).isChecked()) {
                 tv02.setSelected(true);
@@ -160,6 +174,7 @@ public class ServiceNormalHolder extends RecyclerView.ViewHolder implements View
             tv02.setVisibility(View.INVISIBLE);
         }
         if (part + 2 < entities.size()) {
+            tv03.setVisibility(View.VISIBLE);
             tv03.setText(entities.get(part + 2).getName());
             if (entities.get(part + 2).isChecked()) {
                 tv03.setSelected(true);
@@ -172,6 +187,63 @@ public class ServiceNormalHolder extends RecyclerView.ViewHolder implements View
             tv03.setVisibility(View.INVISIBLE);
         }
         if (part + 3 < entities.size()) {
+            tv04.setVisibility(View.VISIBLE);
+            tv04.setText(entities.get(part + 3).getName());
+            if (entities.get(part + 3).isChecked()) {
+                tv04.setSelected(true);
+            } else {
+                tv04.setSelected(false);
+            }
+            tv04.setTag(entities.get(part + 3));
+            tv04.setOnClickListener(this);
+        } else {
+            tv04.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    public void setServiceStatusData(List<ServiceSortModel.DataEntity.ServiceStatusEntity> entities, int part) {
+        Log.i("setServiceStatusData", "part = " + part);
+        if (part < entities.size()) {
+            tv01.setVisibility(View.VISIBLE);
+            tv01.setText(entities.get(part).getName());
+            if (entities.get(part).isChecked()) {
+                tv01.setSelected(true);
+            } else {
+                tv01.setSelected(false);
+            }
+            tv01.setTag(entities.get(part));
+            tv01.setOnClickListener(this);
+        } else {
+            tv01.setVisibility(View.INVISIBLE);
+        }
+        if (part + 1 < entities.size()) {
+            tv02.setVisibility(View.VISIBLE);
+            tv02.setText(entities.get(part + 1).getName());
+            if (entities.get(part + 1).isChecked()) {
+                tv02.setSelected(true);
+            } else {
+                tv02.setSelected(false);
+            }
+            tv02.setTag(entities.get(part + 1));
+            tv02.setOnClickListener(this);
+        } else {
+            tv02.setVisibility(View.INVISIBLE);
+        }
+        if (part + 2 < entities.size()) {
+            tv03.setVisibility(View.VISIBLE);
+            tv03.setText(entities.get(part + 2).getName());
+            if (entities.get(part + 2).isChecked()) {
+                tv03.setSelected(true);
+            } else {
+                tv03.setSelected(false);
+            }
+            tv03.setTag(entities.get(part + 2));
+            tv03.setOnClickListener(this);
+        } else {
+            tv03.setVisibility(View.INVISIBLE);
+        }
+        if (part + 3 < entities.size()) {
+            tv04.setVisibility(View.VISIBLE);
             tv04.setText(entities.get(part + 3).getName());
             if (entities.get(part + 3).isChecked()) {
                 tv04.setSelected(true);
@@ -205,6 +277,7 @@ public class ServiceNormalHolder extends RecyclerView.ViewHolder implements View
 
     public void changeChecked(View view) {
         if (view.getTag() instanceof ServiceSortModel.DataEntity.ServiceCategroyEntity) {
+            Log.i("check", "ServiceCategroyEntity");
             for (ServiceSortModel.DataEntity.ServiceCategroyEntity entity : model.getData().getServiceCategroy()) {
                 entity.setChecked(false);
             }
@@ -212,6 +285,7 @@ public class ServiceNormalHolder extends RecyclerView.ViewHolder implements View
             adapter.notifyDataSetChanged();
         }
         if (view.getTag() instanceof ServiceSortModel.DataEntity.ServicesEntity) {
+            Log.i("check", "ServicesEntity");
             for (ServiceSortModel.DataEntity.ServicesEntity entity : model.getData().getServices()) {
                 entity.setChecked(false);
             }
@@ -219,12 +293,22 @@ public class ServiceNormalHolder extends RecyclerView.ViewHolder implements View
             adapter.notifyDataSetChanged();
         }
         if (view.getTag() instanceof ServiceSortModel.DataEntity.ServiceSortTypeEntity) {
+            Log.i("check", "ServiceSortTypeEntity");
             for (ServiceSortModel.DataEntity.ServiceSortTypeEntity entity : model.getData().getServiceSortType()) {
                 entity.setChecked(false);
             }
             ((ServiceSortModel.DataEntity.ServiceSortTypeEntity) (view.getTag())).setChecked(true);
             adapter.notifyDataSetChanged();
         }
+        if (view.getTag() instanceof ServiceSortModel.DataEntity.ServiceStatusEntity) {
+            Log.i("check", "ServiceStatusEntity");
+            for (ServiceSortModel.DataEntity.ServiceStatusEntity entity : model.getData().getServiceStatus()) {
+                entity.setChecked(false);
+            }
+            ((ServiceSortModel.DataEntity.ServiceStatusEntity) (view.getTag())).setChecked(true);
+            adapter.notifyDataSetChanged();
+        }
+
     }
 }
 

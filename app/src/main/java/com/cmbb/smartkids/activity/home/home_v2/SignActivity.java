@@ -2,6 +2,7 @@ package com.cmbb.smartkids.activity.home.home_v2;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -11,10 +12,14 @@ import android.webkit.WebChromeClient;
 import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.activity.community.CommunityDetailActivity;
 import com.cmbb.smartkids.activity.home.model.ADSignModel;
+import com.cmbb.smartkids.activity.login.LoginActivity;
 import com.cmbb.smartkids.activity.serve.v2.ServerDetailActivityV2;
 import com.cmbb.smartkids.base.BaseActivity;
 import com.cmbb.smartkids.base.BaseApplication;
 import com.cmbb.smartkids.base.Constants;
+import com.cmbb.smartkids.db.DBHelper;
+import com.cmbb.smartkids.utils.SPCache;
+import com.cmbb.smartkids.utils.TDevice;
 import com.cmbb.smartkids.utils.log.Log;
 import com.cmbb.smartkids.widget.jsbridge.BridgeHandler;
 import com.cmbb.smartkids.widget.jsbridge.BridgeWebView;
@@ -53,6 +58,31 @@ public class SignActivity extends BaseActivity {
             public void openFileChooser(ValueCallback<Uri> uploadMsg) {
 
             }
+        });
+
+        //重新登陆
+        webView.registerHandler("loginAgain", new BridgeHandler() {
+            @Override
+            public void handler(String data, CallBackFunction function) {
+                try {
+                    boolean flag = BaseApplication.mPushAgent.removeAlias(SPCache.getString(Constants.USER_ID, "") + "_" + TDevice.getDeviceId(BaseApplication.getContext()), "service");
+                    Log.e("Alias", "Alias remove = " + flag);
+                    Log.e("Alias", "Alias remove id = " + SPCache.getString(Constants.USER_ID, ""));
+                    if (flag) {
+                        SPCache.clear();
+                        DBHelper dbHelper = new DBHelper(BaseApplication.getContext());
+                        SQLiteDatabase db = dbHelper.getWritableDatabase();
+                        dbHelper.delete(db);
+                    } else {
+
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                startActivity(new Intent(SignActivity.this, LoginActivity.class));
+                finish();
+            }
+
         });
 
         webView.loadUrl(Constants.H5.SMART_SIGN);//+ "?token=" + BaseApplication.token

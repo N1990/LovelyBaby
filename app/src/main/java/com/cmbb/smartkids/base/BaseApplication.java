@@ -1,6 +1,5 @@
 package com.cmbb.smartkids.base;
 
-import android.app.Application;
 import android.app.Notification;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -111,7 +110,7 @@ public class BaseApplication extends MultiDexApplication {
     }
 
     /**
-     * 友盟推送
+     * 初始化友盟推送
      */
     private void initPushAgent() {
         mPushAgent = PushAgent.getInstance(this);
@@ -131,7 +130,7 @@ public class BaseApplication extends MultiDexApplication {
                     @Override
                     public void run() {
                         // TODO Auto-generated method stub
-                        Log.e("MEIZU", "message = " + msg);
+                        Log.e("SmartKids", "message = " + msg);
                         UTrack.getInstance(getApplicationContext()).trackMsgClick(msg);
                         LocalBroadcastManager.getInstance(getContext()).sendBroadcast(new Intent(Constants.INTENT_ACTION_MESSAGE_RECEIVE));
                     }
@@ -169,7 +168,7 @@ public class BaseApplication extends MultiDexApplication {
             @Override
             public void dealWithCustomAction(Context context, UMessage msg) {
 //                Toast.makeText(context, "i click :" + msg.custom, Toast.LENGTH_LONG).show();
-                Log.e("MEIZU", "message1 = " + msg.custom);
+                Log.e("SmartKids", "message1 = " + msg.custom);
             }
         };
         mPushAgent.setNotificationClickHandler(notificationClickHandler);
@@ -177,7 +176,7 @@ public class BaseApplication extends MultiDexApplication {
 
 
     /**
-     * 设置用户别名
+     * 设置推送用户别名
      */
     private BroadcastReceiver pushAliasReceiver = new BroadcastReceiver() {
         @Override
@@ -200,6 +199,9 @@ public class BaseApplication extends MultiDexApplication {
         }
     };
 
+    /**
+     * 初始化资源服务器
+     */
     public void initAlibabaSDK() {
         AlibabaSDK.asyncInit(this, new InitResultCallback() {
             @Override
@@ -215,6 +217,11 @@ public class BaseApplication extends MultiDexApplication {
         });
     }
 
+    /**
+     * 获取Notification 图标
+     *
+     * @return Bitmap
+     */
     private Bitmap getAppIcon() {
         BitmapDrawable bitmapDrawable;
         Bitmap appIcon;

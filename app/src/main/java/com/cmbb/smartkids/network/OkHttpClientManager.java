@@ -113,7 +113,6 @@ public class OkHttpClientManager {
     }
 
 
-
     public GetDelegate getGetDelegate() {
         return mGetDelegate;
     }
@@ -1340,7 +1339,8 @@ public class OkHttpClientManager {
     private void loginAgain(String errInfo) {
         Toast.makeText(BaseApplication.getContext(), errInfo, Toast.LENGTH_LONG).show();
         Intent intent = new Intent("com.cmbb.smartkids.loginagain");
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         BaseApplication.getContext().startActivity(intent);
     }
 }

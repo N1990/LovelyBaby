@@ -183,7 +183,7 @@ public class HomeFragment extends BaseFragment {
         @Override
         public void onItemClick(View v, int position, Object object) {
             RankEredarModel itemData = (RankEredarModel) object;
-            int userId = itemData.getId();
+            int userId = itemData.getUserId();
             UserCenterActivity.newIntent(getActivity(), userId);
         }
     };

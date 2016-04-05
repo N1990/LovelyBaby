@@ -43,12 +43,11 @@ public class CustomListener {
     /**
      *
      */
-    public interface FragmentInterface{
+    public interface FragmentInterface {
         public void onDownPager(PullToRefreshBase<RecyclerView> refreshView);
 
         public void onUpPager(PullToRefreshBase<RecyclerView> refreshView);
 
         public void showKeyboard();
     }
-
 }

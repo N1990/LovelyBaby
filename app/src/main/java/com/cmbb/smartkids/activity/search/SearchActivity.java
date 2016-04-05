@@ -26,7 +26,9 @@ import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.activity.community.CommunityDetailActivity;
 import com.cmbb.smartkids.activity.community.model.TopicListModel;
 import com.cmbb.smartkids.activity.community.model.TopicTypeModel;
-import com.cmbb.smartkids.activity.serve.ActiveDetailActivity;
+import com.cmbb.smartkids.activity.home.home_v2.adapter.ServiceAdapter;
+import com.cmbb.smartkids.activity.serve.model.ServiceListModel;
+import com.cmbb.smartkids.activity.serve.v2.ServerDetailActivityV2;
 import com.cmbb.smartkids.activity.user.UserCenterActivity;
 import com.cmbb.smartkids.base.BaseActivity;
 import com.cmbb.smartkids.network.OkHttpClientManager;
@@ -48,7 +50,7 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
     private SmartRecyclerView srv_search;
     private SearchTopicAdapter adapter_topic;
     private SearchUserAdapter adapter_user;
-    private SearchServiceAdapter adapter_service;
+    private ServiceAdapter adapter_service;
     private SearchHotAdapter adapter_hot;
     private String search; //搜索文本
 
@@ -80,8 +82,6 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
         etSearch = (EditText) findViewById(R.id.et_search);
         tvSearch = (AppCompatTextView) findViewById(R.id.tv_search);
         btnSearch = (AppCompatTextView) findViewById(R.id.btn_search);
-
-
         srv_search = (SmartRecyclerView) findViewById(R.id.srv_search);
         adapter_topic = new SearchTopicAdapter(this);
         adapter_topic.setMore(R.layout.view_more, this);
@@ -91,7 +91,7 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
         adapter_user.setMore(R.layout.view_more, this);
         adapter_user.setNoMore(R.layout.view_nomore);
         adapter_user.setOnItemClickListener(this);
-        adapter_service = new SearchServiceAdapter(this);
+        adapter_service = new ServiceAdapter(this);
         adapter_service.setMore(R.layout.view_more, this);
         adapter_service.setNoMore(R.layout.view_nomore);
         adapter_service.setOnItemClickListener(this);
@@ -132,12 +132,9 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
             Intent intent = new Intent(SearchActivity.this, CommunityDetailActivity.class);
             intent.putExtra("id", id);
             startActivity(intent);
-        } else if (adapter instanceof SearchServiceAdapter) { //服务adapter监听事件
-            SearchServiceModel.DataEntity.RowsEntity item = (SearchServiceModel.DataEntity.RowsEntity) adapter_service.getItem(position);
-            int id = item.getId();
-            Intent intent = new Intent(SearchActivity.this, ActiveDetailActivity.class);
-            intent.putExtra("serviceId", id);
-            startActivity(intent);
+        } else if (adapter instanceof ServiceAdapter) { //服务adapter监听事件
+            ServiceListModel.DataEntity.RowsEntity item = adapter_service.getItem(position);
+            ServerDetailActivityV2.newIntent(this, item.getId());
         } else if (adapter instanceof SearchUserAdapter) { //用户adapter监听事件
             SearchUserModel.DataEntity.RowsEntity item = adapter_user.getItem(position);
             int id = item.getId();
@@ -149,7 +146,7 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
     public void onLoadMore() {
         switch (type) {
             case 0:
-                pager_topic++;
+                pager_service++;
                 handleSearchServiceRequest(pager_service, pagerSize, search, false);
                 break;
             case 1:
@@ -157,7 +154,7 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
                 handelSearchUserRequest(pager_user, pagerSize, search, false);
                 break;
             case 2:
-                pager_service++;
+                pager_topic++;
                 handleSearchTopic(pager_topic, pagerSize, search, false);
                 break;
         }
@@ -167,7 +164,7 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
     public void onRefresh() {
         switch (type) {
             case 0:
-                pager_topic = 0;
+                pager_service = 0;
                 handleSearchServiceRequest(pager_service, pagerSize, search, true);
                 break;
             case 1:
@@ -175,7 +172,7 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
                 handelSearchUserRequest(pager_user, pagerSize, search, true);
                 break;
             case 2:
-                pager_service = 0;
+                pager_topic = 0;
                 handleSearchTopic(pager_topic, pagerSize, search, true);
                 break;
         }
@@ -185,7 +182,6 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
     private TextView.OnEditorActionListener onEditorListener = new TextView.OnEditorActionListener() {
         @Override
         public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-            Log.i(TAG, "onEditorAction ----------- actionId:" + actionId);
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 // 先隐藏键盘
                 ((InputMethodManager) etSearch.getContext().getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(SearchActivity.this.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
@@ -203,17 +199,14 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
                     pager_topic = 0;
                     srv_search.setAdapter(adapter_service);
                     onRefresh();
-//                    handleSearchTopic(pager_topic, pagerSize, search, true);
                 } else if (type == 1) {
                     pager_user = 0;
                     srv_search.setAdapter(adapter_user);
                     onRefresh();
-//                    handelSearchUserRequest(pager_user, pagerSize, search, true);
                 } else if (type == 2) {
                     pager_service = 0;
                     srv_search.setAdapter(adapter_topic);
                     onRefresh();
-//                    handleSearchServiceRequest(pager_service, pagerSize, search, true);
                 }
                 return true;
             }
@@ -241,7 +234,6 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
                 if (type == 0) {
                     pager_topic = 0;
                     srv_search.setAdapter(adapter_service);
-                    //handleSearchTopic(pager_topic, pagerSize, search, true);
                     onRefresh();
                 } else if (type == 1) {
                     pager_user = 0;
@@ -266,7 +258,6 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
     private AdapterView.OnItemSelectedListener itemSelectedListener = new AdapterView.OnItemSelectedListener() {
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-            Log.e(TAG, "i come here" + position);
             etSearch.setText("");
             adapter_topic.clear();
             adapter_user.clear();
@@ -297,7 +288,6 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
         @Override
         public void afterTextChanged(Editable s) {
             if (type == 2 && TextUtils.isEmpty(s.toString())) {
-                Log.e("watcher", "watcher = " + type);
                 srv_search.setLayoutManager(new GridLayoutManager(SearchActivity.this, 3));
                 srv_search.setAdapter(adapter_hot);
             }
@@ -339,7 +329,6 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
                     adapter_hot.addAll(response.getData());
                     srv_search.setAdapter(adapter_hot);// 默认Adapter
                 }
-//                showShortToast(response.getMsg());
             }
         });
     }
@@ -407,7 +396,7 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
      * @param text
      */
     private void handleSearchServiceRequest(int pager, int pagerSize, String text, final boolean clear) {
-        SearchServiceModel.getSearchServiceRequest(text, pager, pagerSize, new OkHttpClientManager.ResultCallback<SearchServiceModel>() {
+        ServiceListModel.getSearchServiceRequest(text, pager, pagerSize, new OkHttpClientManager.ResultCallback<ServiceListModel>() {
             @Override
             public void onError(Request request, Exception e) {
                 hideWaitDialog();
@@ -415,7 +404,7 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
             }
 
             @Override
-            public void onResponse(SearchServiceModel response) {
+            public void onResponse(ServiceListModel response) {
                 hideWaitDialog();
                 if (response != null) {
                     if (clear)

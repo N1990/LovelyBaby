@@ -50,7 +50,8 @@ public class HomeServiceActivity extends BaseHomeActivity implements View.OnClic
     private String serviceWay = "";
     private String serviceCity = "";
     private String serviceCategroy = "";
-    private String serviceSortType = "high_price";
+    private String serviceStatus = "";
+    private String serviceSortType = "";
 
     protected SmartRecyclerView mSmartRecyclerView;
     protected ServiceAdapter adapter;
@@ -135,7 +136,7 @@ public class HomeServiceActivity extends BaseHomeActivity implements View.OnClic
     @Override
     public void onLoadMore() {
         pager++;
-        ServiceListModel.getServiceListRequest(serviceWay, serviceCity, serviceCategroy, serviceSortType, pager, pagerSize, new OkHttpClientManager.ResultCallback<ServiceListModel>() {
+        ServiceListModel.getServiceListRequest(serviceWay, serviceCity, serviceCategroy, serviceSortType, serviceStatus, pager, pagerSize, new OkHttpClientManager.ResultCallback<ServiceListModel>() {
             @Override
             public void onError(Request request, Exception e) {
                 showShortToast(e.toString());
@@ -153,7 +154,7 @@ public class HomeServiceActivity extends BaseHomeActivity implements View.OnClic
     @Override
     public void onRefresh() {
         pager = 0;
-        ServiceListModel.getServiceListRequest(serviceWay, serviceCity, serviceCategroy, serviceSortType, pager, pagerSize, new OkHttpClientManager.ResultCallback<ServiceListModel>() {
+        ServiceListModel.getServiceListRequest(serviceWay, serviceCity, serviceCategroy, serviceSortType, serviceStatus, pager, pagerSize, new OkHttpClientManager.ResultCallback<ServiceListModel>() {
             @Override
             public void onError(Request request, Exception e) {
                 showShortToast(e.toString());
@@ -215,12 +216,18 @@ public class HomeServiceActivity extends BaseHomeActivity implements View.OnClic
             if (!TextUtils.isEmpty(confirmModel.getSortType())) {
                 serviceSortType = confirmModel.getSortType();
             } else {
-                serviceSortType = "high_price";
+                serviceSortType = "";
             }
             if (!TextUtils.isEmpty(confirmModel.getType())) {
                 serviceWay = confirmModel.getType();
             } else {
                 serviceWay = "";
+            }
+
+            if (!TextUtils.isEmpty(confirmModel.getStatus())) {
+                serviceStatus = confirmModel.getStatus();
+            } else {
+                serviceStatus = "";
             }
             isPopuSmartFlagConfirm = true;
             mSmartPopupWindow.dismiss();
@@ -281,11 +288,23 @@ public class HomeServiceActivity extends BaseHomeActivity implements View.OnClic
             }
         }
 
-        for (ServiceSortModel.DataEntity.ServiceSortTypeEntity entity : serviceSortModel.getData().getServiceSortType()) {
-            if (entity.getValue().equals(serviceSortType)) {
-                entity.setChecked(true);
-            } else {
-                entity.setChecked(false);
+        if (!TextUtils.isEmpty(serviceStatus)) {
+            for (ServiceSortModel.DataEntity.ServiceStatusEntity entity : serviceSortModel.getData().getServiceStatus()) {
+                if (entity.getValue().equals(serviceStatus)) {
+                    entity.setChecked(true);
+                } else {
+                    entity.setChecked(false);
+                }
+            }
+        }
+
+        if (!TextUtils.isEmpty(serviceSortType)) {
+            for (ServiceSortModel.DataEntity.ServiceSortTypeEntity entity : serviceSortModel.getData().getServiceSortType()) {
+                if (entity.getValue().equals(serviceSortType)) {
+                    entity.setChecked(true);
+                } else {
+                    entity.setChecked(false);
+                }
             }
         }
         popuDictAdapter.notifyDataSetChanged();//更新界面

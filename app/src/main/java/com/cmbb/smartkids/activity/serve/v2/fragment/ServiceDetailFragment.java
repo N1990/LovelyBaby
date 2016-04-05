@@ -194,7 +194,7 @@ public class ServiceDetailFragment extends BaseFragment {
                 public void handler(String data, CallBackFunction function) {
                     if (!TextUtils.isEmpty(data)) {
                         RankEredarModel rankEredarModel = new Gson().fromJson(data, RankEredarModel.class);
-                        UserCenterActivity.newIntent(getActivity(), rankEredarModel.getId());
+                        UserCenterActivity.newIntent(getActivity(), rankEredarModel.getUserId());
                     }
                 }
             });
@@ -208,6 +208,15 @@ public class ServiceDetailFragment extends BaseFragment {
                         if (isAdded())
                             initPopup(h5ServiceDetailModel);
                         tvReserve.setVisibility(View.VISIBLE);
+                        if (h5ServiceDetailModel.getStatus() != 3) {
+                            tvReserve.setBackgroundResource(R.drawable.btn_buy_selector);
+                            tvReserve.setEnabled(true);
+                            tvReserve.setClickable(true);
+                        } else {
+                            tvReserve.setBackgroundResource(R.drawable.shape_gray_background_no_corner);
+                            tvReserve.setEnabled(false);
+                            tvReserve.setClickable(false);
+                        }
                         ShareUtils.setShareContent(h5ServiceDetailModel.getTitle(), h5ServiceDetailModel.getContent(), Constants.Share.getServerShareUrl(h5ServiceDetailModel.getId()), h5ServiceDetailModel.getServicesImg());
                     }
                 }
@@ -316,7 +325,6 @@ public class ServiceDetailFragment extends BaseFragment {
                     }
                 } else {
                     showShortToast("请选择种类");
-
                 }
             }
         });

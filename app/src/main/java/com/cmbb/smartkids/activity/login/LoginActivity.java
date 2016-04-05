@@ -1,6 +1,7 @@
 package com.cmbb.smartkids.activity.login;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -290,5 +291,10 @@ public class LoginActivity extends BaseActivity {
         if (ssoHandler != null) {
             ssoHandler.authorizeCallBack(requestCode, resultCode, data);
         }
+    }
+
+    public static void newIntent(Context context) {
+        Intent intent = new Intent(context, LoginActivity.class);
+        context.startActivity(intent);
     }
 }

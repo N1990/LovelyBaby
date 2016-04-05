@@ -31,7 +31,7 @@ public class WaitDialog extends Dialog {
     }
 
     public void setMessage(String message) {
-        if (this != null) {
+        if (tvMessage != null) {
             tvMessage.setText(message);
         }
     }

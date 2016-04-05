@@ -74,7 +74,6 @@ public class HomeMeActivity extends BaseHomeActivity implements View.OnClickList
     private LinearLayout myOrder, myAccept, myGold, myCommunity, myPopman, myBabyDiary, myUID, myDrafts, myCollection, myCare, myPerssion;
     private ProgressBar pb;
     private RatingBar rb;
-
     private UserCenterModel.DataEntity userInfoEntity;
 
 
@@ -84,7 +83,6 @@ public class HomeMeActivity extends BaseHomeActivity implements View.OnClickList
         initView();
         initData();
     }
-
 
     private void initData() {
         showWaitDialog();
@@ -151,7 +149,6 @@ public class HomeMeActivity extends BaseHomeActivity implements View.OnClickList
         findViewById(R.id.tv_home_self_gold).setOnClickListener(this);
     }
 
-
     @Override
     protected int getLayoutId() {
         return R.layout.activity_me_v2;
@@ -177,6 +174,7 @@ public class HomeMeActivity extends BaseHomeActivity implements View.OnClickList
     public void onResume() {
         super.onResume();
         tvMe.setSelected(true);
+        hideWaitDialog();
         LocalBroadcastManager.getInstance(this).registerReceiver(messageReceiveTagReceiver, new IntentFilter(Constants.INTENT_ACTION_MESSAGE_RECEIVE));
         LocalBroadcastManager.getInstance(this).registerReceiver(messageCancelTagReceiver, new IntentFilter(Constants.INTENT_ACTION_MESSAGE_CANCEL));
     }

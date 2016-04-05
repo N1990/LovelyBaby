@@ -3,6 +3,8 @@ package com.cmbb.smartkids.activity.home.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.List;
+
 /**
  * 项目名称：LovelyBaby
  * 类描述：
@@ -11,22 +13,23 @@ import android.os.Parcelable;
  */
 public class RankEredarModel implements Parcelable {
 
-
     private int userId;
+    private int uid;
+    private int recommoned;
     private String userNike;
     private String userSex;
+    private String userBirthday;
+    private String backgroundImg;
     private String userBigImg;
     private String userBigWidth;
     private String userBigHeight;
     private String userSmallImg;
-    private String userSmallWidth;
-    private String userSmallHeight;
+    private int userSmallWidth;
+    private int userSmallHeight;
     private int loginAccountType;
     private String loginTime;
     private String loginAccount;
-    private String loginPassword;
-    private String loginAccessToken;
-    private String loginToken;
+    private String token;
     private int isShutup;
     private String shutupTime;
     private int isBanned;
@@ -34,31 +37,52 @@ public class RankEredarModel implements Parcelable {
     private String userPhone;
     private String userPhoneVersion;
     private int province;
+    private String provinceText;
     private int district;
-    private String city;
+    private String districtText;
+    private int city;
+    private String cityText;
     private int userLevel;
     private String userPresentation;
-    private int isRecommoned;
-    private String createDate;
-    private String createUserId;
-    private String updateDate;
-    private String updateUserId;
-    private String uid;
+    private int backImgWidth;
+    private int backImgHeight;
+    private int goldCount;
+    private int growthCount;
+    private int fans;
+    private int attentionCount;
+    private int isSign;
+    private int isAttention;
+    private int isEredar;
+    private int isLoginUser;
+    /**
+     * eredarCode : 109
+     * eredarName : 艺术教育达人
+     */
 
-    public String getUid() {
-        return uid;
-    }
+    private List<UserRoleEntity> userRole;
 
-    public void setUid(String uid) {
-        this.uid = uid;
-    }
-
-    public int getId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setId(int id) {
-        this.userId = id;
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public int getUid() {
+        return uid;
+    }
+
+    public void setUid(int uid) {
+        this.uid = uid;
+    }
+
+    public int getRecommoned() {
+        return recommoned;
+    }
+
+    public void setRecommoned(int recommoned) {
+        this.recommoned = recommoned;
     }
 
     public String getUserNike() {
@@ -75,6 +99,22 @@ public class RankEredarModel implements Parcelable {
 
     public void setUserSex(String userSex) {
         this.userSex = userSex;
+    }
+
+    public String getUserBirthday() {
+        return userBirthday;
+    }
+
+    public void setUserBirthday(String userBirthday) {
+        this.userBirthday = userBirthday;
+    }
+
+    public String getBackgroundImg() {
+        return backgroundImg;
+    }
+
+    public void setBackgroundImg(String backgroundImg) {
+        this.backgroundImg = backgroundImg;
     }
 
     public String getUserBigImg() {
@@ -109,19 +149,19 @@ public class RankEredarModel implements Parcelable {
         this.userSmallImg = userSmallImg;
     }
 
-    public String getUserSmallWidth() {
+    public int getUserSmallWidth() {
         return userSmallWidth;
     }
 
-    public void setUserSmallWidth(String userSmallWidth) {
+    public void setUserSmallWidth(int userSmallWidth) {
         this.userSmallWidth = userSmallWidth;
     }
 
-    public String getUserSmallHeight() {
+    public int getUserSmallHeight() {
         return userSmallHeight;
     }
 
-    public void setUserSmallHeight(String userSmallHeight) {
+    public void setUserSmallHeight(int userSmallHeight) {
         this.userSmallHeight = userSmallHeight;
     }
 
@@ -149,28 +189,12 @@ public class RankEredarModel implements Parcelable {
         this.loginAccount = loginAccount;
     }
 
-    public String getLoginPassword() {
-        return loginPassword;
+    public String getToken() {
+        return token;
     }
 
-    public void setLoginPassword(String loginPassword) {
-        this.loginPassword = loginPassword;
-    }
-
-    public String getLoginAccessToken() {
-        return loginAccessToken;
-    }
-
-    public void setLoginAccessToken(String loginAccessToken) {
-        this.loginAccessToken = loginAccessToken;
-    }
-
-    public String getLoginToken() {
-        return loginToken;
-    }
-
-    public void setLoginToken(String loginToken) {
-        this.loginToken = loginToken;
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public int getIsShutup() {
@@ -229,6 +253,14 @@ public class RankEredarModel implements Parcelable {
         this.province = province;
     }
 
+    public String getProvinceText() {
+        return provinceText;
+    }
+
+    public void setProvinceText(String provinceText) {
+        this.provinceText = provinceText;
+    }
+
     public int getDistrict() {
         return district;
     }
@@ -237,12 +269,28 @@ public class RankEredarModel implements Parcelable {
         this.district = district;
     }
 
-    public String getCity() {
+    public String getDistrictText() {
+        return districtText;
+    }
+
+    public void setDistrictText(String districtText) {
+        this.districtText = districtText;
+    }
+
+    public int getCity() {
         return city;
     }
 
-    public void setCity(String city) {
+    public void setCity(int city) {
         this.city = city;
+    }
+
+    public String getCityText() {
+        return cityText;
+    }
+
+    public void setCityText(String cityText) {
+        this.cityText = cityText;
     }
 
     public int getUserLevel() {
@@ -261,44 +309,145 @@ public class RankEredarModel implements Parcelable {
         this.userPresentation = userPresentation;
     }
 
-    public int getIsRecommoned() {
-        return isRecommoned;
+    public int getBackImgWidth() {
+        return backImgWidth;
     }
 
-    public void setIsRecommoned(int isRecommoned) {
-        this.isRecommoned = isRecommoned;
+    public void setBackImgWidth(int backImgWidth) {
+        this.backImgWidth = backImgWidth;
     }
 
-    public String getCreateDate() {
-        return createDate;
+    public int getBackImgHeight() {
+        return backImgHeight;
     }
 
-    public void setCreateDate(String createDate) {
-        this.createDate = createDate;
+    public void setBackImgHeight(int backImgHeight) {
+        this.backImgHeight = backImgHeight;
     }
 
-    public String getCreateUserId() {
-        return createUserId;
+    public int getGoldCount() {
+        return goldCount;
     }
 
-    public void setCreateUserId(String createUserId) {
-        this.createUserId = createUserId;
+    public void setGoldCount(int goldCount) {
+        this.goldCount = goldCount;
     }
 
-    public String getUpdateDate() {
-        return updateDate;
+    public int getGrowthCount() {
+        return growthCount;
     }
 
-    public void setUpdateDate(String updateDate) {
-        this.updateDate = updateDate;
+    public void setGrowthCount(int growthCount) {
+        this.growthCount = growthCount;
     }
 
-    public String getUpdateUserId() {
-        return updateUserId;
+    public int getFans() {
+        return fans;
     }
 
-    public void setUpdateUserId(String updateUserId) {
-        this.updateUserId = updateUserId;
+    public void setFans(int fans) {
+        this.fans = fans;
+    }
+
+    public int getAttentionCount() {
+        return attentionCount;
+    }
+
+    public void setAttentionCount(int attentionCount) {
+        this.attentionCount = attentionCount;
+    }
+
+    public int getIsSign() {
+        return isSign;
+    }
+
+    public void setIsSign(int isSign) {
+        this.isSign = isSign;
+    }
+
+    public int getIsAttention() {
+        return isAttention;
+    }
+
+    public void setIsAttention(int isAttention) {
+        this.isAttention = isAttention;
+    }
+
+    public int getIsEredar() {
+        return isEredar;
+    }
+
+    public void setIsEredar(int isEredar) {
+        this.isEredar = isEredar;
+    }
+
+    public int getIsLoginUser() {
+        return isLoginUser;
+    }
+
+    public void setIsLoginUser(int isLoginUser) {
+        this.isLoginUser = isLoginUser;
+    }
+
+    public List<UserRoleEntity> getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(List<UserRoleEntity> userRole) {
+        this.userRole = userRole;
+    }
+
+    public static class UserRoleEntity implements Parcelable {
+        private int eredarCode;
+        private String eredarName;
+
+        public int getEredarCode() {
+            return eredarCode;
+        }
+
+        public void setEredarCode(int eredarCode) {
+            this.eredarCode = eredarCode;
+        }
+
+        public String getEredarName() {
+            return eredarName;
+        }
+
+        public void setEredarName(String eredarName) {
+            this.eredarName = eredarName;
+        }
+
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeInt(this.eredarCode);
+            dest.writeString(this.eredarName);
+        }
+
+        public UserRoleEntity() {
+        }
+
+        protected UserRoleEntity(Parcel in) {
+            this.eredarCode = in.readInt();
+            this.eredarName = in.readString();
+        }
+
+        public static final Parcelable.Creator<UserRoleEntity> CREATOR = new Parcelable.Creator<UserRoleEntity>() {
+            @Override
+            public UserRoleEntity createFromParcel(Parcel source) {
+                return new UserRoleEntity(source);
+            }
+
+            @Override
+            public UserRoleEntity[] newArray(int size) {
+                return new UserRoleEntity[size];
+            }
+        };
     }
 
 
@@ -310,21 +459,22 @@ public class RankEredarModel implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(this.userId);
+        dest.writeInt(this.uid);
+        dest.writeInt(this.recommoned);
         dest.writeString(this.userNike);
-        dest.writeString(this.uid);
         dest.writeString(this.userSex);
+        dest.writeString(this.userBirthday);
+        dest.writeString(this.backgroundImg);
         dest.writeString(this.userBigImg);
         dest.writeString(this.userBigWidth);
         dest.writeString(this.userBigHeight);
         dest.writeString(this.userSmallImg);
-        dest.writeString(this.userSmallWidth);
-        dest.writeString(this.userSmallHeight);
+        dest.writeInt(this.userSmallWidth);
+        dest.writeInt(this.userSmallHeight);
         dest.writeInt(this.loginAccountType);
         dest.writeString(this.loginTime);
         dest.writeString(this.loginAccount);
-        dest.writeString(this.loginPassword);
-        dest.writeString(this.loginAccessToken);
-        dest.writeString(this.loginToken);
+        dest.writeString(this.token);
         dest.writeInt(this.isShutup);
         dest.writeString(this.shutupTime);
         dest.writeInt(this.isBanned);
@@ -332,15 +482,24 @@ public class RankEredarModel implements Parcelable {
         dest.writeString(this.userPhone);
         dest.writeString(this.userPhoneVersion);
         dest.writeInt(this.province);
+        dest.writeString(this.provinceText);
         dest.writeInt(this.district);
-        dest.writeString(this.city);
+        dest.writeString(this.districtText);
+        dest.writeInt(this.city);
+        dest.writeString(this.cityText);
         dest.writeInt(this.userLevel);
         dest.writeString(this.userPresentation);
-        dest.writeInt(this.isRecommoned);
-        dest.writeString(this.createDate);
-        dest.writeString(this.createUserId);
-        dest.writeString(this.updateDate);
-        dest.writeString(this.updateUserId);
+        dest.writeInt(this.backImgWidth);
+        dest.writeInt(this.backImgHeight);
+        dest.writeInt(this.goldCount);
+        dest.writeInt(this.growthCount);
+        dest.writeInt(this.fans);
+        dest.writeInt(this.attentionCount);
+        dest.writeInt(this.isSign);
+        dest.writeInt(this.isAttention);
+        dest.writeInt(this.isEredar);
+        dest.writeInt(this.isLoginUser);
+        dest.writeTypedList(userRole);
     }
 
     public RankEredarModel() {
@@ -348,21 +507,22 @@ public class RankEredarModel implements Parcelable {
 
     protected RankEredarModel(Parcel in) {
         this.userId = in.readInt();
+        this.uid = in.readInt();
+        this.recommoned = in.readInt();
         this.userNike = in.readString();
-        this.uid = in.readString();
         this.userSex = in.readString();
+        this.userBirthday = in.readString();
+        this.backgroundImg = in.readString();
         this.userBigImg = in.readString();
         this.userBigWidth = in.readString();
         this.userBigHeight = in.readString();
         this.userSmallImg = in.readString();
-        this.userSmallWidth = in.readString();
-        this.userSmallHeight = in.readString();
+        this.userSmallWidth = in.readInt();
+        this.userSmallHeight = in.readInt();
         this.loginAccountType = in.readInt();
         this.loginTime = in.readString();
         this.loginAccount = in.readString();
-        this.loginPassword = in.readString();
-        this.loginAccessToken = in.readString();
-        this.loginToken = in.readString();
+        this.token = in.readString();
         this.isShutup = in.readInt();
         this.shutupTime = in.readString();
         this.isBanned = in.readInt();
@@ -370,61 +530,35 @@ public class RankEredarModel implements Parcelable {
         this.userPhone = in.readString();
         this.userPhoneVersion = in.readString();
         this.province = in.readInt();
+        this.provinceText = in.readString();
         this.district = in.readInt();
-        this.city = in.readString();
+        this.districtText = in.readString();
+        this.city = in.readInt();
+        this.cityText = in.readString();
         this.userLevel = in.readInt();
         this.userPresentation = in.readString();
-        this.isRecommoned = in.readInt();
-        this.createDate = in.readString();
-        this.createUserId = in.readString();
-        this.updateDate = in.readString();
-        this.updateUserId = in.readString();
+        this.backImgWidth = in.readInt();
+        this.backImgHeight = in.readInt();
+        this.goldCount = in.readInt();
+        this.growthCount = in.readInt();
+        this.fans = in.readInt();
+        this.attentionCount = in.readInt();
+        this.isSign = in.readInt();
+        this.isAttention = in.readInt();
+        this.isEredar = in.readInt();
+        this.isLoginUser = in.readInt();
+        this.userRole = in.createTypedArrayList(UserRoleEntity.CREATOR);
     }
 
     public static final Parcelable.Creator<RankEredarModel> CREATOR = new Parcelable.Creator<RankEredarModel>() {
+        @Override
         public RankEredarModel createFromParcel(Parcel source) {
             return new RankEredarModel(source);
         }
 
+        @Override
         public RankEredarModel[] newArray(int size) {
             return new RankEredarModel[size];
         }
     };
-
-    @Override
-    public String toString() {
-        return "RankEredarModel{" +
-                "id=" + userId +
-                ", userNike='" + userNike + '\'' +
-                ", userSex='" + userSex + '\'' +
-                ", userBigImg='" + userBigImg + '\'' +
-                ", userBigWidth='" + userBigWidth + '\'' +
-                ", userBigHeight='" + userBigHeight + '\'' +
-                ", userSmallImg='" + userSmallImg + '\'' +
-                ", userSmallWidth='" + userSmallWidth + '\'' +
-                ", userSmallHeight='" + userSmallHeight + '\'' +
-                ", loginAccountType=" + loginAccountType +
-                ", loginTime='" + loginTime + '\'' +
-                ", loginAccount='" + loginAccount + '\'' +
-                ", loginPassword='" + loginPassword + '\'' +
-                ", loginAccessToken='" + loginAccessToken + '\'' +
-                ", loginToken='" + loginToken + '\'' +
-                ", isShutup=" + isShutup +
-                ", shutupTime='" + shutupTime + '\'' +
-                ", isBanned=" + isBanned +
-                ", userAddress='" + userAddress + '\'' +
-                ", userPhone='" + userPhone + '\'' +
-                ", userPhoneVersion='" + userPhoneVersion + '\'' +
-                ", province=" + province +
-                ", district=" + district +
-                ", city='" + city + '\'' +
-                ", userLevel=" + userLevel +
-                ", userPresentation='" + userPresentation + '\'' +
-                ", isRecommoned=" + isRecommoned +
-                ", createDate='" + createDate + '\'' +
-                ", createUserId='" + createUserId + '\'' +
-                ", updateDate='" + updateDate + '\'' +
-                ", updateUserId='" + updateUserId + '\'' +
-                '}';
-    }
 }

@@ -1,6 +1,5 @@
 package com.cmbb.smartkids.activity.user.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,18 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.cmbb.smartkids.R;
-import com.cmbb.smartkids.activity.serve.ActiveDetailActivity;
 import com.cmbb.smartkids.activity.serve.model.ServiceListModel;
+import com.cmbb.smartkids.activity.serve.v2.ServerDetailActivityV2;
 import com.cmbb.smartkids.activity.user.adapter.MyServiceAdapter;
 import com.cmbb.smartkids.base.BaseFragment;
 import com.cmbb.smartkids.network.OkHttpClientManager;
 import com.cmbb.smartkids.recyclerview.SmartRecyclerView;
 import com.cmbb.smartkids.recyclerview.adapter.RecyclerArrayAdapter;
-import com.cmbb.smartkids.utils.log.Log;
 import com.squareup.okhttp.Request;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 项目名称：LovelyBaby
@@ -76,9 +71,7 @@ public class ServiceFragment extends BaseFragment implements View.OnClickListene
     @Override
     public void onItemClick(int position) {
         ServiceListModel.DataEntity.RowsEntity item = adapter.getItem(position);
-        Intent intent = new Intent(getActivity(), ActiveDetailActivity.class);
-        intent.putExtra("serviceId", item.getId());
-        startActivity(intent);
+        ServerDetailActivityV2.newIntent(getActivity(), item.getId());
     }
 
     @Override

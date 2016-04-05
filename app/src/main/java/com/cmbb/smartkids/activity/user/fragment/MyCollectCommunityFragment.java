@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.cmbb.smartkids.R;
+import com.cmbb.smartkids.activity.community.CommunityDetailActivity;
 import com.cmbb.smartkids.activity.community.model.TopicListModel;
 import com.cmbb.smartkids.activity.user.adapter.MyCommunityAdapter;
 import com.cmbb.smartkids.base.BaseApplication;
@@ -94,7 +95,7 @@ public class MyCollectCommunityFragment extends BaseFragment implements View.OnC
 
     @Override
     public void onItemClick(int position) {
-
+        CommunityDetailActivity.newInstance(getActivity(), adapter.getItem(position).getId());
     }
 
     @Override

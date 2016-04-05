@@ -5,12 +5,12 @@
     android:layout_height="match_parent">
 
     <include layout="@layout/custom_actionbar" />
-    
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tl_main_actionbar"
-        android:layout_above="@+id/ll_pay_bottom">
+        android:layout_above="@+id/ll_pay_bottom"
+        android:layout_below="@+id/tl_main_actionbar">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -241,35 +241,64 @@
                     android:text="选择支付方式"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
-
-                <RadioGroup
-                    android:id="@+id/rg_pay"
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tv_pay_way_tag"
-                    android:layout_marginTop="@dimen/half_global_padding">
+                    android:orientation="horizontal">
 
-                    <RadioButton
-                        android:id="@+id/rb_pay_zfb"
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:drawableLeft="@mipmap/alipay_bg"
+                            android:drawablePadding="@dimen/global_padding"
+                            android:gravity="center"
+                            android:text="支付宝" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:drawableLeft="@mipmap/wx_bg"
+                            android:drawablePadding="@dimen/global_padding"
+                            android:gravity="center"
+
+                            android:text="微信" />
+
+                    </LinearLayout>
+
+
+                    <RadioGroup
+                        android:id="@+id/rg_pay"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:drawableLeft="@mipmap/alipay_bg"
-                        android:drawablePadding="@dimen/global_padding"
-                        android:checked="true"
-                        android:text="支付宝"/>
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="@dimen/half_global_padding"
+                        android:orientation="vertical">
 
-                    <RadioButton
-                        android:id="@+id/rb_pay_wx"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:drawableLeft="@mipmap/wx_bg"
-                        android:drawablePadding="@dimen/global_padding"
-                        android:text="微信"/>
+                        <RadioButton
+                            android:id="@+id/rb_pay_zfb"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:checked="true"
+                            android:gravity="center" />
 
-                </RadioGroup>
+                        <RadioButton
+                            android:id="@+id/rb_pay_wx"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp" />
 
+                    </RadioGroup>
+
+                </RelativeLayout>
 
 
                 <!--<LinearLayout
@@ -317,8 +346,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="horizontal"
-            >
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"

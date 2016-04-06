@@ -71,63 +71,80 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 tools:text="$198" />
+
         </RelativeLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_marginTop="@dimen/global_padding"
-            android:background="@drawable/shape_background_white_circle"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal">
+            android:layout_marginTop="@dimen/global_padding">
 
             <TextView
-                android:id="@+id/tv_edit_jian"
+                android:id="@+id/tv_store"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:paddingBottom="@dimen/global_padding"
-                android:paddingLeft="@dimen/activity_vertical_margin"
-                android:paddingRight="@dimen/activity_vertical_margin"
-                android:paddingTop="@dimen/global_padding"
-                android:text="-"
-                android:textColor="@color/primaryColor" />
+                android:layout_centerVertical="true"
+                android:lines="1"
+                android:textSize="@dimen/txt_micro"
+                tools:text="库存:" />
 
-            <TextView
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:background="@color/darkgray" />
-
-            <TextView
-                android:id="@+id/tv_edit_count"
+            <LinearLayout
+                android:id="@+id/ll_ar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:paddingBottom="@dimen/global_padding"
-                android:paddingLeft="@dimen/activity_vertical_margin"
-                android:paddingRight="@dimen/activity_vertical_margin"
-                android:paddingTop="@dimen/global_padding"
-                android:text="0" />
+                android:layout_alignParentRight="true"
+                android:background="@drawable/shape_background_white_circle"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:background="@color/darkgray" />
+                <TextView
+                    android:id="@+id/tv_edit_jian"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingBottom="@dimen/global_padding"
+                    android:paddingLeft="@dimen/activity_vertical_margin"
+                    android:paddingRight="@dimen/activity_vertical_margin"
+                    android:paddingTop="@dimen/global_padding"
+                    android:text="-"
+                    android:textColor="@color/primaryColor" />
 
-            <TextView
-                android:id="@+id/tv_edit_add"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:paddingBottom="@dimen/global_padding"
-                android:paddingLeft="@dimen/activity_vertical_margin"
-                android:paddingRight="@dimen/activity_vertical_margin"
-                android:paddingTop="@dimen/global_padding"
-                android:text="+"
-                android:textColor="@color/primaryColor" />
+                <TextView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/darkgray" />
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/tv_edit_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingBottom="@dimen/global_padding"
+                    android:paddingLeft="@dimen/activity_vertical_margin"
+                    android:paddingRight="@dimen/activity_vertical_margin"
+                    android:paddingTop="@dimen/global_padding"
+                    android:text="0" />
+
+                <TextView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/darkgray" />
+
+                <TextView
+                    android:id="@+id/tv_edit_add"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingBottom="@dimen/global_padding"
+                    android:paddingLeft="@dimen/activity_vertical_margin"
+                    android:paddingRight="@dimen/activity_vertical_margin"
+                    android:paddingTop="@dimen/global_padding"
+                    android:text="+"
+                    android:textColor="@color/primaryColor" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
 
     </LinearLayout>
 

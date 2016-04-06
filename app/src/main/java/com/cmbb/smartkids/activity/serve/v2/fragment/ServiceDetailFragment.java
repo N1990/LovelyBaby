@@ -60,6 +60,7 @@ public class ServiceDetailFragment extends BaseFragment {
     PopupWindow mEditPopupWindow;// 编辑的popup
     private RelativeLayout rlBg;
     private TextView tvType;
+    private TextView tvStore;
     private SmartRecyclerView editRecyclerView;
     private TextView tvEditTitle;
     private TextView tvEditPrice;
@@ -258,6 +259,7 @@ public class ServiceDetailFragment extends BaseFragment {
     private void initPopup(final H5ServiceDetailModel data) {
         View view = LayoutInflater.from(getActivity()).inflate(R.layout.popup_order_edit, null);
         tvType = (TextView) view.findViewById(R.id.tv_type);
+        tvStore = (TextView) view.findViewById(R.id.tv_store);
         editRecyclerView = (SmartRecyclerView) view.findViewById(R.id.edit_recyclerView);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 3);
         editRecyclerView.setLayoutManager(gridLayoutManager);
@@ -275,6 +277,7 @@ public class ServiceDetailFragment extends BaseFragment {
                 tvEditCount.setText(priceListEntity.getCount() + "");
                 tvEditPrice.setText("￥ " + priceListEntity.getPrice());
                 tvWholePrice.setText("￥ " + priceListEntity.getAll());
+                tvStore.setText("库存： " + priceListEntity.getBuyLimit());
                 popuGridAdapter.notifyDataSetChanged();
             }
         });

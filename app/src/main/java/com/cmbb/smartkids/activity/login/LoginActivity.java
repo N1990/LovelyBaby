@@ -46,6 +46,7 @@ public class LoginActivity extends BaseActivity {
     private LinearLayout llBottom;
     private UMSocialService mController;
     private SHARE_MEDIA media;
+    private String openId;
     private String uid;
     private String userName;
     private DBHelper dbHelper;  //临时逻辑
@@ -165,8 +166,11 @@ public class LoginActivity extends BaseActivity {
             body.put("loginAccount", phone);
             body.put("loginPassword", pwd);
         } else {
-            body.put("openId", uid);
-            Log.e("openId", "uid = " + uid);
+            body.put("openId", openId);
+            if (!TextUtils.isEmpty(uid))
+                body.put("unionid", uid);//添加uid
+            Log.i("openId", "openId = " + openId);
+            Log.i("uid", "uid = " + uid);
             body.put("userNike", userName);
         }
 
@@ -239,8 +243,11 @@ public class LoginActivity extends BaseActivity {
 
             @Override
             public void onComplete(Bundle bundle, SHARE_MEDIA share_media) {
-                if (bundle != null && !TextUtils.isEmpty(bundle.getString("uid"))) {
-                    uid = bundle.getString("uid");
+                if (bundle != null && !TextUtils.isEmpty(bundle.getString("openid"))) {
+                    openId = bundle.getString("openid");
+                    if (!TextUtils.isEmpty(bundle.getString("unionid"))) {
+                        uid = bundle.getString("unionid");
+                    }
                     Log.e("bundle", "bundle = " + bundle.toString());
                     mController.getPlatformInfo(LoginActivity.this, media, uMDataListener);
                 } else {
@@ -277,7 +284,7 @@ public class LoginActivity extends BaseActivity {
             } else if (media == SHARE_MEDIA.WEIXIN) {
                 userName = info.get("nickname").toString();
             }
-            SPCache.putString(Constants.SharePreference.OPEN_ID, uid);
+            SPCache.putString(Constants.SharePreference.OPEN_ID, openId);
             SPCache.putString(Constants.SharePreference.SCREEN_NAME, userName);
             handleLogin(null, null);
         }

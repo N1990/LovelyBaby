@@ -18,7 +18,6 @@ import android.widget.TextView;
 import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.activity.order.model.SubmitOrderModel;
 import com.cmbb.smartkids.activity.serve.v2.PopuGridAdapter;
-import com.cmbb.smartkids.activity.serve.v2.ServerDetailActivityV2;
 import com.cmbb.smartkids.activity.serve.v2.model.H5ServiceDetailModel;
 import com.cmbb.smartkids.activity.serve.v2.model.ReserveModel;
 import com.cmbb.smartkids.activity.user.DeliveryAddressListActivity;
@@ -63,8 +62,12 @@ public class ConfirmOrder extends BaseActivity {
     private TextView tvPhone;
     private TextView tvPhoneChange;
     private LinearLayout llContactAddress;
+    private LinearLayout llReceiverPhone;
+    private LinearLayout llReceiverAddress;
     private TextView tvAddressTag;
-    private TextView tvAdd;
+    private TextView tvReceiver;
+    private TextView tvReceiverPhone;
+    private TextView tvReceiverAddress;
     private TextView tvAddressManager;
     private TextView tvTotalPrice;
     private TextView tvWholePrice;
@@ -84,7 +87,7 @@ public class ConfirmOrder extends BaseActivity {
     PopuGridAdapter popuGridAdapter;
     H5ServiceDetailModel h5ServiceDetailModel;
     H5ServiceDetailModel.PriceListEntity priceListEntity;//选中的对象
-    ReserveModel.DataEntity reserveEntity;
+    ReserveModel reserveEntity;
     DeliveryAddressListModel.DataEntity.RowsEntity local;
     private String receiverName;
     private String receiverPhone;
@@ -99,26 +102,33 @@ public class ConfirmOrder extends BaseActivity {
         setTitle(getString(R.string.title_comfire_order));
         initView();
         initPopup(h5ServiceDetailModel.getPriceList());
-        FrescoTool.loadImage(sdPic, reserveEntity.getServiceInfo().getServicesImg(), 1.67f);
-        tvTitle.setText(reserveEntity.getServiceInfo().getTitle());
-        tvAddress.setText(reserveEntity.getServiceInfo().getCityText());
-        tvPrice.setText("RMB " + reserveEntity.getServicePrice());
-        tvCount.setText("x" + reserveEntity.getBuyCount());
-        tvTotalPrice.setText(reserveEntity.getPrice() + "");
-        tvNick.setText(reserveEntity.getUserNike());
-        String phone = reserveEntity.getPhone();
+        FrescoTool.loadImage(sdPic, reserveEntity.getData().getServiceInfo().getServicesImg(), 1.67f);
+        tvTitle.setText(reserveEntity.getData().getServiceInfo().getTitle());
+        tvAddress.setText(reserveEntity.getData().getServiceInfo().getCityText());
+        tvPrice.setText("￥ " + reserveEntity.getData().getServicePrice());
+        tvCount.setText("x " + reserveEntity.getData().getBuyCount());
+        tvTotalPrice.setText(reserveEntity.getData().getPrice() + "");
+        tvNick.setText(reserveEntity.getData().getUserNike());
+        String phone = reserveEntity.getData().getPhone();
         if (!TextUtils.isEmpty(phone))
             tvPhone.setText(phone);
-        if(!TextUtils.isEmpty(reserveEntity.getAddress())){
+        if (!TextUtils.isEmpty(reserveEntity.getData().getAddress())) {
             llContactAddress.setVisibility(View.VISIBLE);
-            tvAdd.setText(reserveEntity.getAddress());
-        }else {
-            llContactAddress.setVisibility(View.GONE);
-        }
-        receiverName = reserveEntity.getReceiveName();
-        receiverPhone = reserveEntity.getReceivePhone();
-        postCode = reserveEntity.getPostCode();
+            llReceiverPhone.setVisibility(View.VISIBLE);
+            llReceiverAddress.setVisibility(View.VISIBLE);
 
+            tvReceiver.setText(reserveEntity.getData().getReceiveName());
+            tvReceiverPhone.setText(reserveEntity.getData().getPhone());
+            tvReceiverAddress.setText(reserveEntity.getData().getAddress());
+        } else {
+            llContactAddress.setVisibility(View.GONE);
+            llReceiverPhone.setVisibility(View.GONE);
+            llReceiverAddress.setVisibility(View.GONE);
+        }
+        receiverName = reserveEntity.getData().getReceiveName();
+        receiverPhone = reserveEntity.getData().getReceivePhone();
+        postCode = reserveEntity.getData().getPostCode();
+        address = reserveEntity.getData().getAddress();
     }
 
     @Override
@@ -144,8 +154,8 @@ public class ConfirmOrder extends BaseActivity {
                 // 设置界面
                 tvEditTitle.setText(priceListEntity.getSpecification());
                 tvEditCount.setText(priceListEntity.getCount() + "");
-                tvEditPrice.setText("RMB " + priceListEntity.getPrice());
-                tvWholePrice.setText("RMB " + priceListEntity.getAll());
+                tvEditPrice.setText("￥ " + priceListEntity.getPrice());
+                tvWholePrice.setText("￥ " + priceListEntity.getAll());
                 popuGridAdapter.notifyDataSetChanged();
             }
         });
@@ -168,9 +178,9 @@ public class ConfirmOrder extends BaseActivity {
                     tvEditCount.setText(Integer.parseInt(tvEditCount.getText().toString()) - 1 + "");
                     priceListEntity.setCount(Integer.parseInt(tvEditCount.getText().toString()));
                     if (!tvEditCount.getText().toString().equals("0")) {
-                        tvWholePrice.setText("RMB " + Integer.parseInt(tvEditCount.getText().toString()) * priceListEntity.getPrice());
+                        tvWholePrice.setText("￥ " + Integer.parseInt(tvEditCount.getText().toString()) * priceListEntity.getPrice());
                     } else {
-                        tvWholePrice.setText("RMB 0");
+                        tvWholePrice.setText("￥ 0");
                     }
                 }
             }
@@ -184,9 +194,9 @@ public class ConfirmOrder extends BaseActivity {
                     tvEditCount.setText(Integer.parseInt(tvEditCount.getText().toString()) + 1 + "");
                     priceListEntity.setCount(Integer.parseInt(tvEditCount.getText().toString()));
                     if (!tvEditCount.getText().toString().equals("0")) {
-                        tvWholePrice.setText("RMB " + Integer.parseInt(tvEditCount.getText().toString()) * priceListEntity.getPrice());
+                        tvWholePrice.setText("￥ " + Integer.parseInt(tvEditCount.getText().toString()) * priceListEntity.getPrice());
                     } else {
-                        tvWholePrice.setText("RMB 0");
+                        tvWholePrice.setText("￥ 0");
                     }
                 }
             }
@@ -221,11 +231,14 @@ public class ConfirmOrder extends BaseActivity {
         tvPhoneChange = (TextView) findViewById(R.id.tv_phone_change);
         tvPhoneChange.setOnClickListener(this);
         llContactAddress = (LinearLayout) findViewById(R.id.ll_contact_address);
-        tvAddressTag = (TextView) findViewById(R.id.tv_address_tag);
-        tvAdd = (TextView) findViewById(R.id.tv_add);
-        tvAdd.setTag(reserveEntity.getAddressId());
-        tvAdd.setEnabled(false);
+        llReceiverPhone = (LinearLayout) findViewById(R.id.ll_receiver_phone);
+        llReceiverAddress = (LinearLayout) findViewById(R.id.ll_receiver_address);
+        tvReceiver = (TextView) findViewById(R.id.tv_receiver);
+        tvReceiverPhone = (TextView) findViewById(R.id.tv_receiver_phone);
+        tvReceiverAddress = (TextView) findViewById(R.id.tv_receiver_address);
+
         tvAddressManager = (TextView) findViewById(R.id.tv_address_manager);
+        tvAddressManager.setTag(reserveEntity.getData().getAddressId());
         tvAddressManager.setOnClickListener(this);
         tvTotalPrice = (TextView) findViewById(R.id.tv_whole_price);
         tvSubmit = (TextView) findViewById(R.id.tv_submit);
@@ -242,9 +255,9 @@ public class ConfirmOrder extends BaseActivity {
                 mEditPopupWindow.showAtLocation(llBottom, Gravity.NO_GRAVITY, location[0], location[1] - mEditPopupWindow.getHeight());
                 break;
             case R.id.tv_edit_submit:
-                if(mEditPopupWindow.isShowing())
+                if (mEditPopupWindow.isShowing())
                     mEditPopupWindow.dismiss();
-                tvCount.setText("x" + tvEditCount.getText().toString());
+                tvCount.setText("x " + tvEditCount.getText().toString());
                 tvPrice.setText(tvEditPrice.getText().toString());
                 tvTotalPrice.setText(tvWholePrice.getText().toString());
                 break;
@@ -252,7 +265,7 @@ public class ConfirmOrder extends BaseActivity {
                 SavePhoneActivity.newInstance(ConfirmOrder.this, MODIFY_PHONE_REQUEST);
                 break;
             case R.id.tv_address_manager:// 地址管理
-                int deliveryAddressId = (int) tvAdd.getTag();
+                int deliveryAddressId = (int) tvAddressManager.getTag();
                 DeliveryAddressListActivity.skipFromActivity(ConfirmOrder.this, deliveryAddressId, CHOOSE_ADDRESS_REQUEST);
                 break;
             case R.id.tv_submit://确认
@@ -262,12 +275,12 @@ public class ConfirmOrder extends BaseActivity {
                     showShortToast("联系人名字不能为空");
                     return;
                 }
-                if(!Tools.isMobileNo(Phone)){
+                if (!Tools.isMobileNo(Phone)) {
                     showShortToast("请正确填写你的手机号码");
                     return;
                 }
                 showWaitDialog();
-                SubmitOrderModel.postSubmitOrderRequest(reserveEntity.getServiceId(), reserveEntity.getPriceId(), reserveEntity.getServicePrice(), reserveEntity.getBuyCount(), receiverContact, Phone, receiverName, receiverPhone, postCode, address, new OkHttpClientManager.ResultCallback<SubmitOrderModel>() {
+                SubmitOrderModel.postSubmitOrderRequest(reserveEntity.getData().getServiceId(), reserveEntity.getData().getPriceId(), reserveEntity.getData().getServicePrice(), reserveEntity.getData().getBuyCount(), receiverContact, Phone, receiverName, receiverPhone, postCode, address, new OkHttpClientManager.ResultCallback<SubmitOrderModel>() {
                     @Override
                     public void onError(Request request, Exception e) {
                         hideWaitDialog();
@@ -277,14 +290,13 @@ public class ConfirmOrder extends BaseActivity {
                     @Override
                     public void onResponse(SubmitOrderModel response) {
                         hideWaitDialog();
-                        if (response != null){
-                            if(Double.parseDouble(response.getData().getPrice()) != 0){
-                                PayConfirm.newInstance(ConfirmOrder.this, response.getData(), GO_PAY_REQUEST);
-                            }else {
+                        if (response != null) {
+                            if (Double.parseDouble(response.getData().getPrice()) != 0) {
+                                PayConfirm.newInstance(ConfirmOrder.this, response, GO_PAY_REQUEST);
+                            } else {
                                 GenerateOrder.newInstance(ConfirmOrder.this, response.getData().getOrderCode(), true, GO_PAY_REQUEST);
                             }
                         }
-                        showShortToast(response.getMsg());
                     }
                 });
                 break;
@@ -304,13 +316,15 @@ public class ConfirmOrder extends BaseActivity {
                 receiverPhone = local.getReceivePhone();
                 postCode = local.getPostCode();
                 address = local.getProvinceText() + local.getCityText() + local.getDistrictText() + local.getAddress();
-                tvAdd.setTag(local.getId());
-                tvAdd.setText(local.getProvinceText() + local.getCityText() + local.getDistrictText() + local.getAddress());
+
+                tvReceiver.setText(local.getReceiveName());
+                tvReceiverPhone.setText(local.getReceivePhone());
+                tvReceiverAddress.setText(local.getProvinceText() + local.getCityText() + local.getDistrictText() + local.getAddress());
             }
         } else if (requestCode == MODIFY_PHONE_REQUEST && resultCode == RESULT_OK) {
             String phone = data.getStringExtra("phone");
             tvPhone.setText(phone + "");
-        } else if(GO_PAY_REQUEST == requestCode && resultCode == RESULT_OK){
+        } else if (GO_PAY_REQUEST == requestCode && resultCode == RESULT_OK) {
             finish();
         } else {
             super.onActivityResult(requestCode, resultCode, data);
@@ -320,13 +334,13 @@ public class ConfirmOrder extends BaseActivity {
 
     /**
      * @param context
-     * @param dataEntity 返回数据
+     * @param response 返回数据
      */
-    public static void newIntent(Context context, H5ServiceDetailModel h5ServiceDetailModel, H5ServiceDetailModel.PriceListEntity priceListEntity, ReserveModel.DataEntity dataEntity) {
+    public static void newIntent(Context context, H5ServiceDetailModel h5ServiceDetailModel, H5ServiceDetailModel.PriceListEntity priceListEntity, ReserveModel response) {
         Intent intent = new Intent(context, ConfirmOrder.class);
         intent.putExtra("DetailModel", h5ServiceDetailModel);
         intent.putExtra("priceListEntity", priceListEntity);
-        intent.putExtra("dataEntity", dataEntity);
+        intent.putExtra("dataEntity", response);
         context.startActivity(intent);
     }
 }

@@ -101,7 +101,6 @@ public class ManagerDeliveryAddressListActivity extends BaseActivity {
                 if (data != null && data.getData() != null) {
                     adapter.setData(data.getData().getRows());
                 }
-                showShortToast(msg);
             }
 
             @Override

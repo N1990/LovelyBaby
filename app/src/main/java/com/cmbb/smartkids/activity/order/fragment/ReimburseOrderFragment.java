@@ -8,10 +8,9 @@ import android.view.ViewGroup;
 
 import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.activity.order.EvaluateListActivity;
+import com.cmbb.smartkids.activity.order.OrderDetailActivity;
 import com.cmbb.smartkids.activity.order.adapter.MyOrderAdapter;
 import com.cmbb.smartkids.activity.order.model.OrderListModel;
-import com.cmbb.smartkids.activity.order.OrderDetailActivity;
-import com.cmbb.smartkids.base.BaseActivity;
 import com.cmbb.smartkids.base.BaseApplication;
 import com.cmbb.smartkids.base.BaseFragment;
 import com.cmbb.smartkids.base.Constants;
@@ -39,8 +38,7 @@ public class ReimburseOrderFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.recyclerview_layout, null);
-        return root;
+        return inflater.inflate(R.layout.recyclerview_layout, null);
     }
 
     @Override
@@ -51,7 +49,7 @@ public class ReimburseOrderFragment extends BaseFragment {
         addListener();
     }
 
-    private void initView(){
+    private void initView() {
         lmrv = (LoadMoreRecyclerView) getView().findViewById(R.id.lmrv_self);
         lmrv.setLinearLayout();
         adapter = new MyOrderAdapter();
@@ -59,11 +57,11 @@ public class ReimburseOrderFragment extends BaseFragment {
         lmrv.setAdapter(adapter);
     }
 
-    private void initData(){
+    private void initData() {
 
     }
 
-    private void addListener(){
+    private void addListener() {
         lmrv.setPullLoadMoreListener(lmrvListener);
         lmrv.setInitializeWithoutPb();
         adapter.setOnFooterTryAgain(this);
@@ -76,8 +74,6 @@ public class ReimburseOrderFragment extends BaseFragment {
         public void onInitialize() {
             showWaitsDialog();
             handleRequest(pager, pagerSize);
-
-
         }
 
         @Override
@@ -89,7 +85,7 @@ public class ReimburseOrderFragment extends BaseFragment {
 
         @Override
         public void onLoadMore() {
-            pager ++;
+            pager++;
             handleRequest(pager, pagerSize);
         }
     };
@@ -115,6 +111,7 @@ public class ReimburseOrderFragment extends BaseFragment {
 
     /**
      * 处理列表右下方按钮事件
+     *
      * @param data
      */
     public void listViewHandler(OrderListModel.DataEntity.RowsEntity data) {
@@ -142,17 +139,15 @@ public class ReimburseOrderFragment extends BaseFragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode == HANDLER_ORDER_REQUEST && resultCode == -1){
+        if (requestCode == HANDLER_ORDER_REQUEST && resultCode == -1) {
             showWaitsDialog();
             adapter.clearData();
             pager = 0;
             handleRequest(pager, pagerSize);
-        }else{
+        } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
-
-
 
 
     @Override
@@ -160,7 +155,7 @@ public class ReimburseOrderFragment extends BaseFragment {
         super.onClick(v);
     }
 
-    private void handleRequest(int pager, int pagerSize){ //ORDER_LIST_REQUEST
+    private void handleRequest(int pager, int pagerSize) { //ORDER_LIST_REQUEST
         HashMap<String, String> params = new HashMap<>();
         params.put("queryType", "0");
         params.put("status", "6");

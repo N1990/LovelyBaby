@@ -8,11 +8,8 @@ import android.view.View;
 
 import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.activity.login.model.SecurityCodeModel;
-import com.cmbb.smartkids.activity.order.EvaluateListActivity;
-import com.cmbb.smartkids.activity.order.OrderDetailActivity;
 import com.cmbb.smartkids.activity.order.adapter.OrderAdapter;
 import com.cmbb.smartkids.activity.order.model.OrderListModel;
-import com.cmbb.smartkids.activity.order.model.RefundModel;
 import com.cmbb.smartkids.base.BaseActivity;
 import com.cmbb.smartkids.base.CustomListener;
 import com.cmbb.smartkids.model.OrderStatus;
@@ -25,7 +22,7 @@ import com.squareup.okhttp.Request;
 /**
  * Created by javon on 16/3/17.
  */
-public class BaseOrderListActivity extends BaseActivity implements  RecyclerArrayAdapter.OnLoadMoreListener, SwipeRefreshLayout.OnRefreshListener {
+public class BaseOrderListActivity extends BaseActivity implements RecyclerArrayAdapter.OnLoadMoreListener, SwipeRefreshLayout.OnRefreshListener {
     private final int HANDLER_ORDER_REQUEST = 11111;
     private SmartRecyclerView srv;
     protected OrderAdapter adapter;
@@ -46,7 +43,7 @@ public class BaseOrderListActivity extends BaseActivity implements  RecyclerArra
         onRefresh();
     }
 
-    private void initView(){
+    private void initView() {
         srv = (SmartRecyclerView) findViewById(R.id.srv_self);
         srv.setLayoutManager(new LinearLayoutManager(this));
         adapter = new OrderAdapter(this);
@@ -57,6 +54,7 @@ public class BaseOrderListActivity extends BaseActivity implements  RecyclerArra
         adapter.setOnCancelListener(onCancelListener);
         adapter.setOnHandlerListener(onHandlerListener);
         adapter.setOnCkeckOrderListener(onCheckOrderListener);
+        srv.setRefreshListener(this);
     }
 
     private RecyclerArrayAdapter.OnItemClickListener onItemListener = new RecyclerArrayAdapter.OnItemClickListener() {
@@ -107,6 +105,7 @@ public class BaseOrderListActivity extends BaseActivity implements  RecyclerArra
 
     /**
      * 处理列表右下方按钮事件
+     *
      * @param data
      */
     public void listViewHandler(OrderListModel.DataEntity.RowsEntity data) {
@@ -133,13 +132,13 @@ public class BaseOrderListActivity extends BaseActivity implements  RecyclerArra
         }
     }
 
-    private void showCustomDialog(final String orderCode){
+    private void showCustomDialog(final String orderCode) {
         builder = CustomDialogBuilder.getInstance(this).withTitle("取消订单")
                 .withMessage("您确认要取消此订单吗？取消之后您需重新预订此服务...")
                 .withComfirmText("确认", new CustomListener.DialogListener() {
                     @Override
                     public void onClick(View v) {
-                        if(builder != null)
+                        if (builder != null)
                             builder.setDialogDismiss();
                         handleCancelRequest(orderCode);
                     }
@@ -147,20 +146,20 @@ public class BaseOrderListActivity extends BaseActivity implements  RecyclerArra
                 .withCancelText("取消", new CustomListener.DialogListener() {
                     @Override
                     public void onClick(View v) {
-                        if(builder != null)
+                        if (builder != null)
                             builder.dismiss();
                     }
                 });
         builder.show();
     }
 
-    private void showRefundDialog(final String orderCode){
+    private void showRefundDialog(final String orderCode) {
         builder = CustomDialogBuilder.getInstance(this).withTitle("申请退款")
                 .withMessage("您确认要申请退款吗？退款之后您需重新预订此服务...")
                 .withComfirmText("确认", new CustomListener.DialogListener() {
                     @Override
                     public void onClick(View v) {
-                        if(builder != null)
+                        if (builder != null)
                             builder.setDialogDismiss();
                         ReimburseActivity.newInstance(BaseOrderListActivity.this, orderCode, HANDLER_ORDER_REQUEST);
                     }
@@ -168,7 +167,7 @@ public class BaseOrderListActivity extends BaseActivity implements  RecyclerArra
                 .withCancelText("取消", new CustomListener.DialogListener() {
                     @Override
                     public void onClick(View v) {
-                        if(builder != null)
+                        if (builder != null)
                             builder.dismiss();
                     }
                 });
@@ -177,18 +176,20 @@ public class BaseOrderListActivity extends BaseActivity implements  RecyclerArra
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode == HANDLER_ORDER_REQUEST && resultCode == -1){
+        if (requestCode == HANDLER_ORDER_REQUEST && resultCode == -1) {
             pager = 0;
             onRefresh();
-        }else{
+        } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
 
-    /**取消订单
+    /**
+     * 取消订单
+     *
      * @param orderCode
      */
-    private void handleCancelRequest(String orderCode){
+    private void handleCancelRequest(String orderCode) {
         showWaitDialog();
         SecurityCodeModel.handleCancelOrderRequest(orderCode, new OkHttpClientManager.ResultCallback<SecurityCodeModel>() {
             @Override
@@ -212,12 +213,10 @@ public class BaseOrderListActivity extends BaseActivity implements  RecyclerArra
     }
 
 
-
-
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if(builder != null)
+        if (builder != null)
             builder.setDialogDismiss();
     }
 

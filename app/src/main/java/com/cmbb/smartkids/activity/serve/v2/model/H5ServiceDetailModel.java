@@ -62,6 +62,7 @@ public class H5ServiceDetailModel implements Parcelable {
 
     private int id;
     private String title;
+    private String introduce;
     private String serviceTime;
     private String startTime;
     private String endTime;
@@ -166,6 +167,14 @@ public class H5ServiceDetailModel implements Parcelable {
      */
 
     private List<PriceListEntity> priceList;
+
+    public String getIntroduce() {
+        return introduce;
+    }
+
+    public void setIntroduce(String introduce) {
+        this.introduce = introduce;
+    }
 
     public void setId(int id) {
         this.id = id;

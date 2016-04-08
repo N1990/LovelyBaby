@@ -29,7 +29,7 @@ import com.alibaba.sdk.android.media.upload.UploadListener;
 import com.alibaba.sdk.android.media.upload.UploadTask;
 import com.alibaba.sdk.android.media.utils.FailReason;
 import com.cmbb.smartkids.R;
-import com.cmbb.smartkids.activity.GuidActivity;
+import com.cmbb.smartkids.activity.SplashActivity;
 import com.cmbb.smartkids.activity.login.CountTimeService;
 import com.cmbb.smartkids.activity.login.model.SecurityCodeModel;
 import com.cmbb.smartkids.activity.user.model.LogoutModel;
@@ -538,9 +538,7 @@ public class MySetActivity extends BaseActivity implements LocationSelectorDialo
                                     //关闭主页面
                                     Intent intent = new Intent(Constants.INTENT_ACTION_EXIT_APP);
                                     sendBroadcast(intent);
-                                    Intent guid = new Intent(MySetActivity.this, GuidActivity.class);
-                                    guid.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                    startActivity(guid);
+                                    SplashActivity.newIntent(MySetActivity.this, 1);
                                     finish();
                                 } else {
                                     showToast("注销失败");

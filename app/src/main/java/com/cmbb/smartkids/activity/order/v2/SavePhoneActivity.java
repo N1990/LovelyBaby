@@ -1,6 +1,7 @@
 package com.cmbb.smartkids.activity.order.v2;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -17,6 +18,7 @@ import com.cmbb.smartkids.activity.user.model.ModifyUserModel;
 import com.cmbb.smartkids.base.BaseActivity;
 import com.cmbb.smartkids.base.BaseApplication;
 import com.cmbb.smartkids.base.Constants;
+import com.cmbb.smartkids.db.DBContent;
 import com.cmbb.smartkids.network.NetRequest;
 import com.cmbb.smartkids.utils.CustomWatcher;
 import com.cmbb.smartkids.utils.MyTimeCount;
@@ -124,6 +126,9 @@ public class SavePhoneActivity extends BaseActivity {
                 if (modify != null && modify.getData() != null) {
                     hideWaitDialog();
                     showShortToast("手机号码修改成功");
+                    ContentValues valus = new ContentValues();
+                    valus.put(DBContent.DBUser.USER_PHONE, modify.getData().getUserPhone());
+                    getContentResolver().update(DBContent.DBUser.CONTENT_URI, valus, DBContent.DBUser.USER_ID + " = " + modify.getData().getUserId(), null);
                     Intent intent = getIntent();
                     intent.putExtra("phone", phone);
                     setResult(RESULT_OK, intent);

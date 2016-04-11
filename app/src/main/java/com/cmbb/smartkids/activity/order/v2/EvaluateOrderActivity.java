@@ -179,8 +179,11 @@ public class EvaluateOrderActivity extends BaseActivity {
                 params.put("eredarId", eredarId+"");
                 params.put("orderCode", orderCode);
                 params.put("eredarEvaluateType", eredarEvaluateType + "");
-                if(!TextUtils.isEmpty(evaluatePeopleContent))
+                if(!TextUtils.isEmpty(evaluatePeopleContent)){
                     params.put("eredarEvaluateContent", evaluatePeopleContent);
+                }else{
+                    params.put("eredarEvaluateContent", etEvaluatePeople.getHint().toString());
+                }
                 params.put("serviceEvaluateType", evaluateServiceRating+"");
                 if(!TextUtils.isEmpty(evaluateServiceContent))
                     params.put("serviceEvaluateContent", evaluateServiceContent);

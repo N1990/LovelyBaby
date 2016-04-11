@@ -91,7 +91,7 @@
     <string name="manufacturer_info" translatable="false">制造商信息</string>
     <!-- Log Info -->
     <string name="title_reimburse_activity" translatable="false" >申请退款</string>
-    <string name="title_evaluate_order" translatable="false" >评价订单</string>
+    <string name="title_evaluate_order" translatable="false" >立即评价</string>
     <string name="title_ordere_detail" translatable="false">订单详情</string>
 
     <string name="errcode_success" translatable="false">支付成功</string>

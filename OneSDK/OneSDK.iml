@@ -94,8 +94,8 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="mediaservice-4.1.3" level="project" />
     <orderEntry type="library" exported="" name="sdk-legacy-support-2.0.0" level="project" />
-    <orderEntry type="library" exported="" name="alisdk-security-8" level="project" />
     <orderEntry type="library" exported="" name="alisdk-hotpatch-3" level="project" />
+    <orderEntry type="library" exported="" name="alisdk-security-8" level="project" />
     <orderEntry type="library" exported="" name="alisdk-rpc-3" level="project" />
     <orderEntry type="library" exported="" name="alisdk-ut-5" level="project" />
     <orderEntry type="library" exported="" name="alisdk-system-14" level="project" />

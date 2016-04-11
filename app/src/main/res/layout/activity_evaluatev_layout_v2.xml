@@ -101,6 +101,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:drawableBottom="@drawable/btn_evaluate_recommend_selector"
+                        android:checked="true"
                         android:button="@null"
                         android:text="强力推荐" />
                     <View
@@ -156,9 +157,12 @@
                     android:layout_height="wrap_content"
                     android:minHeight="120dp"
                     android:gravity="start"
+                    android:padding="6dp"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:layout_below="@+id/rg_evaluate"
+                    android:maxLength="200"
+                    android:hint="买家未作任何评价,系统默认好评"
                     android:background="@drawable/shape_background_white_c"
                     android:ems="10"
                     android:inputType="textMultiLine" />
@@ -199,10 +203,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="120dp"
                     android:gravity="start"
+                    android:padding="6dp"
                     android:layout_alignLeft="@+id/tv_title_evaluate"
                     android:layout_alignStart="@+id/tv_title_evaluate"
                     android:layout_below="@+id/ratingBar2"
                     android:background="@drawable/shape_background_white_c"
+                    android:maxLength="200"
                     android:ems="10"
                     android:inputType="textMultiLine" />
             </RelativeLayout>

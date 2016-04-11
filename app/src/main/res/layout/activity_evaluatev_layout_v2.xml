@@ -161,7 +161,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:layout_below="@+id/rg_evaluate"
-                    android:maxLength="200"
+                    android:maxLength="100"
                     android:hint="买家未作任何评价,系统默认好评"
                     android:background="@drawable/shape_background_white_c"
                     android:ems="10"
@@ -208,7 +208,7 @@
                     android:layout_alignStart="@+id/tv_title_evaluate"
                     android:layout_below="@+id/ratingBar2"
                     android:background="@drawable/shape_background_white_c"
-                    android:maxLength="200"
+                    android:maxLength="100"
                     android:ems="10"
                     android:inputType="textMultiLine" />
             </RelativeLayout>

@@ -218,7 +218,7 @@ public class ServiceDetailFragment extends BaseFragment {
                             tvReserve.setEnabled(false);
                             tvReserve.setClickable(false);
                         }
-                        ShareUtils.setShareContent(h5ServiceDetailModel.getTitle(), h5ServiceDetailModel.getContent(), Constants.Share.getServerShareUrl(h5ServiceDetailModel.getId()), h5ServiceDetailModel.getServicesImg());
+                        ShareUtils.setShareContent(h5ServiceDetailModel.getTitle(), h5ServiceDetailModel.getIntroduce(), Constants.Share.getServerShareUrl(h5ServiceDetailModel.getId()), h5ServiceDetailModel.getServicesImg());
                     }
                 }
 
@@ -269,6 +269,7 @@ public class ServiceDetailFragment extends BaseFragment {
             public void onItemClick(int position) {
                 for (H5ServiceDetailModel.PriceListEntity entity : data.getPriceList()) {
                     entity.setSelected(false);
+                    entity.setCount(0);
                 }
                 priceListEntity = popuGridAdapter.getItem(position);
                 priceListEntity.setSelected(true);
@@ -377,7 +378,7 @@ public class ServiceDetailFragment extends BaseFragment {
                         if (response != null) {
                             if (mEditPopupWindow.isShowing())
                                 mEditPopupWindow.dismiss();
-                            ConfirmOrder.newIntent(getActivity(), h5ServiceDetailModel, priceListEntity, response.getData());
+                            ConfirmOrder.newIntent(getActivity(), h5ServiceDetailModel, priceListEntity, response);
                         }
                     }
                 });

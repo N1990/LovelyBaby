@@ -12,8 +12,7 @@ import com.squareup.okhttp.Request;
 /**
  * Created by javon on 16/3/17.
  */
-public class ReimburseOrderListActivity extends BaseOrderListActivity{
-
+public class ReimburseOrderListActivity extends BaseOrderListActivity {
 
 
     @Override
@@ -24,7 +23,7 @@ public class ReimburseOrderListActivity extends BaseOrderListActivity{
 
     @Override
     public void onLoadMore() {
-        pager ++;
+        pager++;
         OrderListModel.getOrderListRequest("0", "6,8", pager, pagerSize, new OkHttpClientManager.ResultCallback<OrderListModel>() {
             @Override
             public void onError(Request request, Exception e) {
@@ -43,7 +42,7 @@ public class ReimburseOrderListActivity extends BaseOrderListActivity{
     @Override
     public void onRefresh() {
         pager = 0;
-        OrderListModel.getOrderListRequest("0", "6", pager, pagerSize, new OkHttpClientManager.ResultCallback<OrderListModel>() {
+        OrderListModel.getOrderListRequest("0", "6,8", pager, pagerSize, new OkHttpClientManager.ResultCallback<OrderListModel>() {
             @Override
             public void onError(Request request, Exception e) {
                 showShortToast(e.toString());
@@ -59,13 +58,9 @@ public class ReimburseOrderListActivity extends BaseOrderListActivity{
         });
     }
 
-    public static void newInstance(Activity activity){
+    public static void newInstance(Activity activity) {
         activity.startActivity(new Intent(activity, ReimburseOrderListActivity.class));
     }
-
-
-
-
 
 
 }

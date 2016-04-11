@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -16,7 +17,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-
             <RelativeLayout
                 android:id="@+id/ll_home_service_item"
                 android:layout_width="match_parent"
@@ -30,8 +30,9 @@
                     android:id="@+id/tv_order_code"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="订单编号:359590459495945949"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textSize="@dimen/txt_normal"
+                    tools:text="订单编号:359590459495945949" />
 
                 <View
                     android:id="@+id/v_order_code_divider"
@@ -58,8 +59,8 @@
                     android:layout_marginLeft="@dimen/global_padding"
                     android:layout_toEndOf="@+id/iv_home_service_item"
                     android:layout_toRightOf="@+id/iv_home_service_item"
-                    android:text="儿童摄影"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    tools:text="儿童摄影" />
 
                 <TextView
                     android:id="@+id/tv_address"
@@ -70,8 +71,9 @@
                     android:layout_below="@+id/tv_title"
                     android:drawableLeft="@mipmap/btn_local_order_bg"
                     android:gravity="center"
-                    android:text="上海"
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textSize="@dimen/txt_normal"
+                    tools:text="上海" />
 
                 <TextView
                     android:id="@+id/tv_price"
@@ -80,8 +82,8 @@
                     android:layout_alignBottom="@+id/iv_home_service_item"
                     android:layout_alignLeft="@+id/tv_address"
                     android:layout_alignStart="@+id/tv_address"
-                    android:text="98.00"
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    tools:text="98.00" />
 
                 <TextView
                     android:id="@+id/tv_count"
@@ -90,8 +92,8 @@
                     android:layout_alignBottom="@+id/tv_price"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
-                    android:text="X12"
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    tools:text="X12" />
 
 
             </RelativeLayout>
@@ -117,15 +119,17 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="10dp"
                         android:text="联系人"
-                        android:textAppearance="?android:attr/textAppearanceMedium" />
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textSize="@dimen/txt_normal" />
 
                     <TextView
                         android:id="@+id/tv_nick"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        android:text="张三"
-                        android:textAppearance="?android:attr/textAppearanceMedium" />
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textSize="@dimen/txt_normal"
+                        tools:text="张三" />
 
                     <TextView
                         android:id="@+id/tv_operation"
@@ -150,15 +154,17 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="10dp"
                         android:text="手机号"
-                        android:textAppearance="?android:attr/textAppearanceMedium" />
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textSize="@dimen/txt_normal" />
 
                     <TextView
                         android:id="@+id/tv_phone"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        android:text="15201921714"
-                        android:textAppearance="?android:attr/textAppearanceMedium" />
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textSize="@dimen/txt_normal"
+                        tools:text="15201921714" />
 
                     <TextView
                         android:id="@+id/tv_phone_change"
@@ -181,33 +187,36 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/ll_contact_phone"
+                    android:layout_marginTop="@dimen/global_padding"
                     android:background="@drawable/shape_background_white_c"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal"
                     android:padding="@dimen/global_padding">
 
                     <TextView
-                        android:id="@+id/tv_address_tag"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/tv_receiver_tag"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="10dp"
-                        android:text="具体地址"
-                        android:textAppearance="?android:attr/textAppearanceMedium" />
+                        android:layout_weight="1"
+                        android:text="收件人"
+                        android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/tv_add"
+                        android:id="@+id/tv_receiver"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
+                        android:background="@null"
                         android:ellipsize="end"
                         android:lines="1"
-                        android:text="上海市杨浦区飞虹路568弄"
-                        android:textAppearance="?android:attr/textAppearanceMedium" />
+                        android:singleLine="true"
+                        android:textSize="@dimen/txt_normal" />
 
                     <TextView
                         android:id="@+id/tv_address_manager"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="1.2"
                         android:background="@drawable/btn_login_selector"
                         android:gravity="center"
                         android:paddingBottom="@dimen/half_global_padding"
@@ -216,7 +225,95 @@
                         android:paddingTop="@dimen/half_global_padding"
                         android:text="地址管理"
                         android:textColor="@android:color/white"
-                        android:visibility="gone" />
+                        android:visibility="invisible" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_receiver_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ll_contact_address"
+                    android:background="@drawable/shape_background_white_c"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/global_padding">
+
+                    <TextView
+                        android:id="@+id/tv_receiver_phone_tag"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="手机号码"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_receiver_phone"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:background="@null"
+                        android:ellipsize="end"
+                        android:lines="1"
+                        android:singleLine="true"
+                        android:textSize="@dimen/txt_normal" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.2"
+                        android:background="@drawable/btn_login_selector"
+                        android:gravity="center"
+                        android:paddingBottom="@dimen/half_global_padding"
+                        android:paddingLeft="@dimen/global_padding"
+                        android:paddingRight="@dimen/global_padding"
+                        android:paddingTop="@dimen/half_global_padding"
+                        android:text="地址管理"
+                        android:textColor="@android:color/white"
+                        android:visibility="invisible" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_receiver_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ll_receiver_phone"
+                    android:background="@drawable/shape_background_white_c"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/global_padding">
+
+                    <TextView
+                        android:id="@+id/tv_receiver_address_tag"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="收件地址"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_receiver_address"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:background="@null"
+                        android:ellipsize="end"
+                        android:lines="1"
+                        android:singleLine="true"
+                        android:textSize="@dimen/txt_normal" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.2"
+                        android:background="@drawable/btn_login_selector"
+                        android:gravity="center"
+                        android:paddingBottom="@dimen/half_global_padding"
+                        android:paddingLeft="@dimen/global_padding"
+                        android:paddingRight="@dimen/global_padding"
+                        android:paddingTop="@dimen/half_global_padding"
+                        android:text="地址管理"
+                        android:textColor="@android:color/white"
+                        android:visibility="invisible" />
                 </LinearLayout>
 
             </RelativeLayout>

@@ -211,7 +211,6 @@
 
         <!-- *************************    分享相关的注册 END **************************** -->
         <!-- 以上接入第三方必备 -->
-        <activity android:name=".activity.GuidActivity" />
         <activity
             android:name=".activity.login.LoginActivity"
             android:label="@string/title_activity_login">

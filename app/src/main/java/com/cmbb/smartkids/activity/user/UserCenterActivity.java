@@ -197,7 +197,7 @@ public class UserCenterActivity extends BaseActivity implements AppBarLayout.OnO
                         titles.add("话题");
                         fragments.add(communityFra);
                     }
-                    titles.add("TA的宝宝呢");
+                    titles.add("TA的宝宝");
                     fragments.add(diaryFra);
                     adapter.setData(fragments, titles);
                     vp.setAdapter(adapter);

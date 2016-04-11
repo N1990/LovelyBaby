@@ -1,7 +1,6 @@
 package com.cmbb.smartkids.activity.order.v2;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
@@ -9,22 +8,16 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.cmbb.smartkids.R;
-import com.cmbb.smartkids.activity.login.model.SecurityCodeModel;
 import com.cmbb.smartkids.activity.order.model.GenerateOrderModel;
-import com.cmbb.smartkids.activity.order.model.OrderDetailModel;
 import com.cmbb.smartkids.activity.serve.v2.ServerDetailActivityV2;
 import com.cmbb.smartkids.base.BaseActivity;
-import com.cmbb.smartkids.base.CustomListener;
 import com.cmbb.smartkids.model.OrderStatus;
 import com.cmbb.smartkids.network.OkHttpClientManager;
 import com.cmbb.smartkids.utils.FrescoTool;
-import com.cmbb.smartkids.utils.Tools;
 import com.cmbb.smartkids.utils.log.Log;
-import com.cmbb.smartkids.widget.wheelview.CustomDialogBuilder;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.squareup.okhttp.Request;
 
@@ -46,13 +39,19 @@ public class GenerateOrder extends BaseActivity {
     private TextView tvNick;
     private TextView tvPhone;
     private LinearLayout llContactAddress;
-    private TextView tvAdd;
+    private LinearLayout llReceiverPhone;
+    private LinearLayout llReceiverAddress;
+
+    private TextView tvReceiver;
+    private TextView tvReceiverPhone;
+    private TextView tvReceiverAddress;
+
     private TextView tvToatalPrice;
     private TextView tvAppointment;
     private TextView tvReimburse;
     private LinearLayout llVerifyCode;
     private TextView tvVerifyCode;
-    private GenerateOrderModel.DataEntity dataEntity;
+    private GenerateOrderModel dataEntity;
     private boolean isReimburse;
     private boolean isConfirmOrder;
 
@@ -86,7 +85,11 @@ public class GenerateOrder extends BaseActivity {
         tvNick = (TextView) findViewById(R.id.tv_nick);
         tvPhone = (TextView) findViewById(R.id.tv_phone);
         llContactAddress = (LinearLayout) findViewById(R.id.ll_contact_address);
-        tvAdd = (TextView) findViewById(R.id.tv_add);
+        llReceiverPhone = (LinearLayout) findViewById(R.id.ll_receiver_phone);
+        llReceiverAddress = (LinearLayout) findViewById(R.id.ll_receiver_address);
+        tvReceiver = (TextView) findViewById(R.id.tv_receiver);
+        tvReceiverPhone = (TextView) findViewById(R.id.tv_receiver_phone);
+        tvReceiverAddress = (TextView) findViewById(R.id.tv_receiver_address);
         tvAppointment = (TextView) findViewById(R.id.tv_appointment);
         tvReimburse = (TextView) findViewById(R.id.tv_reimburse);
         tvToatalPrice = (TextView) findViewById(R.id.tv_total_price);
@@ -101,38 +104,38 @@ public class GenerateOrder extends BaseActivity {
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.iv_home_service_item:
-                ServerDetailActivityV2.newIntent(GenerateOrder.this, dataEntity.getServiceId());
+                ServerDetailActivityV2.newIntent(GenerateOrder.this, dataEntity.getData().getServiceId());
                 break;
             case R.id.tv_appointment:
-                OrderStatus status = OrderStatus.getStatusByValue(dataEntity.getStatus());
+                OrderStatus status = OrderStatus.getStatusByValue(dataEntity.getData().getStatus());
                 Log.e("orderStatus", status.toString());
                 switch (status) {
                     case WEI_ZHI_FU:
                         PayConfirm.newInstance(GenerateOrder.this, dataEntity, HANDLER_ORDER_REQUEST);
                         break;
                     case YI_ZHI_FU:
-                        if(TextUtils.isEmpty(dataEntity.getServiceInfo().getServicePhone())){
+                        if(TextUtils.isEmpty(dataEntity.getData().getServiceInfo().getServicePhone())){
                             showShortToast("商家没有留下任何联系方式");
                         }else{
                             Intent intent = new Intent(Intent.ACTION_DIAL);
-                            Uri data = Uri.parse("tel:" + dataEntity.getServiceInfo().getServicePhone());
+                            Uri data = Uri.parse("tel:" + dataEntity.getData().getServiceInfo().getServicePhone());
                             intent.setData(data);
                             startActivity(intent);
                         }
                         break;
                     case YI_CAN_JIA:
-                        EvaluateOrderActivity.newInstance(GenerateOrder.this, dataEntity.getServiceId(), dataEntity.getOrderCode(), HANDLER_ORDER_REQUEST);
+                        EvaluateOrderActivity.newInstance(GenerateOrder.this, dataEntity.getData().getServiceId(), dataEntity.getData().getOrderCode(), HANDLER_ORDER_REQUEST);
                         break;
                     case YI_YU_DING:
                         Intent intent = new Intent(Intent.ACTION_DIAL);
-                        Uri data = Uri.parse("tel:" + dataEntity.getServiceInfo().getServicePhone());
+                        Uri data = Uri.parse("tel:" + dataEntity.getData().getServiceInfo().getServicePhone());
                         intent.setData(data);
                         startActivity(intent);
                         break;
                 }
                 break;
             case R.id.tv_reimburse:
-                ReimburseActivity.newInstance(GenerateOrder.this, dataEntity.getOrderCode(), HANDLER_ORDER_REQUEST);
+                ReimburseActivity.newInstance(GenerateOrder.this, dataEntity.getData().getOrderCode(), HANDLER_ORDER_REQUEST);
                 break;
         }
     }
@@ -142,33 +145,39 @@ public class GenerateOrder extends BaseActivity {
      *
      */
     private void reflushView() {
-        tvOrderNum.setText("订单编号:" + dataEntity.getOrderCode());
-        GenerateOrderModel.DataEntity.ServiceInfoEntity sData = dataEntity.getServiceInfo();
+        tvOrderNum.setText("订单编号:" + dataEntity.getData().getOrderCode());
+        GenerateOrderModel.DataEntity.ServiceInfoEntity sData = dataEntity.getData().getServiceInfo();
         FrescoTool.loadImage(ivHomeServiceItem, sData.getServicesImg(), 1.67f);
         tvTitle.setText(sData.getTitle());
         tvAddress.setText(sData.getCityText());
-        tvPrice.setText(dataEntity.getServicePrice());
-        tvCount.setText("x" + dataEntity.getBuyCount());
-        tvToatalPrice.setText(dataEntity.getPrice());
-        tvNick.setText(dataEntity.getUserNike());
-        tvPhone.setText(dataEntity.getPhone());
+        tvPrice.setText(dataEntity.getData().getServicePrice());
+        tvCount.setText("x" + dataEntity.getData().getBuyCount());
+        tvToatalPrice.setText(dataEntity.getData().getPrice());
+        tvNick.setText(dataEntity.getData().getUserNike());
+        tvPhone.setText(dataEntity.getData().getPhone());
 
-        if(dataEntity.getServiceInfo() != null && dataEntity.getServiceInfo().getType() == 205){
+        if(dataEntity.getData().getServiceInfo() != null && dataEntity.getData().getServiceInfo().getType() == 205){
             llContactAddress.setVisibility(View.VISIBLE);
-            tvAdd.setText(dataEntity.getAddress());
-            tvAdd.setTag(dataEntity.getAddressId());
+            llReceiverPhone.setVisibility(View.VISIBLE);
+            llReceiverAddress.setVisibility(View.VISIBLE);
+
+            tvReceiver.setText(dataEntity.getData().getReceiveName());
+            tvReceiverPhone.setText(dataEntity.getData().getPhone());
+            tvReceiverAddress.setText(dataEntity.getData().getAddress());
         }else {
             llContactAddress.setVisibility(View.GONE);
+            llReceiverPhone.setVisibility(View.GONE);
+            llReceiverAddress.setVisibility(View.GONE);
         }
 
-        if(!TextUtils.isEmpty(dataEntity.getValidCode())){
+        if(!TextUtils.isEmpty(dataEntity.getData().getValidCode())){
             llVerifyCode.setVisibility(View.VISIBLE);
-            tvVerifyCode.setText(dataEntity.getValidCode());
+            tvVerifyCode.setText(dataEntity.getData().getValidCode());
         }else {
             llVerifyCode.setVisibility(View.GONE);
         }
 
-        int status = dataEntity.getStatus();
+        int status = dataEntity.getData().getStatus();
         reflushBottomView(status);
     }
     /**
@@ -243,7 +252,7 @@ public class GenerateOrder extends BaseActivity {
 //            int status = data.getIntExtra("order_status", 0);
 //            dataEntity.setStatus(status);
 //            reflushBottomView(status);
-            handleOrderRequest(dataEntity.getOrderCode());
+            handleOrderRequest(dataEntity.getData().getOrderCode());
         }else{
             super.onActivityResult(requestCode, resultCode, data);
         }
@@ -278,10 +287,9 @@ public class GenerateOrder extends BaseActivity {
             public void onResponse(GenerateOrderModel response) {
                 hideWaitDialog();
                 if (response != null && response.getData() != null && response.getData().getServiceInfo() != null) {
-                    dataEntity = response.getData();
+                    dataEntity = response;
                     reflushView();
                 }
-                showShortToast(response.getMsg());
             }
         });
     }

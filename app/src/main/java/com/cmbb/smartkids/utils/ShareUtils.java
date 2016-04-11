@@ -76,8 +76,7 @@ public class ShareUtils {
      * @return
      */
     public static void addQQQZonePlatform() {
-        UMQQSsoHandler qqSsoHandler = new UMQQSsoHandler(activity,
-                Constants.Share.QQ_APP_KEY, Constants.Share.QQ_APPSECRET);
+        UMQQSsoHandler qqSsoHandler = new UMQQSsoHandler(activity, Constants.Share.QQ_APP_KEY, Constants.Share.QQ_APPSECRET);
         qqSsoHandler.addToSocialSDK();
         // 添加QZone平台
         QZoneSsoHandler qZoneSsoHandler = new QZoneSsoHandler(activity, Constants.Share.QQ_APP_KEY, Constants.Share.QQ_APPSECRET);
@@ -103,7 +102,7 @@ public class ShareUtils {
      * 根据不同的平台设置不同的分享内容</br>
      */
     public static void setShareContent(String titile, String content, String url, String imgUrl) {
-        Log.e("ShareUtils", "title :" + titile +", content :" + content + ", url :" + url + ", imgUrl: " + imgUrl);
+        Log.e("ShareUtils", "title :" + titile + ", content :" + content + ", url :" + url + ", imgUrl: " + imgUrl);
         // 配置SSO
         WeiXinShareContent weixinContent = new WeiXinShareContent();
         weixinContent.setTitle(titile);
@@ -273,10 +272,8 @@ public class ShareUtils {
          *
          */
         @Override
-        public void onComplete(SHARE_MEDIA platform, int eCode,
-                               SocializeEntity entity) {
-            Toast.makeText(activity, "分享完成 000000", Toast.LENGTH_SHORT)
-                    .show();
+        public void onComplete(SHARE_MEDIA platform, int eCode, SocializeEntity entity) {
+            Toast.makeText(activity, "分享完成 000000", Toast.LENGTH_SHORT).show();
         }
 
         /**
@@ -303,8 +300,7 @@ public class ShareUtils {
         @Override
         public void onButtonClick(UMSensor.WhitchButton button) {
             if (button == UMSensor.WhitchButton.BUTTON_CANCEL) {
-                Toast.makeText(activity, "取消分享,游戏重新开始", Toast.LENGTH_SHORT)
-                        .show();
+                Toast.makeText(activity, "取消分享,游戏重新开始", Toast.LENGTH_SHORT).show();
             } else {
                 // 分享中
             }

@@ -91,7 +91,7 @@ public class EvaluateOrderActivity extends BaseActivity {
                 public void onResponse(EvaluateModel response) {
                     hideWaitDialog();
                     eredarId = response.getData().get(0).getUserId();
-                    FrescoTool.loadImage(ivHomeMyselfHeader, response.getData().get(0).getUserSmallHeight());
+                    FrescoTool.loadImage(ivHomeMyselfHeader, response.getData().get(0).getUserSmallImg());
                     ratingBar.setRating(response.getData().get(0).getUserLevel());
                     tvNick.setText(response.getData().get(0).getUserNike());
                     tvTag.setText(response.getData().get(0).getUserRole().get(0).getEredarName());
@@ -170,7 +170,7 @@ public class EvaluateOrderActivity extends BaseActivity {
                 String evaluatePeopleContent = etEvaluatePeople.getText().toString();
                 int evaluateServiceRating = (int)ratingBar2.getRating();
                 String evaluateServiceContent = etEvaluateService.getText().toString();
-                if(urls == null && urls.size() == 0 && TextUtils.isEmpty(evaluateServiceContent)){
+                if( urls.size() == 0 && TextUtils.isEmpty(evaluateServiceContent)){
                     showShortToast("请评价服务内容或是上传服务评价图片");
                     return;
                 }

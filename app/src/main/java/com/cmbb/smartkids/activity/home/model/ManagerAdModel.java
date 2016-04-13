@@ -356,4 +356,10 @@ public class ManagerAdModel implements Parcelable {
         params.put("adType", "INDEX");
         OkHttpClientManager.postAsyn(Constants.ServiceInfo.AD_MANAGER, params, callback);
     }
+
+    public static void getWonderfulImgRequest(OkHttpClientManager.ResultCallback<ManagerAdModel> callback) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("adType", "REVIEW");
+        OkHttpClientManager.postAsyn(Constants.ServiceInfo.AD_MANAGER, params, callback);
+    }
 }

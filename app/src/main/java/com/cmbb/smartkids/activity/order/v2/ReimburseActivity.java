@@ -1,20 +1,19 @@
 package com.cmbb.smartkids.activity.order.v2;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.app.Activity;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.RadioGroup;
-import android.widget.RadioButton;
-import android.widget.FrameLayout;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.activity.order.model.RefundModel;
 import com.cmbb.smartkids.base.BaseActivity;
-import com.cmbb.smartkids.model.OrderStatus;
 import com.cmbb.smartkids.network.OkHttpClientManager;
 import com.squareup.okhttp.Request;
 
@@ -65,19 +64,19 @@ public class ReimburseActivity extends BaseActivity {
             }
         });
 
-        if(getIntent() != null){
+        if (getIntent() != null) {
             orderCode = getIntent().getStringExtra("orderCode");
             tvReimburseSubmit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(flReimburse.getVisibility() == View.VISIBLE){
+                    if (flReimburse.getVisibility() == View.VISIBLE) {
                         reason = etReimburse.getText().toString();
                     }
-                    if(TextUtils.isEmpty(reason)){
+                    if (TextUtils.isEmpty(reason)) {
                         showShortToast("请填写退款原因");
                         return;
                     }
-                    RefundModel.handleApplyRefundRequest(orderCode, new OkHttpClientManager.ResultCallback<RefundModel>() {
+                    RefundModel.handleApplyRefundRequest(orderCode, reason, new OkHttpClientManager.ResultCallback<RefundModel>() {
                         @Override
                         public void onError(Request request, Exception e) {
                             hideWaitDialog();
@@ -96,13 +95,13 @@ public class ReimburseActivity extends BaseActivity {
                     });
                 }
             });
-        }else{
+        } else {
             showShortToast("传参出错~");
         }
     }
 
 
-    public static void newInstance(Activity activity, String orderCode, int requestCode){
+    public static void newInstance(Activity activity, String orderCode, int requestCode) {
         Intent intent = new Intent(activity, ReimburseActivity.class);
         intent.putExtra("orderCode", orderCode);
         activity.startActivityForResult(intent, requestCode);

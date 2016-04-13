@@ -24,7 +24,7 @@ public class UnConsumeOrderListActivity extends BaseOrderListActivity {
 
     @Override
     public void onLoadMore() {
-        pager ++;
+        pager++;
         OrderListModel.getOrderListRequest("0", "2,4,9", pager, pagerSize, new OkHttpClientManager.ResultCallback<OrderListModel>() {
             @Override
             public void onError(Request request, Exception e) {
@@ -43,7 +43,7 @@ public class UnConsumeOrderListActivity extends BaseOrderListActivity {
     @Override
     public void onRefresh() {
         pager = 0;
-        OrderListModel.getOrderListRequest("0", "2,4", pager, pagerSize, new OkHttpClientManager.ResultCallback<OrderListModel>() {
+        OrderListModel.getOrderListRequest("0", "2,4,9", pager, pagerSize, new OkHttpClientManager.ResultCallback<OrderListModel>() {
             @Override
             public void onError(Request request, Exception e) {
                 showShortToast(e.toString());
@@ -59,7 +59,7 @@ public class UnConsumeOrderListActivity extends BaseOrderListActivity {
         });
     }
 
-    public static void newInstance(Activity activity){
+    public static void newInstance(Activity activity) {
         activity.startActivity(new Intent(activity, UnConsumeOrderListActivity.class));
     }
 }

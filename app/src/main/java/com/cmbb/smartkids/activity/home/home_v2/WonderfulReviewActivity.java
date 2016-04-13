@@ -18,12 +18,14 @@ import com.cmbb.smartkids.activity.home.home_v2.adapter.BannerLoopAdapter;
 import com.cmbb.smartkids.activity.home.home_v2.adapter.TopicAdapter;
 import com.cmbb.smartkids.activity.home.model.ManagerAdModel;
 import com.cmbb.smartkids.base.BaseActivity;
-import com.cmbb.smartkids.base.BaseApplication;
 import com.cmbb.smartkids.network.OkHttpClientManager;
 import com.cmbb.smartkids.recyclerview.SmartRecyclerView;
 import com.cmbb.smartkids.recyclerview.adapter.RecyclerArrayAdapter;
 import com.jude.rollviewpager.RollPagerView;
 import com.squareup.okhttp.Request;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 项目名称：LovelyBaby
@@ -38,14 +40,13 @@ public class WonderfulReviewActivity extends BaseActivity implements RecyclerArr
     protected TopicAdapter adapter;
     private RollPagerView mRollViewPager;
     private BannerLoopAdapter bannerLoopAdapter;
-    private ManagerAdModel managerAdModel;
+    private List<ManagerAdModel.DataEntity> adData;
     private int pager = 0;
     private int pagerSize = 10;
 
 
     @Override
     protected void init(Bundle savedInstanceState) {
-        managerAdModel = getIntent().getParcelableExtra("managerAdModel");
         initView();
     }
 
@@ -59,9 +60,10 @@ public class WonderfulReviewActivity extends BaseActivity implements RecyclerArr
         mRollViewPager = (RollPagerView) findViewById(R.id.roll_view_pager);
         mRollViewPager.setPlayDelay(2000);
         mRollViewPager.setAnimationDurtion(500);
-        bannerLoopAdapter = new BannerLoopAdapter(this, managerAdModel.getData());
+        bannerLoopAdapter = new BannerLoopAdapter(this, adData);
         mRollViewPager.setAdapter(bannerLoopAdapter);
         initRecyclerView();
+        requestAdd();
         adapter.addHeader(new RecyclerArrayAdapter.ItemView() {
             @Override
             public View onCreateView(ViewGroup parent) {
@@ -89,6 +91,29 @@ public class WonderfulReviewActivity extends BaseActivity implements RecyclerArr
         mSmartRecyclerView.setRefreshListener(this);
     }
 
+    /**
+     * 请求广告
+     */
+    private void requestAdd() {
+        ManagerAdModel.getWonderfulImgRequest(new OkHttpClientManager.ResultCallback<ManagerAdModel>() {
+            @Override
+            public void onError(Request request, Exception e) {
+                adData = new ArrayList<>();
+                showShortToast(e.toString());
+            }
+
+            @Override
+            public void onResponse(ManagerAdModel response) {
+                if (response != null) {
+                    adData = response.getData();
+                    bannerLoopAdapter.update(adData);
+                } else {
+                    adData = new ArrayList<>();
+                }
+            }
+        });
+    }
+
     private final int COMMUNITY_DETAIL_REQUEST = 10101;
 
     @Override
@@ -101,7 +126,7 @@ public class WonderfulReviewActivity extends BaseActivity implements RecyclerArr
     @Override
     public void onLoadMore() {
         pager++;
-        TopicListModel.getTopicListRequest("FAMILY", pager, pagerSize, BaseApplication.token, new OkHttpClientManager.ResultCallback<TopicListModel>() {
+        TopicListModel.getWonderfulReviewRequest(pager, pagerSize, new OkHttpClientManager.ResultCallback<TopicListModel>() {
             @Override
             public void onError(Request request, Exception e) {
                 showShortToast(e.toString());
@@ -137,9 +162,8 @@ public class WonderfulReviewActivity extends BaseActivity implements RecyclerArr
         });
     }
 
-    public static void newIntent(Context context, ManagerAdModel managerAdModel) {
+    public static void newIntent(Context context) {
         Intent intent = new Intent(context, WonderfulReviewActivity.class);
-        intent.putExtra("managerAdModel", managerAdModel);
         context.startActivity(intent);
     }
 
@@ -162,6 +186,5 @@ public class WonderfulReviewActivity extends BaseActivity implements RecyclerArr
         } else {
             mSmartRecyclerView.getSwipeToRefresh().setEnabled(false);
         }
-
     }
 }

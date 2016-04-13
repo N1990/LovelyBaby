@@ -398,8 +398,12 @@ public class PayConfirm extends BaseActivity { //implements IWXAPIEventHandler
                 hideWaitDialog();
                 payWayModel = response;
                 //微信支付
-                api = WXAPIFactory.createWXAPI(PayConfirm.this, Constants.APP_ID);
-                SPCache.putString(Constants.APP_ID, payWayModel.getPayTypes().get(1).getWeixinData().getAppid());
+                try {
+                    api = WXAPIFactory.createWXAPI(PayConfirm.this, Constants.APP_ID);
+                    SPCache.putString(Constants.APP_ID, payWayModel.getPayTypes().get(1).getWeixinData().getAppid());
+                } catch (IndexOutOfBoundsException e) {
+                    Log.i(TAG, "数组越界");
+                }
             }
         });
     }

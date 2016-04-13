@@ -116,7 +116,7 @@ public class VerifyOrderActivity extends BaseActivity implements TextWatcher {
         showWaitDialog();
         HashMap<String, String> params = new HashMap<>();
         params.put("serviceId", String.valueOf(serviceId));
-        params.put("ordercode", orderCode);
+        params.put("validCode", orderCode);
         NetRequest.postRequest(Constants.ServiceInfo.VERIFY_ORDER_REQUEST, BaseApplication.token, params, SecurityCodeModel.class, new NetRequest.NetHandler(this, new NetRequest.NetResponseListener() {
             @Override
             public void onSuccessListener(Object object, String msg) {

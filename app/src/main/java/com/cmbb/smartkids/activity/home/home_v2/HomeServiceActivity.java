@@ -312,7 +312,7 @@ public class HomeServiceActivity extends BaseHomeActivity implements View.OnClic
 
     @Override
     protected void netChange() {
-        onRefresh();
+//        onRefresh();
     }
 
     boolean PopuSmartFlag = false;// popu的关开的标识位

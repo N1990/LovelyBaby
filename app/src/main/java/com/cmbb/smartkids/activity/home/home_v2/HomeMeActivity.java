@@ -81,7 +81,7 @@ public class HomeMeActivity extends BaseHomeActivity implements View.OnClickList
     protected void init(Bundle savedInstanceState) {
         setNoBack();
         initView();
-        initData();
+        //initData();
     }
 
     private void initData() {
@@ -402,6 +402,7 @@ public class HomeMeActivity extends BaseHomeActivity implements View.OnClickList
 
     @Override
     protected void netChange() {
+        Log.i("netchange", "netchange");
         initData();
     }
 }

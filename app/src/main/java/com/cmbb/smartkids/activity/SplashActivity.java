@@ -1,8 +1,10 @@
 package com.cmbb.smartkids.activity;
 
 import android.annotation.SuppressLint;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
@@ -27,6 +29,7 @@ import com.cmbb.smartkids.activity.login.VerifyActivity;
 import com.cmbb.smartkids.base.Constants;
 import com.cmbb.smartkids.network.OkHttpClientManager;
 import com.cmbb.smartkids.photopicker.widget.indication.CirclePageIndicator;
+import com.cmbb.smartkids.utils.ExitBroadcast;
 import com.cmbb.smartkids.utils.FrescoTool;
 import com.cmbb.smartkids.utils.SPCache;
 import com.cmbb.smartkids.utils.TDevice;
@@ -74,6 +77,9 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
 
     int flag;
 
+    private BroadcastReceiver existReceiver;// EXIT
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,6 +101,7 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
         mPushAgent.onAppStart();
         mPushAgent.enable(mRegisterCallback);
         PushAgent.getInstance(this).setMergeNotificaiton(false); //接收多条信息
+        initBroadcast();
     }
 
     private void initGuideView() {
@@ -123,12 +130,24 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
 
             @Override
             public void onResponse(ManagerAdModel response) {
-                if (response != null)
+                if (response != null && response.getData().size() > 0) {
                     FrescoTool.loadImage(sdv, response.getData().get(0).getAdImg(), TDevice.getScreenWidth(SplashActivity.this) + "", TDevice.getScreenHeight(SplashActivity.this) + "");
+                } else {
+                    recLen = 0;
+                }
             }
         });
         Message message = handler.obtainMessage(1);
         handler.sendMessageDelayed(message, 1000);
+    }
+
+    /**
+     * 程序退出
+     */
+    private void initBroadcast() {
+        existReceiver = new ExitBroadcast(this);
+        IntentFilter filter = new IntentFilter(Constants.INTENT_ACTION_EXIT_APP);
+        registerReceiver(existReceiver, filter);
     }
 
 
@@ -142,6 +161,12 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
     protected void onPause() {
         super.onPause();
         MobclickAgent.onPause(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(existReceiver);
     }
 
     // 友盟推送注册器
@@ -200,7 +225,7 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
 
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
-//            container.removeViewAt(position);
+            //container.removeViewAt(position);
         }
     }
 

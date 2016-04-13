@@ -12,7 +12,6 @@ public class Constants {
 //    public static final String BASE = "http://192.168.100.83:8081/wine-rest/";
 //    public static String BASE_URL_PIC = "http://192.168.100.174:8081/wine-rest/";
     //生产环境
-//    public static final String BASE = "http://120.26.88.135:8090/wine-rest/";
     public static final String BASE = "http://120.26.88.135:8090/wine-rest/";
 //    public static String BASE_URL = BASE + "cgi";
 
@@ -29,11 +28,12 @@ public class Constants {
     public final static String INTENT_ACTION_MESSAGE_CANCEL = PACKAGE_NAME + ".message.cancel";
 
     public final static String APP_ID = "wx_app_id";  //wx766b807ef51aa8da
-//    public final static String APP_ID = "wxd930ea5d5a258f4f";
 
     public static final class H5 {
         public static final String SMART_SIGN = "http://120.26.88.135:8090/SmartApp/page/smart-app-sign.html"; // 签到
         public static final String SMART_SERVICE_DETAIL = "http://120.26.88.135:8090/SmartApp/page/samrt-app-service-detail.html"; // 详情
+//        public static final String SMART_SIGN = "http://www.mengbp.com/web/App/SmartApp/page/smart-app-sign.html"; // 签到
+//        public static final String SMART_SERVICE_DETAIL = "http://www.mengbp.com/web/App/SmartApp/page/samrt-app-service-detail.html"; // 详情
     }
 
     public static class SharePreference {
@@ -58,7 +58,7 @@ public class Constants {
 
         public static String getServerShareUrl(int id) {
 //            return BASE + "share/service.jsp?id=" + id;
-            return "http://erpuat.mengbp.com:8090/SmartApp/page/samrt-app-service-detail-share.html?id=" + id;
+            return "http://www.mengbp.com/web/App/SmartApp/page/samrt-app-service-detail-share.html?id=" + id;
         }
     }
 

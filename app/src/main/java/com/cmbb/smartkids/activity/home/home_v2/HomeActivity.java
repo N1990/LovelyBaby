@@ -235,7 +235,7 @@ public class HomeActivity extends BaseHomeActivity implements View.OnClickListen
                 break;
             case R.id.rl_wonderful://精彩回顾
                 if (managerAdModel != null)
-                    WonderfulReviewActivity.newIntent(this, managerAdModel);
+                    WonderfulReviewActivity.newIntent(this);
                 break;
             case R.id.rl_week:
                 WeekReviewActivity.newIntent(this);
@@ -272,7 +272,7 @@ public class HomeActivity extends BaseHomeActivity implements View.OnClickListen
 
     @Override
     protected void netChange() {
-        onRefresh();
+//        onRefresh();
     }
 
     @Override

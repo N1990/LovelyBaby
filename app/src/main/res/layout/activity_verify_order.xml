@@ -21,8 +21,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dip"
-                android:background="@drawable/btn_white_radio_bg"
-                android:elevation="3dip"
+                android:background="@drawable/shape_white_background_no_corner"
                 android:padding="@dimen/global_padding">
 
                 <EditText
@@ -32,7 +31,7 @@
                     android:layout_centerVertical="true"
                     android:layout_toLeftOf="@+id/iv_verify_order_clear"
                     android:background="@null"
-                    android:hint="请输入需要验证的订单号"
+                    android:hint="请输入需要服务验证码"
                     android:singleLine="true"
                     android:inputType="number"
                     android:textColor="@android:color/black"

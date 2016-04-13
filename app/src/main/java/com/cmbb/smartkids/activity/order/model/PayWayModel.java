@@ -320,7 +320,7 @@ public class PayWayModel implements Parcelable {
         HashMap<String, String> params = new HashMap<>();
         params.put("token", BaseApplication.token);
         params.put("orderCode", orderCode);
-        params.put("paymentTypeId", "1");
+        params.put("paymentTypeId", "1,2");
         OkHttpClientManager.postAsyn(Constants.ServiceInfo.PAY_WAY_LIST, params, callback);
     }
 }

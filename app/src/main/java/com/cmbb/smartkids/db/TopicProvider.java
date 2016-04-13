@@ -19,13 +19,14 @@ import com.cmbb.smartkids.utils.log.Log;
  * 创建人：javon
  * 创建时间：2015/9/29 10:32
  */
-public class TopicProvider extends ContentProvider{
+public class TopicProvider extends ContentProvider {
     private final String TAG = TopicProvider.class.getSimpleName();
     private DBHelper helper;
     private static final UriMatcher matcher;
     private static final SparseArray<String> MIME_TYPE;
-    static{
-        matcher =  new UriMatcher(UriMatcher.NO_MATCH);
+
+    static {
+        matcher = new UriMatcher(UriMatcher.NO_MATCH);
         matcher.addURI(DBContent.DBTopic.AUTHORITY, DBContent.DBTopic.TABLE_NAME, DBContent.DBTopic.TOPICS);
         matcher.addURI(DBContent.DBTopic.AUTHORITY, DBContent.DBTopic.TABLE_NAME + "/#", DBContent.DBTopic.TOPIC);
         MIME_TYPE = new SparseArray<>();
@@ -45,8 +46,8 @@ public class TopicProvider extends ContentProvider{
         SQLiteDatabase db = helper.getReadableDatabase();
         SQLiteQueryBuilder builder = new SQLiteQueryBuilder();
         builder.setTables(DBContent.DBTopic.TABLE_NAME);
-        if(matcher.match(uri) == DBContent.DBTopic.TOPIC){
-            builder.appendWhere(DBContent.DBTopic.TOPIC_USER_ID +  "= " + uri.getLastPathSegment());
+        if (matcher.match(uri) == DBContent.DBTopic.TOPIC) {
+            builder.appendWhere(DBContent.DBTopic.TOPIC_USER_ID + "= " + uri.getLastPathSegment());
         }
         Cursor cursor = builder.query(db, projection, selection, selectionArgs, null, null, sortOrder);
         cursor.setNotificationUri(getContext().getContentResolver(), uri);
@@ -61,12 +62,12 @@ public class TopicProvider extends ContentProvider{
     @Override
     public Uri insert(Uri uri, ContentValues values) {
         SQLiteDatabase db = helper.getWritableDatabase();
-        if(matcher.match(uri) == DBContent.DBTopic.TOPICS){
+        if (matcher.match(uri) == DBContent.DBTopic.TOPICS) {
             long id = db.insert(DBContent.DBTopic.TABLE_NAME, null, values);
-            if (id != -1){
+            if (id != -1) {
                 getContext().getContentResolver().notifyChange(uri, null);
                 return uri.withAppendedPath(uri, Long.toString(id));
-            }else{
+            } else {
                 throw new SQLiteException("Insert error:" + uri);
             }
 
@@ -78,9 +79,9 @@ public class TopicProvider extends ContentProvider{
     public int delete(Uri uri, String selection, String[] selectionArgs) {
         SQLiteDatabase db = helper.getWritableDatabase();
         int rowDelete = 0;
-        if(matcher.match(uri) == DBContent.DBTopic.TOPICS){
+        if (matcher.match(uri) == DBContent.DBTopic.TOPICS) {
             rowDelete = db.delete(DBContent.DBTopic.TABLE_NAME, selection, selectionArgs);
-        }else if(matcher.match(uri) == DBContent.DBTopic.TOPIC){
+        } else if (matcher.match(uri) == DBContent.DBTopic.TOPIC) {
             if (TextUtils.isEmpty(selection)) {
                 rowDelete = db.delete(DBContent.DBTopic.TABLE_NAME, "_id = " + uri.getLastPathSegment(), null);
             } else {
@@ -95,9 +96,9 @@ public class TopicProvider extends ContentProvider{
     public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
         SQLiteDatabase db = helper.getWritableDatabase();
         int rowUpdata = 0;
-        if(matcher.match(uri) == DBContent.DBTopic.TOPICS){
+        if (matcher.match(uri) == DBContent.DBTopic.TOPICS) {
             rowUpdata = db.update(DBContent.DBTopic.TABLE_NAME, values, selection, selectionArgs);
-        }else if(matcher.match(uri) == DBContent.DBTopic.TOPIC){
+        } else if (matcher.match(uri) == DBContent.DBTopic.TOPIC) {
             if (TextUtils.isEmpty(selection)) {
                 rowUpdata = db.update(DBContent.DBTopic.TABLE_NAME, values, "_id = " + uri.getLastPathSegment(), null);
             } else {

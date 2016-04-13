@@ -278,7 +278,7 @@ public class ServiceDetailFragment extends BaseFragment {
                 tvEditCount.setText(priceListEntity.getCount() + "");
                 tvEditPrice.setText("￥ " + priceListEntity.getPrice());
                 tvWholePrice.setText("￥ " + priceListEntity.getAll());
-                tvStore.setText("库存： " + priceListEntity.getBuyLimit());
+                tvStore.setText("库存： " + priceListEntity.getStock());
                 popuGridAdapter.notifyDataSetChanged();
             }
         });

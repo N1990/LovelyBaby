@@ -27,6 +27,7 @@ import com.cmbb.smartkids.base.CustomListener;
 import com.cmbb.smartkids.network.OkHttpClientManager;
 import com.cmbb.smartkids.recyclerview.SmartRecyclerView;
 import com.cmbb.smartkids.recyclerview.adapter.RecyclerArrayAdapter;
+import com.cmbb.smartkids.utils.log.Log;
 import com.squareup.okhttp.Request;
 
 /**
@@ -60,7 +61,7 @@ public class HomeTopicActivity extends BaseHomeActivity implements View.OnClickL
         setNoBack();
         initRecyclerView();
         initPopup();
-        onRefresh();
+        //onRefresh();
     }
 
     @Override
@@ -206,6 +207,7 @@ public class HomeTopicActivity extends BaseHomeActivity implements View.OnClickL
 
     @Override
     protected void netChange() {
+        Log.i("netchange", "netchange");
         onRefresh();
     }
 

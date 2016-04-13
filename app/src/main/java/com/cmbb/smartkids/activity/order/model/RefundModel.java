@@ -81,13 +81,15 @@ public class RefundModel implements Parcelable {
 
     /**
      * 申请退款
+     *
      * @param orderCode
      * @param callback
      */
-    public static void handleApplyRefundRequest(String orderCode, OkHttpClientManager.ResultCallback<RefundModel> callback){
+    public static void handleApplyRefundRequest(String orderCode, String refundReason, OkHttpClientManager.ResultCallback<RefundModel> callback) {
         HashMap<String, String> params = new HashMap<>();
         params.put("token", BaseApplication.token);
         params.put("orderCode", orderCode);
+        params.put("refundReason", refundReason);
         OkHttpClientManager.postAsyn(Constants.ServiceInfo.APPLY_REFUND_REQUEST, params, callback);
     }
 }

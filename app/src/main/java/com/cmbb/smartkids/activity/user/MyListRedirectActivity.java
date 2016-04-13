@@ -17,6 +17,7 @@ import com.cmbb.smartkids.activity.user.fragment.MyEvaluateUserFragment;
 import com.cmbb.smartkids.activity.user.fragment.MyServiceMessageFragement;
 import com.cmbb.smartkids.activity.user.fragment.MySystemMessageFragement;
 import com.cmbb.smartkids.base.BaseActivity;
+import com.cmbb.smartkids.utils.SPCache;
 
 import java.util.ArrayList;
 
@@ -117,7 +118,9 @@ public class MyListRedirectActivity extends BaseActivity {
 
     private void myEvaluateView(int isEredar) {
         Bundle bundle = new Bundle();
-        bundle.putInt("isEredar", isEredar);
+        bundle.putInt("mycenter", 1);
+        bundle.putString("isPopman", isEredar+"");
+        bundle.putString("userId", "1");
         Fragment evaluateService = new MyEvaluateServiceFragment();
         titles.add("服务");
         fragments.add(evaluateService);

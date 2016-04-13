@@ -9,10 +9,11 @@ package com.cmbb.smartkids.base;
 public class Constants {
 
     //开发环境
-//    public static final String BASE = "http://192.168.100.83:8081/wine-rest/";
+//    public static final String BASE = "http://192.168.100.83:8080/wine-rest/";
 //    public static String BASE_URL_PIC = "http://192.168.100.174:8081/wine-rest/";
     //生产环境
     public static final String BASE = "http://120.26.88.135:8090/wine-rest/";
+//    public static final String BASE = "http://120.26.88.135:8090/wine-rest/";
 //    public static String BASE_URL = BASE + "cgi";
 
     //    public static final String BASE = "http://mengbaopai.smart-kids.com:82/wine-rest/";

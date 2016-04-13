@@ -816,11 +816,13 @@ public class UserEvaluateModel implements Parcelable {
         }
     };
 
-    public static void getEvaluateUserRequest(int isEredar, int pager, int pagerSize, OkHttpClientManager.ResultCallback<UserEvaluateModel> callback){
+    public static void getEvaluateUserRequest(String isEredar, int myCenter, String userId, int pager, int pagerSize, OkHttpClientManager.ResultCallback<UserEvaluateModel> callback){
         HashMap<String, String> params = new HashMap<>();
         params.put("token", BaseApplication.token);
-        params.put("myCenter", "1");
-        params.put("isEredar", isEredar + "");
+        params.put("myCenter", myCenter+ "");
+        params.put("isEredar", isEredar);
+        if(myCenter != 1)
+            params.put("id", userId);
         params.put("pageNo", String.valueOf(pager));
         params.put("numberOfPerPage", String.valueOf(pagerSize));
         OkHttpClientManager.postAsyn(Constants.ServiceInfo.EVALUATE_LIST_REQUEST, params, callback);

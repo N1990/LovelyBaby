@@ -34,13 +34,15 @@ public abstract class BaseHomeActivity extends BaseActivity {
 
     private Boolean isQuit = false;// 退出应用标识符
     private Timer timer = new Timer();// 程序退出定时器
+    private NetWorkChangeBroadcastReceiver netWorkChangeBroadcastReceiver;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //注册网络监听器
-        NetWorkChangeBroadcastReceiver netWorkChangeBroadcastReceiver = new NetWorkChangeBroadcastReceiver();
+        netWorkChangeBroadcastReceiver = new NetWorkChangeBroadcastReceiver();
         IntentFilter filter = new IntentFilter();
         filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
         registerReceiver(netWorkChangeBroadcastReceiver, filter);
@@ -105,6 +107,11 @@ public abstract class BaseHomeActivity extends BaseActivity {
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(netWorkChangeBroadcastReceiver);
+    }
 
     protected abstract void netChange();
 

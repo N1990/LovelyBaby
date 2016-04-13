@@ -16,16 +16,16 @@ import com.cmbb.smartkids.network.OkHttpClientManager;
 import com.cmbb.smartkids.recyclerview.SmartRecyclerView;
 import com.cmbb.smartkids.recyclerview.adapter.RecyclerArrayAdapter;
 import com.squareup.okhttp.Request;
-import com.umeng.socialize.utils.Log;
 
 /**
  * Created by javon on 16/3/21.
  */
 public class MyEvaluateUserFragment extends BaseFragment implements View.OnClickListener, RecyclerArrayAdapter.OnLoadMoreListener, SwipeRefreshLayout.OnRefreshListener{
     private final String TAG = MyEvaluateUserFragment.class.getSimpleName();
-    private SmartRecyclerView srv;
+    public SmartRecyclerView srv;
     private MyEvaluateUserAdapter adapter;
-    private int isEredar;
+    private String isEredar, userId;
+    private int myCenter;
     private int pager = 0;
     private int pagerSize = 10;
 
@@ -42,7 +42,9 @@ public class MyEvaluateUserFragment extends BaseFragment implements View.OnClick
         adapter.setNoMore(R.layout.view_nomore);
         srv.setAdapterWithProgress(adapter);
         if(getArguments() != null){
-            isEredar = getArguments().getInt("isEredar");
+            isEredar = getArguments().getString("isPopman");
+            userId = getArguments().getString("userId");
+            myCenter = getArguments().getInt("mycenter", 0);
             onRefresh();
         }else{
             showShortToast("传参出错~");
@@ -53,7 +55,7 @@ public class MyEvaluateUserFragment extends BaseFragment implements View.OnClick
     @Override
     public void onRefresh() {
         pager = 0;
-        UserEvaluateModel.getEvaluateUserRequest(isEredar, pager, pagerSize, new OkHttpClientManager.ResultCallback<UserEvaluateModel>() {
+        UserEvaluateModel.getEvaluateUserRequest(isEredar, myCenter, userId, pager, pagerSize, new OkHttpClientManager.ResultCallback<UserEvaluateModel>() {
             @Override
             public void onError(Request request, Exception e) {
                 showShortToast(e.toString());
@@ -73,7 +75,7 @@ public class MyEvaluateUserFragment extends BaseFragment implements View.OnClick
     @Override
     public void onLoadMore() {
         pager ++;
-        UserEvaluateModel.getEvaluateUserRequest(isEredar, pager, pagerSize, new OkHttpClientManager.ResultCallback<UserEvaluateModel>() {
+        UserEvaluateModel.getEvaluateUserRequest(isEredar, myCenter, userId, pager, pagerSize, new OkHttpClientManager.ResultCallback<UserEvaluateModel>() {
             @Override
             public void onError(Request request, Exception e) {
                 showShortToast(e.toString());

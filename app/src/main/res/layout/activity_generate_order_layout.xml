@@ -36,6 +36,7 @@
                     android:id="@+id/iv_home_service_item"
                     android:layout_width="120dp"
                     android:layout_height="72dp"
+                    android:layout_centerVertical="true"
                     fresco:actualImageScaleType="centerCrop"
                     fresco:placeholderImage="@color/placeholder" />
 
@@ -66,7 +67,8 @@
                     android:id="@+id/tv_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignBottom="@+id/iv_home_service_item"
+                    android:layout_marginTop="6dp"
+                    android:layout_below="@+id/tv_address"
                     android:layout_alignLeft="@+id/tv_address"
                     android:layout_alignStart="@+id/tv_address"
                     android:textAppearance="?android:attr/textAppearanceSmall"
@@ -211,7 +213,6 @@
                         android:layout_weight="2"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textSize="@dimen/txt_normal"
-
                         tools:text="15201921714" />
 
                     <TextView

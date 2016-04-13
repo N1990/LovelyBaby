@@ -156,7 +156,7 @@ public class GenerateOrder extends BaseActivity {
         tvNick.setText(dataEntity.getData().getUserNike());
         tvPhone.setText(dataEntity.getData().getPhone());
 
-        if(dataEntity.getData().getServiceInfo() != null && dataEntity.getData().getServiceInfo().getType() == 205){
+        if(dataEntity.getData().getServiceInfo() != null && (dataEntity.getData().getServiceInfo().getType() == 205 || dataEntity.getData().getServiceInfo().getType() == 201)){
             llContactAddress.setVisibility(View.VISIBLE);
             llReceiverPhone.setVisibility(View.VISIBLE);
             llReceiverAddress.setVisibility(View.VISIBLE);

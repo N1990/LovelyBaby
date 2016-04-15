@@ -74,21 +74,21 @@ public class MyEvaluateServiceHolder extends BaseViewHolder<EvaluateServiceModel
             tvEvaluateServiceContent.setText(data.getEvaluateContent());
         }
         if(TextUtils.isEmpty(data.getFirstImg())){
-            ivEvaluateServiceFirstItem.setVisibility(View.GONE);
+            ivEvaluateServiceFirstItem.setVisibility(View.INVISIBLE);
         }else{
             ivEvaluateServiceFirstItem.setVisibility(View.VISIBLE);
             FrescoTool.loadImage(ivEvaluateServiceFirstItem, data.getFirstImg(), Float.parseFloat(data.getFirstImgWidth()) / Float.parseFloat(data.getFirstImgHeight()));
         }
 
         if(TextUtils.isEmpty(data.getSecondImg())){
-            ivEvaluateServiceSecondItem.setVisibility(View.GONE);
+            ivEvaluateServiceSecondItem.setVisibility(View.INVISIBLE);
         }else{
             ivEvaluateServiceSecondItem.setVisibility(View.VISIBLE);
             FrescoTool.loadImage(ivEvaluateServiceSecondItem, data.getSecondImg(), Float.parseFloat(data.getSecondImgWidth()) / Float.parseFloat(data.getSecondImgHeight()));
         }
 
         if(TextUtils.isEmpty(data.getThirdImg())){
-            ivEvaluateServiceThirdItem.setVisibility(View.GONE);
+            ivEvaluateServiceThirdItem.setVisibility(View.INVISIBLE);
         }else{
             ivEvaluateServiceThirdItem.setVisibility(View.VISIBLE);
             FrescoTool.loadImage(ivEvaluateServiceThirdItem, data.getThirdImg(), Float.parseFloat(data.getThirdImgWidth()) / Float.parseFloat(data.getThirdImgHeight()));

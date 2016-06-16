@@ -21,7 +21,6 @@ import com.cmbb.smartkids.activity.login.model.SecurityCodeModel;
 import com.cmbb.smartkids.activity.user.adapter.UserCenterAdapter;
 import com.cmbb.smartkids.activity.user.fragment.BabyListFragment;
 import com.cmbb.smartkids.activity.user.fragment.CommunityFragment;
-import com.cmbb.smartkids.activity.user.fragment.EvaluateFragment;
 import com.cmbb.smartkids.activity.user.fragment.MyEvaluateUserFragment;
 import com.cmbb.smartkids.activity.user.fragment.ServiceFragment;
 import com.cmbb.smartkids.activity.user.model.UserCenterModel;
@@ -177,7 +176,7 @@ public class UserCenterActivity extends BaseActivity implements AppBarLayout.OnO
                     communityFra.setArguments(bundle);
                     diaryFra.setArguments(bundle);
                     if (userModel.getIsEredar() != 0) {
-                        bundle.putInt("mycenter",0);
+                        bundle.putInt("mycenter", 0);
                         evaluateFra.setArguments(bundle);
                         if (!TextUtils.isEmpty(userModel.getUserPresentation())) {
                             findViewById(R.id.ll_user_center_introduce).setVisibility(View.VISIBLE);

@@ -129,7 +129,7 @@ public class PhotoViewActivity extends AppCompatActivity {
             if (mDrawables.get(position).contains("file://")) {
                 uri = Uri.parse(mDrawables.get(position));
             } else if (mDrawables.get(position).contains("http://") || mDrawables.get(position).contains("https://")) {
-                uri = Uri.parse(mDrawables.get(position));
+                uri = Uri.parse(mDrawables.get(position) + "@1o|watermark=1&object=YXBwL3dhdGVybWFyay93YXRlcm1hcmtfNC5wbmdAMTAwdw&p=9");
             } else {
                 uri = Uri.parse("file://" + mDrawables.get(position));
             }

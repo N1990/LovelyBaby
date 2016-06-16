@@ -1,11 +1,16 @@
 package com.cmbb.smartkids.photopicker.utils;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.LoaderManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.Loader;
+import android.util.Log;
 
 import com.cmbb.smartkids.photopicker.R;
 import com.cmbb.smartkids.photopicker.entity.PhotoDirectory;
@@ -27,12 +32,23 @@ import static android.provider.MediaStore.MediaColumns.DATE_ADDED;
  */
 public class MediaStoreHelper {
     public final static int INDEX_ALL_PHOTOS = 0;
+    private static final String TAG = MediaStoreHelper.class.getSimpleName();
 
     public static void getPhotoDirs(FragmentActivity activity, PhotosResultCallback resultCallback) {
-        activity.getSupportLoaderManager().initLoader(0, null, new PhotoDirLoaderCallbacks(activity, resultCallback));
+        if (ContextCompat.checkSelfPermission(activity, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+            Log.e(TAG, "checkSelfPermission");
+            activity.getSupportLoaderManager().initLoader(0, null, new PhotoDirLoaderCallbacks(activity, resultCallback));
+        } else {
+            Log.e(TAG, "打开访问图片的权限");
+            if (ActivityCompat.shouldShowRequestPermissionRationale(activity, Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 123);
+            } else {
+                ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 123);
+            }
+        }
     }
 
-    static class PhotoDirLoaderCallbacks implements LoaderManager.LoaderCallbacks<Cursor> {
+    public static class PhotoDirLoaderCallbacks implements LoaderManager.LoaderCallbacks<Cursor> {
 
         Context context;
         PhotosResultCallback resultCallback;
@@ -50,7 +66,8 @@ public class MediaStoreHelper {
         @Override
         public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
 
-            if (data == null) return;
+            if (data == null)
+                return;
             List<PhotoDirectory> directories = new ArrayList<>();
             PhotoDirectory photoDirectoryAll = new PhotoDirectory();
             photoDirectoryAll.setName(context.getString(R.string.all_image));
@@ -92,7 +109,6 @@ public class MediaStoreHelper {
 
         }
     }
-
 
     public interface PhotosResultCallback {
         void onResultCallback(List<PhotoDirectory> directories);

@@ -55,7 +55,7 @@ public class MyCommunityActivity extends BaseActivity implements RecyclerArrayAd
         TopicListModel.getTopicListRequest(1, pager, pagerSize, BaseApplication.token, new OkHttpClientManager.ResultCallback<TopicListModel>() {
                     @Override
                     public void onError(Request request, Exception e) {
-                        showShortToast(e.toString());
+                        showShortToast(getString(R.string.is_netwrok));
                     }
 
                     @Override

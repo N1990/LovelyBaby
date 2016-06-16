@@ -44,7 +44,8 @@
                     android:layout_toEndOf="@+id/iv_home_myself_header"
                     android:layout_toRightOf="@+id/iv_home_myself_header"
                     android:text="昵称"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textSize="@dimen/txt_normal" />
 
                 <TextView
                     android:id="@+id/tv_tag"
@@ -61,19 +62,19 @@
                     android:paddingTop="2dp"
                     android:text="美食达人"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="@android:color/white" />
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/txt_micro" />
 
                 <RatingBar
                     android:id="@+id/ratingBar"
+                    style="@android:style/Widget.Holo.RatingBar.Indicator"
                     android:layout_width="wrap_content"
-                    android:layout_height="28dp"
-                    android:layout_below="@+id/tv_tag"
+                    android:layout_height="25dp"
+                    android:layout_alignBottom="@+id/iv_home_myself_header"
                     android:layout_marginLeft="@dimen/global_padding"
-                    android:layout_toEndOf="@+id/iv_home_myself_header"
                     android:layout_toRightOf="@+id/iv_home_myself_header"
                     android:isIndicator="true"
                     android:numStars="5"
-                    style="@android:style/Widget.Holo.RatingBar.Indicator"
                     android:progressDrawable="@drawable/custome_ratingbar_bg"
                     android:rating="0"
                     android:stepSize="1.0" />
@@ -99,73 +100,86 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="center"
-                        android:drawableBottom="@drawable/btn_evaluate_recommend_selector"
-                        android:checked="true"
                         android:button="@null"
-                        android:text="强力推荐" />
+                        android:checked="true"
+                        android:drawableBottom="@drawable/btn_evaluate_recommend_selector"
+                        android:gravity="center"
+                        android:text="强力推荐"
+                        android:textColor="@color/dimgray"
+                        android:textSize="@dimen/txt_small" />
+
                     <View
                         android:layout_width="2px"
                         android:layout_height="30dip"
                         android:layout_gravity="center_vertical"
-                        android:background="@android:color/darker_gray"/>
+                        android:background="@android:color/darker_gray" />
 
                     <RadioButton
                         android:id="@+id/rb_evaluate_02"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="center"
-                        android:drawableBottom="@drawable/btn_evaluate_great_selector"
                         android:button="@null"
-                        android:text="非常满意" />
+                        android:drawableBottom="@drawable/btn_evaluate_great_selector"
+                        android:gravity="center"
+                        android:text="非常满意"
+                        android:textColor="@color/dimgray"
+                        android:textSize="@dimen/txt_small" />
+
                     <View
                         android:layout_width="2px"
                         android:layout_height="30dip"
                         android:layout_gravity="center_vertical"
-                        android:background="@android:color/darker_gray"/>
+                        android:background="@android:color/darker_gray" />
 
                     <RadioButton
                         android:id="@+id/rb_evaluate_03"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="center"
-                        android:drawableBottom="@drawable/btn_evaluate_good_selector"
                         android:button="@null"
-                        android:text="满意"  />
+                        android:drawableBottom="@drawable/btn_evaluate_good_selector"
+                        android:gravity="center"
+                        android:text="满意"
+                        android:textColor="@color/dimgray"
+                        android:textSize="@dimen/txt_small" />
+
                     <View
                         android:layout_width="2px"
                         android:layout_height="30dip"
                         android:layout_gravity="center_vertical"
-                        android:background="@android:color/darker_gray"/>
+                        android:background="@android:color/darker_gray" />
 
                     <RadioButton
                         android:id="@+id/rb_evaluate_04"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="center"
-                        android:drawableBottom="@drawable/btn_evaluate_normal_selector"
                         android:button="@null"
-                        android:text="一般" />
+                        android:drawableBottom="@drawable/btn_evaluate_normal_selector"
+                        android:gravity="center"
+                        android:text="一般"
+                        android:textColor="@color/dimgray"
+                        android:textSize="@dimen/txt_small" />
                 </RadioGroup>
 
                 <EditText
                     android:id="@+id/et_evaluate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:minHeight="120dp"
-                    android:gravity="start"
-                    android:padding="6dp"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:layout_below="@+id/rg_evaluate"
-                    android:maxLength="100"
-                    android:hint="买家未作任何评价,系统默认好评"
+                    android:layout_marginTop="@dimen/global_padding"
                     android:background="@drawable/shape_background_white_c"
                     android:ems="10"
-                    android:inputType="textMultiLine" />
+                    android:gravity="start"
+                    android:hint="买家未作任何评价,系统默认好评"
+                    android:inputType="textMultiLine"
+                    android:maxLength="100"
+                    android:minHeight="120dp"
+                    android:padding="6dp"
+                    android:textSize="@dimen/txt_normal" />
 
             </RelativeLayout>
 
@@ -202,15 +216,15 @@
                     android:id="@+id/editText"
                     android:layout_width="match_parent"
                     android:layout_height="120dp"
-                    android:gravity="start"
-                    android:padding="6dp"
                     android:layout_alignLeft="@+id/tv_title_evaluate"
                     android:layout_alignStart="@+id/tv_title_evaluate"
                     android:layout_below="@+id/ratingBar2"
                     android:background="@drawable/shape_background_white_c"
-                    android:maxLength="100"
                     android:ems="10"
-                    android:inputType="textMultiLine" />
+                    android:gravity="start"
+                    android:inputType="textMultiLine"
+                    android:maxLength="100"
+                    android:padding="6dp" />
             </RelativeLayout>
 
             <HorizontalScrollView
@@ -219,23 +233,24 @@
                 android:layout_marginBottom="@dimen/global_padding"
                 android:layout_marginTop="@dimen/global_padding">
 
-               <LinearLayout
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:orientation="horizontal">
-                   <LinearLayout
-                       android:id="@+id/ll_evaluate"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:orientation="horizontal" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-                <ImageView
-                    android:id="@+id/iv_add_pic_popman"
-                    android:layout_width="80dip"
-                    android:layout_height="80dip"
-                    android:layout_marginRight="10dip"
-                    android:scaleType="center"
-                    android:src="@mipmap/btn_add_pic_bg" />
+                    <LinearLayout
+                        android:id="@+id/ll_evaluate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal" />
+
+                    <ImageView
+                        android:id="@+id/iv_add_pic_popman"
+                        android:layout_width="80dip"
+                        android:layout_height="80dip"
+                        android:layout_marginRight="10dip"
+                        android:scaleType="center"
+                        android:src="@mipmap/btn_add_pic_bg" />
 
                 </LinearLayout>
 

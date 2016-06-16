@@ -64,7 +64,7 @@ public class MyServiceOrderActivity extends BaseActivity implements View.OnClick
         MyServiceListModel.handleMyServiceListRequest(pager, pagerSize, new OkHttpClientManager.ResultCallback<MyServiceListModel>() {
             @Override
             public void onError(Request request, Exception e) {
-                showShortToast(e.toString());
+                showShortToast(getString(R.string.is_netwrok));
             }
 
             @Override
@@ -83,7 +83,7 @@ public class MyServiceOrderActivity extends BaseActivity implements View.OnClick
         MyServiceListModel.handleMyServiceListRequest(pager, pagerSize, new OkHttpClientManager.ResultCallback<MyServiceListModel>() {
             @Override
             public void onError(Request request, Exception e) {
-                showShortToast(e.toString());
+                showShortToast(getString(R.string.is_netwrok));
             }
 
             @Override

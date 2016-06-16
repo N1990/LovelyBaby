@@ -69,7 +69,6 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
 
-
 public class OkHttpClientManager {
     private static final String TAG = "OkHttpClientManager";
 
@@ -87,7 +86,6 @@ public class OkHttpClientManager {
 
     private static final MediaType MEDIA_TYPE_PNG = MediaType.parse("image/png");
     private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
-
 
     private static int cacheSize = 30 * 1024 * 1024; // 30 MiB
 
@@ -112,7 +110,6 @@ public class OkHttpClientManager {
         return mInstance;
     }
 
-
     public GetDelegate getGetDelegate() {
         return mGetDelegate;
     }
@@ -136,7 +133,6 @@ public class OkHttpClientManager {
     private UploadDelegate _getUploadDelegate() {
         return mUploadDelegate;
     }
-
 
     public static DisplayImageDelegate getDisplayImageDelegate() {
         return getInstance()._getDisplayImageDelegate();
@@ -196,7 +192,6 @@ public class OkHttpClientManager {
         getInstance().getPostDelegate().postAsyn(url, bodyStr, callback, null);
     }
 
-
     public static void postAsyn(String url, Map<String, String> params, final ResultCallback callback, Object tag) {
         getInstance().getPostDelegate().postAsyn(url, params, callback, tag);
     }
@@ -205,9 +200,7 @@ public class OkHttpClientManager {
         getInstance().getPostDelegate().postAsyn(url, bodyStr, callback, tag);
     }
 
-
     //=============便利的访问方式结束===============
-
 
     private String guessMimeType(String path) {
         FileNameMap fileNameMap = URLConnection.getFileNameMap();
@@ -218,9 +211,9 @@ public class OkHttpClientManager {
         return contentTypeFor;
     }
 
-
     private void deliveryResult(ResultCallback callback, Request request) {
-        if (callback == null) callback = DEFAULT_RESULT_CALLBACK;
+        if (callback == null)
+            callback = DEFAULT_RESULT_CALLBACK;
         final ResultCallback resCallBack = callback;
         //UI thread
         callback.onBefore(request);
@@ -436,7 +429,6 @@ public class OkHttpClientManager {
         return mOkHttpClient;
     }
 
-
     public static abstract class ResultCallback<T> {
         Type mType;
 
@@ -476,7 +468,6 @@ public class OkHttpClientManager {
         }
     };
 
-
     //====================PostDelegate=======================
     public class PostDelegate {
         private final MediaType MEDIA_TYPE_STREAM = MediaType.parse("application/octet-stream;charset=utf-8");
@@ -510,7 +501,6 @@ public class OkHttpClientManager {
         public void postAsyn(String url, Map<String, String> params, final ResultCallback callback) {
             postAsyn(url, params, callback, null);
         }
-
 
         /**
          * 异步的post请求(无文件)
@@ -635,7 +625,6 @@ public class OkHttpClientManager {
             deliveryResult(callback, request);
         }
 
-
         /**
          * post构造Request的方法
          *
@@ -653,7 +642,6 @@ public class OkHttpClientManager {
             Request request = builder.build();
             return request;
         }
-
 
     }
 
@@ -692,7 +680,6 @@ public class OkHttpClientManager {
             return get(request);
         }
 
-
         /**
          * 同步的Get请求
          */
@@ -724,7 +711,6 @@ public class OkHttpClientManager {
             getAsyn(request, callback);
         }
     }
-
 
     //====================UploadDelegate=======================
 
@@ -792,9 +778,7 @@ public class OkHttpClientManager {
                     String fileName = file.getName();
                     fileBody = RequestBody.create(MediaType.parse(guessMimeType(fileName)), file);
                     //TODO 根据文件名设置contentType
-                    builder.addPart(Headers.of("Content-Disposition",
-                            "form-data; name=\"" + fileKeys[i] + "\"; filename=\"" + fileName + "\""),
-                            fileBody);
+                    builder.addPart(Headers.of("Content-Disposition", "form-data; name=\"" + fileKeys[i] + "\"; filename=\"" + fileName + "\""), fileBody);
                 }
             }
 
@@ -857,15 +841,15 @@ public class OkHttpClientManager {
                         setErrorResId(view, errorResId);
 
                     } finally {
-                        if (is != null) try {
-                            is.close();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                        if (is != null)
+                            try {
+                                is.close();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
                     }
                 }
             });
-
 
         }
 
@@ -886,7 +870,6 @@ public class OkHttpClientManager {
             });
         }
     }
-
 
     //====================DownloadDelegate=======================
 
@@ -938,11 +921,13 @@ public class OkHttpClientManager {
                         sendFailedStringCallback(response.request(), e, callback);
                     } finally {
                         try {
-                            if (is != null) is.close();
+                            if (is != null)
+                                is.close();
                         } catch (IOException e) {
                         }
                         try {
-                            if (fos != null) fos.close();
+                            if (fos != null)
+                                fos.close();
                         } catch (IOException e) {
                         }
                     }
@@ -951,12 +936,10 @@ public class OkHttpClientManager {
             });
         }
 
-
         public void downloadAsyn(final String url, final String destFileDir, final ResultCallback callback) {
             downloadAsyn(url, destFileDir, callback, null);
         }
     }
-
 
     //====================HttpsDelegate=======================
 
@@ -970,7 +953,8 @@ public class OkHttpClientManager {
         }
 
         public TrustManager[] prepareTrustManager(InputStream... certificates) {
-            if (certificates == null || certificates.length <= 0) return null;
+            if (certificates == null || certificates.length <= 0)
+                return null;
             try {
 
                 CertificateFactory certificateFactory = CertificateFactory.getInstance("X.509");
@@ -1012,7 +996,8 @@ public class OkHttpClientManager {
 
         public KeyManager[] prepareKeyManager(InputStream bksFile, String password) {
             try {
-                if (bksFile == null || password == null) return null;
+                if (bksFile == null || password == null)
+                    return null;
 
                 KeyStore clientKeyStore = KeyStore.getInstance("BKS");
                 clientKeyStore.load(bksFile, password.toCharArray());
@@ -1062,7 +1047,6 @@ public class OkHttpClientManager {
             return null;
         }
 
-
         public class MyTrustManager implements X509TrustManager {
             private X509TrustManager defaultTrustManager;
             private X509TrustManager localTrustManager;
@@ -1073,7 +1057,6 @@ public class OkHttpClientManager {
                 defaultTrustManager = chooseTrustManager(var4.getTrustManagers());
                 this.localTrustManager = localTrustManager;
             }
-
 
             @Override
             public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {
@@ -1088,7 +1071,6 @@ public class OkHttpClientManager {
                     localTrustManager.checkServerTrusted(chain, authType);
                 }
             }
-
 
             @Override
             public X509Certificate[] getAcceptedIssuers() {
@@ -1177,7 +1159,8 @@ public class OkHttpClientManager {
         private static int getExpectHeight(View view) {
 
             int height = 0;
-            if (view == null) return 0;
+            if (view == null)
+                return 0;
 
             final ViewGroup.LayoutParams params = view.getLayoutParams();
             //如果是WRAP_CONTENT，此时图片还没加载，getWidth根本无效
@@ -1210,7 +1193,8 @@ public class OkHttpClientManager {
          */
         private static int getExpectWidth(View view) {
             int width = 0;
-            if (view == null) return 0;
+            if (view == null)
+                return 0;
 
             final ViewGroup.LayoutParams params = view.getLayoutParams();
             //如果是WRAP_CONTENT，此时图片还没加载，getWidth根本无效
@@ -1311,6 +1295,7 @@ public class OkHttpClientManager {
         requestModel.setParameters(params);
         String requestParams = mGson.toJson(requestModel);
         Log.json("RequestParams", requestParams);
+        android.util.Log.e("android.RequestParams", requestParams);
         return requestParams;
     }
 
@@ -1327,19 +1312,16 @@ public class OkHttpClientManager {
                 DBHelper dbHelper = new DBHelper(BaseApplication.getContext());
                 SQLiteDatabase db = dbHelper.getWritableDatabase();
                 dbHelper.delete(db);
-            } else {
-
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-
     private void loginAgain(String errInfo) {
         Toast.makeText(BaseApplication.getContext(), errInfo, Toast.LENGTH_LONG).show();
         Intent intent = new Intent("com.cmbb.smartkids.loginagain");
-        //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        //        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         BaseApplication.getContext().startActivity(intent);
     }

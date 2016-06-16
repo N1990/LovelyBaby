@@ -1102,6 +1102,16 @@ public class TopicListModel implements Parcelable {
         OkHttpClientManager.postAsyn(Constants.ServiceInfo.MY_COMMUNITY_LIST, params, callback);
     }
 
+    public static void getTopicListOtherRequest(String userID, int pageNo, int numberOfPerPage, String token, OkHttpClientManager.ResultCallback<TopicListModel> callback) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("myCenter", String.valueOf(0));
+        params.put("id", userID);
+        params.put("pageNo", String.valueOf(pageNo));
+        params.put("numberOfPerPage", String.valueOf(numberOfPerPage));
+        params.put("token", token);
+        OkHttpClientManager.postAsyn(Constants.ServiceInfo.MY_COMMUNITY_LIST, params, callback);
+    }
+
     /**
      * 获取搜索话题列表
      *

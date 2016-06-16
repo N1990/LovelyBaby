@@ -1,6 +1,5 @@
 package com.cmbb.smartkids.activity.user.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -12,8 +11,8 @@ import android.view.ViewGroup;
 
 import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.activity.login.model.SecurityCodeModel;
-import com.cmbb.smartkids.activity.order.OrderDetailActivity;
-import com.cmbb.smartkids.activity.serve.ActiveDetailActivity;
+import com.cmbb.smartkids.activity.order.view.GenerateOrder;
+import com.cmbb.smartkids.activity.serve.view.ServerDetailActivity;
 import com.cmbb.smartkids.activity.user.adapter.MyMsgAdapter;
 import com.cmbb.smartkids.activity.user.model.MessageListModel;
 import com.cmbb.smartkids.base.BaseApplication;
@@ -74,7 +73,7 @@ public class MyServiceMessageFragement extends BaseFragment implements View.OnCl
             @Override
             public void onError(Request request, Exception e) {
                 hideWaitDialog();
-                showShortToast(e.toString());
+                showShortToast(getString(R.string.is_netwrok));
             }
 
             @Override
@@ -83,13 +82,9 @@ public class MyServiceMessageFragement extends BaseFragment implements View.OnCl
                 if (response != null) {
                     adapter.setRead(position);
                     if ("order".equals(type)) {
-                        Intent order = new Intent(getActivity(), OrderDetailActivity.class);
-                        order.putExtra("orderCode", relationId);
-                        startActivity(order);
+                        GenerateOrder.newInstance(getActivity(), relationId);
                     } else if ("service".equals(type)) {
-                        Intent service = new Intent(getActivity(), ActiveDetailActivity.class);
-                        service.putExtra("serviceId", Integer.parseInt(relationId));
-                        startActivity(service);
+                        ServerDetailActivity.newIntent(getActivity(), Integer.parseInt(relationId));
                     }
                     showShortToast(response.getMsg());
                 }
@@ -107,13 +102,9 @@ public class MyServiceMessageFragement extends BaseFragment implements View.OnCl
         if (!TextUtils.isEmpty(relationId)) {
             if (isRead == 1) {
                 if ("order".equals(type)) {
-                    Intent order = new Intent(getActivity(), OrderDetailActivity.class);
-                    order.putExtra("", relationId);
-                    startActivity(order);
+                    GenerateOrder.newInstance(getActivity(), relationId);
                 } else if ("service".equals(type)) {
-                    Intent service = new Intent(getActivity(), ActiveDetailActivity.class);
-                    service.putExtra("serviceId", Integer.parseInt(relationId));
-                    startActivity(service);
+                    ServerDetailActivity.newIntent(getActivity(), Integer.parseInt(relationId));
                 }
             } else {
                 handleMessageRequest(messageId, position, type, relationId);
@@ -124,10 +115,10 @@ public class MyServiceMessageFragement extends BaseFragment implements View.OnCl
     @Override
     public void onLoadMore() {
         pager++;
-        MessageListModel.getMessageListRequest(pager, pagerSize, 0,BaseApplication.token, new OkHttpClientManager.ResultCallback<MessageListModel>() {
+        MessageListModel.getMessageListRequest(pager, pagerSize, 0, BaseApplication.token, new OkHttpClientManager.ResultCallback<MessageListModel>() {
             @Override
             public void onError(Request request, Exception e) {
-                showShortToast(e.toString());
+                showShortToast(getString(R.string.is_netwrok));
             }
 
             @Override
@@ -142,10 +133,10 @@ public class MyServiceMessageFragement extends BaseFragment implements View.OnCl
     @Override
     public void onRefresh() {
         pager = 0;
-        MessageListModel.getMessageListRequest(pager, pagerSize, 0,BaseApplication.token, new OkHttpClientManager.ResultCallback<MessageListModel>() {
+        MessageListModel.getMessageListRequest(pager, pagerSize, 0, BaseApplication.token, new OkHttpClientManager.ResultCallback<MessageListModel>() {
             @Override
             public void onError(Request request, Exception e) {
-                showShortToast(e.toString());
+                showShortToast(getString(R.string.is_netwrok));
             }
 
             @Override

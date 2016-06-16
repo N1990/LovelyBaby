@@ -2,15 +2,14 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion '23.0.2'
-
+    buildToolsVersion '23.0.3'
 
     defaultConfig {
         applicationId "com.cmbb.smartkids"
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 310
-        versionName "3.1.0"
+        versionCode 314
+        versionName "3.1.4"
         multiDexEnabled true
         ndk {
             abiFilters "armeabi", "armeabi-v7a", "x86"
@@ -26,23 +25,11 @@ android {
     }
 
     productFlavors {
-        wandoujia {
+        /*wandoujia {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "wandoujia"]
-        }
-        baidu {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "baidu"]
-        }
-        c360 {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "c360"]
         }
         uc {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "uc"]
-        }
-        Tencent {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Tencent"]
-        }
-        Umeng {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Umeng"]
         }
         Meizu {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Meizu"]
@@ -70,7 +57,97 @@ android {
         }
         Flowers {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Flowers"]
+        }*/
+
+        baidu {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "baidu"]
         }
+        c360 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "c360"]
+        }
+        Tencent {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Tencent"]
+        }
+        Umeng {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Umeng"]
+        }
+        Mengbaipai131 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai131"]
+        }
+        Mengbaipai132 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai132"]
+        }
+        Mengbaipai133 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai133"]
+        }
+        Mengbaipai134 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai134"]
+        }
+        Mengbaipai135 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai135"]
+        }
+        Mengbaipai136 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai136"]
+        }
+        Mengbaipai137 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai137"]
+        }
+        Mengbaipai138 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai138"]
+        }
+        Mengbaipai139 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai139"]
+        }
+        Mengbaipai140 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai140"]
+        }
+        Mengbaipai141 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai141"]
+        }
+        Mengbaipai142 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai142"]
+        }
+        Mengbaipai143 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai143"]
+        }
+        Mengbaipai144 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai144"]
+        }
+        Mengbaipai145 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai145"]
+        }
+        Mengbaipai146 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai146"]
+        }
+        Mengbaipai147 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai147"]
+        }
+        Mengbaipai148 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai148"]
+        }
+        Mengbaipai149 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai149"]
+        }
+        Mengbaipai150 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai150"]
+        }
+
+        Eyoung {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Eyoung"]
+        }
+        HappyPregnant {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "HappyPregnant"]
+        }
+        DIYPottery {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "DIYPottery"]
+        }
+        WangXinyi {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "WangXinyi"]
+        }
+        PanJingjing {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "PanJingjing"]
+        }
+
     }
 
     sourceSets {
@@ -100,8 +177,8 @@ android {
 
     signingConfigs {
         debug {
-            storeFile file("/Users/javon/Documents/mengbao/smartkids")
-//            storeFile file("/Users/niesen918/AndroidStudioProjects/key/smartkids")
+//            storeFile file("/Users/javon/Documents/mengbao/smartkids")
+            storeFile file("/Users/niesen918/AndroidStudioProjects/key/smartkids")
             storePassword "ns101288"
             keyAlias "smartkids"
             keyPassword "ns101288"

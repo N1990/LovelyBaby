@@ -1,6 +1,5 @@
 package com.cmbb.smartkids.photopicker.fragment;
 
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -45,7 +44,14 @@ public class PhotoPickerFragment extends Fragment {
 
     private PopupDirectoryListAdapter mPopupDirectoryListAdapter;
     private List<PhotoDirectory> mPhotoDirectories;
-
+    public MediaStoreHelper.PhotosResultCallback mPhotosResultCallback = new MediaStoreHelper.PhotosResultCallback() {
+        @Override
+        public void onResultCallback(List<PhotoDirectory> directories) {
+            mPhotoGridAdapter.notifyDataSetChanged();
+            PhotoPickerFragment.this.mPhotoDirectories.addAll(directories);
+            mPopupDirectoryListAdapter.notifyDataSetChanged();
+        }
+    };
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,14 +61,7 @@ public class PhotoPickerFragment extends Fragment {
         mPhotoGridAdapter = new PhotoGridAdapter(getActivity(), mPhotoDirectories);
         mPopupDirectoryListAdapter = new PopupDirectoryListAdapter(getActivity(), mPhotoDirectories);
         mImageCaptureManager = new ImageCaptureManager(getActivity());
-        MediaStoreHelper.getPhotoDirs(getActivity(), new MediaStoreHelper.PhotosResultCallback() {
-            @Override
-            public void onResultCallback(List<PhotoDirectory> directories) {
-                mPhotoGridAdapter.notifyDataSetChanged();
-                PhotoPickerFragment.this.mPhotoDirectories.addAll(directories);
-                mPopupDirectoryListAdapter.notifyDataSetChanged();
-            }
-        });
+        MediaStoreHelper.getPhotoDirs(getActivity(), mPhotosResultCallback);
     }
 
     @Override
@@ -109,9 +108,6 @@ public class PhotoPickerFragment extends Fragment {
 
                 int[] screenLocation = new int[2];
                 v.getLocationOnScreen(screenLocation);
-                /*ImagePagerFragment imagePagerFragment = ImagePagerFragment.newInstance(photos, index, screenLocation, v.getWidth(), v.getHeight());
-                ((PhotoPickerActivity) getActivity()).addImagePagerFragment(imagePagerFragment);*/
-
                 PhotoViewActivity.IntentPhotoView(getActivity(), photos, index, false);
             }
         });
@@ -155,19 +151,18 @@ public class PhotoPickerFragment extends Fragment {
                 mPhotoGridAdapter.notifyDataSetChanged();
             }
         }
+
     }
 
     public PhotoGridAdapter getPhotoGridAdapter() {
         return mPhotoGridAdapter;
     }
 
-
     @Override
     public void onSaveInstanceState(Bundle outState) {
         mImageCaptureManager.onSaveInstanceState(outState);
         super.onSaveInstanceState(outState);
     }
-
 
     @Override
     public void onViewStateRestored(Bundle savedInstanceState) {
@@ -178,4 +173,5 @@ public class PhotoPickerFragment extends Fragment {
     public ArrayList<String> getSelectedPhotoPaths() {
         return mPhotoGridAdapter.getSelectedPhotoPaths();
     }
+
 }

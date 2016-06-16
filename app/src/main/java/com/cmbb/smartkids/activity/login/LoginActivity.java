@@ -16,7 +16,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.cmbb.smartkids.R;
-import com.cmbb.smartkids.activity.home.home_v2.HomeActivity;
+import com.cmbb.smartkids.activity.home.home.HomeActivity;
 import com.cmbb.smartkids.activity.login.model.UserAssistModel;
 import com.cmbb.smartkids.activity.login.model.UserRootModel;
 import com.cmbb.smartkids.base.BaseActivity;
@@ -57,14 +57,12 @@ public class LoginActivity extends BaseActivity {
         return R.layout.activity_login;
     }
 
-
     @Override
     protected void init(Bundle savedInstanceState) {
         assignViews();
         initData();
         addListener();
     }
-
 
     private void initData() {
         dbHelper = new DBHelper(this);
@@ -90,7 +88,6 @@ public class LoginActivity extends BaseActivity {
         findViewById(R.id.tv_forget).setOnClickListener(this);
 
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -200,6 +197,7 @@ public class LoginActivity extends BaseActivity {
                     intent.putExtra("umeng_id", user.getUserId() + "_" + TDevice.getDeviceId(LoginActivity.this));
                     intent.putExtra("umeng_type", "service");
                     LocalBroadcastManager.getInstance(LoginActivity.this).sendBroadcast(intent);
+                    LocalBroadcastManager.getInstance(LoginActivity.this).sendBroadcast(new Intent(BaseApplication.PUSH_ALIAS_RESUME_REQUEST));
                     //写入数据库
                     ContentValues valus = new ContentValues();
                     valus.put(DBContent.DBUser.USER_TOKEN, user.getToken());
@@ -243,8 +241,8 @@ public class LoginActivity extends BaseActivity {
 
             @Override
             public void onComplete(Bundle bundle, SHARE_MEDIA share_media) {
-                if (bundle != null && !TextUtils.isEmpty(bundle.getString("openid"))) {
-                    openId = bundle.getString("openid");
+                if (bundle != null && !TextUtils.isEmpty(bundle.getString("uid"))) {
+                    openId = bundle.getString("uid");
                     if (!TextUtils.isEmpty(bundle.getString("unionid"))) {
                         uid = bundle.getString("unionid");
                     }
@@ -257,6 +255,7 @@ public class LoginActivity extends BaseActivity {
 
             @Override
             public void onError(SocializeException e, SHARE_MEDIA share_media) {
+                Log.i("err", e.toString());
                 showShortToast("授权失败");
             }
 
@@ -289,7 +288,6 @@ public class LoginActivity extends BaseActivity {
             handleLogin(null, null);
         }
     };
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

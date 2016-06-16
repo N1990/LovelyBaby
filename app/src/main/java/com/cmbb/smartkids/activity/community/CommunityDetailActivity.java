@@ -156,6 +156,7 @@ public class CommunityDetailActivity extends BaseActivity implements CustomListe
                 cacheDetail = (CommunityDetailModel) object;
                 if (cacheReplay != null && cacheDetail != null) {
                     hideWaitDialog();
+
                     if (cacheDetail.getData().getTopicImgList().size() != 0) {
                         ShareUtils.setShareContent(cacheDetail.getData().getTitle(), cacheDetail.getData().getContents(), Constants.Share.getTopicShareUrl(cacheDetail.getData().getId()), cacheDetail.getData().getTopicImgList().get(0).getImg());
                     } else {

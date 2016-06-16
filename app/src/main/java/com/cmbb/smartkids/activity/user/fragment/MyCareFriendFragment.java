@@ -86,7 +86,7 @@ public class MyCareFriendFragment extends BaseFragment implements View.OnClickLi
         FriendListModel.getFriendListRequest(0,pager, pagerSize, BaseApplication.token, new OkHttpClientManager.ResultCallback<FriendListModel>() {
             @Override
             public void onError(Request request, Exception e) {
-                showShortToast(e.toString());
+                showShortToast(getString(R.string.is_netwrok));
             }
 
             @Override
@@ -104,7 +104,7 @@ public class MyCareFriendFragment extends BaseFragment implements View.OnClickLi
         FriendListModel.getFriendListRequest(0,pager, pagerSize, BaseApplication.token, new OkHttpClientManager.ResultCallback<FriendListModel>() {
             @Override
             public void onError(Request request, Exception e) {
-                showShortToast(e.toString());
+                showShortToast(getString(R.string.is_netwrok));
             }
 
             @Override

@@ -16,7 +16,7 @@
             android:layout_height="match_parent"
             app:actualImageScaleType="focusCrop"
             app:fadeDuration="300"
-            app:placeholderImage="@color/accentColor" />
+            app:placeholderImage="@android:color/transparent" />
 
         <TextView
             android:id="@+id/tv_second"
@@ -26,94 +26,85 @@
             android:layout_margin="@dimen/half_global_padding"
             android:background="@drawable/shape_background_white_circle"
             android:padding="@dimen/global_padding"
-            android:text="3秒跳过" />
+            android:text="跳过"
+            android:visibility="invisible" />
     </RelativeLayout>
 
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/guide"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:visibility="gone">
 
-        <RelativeLayout
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp_guid"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:persistentDrawingCache="animation" />
 
-            <android.support.v4.view.ViewPager
-                android:id="@+id/vp_guid"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:persistentDrawingCache="animation" />
+        <com.cmbb.smartkids.photopicker.widget.indication.CirclePageIndicator
+            android:id="@+id/cpi_guid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:padding="5dip"
+            app:centered__="true" />
 
-            <com.cmbb.smartkids.photopicker.widget.indication.CirclePageIndicator
-                android:id="@+id/cpi_guid"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:padding="5dip"
-                app:centered__="true" />
-
-            <LinearLayout
-                android:id="@+id/ll_bottom"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:background="@android:color/transparent"
-                android:orientation="horizontal"
-                android:paddingBottom="30dip"
-                android:paddingLeft="20dip"
-                android:paddingRight="20dip"
-                android:paddingTop="30dip">
-
-                <TextView
-                    android:id="@+id/tv_guid_login"
-                    android:layout_width="0dip"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="20dip"
-                    android:layout_weight="1.0"
-                    android:background="@drawable/btn_guid_selector"
-                    android:gravity="center"
-                    android:padding="8dip"
-                    android:text="登录"
-                    android:textColor="@android:color/white"
-                    android:textSize="@dimen/txt_middle" />
-
-                <TextView
-                    android:id="@+id/tv_guid_register"
-                    android:layout_width="0dip"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1.0"
-                    android:background="@drawable/btn_guid_selector"
-                    android:gravity="center"
-                    android:padding="8dip"
-                    android:text="注册"
-                    android:textColor="@android:color/white"
-                    android:textSize="@dimen/txt_middle" />
-            </LinearLayout>
+        <LinearLayout
+            android:id="@+id/ll_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@android:color/transparent"
+            android:orientation="horizontal"
+            android:paddingBottom="30dip"
+            android:paddingLeft="20dip"
+            android:paddingRight="20dip"
+            android:paddingTop="30dip"
+            android:visibility="gone">
 
             <TextView
-                android:id="@+id/tv_in"
-                android:layout_width="wrap_content"
+                android:id="@+id/tv_guid_login"
+                android:layout_width="0dip"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_margin="@dimen/half_global_padding"
                 android:layout_marginRight="20dip"
+                android:layout_weight="1.0"
                 android:background="@drawable/btn_guid_selector"
                 android:gravity="center"
-                android:padding="@dimen/global_padding"
-                android:text="进入应用"
+                android:padding="8dip"
+                android:text="登录"
                 android:textColor="@android:color/white"
-                android:textSize="@dimen/txt_middle"
-                android:visibility="gone" />
+                android:textSize="@dimen/txt_middle" />
 
+            <TextView
+                android:id="@+id/tv_guid_register"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:background="@drawable/btn_guid_selector"
+                android:gravity="center"
+                android:padding="8dip"
+                android:text="注册"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/txt_middle" />
+        </LinearLayout>
 
-        </RelativeLayout>
+        <TextView
+            android:id="@+id/tv_in"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dip"
+            android:background="@drawable/btn_guid_selector"
+            android:gravity="center"
+            android:padding="@dimen/global_padding"
+            android:text="进入应用"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/txt_middle" />
 
-
-    </LinearLayout>
+    </RelativeLayout>
 
 </RelativeLayout>
 

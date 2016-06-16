@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.cmbb.smartkids.R;
+import com.cmbb.smartkids.activity.community.CommunityDetailActivity;
 import com.cmbb.smartkids.activity.community.model.TopicListModel;
 import com.cmbb.smartkids.activity.user.adapter.MyCommunityAdapter;
 import com.cmbb.smartkids.base.BaseApplication;
@@ -19,9 +20,6 @@ import com.cmbb.smartkids.network.OkHttpClientManager;
 import com.cmbb.smartkids.recyclerview.SmartRecyclerView;
 import com.cmbb.smartkids.recyclerview.adapter.RecyclerArrayAdapter;
 import com.squareup.okhttp.Request;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 项目名称：LovelyBaby
@@ -41,8 +39,7 @@ public class CommunityFragment extends BaseFragment implements View.OnClickListe
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.recyclerview_layout, null);
-        return root;
+        return inflater.inflate(R.layout.recyclerview_layout, null);
     }
 
 
@@ -77,16 +74,16 @@ public class CommunityFragment extends BaseFragment implements View.OnClickListe
 
 
     private void handleRequest(final int pager, int pagerSize, final boolean flag) {
-        TopicListModel.getTopicListRequest(0, pager, pagerSize, BaseApplication.token, new OkHttpClientManager.ResultCallback<TopicListModel>() {
+        TopicListModel.getTopicListOtherRequest(userId, pager, pagerSize, BaseApplication.token, new OkHttpClientManager.ResultCallback<TopicListModel>() {
                     @Override
                     public void onError(Request request, Exception e) {
-                        showShortToast(e.toString());
+                        showShortToast(getString(R.string.is_netwrok));
                     }
 
                     @Override
                     public void onResponse(TopicListModel response) {
                         if (response != null) {
-                            if (flag){
+                            if (flag) {
                                 adapter.clear();
                             }
                             adapter.addAll(response.getData().getRows());
@@ -99,7 +96,7 @@ public class CommunityFragment extends BaseFragment implements View.OnClickListe
 
     @Override
     public void onItemClick(int position) {
-
+        CommunityDetailActivity.newInstance(getActivity(), adapter.getItem(position).getId());
     }
 
     @Override

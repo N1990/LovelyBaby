@@ -9,9 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.cmbb.smartkids.R;
-import com.cmbb.smartkids.activity.serve.v2.ServerDetailActivityV2;
+import com.cmbb.smartkids.activity.serve.view.ServerDetailActivity;
 import com.cmbb.smartkids.activity.user.adapter.MyEvaluateServiceAdapter;
-import com.cmbb.smartkids.activity.user.adapter.MyEvaluateUserAdapter;
 import com.cmbb.smartkids.activity.user.model.EvaluateServiceModel;
 import com.cmbb.smartkids.base.BaseFragment;
 import com.cmbb.smartkids.base.CustomListener;
@@ -44,7 +43,7 @@ public class MyEvaluateServiceFragment extends BaseFragment implements View.OnCl
             @Override
             public void onItemClick(View v, int position, Object object) {
                 EvaluateServiceModel.DataEntity.RowsEntity data = (EvaluateServiceModel.DataEntity.RowsEntity) object;
-                ServerDetailActivityV2.newIntent(getActivity(), data.getServiceBasicInfo().getId());
+                ServerDetailActivity.newIntent(getActivity(), data.getServiceBasicInfo().getId());
             }
         });
         onRefresh();
@@ -58,7 +57,7 @@ public class MyEvaluateServiceFragment extends BaseFragment implements View.OnCl
         EvaluateServiceModel.getEvaluateServiceRequest(pager, pagerSize, new OkHttpClientManager.ResultCallback<EvaluateServiceModel>() {
             @Override
             public void onError(Request request, Exception e) {
-                showShortToast(e.toString());
+                showShortToast(getString(R.string.is_netwrok));
             }
 
             @Override
@@ -78,7 +77,7 @@ public class MyEvaluateServiceFragment extends BaseFragment implements View.OnCl
         EvaluateServiceModel.getEvaluateServiceRequest(pager, pagerSize, new OkHttpClientManager.ResultCallback<EvaluateServiceModel>() {
             @Override
             public void onError(Request request, Exception e) {
-                showShortToast(e.toString());
+                showShortToast(getString(R.string.is_netwrok));
             }
 
             @Override

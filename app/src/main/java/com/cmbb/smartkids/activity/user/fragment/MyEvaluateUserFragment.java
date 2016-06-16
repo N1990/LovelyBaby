@@ -58,7 +58,7 @@ public class MyEvaluateUserFragment extends BaseFragment implements View.OnClick
         UserEvaluateModel.getEvaluateUserRequest(isEredar, myCenter, userId, pager, pagerSize, new OkHttpClientManager.ResultCallback<UserEvaluateModel>() {
             @Override
             public void onError(Request request, Exception e) {
-                showShortToast(e.toString());
+                showShortToast(getString(R.string.is_netwrok));
             }
 
             @Override
@@ -78,7 +78,7 @@ public class MyEvaluateUserFragment extends BaseFragment implements View.OnClick
         UserEvaluateModel.getEvaluateUserRequest(isEredar, myCenter, userId, pager, pagerSize, new OkHttpClientManager.ResultCallback<UserEvaluateModel>() {
             @Override
             public void onError(Request request, Exception e) {
-                showShortToast(e.toString());
+                showShortToast(getString(R.string.is_netwrok));
             }
 
             @Override

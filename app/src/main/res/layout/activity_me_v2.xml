@@ -207,7 +207,21 @@
                     android:layout_marginRight="@dimen/half_global_padding"
                     android:layout_marginTop="@dimen/half_global_padding"
                     android:gravity="center"
-                    android:text=""
+                    android:textColor="@color/darkgray"
+                    tools:text="800/20000"
+                    android:textAppearance="@style/TextAppearance.Smart.Small" />
+
+                <TextView
+                    android:id="@+id/tv_myself_progress_next"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dip"
+                    android:layout_below="@+id/ll_myself_progress"
+                    android:layout_marginRight="@dimen/half_global_padding"
+                    android:layout_marginTop="@dimen/half_global_padding"
+                    android:gravity="center"
+                    android:textColor="@color/darkgray"
+                    tools:text="距离"
                     android:textAppearance="@style/TextAppearance.Smart.Small" />
 
             </RelativeLayout>

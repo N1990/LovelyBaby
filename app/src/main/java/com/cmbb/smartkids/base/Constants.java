@@ -9,12 +9,11 @@ package com.cmbb.smartkids.base;
 public class Constants {
 
     //开发环境
-//    public static final String BASE = "http://192.168.100.83:8080/wine-rest/";
-//    public static String BASE_URL_PIC = "http://192.168.100.174:8081/wine-rest/";
+    //    public static final String BASE = "http://192.168.100.83:8080/wine-rest/";
+    //    public static String BASE_URL_PIC = "http://192.168.100.174:8081/wine-rest/";
     //生产环境
     public static final String BASE = "http://120.26.88.135:8090/wine-rest/";
-//    public static final String BASE = "http://120.26.88.135:8090/wine-rest/cgi";
-//    public static String BASE_URL = BASE + "cgi";
+    //            public static final String BASE = "http://192.168.100.64:8081/wine-rest/";
 
     //    public static final String BASE = "http://mengbaopai.smart-kids.com:82/wine-rest/";
     public static final String BASE_URL = BASE + "cgi";
@@ -33,8 +32,8 @@ public class Constants {
     public static final class H5 {
         public static final String SMART_SIGN = "http://120.26.88.135:8090/SmartApp/page/smart-app-sign.html"; // 签到
         public static final String SMART_SERVICE_DETAIL = "http://120.26.88.135:8090/SmartApp/page/samrt-app-service-detail.html"; // 详情
-//        public static final String SMART_SIGN = "http://www.mengbp.com/web/App/SmartApp/page/smart-app-sign.html"; // 签到
-//        public static final String SMART_SERVICE_DETAIL = "http://www.mengbp.com/web/App/SmartApp/page/samrt-app-service-detail.html"; // 详情
+        //        public static final String SMART_SIGN = "http://www.mengbp.com/web/App/SmartApp/page/smart-app-sign.html"; // 签到
+        //        public static final String SMART_SERVICE_DETAIL = "http://www.mengbp.com/web/App/SmartApp/page/samrt-app-service-detail.html"; // 详情
     }
 
     public static class SharePreference {
@@ -58,7 +57,7 @@ public class Constants {
         }
 
         public static String getServerShareUrl(int id) {
-//            return BASE + "share/service.jsp?id=" + id;
+            //            return BASE + "share/service.jsp?id=" + id;
             return "http://www.mengbp.com/web/App/SmartApp/page/samrt-app-service-detail-share.html?id=" + id;
         }
     }
@@ -70,7 +69,6 @@ public class Constants {
     public static final class Broadcast {
         public static final String COUNT_TIME = "com.cmbb.smartkids.counttimen";
     }
-
 
     //接口
     public static final class ServiceInfo {
@@ -140,7 +138,6 @@ public class Constants {
         public static final String SET_DEFAULT_DELIVERY_ADDRESS = "smart/userAddress/setDefault";// 设置默认地址
         public static final String DELETE_DELIVERY_ADDRESS = "smart/userAddress/delete";// 删除地址
 
-
         //服务接口 3.0.4
         public static final String GET_MULTIPLE_DICT = "smart/system/getMultipleDict";// 获取服务字典
         public static final String SERVICES_RESERVE = "smart/services/Reserve";// 获取服务字典
@@ -164,6 +161,5 @@ public class Constants {
         public static final String TOPIC_REPLYTOPIC = "smart/topic/replyTopic"; // 举报话题
         public static final String TOPIC_DELETEREPLY = "smart/topic/deleteReply"; // 举报话题
     }
-
 
 }

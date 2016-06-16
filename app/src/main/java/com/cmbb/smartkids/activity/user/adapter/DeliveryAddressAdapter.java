@@ -24,29 +24,29 @@ public class DeliveryAddressAdapter extends RecyclerView.Adapter<DeliveryAddress
     private int checkId;
     private DeliveryAddressListModel.DataEntity.RowsEntity chooseData;
 
-    public DeliveryAddressAdapter(String flag, List<DeliveryAddressListModel.DataEntity.RowsEntity> data){
+    public DeliveryAddressAdapter(String flag, List<DeliveryAddressListModel.DataEntity.RowsEntity> data) {
         this.flag = flag;
-        if(data != null) {
+        if (data != null) {
             this.data = data;
-        }else{
+        } else {
             this.data = new ArrayList<>();
         }
     }
 
-    public void setData(List<DeliveryAddressListModel.DataEntity.RowsEntity> data){
-        if(data != null) {
+    public void setData(List<DeliveryAddressListModel.DataEntity.RowsEntity> data) {
+        if (data != null) {
             this.data = data;
-        }else{
+        } else {
             this.data = new ArrayList<>();
         }
         notifyDataSetChanged();
     }
 
-    public void setData(List<DeliveryAddressListModel.DataEntity.RowsEntity> data, int checkId){
+    public void setData(List<DeliveryAddressListModel.DataEntity.RowsEntity> data, int checkId) {
         this.checkId = checkId;
-        if(data != null) {
+        if (data != null) {
             this.data = data;
-        }else{
+        } else {
             this.data = new ArrayList<>();
         }
         notifyDataSetChanged();
@@ -92,9 +92,9 @@ public class DeliveryAddressAdapter extends RecyclerView.Adapter<DeliveryAddress
 
     @Override
     public void onBindViewHolder(DeliveryAddressHolder holder, int position) {
-        if("manager".equals(flag)){
+        if ("manager".equals(flag)) {
             holder.setData(this, data.get(position), position, flag);
-        }else{
+        } else {
             holder.setData(this, data.get(position), position, flag, checkId);
         }
     }

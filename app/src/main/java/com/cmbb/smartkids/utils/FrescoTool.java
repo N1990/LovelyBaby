@@ -45,8 +45,8 @@ public class FrescoTool {
             float r = w / h;
             simpleDraweeView.setAspectRatio(r);
         }
-        Uri uri = Uri.parse(url + "@" + TDevice.getScreenWidth(BaseApplication.getContext()) + "w_1o.jpeg");
-        //Log.e("Image", "Image = " + uri.toString());
+        Uri uri = Uri.parse(url + "@" + TDevice.getScreenWidth(BaseApplication.getContext()) + "w_1o.jpeg|watermark=1&object=YXBwL3dhdGVybWFyay93YXRlcm1hcmtfNC5wbmdAMTAwdw&p=9");
+        Log.e("Image", "Image = " + uri.toString());
         ImageRequest request = ImageRequestBuilder
                 .newBuilderWithSource(uri)
                 .setProgressiveRenderingEnabled(true)
@@ -74,7 +74,7 @@ public class FrescoTool {
             //simpleDraweeView.setImageResource(R.color.placeholder);
             return;
         }
-        Uri uri = Uri.parse(url + "@" + TDevice.getScreenWidth(BaseApplication.getContext()) + "w_1o.jpeg");
+        Uri uri = Uri.parse(url + "@" + TDevice.getScreenWidth(BaseApplication.getContext()) + "w_1o.jpeg|watermark=1&object=YXBwL3dhdGVybWFyay93YXRlcm1hcmtfNC5wbmdAMTAwdw&p=9");
         //Log.e("Image", "Image = " + uri.toString());
         ImageRequest request = ImageRequestBuilder
                 .newBuilderWithSource(uri)
@@ -102,7 +102,7 @@ public class FrescoTool {
             return;
         }
         simpleDraweeView.setAspectRatio(ratio);
-        Uri uri = Uri.parse(url + "@" + TDevice.getScreenWidth(BaseApplication.getContext()) + "w_1o.jpeg");
+        Uri uri = Uri.parse(url + "@" + TDevice.getScreenWidth(BaseApplication.getContext()) + "w_1o.jpeg|watermark=1&object=YXBwL3dhdGVybWFyay93YXRlcm1hcmtfNC5wbmdAMTAwdw&p=9");
         //Log.e("Image", "Image = " + uri.toString());
         ImageRequest request = ImageRequestBuilder
                 .newBuilderWithSource(uri)
@@ -128,7 +128,7 @@ public class FrescoTool {
             return;
         }
 
-        Uri uri = Uri.parse(url + "@" + height + "h_1o.jpeg");
+        Uri uri = Uri.parse(url + "@" + height + "h_1o.jpeg|watermark=1&object=YXBwL3dhdGVybWFyay93YXRlcm1hcmtfNC5wbmdAMTAwdw&p=9");
         //Log.e("Image", "Image = " + uri.toString());
         ImageRequest request = ImageRequestBuilder
                 .newBuilderWithSource(uri)

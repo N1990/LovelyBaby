@@ -47,7 +47,6 @@ public class ImageUpload {
                 .aliases("image_" + StringUtils.getUUID()).build();*/
     }
 
-
     public void uploadImages(final Context context, final ArrayList<String> images, final UploadListener uploadListener) {
         if (null == images || images.size() == 0) {
             Log.e(TAG, "images is null or size is 0");
@@ -87,7 +86,8 @@ public class ImageUpload {
      * 取消所有图片上传
      */
     public void cancelAllUpload() {
-        if (_taskIds.size() <= 0) return;
+        if (_taskIds.size() <= 0)
+            return;
 
         for (int i = 0; i < _taskIds.size(); i++) {
             BaseApplication.mediaService.cancelUpload(_taskIds.get(i));

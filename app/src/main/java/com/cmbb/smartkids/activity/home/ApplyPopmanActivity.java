@@ -256,7 +256,6 @@ public class ApplyPopmanActivity extends BaseActivity implements TextWatcher {
         super.onDestroy();
     }
 
-
     private void handleRequest() {
         String nickName = etRealName.getText().toString();
         String identity = etIdentity.getText().toString();
@@ -304,9 +303,7 @@ public class ApplyPopmanActivity extends BaseActivity implements TextWatcher {
             handleApplyPopRequest(nickName, identity, phone, verifyCode, sortValue, introduce, null);
         }
 
-
     }
-
 
     /**
      * 图片上传到友盟资源服务器
@@ -348,8 +345,8 @@ public class ApplyPopmanActivity extends BaseActivity implements TextWatcher {
                         String imgs = gson.toJson(upData);
                         int index = imgs.indexOf("[");
                         String realImgs = imgs.substring(index + 1, imgs.length() - 2);
-                        realImgs = realImgs.replaceAll("\"", "\\\\\"");
-                        Log.e(TAG, "imgs : " + realImgs);
+                        //                        realImgs = realImgs.replaceAll("\"", "\\\\\"");
+                        Log.e(TAG, realImgs);
                         handleApplyPopRequest(nickName, identityCard, phone, verifyCode, sort, introduce, realImgs);
                     }
                 } catch (JSONException e) {
@@ -363,7 +360,6 @@ public class ApplyPopmanActivity extends BaseActivity implements TextWatcher {
             }
         });
     }
-
 
     /**
      * 提交达人申请
@@ -424,7 +420,6 @@ public class ApplyPopmanActivity extends BaseActivity implements TextWatcher {
             }
         }));
     }
-
 
     /**
      * 获取达人类型

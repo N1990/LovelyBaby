@@ -144,7 +144,7 @@ public class ShareUtils {
     }
 
     public static void setShareContent(String titile, String content, String url, int imgUrl) {
-
+        Log.e("ShareUtils", "title :" + titile + ", content :" + content + ", url :" + url + ", imgUrl: " + imgUrl);
         // 配置SSO
         WeiXinShareContent weixinContent = new WeiXinShareContent();
         weixinContent.setTitle(titile);

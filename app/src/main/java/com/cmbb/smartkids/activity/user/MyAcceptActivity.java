@@ -9,7 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.cmbb.smartkids.R;
-import com.cmbb.smartkids.activity.order.VerifyOrderActivity;
+import com.cmbb.smartkids.activity.order.view.VerifyOrderActivity;
 import com.cmbb.smartkids.activity.order.fragment.AcceptOrderFragment;
 import com.cmbb.smartkids.activity.order.fragment.VerifyOrderFragment;
 import com.cmbb.smartkids.activity.user.adapter.SelfCommentPagerAdapter;

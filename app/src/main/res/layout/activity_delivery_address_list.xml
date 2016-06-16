@@ -5,9 +5,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.cmbb.smartkids.activity.user.DeliveryAddressListActivity">
-    <include
-        layout="@layout/custom_actionbar"/>
-    <includ
-        layout="@layout/recycler_layout"/>
+
+    <include layout="@layout/custom_actionbar" />
+
+    <include layout="@layout/recycler_layout" />
 
 </LinearLayout>

@@ -15,7 +15,7 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <!-- umeng 推送 -->
     <!-- pgyer -->
     <!-- 读写sdcard，storage等等 -->
@@ -25,13 +25,14 @@
     <!-- 获取logcat日志 -->
     <uses-permission android:name="android.permission.GET_TASKS" />
     <!--清除缓存-->
-    <uses-permission android:name="android.permission.CLEAR_APP_CACHE"/>
+    <uses-permission android:name="android.permission.CLEAR_APP_CACHE" />
 
     <!-- 支付宝 -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <!-- 支付宝 -->
@@ -201,8 +202,7 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-        </activity>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
         <activity
             android:name=".wxapi.WXPayEntryActivity"
@@ -232,12 +232,6 @@
         <service android:name=".activity.login.CountTimeService" />
 
         <activity
-            android:name=".activity.home.HomeActivity"
-            android:label="@string/title_activity_home" />
-        <activity
-            android:name=".activity.serve.ActiveDetailActivity"
-            android:label="@string/title_activity_active" />
-        <activity
             android:name=".activity.home.ApplyPopmanActivity"
             android:label="@string/title_activity_apply_popman" />
         <!-- MengPhotoPicker -->
@@ -252,20 +246,8 @@
             android:name=".activity.more.SuggestActivity"
             android:label="@string/title_activity_suggest" />
         <activity
-            android:name=".activity.order.OrderResultActivity"
-            android:label="@string/title_activity_order_result" />
-        <activity
-            android:name=".activity.order.OrderDetailActivity"
-            android:label="@string/title_activity_order_detail" />
-        <activity
             android:name=".activity.user.MyListRedirectActivity"
             android:label="@string/title_activity_my_service" />
-        <activity
-            android:name=".activity.order.MyOrderListActivity"
-            android:label="@string/title_activity_my_order_list" />
-        <activity
-            android:name=".activity.order.CancelOrderResultActivity"
-            android:label="@string/title_activity_cancel_order_result" />
         <activity
             android:name=".activity.user.MySetActivity"
             android:label="@string/title_activity_my_set" />
@@ -279,7 +261,7 @@
             android:name=".activity.user.MyAcceptActivity"
             android:label="@string/title_activity_my_accept" />
         <activity
-            android:name=".activity.order.VerifyOrderActivity"
+            android:name=".activity.order.view.VerifyOrderActivity"
             android:label="@string/title_activity_verify_order"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -289,12 +271,8 @@
             android:name=".activity.user.MyServiceOrderActivity"
             android:label="@string/title_activity_my_service_order" />
         <activity
-            android:name=".activity.order.EvaluateListActivity"
-            android:label="@string/title_activity_evaluate" />
-        <activity
             android:name=".activity.more.AboutActivity"
             android:label="@string/title_activity_about" />
-        <activity android:name=".activity.serve.ServiceUserListActivity" />
 
         <provider
             android:name=".db.UserProvider"
@@ -312,7 +290,6 @@
             android:enabled="true"
             android:exported="false" />
 
-        <activity android:name=".activity.order.OrderModifyPhoneActivity" />
         <activity
             android:name=".activity.community.PublishCommunityActivity"
             android:label="@string/title_activity_public_community" />
@@ -363,7 +340,6 @@
         <activity android:name=".activity.more.CompanyRule" />
         <activity android:name=".activity.message.MessageActivity" />
         <activity android:name=".activity.message.OfficialMessageActivity" />
-        <activity android:name=".activity.serve.ActiveDetailMoreActivity" />
         <activity android:name=".activity.message.MessageOfficialListActivity" />
         <activity android:name=".activity.message.MessageOrderListActivity" />
         <activity android:name=".activity.message.MessageReverListActivity" />
@@ -376,8 +352,6 @@
         <activity android:name=".activity.diary.BabyDiaryDetailActivity" />
         <activity android:name=".activity.diary.PublishBabyDiaryActivity" />
         <activity android:name=".activity.user.MyDraftsActivity" />
-
-
         <activity android:name=".activity.user.DraftsDetailActivity" />
         <activity android:name=".activity.user.DeliveryAddressListActivity" />
         <activity android:name=".activity.user.DeliveryAddressDetailActivity" />
@@ -385,44 +359,44 @@
         <activity android:name=".activity.user.ManagerDeliveryAddressListActivity" />
 
         <activity
-            android:name=".activity.home.home_v2.HomeActivity"
+            android:name=".activity.home.home.HomeActivity"
             android:theme="@style/HomePageTheme"
             android:windowSoftInputMode="adjustNothing|stateHidden" />
         <activity
-            android:name=".activity.home.home_v2.HomeTopicActivity"
+            android:name=".activity.home.home.HomeTopicActivity"
             android:theme="@style/HomePageTheme" />
         <activity
-            android:name=".activity.home.home_v2.HomeMeActivity"
+            android:name=".activity.home.home.HomeMeActivity"
             android:theme="@style/HomePageTheme" />
         <activity
-            android:name=".activity.home.home_v2.HomeMoreActivity"
+            android:name=".activity.home.home.HomeMoreActivity"
             android:theme="@style/HomePageTheme" />
         <activity
-            android:name=".activity.home.home_v2.HomeServiceActivity"
+            android:name=".activity.home.home.HomeServiceActivity"
             android:theme="@style/HomePageTheme" />
 
-        <activity android:name=".activity.serve.v2.ServerDetailActivityV2" />
-        <activity android:name=".activity.home.home_v2.SignActivity" />
-        <activity android:name=".activity.order.v2.ConfirmOrder" />
-        <activity android:name=".activity.order.v2.GenerateOrder" />
-        <activity android:name=".activity.order.v2.PayConfirm" />
-        <activity android:name=".activity.order.v2.SavePhoneActivity" />
-        <activity android:name=".activity.order.v2.BaseOrderListActivity" />
-        <activity android:name=".activity.order.v2.AllOrderListActivity" />
-        <activity android:name=".activity.order.v2.UnpayOrderListActivity" />
-        <activity android:name=".activity.order.v2.UnConsumeOrderListActivity" />
-        <activity android:name=".activity.order.v2.UnEvaluateOrderListActivity" />
-        <activity android:name=".activity.order.v2.ReimburseOrderListActivity" />
-        <activity android:name=".activity.home.home_v2.RankErdarActivity" />
-        <activity android:name=".activity.order.v2.EvaluateOrderActivity" />
-        <activity android:name=".activity.order.v2.ReimburseActivity" />
+        <activity android:name=".activity.serve.view.ServerDetailActivity" />
+        <activity android:name=".activity.home.home.SignActivity" />
+        <activity android:name=".activity.order.view.ConfirmOrder" />
+        <activity android:name=".activity.order.view.GenerateOrder" />
+        <activity android:name=".activity.order.view.PayConfirm" />
+        <activity android:name=".activity.order.view.SavePhoneActivity" />
+        <activity android:name=".activity.order.view.BaseOrderListActivity" />
+        <activity android:name=".activity.order.view.AllOrderListActivity" />
+        <activity android:name=".activity.order.view.UnpayOrderListActivity" />
+        <activity android:name=".activity.order.view.UnConsumeOrderListActivity" />
+        <activity android:name=".activity.order.view.UnEvaluateOrderListActivity" />
+        <activity android:name=".activity.order.view.ReimburseOrderListActivity" />
+        <activity android:name=".activity.home.home.RankErdarActivity" />
+        <activity android:name=".activity.order.view.EvaluateOrderActivity" />
+        <activity android:name=".activity.order.view.ReimburseActivity" />
         <activity
-            android:name=".activity.home.home_v2.WonderfulReviewActivity"
+            android:name=".activity.home.home.WonderfulReviewActivity"
             android:theme="@style/HomePageTheme" />
 
-        <activity android:name=".activity.home.home_v2.ADActivity" />
+        <activity android:name=".activity.home.home.ADActivity" />
         <activity android:name="com.soundcloud.android.crop.CropImageActivity" />
-        <activity android:name=".activity.home.home_v2.WeekReviewActivity" />
+        <activity android:name=".activity.home.home.WeekReviewActivity" />
 
     </application>
 

@@ -16,9 +16,6 @@ import com.cmbb.smartkids.recyclerview.SmartRecyclerView;
 import com.cmbb.smartkids.recyclerview.adapter.RecyclerArrayAdapter;
 import com.squareup.okhttp.Request;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * 项目名称：LovelyBaby
  * 类描述：
@@ -95,7 +92,7 @@ public class EvaluateFragment extends BaseFragment implements View.OnClickListen
         EvaluateListModel.getUserCenterServiceRequest(0, isPopman, userId, pager, pagerSize, new OkHttpClientManager.ResultCallback<EvaluateListModel>() {
             @Override
             public void onError(Request request, Exception e) {
-                showShortToast(e.toString());
+                showShortToast(getString(R.string.is_netwrok));
             }
 
             @Override

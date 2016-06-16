@@ -71,7 +71,7 @@ public class MessageReverListActivity extends BaseActivity implements View.OnCli
         MessageListModel.getOfficialMessageRequest(dataEntity.getModual(), pager, pagerSize, BaseApplication.token, new OkHttpClientManager.ResultCallback<MessageListModel>() {
             @Override
             public void onError(Request request, Exception e) {
-                showShortToast(e.toString());
+                showShortToast(getString(R.string.is_netwrok));
             }
 
             @Override
@@ -91,7 +91,7 @@ public class MessageReverListActivity extends BaseActivity implements View.OnCli
         MessageListModel.getOfficialMessageRequest(dataEntity.getModual(), pager, pagerSize, BaseApplication.token, new OkHttpClientManager.ResultCallback<MessageListModel>() {
             @Override
             public void onError(Request request, Exception e) {
-                showShortToast(e.toString());
+                showShortToast(getString(R.string.is_netwrok));
             }
 
             @Override

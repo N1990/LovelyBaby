@@ -19,10 +19,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.cmbb.smartkids.R;
-import com.cmbb.smartkids.activity.home.home_v2.HomeActivity;
+import com.cmbb.smartkids.activity.home.home.HomeActivity;
 import com.cmbb.smartkids.activity.home.model.ManagerAdModel;
 import com.cmbb.smartkids.activity.login.LoginActivity;
 import com.cmbb.smartkids.activity.login.VerifyActivity;
@@ -55,7 +54,7 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
             switch (msg.what) {
                 case 1:
                     recLen--;
-                    tvSecond.setText(recLen + 1 + "秒跳过");
+                    tvSecond.setText("跳过");
                     if (recLen > 0) {
                         Message message = handler.obtainMessage(1);
                         handler.sendMessageDelayed(message, 1000);
@@ -75,8 +74,6 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
     private LinearLayout ll_bottom;
     private TextView tvIn;
 
-    int flag;
-
     private BroadcastReceiver existReceiver;// EXIT
 
 
@@ -85,12 +82,10 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_splash);
-        String token = SPCache.getString(Constants.TOKEN, "");
-        flag = getIntent().getIntExtra("flag", -1);// flag == 1 表示进入guide
-        if (flag == 1 || TextUtils.isEmpty(token)) {
-            // guide
+        if (TextUtils.isEmpty(SPCache.getString("app_first", ""))) {
             findViewById(R.id.guide).setVisibility(View.VISIBLE);
             findViewById(R.id.splash).setVisibility(View.GONE);
+            SPCache.putString("app_first", "3.1.0");
             initGuideView();
         } else {
             findViewById(R.id.guide).setVisibility(View.GONE);
@@ -115,6 +110,7 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
         cpiGuid.setSnap(true);
         findViewById(R.id.tv_guid_login).setOnClickListener(this);
         findViewById(R.id.tv_guid_register).setOnClickListener(this);
+        findViewById(R.id.tv_in).setOnClickListener(this);
         tvIn.setOnClickListener(this);
     }
 
@@ -125,15 +121,13 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
         ManagerAdModel.getSplashImgRequest(new OkHttpClientManager.ResultCallback<ManagerAdModel>() {
             @Override
             public void onError(Request request, Exception e) {
-                Toast.makeText(SplashActivity.this, e.toString(), Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void onResponse(ManagerAdModel response) {
                 if (response != null && response.getData().size() > 0) {
+                    tvSecond.setVisibility(View.VISIBLE);
                     FrescoTool.loadImage(sdv, response.getData().get(0).getAdImg(), TDevice.getScreenWidth(SplashActivity.this) + "", TDevice.getScreenHeight(SplashActivity.this) + "");
-                } else {
-                    recLen = 0;
                 }
             }
         });
@@ -229,10 +223,9 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
-    public static void newIntent(Context context, int flag) {
+    public static void newIntent(Context context) {
         Intent intent = new Intent(context, SplashActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intent.putExtra("flag", flag);
         context.startActivity(intent);
     }
 }

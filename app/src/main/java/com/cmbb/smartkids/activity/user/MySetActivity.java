@@ -538,7 +538,7 @@ public class MySetActivity extends BaseActivity implements LocationSelectorDialo
                                     //关闭主页面
                                     Intent intent = new Intent(Constants.INTENT_ACTION_EXIT_APP);
                                     sendBroadcast(intent);
-                                    SplashActivity.newIntent(MySetActivity.this, 1);
+                                    SplashActivity.newIntent(MySetActivity.this);
                                     finish();
                                 } else {
                                     showToast("注销失败");

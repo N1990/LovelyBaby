@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 
 import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.activity.serve.model.ServiceListModel;
-import com.cmbb.smartkids.activity.serve.v2.ServerDetailActivityV2;
+import com.cmbb.smartkids.activity.serve.view.ServerDetailActivity;
 import com.cmbb.smartkids.activity.user.adapter.MyServiceAdapter;
 import com.cmbb.smartkids.base.BaseFragment;
 import com.cmbb.smartkids.network.OkHttpClientManager;
@@ -71,7 +71,7 @@ public class ServiceFragment extends BaseFragment implements View.OnClickListene
     @Override
     public void onItemClick(int position) {
         ServiceListModel.DataEntity.RowsEntity item = adapter.getItem(position);
-        ServerDetailActivityV2.newIntent(getActivity(), item.getId());
+        ServerDetailActivity.newIntent(getActivity(), item.getId());
     }
 
     @Override
@@ -92,7 +92,7 @@ public class ServiceFragment extends BaseFragment implements View.OnClickListene
         ServiceListModel.getUserCenterServiceRequest(myCenter, isPopman, userId, pager, pagerSize, new OkHttpClientManager.ResultCallback<ServiceListModel>() {
             @Override
             public void onError(Request request, Exception e) {
-                showShortToast(e.toString());
+                showShortToast(getString(R.string.is_netwrok));
             }
 
             @Override

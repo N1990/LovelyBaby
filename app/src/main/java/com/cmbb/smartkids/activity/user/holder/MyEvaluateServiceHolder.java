@@ -60,7 +60,7 @@ public class MyEvaluateServiceHolder extends BaseViewHolder<EvaluateServiceModel
         super.setData(data, position);
         FrescoTool.loadImage(sdvEvaluateServiceItem, data.getUserBasicInfo().getUserSmallImg());
         tvEvaluateServiceNicknameItem.setText(data.getUserBasicInfo().getUserNike());
-        rbEvaluateServiceItem.setRating(data.getUserBasicInfo().getUserLevel());
+        rbEvaluateServiceItem.setRating(data.getEvaluateType());
         try {
             String date = Tools.DataToString(data.getEvaluateDate(), "yyyy年MM月dd日");
             tvEvaluateTimeItem.setText(date);

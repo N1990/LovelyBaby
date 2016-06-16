@@ -70,7 +70,7 @@ public class MySystemMessageFragement extends BaseFragment implements View.OnCli
             @Override
             public void onError(Request request, Exception e) {
                 hideWaitDialog();
-                showShortToast(e.toString());
+                showShortToast(getString(R.string.is_netwrok));
             }
 
             @Override
@@ -112,7 +112,7 @@ public class MySystemMessageFragement extends BaseFragment implements View.OnCli
         MessageListModel.getMessageListRequest(pager, pagerSize, 1, BaseApplication.token, new OkHttpClientManager.ResultCallback<MessageListModel>() {
             @Override
             public void onError(Request request, Exception e) {
-                showShortToast(e.toString());
+                showShortToast(getString(R.string.is_netwrok));
             }
 
             @Override
@@ -130,7 +130,7 @@ public class MySystemMessageFragement extends BaseFragment implements View.OnCli
         MessageListModel.getMessageListRequest(pager, pagerSize, 1, BaseApplication.token, new OkHttpClientManager.ResultCallback<MessageListModel>() {
             @Override
             public void onError(Request request, Exception e) {
-                showShortToast(e.toString());
+                showShortToast(getString(R.string.is_netwrok));
             }
 
             @Override

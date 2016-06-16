@@ -89,7 +89,7 @@
             android:drawablePadding="@dimen/half_global_padding"
             android:drawableTop="@drawable/guoyimiaoshou"
             android:gravity="center"
-            android:text="国医妙手" />
+            android:text="国医圣手" />
 
         <TextView
             android:id="@+id/tv_lamasudi"

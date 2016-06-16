@@ -28,7 +28,6 @@ import com.cmbb.smartkids.base.Constants;
 import com.cmbb.smartkids.base.CustomListener;
 import com.cmbb.smartkids.db.DBContent;
 import com.cmbb.smartkids.network.NetRequest;
-import com.cmbb.smartkids.network.OkHttpClientManager;
 import com.cmbb.smartkids.photopicker.PhotoPickerActivity;
 import com.cmbb.smartkids.photopicker.PhotoViewActivity;
 import com.cmbb.smartkids.photopicker.utils.PhotoPickerIntent;
@@ -66,7 +65,6 @@ public class PublishCommunityActivity extends BaseActivity {
     private String type_value;
 
     private int currentImgPositon;
-
 
     @Override
     protected int getLayoutId() {
@@ -197,7 +195,6 @@ public class PublishCommunityActivity extends BaseActivity {
         }
     };
 
-
     private CustomListener.ItemClickListener onItemDeleteListener = new CustomListener.ItemClickListener() {
         @Override
         public void onItemClick(View v, int position, Object object) {
@@ -244,6 +241,8 @@ public class PublishCommunityActivity extends BaseActivity {
         if (resultCode == RESULT_OK && requestCode == PIC_REQUEST_CODE) {
             if (data != null) {
                 ArrayList<String> tempUrls = data.getStringArrayListExtra(PhotoPickerActivity.KEY_SELECTED_PHOTOS);
+                //图片压缩
+
                 for (String str : tempUrls) {
                     ImageModel model = new ImageModel();
                     model.setImgUrl(str);
@@ -267,7 +266,6 @@ public class PublishCommunityActivity extends BaseActivity {
                 break;
         }
     }
-
 
     /**
      * 发布话题
@@ -420,7 +418,6 @@ public class PublishCommunityActivity extends BaseActivity {
                             e.printStackTrace();
                         }
                         //=======   continue  =========
-
 
                         if (adapter.getData() != null && adapter.getData().size() > 0) {
                             Gson gson = new Gson();

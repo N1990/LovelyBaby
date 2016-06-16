@@ -11,4 +11,5 @@
     android:lines="1"
     android:padding="@dimen/global_padding"
     android:text="服务方式"
+    android:textSize="@dimen/txt_small"
     android:textColor="@color/selector_gray_to_primarycolor_text" />

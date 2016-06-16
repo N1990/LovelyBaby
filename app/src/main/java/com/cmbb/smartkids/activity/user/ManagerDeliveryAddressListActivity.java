@@ -115,6 +115,7 @@ public class ManagerDeliveryAddressListActivity extends BaseActivity {
         Intent intent = new Intent(activity, ManagerDeliveryAddressListActivity.class);
         activity.startActivityForResult(intent, requestCode);
     }
+
     public static void skipFromActivity(Activity activity) {// manager check
         Intent intent = new Intent(activity, ManagerDeliveryAddressListActivity.class);
         activity.startActivity(intent);

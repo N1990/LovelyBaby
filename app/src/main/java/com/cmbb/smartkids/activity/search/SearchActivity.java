@@ -26,9 +26,9 @@ import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.activity.community.CommunityDetailActivity;
 import com.cmbb.smartkids.activity.community.model.TopicListModel;
 import com.cmbb.smartkids.activity.community.model.TopicTypeModel;
-import com.cmbb.smartkids.activity.home.home_v2.adapter.ServiceAdapter;
+import com.cmbb.smartkids.activity.home.home.adapter.ServiceAdapter;
 import com.cmbb.smartkids.activity.serve.model.ServiceListModel;
-import com.cmbb.smartkids.activity.serve.v2.ServerDetailActivityV2;
+import com.cmbb.smartkids.activity.serve.view.ServerDetailActivity;
 import com.cmbb.smartkids.activity.user.UserCenterActivity;
 import com.cmbb.smartkids.base.BaseActivity;
 import com.cmbb.smartkids.network.OkHttpClientManager;
@@ -134,7 +134,7 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
             startActivity(intent);
         } else if (adapter instanceof ServiceAdapter) { //服务adapter监听事件
             ServiceListModel.DataEntity.RowsEntity item = adapter_service.getItem(position);
-            ServerDetailActivityV2.newIntent(this, item.getId());
+            ServerDetailActivity.newIntent(this, item.getId());
         } else if (adapter instanceof SearchUserAdapter) { //用户adapter监听事件
             SearchUserModel.DataEntity.RowsEntity item = adapter_user.getItem(position);
             int id = item.getId();
@@ -319,7 +319,7 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
             @Override
             public void onError(Request request, Exception e) {
                 hideWaitDialog();
-                showShortToast(e.toString());
+                showShortToast(getString(R.string.is_netwrok));
             }
 
             @Override
@@ -345,7 +345,7 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
             @Override
             public void onError(Request request, Exception e) {
                 hideWaitDialog();
-                showShortToast(e.toString());
+                showShortToast(getString(R.string.is_netwrok));
             }
 
             @Override
@@ -373,7 +373,7 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
             @Override
             public void onError(Request request, Exception e) {
                 hideWaitDialog();
-                showShortToast(e.toString());
+                showShortToast(getString(R.string.is_netwrok));
             }
 
             @Override
@@ -400,7 +400,7 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
             @Override
             public void onError(Request request, Exception e) {
                 hideWaitDialog();
-                showShortToast(e.toString());
+                showShortToast(getString(R.string.is_netwrok));
             }
 
             @Override

@@ -42,6 +42,7 @@ public class BaseApplication extends MultiDexApplication {
     private static Context context;
     public static PushAgent mPushAgent;
     public static String PUSH_ALIAS_ITENTACTION = "com.cmbb.smartkids.alias";
+    public static String PUSH_ALIAS_RESUME_REQUEST = "com.cmbb.smartkids.resume";
     public static MediaService mediaService;
     public static String token = "";
 
@@ -79,7 +80,6 @@ public class BaseApplication extends MultiDexApplication {
                 .build();
         Fresco.initialize(BaseApplication.getContext(), config);
     }
-
 
     public static Context getContext() {
         return context;
@@ -167,13 +167,12 @@ public class BaseApplication extends MultiDexApplication {
         UmengNotificationClickHandler notificationClickHandler = new UmengNotificationClickHandler() {
             @Override
             public void dealWithCustomAction(Context context, UMessage msg) {
-//                Toast.makeText(context, "i click :" + msg.custom, Toast.LENGTH_LONG).show();
+                //                Toast.makeText(context, "i click :" + msg.custom, Toast.LENGTH_LONG).show();
                 Log.e("SmartKids", "message1 = " + msg.custom);
             }
         };
         mPushAgent.setNotificationClickHandler(notificationClickHandler);
     }
-
 
     /**
      * 设置推送用户别名

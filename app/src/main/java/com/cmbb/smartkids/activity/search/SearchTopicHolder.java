@@ -1,6 +1,5 @@
 package com.cmbb.smartkids.activity.search;
 
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
@@ -94,6 +93,10 @@ public class SearchTopicHolder extends BaseViewHolder<TopicListModel.DataEntity.
             iv1.setVisibility(View.GONE);
             iv2.setVisibility(View.GONE);
             iv3.setVisibility(View.GONE);
+        } else {
+            iv1.setVisibility(View.GONE);
+            iv2.setVisibility(View.GONE);
+            iv3.setVisibility(View.GONE);
         }
 
         try {
@@ -108,6 +111,5 @@ public class SearchTopicHolder extends BaseViewHolder<TopicListModel.DataEntity.
         }
         tvPerssion.setText(data.getReplys() + "");
         tvPre.setText(data.getBrowseNumber() + "");
-
     }
 }

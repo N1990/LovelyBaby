@@ -11,8 +11,8 @@ import android.view.View;
 
 import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.activity.login.model.SecurityCodeModel;
-import com.cmbb.smartkids.activity.order.OrderDetailActivity;
-import com.cmbb.smartkids.activity.serve.ActiveDetailActivity;
+import com.cmbb.smartkids.activity.order.view.GenerateOrder;
+import com.cmbb.smartkids.activity.serve.view.ServerDetailActivity;
 import com.cmbb.smartkids.activity.user.adapter.MyMsgAdapter;
 import com.cmbb.smartkids.activity.user.model.MessageListModel;
 import com.cmbb.smartkids.base.BaseActivity;
@@ -73,7 +73,7 @@ public class MyMessageActivity extends BaseActivity implements View.OnClickListe
             @Override
             public void onError(Request request, Exception e) {
                 hideWaitDialog();
-                showShortToast(e.toString());
+                showShortToast(getString(R.string.is_netwrok));
             }
 
             @Override
@@ -82,13 +82,12 @@ public class MyMessageActivity extends BaseActivity implements View.OnClickListe
                 if (response != null) {
                     adapter.setRead(position);
                     if ("order".equals(type)) {
-                        Intent order = new Intent(MyMessageActivity.this, OrderDetailActivity.class);
-                        order.putExtra("orderCode", relationId);
-                        startActivity(order);
+                        GenerateOrder.newInstance(MyMessageActivity.this, relationId);
+
+
                     } else if ("service".equals(type)) {
-                        Intent service = new Intent(MyMessageActivity.this, ActiveDetailActivity.class);
-                        service.putExtra("serviceId", Integer.parseInt(relationId));
-                        startActivity(service);
+                        ServerDetailActivity.newIntent(MyMessageActivity.this, Integer.parseInt(relationId));
+
                     } else if ("system".equals(type)) {
                         Intent system = new Intent(MyMessageActivity.this, HomeMessageActivity.class);
                         system.putExtra("id", messageId);
@@ -110,13 +109,11 @@ public class MyMessageActivity extends BaseActivity implements View.OnClickListe
         if (!TextUtils.isEmpty(relationId)) {
             if (isRead == 1) {
                 if ("order".equals(type)) {
-                    Intent order = new Intent(MyMessageActivity.this, OrderDetailActivity.class);
-                    order.putExtra("orderCode", relationId);
-                    startActivity(order);
+                    GenerateOrder.newInstance(MyMessageActivity.this, relationId);
+
                 } else if ("service".equals(type)) {
-                    Intent service = new Intent(MyMessageActivity.this, ActiveDetailActivity.class);
-                    service.putExtra("serviceId", Integer.parseInt(relationId));
-                    startActivity(service);
+                    ServerDetailActivity.newIntent(MyMessageActivity.this, Integer.parseInt(relationId));
+
                 }
             } else {
                 handleMessageRequest(messageId, position, type, relationId, messageId);
@@ -138,7 +135,7 @@ public class MyMessageActivity extends BaseActivity implements View.OnClickListe
         MessageListModel.getMessageListRequest(pager, pagerSize, BaseApplication.token, new OkHttpClientManager.ResultCallback<MessageListModel>() {
             @Override
             public void onError(Request request, Exception e) {
-                showShortToast(e.toString());
+                showShortToast(getString(R.string.is_netwrok));
             }
 
             @Override
@@ -156,7 +153,7 @@ public class MyMessageActivity extends BaseActivity implements View.OnClickListe
         MessageListModel.getMessageListRequest(pager, pagerSize, BaseApplication.token, new OkHttpClientManager.ResultCallback<MessageListModel>() {
             @Override
             public void onError(Request request, Exception e) {
-                showShortToast(e.toString());
+                showShortToast(getString(R.string.is_netwrok));
             }
 
             @Override

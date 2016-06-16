@@ -85,7 +85,7 @@ public class PerssionListActivity extends BaseActivity implements View.OnClickLi
         EvaluateListModel.getMeServiceRequest(isPopman + "", pager, pagerSize, new OkHttpClientManager.ResultCallback<EvaluateListModel>() {
             @Override
             public void onError(Request request, Exception e) {
-                showShortToast(e.toString());
+                showShortToast(getString(R.string.is_netwrok));
             }
 
             @Override

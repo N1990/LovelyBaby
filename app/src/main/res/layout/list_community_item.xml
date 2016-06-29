@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -21,7 +22,7 @@
             app:placeholderImage="@drawable/ic_default_header_bg"
             app:roundAsCircle="true"
             app:roundingBorderColor="@android:color/white"
-            app:roundingBorderWidth="1dp" />
+            app:roundingBorderWidth="1dp"/>
 
         <TextView
             android:id="@+id/tv_community_user_nickname_item"
@@ -32,7 +33,7 @@
             android:layout_toRightOf="@+id/iv_community_user_header_item"
             android:padding="5dip"
             android:text="昵称"
-            android:textColor="@android:color/black" />
+            android:textColor="@android:color/black"/>
 
         <TextView
             android:id="@+id/tv_community_user_identity_item"
@@ -43,7 +44,7 @@
             android:layout_toRightOf="@+id/iv_community_user_header_item"
             android:padding="5dip"
             android:text="身份"
-            android:textColor="@android:color/black" />
+            android:textColor="@android:color/black"/>
 
         <TextView
             android:id="@+id/tv_community_tag_item"
@@ -55,7 +56,7 @@
             android:background="@drawable/btn_primary_color_radio_bg"
             android:text="畅聊天地"
             android:textColor="@android:color/white"
-            android:textSize="@dimen/txt_small" />
+            android:textSize="@dimen/txt_small"/>
     </RelativeLayout>
 
     <LinearLayout
@@ -70,7 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="5dip"
             android:background="@mipmap/btn_top_bg"
-            android:visibility="gone" />
+            android:visibility="gone"/>
 
         <ImageView
             android:id="@+id/iv_community_title_item_two"
@@ -78,7 +79,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="5dip"
             android:background="@mipmap/btn_quality_bg"
-            android:visibility="gone" />
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/tv_community_title_item"
@@ -90,7 +91,7 @@
             android:text="标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题"
             android:textColor="@android:color/black"
             android:textSize="@dimen/txt_middle"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
     </LinearLayout>
 
     <TextView
@@ -103,7 +104,7 @@
         android:lines="2"
         android:text="内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容"
         android:textColor="@android:color/darker_gray"
-        android:textSize="@dimen/txt_normal" />
+        android:textSize="@dimen/txt_normal"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -119,7 +120,7 @@
             android:layout_weight="1.0"
             app:actualImageScaleType="centerCrop"
             app:fadeDuration="200"
-            app:placeholderImage="@color/placeholder" />
+            app:placeholderImage="@color/placeholder"/>
 
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/iv_community_content_second_item"
@@ -129,7 +130,7 @@
             android:layout_weight="1.0"
             app:actualImageScaleType="centerCrop"
             app:fadeDuration="200"
-            app:placeholderImage="@color/placeholder" />
+            app:placeholderImage="@color/placeholder"/>
 
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/iv_community_content_third_item"
@@ -138,7 +139,7 @@
             android:layout_weight="1.0"
             app:actualImageScaleType="centerCrop"
             app:fadeDuration="200"
-            app:placeholderImage="@color/placeholder" />
+            app:placeholderImage="@color/placeholder"/>
     </LinearLayout>
 
     <RelativeLayout
@@ -162,7 +163,7 @@
             android:layout_centerVertical="true"
             android:gravity="center_vertical"
             android:text="2015-10-19 12:30"
-            android:textColor="@android:color/darker_gray" />
+            android:textColor="@android:color/darker_gray"/>
 
         <TextView
             android:id="@+id/tv_community_care_item"
@@ -174,7 +175,7 @@
             android:drawableLeft="@mipmap/btn_my_care_bg"
             android:gravity="center_vertical"
             android:text="1000"
-            android:textColor="@android:color/darker_gray" />
+            android:textColor="@android:color/darker_gray"/>
 
         <TextView
             android:id="@+id/tv_community_comment_item"
@@ -186,6 +187,6 @@
             android:drawableLeft="@mipmap/btn_my_comment_bg"
             android:gravity="center_vertical"
             android:text="1000"
-            android:textColor="@android:color/darker_gray" />
+            android:textColor="@android:color/darker_gray"/>
     </RelativeLayout>
 </LinearLayout>

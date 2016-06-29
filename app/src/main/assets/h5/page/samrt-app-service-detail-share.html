@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=8">
+    <link rel="stylesheet" href="../libs/sui/css/sm.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/service-detail.css">
+    <link rel="stylesheet" href="../iconfont/iconfont.css">
+    <title>服务详情</title>
+</head>
+<body>
+<div class="page-group">
+    <div class="page page-service-detail page-current" id="page-service-detail">
+        <div class="content">
+            <div class="content-inner">
+                <section>
+                    <div class="row" style="box-shadow:0px 0px 4px rgba(3, 3, 3, 0.3); padding-bottom:10px;">
+                        <div class="col-20">
+                            <span class="logoSpan"></span>
+                        </div>
+                        <div class="col-60">
+                            <em class="textSpan">萌宝派，用心爱</em>
+                            <em class="font-textSpan">预定达人直送服务 上萌宝派APP</em>
+                        </div>
+                        <div class="col-20">
+                <div class="btnSpan" onclick="onApp()">
+                    下载APP
+                </div>
+                        </div>
+                    </div>
+                </section>
+                <div class="service-detail-header">
+                    <img class="btnShowPhoto topImg">
+                </div>
+                <div class="service-detail-part-one">
+                    <p class="service-title"></p>
+                    <p class="service-price-total"><span class="service-price"></span><span class="service-sell-total"></span></p>
+                    <p class="service-remark"></p>
+                </div>
+                <div class="line-space line-space-top"></div>
+                <div class="service-detail-part-two">
+                    <div class="list-block media-list server-detail-user-group">
+                        <ul>
+                            <li>
+                                <div class="item-content service-own-user-group">
+                                    <div class="item-media round user-header service-own-user"><img class="topImg"></div>
+                                    <div class="item-inner">
+                                        <div class="item-title-row">
+                                            <div class="item-title">
+                                                <span class="user-name"></span>
+                                                <span class="user-remark radius-small"></span>
+                                            </div>
+                                        </div>
+                                        <div class="item-subtitle service-own-star">
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="list-block server-detail-normal-group">
+                        <ul>
+                            <li>
+                                <div class="item-content">
+                                    <div class="item-inner">
+                                        <div class="item-title service-own-time">
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="addressFlag">
+                                <!--item-link-->
+                                <a class="item-content service-own-address-group">
+                                    <div class="item-inner">
+                                        <div class="item-title service-own-address">
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="item-link item-content service-own-phone-group">
+                                    <div class="item-inner">
+                                        <div class="item-title service-own-phone">
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="line-space line-space-bottom"></div>
+                <div class="service-detail-part-three">
+                    <div class="buttons-tab fixed-tab" data-offset="0">
+                        <a href="#tab-service-detail" class="tab-link button active">服务详情</a>
+                        <a href="#tab-service-buy" class="tab-link button">购买须知</a>
+                        <a href="#tab-service-judgement" class="tab-link button ">评价</a>
+                    </div>
+                    <div class="content-block content-tab-group">
+                        <div class="tabs">
+                            <div id="tab-service-detail" class="tab tab-service-detail active">
+                                <div class="content-block service-content">
+                                </div>
+                                <div class="service-detail-part-four">
+                                    <div class="line-space"></div>
+                                    <p class="top"><i class="icon iconfont icon-iconshugang"></i><span>精彩推荐</span></p>
+                                    <ul class="service-detail-recommendation-group">
+                                    </ul>
+                                </div>
+                            </div>
+                            <div id="tab-service-buy" class="tab tab-service-buy">
+                                <div class="content-block service-buy-notice">
+                                </div>
+                                <div class="service-detail-part-four">
+                                    <div class="line-space"></div>
+                                    <p class="top"><i class="icon iconfont icon-iconshugang"></i><span>精彩推荐</span></p>
+                                    <ul class="service-detail-recommendation-group">
+                                    </ul>
+                                </div>
+                            </div>
+                            <div id="tab-service-judgement" class="tab tab-service-judgement infinite-scroll" data-distance="50">
+                                <div class="list-block media-list server-detail-user-judge-group">
+                                    <ul class="list-container evaluate-group">
+                                    </ul>
+                                </div>
+                                <!-- 加载提示符 -->
+                                <div class="infinite-scroll-preloader">
+                                    <div class="preloader">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <section id="attentions" >
+                    <div class="row">
+                        <div class="col-100" style="margin-top:10px;margin-bottom: 10px;" >
+                            <img src="../image/attentions.jpg" width="100%" />
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+<script type='text/javascript' src='../libs/sui/js/zepto.js' charset='utf-8'></script>
+<script type='text/javascript' src='../libs/sui/js/sm.js' charset='utf-8'></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript" src="http://smart.file.alimmdn.com/H5/CommonJS/dateFormat.min.js" charset="utf-8"></script>
+<script src="http://cdn.bootcss.com/purl/2.3.1/purl.min.js"></script>
+<script type="text/javascript" src="../app/app.js"></script>
+<script type="text/javascript" src="../app/share.js"></script>
+<script type="text/javascript" src="../app/service-detail-share.js"></script>
+</body>
+</html>

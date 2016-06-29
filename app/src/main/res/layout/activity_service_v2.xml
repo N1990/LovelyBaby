@@ -88,68 +88,7 @@
             app:scrollbarStyle="insideOverlay" />
 
 
-        <LinearLayout
-            android:id="@+id/ll_bottom"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_alignParentBottom="true"
-            android:layout_gravity="bottom"
-            android:background="@drawable/shape_white_background_no_corner"
-
-            android:orientation="horizontal"
-            android:paddingTop="@dimen/half_global_padding">
-
-            <TextView
-                android:id="@+id/tv_home"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:drawableTop="@drawable/btn_home_main_selector"
-                android:gravity="center"
-                android:text="首页"
-                android:textColor="@color/selector_gray_to_primarycolor_text" />
-
-            <TextView
-                android:id="@+id/tv_service"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:drawableTop="@drawable/btn_home_service_selector"
-                android:gravity="center"
-                android:text="服务"
-                android:textColor="@color/selector_gray_to_primarycolor_text" />
-
-            <TextView
-                android:id="@+id/tv_topic"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:drawableTop="@drawable/btn_home_community_selector"
-                android:gravity="center"
-                android:text="话题"
-                android:textColor="@color/selector_gray_to_primarycolor_text" />
-
-            <TextView
-                android:id="@+id/tv_me"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:drawableTop="@drawable/btn_home_self_selector"
-                android:gravity="center"
-                android:text="我的"
-                android:textColor="@color/selector_gray_to_primarycolor_text" />
-
-            <TextView
-                android:id="@+id/tv_more"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:drawableTop="@drawable/btn_home_more_selector"
-                android:gravity="center"
-                android:text="更多"
-                android:textColor="@color/selector_gray_to_primarycolor_text" />
-
-        </LinearLayout>
+        <include layout="@layout/home_bottom"/>
     </RelativeLayout>
 
 </android.support.design.widget.CoordinatorLayout>

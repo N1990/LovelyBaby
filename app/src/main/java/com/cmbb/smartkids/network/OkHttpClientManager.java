@@ -1305,6 +1305,7 @@ public class OkHttpClientManager {
     private static void changeAccount() {
         try {
             boolean flag = BaseApplication.mPushAgent.removeAlias(SPCache.getString(Constants.USER_ID, "") + "_" + TDevice.getDeviceId(BaseApplication.getContext()), "service");
+            BaseApplication.token = "";
             Log.e("Alias", "Alias remove = " + flag);
             Log.e("Alias", "Alias remove id = " + SPCache.getString(Constants.USER_ID, ""));
             if (flag) {

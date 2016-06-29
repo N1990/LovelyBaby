@@ -1,0 +1,321 @@
+/*服务详情背景色*/
+.page-service-detail{
+    background-color: #FFFFFF;
+}
+
+/*服务详情  头部图片模块*/
+.service-detail-header{
+    width: 100%;
+    overflow: hidden;
+}
+
+/*服务详情  内容模块第一部分*/
+.service-detail-part-one{
+    padding: 0.5rem;
+}
+
+/*服务详情  内容模块第一部分 服务标题*/
+.service-detail-part-one>p.service-title{
+    color: #333333;
+    font-weight: bold;
+}
+
+/*服务详情  内容模块第一部分 服务价格及售出总件*/
+.service-detail-part-one>p.service-price-total{
+    display: inline-block;
+    padding: 0.2rem 0px;
+    border-bottom: 1px solid #F7F7F7;
+}
+
+.service-price{
+    float: left;
+    font-size: 0.9rem;
+    color: #FF4E72;
+}
+
+.service-sell-total{
+    float: right;
+    color: #FF7D98;
+    font-size: 0.7rem;
+}
+
+/*服务详情  内容模块第一部分 服务备注*/
+.service-detail-part-one>p.service-remark{
+    line-height: 1rem;
+}
+
+.remark{
+    color: #61B9F9;
+    font-size: 0.6rem;
+    margin-right: 0.5rem;
+}
+
+.remark>i{
+    font-size: 0.6rem;
+    margin-right: 0.1rem;
+}
+
+/*服务详情  内容模块第二部分*/
+.service-detail-part-two{
+}
+
+.service-detail-part-two>.list-block{
+    margin: 0px;
+}
+
+.server-detail-user-group>ul:after{
+    height: 0px;
+}
+
+.server-detail-user-group .item-content{
+    padding: 0.5rem 0px 0.5rem 0.5rem;
+}
+
+.server-detail-user-group .item-media.user-header{
+    width: 3rem;
+    height: 3rem;
+    border: 1px solid #EEEEEE;
+    padding: 0px;
+    overflow: hidden;
+}
+
+.server-detail-user-group .item-title{
+    display: inline-block;
+}
+.user-name{
+    font-size: 0.7rem;
+    color: #333333;
+    margin-right: 0.5rem;
+    float: left;
+    display: block;
+}
+
+.user-remark{
+    background: #FF4E72;
+    color: #FFFFFF;
+    font-size: 0.5rem;
+    padding: 0px 0.5rem;
+    float: left;
+    display: block;
+    margin-top: 0.15rem;
+}
+
+i.star{
+    color: #FFB202;
+    font-size: 1rem;
+}
+
+.server-detail-normal-group .item-content{
+    padding: 0px;
+}
+
+.server-detail-normal-group .item-inner{
+    padding-left: 0.75rem;
+    padding-top: 0.2rem;
+    padding-bottom: 0.15rem;
+}
+
+.server-detail-normal-group span{
+    color: #999999;
+}
+
+.server-detail-normal-group i{
+    color: #FF4E72;
+    font-size: 1.5rem;
+    margin-right: 0.3rem;
+}
+
+
+/*服务详情  内容模块第三部分*/
+.service-detail-part-three>.buttons-tab>.button{
+    color: #333333;
+    border-bottom-width: 0.15rem;
+}
+
+.service-detail-part-three>.buttons-tab>.button.active{
+    color: #FF4E72;
+    border-bottom-color: #FF4E72;
+}
+
+/*服务详情  内容模块第三部分 标签服务详情*/
+.content-tab-group{
+    margin: 0px;
+}
+.tab-service-detail>.content-block,
+.tab-service-judgement>.content-block,
+.tab-service-buy>.content-block
+{
+    margin: 0px;
+    padding: 1rem 0px;
+}
+
+.description-item>p{
+    color: #666666;
+    font-size: 0.7rem;
+    text-indent: 1.4rem;
+}
+
+.description-item>img{
+    margin: 0.3rem 0px;
+}
+
+.top{
+    padding: 0.3rem 0.75rem;
+    border-bottom: 1px solid #E7E7E7;
+    font-size: 1rem;
+    color: #333333;
+}
+
+.top>i{
+    font-size: 1rem;
+    color: #FF4E72;
+}
+
+.service-detail-recommendation-group{
+    display: inline-block;
+    width: 100%;
+    padding: 0.1rem 0px 0px 0.75rem;
+    list-style: none;
+    margin-bottom: 0px;
+}
+
+.recommendation-item{
+    width: 50%;
+    padding: 0px 0.75rem 0.75rem 0px;
+    float: left;
+}
+
+.recommendation-item>div{
+    overflow: hidden;
+}
+
+
+.recommendation-item:nth-child(odd){
+    clear:both;
+}
+
+.recommendation-item>p{
+    border:1px solid #E7E7E7;
+    border-top: none;
+    text-align: center;
+    padding: 0.3rem;
+    color: #999999;
+    text-overflow: ellipsis;
+    word-break: keep-all;
+    overflow: hidden;
+    font-size: 0.7rem;
+}
+
+
+.server-detail-user-judge-group{
+    margin: 0px;
+}
+
+.server-detail-user-judge-group .item-media.user-header{
+    width: 3rem;
+    height: 3rem;
+    border: 1px solid #EEEEEE;
+    padding: 0px;
+    overflow: hidden;
+}
+
+.server-detail-user-judge-group ul:before,
+.server-detail-user-judge-group ul:after,
+.server-detail-user-judge-group .item-content>.item-inner:after{
+    height: 0px;
+}
+
+.server-detail-user-judge-group .item-content{
+    padding: 0px;
+    align-items: baseline;
+    -webkit-align-items: baseline;
+}
+
+.server-detail-user-judge-group .item-content>.item-inner{
+    padding: 0px;
+}
+
+
+.server-detail-user-judge-group .item-title{
+    font-size: 0.8rem;
+    color: #436A8B;
+}
+
+.server-detail-user-judge-group .item-after{
+    font-size: 0.6rem;
+    color: #999999;
+    padding-top: 0.4rem;
+}
+
+.server-detail-user-judge-group .item-subtitle>.star{
+    font-size: 0.6rem;
+}
+
+.server-detail-user-judge-group .item-descirption{
+    font-size: 0.7rem;
+    color: #666666;
+}
+
+.description-image-group{
+    display: inline-block;
+    width: 100%;
+}
+
+.description-image{
+    float: left;
+    width: 3rem;
+    height: 3rem;
+    margin-right: 0.5rem;
+    margin-top: 0.5rem;
+    overflow: hidden;
+}
+
+.evaluate-group>li.item-content+li.item-content{
+    margin-top: 0.5rem;
+    border-top: 1px solid #DDDDDD;
+    padding-top: 0.5rem;
+}
+
+.service-detail-part-four{
+    margin: 0px -0.75rem;
+}
+
+.logoSpan {
+    background: url('../image/logo.png');
+    height: 32px;
+    width: 32px;
+    display: block;
+    margin-left: 10px;
+    margin-top: 14px;
+    float: left;
+    background-size: 100% 100%;
+}
+
+.textSpan {
+    display: inline-block;
+    margin-top: 10px;
+    font-size:14px;
+    color:#FF4E72;
+    font-style:normal;
+}
+
+.font-textSpan{
+    display: inline-block;
+    font-size:12px;
+    color: dimgray;
+    font-style:normal;
+}
+
+.btnSpan{
+    height:30px;
+    width:80px;
+    display: block;
+    float:right;
+    margin-top:13px;
+    border-radius:5px;
+    text-align: center;
+    line-height: 30px;
+    color: #fd83af;
+    font-size: 14px;
+    border:1px solid #fd83af;
+}

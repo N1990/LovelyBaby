@@ -128,13 +128,12 @@ public class ServerDetailActivity extends BaseActivity {
         context.startActivityForResult(intent, rc);
     }
 
-
     public void newFragment(int id, boolean addBack) {
         serviceID = id;
         Log.i(TAG, id + "");
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.container, ServiceDetailFragment.newInstance(id), id + "");
-//        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+        //        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
         if (addBack)
             transaction.addToBackStack(id + "");
         transaction.commitAllowingStateLoss();
@@ -149,7 +148,6 @@ public class ServerDetailActivity extends BaseActivity {
             super.onBackPressed();
         }
     }
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

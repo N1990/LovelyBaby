@@ -18,7 +18,6 @@ import java.util.List;
  */
 public class MessageCountModel implements Parcelable {
 
-
     private String msg;
 
     private List<DataEntity> data;
@@ -77,7 +76,6 @@ public class MessageCountModel implements Parcelable {
             return noticeCount;
         }
 
-
         @Override
         public int describeContents() {
             return 0;
@@ -112,7 +110,6 @@ public class MessageCountModel implements Parcelable {
         };
     }
 
-
     @Override
     public int describeContents() {
         return 0;
@@ -142,7 +139,6 @@ public class MessageCountModel implements Parcelable {
         }
     };
 
-
     /**
      * 至空消息
      *
@@ -153,5 +149,11 @@ public class MessageCountModel implements Parcelable {
         params.put("id", id);
         params.put("token", BaseApplication.token);
         OkHttpClientManager.postAsyn(Constants.ServiceInfo.MESSAGE_SET_MESSAGE_TYPE, params, callback);
+    }
+
+    public static void getMessageCountRequest(OkHttpClientManager.ResultCallback<MessageCountModel> callback) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("token", BaseApplication.token);
+        OkHttpClientManager.postAsyn(Constants.ServiceInfo.MESSAGE_GET_TYPE, params, callback);
     }
 }

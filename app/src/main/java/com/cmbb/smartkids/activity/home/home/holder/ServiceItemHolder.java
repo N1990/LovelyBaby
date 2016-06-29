@@ -3,6 +3,7 @@ package com.cmbb.smartkids.activity.home.home.holder;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cmbb.smartkids.R;
@@ -20,50 +21,46 @@ import com.facebook.drawee.view.SimpleDraweeView;
  */
 public class ServiceItemHolder extends BaseViewHolder<ServiceListModel.DataEntity.RowsEntity> {
     private SimpleDraweeView ivHomeServiceItem;
-    private TextView tvServiceItemCity;
     private TextView tvTitleHomeServiceItem;
-    private TextView tvHomeServiceTagItem;
     private TextView tvTimeHomeServiceItem;
     private TextView tvServiceWayItem;
     private TextView tvServiceStatusItem;
     private TextView tvServicePurchaseNumberItem;
     private TextView tvServicePriceItem;
+    private ImageView ivTag;
 
     public ServiceItemHolder(ViewGroup parent) {
         super(parent, R.layout.list_home_service_item_v);
         ivHomeServiceItem = $(R.id.iv_home_service_item);
-        tvServiceItemCity = $(R.id.tv_service_item_city);
         tvTitleHomeServiceItem = $(R.id.tv_title_home_service_item);
-        tvHomeServiceTagItem = $(R.id.tv_home_service_tag_item);
         tvTimeHomeServiceItem = $(R.id.tv_time_home_service_item);
         tvServiceWayItem = $(R.id.tv_service_way_item);
         tvServiceStatusItem = $(R.id.tv_service_status_item);
         tvServicePurchaseNumberItem = $(R.id.tv_service_purchase_number_item);
         tvServicePriceItem = $(R.id.tv_service_price_item);
+        ivTag = $(R.id.iv_tag);
     }
 
     public void setData(ServiceListModel.DataEntity.RowsEntity row) {
         FrescoTool.loadImage(ivHomeServiceItem, row.getServicesImg(), String.valueOf(TDevice.dip2px(90, ivHomeServiceItem.getContext())));
-        tvServiceItemCity.setText(row.getCityText());
         tvTitleHomeServiceItem.setText(row.getTitle());
-        tvTimeHomeServiceItem.setText("活动时间:" + row.getServiceTime());
-        tvServiceWayItem.setText("服务方式:" + row.getTypeText());
+        tvTimeHomeServiceItem.setText("活动时间: " + row.getServiceTime());
+        tvServiceWayItem.setText("服务方式: " + row.getTypeText());
         if (!TextUtils.isEmpty(row.getStatusName())) {
             tvServiceStatusItem.setVisibility(View.VISIBLE);
             tvServiceStatusItem.setText(row.getStatusName());
         } else {
             tvServiceStatusItem.setVisibility(View.INVISIBLE);
         }
-        tvServicePurchaseNumberItem.setText("已购买人数" + row.getRealityPeoples());
+        tvServicePurchaseNumberItem.setText("已购买人数 " + row.getRealityPeoples());
         if (!TextUtils.isEmpty(row.getPrice())) {
             double price = Double.valueOf(row.getPrice());
             tvServicePriceItem.setText(price != 0 ? "￥" + row.getPrice() : "免费");
         }
         if (row.isIsNew()) {
-            tvHomeServiceTagItem.setVisibility(View.VISIBLE);
-            tvHomeServiceTagItem.setText("NEW");
+            ivTag.setVisibility(View.VISIBLE);
         } else {
-            tvHomeServiceTagItem.setVisibility(View.GONE);
+            ivTag.setVisibility(View.GONE);
         }
     }
 }

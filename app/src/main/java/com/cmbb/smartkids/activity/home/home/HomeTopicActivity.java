@@ -48,7 +48,6 @@ public class HomeTopicActivity extends BaseHomeActivity implements View.OnClickL
     PopupWindow mSmartPopupWindow;
     private TopicTypeAdapter topicTypeAdapter;
 
-
     @Override
     protected int getLayoutId() {
         return R.layout.activity_topic_v2;
@@ -68,7 +67,6 @@ public class HomeTopicActivity extends BaseHomeActivity implements View.OnClickL
         super.onResume();
         tvTopic.setSelected(true);
     }
-
 
     private void initRecyclerView() {
         mSmartRecyclerView = (SmartRecyclerView) findViewById(R.id.recyclerView);
@@ -153,7 +151,6 @@ public class HomeTopicActivity extends BaseHomeActivity implements View.OnClickL
         }
     };
 
-
     @Override
     public void onLoadMore() {
         pager++;
@@ -192,7 +189,6 @@ public class HomeTopicActivity extends BaseHomeActivity implements View.OnClickL
             }
         });
     }
-
 
     @Override
     public void onClick(View v) {

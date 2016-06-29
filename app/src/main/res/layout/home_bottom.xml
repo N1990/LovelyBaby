@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/ll_bottom"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:layout_alignParentBottom="true"
+    android:layout_gravity="bottom"
+    android:background="@drawable/shape_white_background_no_corner"
+    android:orientation="horizontal"
+    android:paddingTop="@dimen/half_global_padding">
+
+    <TextView
+        android:id="@+id/tv_home"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:drawableTop="@drawable/btn_home_main_selector"
+        android:gravity="center"
+        android:text="首页"
+        android:textColor="@color/selector_gray_to_primarycolor_text"/>
+
+    <TextView
+        android:id="@+id/tv_service"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:drawableTop="@drawable/btn_home_service_selector"
+        android:gravity="center"
+        android:text="服务"
+        android:textColor="@color/selector_gray_to_primarycolor_text"/>
+
+    <TextView
+        android:id="@+id/tv_topic"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:drawableTop="@drawable/btn_home_community_selector"
+        android:gravity="center"
+        android:text="话题"
+        android:textColor="@color/selector_gray_to_primarycolor_text"/>
+
+    <FrameLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/tv_me"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:drawableTop="@drawable/btn_home_self_selector"
+            android:gravity="center"
+            android:text="我的"
+            android:textColor="@color/selector_gray_to_primarycolor_text"/>
+
+        <ImageView
+            android:id="@+id/iv_home_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:src="@drawable/shape_message_tip"
+            android:visibility="invisible"/>
+
+    </FrameLayout>
+
+
+    <TextView
+        android:id="@+id/tv_more"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:drawableTop="@drawable/btn_home_more_selector"
+        android:gravity="center"
+        android:text="更多"
+        android:textColor="@color/selector_gray_to_primarycolor_text"/>
+
+</LinearLayout>

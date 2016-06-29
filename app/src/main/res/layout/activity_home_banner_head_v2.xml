@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@android:color/white"
-    android:orientation="vertical">
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@android:color/white"
+              android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="@dimen/global_padding">
+        android:paddingBottom="@dimen/half_global_padding"
+        android:paddingLeft="@dimen/global_padding"
+        android:paddingRight="@dimen/global_padding"
+        android:paddingTop="@dimen/global_padding">
 
         <TextView
             android:id="@+id/tv_mengbaoduijia"
@@ -19,7 +22,8 @@
             android:drawablePadding="@dimen/half_global_padding"
             android:drawableTop="@drawable/mengbaodujia"
             android:gravity="center"
-            android:text="萌宝独家" />
+            android:text="萌宝独家"
+            android:textColor="@color/dimgray"/>
 
         <TextView
             android:id="@+id/tv_haohaoxuexi"
@@ -27,10 +31,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:drawablePadding="@dimen/half_global_padding"
-
             android:drawableTop="@drawable/haohaoxuexi"
             android:gravity="center"
-            android:text="好好学习" />
+            android:text="好好学习"
+            android:textColor="@color/dimgray"/>
 
         <TextView
             android:id="@+id/tv_zuiaihuwai"
@@ -38,10 +42,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:drawablePadding="@dimen/half_global_padding"
-
             android:drawableTop="@drawable/zuiaihuwai"
             android:gravity="center"
-            android:text="最爱户外" />
+            android:text="最爱户外"
+            android:textColor="@color/dimgray"/>
 
         <TextView
             android:id="@+id/tv_yihaixunshi"
@@ -49,17 +53,20 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:drawablePadding="@dimen/half_global_padding"
-
             android:drawableTop="@drawable/yihaixunshi"
             android:gravity="center"
-            android:text="艺海寻师" />
+            android:text="艺海寻师"
+            android:textColor="@color/dimgray"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="@dimen/global_padding">
+        android:paddingBottom="@dimen/global_padding"
+        android:paddingLeft="@dimen/global_padding"
+        android:paddingRight="@dimen/global_padding"
+        android:paddingTop="@dimen/half_global_padding">
 
         <TextView
             android:id="@+id/tv_zuixindingzhi"
@@ -69,7 +76,8 @@
             android:drawablePadding="@dimen/half_global_padding"
             android:drawableTop="@drawable/zuixindingzhi"
             android:gravity="center"
-            android:text="醉心订制" />
+            android:text="醉心订制"
+            android:textColor="@color/dimgray"/>
 
         <TextView
             android:id="@+id/tv_sijiameishi"
@@ -79,7 +87,8 @@
             android:drawablePadding="@dimen/half_global_padding"
             android:drawableTop="@drawable/sijiameishi"
             android:gravity="center"
-            android:text="私家美食" />
+            android:text="私家美食"
+            android:textColor="@color/dimgray"/>
 
         <TextView
             android:id="@+id/tv_guoyimiaoshou"
@@ -89,7 +98,8 @@
             android:drawablePadding="@dimen/half_global_padding"
             android:drawableTop="@drawable/guoyimiaoshou"
             android:gravity="center"
-            android:text="国医圣手" />
+            android:text="国医妙手"
+            android:textColor="@color/dimgray"/>
 
         <TextView
             android:id="@+id/tv_lamasudi"
@@ -99,12 +109,13 @@
             android:drawablePadding="@dimen/half_global_padding"
             android:drawableTop="@drawable/lamasudi"
             android:gravity="center"
-            android:text="辣妈速递" />
+            android:text="辣妈速递"
+            android:textColor="@color/dimgray"/>
     </LinearLayout>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:background="@color/line" />
+        android:background="@color/line"/>
 
 </LinearLayout>

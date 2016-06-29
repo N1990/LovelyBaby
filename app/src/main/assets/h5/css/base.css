@@ -1,0 +1,60 @@
+/*基本样式*/
+img{
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+p{
+    margin: 0px;
+    clear: both;
+    width: 100%;
+}
+
+.round{
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.radius-small{
+    -webkit-border-radius: 0.5rem;
+    -moz-border-radius: 0.5rem;
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+/*模块与模块间隔横向*/
+.line-space{
+    width: 100%;
+    height: 0.75rem;
+    background-color: #F5F5F5;
+    border-top: 1px solid #E7E7E7;
+    border-bottom: 1px solid #E7E7E7;
+}
+
+.line-space-top{
+    border-bottom: none;
+}
+
+.line-space-bottom{
+    border-top: none;
+}
+
+.content-footer{
+    position: absolute;
+    height: 48px;
+    left:0;
+    right: 0;
+    bottom: 0;
+    background-color: red;
+}
+
+.content-footer + .content{
+    bottom: 48px;
+}
+
+.content-inner{
+    padding-bottom: 0px;
+}

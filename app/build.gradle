@@ -8,8 +8,8 @@ android {
         applicationId "com.cmbb.smartkids"
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 314
-        versionName "3.1.4"
+        versionCode 315
+        versionName "3.1.5"
         multiDexEnabled true
         ndk {
             abiFilters "armeabi", "armeabi-v7a", "x86"
@@ -70,6 +70,9 @@ android {
         }
         Umeng {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Umeng"]
+        }
+        Minimaestros {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Minimaestros"]
         }
         Mengbaipai131 {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai131"]

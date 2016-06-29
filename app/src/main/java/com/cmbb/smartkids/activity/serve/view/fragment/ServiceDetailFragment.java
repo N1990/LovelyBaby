@@ -1,6 +1,5 @@
 package com.cmbb.smartkids.activity.serve.view.fragment;
 
-
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -76,7 +75,6 @@ public class ServiceDetailFragment extends BaseFragment {
 
     private int serviceID;
 
-
     public ServiceDetailFragment() {
         // Required empty public constructor
     }
@@ -130,7 +128,9 @@ public class ServiceDetailFragment extends BaseFragment {
             webView.clearHistory();
             webView.clearFormData();
             webView.clearCache(true);*/
-            webView.loadUrl(Constants.H5.SMART_SERVICE_DETAIL + "?" + SystemClock.currentThreadTimeMillis());
+            webView.loadUrl("file:///android_asset/h5/page/samrt-app-service-detail.html");
+
+            //webView.loadUrl(Constants.H5.SMART_SERVICE_DETAIL + "?" + SystemClock.currentThreadTimeMillis());
         }
         return view;
     }

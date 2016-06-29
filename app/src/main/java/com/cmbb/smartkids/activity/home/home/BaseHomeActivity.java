@@ -8,6 +8,7 @@ import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.view.View;
@@ -15,10 +16,13 @@ import android.widget.TextView;
 
 import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.activity.login.LoginActivity;
+import com.cmbb.smartkids.activity.message.model.MessageCountModel;
 import com.cmbb.smartkids.base.BaseActivity;
 import com.cmbb.smartkids.base.BaseApplication;
 import com.cmbb.smartkids.base.Constants;
+import com.cmbb.smartkids.network.OkHttpClientManager;
 import com.cmbb.smartkids.utils.log.Log;
+import com.squareup.okhttp.Request;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -41,6 +45,27 @@ public abstract class BaseHomeActivity extends BaseActivity {
     private Timer timer = new Timer();// 程序退出定时器
     private NetWorkChangeBroadcastReceiver netWorkChangeBroadcastReceiver;
 
+    // 收到消息 现实消息提醒
+    BroadcastReceiver messageReceiveTagReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (findViewById(R.id.iv_home_message) != null)
+                findViewById(R.id.iv_home_message).setVisibility(View.VISIBLE);
+            if (findViewById(R.id.iv_message_tag) != null)
+                findViewById(R.id.iv_message_tag).setVisibility(View.VISIBLE);
+        }
+    };
+
+    // 关系消息 影藏消息提醒
+    BroadcastReceiver messageCancelTagReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (findViewById(R.id.iv_home_message) != null)
+                findViewById(R.id.iv_home_message).setVisibility(View.GONE);
+            if (findViewById(R.id.iv_message_tag) != null)
+                findViewById(R.id.iv_message_tag).setVisibility(View.GONE);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,11 +90,37 @@ public abstract class BaseHomeActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        LocalBroadcastManager.getInstance(this).registerReceiver(messageReceiveTagReceiver, new IntentFilter(Constants.INTENT_ACTION_MESSAGE_RECEIVE));
+        LocalBroadcastManager.getInstance(this).registerReceiver(messageCancelTagReceiver, new IntentFilter(Constants.INTENT_ACTION_MESSAGE_CANCEL));
+
     }
 
     @Override
     public void onClick(View v) {
         super.onClick(v);
+        // 消息
+        if (!TextUtils.isEmpty(BaseApplication.token))
+            MessageCountModel.getMessageCountRequest(new OkHttpClientManager.ResultCallback<MessageCountModel>() {
+                @Override
+                public void onError(Request request, Exception e) {
+
+                }
+
+                @Override
+                public void onResponse(MessageCountModel response) {
+                    if (response == null)
+                        return;
+                    int total = 0;
+                    for (MessageCountModel.DataEntity dataEntity : response.getData()) {
+                        total = total + dataEntity.getNoticeCount();
+                    }
+                    if (total == 0) {
+                        LocalBroadcastManager.getInstance(BaseHomeActivity.this).sendBroadcast(new Intent(Constants.INTENT_ACTION_MESSAGE_CANCEL));
+                    } else {
+                        LocalBroadcastManager.getInstance(BaseHomeActivity.this).sendBroadcast(new Intent(Constants.INTENT_ACTION_MESSAGE_RECEIVE));
+                    }
+                }
+            });
         switch (v.getId()) {
             case R.id.tv_home:
                 HomeActivity.newIntent(this);
@@ -115,7 +166,6 @@ public abstract class BaseHomeActivity extends BaseActivity {
         }
     }
 
-
     public class NetWorkChangeBroadcastReceiver extends BroadcastReceiver {
 
         @Override
@@ -141,6 +191,8 @@ public abstract class BaseHomeActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(messageReceiveTagReceiver);
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(messageCancelTagReceiver);
         unregisterReceiver(netWorkChangeBroadcastReceiver);
     }
 

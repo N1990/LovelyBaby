@@ -1,0 +1,204 @@
+/*签到页背景*/
+.page-sign{
+    background-color: #FFFFFF;
+}
+
+/*奖励模块*/
+.sign-price{
+    padding: 0.5rem 0.6rem;
+}
+
+.sign-price>p{
+    margin: 0rem 0px;
+    font-size: 0.6rem;
+    color: #999999;
+    line-height: 1rem;
+}
+
+/*签到日历模块*/
+.sign-group{
+    padding: 0.8rem 0.6rem;
+    display: inline-block;
+    width: 100%;
+}
+
+.sign-group>p{
+    margin: 0px;
+    clear: both;
+    font-size: 0.6rem;
+    color: #999999;
+}
+
+.sign-date{
+    float: left;
+    font-size: 0.7rem;
+    color: #333333;
+    font-weight: bold;
+}
+
+.sign-days{
+    float: right;
+    font-size: 0.7rem;
+    color: #666666;
+}
+
+/*日历表格部分*/
+.sign-table{
+    clear: both;
+    padding: 0px;
+    margin: 0.35rem 0px 0.5rem;
+    display: inline-block;
+    width: 100%;
+    list-style: none;
+}
+
+/*表格行 表头*/
+.table-header{
+    clear: both;
+    width: 100%;
+    display: inline-block;
+    background-color: #FF4E72;
+    color: #FFFFFF;
+    border-right: 0.05rem solid white;
+}
+
+.table-header>span{
+    display: block;
+    width: 14.2%;
+    float: left;
+    text-align: center;
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+}
+
+/*表内容*/
+.table-body{
+    width: 100%;
+    display: inline-block;
+    clear: both;
+    margin-top: -0.29rem;
+    border-left: 1px solid #DDDDDD;
+}
+
+.table-body>.table-cell{
+    vertical-align:middle;
+    text-align:center;
+    font-size: 0.7rem;
+    padding-top: 0.4rem;
+    padding-bottom: 0.3rem;
+    display: inline-block;
+    float: left;
+    width: 14.26%;
+    border-bottom: 1px solid #DDDDDD;
+    border-right: 1px solid #DDDDDD;
+}
+
+/*爱心图 正方形部分 默认背景色*/
+.heart{
+    width: 1.2rem;
+    height: 1.2rem;
+    display: block;
+    margin: 0px auto;
+    background-color: transparent;
+    position: relative;
+    -webkit-transform: rotate(45deg) scale(0.7);
+    -moz-transform: rotate(45deg) scale(0.7);
+    -ms-transform: rotate(45deg) scale(0.7);
+    -o-transform: rotate(45deg) scale(0.7);
+    transform: rotate(45deg) scale(0.7);
+}
+
+/*爱心图 2个圆 默认背景色*/
+.heart:before,
+.heart:after{
+    width: 1.2rem;
+    height: 1.2rem;
+    position: absolute;
+    content: '';
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+    background-color: transparent;
+}
+
+.heart:before{
+    bottom: 0px;
+    left: -0.6rem;
+}
+.heart:after{
+    top: -0.6rem;
+    right: 0px;
+}
+
+/*爱心图 本月未签到背景色*/
+.heart-gray,
+.heart-gray:before,
+.heart-gray:after{
+    background-color: #E7E7E7;
+}
+
+/*爱心图 本月已签到背景色*/
+.heart-red,
+.heart-red:before,
+.heart-red:after{
+    background-color: #FF7D98;
+}
+
+/*爱心图 本月当天背景色*/
+.heart-current,
+.heart-current:before,
+.heart-current:after{
+    background-color: #FF4E72;
+}
+
+/*日期颜色默认*/
+.day{
+    display: block;
+    font-size: 0.7rem;
+    text-align: center;
+    color: #333333;
+    position: absolute;
+    width: inherit;
+    margin-top: -1.25rem;
+    margin-left: -0.11rem;
+}
+
+/*日期颜色 不是本月颜色*/
+.day-out-of{
+    color: #999999;
+}
+
+/*日期颜色 本月已签到的颜色*/
+.heart-current + .day,
+.heart-red + .day{
+    color: #FFFFFF;
+}
+
+.sign-button-group{
+    width: 100%;
+    margin-bottom: 0.5rem;
+}
+
+
+.button.button-sign{
+    margin: 0px auto;
+    background-color: #FF4E72;
+    color: #FFFFFF;
+    border: none;
+    padding: 0rem 1.5rem;
+    font-size: 0.8rem;
+    height: auto;
+}
+
+.button-sign[disabled='disabled'],
+.button-sign[disabled='disabled']:active{
+    background-color: #DDDDDD;
+    color: #999999;
+}
+
+.button-sign:active{
+    background-color: rgba(255,78,114,.5);
+    color: #FFFFFF;
+}
+

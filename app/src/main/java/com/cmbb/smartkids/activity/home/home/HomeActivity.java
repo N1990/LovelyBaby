@@ -6,9 +6,11 @@ import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.cmbb.smartkids.R;
@@ -16,8 +18,10 @@ import com.cmbb.smartkids.activity.home.home.adapter.BannerLoopAdapter;
 import com.cmbb.smartkids.activity.home.home.adapter.HomeAdapter;
 import com.cmbb.smartkids.activity.home.model.HomePageRootModel;
 import com.cmbb.smartkids.activity.home.model.ManagerAdModel;
+import com.cmbb.smartkids.activity.home.model.SignModel;
 import com.cmbb.smartkids.activity.search.SearchActivity;
 import com.cmbb.smartkids.activity.serve.view.ServerDetailActivity;
+import com.cmbb.smartkids.base.BaseApplication;
 import com.cmbb.smartkids.network.OkHttpClientManager;
 import com.cmbb.smartkids.recyclerview.SmartRecyclerView;
 import com.cmbb.smartkids.recyclerview.adapter.RecyclerArrayAdapter;
@@ -45,6 +49,7 @@ public class HomeActivity extends BaseHomeActivity implements View.OnClickListen
     private ManagerAdModel managerAdModel;
     private List<ManagerAdModel.DataEntity> adData;
     private LinearLayout llSearch;
+    private ImageView ivSign;
     private int pager = 0;
     private int pagerSize = 10;
 
@@ -99,6 +104,7 @@ public class HomeActivity extends BaseHomeActivity implements View.OnClickListen
                 LinearLayout header = (LinearLayout) LayoutInflater.from(HomeActivity.this).inflate(R.layout.activity_home_banner_head2_v2, null);
                 LinearLayout.LayoutParams headerParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                 header.setLayoutParams(headerParams);
+                ivSign = (ImageView) header.findViewById(R.id.iv_sign);
                 return header;
             }
 
@@ -108,9 +114,9 @@ public class HomeActivity extends BaseHomeActivity implements View.OnClickListen
                 headerView.findViewById(R.id.rl_rank).setOnClickListener(HomeActivity.this);
                 headerView.findViewById(R.id.rl_wonderful).setOnClickListener(HomeActivity.this);
                 headerView.findViewById(R.id.rl_week).setOnClickListener(HomeActivity.this);
+
             }
         });
-
     }
 
     private void initRecyclerView() {
@@ -259,6 +265,29 @@ public class HomeActivity extends BaseHomeActivity implements View.OnClickListen
         super.onResume();
         tvHome.setSelected(true);
         abl.addOnOffsetChangedListener(this);
+        // 请求是否签到
+        if (!TextUtils.isEmpty(BaseApplication.token)) {
+            SignModel.getSignRequest(new OkHttpClientManager.ResultCallback<SignModel>() {
+                @Override
+                public void onError(Request request, Exception e) {
+
+                }
+
+                @Override
+                public void onResponse(SignModel response) {
+                    if (response == null)
+                        return;
+                    switch (response.getData().getIsSign()) {
+                        case 0:
+                            ivSign.setVisibility(View.VISIBLE);
+                            break;
+                        case 1:
+                            ivSign.setVisibility(View.INVISIBLE);
+                            break;
+                    }
+                }
+            });
+        }
     }
 
     @Override

@@ -1,18 +1,14 @@
 package com.cmbb.smartkids.activity.home.home;
 
 import android.animation.ObjectAnimator;
-import android.content.BroadcastReceiver;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RatingBar;
@@ -31,6 +27,7 @@ import com.cmbb.smartkids.activity.order.view.ReimburseOrderListActivity;
 import com.cmbb.smartkids.activity.order.view.UnConsumeOrderListActivity;
 import com.cmbb.smartkids.activity.order.view.UnEvaluateOrderListActivity;
 import com.cmbb.smartkids.activity.order.view.UnpayOrderListActivity;
+import com.cmbb.smartkids.activity.user.GoldGrowthListActivity;
 import com.cmbb.smartkids.activity.user.MyCommunityActivity;
 import com.cmbb.smartkids.activity.user.MyDraftsActivity;
 import com.cmbb.smartkids.activity.user.MyListRedirectActivity;
@@ -69,7 +66,6 @@ public class HomeMeActivity extends BaseHomeActivity implements View.OnClickList
     private final int PIC_REQUEST_CODE = 1001;
     private SimpleDraweeView ivMyself;
     private SimpleDraweeView ivUserHeader;
-    private ImageView ivMessageTag;
     private TextView tvFan, tvNickname, tvIdentity, tvProgress, tvProgressNext, myUid, myCount;
     private LinearLayout myOrder, myAccept, myGold, myCommunity, myPopman, myBabyDiary, myUID, myDrafts, myCollection, myCare, myPerssion;
     private ProgressBar pb;
@@ -112,9 +108,9 @@ public class HomeMeActivity extends BaseHomeActivity implements View.OnClickList
         tvFan = (TextView) findViewById(R.id.tv_home_myself_fan);
         tvProgress = (TextView) findViewById(R.id.tv_myself_progress);
         tvProgressNext = (TextView) findViewById(R.id.tv_myself_progress_next);
+        tvProgressNext.setOnClickListener(this);
         rb = (RatingBar) findViewById(R.id.rb_home_myself_perssion);
         pb = (ProgressBar) findViewById(R.id.pb_home_myself_grow);
-        ivMessageTag = (ImageView) findViewById(R.id.iv_message_tag);
 
         myUid = (TextView) findViewById(R.id.tv_home_uid);
         myCollection = (LinearLayout) findViewById(R.id.tv_home_myself_collect);
@@ -153,36 +149,19 @@ public class HomeMeActivity extends BaseHomeActivity implements View.OnClickList
         return R.layout.activity_me_v2;
     }
 
-    // 收到消息 现实消息提醒
-    BroadcastReceiver messageReceiveTagReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            ivMessageTag.setVisibility(View.VISIBLE);
-        }
-    };
 
-    // 关系消息 影藏消息提醒
-    BroadcastReceiver messageCancelTagReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            ivMessageTag.setVisibility(View.GONE);
-        }
-    };
 
     @Override
     public void onResume() {
         super.onResume();
         tvMe.setSelected(true);
         hideWaitDialog();
-        LocalBroadcastManager.getInstance(this).registerReceiver(messageReceiveTagReceiver, new IntentFilter(Constants.INTENT_ACTION_MESSAGE_RECEIVE));
-        LocalBroadcastManager.getInstance(this).registerReceiver(messageCancelTagReceiver, new IntentFilter(Constants.INTENT_ACTION_MESSAGE_CANCEL));
 
     }
 
     @Override
     public void onDestroy() {
-        LocalBroadcastManager.getInstance(this).unregisterReceiver(messageReceiveTagReceiver);
-        LocalBroadcastManager.getInstance(this).unregisterReceiver(messageCancelTagReceiver);
+
         super.onDestroy();
     }
 
@@ -219,7 +198,7 @@ public class HomeMeActivity extends BaseHomeActivity implements View.OnClickList
         pb.setMax(20000);
         int growth = userModel.getGrowthCount();
         tvProgress.setText(growth + "/20000");
-        tvProgressNext.setText("距离下一级还需" + (20000 - growth) + "成长值");
+        tvProgressNext.setText((20000 - growth) + "");
         ObjectAnimator animation = ObjectAnimator.ofInt(pb, "progress", growth);
         animation.setDuration(500); // 0.5 second
         animation.setInterpolator(new DecelerateInterpolator());
@@ -385,8 +364,8 @@ public class HomeMeActivity extends BaseHomeActivity implements View.OnClickList
             case R.id.tv_order_reimburse:
                 ReimburseOrderListActivity.newInstance(this);
                 break;
-            case R.id.tv_home_self_gold:
-
+            case R.id.tv_myself_progress_next:
+                GoldGrowthListActivity.newIntent(this);
                 break;
         }
     }

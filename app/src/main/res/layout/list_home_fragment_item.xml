@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="@dimen/half_global_padding"
-    android:background="@drawable/btn_white_radio_bg"
-    android:padding="@dimen/global_padding">
+    android:layout_marginBottom="1dp"
+    android:background="@drawable/shape_background_white_c"
+    android:paddingLeft="@dimen/half_global_padding"
+    android:paddingRight="@dimen/half_global_padding"
+    >
 
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/iv_home_fra_item"
@@ -14,7 +17,7 @@
         android:layout_height="wrap_content"
         fresco:actualImageScaleType="centerCrop"
         fresco:fadeDuration="300"
-        fresco:placeholderImage="@color/placeholder" />
+        fresco:placeholderImage="@color/placeholder"/>
 
     <ImageView
         android:id="@+id/iv_home_fra_tag_item"
@@ -23,7 +26,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:scaleType="centerCrop"
-        android:visibility="gone" />
+        android:visibility="gone"/>
 
 
     <TextView
@@ -42,7 +45,7 @@
         android:paddingTop="3dp"
         android:text=""
         android:textColor="@android:color/white"
-        android:textStyle="bold" />
+        android:textStyle="bold"/>
 
 
     <RelativeLayout
@@ -66,7 +69,7 @@
             android:paddingTop="2dip"
             android:textColor="@android:color/white"
             android:textSize="@dimen/txt_small"
-            tools:text="认证机构" />
+            tools:text="认证机构"/>
 
         <TextView
             android:id="@+id/tv_home_fra_title_item"
@@ -79,7 +82,7 @@
             android:textColor="@color/dimgray"
             android:textSize="@dimen/txt_middle"
             android:textStyle="bold"
-            tools:text="dfadsfad s" />
+            tools:text="dfadsfads"/>
 
 
         <TextView
@@ -87,21 +90,25 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_tag"
-            android:layout_marginRight="32dp"
-            android:layout_marginTop="@dimen/global_padding"
+            android:layout_marginRight="@dimen/activity_vertical_margin"
+            android:layout_toLeftOf="@+id/tv_home_price"
             android:padding="@dimen/half_global_padding"
             android:singleLine="true"
-            tools:text="fadfasdfas" />
+            android:textColor="@color/darkgray"
+            tools:text="fadfasdfas"/>
 
         <TextView
             android:id="@+id/tv_home_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/tv_home_introduce"
             android:layout_alignParentRight="true"
-            android:layout_below="@+id/tv_tag"
+            android:gravity="bottom"
+            android:padding="3dp"
             android:textColor="@color/primaryColor"
+            android:textSize="@dimen/txt_xlarge"
             android:textStyle="bold"
-            tools:text="￥ 138" />
+            tools:text="￥138"/>
     </RelativeLayout>
 </RelativeLayout>
 

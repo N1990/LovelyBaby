@@ -274,6 +274,8 @@
             android:name=".activity.more.AboutActivity"
             android:label="@string/title_activity_about" />
 
+        <activity android:name=".activity.user.GoldGrowthListActivity"/>
+
         <provider
             android:name=".db.UserProvider"
             android:authorities="com.cmbb.smartkids.useraccount"

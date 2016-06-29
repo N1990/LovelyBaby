@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    android:id="@+id/main_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
@@ -31,7 +32,7 @@
                 app:actualImageScaleType="centerCrop"
                 app:fadeDuration="300"
                 app:layout_collapseMode="parallax"
-                app:placeholderImage="@mipmap/btn_user_background_bg" />
+                app:placeholderImage="@mipmap/btn_user_background_bg"/>
 
 
             <android.support.v7.widget.Toolbar
@@ -47,7 +48,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:gravity="center"
-                    android:src="@drawable/ic_action_settings" />
+                    android:src="@drawable/ic_action_settings"/>
 
 
                 <TextView
@@ -59,7 +60,7 @@
                     android:gravity="center"
                     android:textAppearance="@style/TextAppearance.Smart.Small"
                     android:textColor="@android:color/white"
-                    android:visibility="gone" />
+                    android:visibility="gone"/>
 
                 <FrameLayout
                     android:layout_width="wrap_content"
@@ -72,7 +73,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_margin="@dimen/global_padding"
-                        android:src="@drawable/ic_action_email" />
+                        android:src="@drawable/ic_action_email"/>
 
                     <ImageView
                         android:id="@+id/iv_message_tag"
@@ -82,7 +83,7 @@
                         android:layout_marginRight="5dp"
                         android:layout_marginTop="5dp"
                         android:src="@drawable/shape_message_tag_blue"
-                        android:visibility="gone" />
+                        android:visibility="invisible"/>
 
                 </FrameLayout>
             </android.support.v7.widget.Toolbar>
@@ -118,7 +119,7 @@
                     app:fadeDuration="200"
                     app:roundAsCircle="true"
                     app:roundingBorderColor="@android:color/white"
-                    app:roundingBorderWidth="1dp" />
+                    app:roundingBorderWidth="1dp"/>
 
                 <TextView
                     android:id="@+id/tv_home_myself_nickname"
@@ -129,7 +130,7 @@
                     android:layout_toRightOf="@+id/iv_home_myself_header"
                     android:padding="5dip"
                     android:textAppearance="@style/TextAppearance.Smart.Small"
-                    tools:text="昵称" />
+                    tools:text="昵称"/>
 
                 <TextView
                     android:id="@+id/tv_home_myself_identity"
@@ -140,7 +141,7 @@
                     android:layout_toRightOf="@+id/iv_home_myself_header"
                     android:padding="5dip"
                     android:textAppearance="@style/TextAppearance.Smart.Small"
-                    tools:text="身份" />
+                    tools:text="身份"/>
 
 
                 <RatingBar
@@ -154,7 +155,7 @@
                     android:numStars="5"
                     android:progressDrawable="@drawable/custome_ratingbar_bg"
                     android:rating="0"
-                    android:stepSize="0.5" />
+                    android:stepSize="0.5"/>
 
                 <TextView
                     android:id="@+id/tv_home_myself_fan"
@@ -165,7 +166,7 @@
                     android:layout_toRightOf="@+id/tv_home_myself_identity"
                     android:padding="5dip"
                     android:textAppearance="@style/TextAppearance.Smart.Small"
-                    tools:text="Fans（）" />
+                    tools:text="Fans（）"/>
 
                 <LinearLayout
                     android:id="@+id/ll_myself_progress"
@@ -181,7 +182,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="成长值"
-                        android:textAppearance="@style/TextAppearance.Smart.Small" />
+                        android:textAppearance="@style/TextAppearance.Smart.Small"/>
 
                     <ProgressBar
                         android:id="@+id/pb_home_myself_grow"
@@ -194,7 +195,7 @@
                         android:layout_weight="1.0"
                         android:max="100"
                         android:progress="0"
-                        android:progressDrawable="@drawable/horizontal_progress_bg" />
+                        android:progressDrawable="@drawable/horizontal_progress_bg"/>
 
                 </LinearLayout>
 
@@ -205,24 +206,53 @@
                     android:layout_alignParentRight="true"
                     android:layout_below="@+id/ll_myself_progress"
                     android:layout_marginRight="@dimen/half_global_padding"
-                    android:layout_marginTop="@dimen/half_global_padding"
+                    android:layout_marginTop="@dimen/global_padding"
                     android:gravity="center"
+                    android:textAppearance="@style/TextAppearance.Smart.Small"
                     android:textColor="@color/darkgray"
-                    tools:text="800/20000"
-                    android:textAppearance="@style/TextAppearance.Smart.Small" />
+                    tools:text="800/20000"/>
+
+                <TextView
+                    android:id="@+id/tv_myself_progress_next_left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ll_myself_progress"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginTop="@dimen/global_padding"
+                    android:gravity="center"
+                    android:text="距离下一级还需"
+                    android:textAppearance="@style/TextAppearance.Smart.Small"
+                    android:textColor="@color/darkgray"
+                    android:textSize="@dimen/txt_small"/>
 
                 <TextView
                     android:id="@+id/tv_myself_progress_next"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dip"
+                    android:layout_alignBottom="@+id/tv_myself_progress_next_left"
                     android:layout_below="@+id/ll_myself_progress"
-                    android:layout_marginRight="@dimen/half_global_padding"
+                    android:layout_marginLeft="@dimen/global_padding"
+                    android:layout_marginRight="@dimen/global_padding"
                     android:layout_marginTop="@dimen/half_global_padding"
+                    android:layout_toRightOf="@+id/tv_myself_progress_next_left"
                     android:gravity="center"
+                    android:textAppearance="@style/TextAppearance.Smart.Small"
+                    android:textColor="@color/primaryColor"
+                    android:textStyle="italic|bold"
+                    tools:text="10000"/>
+
+                <TextView
+                    android:id="@+id/tv_myself_progress_next_right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ll_myself_progress"
+                    android:layout_marginTop="@dimen/global_padding"
+                    android:layout_toRightOf="@+id/tv_myself_progress_next"
+                    android:gravity="center"
+                    android:text="成长值"
+                    android:textAppearance="@style/TextAppearance.Smart.Small"
                     android:textColor="@color/darkgray"
-                    tools:text="距离"
-                    android:textAppearance="@style/TextAppearance.Smart.Small" />
+                    android:textSize="@dimen/txt_small"/>
 
             </RelativeLayout>
 
@@ -254,7 +284,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@mipmap/btn_order_bg"
-                            android:scaleType="center" />
+                            android:scaleType="center"/>
 
                         <TextView
                             android:id="@+id/tv_home_self_order"
@@ -264,7 +294,7 @@
                             android:layout_weight="1.0"
                             android:padding="5dip"
                             android:text="我的订单"
-                            android:textAppearance="@style/TextAppearance.Smart.Small" />
+                            android:textAppearance="@style/TextAppearance.Smart.Small"/>
 
                     </LinearLayout>
 
@@ -272,7 +302,7 @@
                         android:id="@+id/v_home_self_order"
                         android:layout_width="match_parent"
                         android:layout_height="1px"
-                        android:background="@color/line" />
+                        android:background="@color/line"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -287,7 +317,7 @@
                             android:layout_weight="1"
                             android:drawableTop="@mipmap/unpay_bg"
                             android:gravity="center"
-                            android:text="待付款" />
+                            android:text="待付款"/>
 
                         <TextView
                             android:id="@+id/tv_order_unuse"
@@ -296,7 +326,7 @@
                             android:layout_weight="1"
                             android:drawableTop="@mipmap/unuse_bg"
                             android:gravity="center"
-                            android:text="待使用" />
+                            android:text="待使用"/>
 
                         <TextView
                             android:id="@+id/tv_order_uncomment"
@@ -305,7 +335,7 @@
                             android:layout_weight="1"
                             android:drawableTop="@mipmap/uncoment_bg"
                             android:gravity="center"
-                            android:text="待评价" />
+                            android:text="待评价"/>
 
                         <TextView
                             android:id="@+id/tv_order_reimburse"
@@ -314,7 +344,7 @@
                             android:layout_weight="1"
                             android:drawableTop="@mipmap/reimburse_bg"
                             android:gravity="center"
-                            android:text="退款" />
+                            android:text="退款"/>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -343,7 +373,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@mipmap/comment_bg"
-                        android:scaleType="center" />
+                        android:scaleType="center"/>
 
                     <TextView
                         android:id="@+id/tv_home_myself_perssion_tag"
@@ -353,13 +383,13 @@
                         android:layout_weight="1.0"
                         android:padding="5dip"
                         android:text="我的评价"
-                        android:textAppearance="@style/TextAppearance.Smart.Small" />
+                        android:textAppearance="@style/TextAppearance.Smart.Small"/>
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@mipmap/btn_right_anchor_bg"
-                        android:scaleType="centerCrop" />
+                        android:scaleType="centerCrop"/>
                 </LinearLayout>
 
 
@@ -367,7 +397,7 @@
                     android:id="@+id/v_home_myself_collect_tag"
                     android:layout_width="match_parent"
                     android:layout_height="1px"
-                    android:background="@color/line" />
+                    android:background="@color/line"/>
 
                 <LinearLayout
                     android:id="@+id/tv_home_myself_care"
@@ -381,7 +411,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@mipmap/careful_bg"
-                        android:scaleType="center" />
+                        android:scaleType="center"/>
 
                     <TextView
                         android:id="@+id/tv_home_myself_care_tag"
@@ -391,20 +421,20 @@
                         android:layout_weight="1.0"
                         android:padding="5dip"
                         android:text="我的关注"
-                        android:textAppearance="@style/TextAppearance.Smart.Small" />
+                        android:textAppearance="@style/TextAppearance.Smart.Small"/>
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@mipmap/btn_right_anchor_bg"
-                        android:scaleType="centerCrop" />
+                        android:scaleType="centerCrop"/>
                 </LinearLayout>
 
                 <View
                     android:id="@+id/v_home_myself_care"
                     android:layout_width="match_parent"
                     android:layout_height="1px"
-                    android:background="@color/line" />
+                    android:background="@color/line"/>
 
                 <LinearLayout
                     android:id="@+id/tv_home_myself_collect"
@@ -418,7 +448,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@mipmap/collection_bg"
-                        android:scaleType="center" />
+                        android:scaleType="center"/>
 
                     <TextView
                         android:id="@+id/tv_home_myself_collect_tag"
@@ -428,13 +458,13 @@
                         android:layout_weight="1.0"
                         android:padding="5dip"
                         android:text="我的收藏"
-                        android:textAppearance="@style/TextAppearance.Smart.Small" />
+                        android:textAppearance="@style/TextAppearance.Smart.Small"/>
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@mipmap/btn_right_anchor_bg"
-                        android:scaleType="centerCrop" />
+                        android:scaleType="centerCrop"/>
                 </LinearLayout>
 
             </LinearLayout>
@@ -463,7 +493,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@mipmap/btn_my_order_bg"
-                        android:scaleType="center" />
+                        android:scaleType="center"/>
 
                     <TextView
                         android:id="@+id/tv_home_self_order_accept"
@@ -473,20 +503,20 @@
                         android:layout_weight="1.0"
                         android:padding="5dip"
                         android:text="我的服务"
-                        android:textAppearance="@style/TextAppearance.Smart.Small" />
+                        android:textAppearance="@style/TextAppearance.Smart.Small"/>
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@mipmap/btn_right_anchor_bg"
-                        android:scaleType="centerCrop" />
+                        android:scaleType="centerCrop"/>
                 </LinearLayout>
 
                 <View
                     android:id="@+id/v_home_self_order_accept"
                     android:layout_width="match_parent"
                     android:layout_height="1px"
-                    android:background="@color/line" />
+                    android:background="@color/line"/>
 
                 <LinearLayout
                     android:id="@+id/ll_home_self_community"
@@ -500,7 +530,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@mipmap/btn_community_myself_bg"
-                        android:scaleType="center" />
+                        android:scaleType="center"/>
 
                     <TextView
                         android:id="@+id/tv_home_self_community"
@@ -510,20 +540,20 @@
                         android:layout_weight="1.0"
                         android:padding="5dip"
                         android:text="我的话题"
-                        android:textAppearance="@style/TextAppearance.Smart.Small" />
+                        android:textAppearance="@style/TextAppearance.Smart.Small"/>
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@mipmap/btn_right_anchor_bg"
-                        android:scaleType="centerCrop" />
+                        android:scaleType="centerCrop"/>
                 </LinearLayout>
 
                 <View
                     android:id="@+id/v_home_self_apply_popman"
                     android:layout_width="match_parent"
                     android:layout_height="1px"
-                    android:background="@color/line" />
+                    android:background="@color/line"/>
 
                 <LinearLayout
                     android:id="@+id/ll_home_self_baby_diary"
@@ -537,7 +567,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@mipmap/btn_baby_diary_bg"
-                        android:scaleType="center" />
+                        android:scaleType="center"/>
 
                     <TextView
                         android:id="@+id/tv_home_self_baby_diary"
@@ -547,19 +577,19 @@
                         android:layout_weight="1.0"
                         android:padding="5dip"
                         android:text="我的宝宝"
-                        android:textAppearance="@style/TextAppearance.Smart.Small" />
+                        android:textAppearance="@style/TextAppearance.Smart.Small"/>
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@mipmap/btn_right_anchor_bg"
-                        android:scaleType="centerCrop" />
+                        android:scaleType="centerCrop"/>
                 </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1px"
-                    android:background="@color/line" />
+                    android:background="@color/line"/>
 
                 <LinearLayout
                     android:id="@+id/ll_home_self_drafts"
@@ -573,7 +603,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@mipmap/btn_self_drafts_bg"
-                        android:scaleType="center" />
+                        android:scaleType="center"/>
 
                     <TextView
                         android:id="@+id/tv_home_self_drafts"
@@ -583,19 +613,19 @@
                         android:layout_weight="1.0"
                         android:padding="5dip"
                         android:text="草稿箱"
-                        android:textAppearance="@style/TextAppearance.Smart.Small" />
+                        android:textAppearance="@style/TextAppearance.Smart.Small"/>
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@mipmap/btn_right_anchor_bg"
-                        android:scaleType="centerCrop" />
+                        android:scaleType="centerCrop"/>
                 </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1px"
-                    android:background="@color/line" />
+                    android:background="@color/line"/>
 
                 <LinearLayout
                     android:id="@+id/ll_home_self_gold"
@@ -609,7 +639,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@mipmap/btn_my_gold_bg"
-                        android:scaleType="center" />
+                        android:scaleType="center"/>
 
                     <TextView
                         android:id="@+id/tv_home_self_gold"
@@ -619,7 +649,7 @@
                         android:layout_weight="1.0"
                         android:padding="5dip"
                         android:text="我的积分"
-                        android:textAppearance="@style/TextAppearance.Smart.Small" />
+                        android:textAppearance="@style/TextAppearance.Smart.Small"/>
 
                     <TextView
                         android:id="@+id/tv_home_count"
@@ -628,20 +658,20 @@
                         android:layout_marginLeft="5dip"
                         android:padding="5dip"
                         android:text=""
-                        android:textColor="@color/primaryColor" />
+                        android:textColor="@color/primaryColor"/>
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@mipmap/btn_right_anchor_bg"
-                        android:scaleType="centerCrop" />
+                        android:scaleType="centerCrop"/>
                 </LinearLayout>
 
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1px"
-                    android:background="@color/line" />
+                    android:background="@color/line"/>
 
                 <LinearLayout
                     android:id="@+id/ll_home_self_uid"
@@ -655,7 +685,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@mipmap/btn_my_uid_bg"
-                        android:scaleType="center" />
+                        android:scaleType="center"/>
 
                     <TextView
                         android:layout_width="0dip"
@@ -664,7 +694,7 @@
                         android:layout_weight="1.0"
                         android:padding="5dip"
                         android:text="萌宝UID"
-                        android:textAppearance="@style/TextAppearance.Smart.Small" />
+                        android:textAppearance="@style/TextAppearance.Smart.Small"/>
 
                     <TextView
                         android:id="@+id/tv_home_uid"
@@ -673,19 +703,19 @@
                         android:layout_marginLeft="5dip"
                         android:padding="5dip"
                         android:text=""
-                        android:textColor="@color/primaryColor" />
+                        android:textColor="@color/primaryColor"/>
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@mipmap/btn_right_anchor_bg"
-                        android:scaleType="centerCrop" />
+                        android:scaleType="centerCrop"/>
                 </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1px"
-                    android:background="@color/line" />
+                    android:background="@color/line"/>
 
                 <LinearLayout
                     android:id="@+id/ll_home_self_apply_popman"
@@ -699,7 +729,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@mipmap/btn_apply_popman_bg"
-                        android:scaleType="center" />
+                        android:scaleType="center"/>
 
                     <TextView
                         android:id="@+id/tv_home_self_apply_popman"
@@ -709,13 +739,13 @@
                         android:layout_weight="1.0"
                         android:padding="5dip"
                         android:text="申请达人"
-                        android:textAppearance="@style/TextAppearance.Smart.Small" />
+                        android:textAppearance="@style/TextAppearance.Smart.Small"/>
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@mipmap/btn_right_anchor_bg"
-                        android:scaleType="centerCrop" />
+                        android:scaleType="centerCrop"/>
                 </LinearLayout>
 
 
@@ -724,67 +754,6 @@
     </com.cmbb.smartkids.widget.NestedScrollView>
 
 
-    <LinearLayout
-        android:id="@+id/ll_bottom"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_alignParentBottom="true"
-        android:layout_gravity="bottom"
-        android:background="@drawable/shape_white_background_no_corner"
-
-        android:orientation="horizontal"
-        android:paddingTop="@dimen/half_global_padding">
-
-        <TextView
-            android:id="@+id/tv_home"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:drawableTop="@drawable/btn_home_main_selector"
-            android:gravity="center"
-            android:text="首页"
-            android:textColor="@color/selector_gray_to_primarycolor_text" />
-
-        <TextView
-            android:id="@+id/tv_service"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:drawableTop="@drawable/btn_home_service_selector"
-            android:gravity="center"
-            android:text="服务"
-            android:textColor="@color/selector_gray_to_primarycolor_text" />
-
-        <TextView
-            android:id="@+id/tv_topic"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:drawableTop="@drawable/btn_home_community_selector"
-            android:gravity="center"
-            android:text="话题"
-            android:textColor="@color/selector_gray_to_primarycolor_text" />
-
-        <TextView
-            android:id="@+id/tv_me"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:drawableTop="@drawable/btn_home_self_selector"
-            android:gravity="center"
-            android:text="我的"
-            android:textColor="@color/selector_gray_to_primarycolor_text" />
-
-        <TextView
-            android:id="@+id/tv_more"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:drawableTop="@drawable/btn_home_more_selector"
-            android:gravity="center"
-            android:text="更多"
-            android:textColor="@color/selector_gray_to_primarycolor_text" />
-
-    </LinearLayout>
+    <include layout="@layout/home_bottom"/>
 
 </android.support.design.widget.CoordinatorLayout>

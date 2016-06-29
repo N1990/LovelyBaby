@@ -5,17 +5,17 @@
     <color name="accentColor">#FE87A0</color>
     <color name="pressedColor">#FF6785</color>
     <color name="serviceLocationMask">#3f000000</color>
-    <color name="windowBackgroundColor">#fafafa</color>
+    <color name="windowBackgroundColor">#f8f8f8</color>
     <color name="placeholder">#FEE8ED</color>
     <color name="orange">#FF9800</color>
 
     <!--字体颜色-->
     <!--暗灰色 -->
-    <color name="darkgray">#A9A9A9</color>
+    <color name="darkgray">#696969</color>
     <color name="backgray">#F5F5F5</color>
     <color name="line">#EEEEEE</color>
     <!--暗灰色 -->
-    <color name="dimgray">#696969</color>
+    <color name="dimgray">#333333</color>
     <!--字体颜色-->
 
     <!--活动详情底部-->

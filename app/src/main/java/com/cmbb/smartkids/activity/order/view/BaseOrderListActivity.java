@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
+import android.text.TextUtils;
 import android.view.View;
 
 import com.cmbb.smartkids.R;
@@ -193,9 +194,13 @@ public class BaseOrderListActivity extends BaseActivity implements RecyclerArray
         showWaitDialog();
         SecurityCodeModel.handleCancelOrderRequest(orderCode, new OkHttpClientManager.ResultCallback<SecurityCodeModel>() {
             @Override
-            public void onError(Request request, Exception e) {
+            public void onError(Request request, Exception e, String msg) {
                 hideWaitDialog();
-                showShortToast(getString(R.string.is_netwrok));
+                if (TextUtils.isEmpty(msg)) {
+                    showShortToast(getString(R.string.is_netwrok));
+                } else {
+                    showShortToast(msg);
+                }
             }
 
             @Override

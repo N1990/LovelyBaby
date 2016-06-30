@@ -128,9 +128,9 @@ public class ServiceDetailFragment extends BaseFragment {
             webView.clearHistory();
             webView.clearFormData();
             webView.clearCache(true);*/
-            webView.loadUrl("file:///android_asset/h5/page/samrt-app-service-detail.html");
+            //            webView.loadUrl("file:///android_asset/h5/page/samrt-app-service-detail.html");
 
-            //webView.loadUrl(Constants.H5.SMART_SERVICE_DETAIL + "?" + SystemClock.currentThreadTimeMillis());
+            webView.loadUrl(Constants.H5.SMART_SERVICE_DETAIL + "?" + SystemClock.currentThreadTimeMillis());
         }
         return view;
     }
@@ -366,11 +366,18 @@ public class ServiceDetailFragment extends BaseFragment {
                 showWaitsDialog();
                 ReserveModel.handleReserveRequest(h5ServiceDetailModel.getId() + "", priceListEntity.getPrice(), priceListEntity.getId() + "", priceListEntity.getCount() + "", BaseApplication.token, new OkHttpClientManager.ResultCallback<ReserveModel>() {
                     @Override
-                    public void onError(Request request, Exception e) {
+                    public void onError(Request request, Exception e, String msg) {
                         hideWaitDialog();
                         if (mEditPopupWindow.isShowing())
                             mEditPopupWindow.dismiss();
-                        showShortToast(getString(R.string.is_netwrok));
+                        // TODO: 16/6/30
+
+                        if (TextUtils.isEmpty(msg)) {
+                            showShortToast(getString(R.string.is_netwrok));
+                            Log.e(TAG, e.toString());
+                        } else {
+                            showShortToast(msg);
+                        }
                     }
 
                     @Override

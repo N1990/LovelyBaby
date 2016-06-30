@@ -3,6 +3,7 @@ package com.cmbb.smartkids.activity.user;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
+import android.text.TextUtils;
 import android.view.View;
 
 import com.cmbb.smartkids.R;
@@ -84,8 +85,12 @@ public class PerssionListActivity extends BaseActivity implements View.OnClickLi
     private void handleRequest(final int pager, int pagerSize, final boolean flag) {
         EvaluateListModel.getMeServiceRequest(isPopman + "", pager, pagerSize, new OkHttpClientManager.ResultCallback<EvaluateListModel>() {
             @Override
-            public void onError(Request request, Exception e) {
-                showShortToast(getString(R.string.is_netwrok));
+            public void onError(Request request, Exception e, String msg) {
+                if (TextUtils.isEmpty(msg)) {
+                    showShortToast(getString(R.string.is_netwrok));
+                } else {
+                    showShortToast(msg);
+                }
             }
 
             @Override

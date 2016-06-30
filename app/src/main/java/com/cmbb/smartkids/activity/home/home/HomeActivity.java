@@ -136,9 +136,13 @@ public class HomeActivity extends BaseHomeActivity implements View.OnClickListen
     private void requestAdd() {
         ManagerAdModel.getHomeImgRequest(new OkHttpClientManager.ResultCallback<ManagerAdModel>() {
             @Override
-            public void onError(Request request, Exception e) {
+            public void onError(Request request, Exception e, String msg) {
                 adData = new ArrayList<>();
-                //showShortToast(e.toString());
+                if (TextUtils.isEmpty(msg)) {
+                    showShortToast(getString(R.string.is_netwrok));
+                } else {
+                    showShortToast(msg);
+                }
             }
 
             @Override
@@ -158,10 +162,16 @@ public class HomeActivity extends BaseHomeActivity implements View.OnClickListen
     public void onLoadMore() {
         pager++;
         // 热门
-        HomePageRootModel.getHomeHotServiceRequest(pagerSize, pager, new OkHttpClientManager.ResultCallback<HomePageRootModel>() {
+        HomePageRootModel.getHomeHotServiceRequest(pagerSize, pager, new OkHttpClientManager.ResultCallback<HomePageRootModel>()
+        {
             @Override
-            public void onError(Request request, Exception e) {
+            public void onError(Request request, Exception e, String msg) {
                 adapter.add(null);
+                if (TextUtils.isEmpty(msg)) {
+                    showShortToast(getString(R.string.is_netwrok));
+                } else {
+                    showShortToast(msg);
+                }
             }
 
             @Override
@@ -179,8 +189,13 @@ public class HomeActivity extends BaseHomeActivity implements View.OnClickListen
         pager = 0;
         HomePageRootModel.getHomeHotServiceRequest(pagerSize, pager, new OkHttpClientManager.ResultCallback<HomePageRootModel>() {
             @Override
-            public void onError(Request request, Exception e) {
+            public void onError(Request request, Exception e, String msg) {
                 adapter.add(null);
+                if (TextUtils.isEmpty(msg)) {
+                    showShortToast(getString(R.string.is_netwrok));
+                } else {
+                    showShortToast(msg);
+                }
             }
 
             @Override
@@ -269,8 +284,12 @@ public class HomeActivity extends BaseHomeActivity implements View.OnClickListen
         if (!TextUtils.isEmpty(BaseApplication.token)) {
             SignModel.getSignRequest(new OkHttpClientManager.ResultCallback<SignModel>() {
                 @Override
-                public void onError(Request request, Exception e) {
-
+                public void onError(Request request, Exception e, String msg) {
+                    if (TextUtils.isEmpty(msg)) {
+                        showShortToast(getString(R.string.is_netwrok));
+                    } else {
+                        showShortToast(msg);
+                    }
                 }
 
                 @Override

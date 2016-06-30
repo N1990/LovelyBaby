@@ -42,7 +42,6 @@ public class SecurityCodeModel implements Parcelable {
         return msg;
     }
 
-
     @Override
     public int describeContents() {
         return 0;
@@ -109,7 +108,6 @@ public class SecurityCodeModel implements Parcelable {
         OkHttpClientManager.postAsyn(Constants.ServiceInfo.VERIFY_CODE, params, callback);
     }
 
-
     /**
      * 取消订单
      *
@@ -122,7 +120,6 @@ public class SecurityCodeModel implements Parcelable {
         params.put("orderCode", orderCode);
         OkHttpClientManager.postAsyn(Constants.ServiceInfo.CANCEL_ORDER_REQUEST, params, callback);
     }
-
 
     /**
      * 收藏
@@ -137,8 +134,6 @@ public class SecurityCodeModel implements Parcelable {
         params.put("isCollect", String.valueOf(isCollect));
         params.put("token", BaseApplication.token);
         OkHttpClientManager.postAsyn(Constants.ServiceInfo.HANDLE_COLLECT_SERVICE, params, callback);
-
     }
-
 
 }

@@ -82,10 +82,13 @@ public class HomeMeActivity extends BaseHomeActivity implements View.OnClickList
         showWaitDialog();
         UserCenterModel.getUserInfoRequest(SPCache.getString(Constants.USER_ID, "-1"), 1, BaseApplication.token, new OkHttpClientManager.ResultCallback<UserCenterModel>() {
             @Override
-            public void onError(Request request, Exception e) {
+            public void onError(Request request, Exception e, String msg) {
                 hideWaitDialog();
-                showShortToast(getString(R.string.is_netwrok));
-            }
+                if (TextUtils.isEmpty(msg)) {
+                    showShortToast(getString(R.string.is_netwrok));
+                } else {
+                    showShortToast(msg);
+                }            }
 
             @Override
             public void onResponse(UserCenterModel response) {
@@ -215,9 +218,13 @@ public class HomeMeActivity extends BaseHomeActivity implements View.OnClickList
     private void handleUpdateRequest(final String path, final String width, final String height) {
         SecurityCodeModel.updateBackgroundImageRequest(path, width, height, BaseApplication.token, new OkHttpClientManager.ResultCallback<SecurityCodeModel>() {
             @Override
-            public void onError(Request request, Exception e) {
-                showShortToast(getString(R.string.is_netwrok));
+            public void onError(Request request, Exception e, String msg) {
                 hideWaitDialog();
+                if (TextUtils.isEmpty(msg)) {
+                    showShortToast(getString(R.string.is_netwrok));
+                } else {
+                    showShortToast(msg);
+                }
             }
 
             @Override

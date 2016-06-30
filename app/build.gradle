@@ -8,8 +8,8 @@ android {
         applicationId "com.cmbb.smartkids"
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 315
-        versionName "3.1.5"
+        versionCode 314
+        versionName "3.1.4"
         multiDexEnabled true
         ndk {
             abiFilters "armeabi", "armeabi-v7a", "x86"
@@ -74,67 +74,96 @@ android {
         Minimaestros {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Minimaestros"]
         }
-        Mengbaipai131 {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai131"]
+        Mengbaipai151 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai151"]
         }
-        Mengbaipai132 {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai132"]
+        Mengbaipai152 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai152"]
         }
-        Mengbaipai133 {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai133"]
+        Mengbaipai153 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai153"]
         }
-        Mengbaipai134 {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai134"]
+        Mengbaipai154 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai154"]
         }
-        Mengbaipai135 {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai135"]
+        Mengbaipai155 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai155"]
         }
-        Mengbaipai136 {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai136"]
+        Mengbaipai156 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai156"]
         }
-        Mengbaipai137 {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai137"]
+        Mengbaipai157 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai157"]
         }
-        Mengbaipai138 {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai138"]
+        Mengbaipai158 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai158"]
         }
-        Mengbaipai139 {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai139"]
+        Mengbaipai159 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai159"]
         }
-        Mengbaipai140 {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai140"]
+        Mengbaipai160 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai160"]
         }
-        Mengbaipai141 {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai141"]
+        Mengbaipai161 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai161"]
         }
-        Mengbaipai142 {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai142"]
+        Mengbaipai162 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai162"]
         }
-        Mengbaipai143 {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai143"]
+        Mengbaipai163 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai163"]
         }
-        Mengbaipai144 {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai144"]
+        Mengbaipai164 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai164"]
         }
-        Mengbaipai145 {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai145"]
+        Mengbaipai165 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai165"]
         }
-        Mengbaipai146 {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai146"]
+        Mengbaipai166 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai166"]
         }
-        Mengbaipai147 {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai147"]
+        Mengbaipai167 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai167"]
         }
-        Mengbaipai148 {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai148"]
+        Mengbaipai168 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai168"]
         }
-        Mengbaipai149 {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai149"]
+        Mengbaipai169 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai169"]
         }
-        Mengbaipai150 {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai150"]
+        Mengbaipai170 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai170"]
         }
-
+        Mengbaipai171 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai171"]
+        }
+        Mengbaipai172 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai172"]
+        }
+        Mengbaipai173 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai173"]
+        }
+        Mengbaipai174 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai174"]
+        }
+        Mengbaipai175 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai175"]
+        }
+        Mengbaipai176 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai176"]
+        }
+        Mengbaipai177 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai177"]
+        }
+        Mengbaipai178 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai178"]
+        }
+        Mengbaipai179 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai179"]
+        }
+        Mengbaipai180 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Mengbaipai180"]
+        }
         Eyoung {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Eyoung"]
         }

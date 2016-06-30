@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -123,8 +124,12 @@ public class HomeTopicActivity extends BaseHomeActivity implements View.OnClickL
         topicTypeAdapter.add(allTopic);
         TopicTypeModel.getTopicTypeRequest(new OkHttpClientManager.ResultCallback<TopicTypeModel>() {
             @Override
-            public void onError(Request request, Exception e) {
-                showShortToast(getString(R.string.is_netwrok));
+            public void onError(Request request, Exception e, String msg) {
+                if (TextUtils.isEmpty(msg)) {
+                    showShortToast(getString(R.string.is_netwrok));
+                } else {
+                    showShortToast(msg);
+                }
             }
 
             @Override
@@ -156,8 +161,13 @@ public class HomeTopicActivity extends BaseHomeActivity implements View.OnClickL
         pager++;
         TopicListModel.getTopicListRequest(topicTypeAdapter.getSelectData().getValue(), pager, pagerSize, BaseApplication.token, new OkHttpClientManager.ResultCallback<TopicListModel>() {
             @Override
-            public void onError(Request request, Exception e) {
+            public void onError(Request request, Exception e, String msg) {
                 showShortToast(getString(R.string.is_netwrok));
+                if (TextUtils.isEmpty(msg)) {
+                    showShortToast(getString(R.string.is_netwrok));
+                } else {
+                    showShortToast(msg);
+                }
             }
 
             @Override
@@ -174,8 +184,12 @@ public class HomeTopicActivity extends BaseHomeActivity implements View.OnClickL
         pager = 0;
         TopicListModel.getTopicListRequest(topicTypeAdapter.getSelectData().getValue(), pager, pagerSize, BaseApplication.token, new OkHttpClientManager.ResultCallback<TopicListModel>() {
             @Override
-            public void onError(Request request, Exception e) {
-                showShortToast(getString(R.string.is_netwrok));
+            public void onError(Request request, Exception e, String msg) {
+                if (TextUtils.isEmpty(msg)) {
+                    showShortToast(getString(R.string.is_netwrok));
+                } else {
+                    showShortToast(msg);
+                }
             }
 
             @Override

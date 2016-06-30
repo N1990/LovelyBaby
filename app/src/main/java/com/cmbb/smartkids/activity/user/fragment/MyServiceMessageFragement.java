@@ -71,9 +71,13 @@ public class MyServiceMessageFragement extends BaseFragment implements View.OnCl
         params.put("token", BaseApplication.token);
         OkHttpClientManager.postAsyn(Constants.ServiceInfo.MESSAGE_REEAD_REQUEST, params, new OkHttpClientManager.ResultCallback<SecurityCodeModel>() {
             @Override
-            public void onError(Request request, Exception e) {
+            public void onError(Request request, Exception e, String msg) {
                 hideWaitDialog();
-                showShortToast(getString(R.string.is_netwrok));
+                if (TextUtils.isEmpty(msg)) {
+                    showShortToast(getString(R.string.is_netwrok));
+                } else {
+                    showShortToast(msg);
+                }
             }
 
             @Override
@@ -117,8 +121,12 @@ public class MyServiceMessageFragement extends BaseFragment implements View.OnCl
         pager++;
         MessageListModel.getMessageListRequest(pager, pagerSize, 0, BaseApplication.token, new OkHttpClientManager.ResultCallback<MessageListModel>() {
             @Override
-            public void onError(Request request, Exception e) {
-                showShortToast(getString(R.string.is_netwrok));
+            public void onError(Request request, Exception e, String msg) {
+                if (TextUtils.isEmpty(msg)) {
+                    showShortToast(getString(R.string.is_netwrok));
+                } else {
+                    showShortToast(msg);
+                }
             }
 
             @Override
@@ -135,8 +143,12 @@ public class MyServiceMessageFragement extends BaseFragment implements View.OnCl
         pager = 0;
         MessageListModel.getMessageListRequest(pager, pagerSize, 0, BaseApplication.token, new OkHttpClientManager.ResultCallback<MessageListModel>() {
             @Override
-            public void onError(Request request, Exception e) {
-                showShortToast(getString(R.string.is_netwrok));
+            public void onError(Request request, Exception e, String msg) {
+                if (TextUtils.isEmpty(msg)) {
+                    showShortToast(getString(R.string.is_netwrok));
+                } else {
+                    showShortToast(msg);
+                }
             }
 
             @Override

@@ -4,6 +4,7 @@ package com.cmbb.smartkids.activity.order.view;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 
 import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.activity.order.model.OrderListModel;
@@ -27,8 +28,12 @@ public class UnConsumeOrderListActivity extends BaseOrderListActivity {
         pager++;
         OrderListModel.getOrderListRequest("0", "2,4,9", pager, pagerSize, new OkHttpClientManager.ResultCallback<OrderListModel>() {
             @Override
-            public void onError(Request request, Exception e) {
-                showShortToast(getString(R.string.is_netwrok));
+            public void onError(Request request, Exception e, String msg) {
+                if (TextUtils.isEmpty(msg)) {
+                    showShortToast(getString(R.string.is_netwrok));
+                } else {
+                    showShortToast(msg);
+                }
             }
 
             @Override
@@ -45,8 +50,12 @@ public class UnConsumeOrderListActivity extends BaseOrderListActivity {
         pager = 0;
         OrderListModel.getOrderListRequest("0", "2,4,9", pager, pagerSize, new OkHttpClientManager.ResultCallback<OrderListModel>() {
             @Override
-            public void onError(Request request, Exception e) {
-                showShortToast(getString(R.string.is_netwrok));
+            public void onError(Request request, Exception e, String msg) {
+                if (TextUtils.isEmpty(msg)) {
+                    showShortToast(getString(R.string.is_netwrok));
+                } else {
+                    showShortToast(msg);
+                }
             }
 
             @Override

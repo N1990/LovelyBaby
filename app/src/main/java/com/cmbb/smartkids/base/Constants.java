@@ -12,10 +12,11 @@ public class Constants {
     //    public static final String BASE = "http://192.168.100.64:8085/wine-rest/";
     //    public static String BASE_URL_PIC = "http://192.168.100.174:8081/wine-rest/";
     //生产环境
-    //    public static final String BASE = "http://120.26.88.135:8090/wine-rest/";
+    public static final String BASE = "http://120.26.88.135:8090/wine-rest/";
     //    public static final String BASE = "http://192.168.100.64:8083/wine-rest/";
 
-    public static final String BASE = "http://mengbaopai.smart-kids.com:82/wine-rest/";
+    //    public static final String BASE = "http://192.168.100.64:8083/wine-rest/";
+    //    public static final String BASE = "http://mengbaopai.smart-kids.com:82/wine-rest/";
     public static final String BASE_URL = BASE + "cgi";
     public final static String TOKEN = "token";
     public final static String USER_ID = "userId";
@@ -32,7 +33,7 @@ public class Constants {
     public static final class H5 {
         //        public static final String SMART_SIGN = "http://120.26.88.135:8090/SmartApp/page/smart-app-sign.html"; // 签到
         public static final String SMART_SERVICE_DETAIL = "http://120.26.88.135:8090/SmartApp/page/samrt-app-service-detail.html"; // 详情
-        public static final String SMART_SIGN = "http://www.mengbp.com/web/App/SmartApp/page/smart-app-sign.html"; // 签到
+        //        public static final String SMART_SIGN = "http://www.mengbp.com/web/App/SmartApp/page/smart-app-sign.html"; // 签到
         //        public static final String SMART_SERVICE_DETAIL = "http://www.mengbp.com/web/App/SmartApp/page/samrt-app-service-detail.html"; // 详情
     }
 
@@ -145,6 +146,7 @@ public class Constants {
         // 3.1.1
         public static final String GOLD_GROWTH_DETAIL = "smart/personal/getGoldGrowthDetail";// 用户成长值明细
         public static final String IS_SIGN = "smart/user/isSign";// 用户成长值明细
+        public static final String OPEN_ID = "smart/findByOpenId";// 用户成长值明细
 
     }
 

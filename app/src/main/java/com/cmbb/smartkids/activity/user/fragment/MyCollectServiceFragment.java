@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,12 +35,10 @@ public class MyCollectServiceFragment extends BaseFragment implements View.OnCli
     private int pager = 0;
     private int pagerSize = 5;
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.recyclerview_layout, null);
     }
-
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -77,7 +76,6 @@ public class MyCollectServiceFragment extends BaseFragment implements View.OnCli
         handleRequest(pager, pagerSize, true);
     }
 
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == SERVICE_DETAIL_REQUEST && resultCode == -1) {
@@ -89,12 +87,15 @@ public class MyCollectServiceFragment extends BaseFragment implements View.OnCli
         }
     }
 
-
     private void handleRequest(int pager, int pagerSize, final boolean refresh) {
         ServiceListModel.getCollectServiceRequest(pager, pagerSize, new OkHttpClientManager.ResultCallback<ServiceListModel>() {
             @Override
-            public void onError(Request request, Exception e) {
-                showShortToast(getString(R.string.is_netwrok));
+            public void onError(Request request, Exception e, String msg) {
+                if (TextUtils.isEmpty(msg)) {
+                    showShortToast(getString(R.string.is_netwrok));
+                } else {
+                    showShortToast(msg);
+                }
             }
 
             @Override

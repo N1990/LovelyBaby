@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -97,9 +98,13 @@ public class WonderfulReviewActivity extends BaseActivity implements RecyclerArr
     private void requestAdd() {
         ManagerAdModel.getWonderfulImgRequest(new OkHttpClientManager.ResultCallback<ManagerAdModel>() {
             @Override
-            public void onError(Request request, Exception e) {
+            public void onError(Request request, Exception e, String msg) {
                 adData = new ArrayList<>();
-                showShortToast(getString(R.string.is_netwrok));
+                if (TextUtils.isEmpty(msg)) {
+                    showShortToast(getString(R.string.is_netwrok));
+                } else {
+                    showShortToast(msg);
+                }
             }
 
             @Override
@@ -128,8 +133,12 @@ public class WonderfulReviewActivity extends BaseActivity implements RecyclerArr
         pager++;
         TopicListModel.getWonderfulReviewRequest(pager, pagerSize, new OkHttpClientManager.ResultCallback<TopicListModel>() {
             @Override
-            public void onError(Request request, Exception e) {
-                showShortToast(getString(R.string.is_netwrok));
+            public void onError(Request request, Exception e, String msg) {
+                if (TextUtils.isEmpty(msg)) {
+                    showShortToast(getString(R.string.is_netwrok));
+                } else {
+                    showShortToast(msg);
+                }
             }
 
             @Override
@@ -146,8 +155,12 @@ public class WonderfulReviewActivity extends BaseActivity implements RecyclerArr
         pager = 0;
         TopicListModel.getWonderfulReviewRequest(pager, pagerSize, new OkHttpClientManager.ResultCallback<TopicListModel>() {
             @Override
-            public void onError(Request request, Exception e) {
-                showShortToast(getString(R.string.is_netwrok));
+            public void onError(Request request, Exception e, String msg) {
+                if (TextUtils.isEmpty(msg)) {
+                    showShortToast(getString(R.string.is_netwrok));
+                } else {
+                    showShortToast(msg);
+                }
             }
 
             @Override

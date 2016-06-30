@@ -1,6 +1,7 @@
 package com.cmbb.smartkids.pay.weixin;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.widget.Toast;
 
 import com.cmbb.smartkids.R;
@@ -44,9 +45,13 @@ public class WeixinPayActivity extends BaseActivity {
         showWaitDialog();
         PayWayModel.getPayWayRequest(orderCode, new OkHttpClientManager.ResultCallback<PayWayModel>() {
             @Override
-            public void onError(Request request, Exception e) {
+            public void onError(Request request, Exception e, String msg) {
                 hideWaitDialog();
-                showShortToast(getString(R.string.is_netwrok));
+                if (TextUtils.isEmpty(msg)) {
+                    showShortToast(getString(R.string.is_netwrok));
+                } else {
+                    showShortToast(msg);
+                }
             }
 
             @Override

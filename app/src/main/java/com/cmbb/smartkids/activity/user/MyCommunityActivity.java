@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
+import android.text.TextUtils;
 
 import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.activity.community.CommunityDetailActivity;
@@ -54,8 +55,12 @@ public class MyCommunityActivity extends BaseActivity implements RecyclerArrayAd
     private void handleRequest(final int pager, int pagerSize, final boolean flag) {
         TopicListModel.getTopicListRequest(1, pager, pagerSize, BaseApplication.token, new OkHttpClientManager.ResultCallback<TopicListModel>() {
                     @Override
-                    public void onError(Request request, Exception e) {
-                        showShortToast(getString(R.string.is_netwrok));
+                    public void onError(Request request, Exception e, String msg) {
+                        if (TextUtils.isEmpty(msg)) {
+                            showShortToast(getString(R.string.is_netwrok));
+                        } else {
+                            showShortToast(msg);
+                        }
                     }
 
                     @Override

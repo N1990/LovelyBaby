@@ -317,9 +317,13 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
         srv_search.setLayoutManager(new GridLayoutManager(this, 3));
         TopicTypeModel.getSearchHotRequest(new OkHttpClientManager.ResultCallback<TopicTypeModel>() {
             @Override
-            public void onError(Request request, Exception e) {
+            public void onError(Request request, Exception e, String msg) {
                 hideWaitDialog();
-                showShortToast(getString(R.string.is_netwrok));
+                if (TextUtils.isEmpty(msg)) {
+                    showShortToast(getString(R.string.is_netwrok));
+                } else {
+                    showShortToast(msg);
+                }
             }
 
             @Override
@@ -343,9 +347,13 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
     private void handleSearchTopic(int pager, int pagerSize, String text, final boolean clear) {
         TopicListModel.getSearchTopicListRequest(text, pager, pagerSize, new OkHttpClientManager.ResultCallback<TopicListModel>() {
             @Override
-            public void onError(Request request, Exception e) {
+            public void onError(Request request, Exception e, String msg) {
                 hideWaitDialog();
-                showShortToast(getString(R.string.is_netwrok));
+                if (TextUtils.isEmpty(msg)) {
+                    showShortToast(getString(R.string.is_netwrok));
+                } else {
+                    showShortToast(msg);
+                }
             }
 
             @Override
@@ -371,9 +379,13 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
     private void handelSearchUserRequest(int pager, int pagerSize, String text, final boolean clear) {
         SearchUserModel.getSearchUserRequest(text, pager, pagerSize, new OkHttpClientManager.ResultCallback<SearchUserModel>() {
             @Override
-            public void onError(Request request, Exception e) {
+            public void onError(Request request, Exception e, String msg) {
                 hideWaitDialog();
-                showShortToast(getString(R.string.is_netwrok));
+                if (TextUtils.isEmpty(msg)) {
+                    showShortToast(getString(R.string.is_netwrok));
+                } else {
+                    showShortToast(msg);
+                }
             }
 
             @Override
@@ -398,9 +410,13 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
     private void handleSearchServiceRequest(int pager, int pagerSize, String text, final boolean clear) {
         ServiceListModel.getSearchServiceRequest(text, pager, pagerSize, new OkHttpClientManager.ResultCallback<ServiceListModel>() {
             @Override
-            public void onError(Request request, Exception e) {
+            public void onError(Request request, Exception e, String msg) {
                 hideWaitDialog();
-                showShortToast(getString(R.string.is_netwrok));
+                if (TextUtils.isEmpty(msg)) {
+                    showShortToast(getString(R.string.is_netwrok));
+                } else {
+                    showShortToast(msg);
+                }
             }
 
             @Override

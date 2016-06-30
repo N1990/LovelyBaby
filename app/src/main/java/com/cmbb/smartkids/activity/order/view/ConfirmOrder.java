@@ -311,9 +311,13 @@ public class ConfirmOrder extends BaseActivity {
                 showWaitDialog();
                 SubmitOrderModel.postSubmitOrderRequest(priceListEntity.getServiceId(), priceListEntity.getId(), priceListEntity.getPrice() + "", priceListEntity.getCount(), receiverContact, Phone, receiverName, receiverPhone, postCode, address, new OkHttpClientManager.ResultCallback<SubmitOrderModel>() {
                     @Override
-                    public void onError(Request request, Exception e) {
+                    public void onError(Request request, Exception e, String msg) {
                         hideWaitDialog();
-                        showShortToast(getString(R.string.is_netwrok));
+                        if (TextUtils.isEmpty(msg)) {
+                            showShortToast(getString(R.string.is_netwrok));
+                        } else {
+                            showShortToast(msg);
+                        }
                     }
 
                     @Override

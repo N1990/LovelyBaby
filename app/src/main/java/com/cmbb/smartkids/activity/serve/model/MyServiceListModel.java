@@ -101,313 +101,222 @@ public class MyServiceListModel implements Parcelable {
         }
 
         public static class RowsEntity implements Parcelable {
-            private int id;
-            private String title;
-            private String startTime;
-            private String endTime;
-            private String applyStartTime;
-            private String applyEndTime;
-            private int peoples;
-            private int realityPeoples;
-            private int province;
-            private int city;
-            private int district;
-            private String address;
-            private double price;
-            private int type;
-            private String content;
-            private String servicePhone;
             private int status;
-            private int isRecommoned;
+            private String statusName;
+            private boolean isNew;
             private String servicesImg;
-            private int imgWidth;
-            private int imgHeight;
-            private int sortNum;
-            private int isDelete;
-            private String createDate;
-            private int createUserId;
-            private String updateDate;
-            private int updateUserId;
-            private String provinceText;
+            private String introduce;
+            private String applyEndTime;
+            private String imgWidth;
+            private int type;
+            private String endTime;
+            private int city;
+            private String startTime;
+            private int id;
+            private int browseNumber;
+            private String title;
+            private String price;
+            private String surplusTime;
+            private int peoples;
+            private String serviceTime;
+            private String typeText;
             private String cityText;
-            private String districtText;
+            private String createDate;
+            private int realityPeoples;
+            private String imgHeight;
+            private String applyStartTime;
 
-            public void setId(int id) {
-                this.id = id;
-            }
-
-            public void setTitle(String title) {
-                this.title = title;
-            }
-
-            public void setStartTime(String startTime) {
-                this.startTime = startTime;
-            }
-
-            public void setEndTime(String endTime) {
-                this.endTime = endTime;
-            }
-
-            public void setApplyStartTime(String applyStartTime) {
-                this.applyStartTime = applyStartTime;
-            }
-
-            public void setApplyEndTime(String applyEndTime) {
-                this.applyEndTime = applyEndTime;
-            }
-
-            public void setPeoples(int peoples) {
-                this.peoples = peoples;
-            }
-
-            public void setRealityPeoples(int realityPeoples) {
-                this.realityPeoples = realityPeoples;
-            }
-
-            public void setProvince(int province) {
-                this.province = province;
-            }
-
-            public void setCity(int city) {
-                this.city = city;
-            }
-
-            public void setDistrict(int district) {
-                this.district = district;
-            }
-
-            public void setAddress(String address) {
-                this.address = address;
-            }
-
-            public void setPrice(double price) {
-                this.price = price;
-            }
-
-            public void setType(int type) {
-                this.type = type;
-            }
-
-            public void setContent(String content) {
-                this.content = content;
-            }
-
-            public void setServicePhone(String servicePhone) {
-                this.servicePhone = servicePhone;
+            public int getStatus() {
+                return status;
             }
 
             public void setStatus(int status) {
                 this.status = status;
             }
 
-            public void setIsRecommoned(int isRecommoned) {
-                this.isRecommoned = isRecommoned;
+            public String getStatusName() {
+                return statusName;
             }
 
-            public void setServicesImg(String servicesImg) {
-                this.servicesImg = servicesImg;
+            public void setStatusName(String statusName) {
+                this.statusName = statusName;
             }
 
-            public void setImgWidth(int imgWidth) {
-                this.imgWidth = imgWidth;
+            public boolean isIsNew() {
+                return isNew;
             }
 
-            public void setImgHeight(int imgHeight) {
-                this.imgHeight = imgHeight;
-            }
-
-            public void setSortNum(int sortNum) {
-                this.sortNum = sortNum;
-            }
-
-            public void setIsDelete(int isDelete) {
-                this.isDelete = isDelete;
-            }
-
-            public void setCreateDate(String createDate) {
-                this.createDate = createDate;
-            }
-
-            public void setCreateUserId(int createUserId) {
-                this.createUserId = createUserId;
-            }
-
-            public void setUpdateDate(String updateDate) {
-                this.updateDate = updateDate;
-            }
-
-            public void setUpdateUserId(int updateUserId) {
-                this.updateUserId = updateUserId;
-            }
-
-            public void setProvinceText(String provinceText) {
-                this.provinceText = provinceText;
-            }
-
-            public void setCityText(String cityText) {
-                this.cityText = cityText;
-            }
-
-            public void setDistrictText(String districtText) {
-                this.districtText = districtText;
-            }
-
-            public int getId() {
-                return id;
-            }
-
-            public String getTitle() {
-                return title;
-            }
-
-            public String getStartTime() {
-                return startTime;
-            }
-
-            public String getEndTime() {
-                return endTime;
-            }
-
-            public String getApplyStartTime() {
-                return applyStartTime;
-            }
-
-            public String getApplyEndTime() {
-                return applyEndTime;
-            }
-
-            public int getPeoples() {
-                return peoples;
-            }
-
-            public int getRealityPeoples() {
-                return realityPeoples;
-            }
-
-            public int getProvince() {
-                return province;
-            }
-
-            public int getCity() {
-                return city;
-            }
-
-            public int getDistrict() {
-                return district;
-            }
-
-            public String getAddress() {
-                return address;
-            }
-
-            public double getPrice() {
-                return price;
-            }
-
-            public int getType() {
-                return type;
-            }
-
-            public String getContent() {
-                return content;
-            }
-
-            public String getServicePhone() {
-                return servicePhone;
-            }
-
-            public int getStatus() {
-                return status;
-            }
-
-            public int getIsRecommoned() {
-                return isRecommoned;
+            public void setIsNew(boolean isNew) {
+                this.isNew = isNew;
             }
 
             public String getServicesImg() {
                 return servicesImg;
             }
 
-            public int getImgWidth() {
+            public void setServicesImg(String servicesImg) {
+                this.servicesImg = servicesImg;
+            }
+
+            public String getIntroduce() {
+                return introduce;
+            }
+
+            public void setIntroduce(String introduce) {
+                this.introduce = introduce;
+            }
+
+            public String getApplyEndTime() {
+                return applyEndTime;
+            }
+
+            public void setApplyEndTime(String applyEndTime) {
+                this.applyEndTime = applyEndTime;
+            }
+
+            public String getImgWidth() {
                 return imgWidth;
             }
 
-            public int getImgHeight() {
-                return imgHeight;
+            public void setImgWidth(String imgWidth) {
+                this.imgWidth = imgWidth;
             }
 
-            public int getSortNum() {
-                return sortNum;
+            public int getType() {
+                return type;
             }
 
-            public int getIsDelete() {
-                return isDelete;
+            public void setType(int type) {
+                this.type = type;
             }
 
-            public String getCreateDate() {
-                return createDate;
+            public String getEndTime() {
+                return endTime;
             }
 
-            public int getCreateUserId() {
-                return createUserId;
+            public void setEndTime(String endTime) {
+                this.endTime = endTime;
             }
 
-            public String getUpdateDate() {
-                return updateDate;
+            public int getCity() {
+                return city;
             }
 
-            public int getUpdateUserId() {
-                return updateUserId;
+            public void setCity(int city) {
+                this.city = city;
             }
 
-            public String getProvinceText() {
-                return provinceText;
+            public String getStartTime() {
+                return startTime;
+            }
+
+            public void setStartTime(String startTime) {
+                this.startTime = startTime;
+            }
+
+            public int getId() {
+                return id;
+            }
+
+            public void setId(int id) {
+                this.id = id;
+            }
+
+            public int getBrowseNumber() {
+                return browseNumber;
+            }
+
+            public void setBrowseNumber(int browseNumber) {
+                this.browseNumber = browseNumber;
+            }
+
+            public String getTitle() {
+                return title;
+            }
+
+            public void setTitle(String title) {
+                this.title = title;
+            }
+
+            public String getPrice() {
+                return price;
+            }
+
+            public void setPrice(String price) {
+                this.price = price;
+            }
+
+            public String getSurplusTime() {
+                return surplusTime;
+            }
+
+            public void setSurplusTime(String surplusTime) {
+                this.surplusTime = surplusTime;
+            }
+
+            public int getPeoples() {
+                return peoples;
+            }
+
+            public void setPeoples(int peoples) {
+                this.peoples = peoples;
+            }
+
+            public String getServiceTime() {
+                return serviceTime;
+            }
+
+            public void setServiceTime(String serviceTime) {
+                this.serviceTime = serviceTime;
+            }
+
+            public String getTypeText() {
+                return typeText;
+            }
+
+            public void setTypeText(String typeText) {
+                this.typeText = typeText;
             }
 
             public String getCityText() {
                 return cityText;
             }
 
-            public String getDistrictText() {
-                return districtText;
+            public void setCityText(String cityText) {
+                this.cityText = cityText;
             }
 
-            @Override
-            public String toString() {
-                return "RowsEntity{" +
-                        "id=" + id +
-                        ", title='" + title + '\'' +
-                        ", startTime='" + startTime + '\'' +
-                        ", endTime='" + endTime + '\'' +
-                        ", applyStartTime='" + applyStartTime + '\'' +
-                        ", applyEndTime='" + applyEndTime + '\'' +
-                        ", peoples=" + peoples +
-                        ", realityPeoples=" + realityPeoples +
-                        ", province=" + province +
-                        ", city=" + city +
-                        ", district=" + district +
-                        ", address='" + address + '\'' +
-                        ", price=" + price +
-                        ", type=" + type +
-                        ", content='" + content + '\'' +
-                        ", servicePhone='" + servicePhone + '\'' +
-                        ", status=" + status +
-                        ", isRecommoned=" + isRecommoned +
-                        ", servicesImg='" + servicesImg + '\'' +
-                        ", imgWidth=" + imgWidth +
-                        ", imgHeight=" + imgHeight +
-                        ", sortNum=" + sortNum +
-                        ", isDelete=" + isDelete +
-                        ", createDate='" + createDate + '\'' +
-                        ", createUserId=" + createUserId +
-                        ", updateDate='" + updateDate + '\'' +
-                        ", updateUserId=" + updateUserId +
-                        ", provinceText='" + provinceText + '\'' +
-                        ", cityText='" + cityText + '\'' +
-                        ", districtText='" + districtText + '\'' +
-                        '}';
+            public String getCreateDate() {
+                return createDate;
             }
 
+            public void setCreateDate(String createDate) {
+                this.createDate = createDate;
+            }
+
+            public int getRealityPeoples() {
+                return realityPeoples;
+            }
+
+            public void setRealityPeoples(int realityPeoples) {
+                this.realityPeoples = realityPeoples;
+            }
+
+            public String getImgHeight() {
+                return imgHeight;
+            }
+
+            public void setImgHeight(String imgHeight) {
+                this.imgHeight = imgHeight;
+            }
+
+            public String getApplyStartTime() {
+                return applyStartTime;
+            }
+
+            public void setApplyStartTime(String applyStartTime) {
+                this.applyStartTime = applyStartTime;
+            }
 
             @Override
             public int describeContents() {
@@ -416,79 +325,69 @@ public class MyServiceListModel implements Parcelable {
 
             @Override
             public void writeToParcel(Parcel dest, int flags) {
-                dest.writeInt(this.id);
-                dest.writeString(this.title);
-                dest.writeString(this.startTime);
-                dest.writeString(this.endTime);
-                dest.writeString(this.applyStartTime);
-                dest.writeString(this.applyEndTime);
-                dest.writeInt(this.peoples);
-                dest.writeInt(this.realityPeoples);
-                dest.writeInt(this.province);
-                dest.writeInt(this.city);
-                dest.writeInt(this.district);
-                dest.writeString(this.address);
-                dest.writeDouble(this.price);
-                dest.writeInt(this.type);
-                dest.writeString(this.content);
-                dest.writeString(this.servicePhone);
                 dest.writeInt(this.status);
-                dest.writeInt(this.isRecommoned);
+                dest.writeString(this.statusName);
+                dest.writeByte(this.isNew ? (byte) 1 : (byte) 0);
                 dest.writeString(this.servicesImg);
-                dest.writeInt(this.imgWidth);
-                dest.writeInt(this.imgHeight);
-                dest.writeInt(this.sortNum);
-                dest.writeInt(this.isDelete);
-                dest.writeString(this.createDate);
-                dest.writeInt(this.createUserId);
-                dest.writeString(this.updateDate);
-                dest.writeInt(this.updateUserId);
-                dest.writeString(this.provinceText);
+                dest.writeString(this.introduce);
+                dest.writeString(this.applyEndTime);
+                dest.writeString(this.imgWidth);
+                dest.writeInt(this.type);
+                dest.writeString(this.endTime);
+                dest.writeInt(this.city);
+                dest.writeString(this.startTime);
+                dest.writeInt(this.id);
+                dest.writeInt(this.browseNumber);
+                dest.writeString(this.title);
+                dest.writeString(this.price);
+                dest.writeString(this.surplusTime);
+                dest.writeInt(this.peoples);
+                dest.writeString(this.serviceTime);
+                dest.writeString(this.typeText);
                 dest.writeString(this.cityText);
-                dest.writeString(this.districtText);
+                dest.writeString(this.createDate);
+                dest.writeInt(this.realityPeoples);
+                dest.writeString(this.imgHeight);
+                dest.writeString(this.applyStartTime);
             }
 
             public RowsEntity() {
             }
 
             protected RowsEntity(Parcel in) {
-                this.id = in.readInt();
-                this.title = in.readString();
-                this.startTime = in.readString();
-                this.endTime = in.readString();
-                this.applyStartTime = in.readString();
-                this.applyEndTime = in.readString();
-                this.peoples = in.readInt();
-                this.realityPeoples = in.readInt();
-                this.province = in.readInt();
-                this.city = in.readInt();
-                this.district = in.readInt();
-                this.address = in.readString();
-                this.price = in.readDouble();
-                this.type = in.readInt();
-                this.content = in.readString();
-                this.servicePhone = in.readString();
                 this.status = in.readInt();
-                this.isRecommoned = in.readInt();
+                this.statusName = in.readString();
+                this.isNew = in.readByte() != 0;
                 this.servicesImg = in.readString();
-                this.imgWidth = in.readInt();
-                this.imgHeight = in.readInt();
-                this.sortNum = in.readInt();
-                this.isDelete = in.readInt();
-                this.createDate = in.readString();
-                this.createUserId = in.readInt();
-                this.updateDate = in.readString();
-                this.updateUserId = in.readInt();
-                this.provinceText = in.readString();
+                this.introduce = in.readString();
+                this.applyEndTime = in.readString();
+                this.imgWidth = in.readString();
+                this.type = in.readInt();
+                this.endTime = in.readString();
+                this.city = in.readInt();
+                this.startTime = in.readString();
+                this.id = in.readInt();
+                this.browseNumber = in.readInt();
+                this.title = in.readString();
+                this.price = in.readString();
+                this.surplusTime = in.readString();
+                this.peoples = in.readInt();
+                this.serviceTime = in.readString();
+                this.typeText = in.readString();
                 this.cityText = in.readString();
-                this.districtText = in.readString();
+                this.createDate = in.readString();
+                this.realityPeoples = in.readInt();
+                this.imgHeight = in.readString();
+                this.applyStartTime = in.readString();
             }
 
-            public static final Parcelable.Creator<RowsEntity> CREATOR = new Parcelable.Creator<RowsEntity>() {
+            public static final Creator<RowsEntity> CREATOR = new Creator<RowsEntity>() {
+                @Override
                 public RowsEntity createFromParcel(Parcel source) {
                     return new RowsEntity(source);
                 }
 
+                @Override
                 public RowsEntity[] newArray(int size) {
                     return new RowsEntity[size];
                 }

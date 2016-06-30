@@ -220,7 +220,7 @@ public class OkHttpClientManager {
         mOkHttpClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(final Request request, final IOException e) {
-                sendFailedStringCallback(request, e, resCallBack);
+                sendFailedStringCallback(request, e, null, resCallBack);
             }
 
             @Override
@@ -265,7 +265,7 @@ public class OkHttpClientManager {
                                             // 403错误信息
                                             sendServerFailedCallback(errorInfo);
                                         } else {
-                                            sendFailedStringCallback(response.request(), new Exception(errorInfo), resCallBack);
+                                            sendFailedStringCallback(response.request(), null, errorInfo, resCallBack);
                                         }
                                         break;
                                 }
@@ -277,19 +277,19 @@ public class OkHttpClientManager {
                     }
 
                 } catch (IOException e) {
-                    sendFailedStringCallback(response.request(), e, resCallBack);
+                    sendFailedStringCallback(response.request(), e, null, resCallBack);
                 } catch (com.google.gson.JsonParseException e) {
-                    sendFailedStringCallback(response.request(), e, resCallBack);
+                    sendFailedStringCallback(response.request(), e, null, resCallBack);
                 }
             }
         });
     }
 
-    private void sendFailedStringCallback(final Request request, final Exception e, final ResultCallback callback) {
+    private void sendFailedStringCallback(final Request request, final Exception e, final String msg, final ResultCallback callback) {
         mDelivery.post(new Runnable() {
             @Override
             public void run() {
-                callback.onError(request, e);
+                callback.onError(request, e, msg);
                 callback.onAfter();
             }
         });
@@ -451,14 +451,14 @@ public class OkHttpClientManager {
         public void onAfter() {
         }
 
-        public abstract void onError(Request request, Exception e);
+        public abstract void onError(Request request, Exception e, String response);
 
         public abstract void onResponse(T response);
     }
 
     private final ResultCallback<String> DEFAULT_RESULT_CALLBACK = new ResultCallback<String>() {
         @Override
-        public void onError(Request request, Exception e) {
+        public void onError(Request request, Exception e, String result) {
 
         }
 
@@ -893,7 +893,7 @@ public class OkHttpClientManager {
             call.enqueue(new Callback() {
                 @Override
                 public void onFailure(final Request request, final IOException e) {
-                    sendFailedStringCallback(request, e, callback);
+                    sendFailedStringCallback(request, e, null, callback);
                 }
 
                 @Override
@@ -918,7 +918,7 @@ public class OkHttpClientManager {
                         //如果下载文件成功，第一个参数为文件的绝对路径
                         sendSuccessResultCallback(file.getAbsolutePath(), callback);
                     } catch (IOException e) {
-                        sendFailedStringCallback(response.request(), e, callback);
+                        sendFailedStringCallback(response.request(), e, null, callback);
                     } finally {
                         try {
                             if (is != null)

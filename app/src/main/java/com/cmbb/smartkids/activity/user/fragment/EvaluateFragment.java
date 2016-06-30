@@ -3,6 +3,7 @@ package com.cmbb.smartkids.activity.user.fragment;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -91,8 +92,12 @@ public class EvaluateFragment extends BaseFragment implements View.OnClickListen
     private void handleRequest(final int pager, int pagerSize, final boolean flag) {
         EvaluateListModel.getUserCenterServiceRequest(0, isPopman, userId, pager, pagerSize, new OkHttpClientManager.ResultCallback<EvaluateListModel>() {
             @Override
-            public void onError(Request request, Exception e) {
-                showShortToast(getString(R.string.is_netwrok));
+            public void onError(Request request, Exception e, String msg) {
+                if (TextUtils.isEmpty(msg)) {
+                    showShortToast(getString(R.string.is_netwrok));
+                } else {
+                    showShortToast(msg);
+                }
             }
 
             @Override

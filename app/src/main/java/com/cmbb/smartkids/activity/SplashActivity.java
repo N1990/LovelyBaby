@@ -120,7 +120,7 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
         sdv = (SimpleDraweeView) findViewById(R.id.sdv_splash);
         ManagerAdModel.getSplashImgRequest(new OkHttpClientManager.ResultCallback<ManagerAdModel>() {
             @Override
-            public void onError(Request request, Exception e) {
+            public void onError(Request request, Exception e, String msg) {
             }
 
             @Override

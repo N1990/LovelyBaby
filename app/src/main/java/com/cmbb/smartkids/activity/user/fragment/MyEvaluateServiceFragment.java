@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,8 +57,12 @@ public class MyEvaluateServiceFragment extends BaseFragment implements View.OnCl
         pager = 0;
         EvaluateServiceModel.getEvaluateServiceRequest(pager, pagerSize, new OkHttpClientManager.ResultCallback<EvaluateServiceModel>() {
             @Override
-            public void onError(Request request, Exception e) {
-                showShortToast(getString(R.string.is_netwrok));
+            public void onError(Request request, Exception e, String msg) {
+                if (TextUtils.isEmpty(msg)) {
+                    showShortToast(getString(R.string.is_netwrok));
+                } else {
+                    showShortToast(msg);
+                }
             }
 
             @Override
@@ -76,8 +81,12 @@ public class MyEvaluateServiceFragment extends BaseFragment implements View.OnCl
         pager++;
         EvaluateServiceModel.getEvaluateServiceRequest(pager, pagerSize, new OkHttpClientManager.ResultCallback<EvaluateServiceModel>() {
             @Override
-            public void onError(Request request, Exception e) {
-                showShortToast(getString(R.string.is_netwrok));
+            public void onError(Request request, Exception e, String msg) {
+                if (TextUtils.isEmpty(msg)) {
+                    showShortToast(getString(R.string.is_netwrok));
+                } else {
+                    showShortToast(msg);
+                }
             }
 
             @Override

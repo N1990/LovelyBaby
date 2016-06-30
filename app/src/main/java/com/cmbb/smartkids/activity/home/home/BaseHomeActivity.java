@@ -102,8 +102,12 @@ public abstract class BaseHomeActivity extends BaseActivity {
         if (!TextUtils.isEmpty(BaseApplication.token))
             MessageCountModel.getMessageCountRequest(new OkHttpClientManager.ResultCallback<MessageCountModel>() {
                 @Override
-                public void onError(Request request, Exception e) {
-
+                public void onError(Request request, Exception e, String msg) {
+                    if (TextUtils.isEmpty(msg)) {
+                        showShortToast(getString(R.string.is_netwrok));
+                    } else {
+                        showShortToast(msg);
+                    }
                 }
 
                 @Override

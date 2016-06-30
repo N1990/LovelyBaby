@@ -118,8 +118,12 @@ public class HomeServiceActivity extends BaseHomeActivity implements View.OnClic
     private void initSortRequest() {
         ServiceSortModel.getServiceSortREquest(new OkHttpClientManager.ResultCallback<ServiceSortModel>() {
             @Override
-            public void onError(Request request, Exception e) {
-                showShortToast(getString(R.string.is_netwrok));
+            public void onError(Request request, Exception e, String msg) {
+                if (TextUtils.isEmpty(msg)) {
+                    showShortToast(getString(R.string.is_netwrok));
+                } else {
+                    showShortToast(msg);
+                }
             }
 
             @Override
@@ -138,8 +142,12 @@ public class HomeServiceActivity extends BaseHomeActivity implements View.OnClic
         pager++;
         ServiceListModel.getServiceListRequest(serviceWay, serviceCity, serviceCategroy, serviceSortType, serviceStatus, pager, pagerSize, new OkHttpClientManager.ResultCallback<ServiceListModel>() {
             @Override
-            public void onError(Request request, Exception e) {
-                showShortToast(getString(R.string.is_netwrok));
+            public void onError(Request request, Exception e, String msg) {
+                if (TextUtils.isEmpty(msg)) {
+                    showShortToast(getString(R.string.is_netwrok));
+                } else {
+                    showShortToast(msg);
+                }
             }
 
             @Override
@@ -156,8 +164,12 @@ public class HomeServiceActivity extends BaseHomeActivity implements View.OnClic
         pager = 0;
         ServiceListModel.getServiceListRequest(serviceWay, serviceCity, serviceCategroy, serviceSortType, serviceStatus, pager, pagerSize, new OkHttpClientManager.ResultCallback<ServiceListModel>() {
             @Override
-            public void onError(Request request, Exception e) {
-                showShortToast(getString(R.string.is_netwrok));
+            public void onError(Request request, Exception e, String msg) {
+                if (TextUtils.isEmpty(msg)) {
+                    showShortToast(getString(R.string.is_netwrok));
+                } else {
+                    showShortToast(msg);
+                }
             }
 
             @Override
@@ -236,7 +248,6 @@ public class HomeServiceActivity extends BaseHomeActivity implements View.OnClic
         }
     };
 
-
     @Override
     public void onClick(View v) {
         super.onClick(v);
@@ -312,7 +323,7 @@ public class HomeServiceActivity extends BaseHomeActivity implements View.OnClic
 
     @Override
     protected void netChange() {
-//        onRefresh();
+        //        onRefresh();
     }
 
     boolean PopuSmartFlag = false;// popu的关开的标识位

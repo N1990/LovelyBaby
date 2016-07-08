@@ -31,7 +31,7 @@ public class Constants {
     public final static String APP_ID = "wx_app_id";  //wx766b807ef51aa8da
 
     public static final class H5 {
-        //        public static final String SMART_SIGN = "http://120.26.88.135:8090/SmartApp/page/smart-app-sign.html"; // 签到
+        public static final String SMART_SIGN = "http://120.26.88.135:8090/SmartApp/page/smart-app-sign.html"; // 签到
         public static final String SMART_SERVICE_DETAIL = "http://120.26.88.135:8090/SmartApp/page/samrt-app-service-detail.html"; // 详情
         //        public static final String SMART_SIGN = "http://www.mengbp.com/web/App/SmartApp/page/smart-app-sign.html"; // 签到
         //        public static final String SMART_SERVICE_DETAIL = "http://www.mengbp.com/web/App/SmartApp/page/samrt-app-service-detail.html"; // 详情
@@ -146,7 +146,8 @@ public class Constants {
         // 3.1.1
         public static final String GOLD_GROWTH_DETAIL = "smart/personal/getGoldGrowthDetail";// 用户成长值明细
         public static final String IS_SIGN = "smart/user/isSign";// 用户成长值明细
-        public static final String OPEN_ID = "smart/findByOpenId";// 用户成长值明细
+        public static final String OPEN_ID = "smart/findByOpenId";// 是否绑定手机号码
+        public static final String VALID_CODE = "smart/validCode";// 是否绑定手机号码
 
     }
 

@@ -21,7 +21,6 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
 /**
  * Created by javon on 2015/7/28.
  */
@@ -94,6 +93,13 @@ public class Tools {
         return matcher.matches();
     }
 
+    public static boolean isPswNo(String psw) {
+        String match = "^[A-Za-z0-9_]{6,16}$";
+        Pattern pattern = Pattern.compile(match);
+        Matcher matcher = pattern.matcher(psw);
+        return matcher.matches();
+    }
+
     /**
      * 身份证正则
      *
@@ -106,7 +112,6 @@ public class Tools {
         Matcher matcher = pattern.matcher(id.trim());
         return matcher.matches();
     }
-
 
     /***
      * 读取本地文件中JSON字符串
@@ -197,7 +202,6 @@ public class Tools {
         }
     }
 
-
     /**
      * 日期精确
      *
@@ -258,6 +262,5 @@ public class Tools {
             return temp;
         }
     }
-
 
 }

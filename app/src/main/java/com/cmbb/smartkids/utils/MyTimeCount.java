@@ -1,10 +1,7 @@
 package com.cmbb.smartkids.utils;
 
-import android.graphics.Color;
 import android.os.CountDownTimer;
 import android.widget.TextView;
-
-import com.cmbb.smartkids.R;
 
 /**
  * 项目名称：LovelyBaby
@@ -33,7 +30,7 @@ public class MyTimeCount extends CountDownTimer {
     @Override
     public void onTick(long millisUntilFinished) {
         tvCount.setEnabled(false);
-        tvCount.setTextColor(Color.WHITE);
+//        tvCount.setTextColor(Color.WHITE);
         tvCount.setText(millisUntilFinished / 1000 < 10 ? "验证码0" + (millisUntilFinished / 1000 ) + "s" : "验证码" + (millisUntilFinished / 1000 ) + "s");
     }
 
@@ -41,7 +38,7 @@ public class MyTimeCount extends CountDownTimer {
     public void onFinish() {
         tvCount.setText("获取验证码");
 //        tvCount.setTextColor(tvCount.getContext().getResources().getColor(R.color.primaryColor));
-        tvCount.setTextColor(Color.WHITE);
+//        tvCount.setTextColor(Color.WHITE);
         tvCount.setEnabled(true);
     }
 }

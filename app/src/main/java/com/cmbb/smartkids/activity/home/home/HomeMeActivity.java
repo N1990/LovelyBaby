@@ -12,6 +12,7 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RatingBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.alibaba.sdk.android.media.upload.UploadListener;
@@ -68,6 +69,7 @@ public class HomeMeActivity extends BaseHomeActivity implements View.OnClickList
     private SimpleDraweeView ivUserHeader;
     private TextView tvFan, tvNickname, tvIdentity, tvProgress, tvProgressNext, myUid, myCount;
     private LinearLayout myOrder, myAccept, myGold, myCommunity, myPopman, myBabyDiary, myUID, myDrafts, myCollection, myCare, myPerssion;
+    private RelativeLayout rlStars;
     private ProgressBar pb;
     private RatingBar rb;
     private UserCenterModel.DataEntity userInfoEntity;
@@ -88,7 +90,8 @@ public class HomeMeActivity extends BaseHomeActivity implements View.OnClickList
                     showShortToast(getString(R.string.is_netwrok));
                 } else {
                     showShortToast(msg);
-                }            }
+                }
+            }
 
             @Override
             public void onResponse(UserCenterModel response) {
@@ -107,11 +110,11 @@ public class HomeMeActivity extends BaseHomeActivity implements View.OnClickList
         ivUserHeader = (SimpleDraweeView) findViewById(R.id.iv_home_myself_header);
         ivUserHeader.setOnClickListener(this);
         tvNickname = (TextView) findViewById(R.id.tv_home_myself_nickname);
+        rlStars = (RelativeLayout) findViewById(R.id.rl_stars);
         tvIdentity = (TextView) findViewById(R.id.tv_home_myself_identity);
         tvFan = (TextView) findViewById(R.id.tv_home_myself_fan);
         tvProgress = (TextView) findViewById(R.id.tv_myself_progress);
         tvProgressNext = (TextView) findViewById(R.id.tv_myself_progress_next);
-        tvProgressNext.setOnClickListener(this);
         rb = (RatingBar) findViewById(R.id.rb_home_myself_perssion);
         pb = (ProgressBar) findViewById(R.id.pb_home_myself_grow);
 
@@ -145,14 +148,13 @@ public class HomeMeActivity extends BaseHomeActivity implements View.OnClickList
         findViewById(R.id.iv_main_toolbar_left).setOnClickListener(this);
         findViewById(R.id.iv_main_toolbar_right).setOnClickListener(this);
         findViewById(R.id.tv_home_self_gold).setOnClickListener(this);
+        findViewById(R.id.rl_stars).setOnClickListener(this);
     }
 
     @Override
     protected int getLayoutId() {
         return R.layout.activity_me_v2;
     }
-
-
 
     @Override
     public void onResume() {
@@ -198,10 +200,10 @@ public class HomeMeActivity extends BaseHomeActivity implements View.OnClickList
             myPopman.setVisibility(View.GONE);
         }
         // 模拟进度条动画
-        pb.setMax(20000);
+        pb.setMax(30000);
         int growth = userModel.getGrowthCount();
-        tvProgress.setText(growth + "/20000");
-        tvProgressNext.setText((20000 - growth) + "");
+        tvProgress.setText(growth + "/30000");
+        tvProgressNext.setText((30000 - growth) + "");
         ObjectAnimator animation = ObjectAnimator.ofInt(pb, "progress", growth);
         animation.setDuration(500); // 0.5 second
         animation.setInterpolator(new DecelerateInterpolator());
@@ -371,7 +373,7 @@ public class HomeMeActivity extends BaseHomeActivity implements View.OnClickList
             case R.id.tv_order_reimburse:
                 ReimburseOrderListActivity.newInstance(this);
                 break;
-            case R.id.tv_myself_progress_next:
+            case R.id.rl_stars:
                 GoldGrowthListActivity.newIntent(this);
                 break;
         }

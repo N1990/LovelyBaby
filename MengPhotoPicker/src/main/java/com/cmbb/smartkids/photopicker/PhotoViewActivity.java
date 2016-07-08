@@ -40,7 +40,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.Executor;
 
-
 /**
  * 项目名称：LovelyBaby
  * 类描述：
@@ -74,7 +73,6 @@ public class PhotoViewActivity extends AppCompatActivity {
         }
     }
 
-
     public static void IntentPhotoView(Context context, ArrayList<String> images) {
         Intent intent = new Intent(context, PhotoViewActivity.class);
         intent.putStringArrayListExtra("Images", images);
@@ -104,7 +102,6 @@ public class PhotoViewActivity extends AppCompatActivity {
         context.startActivity(intent);
     }
 
-
     public class DraweePagerAdapter extends PagerAdapter {
 
         @Override
@@ -129,7 +126,7 @@ public class PhotoViewActivity extends AppCompatActivity {
             if (mDrawables.get(position).contains("file://")) {
                 uri = Uri.parse(mDrawables.get(position));
             } else if (mDrawables.get(position).contains("http://") || mDrawables.get(position).contains("https://")) {
-                uri = Uri.parse(mDrawables.get(position) + "@1o|watermark=1&object=YXBwL3dhdGVybWFyay93YXRlcm1hcmtfNC5wbmdAMTAwdw&p=9");
+                uri = Uri.parse(mDrawables.get(position) + (BuildConfig.DEBUG ? "@1o" : "@1o|watermark=1&object=YXBwL3dhdGVybWFyay93YXRlcm1hcmtfNC5wbmdAMTAwdw&p=9"));
             } else {
                 uri = Uri.parse("file://" + mDrawables.get(position));
             }
@@ -201,7 +198,6 @@ public class PhotoViewActivity extends AppCompatActivity {
         }
     }
 
-
     public void saveBitmap(Bitmap bm, String picName) {
         Log.e(TAG, "保存图片");
         File f = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), picName);
@@ -225,6 +221,5 @@ public class PhotoViewActivity extends AppCompatActivity {
         }
 
     }
-
 
 }

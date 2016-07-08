@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.activity.login.model.SecurityCodeModel;
+import com.cmbb.smartkids.activity.login.model.ValidCodeModel;
 import com.cmbb.smartkids.base.BaseActivity;
 import com.cmbb.smartkids.network.OkHttpClientManager;
 import com.cmbb.smartkids.utils.MyTimeCount;
@@ -97,11 +98,34 @@ public class BundlePhoneActivity extends BaseActivity {
                     showToast("请输入手机验证码");
                     return;
                 }
-                Intent intent = new Intent();
-                intent.putExtra("phone", etVerifyPhone.getText().toString().trim());
-                intent.putExtra("code", etVerifyCode.getText().toString().trim());
-                setResult(RESULT_OK, intent);
-                finish();
+
+                showWaitDialog();
+                ValidCodeModel.handleValidCodeRequest(etVerifyPhone.getText().toString().trim(), etVerifyCode.getText().toString().trim(), new OkHttpClientManager.ResultCallback<ValidCodeModel>() {
+                    @Override
+                    public void onError(Request request, Exception e, String response) {
+                        hideWaitDialog();
+                        if (TextUtils.isEmpty(response)) {
+                            showShortToast(getString(R.string.is_netwrok));
+                            Log.i("err", e.toString());
+                        } else {
+                            showShortToast(response);
+                        }
+                    }
+
+                    @Override
+                    public void onResponse(ValidCodeModel response) {
+                        if (response != null && response.getData().getHasPassword().equals("true")) {
+                            Intent intent = new Intent();
+                            intent.putExtra("phone", etVerifyPhone.getText().toString().trim());
+                            setResult(RESULT_OK, intent);
+                            finish();
+                        } else {
+                            //设置密码
+                            SetPwdActivity.newIntent(BundlePhoneActivity.this, etVerifyPhone.getText().toString().trim());
+                            finish();
+                        }
+                    }
+                });
                 break;
         }
     }

@@ -24,7 +24,6 @@ public class HomeItemHolder extends BaseViewHolder<HomePageRootModel.DataEntity.
     private ImageView ivTag;
     private TextView tvTitle, tvIntroduce, tvCity, tvTag, tvPrice;
 
-
     public HomeItemHolder(ViewGroup parent) {
         super(parent, R.layout.list_home_fragment_item);
         iv = $(R.id.iv_home_fra_item);
@@ -39,7 +38,11 @@ public class HomeItemHolder extends BaseViewHolder<HomePageRootModel.DataEntity.
     public void setData(HomePageRootModel.DataEntity.RowsEntity row) {
         tvTitle.setText(row.getTitle());
         tvTag.setText(row.getTypeText());
-        tvPrice.setText("￥ " + row.getPrice());
+        if (row.getPrice() == 0) {
+            tvPrice.setText("免费");
+        } else {
+            tvPrice.setText("￥ " + row.getPrice());
+        }
         if (TextUtils.isEmpty(row.getCityText()))
             tvCity.setVisibility(View.GONE);
         tvCity.setText(row.getCityText());

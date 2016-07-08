@@ -85,8 +85,8 @@ public class SignActivity extends BaseActivity {
 
         });
 
-        webView.loadUrl("file:///android_asset/h5/page/smart-app-sign.html");
-        //        webView.loadUrl(Constants.H5.SMART_SIGN);//+ "?token=" + BaseApplication.token
+        //        webView.loadUrl("file:///android_asset/h5/page/smart-app-sign.html");
+        webView.loadUrl(Constants.H5.SMART_SIGN);//+ "?token=" + BaseApplication.token
         webView.registerHandler("showAdLink", new BridgeHandler() {
             @Override
             public void handler(String data, CallBackFunction function) {

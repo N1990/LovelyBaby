@@ -106,6 +106,7 @@
             android:orientation="vertical">
 
             <RelativeLayout
+                android:id="@+id/rl_stars"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/shape_white_background_no_corner"
@@ -210,7 +211,7 @@
                     android:gravity="center"
                     android:textAppearance="@style/TextAppearance.Smart.Small"
                     android:textColor="@color/darkgray"
-                    tools:text="800/20000"/>
+                    tools:text="800/30000"/>
 
                 <TextView
                     android:id="@+id/tv_myself_progress_next_left"

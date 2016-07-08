@@ -34,8 +34,6 @@ public class BabyDiaryListActivity extends BaseActivity {
     private int pager = 0;
     private int pagerSize = 5;
 
-
-
     @Override
     protected int getLayoutId() {
         return R.layout.activity_baby_diary_list;
@@ -56,23 +54,23 @@ public class BabyDiaryListActivity extends BaseActivity {
 
     private void initData() {
         Bundle bundle = null;
-        if(getIntent() != null && (bundle = getIntent().getExtras()) != null){
+        if (getIntent() != null && (bundle = getIntent().getExtras()) != null) {
             babyInfo = bundle.getParcelable("baby_model");
             myCenter = bundle.getInt("my_center");
             userId = bundle.getInt("user_id", -1);
             setTitle(babyInfo.getBabyNike());
-            if("1".equals(babyInfo.getBabySex())){
+            if ("1".equals(babyInfo.getBabySex())) {
                 tvTitle.setCompoundDrawablesWithIntrinsicBounds(tvTitle.getContext().getResources().getDrawable(R.mipmap.btn_male_white_boy_bg), null, null, null);
-            }else{
+            } else {
                 tvTitle.setCompoundDrawablesWithIntrinsicBounds(tvTitle.getContext().getResources().getDrawable(R.mipmap.btn_male_white_girl_bg), null, null, null);
             }
-            if(myCenter == 1)
+            if (myCenter == 1)
                 setBarRightImg(R.mipmap.btn_modify_baby_matrial);
             adapter.setHeaderData(babyInfo, userId);
             adapter.setData(new ArrayList<BabyDiaryListModel.DataEntity.RowsEntity>());
             lmrv.setAdapter(adapter);
             Log.e(TAG, babyInfo.toString());
-        }else{
+        } else {
             showShortToast("传参出错啦~");
         }
 
@@ -94,7 +92,6 @@ public class BabyDiaryListActivity extends BaseActivity {
         modify.putExtra("baby_info", babyInfo);
         startActivityForResult(modify, MODIFY_BABY_MATRIAL);
     }
-
 
     private View.OnClickListener onPublishListener = new View.OnClickListener() {
         @Override
@@ -135,30 +132,29 @@ public class BabyDiaryListActivity extends BaseActivity {
         }
     }
 
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode == MODIFY_BABY_MATRIAL && resultCode == RESULT_OK){
+        if (requestCode == MODIFY_BABY_MATRIAL && resultCode == RESULT_OK) {
             babyInfo = data.getParcelableExtra("baby_info");
             adapter.setHeaderData(babyInfo, userId);
-            if("1".equals(babyInfo.getBabySex())){
+            if ("1".equals(babyInfo.getBabySex())) {
                 setTitle(babyInfo.getBabyNike());
                 tvTitle.setCompoundDrawablesWithIntrinsicBounds(tvTitle.getContext().getResources().getDrawable(R.mipmap.btn_male_white_boy_bg), null, null, null);
-            }else{
+            } else {
                 setTitle(babyInfo.getBabyNike());
                 tvTitle.setCompoundDrawablesWithIntrinsicBounds(tvTitle.getContext().getResources().getDrawable(R.mipmap.btn_male_white_girl_bg), null, null, null);
             }
             isModify = true;
-        }else if(requestCode == GO_BABY_DETAIL && resultCode == RESULT_OK){
+        } else if (requestCode == GO_BABY_DETAIL && resultCode == RESULT_OK) {
             adapter.clearData();
             pager = 0;
             handleRequest(pager, pagerSize);
-        } else if(requestCode == PUBLISH_BABY_DIARY && resultCode == RESULT_OK){
+        } else if (requestCode == PUBLISH_BABY_DIARY && resultCode == RESULT_OK) {
             adapter.clearData();
             pager = 0;
             isModify = true;
             handleRequest(pager, pagerSize);
-        } else{
+        } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
@@ -167,10 +163,10 @@ public class BabyDiaryListActivity extends BaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                if(isModify){
+                if (isModify) {
                     setResult(RESULT_OK);
                     finish();
-                }else{
+                } else {
                     onBackPressed();
                 }
                 break;
@@ -178,22 +174,22 @@ public class BabyDiaryListActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void handleRequest(int pager, int pagerSize){
+    private void handleRequest(int pager, int pagerSize) {
         showWaitDialog();
         HashMap<String, String> params = new HashMap<>();
         params.put("myCenter", String.valueOf(myCenter));
         params.put("id", String.valueOf(babyInfo.getId()));
         params.put("pageNo", String.valueOf(pager));
         params.put("numberOfPerPage", String.valueOf(pagerSize));
-        if(myCenter != 1)
-        params.put("userId", String.valueOf(userId));
+        if (myCenter != 1)
+            params.put("userId", String.valueOf(userId));
         NetRequest.postRequest(Constants.ServiceInfo.BABY_DIARY_LIST, BaseApplication.token, params, BabyDiaryListModel.class, new NetRequest.NetHandler(this, new NetRequest.NetResponseListener() {
             @Override
             public void onSuccessListener(Object object, String msg) {
                 hideWaitDialog();
                 lmrv.setPullLoadMoreCompleted();
                 BabyDiaryListModel data = (BabyDiaryListModel) object;
-                if(data.getData() != null && data.getData().getRows() != null && data.getData().getRows().size() != 0){
+                if (data.getData() != null && data.getData().getRows() != null && data.getData().getRows().size() != 0) {
                     adapter.addData(data.getData().getRows(), lmrv);
                 }
                 showShortToast(msg);

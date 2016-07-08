@@ -24,7 +24,6 @@ public class RankErdarItemHolder extends BaseViewHolder<RankEredarModel> {
     private RatingBar rbErdar;
     private TextView tvTag;
 
-
     public RankErdarItemHolder(ViewGroup parent) {
         super(parent, R.layout.list_rank_erdar_item);
         sdbHead = $(R.id.sdb_head);

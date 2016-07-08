@@ -1,8 +1,10 @@
 package com.cmbb.smartkids.activity.login;
 
+import android.content.BroadcastReceiver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
@@ -65,6 +67,7 @@ public class LoginActivity extends BaseActivity {
         assignViews();
         initData();
         addListener();
+        LocalBroadcastManager.getInstance(this).registerReceiver(setPswLoginReceiver, new IntentFilter("com.cmbb.smartkids.login.set.psw"));
     }
 
     private void initData() {
@@ -156,6 +159,10 @@ public class LoginActivity extends BaseActivity {
         }
         if (TextUtils.isEmpty(pwd)) {
             showToast("请输入密码");
+            return;
+        }
+        if (!Tools.isPswNo(pwd)) {
+            showToast("请输入正确的密码");
             return;
         }
         showWaitDialog();
@@ -288,11 +295,12 @@ public class LoginActivity extends BaseActivity {
         }));
     }
 
-    private void handleUnBundleThreeLogin(String phone, String code) {
+    private void handleUnBundleThreeLogin(String phone, String psw) {
         showWaitDialog();
         HashMap<String, String> body = new HashMap<>();
         body.put("loginAccount", phone);
-        body.put("securityCode", code);
+        if (!TextUtils.isEmpty(psw))
+            body.put("loginPassword", psw);
         body.put("openId", openId);
         if (!TextUtils.isEmpty(uid))
             body.put("unionId", uid);//添加uid
@@ -417,9 +425,9 @@ public class LoginActivity extends BaseActivity {
             OpenIdModel.handleOpenIdRequest(openId, new OkHttpClientManager.ResultCallback<OpenIdModel>() {
                 @Override
                 public void onError(Request request, Exception e, String msg) {
-                    Log.i("err", e.toString());
                     if (TextUtils.isEmpty(msg)) {
                         showShortToast(getString(R.string.is_netwrok));
+                        Log.i("err", e.toString());
                     } else {
                         showShortToast(msg);
                     }
@@ -438,11 +446,20 @@ public class LoginActivity extends BaseActivity {
         }
     };
 
+    BroadcastReceiver setPswLoginReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            //设置密码登陆
+            handleUnBundleThreeLogin(intent.getStringExtra("phone"), intent.getStringExtra("psw"));
+        }
+    };
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 150 && resultCode == RESULT_OK) {
-            handleUnBundleThreeLogin(data.getStringExtra("phone"), data.getStringExtra("code"));
+            //有密码登陆
+            handleUnBundleThreeLogin(data.getStringExtra("phone"), "");
             return;
         }
         UMSsoHandler ssoHandler = mController.getConfig().getSsoHandler(requestCode);

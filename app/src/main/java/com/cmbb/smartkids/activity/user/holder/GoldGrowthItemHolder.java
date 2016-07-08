@@ -31,6 +31,6 @@ public class GoldGrowthItemHolder extends BaseViewHolder<GoldGrowthModel.DataEnt
             return;
         tvTitle.setText(row.getContents());
         tvTime.setText(row.getGetDate());
-        tvCount.setText(row.getGrowth() + "");
+        tvCount.setText("+ " + row.getGrowth());
     }
 }

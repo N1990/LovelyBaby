@@ -3,6 +3,7 @@ package com.cmbb.smartkids.utils;
 import android.net.Uri;
 import android.text.TextUtils;
 
+import com.cmbb.smartkids.BuildConfig;
 import com.cmbb.smartkids.base.BaseApplication;
 import com.cmbb.smartkids.utils.log.Log;
 import com.facebook.drawee.backends.pipeline.Fresco;
@@ -23,6 +24,8 @@ import java.io.File;
 public class FrescoTool {
 
     private static final String TAG = FrescoTool.class.getSimpleName();
+
+    private static boolean water_debug = BuildConfig.DEBUG;
 
     /**
      * 按照宽高比例加载图片
@@ -45,7 +48,7 @@ public class FrescoTool {
             float r = w / h;
             simpleDraweeView.setAspectRatio(r);
         }
-        Uri uri = Uri.parse(url + "@" + TDevice.getScreenWidth(BaseApplication.getContext()) + "w_1o.jpeg|watermark=1&object=YXBwL3dhdGVybWFyay93YXRlcm1hcmtfNC5wbmdAMTAwdw&p=9");
+        Uri uri = Uri.parse(url + "@" + TDevice.getScreenWidth(BaseApplication.getContext()) + (water_debug ? "w_1o.jpeg" : "w_1o.jpeg|watermark=1&object=YXBwL3dhdGVybWFyay93YXRlcm1hcmtfNC5wbmdAMTAwdw&p=9"));
         Log.e("Image", "Image = " + uri.toString());
         ImageRequest request = ImageRequestBuilder
                 .newBuilderWithSource(uri)
@@ -57,7 +60,6 @@ public class FrescoTool {
                 .build();
         simpleDraweeView.setController(controller);
     }
-
 
     /**
      * 按照宽高比例加载图片
@@ -74,8 +76,8 @@ public class FrescoTool {
             //simpleDraweeView.setImageResource(R.color.placeholder);
             return;
         }
-        Uri uri = Uri.parse(url + "@" + TDevice.getScreenWidth(BaseApplication.getContext()) + "w_1o.jpeg|watermark=1&object=YXBwL3dhdGVybWFyay93YXRlcm1hcmtfNC5wbmdAMTAwdw&p=9");
-        //Log.e("Image", "Image = " + uri.toString());
+        Uri uri = Uri.parse(url + "@" + TDevice.getScreenWidth(BaseApplication.getContext()) + (water_debug ? "w_1o.jpeg" : "w_1o.jpeg|watermark=1&object=YXBwL3dhdGVybWFyay93YXRlcm1hcmtfNC5wbmdAMTAwdw&p=9"));
+        Log.e("Image", "Image = " + uri.toString());
         ImageRequest request = ImageRequestBuilder
                 .newBuilderWithSource(uri)
                 .setProgressiveRenderingEnabled(true)
@@ -102,8 +104,8 @@ public class FrescoTool {
             return;
         }
         simpleDraweeView.setAspectRatio(ratio);
-        Uri uri = Uri.parse(url + "@" + TDevice.getScreenWidth(BaseApplication.getContext()) + "w_1o.jpeg|watermark=1&object=YXBwL3dhdGVybWFyay93YXRlcm1hcmtfNC5wbmdAMTAwdw&p=9");
-        //Log.e("Image", "Image = " + uri.toString());
+        Uri uri = Uri.parse(url + "@" + TDevice.getScreenWidth(BaseApplication.getContext()) + (water_debug ? "w_1o.jpeg" : "w_1o.jpeg|watermark=1&object=YXBwL3dhdGVybWFyay93YXRlcm1hcmtfNC5wbmdAMTAwdw&p=9"));
+        Log.e("Image", "Image = " + uri.toString());
         ImageRequest request = ImageRequestBuilder
                 .newBuilderWithSource(uri)
                 .setLocalThumbnailPreviewsEnabled(true)
@@ -122,14 +124,13 @@ public class FrescoTool {
             return;
         }
 
-
         if (TextUtils.isEmpty(height)) {
             Log.e(TAG, "height is null");
             return;
         }
 
-        Uri uri = Uri.parse(url + "@" + height + "h_1o.jpeg|watermark=1&object=YXBwL3dhdGVybWFyay93YXRlcm1hcmtfNC5wbmdAMTAwdw&p=9");
-        //Log.e("Image", "Image = " + uri.toString());
+        Uri uri = Uri.parse(url + "@" + height + (water_debug ? "h_1o.jpeg" : "h_1o.jpeg|watermark=1&object=YXBwL3dhdGVybWFyay93YXRlcm1hcmtfNC5wbmdAMTAwdw&p=9"));
+        Log.e("Image", "Image = " + uri.toString());
         ImageRequest request = ImageRequestBuilder
                 .newBuilderWithSource(uri)
                 .setProgressiveRenderingEnabled(true)
@@ -151,7 +152,7 @@ public class FrescoTool {
         if (TextUtils.isEmpty(url)) {
             Log.e("FresoTool", "url 不能为空");
             return;
-        }else{
+        } else {
             Uri uri = Uri.parse(url + "@100w_1o.jpeg");
             ImageRequest request = ImageRequestBuilder
                     .newBuilderWithSource(uri)
@@ -188,7 +189,6 @@ public class FrescoTool {
         simpleDraweeView.setController(controller);
     }
 
-
     /**
      * 加载本地文件
      *
@@ -196,9 +196,9 @@ public class FrescoTool {
      * @param fileUrl          本地文件
      */
     public static void loadLocalImage(SimpleDraweeView simpleDraweeView, String fileUrl) {
-        if(TextUtils.isEmpty(fileUrl)){
+        if (TextUtils.isEmpty(fileUrl)) {
             return;
-        }else{
+        } else {
             Uri uri = Uri.parse("file://" + fileUrl);
             ImageRequest request = ImageRequestBuilder
                     .newBuilderWithSource(uri)

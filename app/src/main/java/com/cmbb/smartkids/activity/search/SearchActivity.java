@@ -72,7 +72,6 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
         addListener();
     }
 
-
     private void initView() {
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -103,14 +102,12 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
         handleHotRequest();
     }
 
-
     private void addListener() {
         btnSearch.setOnClickListener(this);
         spinnerSearch.setOnItemSelectedListener(itemSelectedListener);
         etSearch.addTextChangedListener(textWatcher);
         etSearch.setOnEditorActionListener(onEditorListener);
     }
-
 
     @Override
     public void onItemClick(int position) {
@@ -177,7 +174,6 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
                 break;
         }
     }
-
 
     private TextView.OnEditorActionListener onEditorListener = new TextView.OnEditorActionListener() {
         @Override
@@ -304,9 +300,7 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
 
         }
 
-
     };
-
 
     /**
      * 热词搜索
@@ -367,7 +361,6 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
             }
         });
     }
-
 
     /**
      * 搜索用户

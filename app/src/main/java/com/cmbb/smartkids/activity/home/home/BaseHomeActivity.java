@@ -21,8 +21,10 @@ import com.cmbb.smartkids.base.BaseActivity;
 import com.cmbb.smartkids.base.BaseApplication;
 import com.cmbb.smartkids.base.Constants;
 import com.cmbb.smartkids.network.OkHttpClientManager;
+import com.cmbb.smartkids.utils.SPCache;
 import com.cmbb.smartkids.utils.log.Log;
 import com.squareup.okhttp.Request;
+import com.thefinestartist.finestwebview.FinestWebView;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -41,6 +43,7 @@ public abstract class BaseHomeActivity extends BaseActivity {
     protected TextView tvMe;
     protected TextView tvMore;
 
+    protected boolean showMarket;
     private Boolean isQuit = false;// 退出应用标识符
     private Timer timer = new Timer();// 程序退出定时器
     private NetWorkChangeBroadcastReceiver netWorkChangeBroadcastReceiver;
@@ -85,6 +88,16 @@ public abstract class BaseHomeActivity extends BaseActivity {
         tvTopic.setOnClickListener(this);
         tvMe.setOnClickListener(this);
         tvMore.setOnClickListener(this);
+        showMarket = SPCache.getBoolean("show_market", false);
+        showMarket(showMarket);
+    }
+
+    protected void showMarket(boolean show) {
+        if (show) {
+            tvMore.setVisibility(View.VISIBLE);
+        } else {
+            tvMore.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -165,7 +178,36 @@ public abstract class BaseHomeActivity extends BaseActivity {
                 }
                 break;
             case R.id.tv_more:
-                HomeMoreActivity.newIntent(this);
+                /*if (TextUtils.isEmpty(BaseApplication.token)) {
+                    new AlertDialog.Builder(this)
+                            .setTitle("温馨提示")
+                            .setMessage("您还没有登陆萌宝派")
+                            .setPositiveButton("登陆", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    LoginActivity.newIntent(BaseHomeActivity.this);
+                                }
+                            })
+                            .create().show();
+                } else {
+                    HomeMarketActivity.newIntent(this);
+                }*/
+//                HomeMarketActivity.newIntent(this);
+                new FinestWebView.Builder(this)
+                        .theme(R.style.FinestWebViewTheme)
+                        .titleDefault("萌宝铺子")
+                        .showUrl(false)
+                        .statusBarColorRes(R.color.primaryColor)
+                        .toolbarColorRes(R.color.primaryColor)
+                        .titleColorRes(R.color.finestWhite)
+                        .urlColorRes(R.color.primaryColor)
+                        .iconDefaultColorRes(R.color.finestWhite)
+                        .progressBarColorRes(R.color.darkgray)
+                        .showSwipeRefreshLayout(false)
+                        .showIconMenu(false)
+                        .dividerHeight(0)
+                        .gradientDivider(false)
+                        .show("http://www.baidu.com");
                 break;
         }
     }
@@ -176,18 +218,10 @@ public abstract class BaseHomeActivity extends BaseActivity {
         public void onReceive(Context context, Intent intent) {
             ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
             NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-            if (activeNetwork != null) { // connected to the internet
-                /*if (activeNetwork.getType() == ConnectivityManager.TYPE_WIFI) {
-                    // connected to wifi
-                } else if (activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE) {
-                    // connected to the mobile provider's data plan
-                }*/
+            if (activeNetwork != null) {
                 Log.i(TAG, "activeNetwork  = " + activeNetwork.getTypeName());
-
                 netChange();
             } else {
-                // 无网络连接
-                showShortToast("网络出现连接错误，请检测网络");
             }
         }
     }

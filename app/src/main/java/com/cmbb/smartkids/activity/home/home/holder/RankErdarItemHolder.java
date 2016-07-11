@@ -21,6 +21,7 @@ public class RankErdarItemHolder extends BaseViewHolder<RankEredarModel> {
 
     private SimpleDraweeView sdbHead;
     private TextView tvNick;
+    private TextView tvFans;
     private RatingBar rbErdar;
     private TextView tvTag;
 
@@ -28,6 +29,7 @@ public class RankErdarItemHolder extends BaseViewHolder<RankEredarModel> {
         super(parent, R.layout.list_rank_erdar_item);
         sdbHead = $(R.id.sdb_head);
         tvNick = $(R.id.tv__nick);
+        tvFans = $(R.id.tv_fans);
         rbErdar = $(R.id.rb_erdar);
         tvTag = $(R.id.tv_tag);
     }
@@ -36,6 +38,7 @@ public class RankErdarItemHolder extends BaseViewHolder<RankEredarModel> {
         tvNick.setText(row.getUserNike());
         FrescoTool.loadImage(sdbHead, row.getUserSmallImg());
         rbErdar.setRating(row.getUserLevel());
+        tvFans.setText("Fans(" + row.getFans() + ")");
         if (row.getUserRole() != null && row.getUserRole().size() > 0)
             tvTag.setText(row.getUserRole().get(0).getEredarName());
     }

@@ -94,7 +94,7 @@
                 android:id="@+id/tv_home_community_no_data"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableTop="@mipmap/btn_service_normal"
+                android:drawableTop="@drawable/btn_service_normal"
                 android:gravity="center"
                 android:text="暂无任何社区的内容"
                 android:textSize="@dimen/txt_middle" />

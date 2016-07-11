@@ -149,18 +149,50 @@ public class RegisterActivity extends BaseActivity implements LocationSelectorDi
                     //写入数据库
                     ContentValues valus = new ContentValues();
                     valus.put(DBContent.DBUser.USER_ID, user.getUserId());
+                    valus.put(DBContent.DBUser.USER_UID, user.getUid());
+                    valus.put(DBContent.DBUser.USER_RECOMMONED, user.getRecommoned());
+                    valus.put(DBContent.DBUser.USER_NIKE, user.getUserNike());
+                    valus.put(DBContent.DBUser.USER_SEX, user.getUserSex());
+                    valus.put(DBContent.DBUser.USER_BIRTHDAY, user.getUserBirthday());
+                    valus.put(DBContent.DBUser.USER_BACKGROUNDIMG, user.getBackgroundImg());
+                    valus.put(DBContent.DBUser.USER_BIGIMG, user.getUserBigImg());
+                    valus.put(DBContent.DBUser.USER_BIGWIDTH, user.getUserBigWidth());
+                    valus.put(DBContent.DBUser.USER_BIGHEIGHT, user.getUserBigHeight());
+                    valus.put(DBContent.DBUser.USER_SMALLIMG, user.getUserSmallImg());
+                    valus.put(DBContent.DBUser.USER_SMALLWIDTH, user.getUserSmallWidth());
+                    valus.put(DBContent.DBUser.USER_SMALLHEIGHT, user.getUserSmallHeight());
+                    valus.put(DBContent.DBUser.USER_LOGINACCOUNTTYPE, user.getLoginAccountType());
+                    valus.put(DBContent.DBUser.USER_LOGINTIME, user.getLoginTime());
+                    valus.put(DBContent.DBUser.USER_LOGINACCOUNT, user.getLoginAccount());
                     valus.put(DBContent.DBUser.USER_TOKEN, user.getToken());
-                    valus.put(DBContent.DBUser.USER_HEAD_IMG, user.getUserSmallImg());
-                    valus.put(DBContent.DBUser.USER_NICK_NAME, user.getUserNike());
-                    valus.put(DBContent.DBUser.USER_MALE, user.getUserSex());
-                    valus.put(DBContent.DBUser.USER_PHONE, user.getUserPhone());
-                    valus.put(DBContent.DBUser.USER_PROVINCE_ID, user.getProvince());
-                    valus.put(DBContent.DBUser.USER_CITY_ID, user.getCity());
-                    valus.put(DBContent.DBUser.USER_AREA_ID, user.getDistrict());
-                    valus.put(DBContent.DBUser.USER_IS_POPMAN, user.getIsEredar());
+                    valus.put(DBContent.DBUser.USER_ISSHUTUP, user.getIsShutup());
+                    valus.put(DBContent.DBUser.USER_SHUTUPTIME, user.getShutupTime());
+                    valus.put(DBContent.DBUser.USER_ISBANNED, user.getIsBanned());
                     valus.put(DBContent.DBUser.USER_ADDRESS, user.getUserAddress());
-                    valus.put(DBContent.DBUser.USER_INTRODUCE, user.getUserPresentation());
-
+                    valus.put(DBContent.DBUser.USER_PHONE, user.getUserPhone());
+                    valus.put(DBContent.DBUser.USER_PHONEVERSION, user.getUserPhoneVersion());
+                    valus.put(DBContent.DBUser.USER_PROVINCE, user.getProvince());
+                    valus.put(DBContent.DBUser.USER_PROVINCETEXT, user.getProvinceText());
+                    valus.put(DBContent.DBUser.USER_DISTRICT, user.getDistrict());
+                    valus.put(DBContent.DBUser.USER_DISTRICTTEXT, user.getDistrictText());
+                    valus.put(DBContent.DBUser.USER_CITY, user.getCity());
+                    valus.put(DBContent.DBUser.USER_CITYTEXT, user.getCityText());
+                    valus.put(DBContent.DBUser.USER_LEVEL, user.getUserLevel());
+                    valus.put(DBContent.DBUser.USER_PRESENTATION, user.getUserPresentation());
+                    valus.put(DBContent.DBUser.USER_BACKIMGWIDTH, user.getBackImgWidth());
+                    valus.put(DBContent.DBUser.USER_BACKIMGHEIGHT, user.getBackImgHeight());
+                    valus.put(DBContent.DBUser.USER_GOLDCOUNT, user.getGoldCount());
+                    valus.put(DBContent.DBUser.USER_GROWTHCOUNT, user.getGrowthCount());
+                    valus.put(DBContent.DBUser.USER_FANS, user.getFans());
+                    valus.put(DBContent.DBUser.USER_ATTENTIONCOUNT, user.getAttentionCount());
+                    valus.put(DBContent.DBUser.USER_ISSIGN, user.getIsSign());
+                    valus.put(DBContent.DBUser.USER_ISATTENTION, user.getIsAttention());
+                    valus.put(DBContent.DBUser.USER_ISEREDAR, user.getIsEredar());
+                    valus.put(DBContent.DBUser.USER_ISLOGINUSER, user.getIsLoginUser());
+                    if (user.getUserRole() != null && user.getUserRole().size() > 0) {
+                        valus.put(DBContent.DBUser.USER_EREDARCODE, user.getUserRole().get(0).getEredarCode());
+                        valus.put(DBContent.DBUser.USER_EREDARNAME, user.getUserRole().get(0).getEredarName());
+                    }
                     getContentResolver().insert(DBContent.DBUser.CONTENT_URI, valus);
                     //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
                     showShortToast("注册成功");

@@ -18,6 +18,7 @@ import com.cmbb.smartkids.activity.home.home.adapter.BannerLoopAdapter;
 import com.cmbb.smartkids.activity.home.home.adapter.HomeAdapter;
 import com.cmbb.smartkids.activity.home.model.HomePageRootModel;
 import com.cmbb.smartkids.activity.home.model.ManagerAdModel;
+import com.cmbb.smartkids.activity.home.model.ShowMarketModel;
 import com.cmbb.smartkids.activity.home.model.SignModel;
 import com.cmbb.smartkids.activity.search.SearchActivity;
 import com.cmbb.smartkids.activity.serve.view.ServerDetailActivity;
@@ -25,6 +26,7 @@ import com.cmbb.smartkids.base.BaseApplication;
 import com.cmbb.smartkids.network.OkHttpClientManager;
 import com.cmbb.smartkids.recyclerview.SmartRecyclerView;
 import com.cmbb.smartkids.recyclerview.adapter.RecyclerArrayAdapter;
+import com.cmbb.smartkids.utils.SPCache;
 import com.jude.rollviewpager.RollPagerView;
 import com.squareup.okhttp.Request;
 import com.umeng.update.UmengUpdateAgent;
@@ -114,7 +116,6 @@ public class HomeActivity extends BaseHomeActivity implements View.OnClickListen
                 headerView.findViewById(R.id.rl_rank).setOnClickListener(HomeActivity.this);
                 headerView.findViewById(R.id.rl_wonderful).setOnClickListener(HomeActivity.this);
                 headerView.findViewById(R.id.rl_week).setOnClickListener(HomeActivity.this);
-
             }
         });
     }
@@ -162,8 +163,7 @@ public class HomeActivity extends BaseHomeActivity implements View.OnClickListen
     public void onLoadMore() {
         pager++;
         // 热门
-        HomePageRootModel.getHomeHotServiceRequest(pagerSize, pager, new OkHttpClientManager.ResultCallback<HomePageRootModel>()
-        {
+        HomePageRootModel.getHomeHotServiceRequest(pagerSize, pager, new OkHttpClientManager.ResultCallback<HomePageRootModel>() {
             @Override
             public void onError(Request request, Exception e, String msg) {
                 adapter.add(null);
@@ -268,6 +268,25 @@ public class HomeActivity extends BaseHomeActivity implements View.OnClickListen
     @Override
     protected void netChange() {
         onRefresh();
+        if (!showMarket) {
+            ShowMarketModel.isShowMarket(new OkHttpClientManager.ResultCallback<ShowMarketModel>() {
+                @Override
+                public void onError(Request request, Exception e, String response) {
+
+                }
+
+                @Override
+                public void onResponse(ShowMarketModel response) {
+                    if (response == null)
+                        return;
+                    showMarket(response.getData().isIsShow());
+                    if (response.getData().isIsShow()) {
+                        SPCache.putBoolean("show_market", response.getData().isIsShow());
+                        SPCache.putString("show_market_url", response.getData().getShowUrl());
+                    }
+                }
+            });
+        }
     }
 
     @Override

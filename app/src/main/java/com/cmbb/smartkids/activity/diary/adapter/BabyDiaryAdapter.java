@@ -54,7 +54,7 @@ public class BabyDiaryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if(viewType == FOOTER){
-            View root = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_mybaby_footer, parent, false);
+            View root = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_baby_footer, parent, false);
             return new FooterHolder(root);
         }else{
             View root = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_mybaby_item, parent, false);

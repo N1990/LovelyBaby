@@ -1,7 +1,6 @@
 package com.cmbb.smartkids.activity.user;
 
 import android.content.ContentValues;
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -110,12 +109,9 @@ public class ModifyIntroduceActivity extends BaseActivity implements TextWatcher
                 ModifyUserModel modify = (ModifyUserModel) object;
                 if (modify != null && modify.getData() != null) {
                     ContentValues valus = new ContentValues();
-                    valus.put(DBContent.DBUser.USER_INTRODUCE, modify.getData().getUserPresentation());
+                    valus.put(DBContent.DBUser.USER_PRESENTATION, modify.getData().getUserPresentation());
                     getContentResolver().update(DBContent.DBUser.CONTENT_URI, valus, DBContent.DBUser.USER_ID + " = " + modify.getData().getUserId(), null);
                     showShortToast("修改成功");
-                    Intent intent = new Intent(ModifyIntroduceActivity.this, MySetActivity.class);
-                    intent.putExtra("introduce", introduce);
-                    setResult(RESULT_OK, intent);
                     finish();
                 } else {
                     showShortToast(msg);

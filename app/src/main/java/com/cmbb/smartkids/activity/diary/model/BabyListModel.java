@@ -3,13 +3,17 @@ package com.cmbb.smartkids.activity.diary.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.cmbb.smartkids.base.BaseApplication;
+import com.cmbb.smartkids.base.Constants;
+import com.cmbb.smartkids.network.OkHttpClientManager;
+
+import java.util.HashMap;
 import java.util.List;
 
 /**
  * Created by javon on 15/12/18.
  */
 public class BabyListModel implements Parcelable {
-
 
     /**
      * page : 1
@@ -185,7 +189,6 @@ public class BabyListModel implements Parcelable {
                 return babyImgWidth;
             }
 
-
             @Override
             public int describeContents() {
                 return 0;
@@ -245,7 +248,6 @@ public class BabyListModel implements Parcelable {
             }
         }
 
-
         @Override
         public int describeContents() {
             return 0;
@@ -293,7 +295,6 @@ public class BabyListModel implements Parcelable {
         }
     }
 
-
     @Override
     public int describeContents() {
         return 0;
@@ -329,5 +330,22 @@ public class BabyListModel implements Parcelable {
                 "data=" + data +
                 ", msg='" + msg + '\'' +
                 '}';
+    }
+
+    public static void getBabyListRequest(int pager, int pagerSize, OkHttpClientManager.ResultCallback<BabyListModel> callback) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("myCenter", "1");
+        params.put("pageNo", String.valueOf(pager));
+        params.put("numberOfPerPage", String.valueOf(pagerSize));
+        params.put("token", BaseApplication.token);
+        OkHttpClientManager.postAsyn(Constants.ServiceInfo.BABY_LIST, params, callback);
+    }
+
+    public static void deleteBabyRequest(int babyId, OkHttpClientManager.ResultCallback<BabyListModel> callback) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("id", String.valueOf(babyId));
+        params.put("isDelete", "1");
+        params.put("token", BaseApplication.token);
+        OkHttpClientManager.postAsyn(Constants.ServiceInfo.BABY_DELETE, params, callback);
     }
 }

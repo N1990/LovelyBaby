@@ -8,8 +8,8 @@ android {
         applicationId "com.cmbb.smartkids"
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 314
-        versionName "3.1.4"
+        versionCode 316
+        versionName "3.1.6"
         multiDexEnabled true
         ndk {
             abiFilters "armeabi", "armeabi-v7a", "x86"
@@ -252,5 +252,6 @@ dependencies {
     compile 'com.umeng.analytics:analytics:5.5.3'
     compile 'com.soundcloud.android:android-crop:1.0.1@aar'
     compile 'com.jude:rollviewpager:1.0.7'
+    compile 'com.thefinestartist:finestwebview:1.2.7'
     compile files('libs/libammsdk.jar')
 }

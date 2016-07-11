@@ -64,20 +64,6 @@ public class RankErdarActivity extends BaseActivity implements RecyclerArrayAdap
 
     @Override
     public void onLoadMore() {
-        /*pager++;
-        RankEredarRootModel.getRankEredarRequest(pager, pagerSize, new OkHttpClientManager.ResultCallback<RankEredarRootModel>() {
-            @Override
-            public void onError(Request request, Exception e) {
-                showShortToast(e.toString());
-            }
-
-            @Override
-            public void onResponse(RankEredarRootModel response) {
-                if (response != null) {
-                    adapter.addAll(response.getData());
-                }
-            }
-        });*/
         adapter.pauseMore();
     }
 

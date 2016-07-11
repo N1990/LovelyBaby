@@ -49,7 +49,7 @@ public class DeliveryAddressListActivity extends BaseActivity {
     }
 
     private void initData() {
-        if(getIntent() != null){
+        if (getIntent() != null) {
             deliveryAddressId = getIntent().getIntExtra("delivery_id", 0);
             Log.e(TAG, "deliveryAddressId = " + deliveryAddressId);
         }
@@ -62,7 +62,7 @@ public class DeliveryAddressListActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
-        if(adapter.getChooseData() != null){
+        if (adapter.getChooseData() != null) {
             getIntent().putExtra("delivery_address", adapter.getChooseData());
             setResult(RESULT_OK, getIntent());
         }
@@ -73,7 +73,6 @@ public class DeliveryAddressListActivity extends BaseActivity {
     public void onClick(View v) {
         ManagerDeliveryAddressListActivity.skipFromActivity(this, DELIVERY_ADDRESS_MANAGER);
     }
-
 
     private CustomListener.ItemClickListener onItemCheckListener = new CustomListener.ItemClickListener() {
         @Override
@@ -127,6 +126,5 @@ public class DeliveryAddressListActivity extends BaseActivity {
         Intent intent = new Intent(fragment.getContext(), DeliveryAddressListActivity.class);
         fragment.startActivityForResult(intent, requestCode);
     }
-
 
 }

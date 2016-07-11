@@ -49,7 +49,6 @@ public class MyBabyListActivity extends BaseActivity {
         handleRequest();
     }
 
-
     private void addListener() {
         adapter.setOnFooterListener(footerListener);
         adapter.setOnItemListener(itemListener);
@@ -111,7 +110,6 @@ public class MyBabyListActivity extends BaseActivity {
                 BabyListModel data = (BabyListModel) object;
                 if (data.getData() != null && data.getData().getRows() != null)
                     adapter.setData(data.getData().getRows());
-                showShortToast(msg);
             }
 
             @Override
@@ -139,10 +137,7 @@ public class MyBabyListActivity extends BaseActivity {
             public void onErrorListener(String message) {
                 hideWaitDialog();
                 showShortToast(message);
-
             }
         }));
     }
-
-
 }

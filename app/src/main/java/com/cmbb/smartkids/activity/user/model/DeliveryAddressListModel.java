@@ -3,6 +3,11 @@ package com.cmbb.smartkids.activity.user.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.cmbb.smartkids.base.BaseApplication;
+import com.cmbb.smartkids.base.Constants;
+import com.cmbb.smartkids.network.OkHttpClientManager;
+
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -47,26 +52,6 @@ public class DeliveryAddressListModel implements Parcelable {
         private int records;
         private int total;
         private String userdata;
-        /**
-         * id : 3
-         * userRelationId : 30
-         * receiveName : 潘小姐
-         * receivePhone : 13514541235
-         * postCode : 541235
-         * province : 31
-         * city : 310000
-         * district : 310110
-         * address : 飞虹路568弄13号
-         * isDefault : 0
-         * isDelete : 0
-         * createDate : 2016-01-14 10:15:37
-         * createUserId : 30
-         * updateDate :
-         * updateUserId : 11
-         * provinceText : 上海
-         * cityText : 上海市
-         * districtText : 杨浦区
-         */
 
         private List<RowsEntity> rows;
 
@@ -274,7 +259,6 @@ public class DeliveryAddressListModel implements Parcelable {
                 return districtText;
             }
 
-
             @Override
             public int describeContents() {
                 return 0;
@@ -401,4 +385,10 @@ public class DeliveryAddressListModel implements Parcelable {
             return new DeliveryAddressListModel[size];
         }
     };
+
+    public static void addressListRequest(OkHttpClientManager.ResultCallback<DeliveryAddressListModel> callback) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("token", BaseApplication.token);
+        OkHttpClientManager.postAsyn(Constants.ServiceInfo.DELIVERY_ADDRESS_LIST, params, callback);
+    }
 }

@@ -25,7 +25,7 @@
     <string name="title_activity_suggest" translatable="false">意见反馈</string>
     <string name="title_activity_order_result" translatable="false">订单</string>
     <string name="title_activity_order_detail" translatable="false">订单详情</string>
-    <string name="title_activity_my_set" translatable="false">个人信息</string>
+    <string name="title_activity_info" translatable="false">个人资料</string>
     <string name="title_activity_cancel_order_result" translatable="false">取消订单</string>
     <string name="title_activity_my_order_list" translatable="false">我的订单</string>
     <string name="title_activity_user_center" translatable="false">个人主页</string>

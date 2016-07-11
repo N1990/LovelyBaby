@@ -13,18 +13,64 @@ import java.util.List;
  */
 public class UserRootModel implements Parcelable {
 
+    /**
+     * userId : 103218
+     * uid : 124361
+     * recommoned : 1
+     * userNike : 晶_晶
+     * userSex : 1
+     * userBirthday :
+     * backgroundImg :
+     * userBigImg : http://smart.image.alimmdn.com/oldImage/6ef324ab236b4ef8bcb87a3c2f27c7c6mage
+     * userBigWidth : 884
+     * userBigHeight : 360
+     * userSmallImg : http://smart.image.alimmdn.com/oldImage/6ef324ab236b4ef8bcb87a3c2f27c7c6mage
+     * userSmallWidth : 884
+     * userSmallHeight : 360
+     * loginAccountType : 2
+     * loginTime : 2016-06-28 17:18:30
+     * loginAccount :
+     * token : Mjg0NGY3YzYtYWFlYy00OWE3LWJkNGUtOGI5YTljZTk5NmRi
+     * isShutup : 0
+     * shutupTime :
+     * isBanned : 0
+     * userAddress :
+     * userPhone :
+     * userPhoneVersion :
+     * province :
+     * provinceText :
+     * district :
+     * districtText :
+     * city :
+     * cityText :
+     * userLevel : 0
+     * userPresentation :
+     * backImgWidth :
+     * backImgHeight :
+     * goldCount : 1
+     * growthCount : 1
+     * fans : 0
+     * attentionCount : 1
+     * isSign : 0
+     * isAttention : 0
+     * isEredar : 0
+     * isLoginUser : 0
+     * userRole : [{"eredarCode":0,"eredarName":"萌宝用户"}]
+     */
+
     private int userId;
+    private String uid;
     private int recommoned;
     private String userNike;
     private int userSex;
     private String userBirthday;
     private String backgroundImg;
     private String userBigImg;
-    private String userBigWidth;
-    private String userBigHeight;
+    private int userBigWidth;
+    private int userBigHeight;
     private String userSmallImg;
-    private double userSmallWidth;
-    private double userSmallHeight;
+    private int userSmallWidth;
+    private int userSmallHeight;
     private int loginAccountType;
     private String loginTime;
     private String loginAccount;
@@ -35,338 +81,386 @@ public class UserRootModel implements Parcelable {
     private String userAddress;
     private String userPhone;
     private String userPhoneVersion;
-    private int province;
-    private int district;
-    private int city;
+    private String province;
+    private String provinceText;
+    private String district;
+    private String districtText;
+    private String city;
+    private String cityText;
     private int userLevel;
     private String userPresentation;
-    private double backImgWidth;
-    private double backImgHeight;
-    private String goldCount;
-    private String integralCount;
-    private String attentionCount;
+    private String backImgWidth;
+    private String backImgHeight;
+    private int goldCount;
+    private int growthCount;
     private int fans;
+    private int attentionCount;
+    private int isSign;
     private int isAttention;
     private int isEredar;
+    private int isLoginUser;
+    /**
+     * eredarCode : 0
+     * eredarName : 萌宝用户
+     */
 
     private List<UserRoleEntity> userRole;
+
+    public int getUserId() {
+        return userId;
+    }
 
     public void setUserId(int userId) {
         this.userId = userId;
     }
 
-    public void setRecommoned(int recommoned) {
-        this.recommoned = recommoned;
+    public String getUid() {
+        return uid;
     }
 
-    public void setUserNike(String userNike) {
-        this.userNike = userNike;
-    }
-
-    public void setUserSex(int userSex) {
-        this.userSex = userSex;
-    }
-
-    public void setUserBirthday(String userBirthday) {
-        this.userBirthday = userBirthday;
-    }
-
-    public void setBackgroundImg(String backgroundImg) {
-        this.backgroundImg = backgroundImg;
-    }
-
-    public void setUserBigImg(String userBigImg) {
-        this.userBigImg = userBigImg;
-    }
-
-    public void setUserBigWidth(String userBigWidth) {
-        this.userBigWidth = userBigWidth;
-    }
-
-    public void setUserBigHeight(String userBigHeight) {
-        this.userBigHeight = userBigHeight;
-    }
-
-    public void setUserSmallImg(String userSmallImg) {
-        this.userSmallImg = userSmallImg;
-    }
-
-    public void setUserSmallWidth(double userSmallWidth) {
-        this.userSmallWidth = userSmallWidth;
-    }
-
-    public void setUserSmallHeight(double userSmallHeight) {
-        this.userSmallHeight = userSmallHeight;
-    }
-
-    public void setLoginAccountType(int loginAccountType) {
-        this.loginAccountType = loginAccountType;
-    }
-
-    public void setLoginTime(String loginTime) {
-        this.loginTime = loginTime;
-    }
-
-    public void setLoginAccount(String loginAccount) {
-        this.loginAccount = loginAccount;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
-
-    public void setIsShutup(int isShutup) {
-        this.isShutup = isShutup;
-    }
-
-    public void setShutupTime(String shutupTime) {
-        this.shutupTime = shutupTime;
-    }
-
-    public void setIsBanned(int isBanned) {
-        this.isBanned = isBanned;
-    }
-
-    public void setUserAddress(String userAddress) {
-        this.userAddress = userAddress;
-    }
-
-    public void setUserPhone(String userPhone) {
-        this.userPhone = userPhone;
-    }
-
-    public void setUserPhoneVersion(String userPhoneVersion) {
-        this.userPhoneVersion = userPhoneVersion;
-    }
-
-    public void setProvince(int province) {
-        this.province = province;
-    }
-
-    public void setDistrict(int district) {
-        this.district = district;
-    }
-
-    public void setCity(int city) {
-        this.city = city;
-    }
-
-    public void setUserLevel(int userLevel) {
-        this.userLevel = userLevel;
-    }
-
-    public void setUserPresentation(String userPresentation) {
-        this.userPresentation = userPresentation;
-    }
-
-    public void setBackImgWidth(double backImgWidth) {
-        this.backImgWidth = backImgWidth;
-    }
-
-    public void setBackImgHeight(double backImgHeight) {
-        this.backImgHeight = backImgHeight;
-    }
-
-    public void setGoldCount(String goldCount) {
-        this.goldCount = goldCount;
-    }
-
-    public void setIntegralCount(String integralCount) {
-        this.integralCount = integralCount;
-    }
-
-    public void setAttentionCount(String attentionCount) {
-        this.attentionCount = attentionCount;
-    }
-
-    public void setFans(int fans) {
-        this.fans = fans;
-    }
-
-    public void setIsAttention(int isAttention) {
-        this.isAttention = isAttention;
-    }
-
-    public void setIsEredar(int isEredar) {
-        this.isEredar = isEredar;
-    }
-
-    public void setUserRole(List<UserRoleEntity> userRole) {
-        this.userRole = userRole;
-    }
-
-    public int getUserId() {
-        return userId;
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
     public int getRecommoned() {
         return recommoned;
     }
 
+    public void setRecommoned(int recommoned) {
+        this.recommoned = recommoned;
+    }
+
     public String getUserNike() {
         return userNike;
+    }
+
+    public void setUserNike(String userNike) {
+        this.userNike = userNike;
     }
 
     public int getUserSex() {
         return userSex;
     }
 
+    public void setUserSex(int userSex) {
+        this.userSex = userSex;
+    }
+
     public String getUserBirthday() {
         return userBirthday;
+    }
+
+    public void setUserBirthday(String userBirthday) {
+        this.userBirthday = userBirthday;
     }
 
     public String getBackgroundImg() {
         return backgroundImg;
     }
 
+    public void setBackgroundImg(String backgroundImg) {
+        this.backgroundImg = backgroundImg;
+    }
+
     public String getUserBigImg() {
         return userBigImg;
     }
 
-    public String getUserBigWidth() {
+    public void setUserBigImg(String userBigImg) {
+        this.userBigImg = userBigImg;
+    }
+
+    public int getUserBigWidth() {
         return userBigWidth;
     }
 
-    public String getUserBigHeight() {
+    public void setUserBigWidth(int userBigWidth) {
+        this.userBigWidth = userBigWidth;
+    }
+
+    public int getUserBigHeight() {
         return userBigHeight;
+    }
+
+    public void setUserBigHeight(int userBigHeight) {
+        this.userBigHeight = userBigHeight;
     }
 
     public String getUserSmallImg() {
         return userSmallImg;
     }
 
-    public double getUserSmallWidth() {
+    public void setUserSmallImg(String userSmallImg) {
+        this.userSmallImg = userSmallImg;
+    }
+
+    public int getUserSmallWidth() {
         return userSmallWidth;
     }
 
-    public double getUserSmallHeight() {
+    public void setUserSmallWidth(int userSmallWidth) {
+        this.userSmallWidth = userSmallWidth;
+    }
+
+    public int getUserSmallHeight() {
         return userSmallHeight;
+    }
+
+    public void setUserSmallHeight(int userSmallHeight) {
+        this.userSmallHeight = userSmallHeight;
     }
 
     public int getLoginAccountType() {
         return loginAccountType;
     }
 
+    public void setLoginAccountType(int loginAccountType) {
+        this.loginAccountType = loginAccountType;
+    }
+
     public String getLoginTime() {
         return loginTime;
+    }
+
+    public void setLoginTime(String loginTime) {
+        this.loginTime = loginTime;
     }
 
     public String getLoginAccount() {
         return loginAccount;
     }
 
+    public void setLoginAccount(String loginAccount) {
+        this.loginAccount = loginAccount;
+    }
+
     public String getToken() {
         return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public int getIsShutup() {
         return isShutup;
     }
 
+    public void setIsShutup(int isShutup) {
+        this.isShutup = isShutup;
+    }
+
     public String getShutupTime() {
         return shutupTime;
+    }
+
+    public void setShutupTime(String shutupTime) {
+        this.shutupTime = shutupTime;
     }
 
     public int getIsBanned() {
         return isBanned;
     }
 
+    public void setIsBanned(int isBanned) {
+        this.isBanned = isBanned;
+    }
+
     public String getUserAddress() {
         return userAddress;
+    }
+
+    public void setUserAddress(String userAddress) {
+        this.userAddress = userAddress;
     }
 
     public String getUserPhone() {
         return userPhone;
     }
 
+    public void setUserPhone(String userPhone) {
+        this.userPhone = userPhone;
+    }
+
     public String getUserPhoneVersion() {
         return userPhoneVersion;
     }
 
-    public int getProvince() {
+    public void setUserPhoneVersion(String userPhoneVersion) {
+        this.userPhoneVersion = userPhoneVersion;
+    }
+
+    public String getProvince() {
         return province;
     }
 
-    public int getDistrict() {
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    public String getProvinceText() {
+        return provinceText;
+    }
+
+    public void setProvinceText(String provinceText) {
+        this.provinceText = provinceText;
+    }
+
+    public String getDistrict() {
         return district;
     }
 
-    public int getCity() {
+    public void setDistrict(String district) {
+        this.district = district;
+    }
+
+    public String getDistrictText() {
+        return districtText;
+    }
+
+    public void setDistrictText(String districtText) {
+        this.districtText = districtText;
+    }
+
+    public String getCity() {
         return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCityText() {
+        return cityText;
+    }
+
+    public void setCityText(String cityText) {
+        this.cityText = cityText;
     }
 
     public int getUserLevel() {
         return userLevel;
     }
 
+    public void setUserLevel(int userLevel) {
+        this.userLevel = userLevel;
+    }
+
     public String getUserPresentation() {
         return userPresentation;
     }
 
-    public double getBackImgWidth() {
+    public void setUserPresentation(String userPresentation) {
+        this.userPresentation = userPresentation;
+    }
+
+    public String getBackImgWidth() {
         return backImgWidth;
     }
 
-    public double getBackImgHeight() {
+    public void setBackImgWidth(String backImgWidth) {
+        this.backImgWidth = backImgWidth;
+    }
+
+    public String getBackImgHeight() {
         return backImgHeight;
     }
 
-    public String getGoldCount() {
+    public void setBackImgHeight(String backImgHeight) {
+        this.backImgHeight = backImgHeight;
+    }
+
+    public int getGoldCount() {
         return goldCount;
     }
 
-    public String getIntegralCount() {
-        return integralCount;
+    public void setGoldCount(int goldCount) {
+        this.goldCount = goldCount;
     }
 
-    public String getAttentionCount() {
-        return attentionCount;
+    public int getGrowthCount() {
+        return growthCount;
+    }
+
+    public void setGrowthCount(int growthCount) {
+        this.growthCount = growthCount;
     }
 
     public int getFans() {
         return fans;
     }
 
+    public void setFans(int fans) {
+        this.fans = fans;
+    }
+
+    public int getAttentionCount() {
+        return attentionCount;
+    }
+
+    public void setAttentionCount(int attentionCount) {
+        this.attentionCount = attentionCount;
+    }
+
+    public int getIsSign() {
+        return isSign;
+    }
+
+    public void setIsSign(int isSign) {
+        this.isSign = isSign;
+    }
+
     public int getIsAttention() {
         return isAttention;
+    }
+
+    public void setIsAttention(int isAttention) {
+        this.isAttention = isAttention;
     }
 
     public int getIsEredar() {
         return isEredar;
     }
 
+    public void setIsEredar(int isEredar) {
+        this.isEredar = isEredar;
+    }
+
+    public int getIsLoginUser() {
+        return isLoginUser;
+    }
+
+    public void setIsLoginUser(int isLoginUser) {
+        this.isLoginUser = isLoginUser;
+    }
+
     public List<UserRoleEntity> getUserRole() {
         return userRole;
+    }
+
+    public void setUserRole(List<UserRoleEntity> userRole) {
+        this.userRole = userRole;
     }
 
     public static class UserRoleEntity implements Parcelable {
         private int eredarCode;
         private String eredarName;
 
-        public void setEredarCode(int eredarCode) {
-            this.eredarCode = eredarCode;
-        }
-
-        public void setEredarName(String eredarName) {
-            this.eredarName = eredarName;
-        }
-
         public int getEredarCode() {
             return eredarCode;
+        }
+
+        public void setEredarCode(int eredarCode) {
+            this.eredarCode = eredarCode;
         }
 
         public String getEredarName() {
             return eredarName;
         }
 
-        @Override
-        public String toString() {
-            return "UserRoleEntity{" +
-                    "eredarCode=" + eredarCode +
-                    ", eredarName='" + eredarName + '\'' +
-                    '}';
+        public void setEredarName(String eredarName) {
+            this.eredarName = eredarName;
         }
-
 
         @Override
         public int describeContents() {
@@ -388,58 +482,17 @@ public class UserRootModel implements Parcelable {
         }
 
         public static final Parcelable.Creator<UserRoleEntity> CREATOR = new Parcelable.Creator<UserRoleEntity>() {
+            @Override
             public UserRoleEntity createFromParcel(Parcel source) {
                 return new UserRoleEntity(source);
             }
 
+            @Override
             public UserRoleEntity[] newArray(int size) {
                 return new UserRoleEntity[size];
             }
         };
     }
-
-    @Override
-    public String toString() {
-        return "UserRootModel{" +
-                "userId=" + userId +
-                ", recommoned=" + recommoned +
-                ", userNike='" + userNike + '\'' +
-                ", userSex=" + userSex +
-                ", userBirthday='" + userBirthday + '\'' +
-                ", backgroundImg='" + backgroundImg + '\'' +
-                ", userBigImg='" + userBigImg + '\'' +
-                ", userBigWidth='" + userBigWidth + '\'' +
-                ", userBigHeight='" + userBigHeight + '\'' +
-                ", userSmallImg='" + userSmallImg + '\'' +
-                ", userSmallWidth=" + userSmallWidth +
-                ", userSmallHeight=" + userSmallHeight +
-                ", loginAccountType=" + loginAccountType +
-                ", loginTime='" + loginTime + '\'' +
-                ", loginAccount='" + loginAccount + '\'' +
-                ", token='" + token + '\'' +
-                ", isShutup=" + isShutup +
-                ", shutupTime='" + shutupTime + '\'' +
-                ", isBanned=" + isBanned +
-                ", userAddress='" + userAddress + '\'' +
-                ", userPhone='" + userPhone + '\'' +
-                ", userPhoneVersion='" + userPhoneVersion + '\'' +
-                ", province=" + province +
-                ", district=" + district +
-                ", city=" + city +
-                ", userLevel=" + userLevel +
-                ", userPresentation='" + userPresentation + '\'' +
-                ", backImgWidth=" + backImgWidth +
-                ", backImgHeight=" + backImgHeight +
-                ", goldCount='" + goldCount + '\'' +
-                ", integralCount='" + integralCount + '\'' +
-                ", attentionCount='" + attentionCount + '\'' +
-                ", fans=" + fans +
-                ", isAttention=" + isAttention +
-                ", isEredar=" + isEredar +
-                ", userRole=" + userRole +
-                '}';
-    }
-
 
     @Override
     public int describeContents() {
@@ -449,17 +502,18 @@ public class UserRootModel implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(this.userId);
+        dest.writeString(this.uid);
         dest.writeInt(this.recommoned);
         dest.writeString(this.userNike);
         dest.writeInt(this.userSex);
         dest.writeString(this.userBirthday);
         dest.writeString(this.backgroundImg);
         dest.writeString(this.userBigImg);
-        dest.writeString(this.userBigWidth);
-        dest.writeString(this.userBigHeight);
+        dest.writeInt(this.userBigWidth);
+        dest.writeInt(this.userBigHeight);
         dest.writeString(this.userSmallImg);
-        dest.writeDouble(this.userSmallWidth);
-        dest.writeDouble(this.userSmallHeight);
+        dest.writeInt(this.userSmallWidth);
+        dest.writeInt(this.userSmallHeight);
         dest.writeInt(this.loginAccountType);
         dest.writeString(this.loginTime);
         dest.writeString(this.loginAccount);
@@ -470,20 +524,25 @@ public class UserRootModel implements Parcelable {
         dest.writeString(this.userAddress);
         dest.writeString(this.userPhone);
         dest.writeString(this.userPhoneVersion);
-        dest.writeInt(this.province);
-        dest.writeInt(this.district);
-        dest.writeInt(this.city);
+        dest.writeString(this.province);
+        dest.writeString(this.provinceText);
+        dest.writeString(this.district);
+        dest.writeString(this.districtText);
+        dest.writeString(this.city);
+        dest.writeString(this.cityText);
         dest.writeInt(this.userLevel);
         dest.writeString(this.userPresentation);
-        dest.writeDouble(this.backImgWidth);
-        dest.writeDouble(this.backImgHeight);
-        dest.writeString(this.goldCount);
-        dest.writeString(this.integralCount);
-        dest.writeString(this.attentionCount);
+        dest.writeString(this.backImgWidth);
+        dest.writeString(this.backImgHeight);
+        dest.writeInt(this.goldCount);
+        dest.writeInt(this.growthCount);
         dest.writeInt(this.fans);
+        dest.writeInt(this.attentionCount);
+        dest.writeInt(this.isSign);
         dest.writeInt(this.isAttention);
         dest.writeInt(this.isEredar);
-        dest.writeTypedList(userRole);
+        dest.writeInt(this.isLoginUser);
+        dest.writeTypedList(this.userRole);
     }
 
     public UserRootModel() {
@@ -491,17 +550,18 @@ public class UserRootModel implements Parcelable {
 
     protected UserRootModel(Parcel in) {
         this.userId = in.readInt();
+        this.uid = in.readString();
         this.recommoned = in.readInt();
         this.userNike = in.readString();
         this.userSex = in.readInt();
         this.userBirthday = in.readString();
         this.backgroundImg = in.readString();
         this.userBigImg = in.readString();
-        this.userBigWidth = in.readString();
-        this.userBigHeight = in.readString();
+        this.userBigWidth = in.readInt();
+        this.userBigHeight = in.readInt();
         this.userSmallImg = in.readString();
-        this.userSmallWidth = in.readDouble();
-        this.userSmallHeight = in.readDouble();
+        this.userSmallWidth = in.readInt();
+        this.userSmallHeight = in.readInt();
         this.loginAccountType = in.readInt();
         this.loginTime = in.readString();
         this.loginAccount = in.readString();
@@ -512,27 +572,34 @@ public class UserRootModel implements Parcelable {
         this.userAddress = in.readString();
         this.userPhone = in.readString();
         this.userPhoneVersion = in.readString();
-        this.province = in.readInt();
-        this.district = in.readInt();
-        this.city = in.readInt();
+        this.province = in.readString();
+        this.provinceText = in.readString();
+        this.district = in.readString();
+        this.districtText = in.readString();
+        this.city = in.readString();
+        this.cityText = in.readString();
         this.userLevel = in.readInt();
         this.userPresentation = in.readString();
-        this.backImgWidth = in.readDouble();
-        this.backImgHeight = in.readDouble();
-        this.goldCount = in.readString();
-        this.integralCount = in.readString();
-        this.attentionCount = in.readString();
+        this.backImgWidth = in.readString();
+        this.backImgHeight = in.readString();
+        this.goldCount = in.readInt();
+        this.growthCount = in.readInt();
         this.fans = in.readInt();
+        this.attentionCount = in.readInt();
+        this.isSign = in.readInt();
         this.isAttention = in.readInt();
         this.isEredar = in.readInt();
+        this.isLoginUser = in.readInt();
         this.userRole = in.createTypedArrayList(UserRoleEntity.CREATOR);
     }
 
     public static final Parcelable.Creator<UserRootModel> CREATOR = new Parcelable.Creator<UserRootModel>() {
+        @Override
         public UserRootModel createFromParcel(Parcel source) {
             return new UserRootModel(source);
         }
 
+        @Override
         public UserRootModel[] newArray(int size) {
             return new UserRootModel[size];
         }

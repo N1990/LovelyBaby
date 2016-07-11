@@ -3,6 +3,12 @@ package com.cmbb.smartkids.activity.user.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.cmbb.smartkids.base.BaseApplication;
+import com.cmbb.smartkids.base.Constants;
+import com.cmbb.smartkids.network.OkHttpClientManager;
+
+import java.util.HashMap;
+
 /**
  * 项目名称：LovelyBaby
  * 类描述：
@@ -10,7 +16,6 @@ import android.os.Parcelable;
  * 创建时间：15/10/13 上午11:52
  */
 public class LogoutModel implements Parcelable {
-
 
     /**
      * status : 1
@@ -44,7 +49,6 @@ public class LogoutModel implements Parcelable {
                 '}';
     }
 
-
     @Override
     public int describeContents() {
         return 0;
@@ -73,5 +77,12 @@ public class LogoutModel implements Parcelable {
             return new LogoutModel[size];
         }
     };
+
+    public static void logoutRequest(OkHttpClientManager.ResultCallback<LogoutModel> callback) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("token", BaseApplication.token);
+        OkHttpClientManager.postAsyn(Constants.ServiceInfo.CHANGE_USER_ACCOUNT, params, callback);
+    }
+
 }
 

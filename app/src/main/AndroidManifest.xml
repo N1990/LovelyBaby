@@ -3,11 +3,15 @@
           xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- umeng-analytics -->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <!--<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>-->
+    <!--<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>-->
     <uses-permission android:name="android.permission.CALL_PHONE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <!-- 这个权限用于进行网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <!-- 这个权限用于访问GPS定位 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <!-- umeng-analytics -->
     <!-- umeng 推送 -->
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
@@ -208,6 +212,10 @@
             android:name=".wxapi.WXPayEntryActivity"
             android:exported="true"/>
 
+        <activity
+            android:name="com.thefinestartist.finestwebview.FinestWebViewActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="sensor"/>
 
         <!-- *************************    分享相关的注册 END **************************** -->
         <!-- 以上接入第三方必备 -->
@@ -251,8 +259,8 @@
             android:name=".activity.user.MyListRedirectActivity"
             android:label="@string/title_activity_my_service"/>
         <activity
-            android:name=".activity.user.MySetActivity"
-            android:label="@string/title_activity_my_set"/>
+            android:name=".activity.user.InfoActivity"
+            android:label="@string/title_activity_info"/>
         <activity
             android:name=".activity.user.UserCenterActivity"
             android:theme="@style/HomePageTheme"/>
@@ -278,6 +286,7 @@
 
 
         <activity android:name=".activity.user.GoldGrowthListActivity"/>
+        <activity android:name=".activity.diary.BabyListActivity"/>
 
         <provider
             android:name=".db.UserProvider"
@@ -374,8 +383,7 @@
             android:name=".activity.home.home.HomeMeActivity"
             android:theme="@style/HomePageTheme"/>
         <activity
-            android:name=".activity.home.home.HomeMoreActivity"
-            android:theme="@style/HomePageTheme"/>
+            android:name=".activity.home.home.HomeMarketActivity"/>
         <activity
             android:name=".activity.home.home.HomeServiceActivity"
             android:theme="@style/HomePageTheme"/>
@@ -395,6 +403,7 @@
         <activity android:name=".activity.home.home.RankErdarActivity"/>
         <activity android:name=".activity.order.view.EvaluateOrderActivity"/>
         <activity android:name=".activity.order.view.ReimburseActivity"/>
+        <activity android:name=".activity.user.SettingActivity"/>
         <activity
             android:name=".activity.home.home.WonderfulReviewActivity"
             android:theme="@style/HomePageTheme"/>

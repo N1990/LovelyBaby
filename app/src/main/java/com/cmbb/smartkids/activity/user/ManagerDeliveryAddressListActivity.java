@@ -52,19 +52,15 @@ public class ManagerDeliveryAddressListActivity extends BaseActivity {
         setTitle(getString(R.string.title_activity_delivery_address_manager));
         setActionBarRight("添加");
         adapter.setOnManagerItemListener(onItemManagerListener);
-
     }
-
 
     private CustomListener.ItemClickListener onItemManagerListener = new CustomListener.ItemClickListener() {
         @Override
         public void onItemClick(View v, int position, Object object) {
             DeliveryAddressListModel.DataEntity.RowsEntity item = (DeliveryAddressListModel.DataEntity.RowsEntity) object;
             DeliveryAddressDetailActivity.skipFromActivity(ManagerDeliveryAddressListActivity.this, item.getId(), DELIVERY_ADDRESS_DETAIL);
-
         }
     };
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -125,6 +121,5 @@ public class ManagerDeliveryAddressListActivity extends BaseActivity {
         Intent intent = new Intent(fragment.getContext(), ManagerDeliveryAddressListActivity.class);
         fragment.startActivityForResult(intent, requestCode);
     }
-
 
 }

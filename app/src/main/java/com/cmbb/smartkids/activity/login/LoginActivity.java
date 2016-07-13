@@ -442,7 +442,7 @@ public class LoginActivity extends BaseActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 150 && resultCode == RESULT_OK) {
-            handleUnBundleThreeLogin(data.getStringExtra("phone"), data.getStringExtra("code"));
+            handleBundleThreeLogin(data.getStringExtra("phone"), openId);
             return;
         }
         UMSsoHandler ssoHandler = mController.getConfig().getSsoHandler(requestCode);

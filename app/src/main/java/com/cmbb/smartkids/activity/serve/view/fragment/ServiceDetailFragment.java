@@ -7,7 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.GridLayoutManager;
@@ -128,9 +127,9 @@ public class ServiceDetailFragment extends BaseFragment {
             webView.clearHistory();
             webView.clearFormData();
             webView.clearCache(true);*/
-            //            webView.loadUrl("file:///android_asset/h5/page/samrt-app-service-detail.html");
-
-            webView.loadUrl(Constants.H5.SMART_SERVICE_DETAIL + "?" + SystemClock.currentThreadTimeMillis());
+                        webView.loadUrl("file:///android_asset/h5/page/samrt-app-service-detail.html");
+//
+//            webView.loadUrl(Constants.H5.SMART_SERVICE_DETAIL + "?" + SystemClock.currentThreadTimeMillis());
         }
         return view;
     }

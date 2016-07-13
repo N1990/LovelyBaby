@@ -102,6 +102,7 @@ public class ForgetPwdActivity extends BaseActivity {
                         finish();
                     }
                     SPCache.putString(Constants.TOKEN, user.getToken());
+                    SPCache.putString(Constants.LOGIN_ACCOUNT, user.getLoginAccount());
                     SPCache.putString(Constants.USER_ID, user.getUserId() + "");
                     // 更改Application里面的值
                     BaseApplication.token = user.getToken();

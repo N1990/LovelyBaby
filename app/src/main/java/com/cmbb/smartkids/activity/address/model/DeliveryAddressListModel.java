@@ -1,4 +1,4 @@
-package com.cmbb.smartkids.activity.user.model;
+package com.cmbb.smartkids.activity.address.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -386,8 +386,10 @@ public class DeliveryAddressListModel implements Parcelable {
         }
     };
 
-    public static void addressListRequest(OkHttpClientManager.ResultCallback<DeliveryAddressListModel> callback) {
+    public static void addressListRequest(int pager, int pagerSize, OkHttpClientManager.ResultCallback<DeliveryAddressListModel> callback) {
         HashMap<String, String> params = new HashMap<>();
+        params.put("pageNo", String.valueOf(pager));
+        params.put("numberOfPerPage", String.valueOf(pagerSize));
         params.put("token", BaseApplication.token);
         OkHttpClientManager.postAsyn(Constants.ServiceInfo.DELIVERY_ADDRESS_LIST, params, callback);
     }

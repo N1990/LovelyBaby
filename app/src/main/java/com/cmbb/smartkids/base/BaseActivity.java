@@ -27,7 +27,6 @@ import com.cmbb.smartkids.widget.WaitDialog;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.message.PushAgent;
 
-
 public abstract class BaseActivity extends AppCompatActivity implements View.OnClickListener {
     private final String TAG = BaseActivity.class.getSimpleName();
     private long lastToastTime;
@@ -56,7 +55,6 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         }
     };
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,7 +70,6 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         initBroadcast();
         init(savedInstanceState);
     }
-
 
     /**
      * 初始化actionbar
@@ -92,7 +89,6 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
             Log.i(TAG, "actionbar is null");
         }
     }
-
 
     protected void setTitle(String title) {
         tvTitle.setText(title);
@@ -120,7 +116,6 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         actionbar.setDisplayHomeAsUpEnabled(true);
         ivLeft.setVisibility(View.GONE);
     }
-
 
     protected void setNoBack() {
         try {
@@ -174,7 +169,6 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         IntentFilter filter = new IntentFilter(Constants.INTENT_ACTION_EXIT_APP);
         registerReceiver(existReceiver, filter);
     }
-
 
     protected void showToast(String tip) {
         showToast(tip, Toast.LENGTH_LONG);
@@ -241,9 +235,9 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         handler.sendEmptyMessage(Constants.CANCEL_WAIT_DIALOG);
     }
 
-
     protected void recycleBitmap(ImageView view) {
-        if (view == null) return;
+        if (view == null)
+            return;
         BitmapDrawable bitmapDrawable = (BitmapDrawable) view.getDrawable();
         if (bitmapDrawable != null) {
             view.setImageBitmap(null);

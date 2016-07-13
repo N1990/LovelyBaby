@@ -28,6 +28,7 @@ import com.alibaba.sdk.android.media.upload.UploadListener;
 import com.alibaba.sdk.android.media.upload.UploadTask;
 import com.alibaba.sdk.android.media.utils.FailReason;
 import com.cmbb.smartkids.R;
+import com.cmbb.smartkids.activity.address.AddressListActivity;
 import com.cmbb.smartkids.activity.login.CountTimeService;
 import com.cmbb.smartkids.activity.login.model.SecurityCodeModel;
 import com.cmbb.smartkids.activity.user.model.ModifyUserModel;
@@ -330,7 +331,9 @@ public class InfoActivity extends BaseActivity implements LocationSelectorDialog
                 }));
                 break;
             case R.id.rl_my_set_user_delivery_address:
-                ManagerDeliveryAddressListActivity.skipFromActivity(InfoActivity.this);
+//                ManagerDeliveryAddressListActivity.skipFromActivity(InfoActivity.this);
+                AddressListActivity.newIntent(this, 0);
+
                 break;
         }
     }

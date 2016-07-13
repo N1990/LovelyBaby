@@ -1,7 +1,15 @@
 package com.cmbb.smartkids.activity.login.model;
 
+import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.text.TextUtils;
+
+import com.cmbb.smartkids.base.Constants;
+import com.cmbb.smartkids.network.OkHttpClientManager;
+import com.cmbb.smartkids.utils.TDevice;
+
+import java.util.HashMap;
 
 /**
  * 项目名称：LovelyBaby
@@ -10,7 +18,6 @@ import android.os.Parcelable;
  * 创建时间：15/9/10 下午5:18
  */
 public class UserAssistModel implements Parcelable {
-
 
     /**
      * status : 1
@@ -45,7 +52,6 @@ public class UserAssistModel implements Parcelable {
     public void setMsg(String msg) {
         this.msg = msg;
     }
-
 
     @Override
     public int describeContents() {
@@ -86,4 +92,52 @@ public class UserAssistModel implements Parcelable {
                 ", msg='" + msg + '\'' +
                 '}';
     }
+
+    public static void loginUnBundleRequest(Context context, String phone, String psw, String openId, String uid, String userName, int platform, OkHttpClientManager.ResultCallback<UserAssistModel> callback) {
+        HashMap<String, String> body = new HashMap<>();
+        body.put("loginAccount", phone);
+        if (!TextUtils.isEmpty(psw))
+            body.put("loginPassword", psw);
+        body.put("openId", openId);
+        if (!TextUtils.isEmpty(uid))
+            body.put("unionId", uid);//添加uid
+        body.put("userNike", userName);
+        body.put("device", 2 + "");
+        body.put("deviceVersion", android.os.Build.VERSION.RELEASE);
+        body.put("model", android.os.Build.MODEL);
+        body.put("imei", TDevice.getDeviceId(context));
+        body.put("applicationVersion", TDevice.getVersionName());
+        body.put("thirdType", platform + "");
+        OkHttpClientManager.postAsyn(Constants.ServiceInfo.LOGIN_REQUEST, body, callback);
+    }
+
+    public static void loginBundleRequest(Context context, String phone, String openId, String uid, String userName, int platform, OkHttpClientManager.ResultCallback<UserAssistModel> callback) {
+        HashMap<String, String> body = new HashMap<>();
+        body.put("loginAccount", phone);
+        body.put("openId", openId);
+        if (!TextUtils.isEmpty(uid))
+            body.put("unionId", uid);//添加uid
+        body.put("userNike", userName);
+        body.put("device", 2 + "");
+        body.put("deviceVersion", android.os.Build.VERSION.RELEASE);
+        body.put("model", android.os.Build.MODEL);
+        body.put("imei", TDevice.getDeviceId(context));
+        body.put("applicationVersion", TDevice.getVersionName());
+        body.put("thirdType", platform + "");
+        OkHttpClientManager.postAsyn(Constants.ServiceInfo.LOGIN_REQUEST, body, callback);
+    }
+
+    public static void loginRequest(Context context, String phone, String pwd, int platform, OkHttpClientManager.ResultCallback<UserAssistModel> callback) {
+        HashMap<String, String> body = new HashMap<>();
+        body.put("loginAccount", phone);
+        body.put("loginPassword", pwd);
+        body.put("device", 2 + "");
+        body.put("deviceVersion", android.os.Build.VERSION.RELEASE);
+        body.put("model", android.os.Build.MODEL);
+        body.put("imei", TDevice.getDeviceId(context));
+        body.put("applicationVersion", TDevice.getVersionName());
+        body.put("thirdType", platform + "");
+        OkHttpClientManager.postAsyn(Constants.ServiceInfo.LOGIN_REQUEST, body, callback);
+    }
+
 }

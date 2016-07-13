@@ -15,10 +15,11 @@ public class Constants {
     public static final String BASE = "http://120.26.88.135:8090/wine-rest/";
     //    public static final String BASE = "http://192.168.100.64:8083/wine-rest/";
 
-    //    public static final String BASE = "http://192.168.100.64:8083/wine-rest/";
-//    public static final String BASE = "http://mengbaopai.smart-kids.com:82/wine-rest/";
+    //        public static final String BASE = "http://192.168.100.64:8083/wine-rest/";
+    //    public static final String BASE = "http://mengbaopai.smart-kids.com:82/wine-rest/";
     public static final String BASE_URL = BASE + "cgi";
     public final static String TOKEN = "token";
+    public final static String LOGIN_ACCOUNT = "loginAccount";
     public final static String USER_ID = "userId";
     public final static String PACKAGE_NAME = "com.cmbb.smartkids";
     public final static String INTENT_ACTION_EXIT_APP = PACKAGE_NAME + ".intent.action.exitapp";
@@ -31,10 +32,10 @@ public class Constants {
     public final static String APP_ID = "wx_app_id";  //wx766b807ef51aa8da
 
     public static final class H5 {
-        public static final String SMART_SIGN = "http://120.26.88.135:8090/SmartApp/page/smart-app-sign.html"; // 签到
-        public static final String SMART_SERVICE_DETAIL = "http://120.26.88.135:8090/SmartApp/page/samrt-app-service-detail.html"; // 详情
-        //        public static final String SMART_SIGN = "http://www.mengbp.com/web/App/SmartApp/page/smart-app-sign.html"; // 签到
-        //        public static final String SMART_SERVICE_DETAIL = "http://www.mengbp.com/web/App/SmartApp/page/samrt-app-service-detail.html"; // 详情
+        //        public static final String SMART_SIGN = "http://120.26.88.135:8090/SmartApp/page/smart-app-sign.html"; // 签到
+        //        public static final String SMART_SERVICE_DETAIL = "http://120.26.88.135:8090/SmartApp/page/samrt-app-service-detail.html"; // 详情
+        public static final String SMART_SIGN = "http://www.mengbp.com/web/App/SmartApp/page/smart-app-sign.html"; // 签到
+        public static final String SMART_SERVICE_DETAIL = "http://www.mengbp.com/web/App/SmartApp/page/samrt-app-service-detail.html"; // 详情
 
         public static final String IS_SHOW_MARKET = "smart/system/showMarket"; // 关注; 取消关注
     }

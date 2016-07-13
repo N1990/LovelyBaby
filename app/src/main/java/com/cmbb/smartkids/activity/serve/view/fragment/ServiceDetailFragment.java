@@ -107,6 +107,11 @@ public class ServiceDetailFragment extends BaseFragment {
             tvReserve.setOnClickListener(this);
             webView = (BridgeWebView) view.findViewById(R.id.webView);
             webView.setDefaultHandler(new DefaultHandler());
+            webView.getSettings().setDomStorageEnabled(true);
+            webView.getSettings().setAppCachePath(getActivity().getApplicationContext().getCacheDir().getAbsolutePath());
+            webView.getSettings().setAllowFileAccess(true);
+            webView.getSettings().setAppCacheEnabled(true);
+            webView.getSettings().setGeolocationEnabled(true);
             webView.setWebChromeClient(new WebChromeClient() {
 
                 @SuppressWarnings("unused")
@@ -128,9 +133,9 @@ public class ServiceDetailFragment extends BaseFragment {
             webView.clearHistory();
             webView.clearFormData();
             webView.clearCache(true);*/
-            //            webView.loadUrl("file:///android_asset/h5/page/samrt-app-service-detail.html");
+//            webView.loadUrl("file:///android_asset/h5/page/samrt-app-service-detail.html");
 
-            webView.loadUrl(Constants.H5.SMART_SERVICE_DETAIL + "?" + SystemClock.currentThreadTimeMillis());
+                        webView.loadUrl(Constants.H5.SMART_SERVICE_DETAIL + "?" + SystemClock.currentThreadTimeMillis());
         }
         return view;
     }

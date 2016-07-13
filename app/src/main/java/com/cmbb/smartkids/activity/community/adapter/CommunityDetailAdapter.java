@@ -43,7 +43,6 @@ public class CommunityDetailAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     private CustomListener.ItemClickListener onReverNickListener;
     private CustomListener.ItemClickListener onEveryListener;
 
-
     public void setDate(CommunityDetailModel detailData, CommunityReplayModel replayData) {
         if (detailData != null) {
             this.detailData = detailData;
@@ -59,7 +58,6 @@ public class CommunityDetailAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         notifyDataSetChanged();
     }
 
-
     public void updateData(CommunityReplayModel replayData) {
         if (replayData != null) {
             this.replayData = replayData;
@@ -68,7 +66,6 @@ public class CommunityDetailAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         }
         notifyDataSetChanged();
     }
-
 
     public CommunityDetailModel getDetailData() {
         return detailData;
@@ -144,7 +141,6 @@ public class CommunityDetailAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     public void setOnTeletextListener(CustomListener.ItemClickListener onTeletextListener) {
         this.onTeletextListener = onTeletextListener;
     }
-
 
     public CustomListener.ItemClickListener getOnPreUserListener() {
         return onPreUserListener;
@@ -249,6 +245,5 @@ public class CommunityDetailAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     public void setOnReverNickListener(CustomListener.ItemClickListener onReverNickListener) {
         this.onReverNickListener = onReverNickListener;
     }
-
 
 }

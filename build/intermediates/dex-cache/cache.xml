@@ -1,12 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" >
-
-    <item
-        jar="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/incremental-classes/baidu/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
-        revision="23.0.3"
-        sha1="95c289f2d81083adb60b59f3c2bd80b2770640a6">
-        <dex dex="/Users/niesen918/AndroidStudioProjects/LovelyBaby/app/build/intermediates/transforms/dex/baidu/debug/folders/1000/10/instant-run-bootstrap_a9ce5c26b6fcde4aa0ef6a46ce45e429cefa4474/classes.dex" />
-    </item>
-
-</items>
+<items version="2" />

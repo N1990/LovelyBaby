@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.activity.user.adapter.DeliveryAddressAdapter;
-import com.cmbb.smartkids.activity.user.model.DeliveryAddressListModel;
+import com.cmbb.smartkids.activity.address.model.DeliveryAddressListModel;
 
 /**
  * Created by javon on 16/1/13.

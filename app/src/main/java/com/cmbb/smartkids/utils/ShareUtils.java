@@ -1,6 +1,7 @@
 package com.cmbb.smartkids.utils;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.hardware.SensorEvent;
 import android.widget.Toast;
@@ -61,7 +62,6 @@ public class ShareUtils {
             activity = activity1;
         return mController;
     }
-
 
     //授权
     public static void configPlatforms() {
@@ -185,7 +185,6 @@ public class ShareUtils {
 
     }
 
-
     public static void showShareView() {
         new BottomSheet.Builder(activity).sheet(R.menu.menu_share).listener(new DialogInterface.OnClickListener() {
             @Override
@@ -256,7 +255,6 @@ public class ShareUtils {
         mShakeController.unregisterShakeListener(activity);
     }
 
-
     /**
      * 传感器监听器
      */
@@ -307,5 +305,41 @@ public class ShareUtils {
         }
     };
 
+    public static void deleteOAuth(Context context) {
+        mController.deleteOauth(context, SHARE_MEDIA.SINA, new SocializeListeners.SocializeClientListener() {
+            @Override
+            public void onStart() {
+
+            }
+
+            @Override
+            public void onComplete(int i, SocializeEntity socializeEntity) {
+
+            }
+        });
+
+        mController.deleteOauth(context, SHARE_MEDIA.WEIXIN, new SocializeListeners.SocializeClientListener() {
+            @Override
+            public void onStart() {
+
+            }
+
+            @Override
+            public void onComplete(int i, SocializeEntity socializeEntity) {
+
+            }
+        });
+        mController.deleteOauth(context, SHARE_MEDIA.QQ, new SocializeListeners.SocializeClientListener() {
+            @Override
+            public void onStart() {
+
+            }
+
+            @Override
+            public void onComplete(int i, SocializeEntity socializeEntity) {
+
+            }
+        });
+    }
 
 }

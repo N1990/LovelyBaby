@@ -11,7 +11,7 @@ import android.view.View;
 
 import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.activity.user.adapter.DeliveryAddressAdapter;
-import com.cmbb.smartkids.activity.user.model.DeliveryAddressListModel;
+import com.cmbb.smartkids.activity.address.model.DeliveryAddressListModel;
 import com.cmbb.smartkids.base.BaseActivity;
 import com.cmbb.smartkids.base.BaseApplication;
 import com.cmbb.smartkids.base.Constants;
@@ -71,6 +71,7 @@ public class DeliveryAddressListActivity extends BaseActivity {
 
     @Override
     public void onClick(View v) {
+        //管理
         ManagerDeliveryAddressListActivity.skipFromActivity(this, DELIVERY_ADDRESS_MANAGER);
     }
 

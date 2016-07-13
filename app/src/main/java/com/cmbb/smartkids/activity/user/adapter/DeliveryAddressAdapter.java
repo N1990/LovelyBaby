@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 
 import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.activity.user.holder.DeliveryAddressHolder;
-import com.cmbb.smartkids.activity.user.model.DeliveryAddressListModel;
+import com.cmbb.smartkids.activity.address.model.DeliveryAddressListModel;
 import com.cmbb.smartkids.base.CustomListener;
 
 import java.util.ArrayList;

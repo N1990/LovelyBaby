@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -89,6 +88,31 @@
                 android:padding="8dip"
                 android:text="获取验证码"
                 android:textColor="@android:color/white"/>
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip"
+            android:padding="8dp">
+
+
+            <TextView
+                android:id="@+id/tip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="小萌重要提示："
+                android:textColor="@color/primaryColor"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tip"
+                android:layout_marginTop="@dimen/global_padding"
+                android:text="为更便捷用户使用，即日起用户手机号与三方登录账号相互绑定，账号将合并，更加安全可靠！"
+                android:textColor="@color/darkgray"/>
+
         </RelativeLayout>
 
 

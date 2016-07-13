@@ -138,6 +138,7 @@ public class RegisterActivity extends BaseActivity implements LocationSelectorDi
 
                     UserRootModel user = obj.getData();
                     SPCache.putString(Constants.TOKEN, user.getToken());
+                    SPCache.putString(Constants.LOGIN_ACCOUNT, user.getLoginAccount());
                     SPCache.putString(Constants.USER_ID, user.getUserId() + "");
                     // 更改Application里面的值
                     BaseApplication.token = user.getToken();

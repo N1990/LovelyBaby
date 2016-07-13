@@ -11,7 +11,7 @@ import android.view.View;
 
 import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.activity.user.adapter.DeliveryAddressAdapter;
-import com.cmbb.smartkids.activity.user.model.DeliveryAddressListModel;
+import com.cmbb.smartkids.activity.address.model.DeliveryAddressListModel;
 import com.cmbb.smartkids.base.BaseActivity;
 import com.cmbb.smartkids.base.BaseApplication;
 import com.cmbb.smartkids.base.Constants;
@@ -20,6 +20,7 @@ import com.cmbb.smartkids.network.NetRequest;
 
 import java.util.ArrayList;
 
+@Deprecated
 public class ManagerDeliveryAddressListActivity extends BaseActivity {
     private final String TAG = ManagerDeliveryAddressListActivity.class.getSimpleName();
     private final int DELIVERY_ADDRESS_DETAIL = 1223;

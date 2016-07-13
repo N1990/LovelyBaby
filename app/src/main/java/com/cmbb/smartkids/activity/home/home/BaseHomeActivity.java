@@ -24,7 +24,6 @@ import com.cmbb.smartkids.network.OkHttpClientManager;
 import com.cmbb.smartkids.utils.SPCache;
 import com.cmbb.smartkids.utils.log.Log;
 import com.squareup.okhttp.Request;
-import com.thefinestartist.finestwebview.FinestWebView;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -105,7 +104,6 @@ public abstract class BaseHomeActivity extends BaseActivity {
         super.onResume();
         LocalBroadcastManager.getInstance(this).registerReceiver(messageReceiveTagReceiver, new IntentFilter(Constants.INTENT_ACTION_MESSAGE_RECEIVE));
         LocalBroadcastManager.getInstance(this).registerReceiver(messageCancelTagReceiver, new IntentFilter(Constants.INTENT_ACTION_MESSAGE_CANCEL));
-
     }
 
     @Override
@@ -192,8 +190,8 @@ public abstract class BaseHomeActivity extends BaseActivity {
                 } else {
                     HomeMarketActivity.newIntent(this);
                 }*/
-//                HomeMarketActivity.newIntent(this);
-                new FinestWebView.Builder(this)
+                HomeMarketActivity.newIntent(this);
+                /*new FinestWebView.Builder(this)
                         .theme(R.style.FinestWebViewTheme)
                         .titleDefault("萌宝铺子")
                         .showUrl(false)
@@ -207,7 +205,7 @@ public abstract class BaseHomeActivity extends BaseActivity {
                         .showIconMenu(false)
                         .dividerHeight(0)
                         .gradientDivider(false)
-                        .show("http://www.baidu.com");
+                        .show("http://192.168.100.134:8081/MBPZ/index.html?loginAccount=13300000000");*/
                 break;
         }
     }

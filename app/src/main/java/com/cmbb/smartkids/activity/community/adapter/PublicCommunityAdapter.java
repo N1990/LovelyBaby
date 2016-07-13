@@ -34,7 +34,6 @@ public class PublicCommunityAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     private CustomListener.ItemClickListener onItemDeleteListener;
     private CustomListener.ItemClickListener onItemZoomListener;
 
-
     public void setData(ArrayList<ImageModel> data) {
         if (data != null) {
             this.data = data;
@@ -96,12 +95,10 @@ public class PublicCommunityAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         }
     }
 
-
     @Override
     public long getItemId(int position) {
         return position;
     }
-
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -135,7 +132,6 @@ public class PublicCommunityAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     public int getItemCount() {
         return this.data.size() + 1;
     }
-
 
     public View.OnClickListener getOnFootListener() {
         return onFootListener;
@@ -192,7 +188,6 @@ public class PublicCommunityAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         public void setViewVisiable() {
             this.root.setVisibility(View.VISIBLE);
         }
-
 
         @Override
         public void onClick(View v) {

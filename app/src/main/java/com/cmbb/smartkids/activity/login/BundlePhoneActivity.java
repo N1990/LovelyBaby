@@ -121,7 +121,7 @@ public class BundlePhoneActivity extends BaseActivity {
                             finish();
                         } else {
                             //设置密码
-                            SetPwdActivity.newIntent(BundlePhoneActivity.this, etVerifyPhone.getText().toString().trim());
+                            SetPwdActivity.newIntent(BundlePhoneActivity.this, etVerifyPhone.getText().toString().trim(), getIntent().getStringExtra("openId"), getIntent().getStringExtra("uid"), getIntent().getStringExtra("userName"), getIntent().getIntExtra("platform", 0));
                             finish();
                         }
                     }
@@ -135,8 +135,12 @@ public class BundlePhoneActivity extends BaseActivity {
         return R.layout.activity_bundle_phone_layout;
     }
 
-    public static void newIntent(BaseActivity context, int requestCode) {
+    public static void newIntent(BaseActivity context, String openId, String uid, String userName, int platform, int requestCode) {
         Intent intent = new Intent(context, BundlePhoneActivity.class);
+        intent.putExtra("openId", openId);
+        intent.putExtra("uid", uid);
+        intent.putExtra("userName", userName);
+        intent.putExtra("platform", platform);
         context.startActivityForResult(intent, requestCode);
     }
 }

@@ -144,7 +144,75 @@ public class HomeMeActivity extends BaseHomeActivity implements LoaderManager.Lo
     public void onResume() {
         super.onResume();
         tvMe.setSelected(true);
-        hideWaitDialog();
+        showWaitDialog();
+        UserCenterModel.getUserInfoRequest(SPCache.getString(Constants.USER_ID, "-1"), 1, BaseApplication.token, new OkHttpClientManager.ResultCallback<UserCenterModel>() {
+            @Override
+            public void onError(Request request, Exception e, String msg) {
+                hideWaitDialog();
+                if (TextUtils.isEmpty(msg)) {
+                    showShortToast(getString(R.string.is_netwrok));
+                } else {
+                    showShortToast(msg);
+                }
+            }
+
+            @Override
+            public void onResponse(UserCenterModel user) {
+                if (user != null) {
+                    //数据库
+                    //写入数据库
+                    ContentValues valus = new ContentValues();
+                    valus.put(DBContent.DBUser.USER_ID, user.getData().getUserId());
+                    valus.put(DBContent.DBUser.USER_UID, user.getData().getUid());
+                    valus.put(DBContent.DBUser.USER_RECOMMONED, user.getData().getRecommoned());
+                    valus.put(DBContent.DBUser.USER_NIKE, user.getData().getUserNike());
+                    valus.put(DBContent.DBUser.USER_SEX, user.getData().getUserSex());
+                    valus.put(DBContent.DBUser.USER_BIRTHDAY, user.getData().getUserBirthday());
+                    valus.put(DBContent.DBUser.USER_BACKGROUNDIMG, user.getData().getBackgroundImg());
+                    valus.put(DBContent.DBUser.USER_BIGIMG, user.getData().getUserBigImg());
+                    valus.put(DBContent.DBUser.USER_BIGWIDTH, user.getData().getUserBigWidth());
+                    valus.put(DBContent.DBUser.USER_BIGHEIGHT, user.getData().getUserBigHeight());
+                    valus.put(DBContent.DBUser.USER_SMALLIMG, user.getData().getUserSmallImg());
+                    valus.put(DBContent.DBUser.USER_SMALLWIDTH, user.getData().getUserSmallWidth());
+                    valus.put(DBContent.DBUser.USER_SMALLHEIGHT, user.getData().getUserSmallHeight());
+                    valus.put(DBContent.DBUser.USER_LOGINACCOUNTTYPE, user.getData().getLoginAccountType());
+                    valus.put(DBContent.DBUser.USER_LOGINTIME, user.getData().getLoginTime());
+                    valus.put(DBContent.DBUser.USER_LOGINACCOUNT, user.getData().getLoginAccount());
+                    valus.put(DBContent.DBUser.USER_TOKEN, user.getData().getToken());
+                    valus.put(DBContent.DBUser.USER_ISSHUTUP, user.getData().getIsShutup());
+                    valus.put(DBContent.DBUser.USER_SHUTUPTIME, user.getData().getShutupTime());
+                    valus.put(DBContent.DBUser.USER_ISBANNED, user.getData().getIsBanned());
+                    valus.put(DBContent.DBUser.USER_ADDRESS, user.getData().getUserAddress());
+                    valus.put(DBContent.DBUser.USER_PHONE, user.getData().getUserPhone());
+                    valus.put(DBContent.DBUser.USER_PHONEVERSION, user.getData().getUserPhoneVersion());
+                    valus.put(DBContent.DBUser.USER_PROVINCE, user.getData().getProvince());
+                    valus.put(DBContent.DBUser.USER_PROVINCETEXT, user.getData().getProvinceText());
+                    valus.put(DBContent.DBUser.USER_DISTRICT, user.getData().getDistrict());
+                    valus.put(DBContent.DBUser.USER_DISTRICTTEXT, user.getData().getDistrictText());
+                    valus.put(DBContent.DBUser.USER_CITY, user.getData().getCity());
+                    valus.put(DBContent.DBUser.USER_CITYTEXT, user.getData().getCityText());
+                    valus.put(DBContent.DBUser.USER_LEVEL, user.getData().getUserLevel());
+                    valus.put(DBContent.DBUser.USER_PRESENTATION, user.getData().getUserPresentation());
+                    valus.put(DBContent.DBUser.USER_BACKIMGWIDTH, user.getData().getBackImgWidth());
+                    valus.put(DBContent.DBUser.USER_BACKIMGHEIGHT, user.getData().getBackImgHeight());
+                    valus.put(DBContent.DBUser.USER_GOLDCOUNT, user.getData().getGoldCount());
+                    valus.put(DBContent.DBUser.USER_GROWTHCOUNT, user.getData().getGrowthCount());
+                    valus.put(DBContent.DBUser.USER_FANS, user.getData().getFans());
+                    valus.put(DBContent.DBUser.USER_ATTENTIONCOUNT, user.getData().getAttentionCount());
+                    valus.put(DBContent.DBUser.USER_ISSIGN, user.getData().getIsSign());
+                    valus.put(DBContent.DBUser.USER_ISATTENTION, user.getData().getIsAttention());
+                    valus.put(DBContent.DBUser.USER_ISEREDAR, user.getData().getIsEredar());
+                    valus.put(DBContent.DBUser.USER_ISLOGINUSER, user.getData().getIsLoginUser());
+                    if (user.getData().getUserRole() != null && user.getData().getUserRole().size() > 0) {
+                        valus.put(DBContent.DBUser.USER_EREDARCODE, user.getData().getUserRole().get(0).getEredarCode());
+                        valus.put(DBContent.DBUser.USER_EREDARNAME, user.getData().getUserRole().get(0).getEredarName());
+                    }
+                    getContentResolver().delete(DBContent.DBUser.CONTENT_URI, " 1 = 1", null);
+                    getContentResolver().insert(DBContent.DBUser.CONTENT_URI, valus);
+                }
+                hideWaitDialog();
+            }
+        });
     }
 
     public static void newIntent(Context context) {
@@ -319,76 +387,8 @@ public class HomeMeActivity extends BaseHomeActivity implements LoaderManager.Lo
     @Override
     protected void netChange() {
         getSupportLoaderManager().initLoader(0, null, this);
-        showWaitDialog();
-        UserCenterModel.getUserInfoRequest(SPCache.getString(Constants.USER_ID, "-1"), 1, BaseApplication.token, new OkHttpClientManager.ResultCallback<UserCenterModel>() {
-            @Override
-            public void onError(Request request, Exception e, String msg) {
-                hideWaitDialog();
-                if (TextUtils.isEmpty(msg)) {
-                    showShortToast(getString(R.string.is_netwrok));
-                } else {
-                    showShortToast(msg);
-                }
-            }
+        }
 
-            @Override
-            public void onResponse(UserCenterModel user) {
-                if (user != null) {
-                    //数据库
-                    //写入数据库
-                    ContentValues valus = new ContentValues();
-                    valus.put(DBContent.DBUser.USER_ID, user.getData().getUserId());
-                    valus.put(DBContent.DBUser.USER_UID, user.getData().getUid());
-                    valus.put(DBContent.DBUser.USER_RECOMMONED, user.getData().getRecommoned());
-                    valus.put(DBContent.DBUser.USER_NIKE, user.getData().getUserNike());
-                    valus.put(DBContent.DBUser.USER_SEX, user.getData().getUserSex());
-                    valus.put(DBContent.DBUser.USER_BIRTHDAY, user.getData().getUserBirthday());
-                    valus.put(DBContent.DBUser.USER_BACKGROUNDIMG, user.getData().getBackgroundImg());
-                    valus.put(DBContent.DBUser.USER_BIGIMG, user.getData().getUserBigImg());
-                    valus.put(DBContent.DBUser.USER_BIGWIDTH, user.getData().getUserBigWidth());
-                    valus.put(DBContent.DBUser.USER_BIGHEIGHT, user.getData().getUserBigHeight());
-                    valus.put(DBContent.DBUser.USER_SMALLIMG, user.getData().getUserSmallImg());
-                    valus.put(DBContent.DBUser.USER_SMALLWIDTH, user.getData().getUserSmallWidth());
-                    valus.put(DBContent.DBUser.USER_SMALLHEIGHT, user.getData().getUserSmallHeight());
-                    valus.put(DBContent.DBUser.USER_LOGINACCOUNTTYPE, user.getData().getLoginAccountType());
-                    valus.put(DBContent.DBUser.USER_LOGINTIME, user.getData().getLoginTime());
-                    valus.put(DBContent.DBUser.USER_LOGINACCOUNT, user.getData().getLoginAccount());
-                    valus.put(DBContent.DBUser.USER_TOKEN, user.getData().getToken());
-                    valus.put(DBContent.DBUser.USER_ISSHUTUP, user.getData().getIsShutup());
-                    valus.put(DBContent.DBUser.USER_SHUTUPTIME, user.getData().getShutupTime());
-                    valus.put(DBContent.DBUser.USER_ISBANNED, user.getData().getIsBanned());
-                    valus.put(DBContent.DBUser.USER_ADDRESS, user.getData().getUserAddress());
-                    valus.put(DBContent.DBUser.USER_PHONE, user.getData().getUserPhone());
-                    valus.put(DBContent.DBUser.USER_PHONEVERSION, user.getData().getUserPhoneVersion());
-                    valus.put(DBContent.DBUser.USER_PROVINCE, user.getData().getProvince());
-                    valus.put(DBContent.DBUser.USER_PROVINCETEXT, user.getData().getProvinceText());
-                    valus.put(DBContent.DBUser.USER_DISTRICT, user.getData().getDistrict());
-                    valus.put(DBContent.DBUser.USER_DISTRICTTEXT, user.getData().getDistrictText());
-                    valus.put(DBContent.DBUser.USER_CITY, user.getData().getCity());
-                    valus.put(DBContent.DBUser.USER_CITYTEXT, user.getData().getCityText());
-                    valus.put(DBContent.DBUser.USER_LEVEL, user.getData().getUserLevel());
-                    valus.put(DBContent.DBUser.USER_PRESENTATION, user.getData().getUserPresentation());
-                    valus.put(DBContent.DBUser.USER_BACKIMGWIDTH, user.getData().getBackImgWidth());
-                    valus.put(DBContent.DBUser.USER_BACKIMGHEIGHT, user.getData().getBackImgHeight());
-                    valus.put(DBContent.DBUser.USER_GOLDCOUNT, user.getData().getGoldCount());
-                    valus.put(DBContent.DBUser.USER_GROWTHCOUNT, user.getData().getGrowthCount());
-                    valus.put(DBContent.DBUser.USER_FANS, user.getData().getFans());
-                    valus.put(DBContent.DBUser.USER_ATTENTIONCOUNT, user.getData().getAttentionCount());
-                    valus.put(DBContent.DBUser.USER_ISSIGN, user.getData().getIsSign());
-                    valus.put(DBContent.DBUser.USER_ISATTENTION, user.getData().getIsAttention());
-                    valus.put(DBContent.DBUser.USER_ISEREDAR, user.getData().getIsEredar());
-                    valus.put(DBContent.DBUser.USER_ISLOGINUSER, user.getData().getIsLoginUser());
-                    if (user.getData().getUserRole() != null && user.getData().getUserRole().size() > 0) {
-                        valus.put(DBContent.DBUser.USER_EREDARCODE, user.getData().getUserRole().get(0).getEredarCode());
-                        valus.put(DBContent.DBUser.USER_EREDARNAME, user.getData().getUserRole().get(0).getEredarName());
-                    }
-                    getContentResolver().delete(DBContent.DBUser.CONTENT_URI, " 1 = 1", null);
-                    getContentResolver().insert(DBContent.DBUser.CONTENT_URI, valus);
-                }
-                hideWaitDialog();
-            }
-        });
-    }
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {

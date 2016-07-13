@@ -45,6 +45,7 @@ public class BaseApplication extends MultiDexApplication {
     public static String PUSH_ALIAS_RESUME_REQUEST = "com.cmbb.smartkids.resume";
     public static MediaService mediaService;
     public static String token = "";
+    public static String loginAccount = "";
 
     @Override
     public void onCreate() {
@@ -64,6 +65,7 @@ public class BaseApplication extends MultiDexApplication {
         LocalBroadcastManager.getInstance(this).registerReceiver(pushAliasReceiver, new IntentFilter(PUSH_ALIAS_ITENTACTION));
         // 登录状态获取token
         token = SPCache.getString(Constants.TOKEN, "");
+        loginAccount = SPCache.getString(Constants.LOGIN_ACCOUNT, "");
     }
 
     @Override

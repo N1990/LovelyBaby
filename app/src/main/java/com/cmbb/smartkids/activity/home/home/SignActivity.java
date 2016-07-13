@@ -43,6 +43,11 @@ public class SignActivity extends BaseActivity {
         setTitle("签到");
         webView = (BridgeWebView) findViewById(R.id.webView);
         webView.setDefaultHandler(new DefaultHandler());
+        webView.getSettings().setDomStorageEnabled(true);
+        webView.getSettings().setAppCachePath(getApplicationContext().getCacheDir().getAbsolutePath());
+        webView.getSettings().setAllowFileAccess(true);
+        webView.getSettings().setAppCacheEnabled(true);
+        webView.getSettings().setGeolocationEnabled(true);
         webView.setWebChromeClient(new WebChromeClient() {
 
             @SuppressWarnings("unused")

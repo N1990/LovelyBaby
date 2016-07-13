@@ -59,6 +59,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
+            android:layout_marginRight="8dp"
             android:src="@drawable/shape_message_tip"
             android:visibility="invisible"/>
 
@@ -73,7 +74,7 @@
         android:drawableTop="@drawable/btn_home_more_selector"
         android:gravity="center"
         android:text="萌铺"
-        android:visibility="gone"
-        android:textColor="@color/selector_gray_to_primarycolor_text"/>
+        android:textColor="@color/selector_gray_to_primarycolor_text"
+        android:visibility="gone"/>
 
 </LinearLayout>

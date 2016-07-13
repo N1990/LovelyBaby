@@ -21,7 +21,7 @@ import com.cmbb.smartkids.activity.serve.view.PopuGridAdapter;
 import com.cmbb.smartkids.activity.serve.view.model.H5ServiceDetailModel;
 import com.cmbb.smartkids.activity.serve.view.model.ReserveModel;
 import com.cmbb.smartkids.activity.user.DeliveryAddressListActivity;
-import com.cmbb.smartkids.activity.user.model.DeliveryAddressListModel;
+import com.cmbb.smartkids.activity.address.model.DeliveryAddressListModel;
 import com.cmbb.smartkids.base.BaseActivity;
 import com.cmbb.smartkids.network.OkHttpClientManager;
 import com.cmbb.smartkids.recyclerview.SmartRecyclerView;

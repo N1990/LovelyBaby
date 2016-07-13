@@ -3,8 +3,8 @@
           xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- umeng-analytics -->
-    <!--<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>-->
-    <!--<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <uses-permission android:name="android.permission.CALL_PHONE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
@@ -217,6 +217,8 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="sensor"/>
 
+        <activity android:name=".activity.address.AddressListActivity"/>
+
         <!-- *************************    分享相关的注册 END **************************** -->
         <!-- 以上接入第三方必备 -->
         <activity
@@ -359,7 +361,6 @@
         <activity android:name=".activity.message.MessageReverListActivity"/>
         <activity android:name=".activity.message.MessageServiceListActivity"/>
         <activity android:name=".activity.diary.DiaryChooseModelActivity"/>
-        <activity android:name=".activity.diary.MyBabyListActivity"/>
         <activity android:name=".activity.diary.AddBabyActivity"/>
         <activity android:name=".activity.diary.ModifyBabyNameActivity"/>
         <activity android:name=".activity.diary.BabyDiaryListActivity"/>

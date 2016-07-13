@@ -252,6 +252,5 @@ dependencies {
     compile 'com.umeng.analytics:analytics:5.5.3'
     compile 'com.soundcloud.android:android-crop:1.0.1@aar'
     compile 'com.jude:rollviewpager:1.0.7'
-    compile 'com.thefinestartist:finestwebview:1.2.7'
     compile files('libs/libammsdk.jar')
 }
